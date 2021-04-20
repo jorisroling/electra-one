@@ -16,7 +16,7 @@
       "bounds": [
         0,
         16,
-        996,
+        826,
         16
       ]
     },
@@ -30,6 +30,39 @@
         996,
         16
       ]
+    },
+    {
+      "pageId": 1,
+      "name": "OSC 3",
+      "color": "F45C51",
+      "bounds": [
+        0,
+        368,
+        656,
+        16
+      ]
+    },
+    {
+      "pageId": 1,
+      "name": "OSC 1 & 2",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        16,
+        146,
+        16
+      ]
+    },
+    {
+      "pageId": 1,
+      "name": "Mixel",
+      "bounds": [
+        680,
+        368,
+        316,
+        16
+      ],
+      "color": "FFFFFF"
     }
   ],
   "devices": [
@@ -858,8 +891,8 @@
     {
       "id": 6,
       "type": "fader",
-      "name": "F-SHIFT",
-      "color": "F49500",
+      "name": "SYNC",
+      "color": "FFFFFF",
       "bounds": [
         850,
         40,
@@ -877,30 +910,16 @@
       "values": [
         {
           "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "2A",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 36,
+            "type": "cc7",
+            "parameterNumber": 28,
             "min": 0,
-            "max": 127
+            "max": 1,
+            "deviceId": 1
           },
-          "min": -64,
-          "max": 63,
+          "min": 0,
+          "max": 1,
           "defaultValue": 0,
+          "overlayId": 3,
           "id": "value"
         }
       ]
@@ -978,7 +997,7 @@
     {
       "id": 9,
       "type": "fader",
-      "name": "BALANCE",
+      "name": "LOCAL DETUNE",
       "color": "F49500",
       "bounds": [
         340,
@@ -991,77 +1010,6 @@
       "inputs": [
         {
           "potId": 9,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 33,
-            "min": 0,
-            "max": 127
-          },
-          "min": -100,
-          "max": 100,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "type": "fader",
-      "name": "SYNC",
-      "color": "F49500",
-      "bounds": [
-        510,
-        128,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 10,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 28,
-            "min": 0,
-            "max": 1,
-            "deviceId": 1
-          },
-          "min": 0,
-          "max": 1,
-          "defaultValue": 0,
-          "overlayId": 3,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 11,
-      "type": "fader",
-      "name": "LOCAL DETUNE",
-      "color": "F49500",
-      "bounds": [
-        680,
-        128,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 11,
           "valueId": "value"
         }
       ],
@@ -1097,12 +1045,12 @@
       ]
     },
     {
-      "id": 12,
+      "id": 10,
       "type": "fader",
       "name": "F-SPREAD",
       "color": "F49500",
       "bounds": [
-        850,
+        510,
         128,
         146,
         56
@@ -1111,7 +1059,7 @@
       "controlSetId": 1,
       "inputs": [
         {
-          "potId": 12,
+          "potId": 10,
           "valueId": "value"
         }
       ],
@@ -1141,6 +1089,91 @@
           },
           "min": 0,
           "max": 127,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "type": "fader",
+      "name": "F-SHIFT",
+      "color": "F49500",
+      "bounds": [
+        680,
+        128,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "2A",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 36,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "type": "fader",
+      "name": "BALANCE",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        128,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 33,
+            "min": 0,
+            "max": 127
+          },
+          "min": -100,
+          "max": 100,
           "defaultValue": 0,
           "id": "value"
         }
@@ -1189,6 +1222,7 @@
             "parameterNumber": 38,
             "deviceId": 1
           },
+          "overlayId": 1,
           "id": "value"
         }
       ]
@@ -1231,7 +1265,7 @@
     {
       "id": 15,
       "type": "fader",
-      "name": "PULSE WIDTH",
+      "name": "WAVETABLE",
       "color": "C44795",
       "bounds": [
         340,
@@ -1251,14 +1285,15 @@
         {
           "message": {
             "type": "cc7",
-            "parameterNumber": 23,
+            "parameterNumber": 24,
             "min": 0,
-            "max": 127,
+            "max": 99,
             "deviceId": 1
           },
-          "min": 50,
-          "max": 100,
+          "min": 0,
+          "max": 99,
           "defaultValue": 0,
+          "overlayId": 2,
           "id": "value"
         }
       ]
@@ -1301,7 +1336,7 @@
     {
       "id": 17,
       "type": "fader",
-      "name": "FM AMOUNT",
+      "name": "INTERPOLATION",
       "color": "C44795",
       "bounds": [
         680,
@@ -1320,10 +1355,25 @@
       "values": [
         {
           "message": {
-            "type": "cc7",
-            "parameterNumber": 27,
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "40",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
             "min": 0,
             "max": 127,
+            "parameterNumber": 40,
             "deviceId": 1
           },
           "min": 0,
@@ -1336,7 +1386,7 @@
     {
       "id": 18,
       "type": "fader",
-      "name": "WAVETABLE",
+      "name": "PULSE WIDTH",
       "color": "C44795",
       "bounds": [
         850,
@@ -1356,15 +1406,14 @@
         {
           "message": {
             "type": "cc7",
-            "parameterNumber": 24,
+            "parameterNumber": 23,
             "min": 0,
-            "max": 99,
+            "max": 127,
             "deviceId": 1
           },
-          "min": 0,
-          "max": 99,
+          "min": 50,
+          "max": 100,
           "defaultValue": 0,
-          "overlayId": 2,
           "id": "value"
         }
       ]
@@ -1493,7 +1542,7 @@
     {
       "id": 22,
       "type": "fader",
-      "name": "SYNC",
+      "name": "FM AMOUNT",
       "color": "C44795",
       "bounds": [
         510,
@@ -1513,14 +1562,14 @@
         {
           "message": {
             "type": "cc7",
-            "parameterNumber": 28,
+            "parameterNumber": 27,
             "min": 0,
-            "max": 1,
+            "max": 127,
             "deviceId": 1
           },
           "min": 0,
-          "max": 1,
-          "overlayId": 3,
+          "max": 127,
+          "defaultValue": 0,
           "id": "value"
         }
       ]
@@ -1561,21 +1610,21 @@
       ]
     },
     {
-      "id": 24,
+      "id": 25,
       "type": "fader",
-      "name": "INTERPOLATION",
-      "color": "C44795",
+      "name": "MODE / WAVE",
+      "color": "F45C51",
       "bounds": [
-        850,
-        304,
+        0,
+        392,
         146,
         56
       ],
       "pageId": 1,
-      "controlSetId": 2,
+      "controlSetId": 3,
       "inputs": [
         {
-          "potId": 12,
+          "potId": 1,
           "valueId": "value"
         }
       ],
@@ -1590,9 +1639,109 @@
               "33",
               "01",
               "00",
-              "6E",
+              "71",
               "00",
-              "40",
+              "29",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 67,
+            "parameterNumber": 41,
+            "deviceId": 1
+          },
+          "min": 0,
+          "max": 67,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "type": "fader",
+      "name": "SEMITONE",
+      "color": "F45C51",
+      "bounds": [
+        170,
+        392,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "2B",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 42,
+            "min": 16,
+            "max": 112
+          },
+          "min": -48,
+          "max": 48,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "type": "fader",
+      "name": "DETUNE",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        392,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "2C",
               {
                 "type": "value"
               },
@@ -1600,7 +1749,162 @@
             ],
             "min": 0,
             "max": 127,
-            "parameterNumber": 40,
+            "parameterNumber": 44,
+            "deviceId": 1
+          },
+          "min": 0,
+          "max": 127,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "type": "fader",
+      "name": "VOLUME",
+      "color": "F45C51",
+      "bounds": [
+        510,
+        392,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "2A",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 43,
+            "deviceId": 1
+          },
+          "min": 0,
+          "max": 127,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "type": "fader",
+      "name": "VOLUME",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        392,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 36,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "min": 0,
+          "max": 127,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "type": "fader",
+      "name": "SUB OSC VOLUME",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        392,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 34,
+            "min": 0,
+            "max": 127
+          },
+          "min": 0,
+          "max": 127,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "type": "fader",
+      "name": "NOISE ",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        480,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 37,
+            "min": 0,
+            "max": 127,
             "deviceId": 1
           },
           "min": 0,
