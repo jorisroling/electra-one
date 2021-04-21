@@ -7,7 +7,7 @@
     "electra-one": "./index.js"
   },
   "scripts": {
-    "router": "node index router",
+    "router": "nodemon --ignore state/router.json index router",
     "midi": "node index midi",
     "pre2inst": "python submodules/ElectraOne/tools/pre2inst/pre2inst.py",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -25,14 +25,19 @@
   "homepage": "https://github.com/jorisroling/electra-one#readme",
   "dependencies": {
     "args": "^5.0.1",
+    "change-case": "^4.1.2",
     "config": "^3.3.6",
     "easymidi": "^2.0.3",
     "escape-regex-string": "^1.0.6",
     "fs-extra": "^9.1.0",
     "glob": "^7.1.6",
+    "jsonfile": "^6.1.0",
     "lodash": "^4.17.21",
     "sleep": "^6.3.0",
     "table": "^6.3.2",
     "yves": "^1.0.78"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
