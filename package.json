@@ -1,9 +1,14 @@
 {
   "name": "electra-one",
   "version": "1.0.0",
-  "description": "Instrument Files for Electra One",
+  "description": "Router & Instrument Files for Electra One",
   "main": "index.js",
+  "bin": {
+    "electra-one": "./index.js"
+  },
   "scripts": {
+    "router": "node index router",
+    "midi": "node index midi",
     "pre2inst": "python submodules/ElectraOne/tools/pre2inst/pre2inst.py",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,5 +22,17 @@
   "bugs": {
     "url": "https://github.com/jorisroling/electra-one/issues"
   },
-  "homepage": "https://github.com/jorisroling/electra-one#readme"
+  "homepage": "https://github.com/jorisroling/electra-one#readme",
+  "dependencies": {
+    "args": "^5.0.1",
+    "config": "^3.3.6",
+    "easymidi": "^2.0.3",
+    "escape-regex-string": "^1.0.6",
+    "fs-extra": "^9.1.0",
+    "glob": "^7.1.6",
+    "lodash": "^4.17.21",
+    "sleep": "^6.3.0",
+    "table": "^6.3.2",
+    "yves": "^1.0.78"
+  }
 }
