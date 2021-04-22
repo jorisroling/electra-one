@@ -22,7 +22,7 @@ function readState() {
   }
 }
 
-readState()
+
 
 function writeState() {
   const state = { mappedMidiChannel }
@@ -86,6 +86,15 @@ function setupMidi(options) {
 
 function routerConsole(name, sub, options) {
 /*  debug('options: %y',options)*/
+
+  readState()
+
+  const midiOutput = ElectraOne.output(options.electraOne, true)
+  if (midiOutput) {
+    midiOutput.send('sysex',[0xF0, 0x7D, 0x20, mappedMidiChannel, 0xF7])
+    debug('Initialise Electra One MIDI mapped channel %y',mappedMidiChannel)
+  }
+
   setupMidi(options)
 }
 
