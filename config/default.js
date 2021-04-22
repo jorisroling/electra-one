@@ -12,11 +12,11 @@ module.exports = {
     ports: {
       'electra-one-1': {
         darwin: "Electra Controller Electra Port 1",
-        linux: "",
+        linux: "Electra Controller:Electra Controller MIDI 1 24:0",
       },
       'electra-one-2': {
         darwin: "Electra Controller Electra Port 2",
-        linux: "",
+        linux: "Electra Controller:Electra Controller MIDI 2 24:1",
       },
       'virus-ti': {
         darwin: "iConnectMIDI4+ Virus TI",
