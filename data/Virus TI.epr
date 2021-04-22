@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "Virus TI",
-  "projectId": "f7KA6SXO5JGrnOsveVdP",
+  "projectId": "xs3NSR4M7IVHK6spF7G4",
   "pages": [
     {
       "id": 1,
@@ -859,6 +859,79 @@
     {
       "id": 5,
       "items": [
+        { "index": 0, "label": "OFF", "value": 0 },
+        { "index": 1, "label": "Slave", "value": 1 },
+        { "index": 2, "label": "Saw", "value": 2 },
+        { "index": 3, "label": "Pulse", "value": 3 },
+        { "index": 4, "label": "Sine", "value": 4 },
+        { "index": 5, "label": "Triangle", "value": 5 },
+        { "index": 6, "label": "Wave 3", "value": 6 },
+        { "index": 7, "label": "Wave 4", "value": 7 },
+        { "index": 8, "label": "Wave 5", "value": 8 },
+        { "index": 9, "label": "Wave 6", "value": 9 },
+        { "index": 10, "label": "Wave 7", "value": 10 },
+        { "index": 11, "label": "Wave 8", "value": 11 },
+        { "index": 12, "label": "Wave 9", "value": 12 },
+        { "index": 13, "label": "Wave 10", "value": 13 },
+        { "index": 14, "label": "Wave 11", "value": 14 },
+        { "index": 15, "label": "Wave 12", "value": 15 },
+        { "index": 16, "label": "Wave 13", "value": 16 },
+        { "index": 17, "label": "Wave 14", "value": 17 },
+        { "index": 18, "label": "Wave 15", "value": 18 },
+        { "index": 19, "label": "Wave 16", "value": 19 },
+        { "index": 20, "label": "Wave 17", "value": 20 },
+        { "index": 21, "label": "Wave 18", "value": 21 },
+        { "index": 22, "label": "Wave 19", "value": 22 },
+        { "index": 23, "label": "Wave 20", "value": 23 },
+        { "index": 24, "label": "Wave 21", "value": 24 },
+        { "index": 25, "label": "Wave 22", "value": 25 },
+        { "index": 26, "label": "Wave 23", "value": 26 },
+        { "index": 27, "label": "Wave 24", "value": 27 },
+        { "index": 28, "label": "Wave 25", "value": 28 },
+        { "index": 29, "label": "Wave 26", "value": 29 },
+        { "index": 30, "label": "Wave 27", "value": 30 },
+        { "index": 31, "label": "Wave 28", "value": 31 },
+        { "index": 32, "label": "Wave 29", "value": 32 },
+        { "index": 33, "label": "Wave 30", "value": 33 },
+        { "index": 34, "label": "Wave 31", "value": 34 },
+        { "index": 35, "label": "Wave 32", "value": 35 },
+        { "index": 36, "label": "Wave 33", "value": 36 },
+        { "index": 37, "label": "Wave 34", "value": 37 },
+        { "index": 38, "label": "Wave 35", "value": 38 },
+        { "index": 39, "label": "Wave 36", "value": 39 },
+        { "index": 40, "label": "Wave 37", "value": 40 },
+        { "index": 41, "label": "Wave 38", "value": 41 },
+        { "index": 42, "label": "Wave 39", "value": 42 },
+        { "index": 43, "label": "Wave 40", "value": 43 },
+        { "index": 44, "label": "Wave 41", "value": 44 },
+        { "index": 45, "label": "Wave 42", "value": 45 },
+        { "index": 46, "label": "Wave 43", "value": 46 },
+        { "index": 47, "label": "Wave 44", "value": 47 },
+        { "index": 48, "label": "Wave 45", "value": 48 },
+        { "index": 49, "label": "Wave 46", "value": 49 },
+        { "index": 50, "label": "Wave 47", "value": 50 },
+        { "index": 51, "label": "Wave 48", "value": 51 },
+        { "index": 52, "label": "Wave 49", "value": 52 },
+        { "index": 53, "label": "Wave 50", "value": 53 },
+        { "index": 54, "label": "Wave 51", "value": 54 },
+        { "index": 55, "label": "Wave 52", "value": 55 },
+        { "index": 56, "label": "Wave 53", "value": 56 },
+        { "index": 57, "label": "Wave 54", "value": 57 },
+        { "index": 58, "label": "Wave 55", "value": 58 },
+        { "index": 59, "label": "Wave 56", "value": 59 },
+        { "index": 60, "label": "Wave 57", "value": 60 },
+        { "index": 61, "label": "Wave 58", "value": 61 },
+        { "index": 62, "label": "Wave 59", "value": 62 },
+        { "index": 63, "label": "Wave 60", "value": 63 },
+        { "index": 64, "label": "Wave 61", "value": 64 },
+        { "index": 65, "label": "Wave 62", "value": 65 },
+        { "index": 66, "label": "Wave 63", "value": 66 },
+        { "index": 67, "label": "Wave 64", "value": 67 }
+      ]
+    },
+    {
+      "id": 6,
+      "items": [
         {
           "value": 0,
           "label": "Low Pass",
@@ -902,7 +975,7 @@
       ]
     },
     {
-      "id": 6,
+      "id": 7,
       "items": [
         {
           "value": 0,
@@ -927,7 +1000,7 @@
       ]
     },
     {
-      "id": 7,
+      "id": 8,
       "items": [
         {
           "value": 0,
@@ -942,7 +1015,7 @@
       ]
     },
     {
-      "id": 8,
+      "id": 9,
       "items": [
         {
           "index": 0,
@@ -1057,80 +1130,352 @@
       ]
     },
     {
-      "id": 9,
+      "id": 10,
       "items": [
-        { "index": 0, "label": "Sine", "value": 0 },
-        { "index": 1, "label": "Triangle", "value": 1 },
-        { "index": 2, "label": "Sawtooth", "value": 2 },
-        { "index": 3, "label": "Pulse", "value": 3 },
-        { "index": 4, "label": "S+H", "value": 4 },
-        { "index": 5, "label": "S+G", "value": 5 },
-        { "index": 6, "label": "Wave 3", "value": 6 },
-        { "index": 7, "label": "Wave 4", "value": 7 },
-        { "index": 8, "label": "Wave 5", "value": 8 },
-        { "index": 9, "label": "Wave 6", "value": 9 },
-        { "index": 10, "label": "Wave 7", "value": 10 },
-        { "index": 11, "label": "Wave 8", "value": 11 },
-        { "index": 12, "label": "Wave 9", "value": 12 },
-        { "index": 13, "label": "Wave 10", "value": 13 },
-        { "index": 14, "label": "Wave 11", "value": 14 },
-        { "index": 15, "label": "Wave 12", "value": 15 },
-        { "index": 16, "label": "Wave 13", "value": 16 },
-        { "index": 17, "label": "Wave 14", "value": 17 },
-        { "index": 18, "label": "Wave 15", "value": 18 },
-        { "index": 19, "label": "Wave 16", "value": 19 },
-        { "index": 20, "label": "Wave 17", "value": 20 },
-        { "index": 21, "label": "Wave 18", "value": 21 },
-        { "index": 22, "label": "Wave 19", "value": 22 },
-        { "index": 23, "label": "Wave 20", "value": 23 },
-        { "index": 24, "label": "Wave 21", "value": 24 },
-        { "index": 25, "label": "Wave 22", "value": 25 },
-        { "index": 26, "label": "Wave 23", "value": 26 },
-        { "index": 27, "label": "Wave 24", "value": 27 },
-        { "index": 28, "label": "Wave 25", "value": 28 },
-        { "index": 29, "label": "Wave 26", "value": 29 },
-        { "index": 30, "label": "Wave 27", "value": 30 },
-        { "index": 31, "label": "Wave 28", "value": 31 },
-        { "index": 32, "label": "Wave 29", "value": 32 },
-        { "index": 33, "label": "Wave 30", "value": 33 },
-        { "index": 34, "label": "Wave 31", "value": 34 },
-        { "index": 35, "label": "Wave 32", "value": 35 },
-        { "index": 36, "label": "Wave 33", "value": 36 },
-        { "index": 37, "label": "Wave 34", "value": 37 },
-        { "index": 38, "label": "Wave 35", "value": 38 },
-        { "index": 39, "label": "Wave 36", "value": 39 },
-        { "index": 40, "label": "Wave 37", "value": 40 },
-        { "index": 41, "label": "Wave 38", "value": 41 },
-        { "index": 42, "label": "Wave 39", "value": 42 },
-        { "index": 43, "label": "Wave 40", "value": 43 },
-        { "index": 44, "label": "Wave 41", "value": 44 },
-        { "index": 45, "label": "Wave 42", "value": 45 },
-        { "index": 46, "label": "Wave 43", "value": 46 },
-        { "index": 47, "label": "Wave 44", "value": 47 },
-        { "index": 48, "label": "Wave 45", "value": 48 },
-        { "index": 49, "label": "Wave 46", "value": 49 },
-        { "index": 50, "label": "Wave 47", "value": 50 },
-        { "index": 51, "label": "Wave 48", "value": 51 },
-        { "index": 52, "label": "Wave 49", "value": 52 },
-        { "index": 53, "label": "Wave 50", "value": 53 },
-        { "index": 54, "label": "Wave 51", "value": 54 },
-        { "index": 55, "label": "Wave 52", "value": 55 },
-        { "index": 56, "label": "Wave 53", "value": 56 },
-        { "index": 57, "label": "Wave 54", "value": 57 },
-        { "index": 58, "label": "Wave 55", "value": 58 },
-        { "index": 59, "label": "Wave 56", "value": 59 },
-        { "index": 60, "label": "Wave 57", "value": 60 },
-        { "index": 61, "label": "Wave 58", "value": 61 },
-        { "index": 62, "label": "Wave 59", "value": 62 },
-        { "index": 63, "label": "Wave 60", "value": 63 },
-        { "index": 64, "label": "Wave 61", "value": 64 },
-        { "index": 65, "label": "Wave 62", "value": 65 },
-        { "index": 66, "label": "Wave 63", "value": 66 },
-        { "index": 67, "label": "Wave 64", "value": 67 }
+        {
+          "index": 0,
+          "label": "Sine",
+          "value": 0
+        },
+        {
+          "index": 1,
+          "label": "Triangle",
+          "value": 1
+        },
+        {
+          "index": 2,
+          "label": "Sawtooth",
+          "value": 2
+        },
+        {
+          "index": 3,
+          "label": "Pulse",
+          "value": 3
+        },
+        {
+          "index": 4,
+          "label": "S+H",
+          "value": 4
+        },
+        {
+          "index": 5,
+          "label": "S+G",
+          "value": 5
+        },
+        {
+          "index": 6,
+          "label": "Wave 3",
+          "value": 6
+        },
+        {
+          "index": 7,
+          "label": "Wave 4",
+          "value": 7
+        },
+        {
+          "index": 8,
+          "label": "Wave 5",
+          "value": 8
+        },
+        {
+          "index": 9,
+          "label": "Wave 6",
+          "value": 9
+        },
+        {
+          "index": 10,
+          "label": "Wave 7",
+          "value": 10
+        },
+        {
+          "index": 11,
+          "label": "Wave 8",
+          "value": 11
+        },
+        {
+          "index": 12,
+          "label": "Wave 9",
+          "value": 12
+        },
+        {
+          "index": 13,
+          "label": "Wave 10",
+          "value": 13
+        },
+        {
+          "index": 14,
+          "label": "Wave 11",
+          "value": 14
+        },
+        {
+          "index": 15,
+          "label": "Wave 12",
+          "value": 15
+        },
+        {
+          "index": 16,
+          "label": "Wave 13",
+          "value": 16
+        },
+        {
+          "index": 17,
+          "label": "Wave 14",
+          "value": 17
+        },
+        {
+          "index": 18,
+          "label": "Wave 15",
+          "value": 18
+        },
+        {
+          "index": 19,
+          "label": "Wave 16",
+          "value": 19
+        },
+        {
+          "index": 20,
+          "label": "Wave 17",
+          "value": 20
+        },
+        {
+          "index": 21,
+          "label": "Wave 18",
+          "value": 21
+        },
+        {
+          "index": 22,
+          "label": "Wave 19",
+          "value": 22
+        },
+        {
+          "index": 23,
+          "label": "Wave 20",
+          "value": 23
+        },
+        {
+          "index": 24,
+          "label": "Wave 21",
+          "value": 24
+        },
+        {
+          "index": 25,
+          "label": "Wave 22",
+          "value": 25
+        },
+        {
+          "index": 26,
+          "label": "Wave 23",
+          "value": 26
+        },
+        {
+          "index": 27,
+          "label": "Wave 24",
+          "value": 27
+        },
+        {
+          "index": 28,
+          "label": "Wave 25",
+          "value": 28
+        },
+        {
+          "index": 29,
+          "label": "Wave 26",
+          "value": 29
+        },
+        {
+          "index": 30,
+          "label": "Wave 27",
+          "value": 30
+        },
+        {
+          "index": 31,
+          "label": "Wave 28",
+          "value": 31
+        },
+        {
+          "index": 32,
+          "label": "Wave 29",
+          "value": 32
+        },
+        {
+          "index": 33,
+          "label": "Wave 30",
+          "value": 33
+        },
+        {
+          "index": 34,
+          "label": "Wave 31",
+          "value": 34
+        },
+        {
+          "index": 35,
+          "label": "Wave 32",
+          "value": 35
+        },
+        {
+          "index": 36,
+          "label": "Wave 33",
+          "value": 36
+        },
+        {
+          "index": 37,
+          "label": "Wave 34",
+          "value": 37
+        },
+        {
+          "index": 38,
+          "label": "Wave 35",
+          "value": 38
+        },
+        {
+          "index": 39,
+          "label": "Wave 36",
+          "value": 39
+        },
+        {
+          "index": 40,
+          "label": "Wave 37",
+          "value": 40
+        },
+        {
+          "index": 41,
+          "label": "Wave 38",
+          "value": 41
+        },
+        {
+          "index": 42,
+          "label": "Wave 39",
+          "value": 42
+        },
+        {
+          "index": 43,
+          "label": "Wave 40",
+          "value": 43
+        },
+        {
+          "index": 44,
+          "label": "Wave 41",
+          "value": 44
+        },
+        {
+          "index": 45,
+          "label": "Wave 42",
+          "value": 45
+        },
+        {
+          "index": 46,
+          "label": "Wave 43",
+          "value": 46
+        },
+        {
+          "index": 47,
+          "label": "Wave 44",
+          "value": 47
+        },
+        {
+          "index": 48,
+          "label": "Wave 45",
+          "value": 48
+        },
+        {
+          "index": 49,
+          "label": "Wave 46",
+          "value": 49
+        },
+        {
+          "index": 50,
+          "label": "Wave 47",
+          "value": 50
+        },
+        {
+          "index": 51,
+          "label": "Wave 48",
+          "value": 51
+        },
+        {
+          "index": 52,
+          "label": "Wave 49",
+          "value": 52
+        },
+        {
+          "index": 53,
+          "label": "Wave 50",
+          "value": 53
+        },
+        {
+          "index": 54,
+          "label": "Wave 51",
+          "value": 54
+        },
+        {
+          "index": 55,
+          "label": "Wave 52",
+          "value": 55
+        },
+        {
+          "index": 56,
+          "label": "Wave 53",
+          "value": 56
+        },
+        {
+          "index": 57,
+          "label": "Wave 54",
+          "value": 57
+        },
+        {
+          "index": 58,
+          "label": "Wave 55",
+          "value": 58
+        },
+        {
+          "index": 59,
+          "label": "Wave 56",
+          "value": 59
+        },
+        {
+          "index": 60,
+          "label": "Wave 57",
+          "value": 60
+        },
+        {
+          "index": 61,
+          "label": "Wave 58",
+          "value": 61
+        },
+        {
+          "index": 62,
+          "label": "Wave 59",
+          "value": 62
+        },
+        {
+          "index": 63,
+          "label": "Wave 60",
+          "value": 63
+        },
+        {
+          "index": 64,
+          "label": "Wave 61",
+          "value": 64
+        },
+        {
+          "index": 65,
+          "label": "Wave 62",
+          "value": 65
+        },
+        {
+          "index": 66,
+          "label": "Wave 63",
+          "value": 66
+        },
+        {
+          "index": 67,
+          "label": "Wave 64",
+          "value": 67
+        }
       ]
     },
     {
-      "id": 10,
+      "id": 11,
       "items": [
         {
           "value": 0,
@@ -1145,7 +1490,7 @@
       ]
     },
     {
-      "id": 11,
+      "id": 12,
       "items": [
         {
           "index": 0,
@@ -1350,7 +1695,7 @@
       ]
     },
     {
-      "id": 12,
+      "id": 13,
       "items": [
         {
           "index": 0,
@@ -2989,6 +3334,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "data": [
@@ -3014,7 +3360,7 @@
           "min": 0,
           "max": 67,
           "defaultValue": 0,
-          "id": "value"
+          "overlayId": 5
         }
       ]
     },
@@ -3262,7 +3608,7 @@
       "id": 33,
       "type": "fader",
       "name": "NOISE COLOR",
-      "color": "F45C51",
+      "color": "FFFFFF",
       "bounds": [
         340,
         480,
@@ -3444,7 +3790,7 @@
           "min": 0,
           "max": 7,
           "defaultValue": 0,
-          "overlayId": 5,
+          "overlayId": 6,
           "id": "value"
         }
       ]
@@ -3585,7 +3931,7 @@
           "min": 0,
           "max": 3,
           "defaultValue": 0,
-          "overlayId": 6,
+          "overlayId": 7,
           "id": "value"
         }
       ]
@@ -3718,7 +4064,7 @@
           "min": 0,
           "max": 1,
           "defaultValue": 1,
-          "overlayId": 7,
+          "overlayId": 8,
           "id": "value"
         }
       ]
@@ -3923,7 +4269,7 @@
           "min": 0,
           "max": 3,
           "defaultValue": 0,
-          "overlayId": 5,
+          "overlayId": 6,
           "id": "value"
         }
       ]
@@ -4162,7 +4508,7 @@
           "min": 0,
           "max": 1,
           "defaultValue": 1,
-          "overlayId": 7,
+          "overlayId": 8,
           "id": "value"
         }
       ]
@@ -4874,7 +5220,7 @@
             "parameterNumber": 78,
             "deviceId": 1
           },
-          "overlayId": 8,
+          "overlayId": 9,
           "id": "value"
         }
       ]
@@ -4942,7 +5288,7 @@
             "max": 67,
             "deviceId": 1
           },
-          "overlayId": 9,
+          "overlayId": 10,
           "id": "value"
         }
       ]
@@ -5012,7 +5358,7 @@
           },
           "min": 0,
           "max": 1,
-          "overlayId": 10,
+          "overlayId": 11,
           "id": "value"
         }
       ]
@@ -5305,7 +5651,7 @@
             "parameterNumber": 84,
             "deviceId": 1
           },
-          "overlayId": 8,
+          "overlayId": 9,
           "id": "value"
         }
       ]
@@ -5376,7 +5722,7 @@
           "min": 0,
           "max": 67,
           "defaultValue": 0,
-          "overlayId": 9,
+          "overlayId": 10,
           "id": "value"
         }
       ]
@@ -5447,7 +5793,7 @@
           "min": 0,
           "max": 1,
           "defaultValue": 0,
-          "overlayId": 10,
+          "overlayId": 11,
           "id": "value"
         }
       ]
@@ -5743,7 +6089,7 @@
           "min": 0,
           "max": 21,
           "defaultValue": 0,
-          "overlayId": 8,
+          "overlayId": 9,
           "id": "value"
         }
       ]
@@ -5844,7 +6190,7 @@
           "min": 0,
           "max": 67,
           "defaultValue": 0,
-          "overlayId": 9,
+          "overlayId": 10,
           "id": "value"
         }
       ]
@@ -5895,7 +6241,7 @@
           "min": 0,
           "max": 1,
           "defaultValue": 0,
-          "overlayId": 10,
+          "overlayId": 11,
           "id": "value"
         }
       ]
@@ -6262,7 +6608,7 @@
             "min": 0,
             "max": 39
           },
-          "overlayId": 11,
+          "overlayId": 12,
           "id": "value"
         }
       ]
@@ -6314,7 +6660,7 @@
           "min": 0,
           "max": 127,
           "defaultValue": 0,
-          "overlayId": 12
+          "overlayId": 13
         }
       ]
     },
@@ -6365,7 +6711,7 @@
           "min": 0,
           "max": 127,
           "defaultValue": 0,
-          "overlayId": 12
+          "overlayId": 13
         }
       ]
     },
@@ -6413,7 +6759,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 12
+          "overlayId": 13
         }
       ]
     },
@@ -6611,7 +6957,7 @@
             "parameterNumber": 105,
             "deviceId": 1
           },
-          "overlayId": 11
+          "overlayId": 12
         }
       ]
     },
@@ -6659,7 +7005,7 @@
             "parameterNumber": 106,
             "deviceId": 1
           },
-          "overlayId": 12
+          "overlayId": 13
         }
       ]
     },
@@ -6707,7 +7053,7 @@
             "parameterNumber": 108,
             "deviceId": 1
           },
-          "overlayId": 12
+          "overlayId": 13
         }
       ]
     },
@@ -6755,7 +7101,7 @@
             "parameterNumber": 110,
             "deviceId": 1
           },
-          "overlayId": 12
+          "overlayId": 13
         }
       ]
     },
@@ -6880,8 +7226,10 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -6897,12 +7245,13 @@
               },
               "F7"
             ],
-            "min": 0,
-            "max": 127,
             "parameterNumber": 111,
-            "deviceId": 1
+            "min": 0,
+            "max": 127
           },
-          "id": "value"
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0
         }
       ]
     },
@@ -6950,7 +7299,7 @@
             "parameterNumber": 112,
             "deviceId": 1
           },
-          "overlayId": 11
+          "overlayId": 12
         }
       ]
     },
@@ -6998,7 +7347,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 12
+          "overlayId": 13
         }
       ]
     },
@@ -7046,7 +7395,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 12
+          "overlayId": 13
         }
       ]
     },
@@ -7094,7 +7443,7 @@
             "parameterNumber": 117,
             "deviceId": 1
           },
-          "overlayId": 12
+          "overlayId": 13
         }
       ]
     },
