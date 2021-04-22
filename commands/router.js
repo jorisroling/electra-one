@@ -56,10 +56,9 @@ function handleIncoming(from,options) {
           writeState()
           debug('Set MIDI mapped channel: %y',mappedMidiChannel + 1)
         } else if (msg.bytes && msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 && msg.bytes[6]>=0x6E && msg.bytes[6]<=0x71 && msg.bytes[7]==(mapToElectraOne?mappedMidiChannel:electraOneMidiChannel) && msg.bytes[10]==0xF7) {
-            msg.bytes[7] = ( mapToElectraOne ? electraOneMidiChannel : mappedMidiChannel )
-            debug('Applied MIDI mapped channel %y to SysEx for %y',msg.bytes[7]+1,outputMidiName)
-            midiOutput.send('sysex',msg.bytes)
-          }
+          msg.bytes[7] = ( mapToElectraOne ? electraOneMidiChannel : mappedMidiChannel )
+          debug('Applied MIDI mapped channel %y to SysEx for %y',msg.bytes[7]+1,outputMidiName)
+          midiOutput.send('sysex',msg.bytes)
         } else {
           midiOutput.send('sysex',msg.bytes)
         }
