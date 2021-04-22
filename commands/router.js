@@ -47,7 +47,7 @@ function handleIncoming(from,options) {
           midiOutput.send('cc',{channel: mapToElectraOne ? electraOneMidiChannel : mappedMidiChannel, controller: msg.controller, value: msg.value})
           debug('Applied MIDI mapped channel %y to CC %d for %y',(mapToElectraOne ? electraOneMidiChannel : mappedMidiChannel)+1,msg.controller,outputMidiName)
         } else {
-          midiOutput.send('cc',msg}
+          midiOutput.send('cc',msg)
         }
         break
       case 'sysex':
