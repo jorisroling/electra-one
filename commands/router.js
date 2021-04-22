@@ -46,6 +46,8 @@ function handleIncoming(from,options) {
         if ( (mapToElectraOne && msg.channel == mappedMidiChannel) || (!mapToElectraOne && msg.channel == electraOneMidiChannel) ) {
           midiOutput.send('cc',{channel: mapToElectraOne ? electraOneMidiChannel : mappedMidiChannel, controller: msg.controller, value: msg.value})
           debug('Applied MIDI mapped channel %y to CC %d for %y',(mapToElectraOne ? electraOneMidiChannel : mappedMidiChannel)+1,msg.controller,outputMidiName)
+        } else {
+          midiOutput.send('cc',msg}
         }
         break
       case 'sysex':
@@ -59,6 +61,8 @@ function handleIncoming(from,options) {
             debug('Applied MIDI mapped channel %y to SysEx for %y',msg.bytes[7]+1,outputMidiName)
             midiOutput.send('sysex',msg.bytes)
           }
+        } else {
+          midiOutput.send('sysex',msg.bytes)
         }
         break
       default:
