@@ -35,7 +35,7 @@
     "jsonfile": "^6.1.0",
     "lodash": "^4.17.21",
     "sleep": "^6.3.0",
-    "table": "^6.3.2",
+    "table": "^6.5.1",
     "yves": "^1.0.78"
   },
   "devDependencies": {

@@ -10,8 +10,10 @@ const yves = require('./lib/yves')
 const pkg = require('./package.json')
 
 args
-  .option('electra-one', 'Electra One MIDI interface name (part)','electra-one-1')
-  .option('virus-ti', 'Virus TI MIDI interface name (part)','virus-ti')
+  .option('electra-one-ctrl', 'Electra One MIDI CTRL interface name','electra-one-ctrl')
+  .option('electra-one', 'Electra One MIDI interface name','electra-one-1')
+  .option('virus-ti', 'Virus TI MIDI interface name','virus-ti')
+  .option('filename', 'Filename to process')
 
 
 const commands = require('./lib/commands')

@@ -55,9 +55,11 @@ function handleIncoming(from,options) {
           mappedMidiChannel = msg.bytes[3]
           writeState()
           debug('Set MIDI mapped channel: %y',mappedMidiChannel + 1)
-        } else if (msg.bytes && msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 && msg.bytes[6]>=0x6E && msg.bytes[6]<=0x71 && msg.bytes[7]==(mapToElectraOne?mappedMidiChannel:electraOneMidiChannel) && msg.bytes[10]==0xF7) {
+        } else if (msg.bytes && msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]>=0x6E && msg.bytes[6]<=0x72 && msg.bytes[7]==(mapToElectraOne?mappedMidiChannel:electraOneMidiChannel) && msg.bytes[10]==0xF7) {
           msg.bytes[7] = ( mapToElectraOne ? electraOneMidiChannel : mappedMidiChannel )
-          debug('Applied MIDI mapped channel %y to SysEx for %y',msg.bytes[7]+1,outputMidiName)
+          const page = String.fromCharCode(65 + ((msg.bytes[6] + (msg.bytes[6] < 0x70 ? 4 /* 5 */ : 0) ) - 0x70 ) )
+          let info = `page ${page} parameter < 0x${msg.bytes[8].toString(16).toUpperCase()} / ${msg.bytes[8]} > = ${msg.bytes[9]}`
+          debug('Applied MIDI mapped channel %y (%s) to SysEx for %y',msg.bytes[7]+1,info,outputMidiName)
           midiOutput.send('sysex',msg.bytes)
         } else {
           midiOutput.send('sysex',msg.bytes)
@@ -102,6 +104,6 @@ function routerConsole(name, sub, options) {
 
 module.exports = {
   name: 'router',
-  description: 'Start router for Easy One <-> Virus TI',
+  description: 'Start router for Electra One <-> Virus TI',
   handler: routerConsole,
 }

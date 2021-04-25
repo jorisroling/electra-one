@@ -18,6 +18,10 @@ module.exports = {
         darwin: "Electra Controller Electra Port 2",
         linux: "iConnectMIDI4+:iConnectMIDI4+ MIDI 9 20:8",
       },
+      'electra-one-ctrl': {
+        darwin: "Electra Controller Electra CTRL",
+        linux: "iConnectMIDI4+:iConnectMIDI4+ MIDI 11 20:10",
+      },
       'virus-ti': {
         darwin: "iConnectMIDI4+ Virus TI",
         linux: "iConnectMIDI4+:iConnectMIDI4+ MIDI 3 20:2",
