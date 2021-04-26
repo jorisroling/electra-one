@@ -2,7 +2,7 @@ const ElectraOne = require('../lib/electraOne')
 const fs = require('fs')
 
 function uploadPresetFile(name, sub, options) {
-  const midiCtrlPort = ElectraOne.output(options.electraOneCtrl)
+  const midiOutputCtrlPort = ElectraOne.output(options.electraOneCtrl)
 
   let bytes = [
     0xF0,   /* sysex start - 0xf0 */
@@ -24,9 +24,9 @@ function uploadPresetFile(name, sub, options) {
 
   debug('sysex size = %y bytes',bytes.length)
 
-  midiCtrlPort.send('sysex',bytes)
+  midiOutputCtrlPort.send('sysex',bytes)
   setTimeout(() => {
-    midiCtrlPort.close()
+    midiOutputCtrlPort.close()
   }, 4 * 1000)
 
 }

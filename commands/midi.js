@@ -1,4 +1,4 @@
-const {table} = require('table')
+const { table } = require('table')
 const _ = require('lodash')
 const yves = require('../lib/yves')
 const easymidi = require('easymidi')

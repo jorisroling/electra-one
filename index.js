@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env NODE_ENV=production node
 
 /*process.env.SUPPRESS_NO_CONFIG_WARNING = '1'*/
 process.env.NODE_CONFIG_DIR = `${__dirname}/config`
