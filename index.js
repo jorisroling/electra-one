@@ -22,5 +22,6 @@ Object.keys(commands).forEach( command => {
   args.command(commands[command].name, commands[command].description, commands[command].handler, commands[command].aliases)
 })
 
+if (process.argv.length == 2) process.argv.push('help')
 args.parse(process.argv,{name:pkg.name})
 
