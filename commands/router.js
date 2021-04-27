@@ -10,14 +10,14 @@ const jsonfile = require('jsonfile')
 const ElectraOne = require('../lib/electraOne')
 
 
-let mappedMidiChannel = 0
+let mappedPart = 1
 
 function readState() {
   const filePath = `${__dirname}/../state/router.json`
   if (fs.existsSync(filePath)) {
     const state = jsonfile.readFileSync(filePath)
-    if (state.mappedMidiChannel) {
-      mappedMidiChannel = state.mappedMidiChannel
+    if (state.mappedPart) {
+      mappedPart = state.mappedPart
     }
   }
 }
@@ -25,7 +25,7 @@ function readState() {
 
 
 function writeState() {
-  const state = { mappedMidiChannel }
+  const state = { mappedPart }
   jsonfile.writeFileSync(`${__dirname}/../state/router.json`, state, { flag: 'w', spaces: 2 })
 }
 
@@ -43,34 +43,45 @@ function handleIncoming(from,options) {
     if (midiOutput) {
       switch (msg._type) {
       case 'cc':
-        if ( (mapToElectraOne && msg.channel == mappedMidiChannel) || (!mapToElectraOne && msg.channel == electraOneMidiChannel) ) {
-          midiOutput.send('cc',{channel: mapToElectraOne ? electraOneMidiChannel : mappedMidiChannel, controller: msg.controller, value: msg.value})
-          debug('Applied MIDI mapped channel %y to CC %d (value %d) for %y',(mapToElectraOne ? electraOneMidiChannel : mappedMidiChannel)+1,msg.controller,msg.value,outputMidiName)
+        if ( (mapToElectraOne && msg.channel == (mappedPart - 1)) || (!mapToElectraOne && msg.channel == electraOneMidiChannel) ) {
+          midiOutput.send('cc',{channel: mapToElectraOne ? electraOneMidiChannel : (mappedPart-1), controller: msg.controller, value: msg.value})
+          debug('Part mapping %y applied to CC %d (value %d) for %y',(mapToElectraOne ? (electraOneMidiChannel+1) : mappedPart),msg.controller,msg.value,outputMidiName)
         } else {
+          debug('Forwarding CC %d (value %d) for %y',msg.controller,msg.value,outputMidiName)
           midiOutput.send('cc',msg)
         }
         break
       case 'sysex':
         if (msg.bytes && msg.bytes.length==5 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x7D && msg.bytes[2]==0x20 && msg.bytes[4]==0xF7) {
-          mappedMidiChannel = msg.bytes[3]
+          mappedPart = msg.bytes[3]
           writeState()
-          debug('Set MIDI mapped channel: %y',mappedMidiChannel + 1)
-          /* Single SysEx Parameter F0 00 20 33 01 XX (6E - 72) YY */
-        } else if (msg.bytes && msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]>=0x6E && msg.bytes[6]<=0x72 && msg.bytes[7]==(mapToElectraOne?mappedMidiChannel:electraOneMidiChannel) && msg.bytes[10]==0xF7) {
-          msg.bytes[7] = ( mapToElectraOne ? electraOneMidiChannel : mappedMidiChannel )
+          debug('Set mapped part: %y',mappedPart)
+          /* Single SysEx Parameterchange F0 00 20 33 01 XX (6E - 72) YY */
+        } else if (msg.bytes && msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]>=0x6E && msg.bytes[6]<=0x72 && msg.bytes[7]==(mapToElectraOne?(mappedPart-1):electraOneMidiChannel) && msg.bytes[10]==0xF7) {
+          msg.bytes[7] = ( mapToElectraOne ? electraOneMidiChannel : (mappedPart-1) )
           const page = String.fromCharCode(65 + ((msg.bytes[6] + (msg.bytes[6] < 0x70 ? 4 /* 5 */ : 0) ) - 0x70 ) )
           let info = `page ${page} parameter ${msg.bytes[8]} (0x${msg.bytes[8].toString(16).toUpperCase()}) value ${msg.bytes[9]}`
-          debug('Applied MIDI mapped channel %y %s to SysEx for %y',msg.bytes[7]+1,info,outputMidiName)
+          debug('Part mapping %y applied %s to SysEx Parameterchange for %y',msg.bytes[7]+1,info,outputMidiName)
           midiOutput.send('sysex',msg.bytes)
-          /* Single Dump Buffer F0 00 20 33 01 XX 10 00 00 */
-        } else if (msg.bytes && msg.bytes.length==524 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]==0x10 && msg.bytes[7]==0x00 && msg.bytes[8]==0x00) {
-          debug('Forwarding Single Dump SysEx to %y (%d)',outputMidiName,msg.bytes[286+10])
+
+          /* Single Request F0 00 20 33 01 XX 30 00 YY */
+        } else if (msg.bytes && msg.bytes.length==10 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]==0x30 && msg.bytes[7]==0x00 /* && msg.bytes[8]==0x00 */) {
+          msg.bytes[8] = ( mapToElectraOne ? electraOneMidiChannel : mappedPart )
+          debug('Part mapping %y applied to Single Request SysEx to %y',msg.bytes[8],outputMidiName)
           midiOutput.send('sysex',msg.bytes)
+
+          /* Single Dump Buffer F0 00 20 33 01 XX 10 00 YY */
+        } else if (msg.bytes && msg.bytes.length==524 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]==0x10 && msg.bytes[7]==0x00 /* && msg.bytes[8]==0x00 */ ) {
+          msg.bytes[8] = ( mapToElectraOne ? electraOneMidiChannel : mappedPart )
+          debug('Part mapping %y applied to Single Dump SysEx to %y (debug %d)',msg.bytes[8]+1,outputMidiName,msg.bytes[286+10])
+          midiOutput.send('sysex',msg.bytes)
+
+          /* Anything else */
         } else {
           debug('Forwarding SysEx to %y',outputMidiName)
           midiOutput.send('sysex',msg.bytes)
         }
-        debug('SysEx Bytes %y',msg.bytes.length)
+/*        debug('SysEx Bytes %y',msg.bytes.length)*/
         break
       default:
         // Do nothing
@@ -102,8 +113,8 @@ function routerConsole(name, sub, options) {
 
   const midiOutput = ElectraOne.output(options.electraOne, true)
   if (midiOutput) {
-    midiOutput.send('sysex',[0xF0, 0x7D, 0x20, mappedMidiChannel, 0xF7])
-    debug('Initialise Electra One MIDI mapped channel %y',mappedMidiChannel)
+    midiOutput.send('sysex',[0xF0, 0x7D, 0x20, mappedPart-1, 0xF7])
+    debug('Initialise Electra One mapped part %y',mappedPart)
   }
 
   setupMidi(options)
