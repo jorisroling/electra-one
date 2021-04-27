@@ -87,7 +87,7 @@
     },
     {
       "pageId": 1,
-      "name": "Mixel",
+      "name": "Mixer",
       "bounds": [
         510,
         368,
@@ -543,6 +543,17 @@
         0,
         192,
         656,
+        16
+      ],
+      "color": "FFFFFF"
+    },
+    {
+      "pageId": 8,
+      "name": "Velocity",
+      "bounds": [
+        0,
+        192,
+        826,
         16
       ],
       "color": "FFFFFF"
@@ -4081,8 +4092,8 @@
               "F7"
             ],
             "parameterNumber": 79,
-            "min": 0,
-            "max": 15
+            "min": 1,
+            "max": 16
           },
           "min": 1,
           "max": 16,
