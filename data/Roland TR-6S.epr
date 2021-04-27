@@ -1269,10 +1269,10 @@
         {
           "message": {
             "type": "cc7",
+            "deviceId": 26,
+            "parameterNumber": 70,
             "min": 0,
-            "max": 127,
-            "parameterNumber": 109,
-            "deviceId": 26
+            "max": 127
           },
           "id": "value"
         }
