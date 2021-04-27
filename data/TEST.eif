@@ -1,0 +1,191 @@
+{
+  "id": "Virus TI",
+  "name": "Virus TI",
+  "manufacturer": "Access",
+  "manufacturerId": "access",
+  "version": 2,
+  "categories": [
+    {
+      "id": "osc1",
+      "label": "OSC 1"
+    }
+  ],
+  "overlays": [
+    {
+      "id": 1,
+      "name": "1",
+      "items": [
+        {
+          "index": 0,
+          "label": "Classic",
+          "value": 0
+        },
+        {
+          "index": 1,
+          "label": "HyperSaw",
+          "value": 1
+        },
+        {
+          "index": 2,
+          "label": "Wavetable",
+          "value": 2
+        },
+        {
+          "index": 3,
+          "label": "Wave PWM",
+          "value": 3
+        },
+        {
+          "index": 4,
+          "label": "Grain Simple",
+          "value": 4
+        },
+        {
+          "index": 5,
+          "label": "Grain Complex",
+          "value": 5
+        },
+        {
+          "index": 6,
+          "label": "Formant SImple",
+          "value": 6
+        },
+        {
+          "index": 7,
+          "label": "Formant Complx",
+          "value": 7
+        }
+      ]
+    }
+   ],
+  "parameters": [
+    {
+      "categoryId": "osc1",
+      "type": "fader",
+      "name": "Mode",
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "1E",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 7,
+            "parameterNumber": 1,
+            "deviceId": 1
+          },
+          "min": 0,
+          "max": 7,
+          "defaultValue": 0,
+          "overlayId": 1,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "categoryId": "osc1",
+      "type": "fader",
+      "name": "Semitone",
+      "values":[
+         {
+            "id":"value",
+            "message":{
+               "type":"cc7",
+               "parameterNumber":1,
+               "min":16,
+               "max":122
+            },
+            "defaultValue": -1,
+            "min":-48,
+            "max":48
+         }
+      ]
+    },
+    {
+       "categoryId":"osc1",
+       "type":"pad",
+       "mode":"toggle",
+       "name":"CC7 #1",
+       "values":[
+          {
+             "defaultValue":0,
+             "message":{
+                "type":"cc7",
+                "parameterNumber":1,
+                "onValue":127,
+                "offValue":0
+             }
+          }
+       ]
+    },
+    {
+       "categoryId":"osc1",
+       "type":"fader",
+       "name":"CC #1",
+       "values":[
+          {
+             "id":"value",
+             "message":{
+                "type":"cc7",
+                "parameterNumber":1,
+                "min":1,
+                "max":127
+             },
+             "min":0,
+             "max":126
+          }
+       ]
+    }
+  ],
+  "patch": [
+    {
+      "request": [
+        "00",
+        "20",
+        "33",
+        "01",
+        "00",
+        "30",
+        "00",
+        "00"
+      ],
+      "responses": [
+        {
+          "header": [
+            "00",
+            "20",
+            "33",
+            "01",
+            "00",
+            "10",
+            "00",
+            "00"
+          ],
+          "rules": [
+            {
+              "id": 1,
+              "pPos": 0,
+              "byte": 286,
+              "bPos": 0,
+              "size": 7,
+              "msg": "sysex"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

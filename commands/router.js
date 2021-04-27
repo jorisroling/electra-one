@@ -45,7 +45,7 @@ function handleIncoming(from,options) {
       case 'cc':
         if ( (mapToElectraOne && msg.channel == mappedMidiChannel) || (!mapToElectraOne && msg.channel == electraOneMidiChannel) ) {
           midiOutput.send('cc',{channel: mapToElectraOne ? electraOneMidiChannel : mappedMidiChannel, controller: msg.controller, value: msg.value})
-          debug('Applied MIDI mapped channel %y to CC %d for %y',(mapToElectraOne ? electraOneMidiChannel : mappedMidiChannel)+1,msg.controller,outputMidiName)
+          debug('Applied MIDI mapped channel %y to CC %d (value %d) for %y',(mapToElectraOne ? electraOneMidiChannel : mappedMidiChannel)+1,msg.controller,msg.value,outputMidiName)
         } else {
           midiOutput.send('cc',msg)
         }
@@ -55,15 +55,22 @@ function handleIncoming(from,options) {
           mappedMidiChannel = msg.bytes[3]
           writeState()
           debug('Set MIDI mapped channel: %y',mappedMidiChannel + 1)
+          /* Single SysEx Parameter F0 00 20 33 01 XX (6E - 72) YY */
         } else if (msg.bytes && msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]>=0x6E && msg.bytes[6]<=0x72 && msg.bytes[7]==(mapToElectraOne?mappedMidiChannel:electraOneMidiChannel) && msg.bytes[10]==0xF7) {
           msg.bytes[7] = ( mapToElectraOne ? electraOneMidiChannel : mappedMidiChannel )
           const page = String.fromCharCode(65 + ((msg.bytes[6] + (msg.bytes[6] < 0x70 ? 4 /* 5 */ : 0) ) - 0x70 ) )
-          let info = `page ${page} parameter < 0x${msg.bytes[8].toString(16).toUpperCase()} / ${msg.bytes[8]} > = ${msg.bytes[9]}`
-          debug('Applied MIDI mapped channel %y (%s) to SysEx for %y',msg.bytes[7]+1,info,outputMidiName)
+          let info = `page ${page} parameter ${msg.bytes[8]} (0x${msg.bytes[8].toString(16).toUpperCase()}) value ${msg.bytes[9]}`
+          debug('Applied MIDI mapped channel %y %s to SysEx for %y',msg.bytes[7]+1,info,outputMidiName)
+          midiOutput.send('sysex',msg.bytes)
+          /* Single Dump Buffer F0 00 20 33 01 XX 10 00 00 */
+        } else if (msg.bytes && msg.bytes.length==524 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]==0x10 && msg.bytes[7]==0x00 && msg.bytes[8]==0x00) {
+          debug('Forwarding Single Dump SysEx to %y (%d)',outputMidiName,msg.bytes[286+10])
           midiOutput.send('sysex',msg.bytes)
         } else {
+          debug('Forwarding SysEx to %y',outputMidiName)
           midiOutput.send('sysex',msg.bytes)
         }
+        debug('SysEx Bytes %y',msg.bytes.length)
         break
       default:
         // Do nothing
