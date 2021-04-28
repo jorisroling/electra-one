@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "Virus TI",
+  "name": "Access Virus TI",
   "projectId": "eZfNLQkUki8Bek4CfRv3",
   "pages": [
     {
@@ -562,7 +562,7 @@
   "devices": [
     {
       "id": 1,
-      "name": "Virus TI",
+      "name": "Access Virus TI",
       "port": 1,
       "channel": 1
     }
@@ -2081,6 +2081,133 @@
     {
       "id": 12,
       "items": [
+        { "index": 0, "label": "Off", "value": 0 },
+        { "index": 1, "label": "Amp Env Attack", "value": 38 },
+        { "index": 2, "label": "Amp Env Decay", "value": 39 },
+        { "index": 3, "label": "Amp Env Slope", "value": 41 },
+        { "index": 4, "label": "Amp Env Sustain", "value": 40 },
+        { "index": 5, "label": "Amp Env Release", "value": 42 },
+        { "index": 6, "label": "Arp Note Length", "value": 114 },
+        { "index": 7, "label": "Arp Pattern", "value": 116 },
+        { "index": 8, "label": "Arp Swing Factor", "value": 115 },
+        { "index": 9, "label": "Chorus Delay", "value": 65 },
+        { "index": 10, "label": "Chorus Feedback", "value": 66 },
+        { "index": 11, "label": "Chorus Mix", "value": 62 },
+        { "index": 12, "label": "Chorus Mod Depth", "value": 64 },
+        { "index": 13, "label": "Chorus Mod Rate", "value": 63 },
+        { "index": 14, "label": "Delay Coloration", "value": 92 },
+        { "index": 15, "label": "Delay Feedback", "value": 69 },
+        { "index": 16, "label": "Delay Mod Depth", "value": 71 },
+        { "index": 17, "label": "Delay Mod Rate", "value": 70 },
+        { "index": 18, "label": "Delay Send", "value": 67 },
+        { "index": 19, "label": "Delay Time", "value": 68 },
+        { "index": 20, "label": "Distortion Intensity", "value": 95 },
+        { "index": 21, "label": "Distortion Mix", "value": 127 },
+        { "index": 22, "label": "EQ Mid Frequency", "value": 118 },
+        { "index": 23, "label": "EQ Mid Gain", "value": 117 },
+        { "index": 24, "label": "FiltEnv>FM/Sync", "value": 18 },
+        { "index": 25, "label": "FiltEnv>OSC2Pitch", "value": 17 },
+        { "index": 26, "label": "Filter Balance", "value": 32 },
+        { "index": 27, "label": "Filter Env Attack", "value": 33 },
+        { "index": 28, "label": "Filter Env Decay", "value": 34 },
+        { "index": 29, "label": "Filter Env Slope", "value": 36 },
+        { "index": 30, "label": "Filter Env Sustain", "value": 35 },
+        { "index": 31, "label": "Filter Env Release", "value": 37 },
+        { "index": 32, "label": "Filter 1 Cutoff", "value": 24 },
+        { "index": 33, "label": "Filter 1 Env Amount", "value": 28 },
+        { "index": 34, "label": "Filter 1 Resonance", "value": 26 },
+        { "index": 35, "label": "Filter 2 Cutoff", "value": 25 },
+        { "index": 36, "label": "Filter 2 Env Amount", "value": 29 },
+        { "index": 37, "label": "Filter 2 Resonance", "value": 27 },
+        { "index": 38, "label": "Filterbank Poles", "value": 79 },
+        { "index": 39, "label": "Filterbank Reso", "value": 78 },
+        { "index": 40, "label": "Filterbank Slope", "value": 81 },
+        { "index": 41, "label": "FreqShifter Freq", "value": 96 },
+        { "index": 42, "label": "LFO 1 Assign Amount", "value": 100 },
+        { "index": 43, "label": "LFO 1 Contour", "value": 44 },
+        { "index": 44, "label": "LFO 1 Rate", "value": 43 },
+        { "index": 45, "label": "LFO 1>Filter Gain", "value": 49 },
+        { "index": 46, "label": "LFO 1>OSC 1 Pitch", "value": 45 },
+        { "index": 47, "label": "LFO 1>OSC 2 Pitch", "value": 46 },
+        { "index": 48, "label": "LFO 1>Pulsewidth", "value": 47 },
+        { "index": 49, "label": "LFO 1>Resonance", "value": 48 },
+        { "index": 50, "label": "LFO 2 Assign Amount", "value": 101 },
+        { "index": 51, "label": "LFO 2 Contour", "value": 51 },
+        { "index": 52, "label": "LFO 2 Rate", "value": 50 },
+        { "index": 53, "label": "LFO 2>Cutoff 1", "value": 54 },
+        { "index": 54, "label": "LFO 2>Cutoff 2", "value": 55 },
+        { "index": 55, "label": "LFO 2>FM Amount", "value": 53 },
+        { "index": 56, "label": "LFO 2>Panorama", "value": 56 },
+        { "index": 57, "label": "LFO 2>Shape", "value": 52 },
+        { "index": 58, "label": "LFO 3 Assign Amount", "value": 58 },
+        { "index": 59, "label": "LFO 3 Rate", "value": 57 },
+        { "index": 60, "label": "Noise Color", "value": 91 },
+        { "index": 61, "label": "Noise Volume", "value": 23 },
+        { "index": 62, "label": "OSC Balance", "value": 20 },
+        { "index": 63, "label": "OSC Volume", "value": 22 },
+        { "index": 64, "label": "OSC 1 F-Shift", "value": 123 },
+        { "index": 65, "label": "OSC 1 F-Spread", "value": 125 },
+        { "index": 66, "label": "OSC 1 Interpolation", "value": 2 },
+        { "index": 67, "label": "OSC 1 Pitch", "value": 9 },
+        { "index": 68, "label": "OSC 1 Pulse Width", "value": 7 },
+        { "index": 69, "label": "OSC 1 Shape/Index", "value": 6 },
+        { "index": 70, "label": "OSC 1 Wave Select", "value": 8 },
+        { "index": 71, "label": "OSC 2 Detune", "value": 15 },
+        { "index": 72, "label": "OSC 2 FM Amount", "value": 16 },
+        { "index": 73, "label": "OSC 2 F-Shift", "value": 124 },
+        { "index": 74, "label": "OSC 2 F-Spread", "value": 126 },
+        { "index": 75, "label": "OSC 2 Interpolation", "value": 19 },
+        { "index": 76, "label": "OSC 2 Pitch", "value": 14 },
+        { "index": 77, "label": "OSC 2 Pulse Width", "value": 12 },
+        { "index": 78, "label": "OSC 2 Shape/Index", "value": 11 },
+        { "index": 79, "label": "OSC 2 Wave Select", "value": 13 },
+        { "index": 80, "label": "OSC 3 Detune", "value": 99 },
+        { "index": 81, "label": "OSC 3 Pitch", "value": 98 },
+        { "index": 82, "label": "OSC 3 Volume", "value": 97 },
+        { "index": 83, "label": "Sub OSC Volume", "value": 21 },
+        { "index": 84, "label": "Pan Spread", "value": 60 },
+        { "index": 85, "label": "Panorama", "value": 3 },
+        { "index": 86, "label": "Patch Volume", "value": 1 },
+        { "index": 87, "label": "Phaser Feedback", "value": 106 },
+        { "index": 88, "label": "Phaser Frequency", "value": 105 },
+        { "index": 89, "label": "Phaser Mix", "value": 102 },
+        { "index": 90, "label": "Phaser Mod Depth", "value": 104 },
+        { "index": 91, "label": "Phaser Mod Rate", "value": 103 },
+        { "index": 92, "label": "Portamento", "value": 5 },
+        { "index": 93, "label": "Punch Intensity", "value": 89 },
+        { "index": 94, "label": "Reverb Send", "value": 72 },
+        { "index": 95, "label": "Reverb Color", "value": 110 },
+        { "index": 96, "label": "Reverb Damping", "value": 109 },
+        { "index": 97, "label": "Reverb Time", "value": 108 },
+        { "index": 98, "label": "Reverb PreDelay", "value": 111 },
+        { "index": 99, "label": "Ring Modulator", "value": 90 },
+        { "index": 100, "label": "Slot 1 Amount 1", "value": 82 },
+        { "index": 101, "label": "Slot 1 Amount 2", "value": 93 },
+        { "index": 102, "label": "Slot 1 Amount 3", "value": 94 },
+        { "index": 103, "label": "Slot 2 Amount 1", "value": 83 },
+        { "index": 104, "label": "Slot 2 Amount 2", "value": 84 },
+        { "index": 105, "label": "Slot 2 Amount 3", "value": 80 },
+        { "index": 106, "label": "Slot 3 Amount 1", "value": 85 },
+        { "index": 107, "label": "Slot 3 Amount 2", "value": 86 },
+        { "index": 108, "label": "Slot 3 Amount 3", "value": 87 },
+        { "index": 109, "label": "Slot 4 Amount 1", "value": 120 },
+        { "index": 110, "label": "Slot 4 Amount 2", "value": 76 },
+        { "index": 111, "label": "Slot 4 Amount 3", "value": 77 },
+        { "index": 112, "label": "Slot 5 Amount 1", "value": 121 },
+        { "index": 113, "label": "Slot 5 Amount 2", "value": 30 },
+        { "index": 114, "label": "Slot 5 Amount 3", "value": 31 },
+        { "index": 115, "label": "Slot 6 Amount 1", "value": 122 },
+        { "index": 116, "label": "Slot 6 Amount 2", "value": 75 },
+        { "index": 117, "label": "Slot 6 Amount 3", "value": 10 },
+        { "index": 118, "label": "Surround Balance", "value": 113 },
+        { "index": 119, "label": "Transpose", "value": 4 },
+        { "index": 120, "label": "Unison Detune", "value": 59 },
+        { "index": 121, "label": "Unison LFO Phase", "value": 61 }
+      ]
+    },
+    {
+      "id": 13,
+      "items": [
         {
           "index": 0,
           "label": "Off",
@@ -2284,7 +2411,7 @@
       ]
     },
     {
-      "id": 13,
+      "id": 14,
       "items": [
         {
           "index": 0,
@@ -2929,7 +3056,7 @@
       ]
     },
     {
-      "id": 14,
+      "id": 15,
       "items": [
         {
           "value": 0,
@@ -2979,7 +3106,7 @@
       ]
     },
     {
-      "id": 15,
+      "id": 16,
       "items": [
         {
           "value": 0,
@@ -3114,7 +3241,7 @@
       ]
     },
     {
-      "id": 16,
+      "id": 17,
       "items": [
         {
           "value": 0,
@@ -3154,7 +3281,7 @@
       ]
     },
     {
-      "id": 17,
+      "id": 18,
       "items": [
         {
           "value": 0,
@@ -3189,7 +3316,7 @@
       ]
     },
     {
-      "id": 18,
+      "id": 19,
       "items": [
         {
           "value": 0,
@@ -3214,7 +3341,7 @@
       ]
     },
     {
-      "id": 19,
+      "id": 20,
       "items": [
         {
           "value": 0,
@@ -3229,7 +3356,7 @@
       ]
     },
     {
-      "id": 20,
+      "id": 21,
       "items": [
         {
           "value": 0,
@@ -3264,7 +3391,7 @@
       ]
     },
     {
-      "id": 21,
+      "id": 22,
       "items": [
         {
           "value": 0,
@@ -3304,7 +3431,7 @@
       ]
     },
     {
-      "id": 22,
+      "id": 23,
       "items": [
         {
           "value": 1,
@@ -3324,7 +3451,7 @@
       ]
     },
     {
-      "id": 23,
+      "id": 24,
       "items": [
         {
           "value": 0,
@@ -3414,7 +3541,7 @@
       ]
     },
     {
-      "id": 24,
+      "id": 25,
       "items": [
         {
           "value": 0,
@@ -3439,7 +3566,7 @@
       ]
     },
     {
-      "id": 25,
+      "id": 26,
       "items": [
         {
           "value": 0,
@@ -3464,7 +3591,7 @@
       ]
     },
     {
-      "id": 26,
+      "id": 27,
       "items": [
         {
           "value": 0,
@@ -3479,7 +3606,7 @@
       ]
     },
     {
-      "id": 27,
+      "id": 28,
       "items": [
         {
           "value": 0,
@@ -3544,7 +3671,7 @@
       ]
     },
     {
-      "id": 28,
+      "id": 29,
       "items": [
         {
           "value": 0,
@@ -3584,7 +3711,7 @@
       ]
     },
     {
-      "id": 29,
+      "id": 30,
       "items": [
         {
           "value": 0,
@@ -3604,7 +3731,7 @@
       ]
     },
     {
-      "id": 30,
+      "id": 31,
       "items": [
         {
           "value": 0,
@@ -3624,7 +3751,7 @@
       ]
     },
     {
-      "id": 31,
+      "id": 32,
       "items": [
         {
           "value": 0,
@@ -3679,7 +3806,7 @@
       ]
     },
     {
-      "id": 32,
+      "id": 33,
       "items": [
         {
           "value": 0,
@@ -3789,7 +3916,7 @@
       ]
     },
     {
-      "id": 33,
+      "id": 34,
       "items": [
         {
           "value": 0,
@@ -3804,7 +3931,7 @@
       ]
     },
     {
-      "id": 34,
+      "id": 35,
       "items": [
         {
           "value": 0,
@@ -7826,6 +7953,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "data": [
@@ -7851,7 +7979,7 @@
           "min": 0,
           "max": 127,
           "defaultValue": 0,
-          "id": "value"
+          "overlayId": 14
         }
       ]
     },
@@ -7960,6 +8088,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "data": [
@@ -7985,7 +8114,7 @@
           "min": 0,
           "max": 127,
           "defaultValue": 0,
-          "id": "value"
+          "overlayId": 14
         }
       ]
     },
@@ -8117,7 +8246,7 @@
             "min": 0,
             "max": 39
           },
-          "overlayId": 12,
+          "overlayId": 13,
           "id": "value"
         }
       ]
@@ -8162,14 +8291,14 @@
               "F7"
             ],
             "min": 0,
-            "max": 127,
+            "max": 121,
             "parameterNumber": 99,
             "deviceId": 1
           },
           "min": 0,
-          "max": 127,
+          "max": 121,
           "defaultValue": 0,
-          "overlayId": 13
+          "overlayId": 12
         }
       ]
     },
@@ -8215,12 +8344,12 @@
             ],
             "parameterNumber": 101,
             "min": 0,
-            "max": 127
+            "max": 121
           },
           "min": 0,
-          "max": 127,
+          "max": 121,
           "defaultValue": 0,
-          "overlayId": 13
+          "overlayId": 12
         }
       ]
     },
@@ -8266,9 +8395,9 @@
             ],
             "parameterNumber": 103,
             "min": 0,
-            "max": 127
+            "max": 121
           },
-          "overlayId": 13
+          "overlayId": 12
         }
       ]
     },
@@ -8466,7 +8595,7 @@
             "parameterNumber": 105,
             "deviceId": 1
           },
-          "overlayId": 12
+          "overlayId": 13
         }
       ]
     },
@@ -8510,11 +8639,11 @@
               "F7"
             ],
             "min": 0,
-            "max": 127,
+            "max": 121,
             "parameterNumber": 106,
             "deviceId": 1
           },
-          "overlayId": 13
+          "overlayId": 12
         }
       ]
     },
@@ -8558,11 +8687,11 @@
               "F7"
             ],
             "min": 0,
-            "max": 127,
+            "max": 121,
             "parameterNumber": 108,
             "deviceId": 1
           },
-          "overlayId": 13
+          "overlayId": 12
         }
       ]
     },
@@ -8606,11 +8735,11 @@
               "F7"
             ],
             "min": 0,
-            "max": 127,
+            "max": 121,
             "parameterNumber": 110,
             "deviceId": 1
           },
-          "overlayId": 13
+          "overlayId": 12
         }
       ]
     },
@@ -8808,7 +8937,7 @@
             "parameterNumber": 112,
             "deviceId": 1
           },
-          "overlayId": 12
+          "overlayId": 13
         }
       ]
     },
@@ -8854,9 +8983,9 @@
             ],
             "parameterNumber": 113,
             "min": 0,
-            "max": 127
+            "max": 121
           },
-          "overlayId": 13
+          "overlayId": 12
         }
       ]
     },
@@ -8902,9 +9031,9 @@
             ],
             "parameterNumber": 115,
             "min": 0,
-            "max": 127
+            "max": 121
           },
-          "overlayId": 13
+          "overlayId": 12
         }
       ]
     },
@@ -8948,11 +9077,11 @@
               "F7"
             ],
             "min": 0,
-            "max": 127,
+            "max": 121,
             "parameterNumber": 117,
             "deviceId": 1
           },
-          "overlayId": 13
+          "overlayId": 12
         }
       ]
     },
@@ -9149,7 +9278,7 @@
             "parameterNumber": 126,
             "deviceId": 1
           },
-          "overlayId": 12,
+          "overlayId": 13,
           "id": "value"
         }
       ]
@@ -9195,9 +9324,9 @@
             ],
             "parameterNumber": 127,
             "min": 0,
-            "max": 127
+            "max": 121
           },
-          "overlayId": 13,
+          "overlayId": 12,
           "id": "value"
         }
       ]
@@ -9243,9 +9372,9 @@
             ],
             "parameterNumber": 129,
             "min": 0,
-            "max": 127
+            "max": 121
           },
-          "overlayId": 13,
+          "overlayId": 12,
           "id": "value"
         }
       ]
@@ -9289,11 +9418,11 @@
               "F7"
             ],
             "min": 0,
-            "max": 127,
+            "max": 121,
             "parameterNumber": 131,
             "deviceId": 1
           },
-          "overlayId": 13,
+          "overlayId": 12,
           "id": "value"
         }
       ]
@@ -9491,7 +9620,7 @@
             "parameterNumber": 133,
             "deviceId": 1
           },
-          "overlayId": 12,
+          "overlayId": 13,
           "id": "value"
         }
       ]
@@ -9535,11 +9664,11 @@
               "F7"
             ],
             "min": 0,
-            "max": 127,
+            "max": 121,
             "parameterNumber": 134,
             "deviceId": 1
           },
-          "overlayId": 13,
+          "overlayId": 12,
           "id": "value"
         }
       ]
@@ -9585,9 +9714,9 @@
             ],
             "parameterNumber": 136,
             "min": 0,
-            "max": 127
+            "max": 121
           },
-          "overlayId": 13,
+          "overlayId": 12,
           "id": "value"
         }
       ]
@@ -9633,9 +9762,9 @@
             ],
             "parameterNumber": 138,
             "min": 0,
-            "max": 127
+            "max": 121
           },
-          "overlayId": 13,
+          "overlayId": 12,
           "id": "value"
         }
       ]
@@ -9833,7 +9962,7 @@
             "parameterNumber": 140,
             "deviceId": 1
           },
-          "overlayId": 12,
+          "overlayId": 13,
           "id": "value"
         }
       ]
@@ -9877,11 +10006,11 @@
               "F7"
             ],
             "min": 0,
-            "max": 127,
+            "max": 121,
             "parameterNumber": 141,
             "deviceId": 1
           },
-          "overlayId": 13,
+          "overlayId": 12,
           "id": "value"
         }
       ]
@@ -9927,9 +10056,9 @@
             ],
             "parameterNumber": 143,
             "min": 0,
-            "max": 127
+            "max": 121
           },
-          "overlayId": 13,
+          "overlayId": 12,
           "id": "value"
         }
       ]
@@ -9973,11 +10102,11 @@
               "F7"
             ],
             "min": 0,
-            "max": 127,
+            "max": 121,
             "parameterNumber": 145,
             "deviceId": 1
           },
-          "overlayId": 13,
+          "overlayId": 12,
           "id": "value"
         }
       ]
@@ -10175,7 +10304,7 @@
             "parameterNumber": 147,
             "deviceId": 1
           },
-          "overlayId": 14,
+          "overlayId": 15,
           "id": "value"
         }
       ]
@@ -10320,7 +10449,7 @@
             "parameterNumber": 150,
             "deviceId": 1
           },
-          "overlayId": 15,
+          "overlayId": 16,
           "id": "value"
         }
       ]
@@ -10553,7 +10682,7 @@
             "max": 6,
             "deviceId": 1
           },
-          "overlayId": 16,
+          "overlayId": 17,
           "id": "value"
         }
       ]
@@ -10752,7 +10881,7 @@
             "max": 5,
             "deviceId": 1
           },
-          "overlayId": 17,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -10864,7 +10993,7 @@
             "parameterNumber": 155,
             "deviceId": 1
           },
-          "overlayId": 18,
+          "overlayId": 19,
           "id": "value"
         }
       ]
@@ -10897,7 +11026,7 @@
             "max": 127,
             "deviceId": 1
           },
-          "overlayId": 19,
+          "overlayId": 20,
           "id": "value"
         }
       ]
@@ -10980,7 +11109,7 @@
             "parameterNumber": 156,
             "deviceId": 1
           },
-          "overlayId": 20,
+          "overlayId": 21,
           "id": "value"
         }
       ]
@@ -11028,7 +11157,7 @@
             "parameterNumber": 157,
             "deviceId": 1
           },
-          "overlayId": 20,
+          "overlayId": 21,
           "id": "value"
         }
       ]
@@ -11224,7 +11353,7 @@
             "parameterNumber": 159,
             "deviceId": 1
           },
-          "overlayId": 21,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -11859,7 +11988,7 @@
             "parameterNumber": 172,
             "deviceId": 1
           },
-          "overlayId": 22,
+          "overlayId": 23,
           "id": "value"
         }
       ]
@@ -11907,7 +12036,7 @@
             "parameterNumber": 177,
             "deviceId": 1
           },
-          "overlayId": 19,
+          "overlayId": 20,
           "id": "value"
         }
       ]
@@ -11955,7 +12084,7 @@
             "parameterNumber": 174,
             "deviceId": 1
           },
-          "overlayId": 23,
+          "overlayId": 24,
           "id": "value"
         }
       ]
@@ -12150,7 +12279,7 @@
             "parameterNumber": 173,
             "deviceId": 1
           },
-          "overlayId": 24,
+          "overlayId": 25,
           "id": "value"
         }
       ]
@@ -12390,7 +12519,7 @@
             "parameterNumber": 181,
             "deviceId": 1
           },
-          "overlayId": 25,
+          "overlayId": 26,
           "id": "value"
         }
       ]
@@ -12587,7 +12716,7 @@
             "parameterNumber": 189,
             "deviceId": 1
           },
-          "overlayId": 26,
+          "overlayId": 27,
           "id": "value"
         }
       ]
@@ -12635,7 +12764,7 @@
             "parameterNumber": 182,
             "deviceId": 1
           },
-          "overlayId": 27,
+          "overlayId": 28,
           "id": "value"
         }
       ]
@@ -12933,7 +13062,7 @@
             "parameterNumber": 192,
             "deviceId": 1
           },
-          "overlayId": 28,
+          "overlayId": 29,
           "id": "value"
         }
       ]
@@ -13828,7 +13957,7 @@
             "parameterNumber": 204,
             "deviceId": 1
           },
-          "overlayId": 29,
+          "overlayId": 30,
           "id": "value"
         }
       ]
@@ -13876,7 +14005,7 @@
             "parameterNumber": 205,
             "deviceId": 1
           },
-          "overlayId": 30,
+          "overlayId": 31,
           "id": "value"
         }
       ]
@@ -13924,7 +14053,7 @@
             "parameterNumber": 206,
             "deviceId": 1
           },
-          "overlayId": 31,
+          "overlayId": 32,
           "id": "value"
         }
       ]
@@ -14173,7 +14302,7 @@
             "parameterNumber": 209,
             "deviceId": 1
           },
-          "overlayId": 32,
+          "overlayId": 33,
           "id": "value"
         }
       ]
@@ -14321,7 +14450,7 @@
             "parameterNumber": 212,
             "deviceId": 1
           },
-          "overlayId": 33,
+          "overlayId": 34,
           "id": "value"
         }
       ]
@@ -14369,7 +14498,7 @@
             "parameterNumber": 213,
             "deviceId": 1
           },
-          "overlayId": 34,
+          "overlayId": 35,
           "id": "value"
         }
       ]

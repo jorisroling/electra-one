@@ -24,7 +24,7 @@ function listPorts(name, sub, options) {
 }
 
 module.exports = {
-  name: 'midi',
+  name: 'list',
   description: 'List all ports',
   handler: listPorts,
   aliases:[]

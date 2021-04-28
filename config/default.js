@@ -26,6 +26,36 @@ module.exports = {
         darwin: "iConnectMIDI4+ Virus TI",
         linux: "iConnectMIDI4+:iConnectMIDI4+ MIDI 3 20:2",
       },
+      'tr-6s': {
+        darwin: "iConnectMIDI4+ TR-6S",
+        linux: "iConnectMIDI4+:iConnectMIDI4+ MIDI 2 20:1",
+      },
+      'mc-101': {
+        darwin: "iConnectMIDI4+ Midihub",
+        linux: "iConnectMIDI4+:iConnectMIDI4+ MIDI 4 20:3",
+      },
+    },
+  },
+  router: {
+    scenarios: {
+      'default': {
+        'virus-ti': {
+          enabled: true,
+          port: 1,
+          channels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+          portMap: 'virus-ti',
+        },
+        'tr-6s': {
+          enabled: false,
+          port: 2,
+          channels: [10,11],
+        },
+        'mc-101': {
+          enabled: true,
+          port: 2,
+          channels: [6,7,8,9],
+        },
+      },
     },
   },
 }

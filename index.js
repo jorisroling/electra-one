@@ -14,6 +14,7 @@ args
   .option('electra-one', 'Electra One MIDI interface name','electra-one-1')
   .option('virus-ti', 'Virus TI MIDI interface name','virus-ti')
   .option('filename', 'Filename to process')
+  .option('scenario', 'Routing Scenario','default')
 
 
 const commands = require('./lib/commands')

@@ -31,54 +31,55 @@ function writeState() {
 
 
 
-function handleIncoming(from,options) {
+function handleIncoming(from,to,targetElectraOne,options) {
   const electraOneMidiChannel = 0
 
   return (msg) => {
-
-/*    debug('handleIncoming: %s %y',from,msg)*/
-    const outputMidiName = (from == options.electraOne) ? 'virus-ti' : options.electraOne
-    const midiOutput = ElectraOne.output(outputMidiName, true)
-    const mapToElectraOne = (from == options.virusTi)
+//    debug('handleIncoming: %s %y',from,msg)
+/*    const outputMidiName = (from == options.electraOne) ? 'virus-ti' : options.electraOne*/
+    const midiOutput = ElectraOne.output(to)
+//    const targetElectraOne = (from == options.virusTi)
     if (midiOutput) {
       switch (msg._type) {
       case 'cc':
-        if ( (mapToElectraOne && msg.channel == (mappedPart - 1)) || (!mapToElectraOne && msg.channel == electraOneMidiChannel) ) {
-          midiOutput.send('cc',{channel: mapToElectraOne ? electraOneMidiChannel : (mappedPart-1), controller: msg.controller, value: msg.value})
-          debug('Part mapping %y applied to CC %d (value %d) for %y',(mapToElectraOne ? (electraOneMidiChannel+1) : mappedPart),msg.controller,msg.value,outputMidiName)
-        } else {
-          debug('Forwarding CC %d (value %d) for %y',msg.controller,msg.value,outputMidiName)
-          midiOutput.send('cc',msg)
+        if (options.channels.indexOf(msg.channel+1)>=0) {
+          if (options.portMap=='virus-ti' && (targetElectraOne && msg.channel == (mappedPart - 1)) || (!targetElectraOne && msg.channel == electraOneMidiChannel) ) {
+            midiOutput.send('cc',{channel: targetElectraOne ? electraOneMidiChannel : (mappedPart-1), controller: msg.controller, value: msg.value})
+            debug('Part mapping %y applied to CC %d (value %d) for %y',(targetElectraOne ? (electraOneMidiChannel+1) : mappedPart),msg.controller,msg.value,to)
+          } else {
+            debug('Forwarding CC %d (value %d) on channel %d for %y',msg.controller,msg.value,msg.channel+1,to)
+            midiOutput.send('cc',msg)
+          }
         }
         break
       case 'sysex':
-        if (msg.bytes && msg.bytes.length==5 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x7D && msg.bytes[2]==0x20 && msg.bytes[4]==0xF7) {
-          mappedPart = msg.bytes[3]
-          writeState()
-          debug('Set mapped part: %y',mappedPart)
-          /* Single SysEx Parameterchange F0 00 20 33 01 XX (6E - 72) YY */
-        } else if (msg.bytes && msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]>=0x6E && msg.bytes[6]<=0x72 && msg.bytes[7]==(mapToElectraOne?(mappedPart-1):electraOneMidiChannel) && msg.bytes[10]==0xF7) {
-          msg.bytes[7] = ( mapToElectraOne ? electraOneMidiChannel : (mappedPart-1) )
-          const page = String.fromCharCode(65 + ((msg.bytes[6] + (msg.bytes[6] < 0x70 ? 4 /* 5 */ : 0) ) - 0x70 ) )
-          let info = `page ${page} parameter ${msg.bytes[8]} (0x${msg.bytes[8].toString(16).toUpperCase()}) value ${msg.bytes[9]}`
-          debug('Part mapping %y applied %s to SysEx Parameterchange for %y',msg.bytes[7]+1,info,outputMidiName)
-          midiOutput.send('sysex',msg.bytes)
+        if (options.portMap=='virus-ti' && msg.bytes) {
+          if (msg.bytes.length==5 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x7D && msg.bytes[2]==0x20 && msg.bytes[4]==0xF7) {
+            mappedPart = msg.bytes[3]
+            writeState()
+            debug('Set mapped part: %y',mappedPart)
+            /* Single SysEx Parameterchange F0 00 20 33 01 XX (6E - 72) YY */
+          } else if (msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]>=0x6E && msg.bytes[6]<=0x72 && msg.bytes[7]==(targetElectraOne?(mappedPart-1):electraOneMidiChannel) && msg.bytes[10]==0xF7) {
+            msg.bytes[7] = ( targetElectraOne ? electraOneMidiChannel : (mappedPart-1) )
+            const page = String.fromCharCode(65 + ((msg.bytes[6] + (msg.bytes[6] < 0x70 ? 4 /* 5 */ : 0) ) - 0x70 ) )
+            let info = `page ${page} parameter ${msg.bytes[8]} (0x${msg.bytes[8].toString(16).toUpperCase()}) value ${msg.bytes[9]}`
+            debug('Part mapping %y applied %s to SysEx Parameterchange for %y',msg.bytes[7]+1,info,to)
+            midiOutput.send('sysex',msg.bytes)
 
-          /* Single Request F0 00 20 33 01 XX 30 00 YY */
-        } else if (msg.bytes && msg.bytes.length==10 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]==0x30 && msg.bytes[7]==0x00 /* && msg.bytes[8]==0x00 */) {
-          msg.bytes[8] = ( mapToElectraOne ? electraOneMidiChannel : mappedPart )
-          debug('Part mapping %y applied to Single Request SysEx to %y',msg.bytes[8],outputMidiName)
-          midiOutput.send('sysex',msg.bytes)
+            /* Single Request F0 00 20 33 01 XX 30 00 YY */
+          } else if (msg.bytes.length==10 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]==0x30 && msg.bytes[7]==0x00 /* && msg.bytes[8]==0x00 */) {
+            msg.bytes[8] = ( targetElectraOne ? electraOneMidiChannel : mappedPart )
+            debug('Part mapping %y applied to Single Request SysEx to %y',msg.bytes[8],to)
+            midiOutput.send('sysex',msg.bytes)
 
-          /* Single Dump Buffer F0 00 20 33 01 XX 10 00 YY */
-        } else if (msg.bytes && msg.bytes.length==524 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]==0x10 && msg.bytes[7]==0x00 /* && msg.bytes[8]==0x00 */ ) {
-          msg.bytes[8] = ( mapToElectraOne ? electraOneMidiChannel : mappedPart )
-          debug('Part mapping %y applied to Single Dump SysEx to %y (debug %d)',msg.bytes[8]+1,outputMidiName,msg.bytes[286+10])
-          midiOutput.send('sysex',msg.bytes)
-
-          /* Anything else */
-        } else {
-          debug('Forwarding SysEx to %y',outputMidiName)
+            /* Single Dump Buffer F0 00 20 33 01 XX 10 00 YY */
+          } else if (msg.bytes.length==524 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]==0x10 && msg.bytes[7]==0x00 /* && msg.bytes[8]==0x00 */ ) {
+            msg.bytes[8] = ( targetElectraOne ? electraOneMidiChannel : mappedPart )
+            debug('Part mapping %y applied to Single Dump SysEx to %y (debug %d)',msg.bytes[8]+1,to,msg.bytes[286+10])
+            midiOutput.send('sysex',msg.bytes)
+          }
+        } else { /* Anything else */
+          debug('Forwarding SysEx to %y',to)
           midiOutput.send('sysex',msg.bytes)
         }
 /*        debug('SysEx Bytes %y',msg.bytes.length)*/
@@ -88,27 +89,31 @@ function handleIncoming(from,options) {
         break
       }
     } else {
-      console.error(`Unable to connect to MIDI output '${outputMidiname}'`)
+      console.error(`Unable to connect to MIDI output '${to}'`)
     }
   }
 }
 
-function setupInputHandlers(options) {
-  const midiInput_electraOne = ElectraOne.input(options.electraOne, true)
-  midiInput_electraOne.on('message', handleIncoming(options.electraOne,options) )
-
-  const midiInput_virusTI = ElectraOne.input(options.virusTi, true)
-  midiInput_virusTI.on('message', handleIncoming(options.virusTi,options) )
-}
-
-
 function setupMidi(options) {
-  setupInputHandlers(options)
+  const scenario = _.get(config,`router.scenarios.${options.scenario}`)
+  if (scenario) {
+    const devices = Object.keys(scenario)
+    for (const device of devices) {
+      if (scenario[device].enabled && scenario[device].port && scenario[device].channels && scenario[device].channels.length) {
+        const electraOnePortName = `electra-one-${scenario[device].port}`
+        const midiInput_electraOne = ElectraOne.input(electraOnePortName, true)
+        midiInput_electraOne.on('message', handleIncoming(electraOnePortName,device,false,scenario[device]) )
+
+        const midiInput_device = ElectraOne.input(device, true)
+        midiInput_device.on('message', handleIncoming(device,electraOnePortName,true,scenario[device]) )
+      }
+    }
+  } else {
+    console.error(`Unknown scenario "${options.scenario}"`)
+  }
 }
 
 function routerConsole(name, sub, options) {
-/*  debug('options: %y',options)*/
-
   readState()
 
   const midiOutput = ElectraOne.output(options.electraOne, true)
