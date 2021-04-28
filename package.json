@@ -8,7 +8,7 @@
   },
   "scripts": {
     "router": "nodemon --ignore state/router.json index router",
-    "midi": "node index midi",
+    "list": "node index list",
     "pre2inst": "python submodules/ElectraOne/tools/pre2inst/pre2inst.py",
     "start": "npm run router",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -35,7 +35,7 @@
     "jsonfile": "^6.1.0",
     "lodash": "^4.17.21",
     "sleep": "^6.3.0",
-    "table": "^6.5.1",
+    "table": "^6.6.0",
     "yves": "^1.0.78"
   },
   "devDependencies": {
