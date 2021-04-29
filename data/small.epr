@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "My Preset",
+  "name": "My Preset M",
   "projectId": "gbo0EIbu7LFArG211VVm",
   "pages": [
     {
@@ -44,14 +44,15 @@
               ],
               "rules": [
                 {
-                  "paramterNumber": 17,
+                  "type": "cc7",
+                  "parameterNumber": 17,
                   "byte": 17
                 },
                 {
                   "type": "sysex",
-                  "paramterNumber": 286,
+                  "parameterNumber": 286,
                   "parameterBitPosition": 0,
-                  "byte": 286,
+                  "byte": 287,
                   "byteBitPosition": 0,
                   "bitWidth": 7
                 }

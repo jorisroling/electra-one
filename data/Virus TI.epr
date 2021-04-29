@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "Access Virus TI",
-  "projectId": "TC5eI8v17eKbx7oc7xRx",
+  "projectId": "I5Z6GG6U8SOPYRO8II0b",
   "pages": [
     {
       "id": 1,
@@ -38,6 +38,18 @@
     {
       "id": 9,
       "name": "Settings"
+    },
+    {
+      "id": 10,
+      "name": "Arp Step Velocity"
+    },
+    {
+      "id": 11,
+      "name": "Arp Step Power"
+    },
+    {
+      "id": 12,
+      "name": "Arp Step Length"
     }
   ],
   "groups": [
@@ -156,9 +168,9 @@
       "name": "LFO 2 Assign",
       "color": "F49500",
       "bounds": [
-        510,
+        340,
         456,
-        486,
+        316,
         16
       ]
     },
@@ -180,7 +192,7 @@
       "bounds": [
         0,
         456,
-        486,
+        316,
         16
       ]
     },
@@ -538,14 +550,14 @@
     },
     {
       "pageId": 9,
-      "name": "Unison",
+      "name": "Arpeggiator",
       "bounds": [
         0,
         192,
-        656,
+        826,
         16
       ],
-      "color": "FFFFFF"
+      "color": "03A598"
     },
     {
       "pageId": 8,
@@ -554,6 +566,83 @@
         0,
         192,
         826,
+        16
+      ],
+      "color": "FFFFFF"
+    },
+    {
+      "pageId": 9,
+      "name": "Unison",
+      "bounds": [
+        0,
+        368,
+        656,
+        16
+      ],
+      "color": "FFFFFF"
+    },
+    {
+      "pageId": 9,
+      "name": "Soft Knob #1",
+      "color": "F49500",
+      "bounds": [
+        0,
+        456,
+        316,
+        16
+      ]
+    },
+    {
+      "pageId": 9,
+      "name": "Soft Knob #2",
+      "color": "F49500",
+      "bounds": [
+        340,
+        456,
+        316,
+        16
+      ]
+    },
+    {
+      "pageId": 9,
+      "name": "Soft Knob #3",
+      "color": "F49500",
+      "bounds": [
+        680,
+        456,
+        316,
+        16
+      ]
+    },
+    {
+      "pageId": 3,
+      "name": "LFO 3 Assing",
+      "color": "F49500",
+      "bounds": [
+        680,
+        456,
+        316,
+        16
+      ]
+    },
+    {
+      "pageId": 9,
+      "name": "LFO 1",
+      "bounds": [
+        850,
+        16,
+        146,
+        16
+      ],
+      "color": "FFFFFF"
+    },
+    {
+      "pageId": 9,
+      "name": "LFO 2",
+      "bounds": [
+        850,
+        104,
+        146,
         16
       ],
       "color": "FFFFFF"
@@ -2727,6 +2816,46 @@
       "id": 13,
       "items": [
         {
+          "value": 0,
+          "label": "OSC 1 Pitch",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "OSC 1+2 Pitch",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "OSC 2 Pitch",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "OSC 1 PW",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "OSC 1+2 PW",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "OSC 2 PW",
+          "index": 5
+        },
+        {
+          "value": 6,
+          "label": "Sync Phase",
+          "index": 6
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "items": [
+        {
           "index": 0,
           "label": "Off",
           "value": 0
@@ -2929,7 +3058,7 @@
       ]
     },
     {
-      "id": 14,
+      "id": 15,
       "items": [
         {
           "index": 0,
@@ -3544,7 +3673,7 @@
       ]
     },
     {
-      "id": 15,
+      "id": 16,
       "items": [
         {
           "value": 0,
@@ -3594,7 +3723,7 @@
       ]
     },
     {
-      "id": 16,
+      "id": 17,
       "items": [
         {
           "value": 0,
@@ -3729,7 +3858,7 @@
       ]
     },
     {
-      "id": 17,
+      "id": 18,
       "items": [
         {
           "value": 0,
@@ -3769,7 +3898,7 @@
       ]
     },
     {
-      "id": 18,
+      "id": 19,
       "items": [
         {
           "value": 0,
@@ -3804,7 +3933,7 @@
       ]
     },
     {
-      "id": 19,
+      "id": 20,
       "items": [
         {
           "value": 0,
@@ -3829,7 +3958,7 @@
       ]
     },
     {
-      "id": 20,
+      "id": 21,
       "items": [
         {
           "value": 0,
@@ -3844,7 +3973,7 @@
       ]
     },
     {
-      "id": 21,
+      "id": 22,
       "items": [
         {
           "value": 0,
@@ -3879,7 +4008,7 @@
       ]
     },
     {
-      "id": 22,
+      "id": 23,
       "items": [
         {
           "value": 0,
@@ -3919,7 +4048,7 @@
       ]
     },
     {
-      "id": 23,
+      "id": 24,
       "items": [
         {
           "value": 1,
@@ -3939,7 +4068,7 @@
       ]
     },
     {
-      "id": 24,
+      "id": 25,
       "items": [
         {
           "value": 0,
@@ -4029,7 +4158,7 @@
       ]
     },
     {
-      "id": 25,
+      "id": 26,
       "items": [
         {
           "value": 0,
@@ -4054,7 +4183,7 @@
       ]
     },
     {
-      "id": 26,
+      "id": 27,
       "items": [
         {
           "value": 0,
@@ -4079,7 +4208,7 @@
       ]
     },
     {
-      "id": 27,
+      "id": 28,
       "items": [
         {
           "value": 0,
@@ -4094,7 +4223,7 @@
       ]
     },
     {
-      "id": 28,
+      "id": 29,
       "items": [
         {
           "value": 0,
@@ -4159,7 +4288,7 @@
       ]
     },
     {
-      "id": 29,
+      "id": 30,
       "items": [
         {
           "value": 0,
@@ -4199,7 +4328,7 @@
       ]
     },
     {
-      "id": 30,
+      "id": 31,
       "items": [
         {
           "value": 0,
@@ -4219,7 +4348,7 @@
       ]
     },
     {
-      "id": 31,
+      "id": 32,
       "items": [
         {
           "value": 0,
@@ -4239,7 +4368,7 @@
       ]
     },
     {
-      "id": 32,
+      "id": 33,
       "items": [
         {
           "value": 0,
@@ -4294,7 +4423,7 @@
       ]
     },
     {
-      "id": 33,
+      "id": 34,
       "items": [
         {
           "value": 0,
@@ -4404,7 +4533,7 @@
       ]
     },
     {
-      "id": 34,
+      "id": 35,
       "items": [
         {
           "value": 0,
@@ -4419,7 +4548,167 @@
       ]
     },
     {
-      "id": 35,
+      "id": 36,
+      "items": [
+        {
+          "value": 0,
+          "label": "Off",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Up",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Down",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "Up 'n' Down'",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "As Played",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "Random",
+          "index": 5
+        },
+        {
+          "value": 6,
+          "label": "Chord",
+          "index": 6
+        },
+        {
+          "value": 7,
+          "label": "Arp > Matrix",
+          "index": 7
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "items": [
+        {
+          "value": 1,
+          "label": "User",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "items": [
+        {
+          "value": 0,
+          "label": "Off",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "1/128",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "1/64",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "1/32",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "1/16",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "1/8",
+          "index": 5
+        },
+        {
+          "value": 6,
+          "label": "1/4",
+          "index": 6
+        },
+        {
+          "value": 7,
+          "label": "3/128",
+          "index": 7
+        },
+        {
+          "value": 8,
+          "label": "3/64",
+          "index": 8
+        },
+        {
+          "value": 9,
+          "label": "3/32",
+          "index": 9
+        },
+        {
+          "value": 10,
+          "label": "3/16",
+          "index": 10
+        },
+        {
+          "value": 11,
+          "label": "1/48",
+          "index": 11
+        },
+        {
+          "value": 12,
+          "label": "1/24",
+          "index": 12
+        },
+        {
+          "value": 13,
+          "label": "1/12",
+          "index": 13
+        },
+        {
+          "value": 14,
+          "label": "1/6",
+          "index": 14
+        },
+        {
+          "value": 15,
+          "label": "1/3",
+          "index": 15
+        },
+        {
+          "value": 16,
+          "label": "3/8",
+          "index": 16
+        },
+        {
+          "value": 17,
+          "label": "1/2",
+          "index": 17
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "items": [
+        {
+          "value": 0,
+          "label": "Off",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "id": 40,
       "items": [
         {
           "value": 0,
@@ -8320,6 +8609,53 @@
       ]
     },
     {
+      "id": 100,
+      "type": "fader",
+      "name": "FADE IN",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        392,
+        146,
+        56
+      ],
+      "pageId": 3,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "0D",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 340,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
       "id": 101,
       "type": "list",
       "name": "MODE",
@@ -8423,7 +8759,7 @@
     {
       "id": 103,
       "type": "list",
-      "name": "ASSIGN TARGET",
+      "name": "TARGET",
       "color": "F49500",
       "bounds": [
         0,
@@ -8474,7 +8810,7 @@
     {
       "id": 104,
       "type": "fader",
-      "name": "ASSIGN AMOUNT",
+      "name": "AMOUNT",
       "color": "F49500",
       "bounds": [
         170,
@@ -8492,8 +8828,10 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -8509,23 +8847,21 @@
               },
               "F7"
             ],
-            "min": 0,
-            "max": 127,
             "parameterNumber": 87,
-            "deviceId": 1
+            "min": 0,
+            "max": 127
           },
-          "min": 0,
-          "max": 127,
-          "defaultValue": 0,
-          "id": "value"
+          "min": -100,
+          "max": 100,
+          "defaultValue": 0
         }
       ]
     },
     {
       "id": 105,
-      "type": "fader",
-      "name": "TRIGGER PHASE",
-      "color": "FFFFFF",
+      "type": "list",
+      "name": "TARGET",
+      "color": "F49500",
       "bounds": [
         340,
         480,
@@ -8537,40 +8873,6 @@
       "inputs": [
         {
           "potId": 9,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 73,
-            "min": 0,
-            "max": 127,
-            "deviceId": 1
-          },
-          "min": 0,
-          "max": 127,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 106,
-      "type": "list",
-      "name": "ASSIGN TARGET",
-      "color": "F49500",
-      "bounds": [
-        510,
-        480,
-        146,
-        56
-      ],
-      "pageId": 3,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 10,
           "valueId": "value"
         }
       ],
@@ -8607,9 +8909,59 @@
       ]
     },
     {
-      "id": 107,
+      "id": 106,
       "type": "fader",
-      "name": "ASSIGN AMOUNT",
+      "name": "AMOUNT",
+      "color": "F49500",
+      "bounds": [
+        510,
+        480,
+        146,
+        56
+      ],
+      "pageId": 3,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "52",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 92,
+            "min": 0,
+            "max": 127
+          },
+          "min": -100,
+          "max": 100,
+          "defaultValue": 0
+        }
+      ]
+    },
+    {
+      "id": 107,
+      "type": "list",
+      "name": "TARGET",
       "color": "F49500",
       "bounds": [
         680,
@@ -8638,20 +8990,18 @@
               "00",
               "71",
               "00",
-              "52",
+              "0B",
               {
                 "type": "value"
               },
               "F7"
             ],
             "min": 0,
-            "max": 127,
-            "parameterNumber": 92,
+            "max": 6,
+            "parameterNumber": 341,
             "deviceId": 1
           },
-          "min": 0,
-          "max": 127,
-          "defaultValue": 0,
+          "overlayId": 13,
           "id": "value"
         }
       ]
@@ -8659,8 +9009,8 @@
     {
       "id": 108,
       "type": "fader",
-      "name": "TRIGGER PHASE",
-      "color": "FFFFFF",
+      "name": "AMOUNT",
+      "color": "F49500",
       "bounds": [
         850,
         480,
@@ -8678,15 +9028,29 @@
       "values": [
         {
           "message": {
-            "type": "cc7",
-            "parameterNumber": 85,
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "0C",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 342,
             "min": 0,
-            "max": 127,
-            "deviceId": 1
+            "max": 127
           },
-          "min": 0,
-          "max": 127,
-          "defaultValue": 0,
+          "min": -100,
+          "max": 100,
           "id": "value"
         }
       ]
@@ -8734,7 +9098,7 @@
             "min": 0,
             "max": 39
           },
-          "overlayId": 13,
+          "overlayId": 14,
           "id": "value"
         }
       ]
@@ -8783,7 +9147,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -8831,7 +9195,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -8879,7 +9243,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -9077,7 +9441,7 @@
             "parameterNumber": 105,
             "deviceId": 1
           },
-          "overlayId": 13
+          "overlayId": 14
         }
       ]
     },
@@ -9125,7 +9489,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -9173,7 +9537,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -9221,7 +9585,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -9419,7 +9783,7 @@
             "parameterNumber": 112,
             "deviceId": 1
           },
-          "overlayId": 13
+          "overlayId": 14
         }
       ]
     },
@@ -9467,7 +9831,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -9515,7 +9879,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -9563,7 +9927,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -9760,7 +10124,7 @@
             "parameterNumber": 126,
             "deviceId": 1
           },
-          "overlayId": 13,
+          "overlayId": 14,
           "id": "value"
         }
       ]
@@ -9809,7 +10173,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -9857,7 +10221,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -9905,7 +10269,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -10102,7 +10466,7 @@
             "parameterNumber": 133,
             "deviceId": 1
           },
-          "overlayId": 13,
+          "overlayId": 14,
           "id": "value"
         }
       ]
@@ -10151,7 +10515,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -10199,7 +10563,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -10247,7 +10611,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -10444,7 +10808,7 @@
             "parameterNumber": 140,
             "deviceId": 1
           },
-          "overlayId": 13,
+          "overlayId": 14,
           "id": "value"
         }
       ]
@@ -10493,7 +10857,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -10541,7 +10905,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -10589,7 +10953,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -10786,7 +11150,7 @@
             "parameterNumber": 147,
             "deviceId": 1
           },
-          "overlayId": 15,
+          "overlayId": 16,
           "id": "value"
         }
       ]
@@ -10931,7 +11295,7 @@
             "parameterNumber": 150,
             "deviceId": 1
           },
-          "overlayId": 16,
+          "overlayId": 17,
           "id": "value"
         }
       ]
@@ -11164,7 +11528,7 @@
             "max": 6,
             "deviceId": 1
           },
-          "overlayId": 17,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -11363,7 +11727,7 @@
             "max": 5,
             "deviceId": 1
           },
-          "overlayId": 18,
+          "overlayId": 19,
           "id": "value"
         }
       ]
@@ -11475,7 +11839,7 @@
             "parameterNumber": 155,
             "deviceId": 1
           },
-          "overlayId": 19,
+          "overlayId": 20,
           "id": "value"
         }
       ]
@@ -11508,7 +11872,7 @@
             "max": 127,
             "deviceId": 1
           },
-          "overlayId": 20,
+          "overlayId": 21,
           "id": "value"
         }
       ]
@@ -11591,7 +11955,7 @@
             "parameterNumber": 156,
             "deviceId": 1
           },
-          "overlayId": 21,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -11639,7 +12003,7 @@
             "parameterNumber": 157,
             "deviceId": 1
           },
-          "overlayId": 21,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -11835,7 +12199,7 @@
             "parameterNumber": 159,
             "deviceId": 1
           },
-          "overlayId": 22,
+          "overlayId": 23,
           "id": "value"
         }
       ]
@@ -12470,7 +12834,7 @@
             "parameterNumber": 172,
             "deviceId": 1
           },
-          "overlayId": 23,
+          "overlayId": 24,
           "id": "value"
         }
       ]
@@ -12518,7 +12882,7 @@
             "parameterNumber": 177,
             "deviceId": 1
           },
-          "overlayId": 20,
+          "overlayId": 21,
           "id": "value"
         }
       ]
@@ -12566,7 +12930,7 @@
             "parameterNumber": 174,
             "deviceId": 1
           },
-          "overlayId": 24,
+          "overlayId": 25,
           "id": "value"
         }
       ]
@@ -12761,7 +13125,7 @@
             "parameterNumber": 173,
             "deviceId": 1
           },
-          "overlayId": 25,
+          "overlayId": 26,
           "id": "value"
         }
       ]
@@ -13001,7 +13365,7 @@
             "parameterNumber": 181,
             "deviceId": 1
           },
-          "overlayId": 26,
+          "overlayId": 27,
           "id": "value"
         }
       ]
@@ -13198,7 +13562,7 @@
             "parameterNumber": 189,
             "deviceId": 1
           },
-          "overlayId": 27,
+          "overlayId": 28,
           "id": "value"
         }
       ]
@@ -13246,7 +13610,7 @@
             "parameterNumber": 182,
             "deviceId": 1
           },
-          "overlayId": 28,
+          "overlayId": 29,
           "id": "value"
         }
       ]
@@ -13544,7 +13908,7 @@
             "parameterNumber": 192,
             "deviceId": 1
           },
-          "overlayId": 29,
+          "overlayId": 30,
           "id": "value"
         }
       ]
@@ -14439,7 +14803,7 @@
             "parameterNumber": 204,
             "deviceId": 1
           },
-          "overlayId": 30,
+          "overlayId": 31,
           "id": "value"
         }
       ]
@@ -14487,7 +14851,7 @@
             "parameterNumber": 205,
             "deviceId": 1
           },
-          "overlayId": 31,
+          "overlayId": 32,
           "id": "value"
         }
       ]
@@ -14535,7 +14899,7 @@
             "parameterNumber": 206,
             "deviceId": 1
           },
-          "overlayId": 32,
+          "overlayId": 33,
           "id": "value"
         }
       ]
@@ -14784,7 +15148,39 @@
             "parameterNumber": 209,
             "deviceId": 1
           },
-          "overlayId": 33,
+          "overlayId": 34,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 294,
+      "type": "fader",
+      "name": "TRIGGER PHASE",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        40,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 73,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
           "id": "value"
         }
       ]
@@ -14932,16 +15328,48 @@
             "parameterNumber": 212,
             "deviceId": 1
           },
-          "overlayId": 34,
+          "overlayId": 35,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 300,
+      "type": "fader",
+      "name": "TRIGGER PHASE",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        128,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 85,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
           "id": "value"
         }
       ]
     },
     {
       "id": 301,
-      "type": "list",
-      "name": "VOICES",
-      "color": "FFFFFF",
+      "type": "fader",
+      "name": "GLOBAL TEMPO",
+      "color": "03A598",
       "bounds": [
         0,
         216,
@@ -14950,6 +15378,453 @@
       ],
       "pageId": 9,
       "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "72",
+              "00",
+              "0F",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 227,
+            "deviceId": 1
+          },
+          "min": 63,
+          "max": 199,
+          "defaultValue": 120,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 302,
+      "type": "fader",
+      "name": "MODE",
+      "color": "03A598",
+      "bounds": [
+        170,
+        216,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "0F",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 7,
+            "parameterNumber": 228,
+            "deviceId": 1
+          },
+          "overlayId": 36,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 303,
+      "type": "fader",
+      "name": "PATTERN",
+      "color": "03A598",
+      "bounds": [
+        340,
+        216,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "02",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 63,
+            "parameterNumber": 229,
+            "deviceId": 1
+          },
+          "min": 1,
+          "max": 64,
+          "defaultValue": 1,
+          "overlayId": 37,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 304,
+      "type": "fader",
+      "name": "OCTAVE RANGE",
+      "color": "03A598",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "03",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 3,
+            "parameterNumber": 230,
+            "deviceId": 1
+          },
+          "min": 1,
+          "max": 4,
+          "defaultValue": 1,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 305,
+      "type": "fader",
+      "name": "RESOLUTION",
+      "color": "03A598",
+      "bounds": [
+        680,
+        216,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "11",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 17,
+            "parameterNumber": 231,
+            "deviceId": 1
+          },
+          "overlayId": 38,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 307,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "HOLD",
+      "color": "03A598",
+      "bounds": [
+        0,
+        304,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "04",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 233,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 308,
+      "type": "fader",
+      "name": "NOTE LENGTH",
+      "color": "03A598",
+      "bounds": [
+        170,
+        304,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "05",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 234,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 309,
+      "type": "fader",
+      "name": "NOTE SWING",
+      "color": "03A598",
+      "bounds": [
+        340,
+        304,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "06",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 235,
+            "deviceId": 1
+          },
+          "min": 50,
+          "max": 75,
+          "defaultValue": 50,
+          "overlayId": 39,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 311,
+      "type": "fader",
+      "name": "STEPS",
+      "color": "03A598",
+      "bounds": [
+        680,
+        304,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "7F",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 31,
+            "parameterNumber": 333,
+            "deviceId": 1
+          },
+          "min": 1,
+          "max": 32,
+          "defaultValue": 8,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 313,
+      "type": "list",
+      "name": "VOICES",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        392,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
       "inputs": [
         {
           "potId": 1,
@@ -14980,24 +15855,24 @@
             "parameterNumber": 213,
             "deviceId": 1
           },
-          "overlayId": 35,
+          "overlayId": 40,
           "id": "value"
         }
       ]
     },
     {
-      "id": 302,
+      "id": 314,
       "type": "fader",
       "name": "DETUNE",
       "color": "FFFFFF",
       "bounds": [
         170,
-        216,
+        392,
         146,
         56
       ],
       "pageId": 9,
-      "controlSetId": 2,
+      "controlSetId": 3,
       "inputs": [
         {
           "potId": 2,
@@ -15033,18 +15908,18 @@
       ]
     },
     {
-      "id": 303,
+      "id": 315,
       "type": "fader",
       "name": "PAN SPREAD",
       "color": "FFFFFF",
       "bounds": [
         340,
-        216,
+        392,
         146,
         56
       ],
       "pageId": 9,
-      "controlSetId": 2,
+      "controlSetId": 3,
       "inputs": [
         {
           "potId": 3,
@@ -15082,18 +15957,18 @@
       ]
     },
     {
-      "id": 304,
+      "id": 316,
       "type": "fader",
       "name": "LFO PHASE",
       "color": "FFFFFF",
       "bounds": [
         510,
-        216,
+        392,
         146,
         56
       ],
       "pageId": 9,
-      "controlSetId": 2,
+      "controlSetId": 3,
       "inputs": [
         {
           "potId": 4,
@@ -15127,6 +16002,4886 @@
           "min": -64,
           "max": 63,
           "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 319,
+      "type": "fader",
+      "name": "FUNCTION",
+      "color": "F49500",
+      "bounds": [
+        0,
+        480,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "3E",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 334,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 320,
+      "type": "fader",
+      "name": "NAME",
+      "color": "F49500",
+      "bounds": [
+        170,
+        480,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "33",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 335,
+            "min": 0,
+            "max": 87
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 321,
+      "type": "fader",
+      "name": "FUNCTION",
+      "color": "F49500",
+      "bounds": [
+        340,
+        480,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "3F",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 336,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 322,
+      "type": "fader",
+      "name": "NAME",
+      "color": "F49500",
+      "bounds": [
+        510,
+        480,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "34",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 337,
+            "min": 0,
+            "max": 87
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 323,
+      "type": "fader",
+      "name": "FUNCTION",
+      "color": "F49500",
+      "bounds": [
+        680,
+        480,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "1C",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 338,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 324,
+      "type": "fader",
+      "name": "NAME",
+      "color": "F49500",
+      "bounds": [
+        850,
+        480,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "35",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 339,
+            "min": 0,
+            "max": 87
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 325,
+      "type": "fader",
+      "name": "STEP 1",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        40,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "01",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 236,
+            "deviceId": 1
+          },
+          "min": 0,
+          "max": 127,
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 326,
+      "type": "fader",
+      "name": "STEP 2",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        40,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "04",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 240,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 327,
+      "type": "fader",
+      "name": "STEP 3",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        40,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "07",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 241,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 328,
+      "type": "fader",
+      "name": "STEP 4",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        40,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "0A",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 242,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 329,
+      "type": "fader",
+      "name": "STEP 5",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        40,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "0D",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 243,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 330,
+      "type": "fader",
+      "name": "STEP 6",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        40,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "10",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 244,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 331,
+      "type": "fader",
+      "name": "STEP 7",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        128,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "13",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 245,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 332,
+      "type": "fader",
+      "name": "STEP 8",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        128,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "16",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 246,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 333,
+      "type": "fader",
+      "name": "STEP 9",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        128,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "19",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 247,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 334,
+      "type": "fader",
+      "name": "STEP 10",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        128,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "1C",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 248,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 335,
+      "type": "fader",
+      "name": "STEP 11",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        128,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "1F",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 249,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 336,
+      "type": "fader",
+      "name": "STEP 12",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        128,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "22",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 250,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 337,
+      "type": "fader",
+      "name": "STEP 13",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        216,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "25",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 251,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 338,
+      "type": "fader",
+      "name": "STEP 14",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        216,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "28",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 252,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 339,
+      "type": "fader",
+      "name": "STEP 15",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        216,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "2B",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 253,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 340,
+      "type": "fader",
+      "name": "STEP 16",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "2E",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 254,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 341,
+      "type": "fader",
+      "name": "STEP 17",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        216,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "31",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 255,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 342,
+      "type": "fader",
+      "name": "STEP 18",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        216,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "34",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 271,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 343,
+      "type": "fader",
+      "name": "STEP 19",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        304,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "37",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 257,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 344,
+      "type": "fader",
+      "name": "STEP 20",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        304,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "3A",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 258,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 345,
+      "type": "fader",
+      "name": "STEP 21",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        304,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "3D",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 259,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 346,
+      "type": "fader",
+      "name": "STEP 22",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        304,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "40",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 260,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 347,
+      "type": "fader",
+      "name": "STEP 23",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        304,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "43",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 261,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 348,
+      "type": "fader",
+      "name": "STEP 24",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        304,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "46",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 262,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 349,
+      "type": "fader",
+      "name": "STEP 25",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        392,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "49",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 263,
+            "min": 0,
+            "max": 127
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 350,
+      "type": "fader",
+      "name": "STEP 26",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        392,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "4C",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 264,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 351,
+      "type": "fader",
+      "name": "STEP 27",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        392,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "4F",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 265,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 352,
+      "type": "fader",
+      "name": "STEP 28",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        392,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "52",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 266,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 353,
+      "type": "fader",
+      "name": "STEP 29",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        392,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "55",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 267,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 354,
+      "type": "fader",
+      "name": "STEP 30",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        392,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "58",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 268,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 357,
+      "type": "fader",
+      "name": "STEP 31",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        480,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "5B",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 269,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 358,
+      "type": "fader",
+      "name": "STEP 32",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        480,
+        146,
+        56
+      ],
+      "pageId": 10,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "5E",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 270,
+            "deviceId": 1
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 361,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 1",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        40,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "02",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 238,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "on",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 362,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 2",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        40,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "05",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 272,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 363,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 3",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        40,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "08",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 273,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 364,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 4",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        40,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "0B",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 274,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 365,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 5",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        40,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "0E",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 275,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 366,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 6",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        40,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "11",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 276,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 367,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 7",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        128,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "14",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 277,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 368,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 8",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        128,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "17",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 278,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 369,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 9",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        128,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "1A",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 279,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 370,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 10",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        128,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "1D",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 280,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 371,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 11",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        128,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "20",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 281,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 372,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 12",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        128,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "23",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 282,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 373,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 13",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        216,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "26",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 283,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 374,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 14",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        216,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "29",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 284,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 375,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 15",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        216,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "2C",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 285,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 376,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 16",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "2F",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 286,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 377,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 17",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        216,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "32",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 287,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 378,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 18",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        216,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "35",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 288,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 379,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 19",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        304,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "38",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 289,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 380,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 20",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        304,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "3B",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 290,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 381,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 21",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        304,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "3E",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 291,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 382,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 22",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        304,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "41",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 292,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 383,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 23",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        304,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "44",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 293,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 384,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 24",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        304,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "47",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 294,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 385,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 25",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        392,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "4A",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 295,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 386,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 26",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        392,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "4D",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 296,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 387,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 27",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        392,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "50",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 297,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 388,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 28",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        392,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "53",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 298,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 389,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 29",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        392,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "56",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 299,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 390,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 30",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        392,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "59",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 300,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 393,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 31",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        480,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "5C",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 301,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 394,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "STEP 32",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        480,
+        146,
+        56
+      ],
+      "pageId": 11,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 1,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 397,
+      "type": "fader",
+      "name": "STEP 1",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        40,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "00",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 239,
+            "deviceId": 1
+          },
+          "min": 0,
+          "max": 127,
+          "defaultValue": 64,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 398,
+      "type": "fader",
+      "name": "STEP 2",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        40,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "03",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 302,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 399,
+      "type": "fader",
+      "name": "STEP 3",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        40,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "06",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 303,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 400,
+      "type": "fader",
+      "name": "STEP 4",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        40,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "09",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 304,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 401,
+      "type": "fader",
+      "name": "STEP 5",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        40,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "0C",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 305,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 402,
+      "type": "fader",
+      "name": "STEP 6",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        40,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "0F",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 306,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 403,
+      "type": "fader",
+      "name": "STEP 7",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        128,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "12",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 307,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 404,
+      "type": "fader",
+      "name": "STEP 8",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        128,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "15",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 308,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 405,
+      "type": "fader",
+      "name": "STEP 9",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        128,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "18",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 311,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 406,
+      "type": "fader",
+      "name": "STEP 10",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        128,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "1B",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 309,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 407,
+      "type": "fader",
+      "name": "STEP 11",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        128,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "1E",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 310,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 408,
+      "type": "fader",
+      "name": "STEP 12",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        128,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "21",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 312,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 409,
+      "type": "fader",
+      "name": "STEP 13",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        216,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "24",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 313,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 410,
+      "type": "fader",
+      "name": "STEP 14",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        216,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "27",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 314,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 411,
+      "type": "fader",
+      "name": "STEP 15",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        216,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "2A",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 315,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 412,
+      "type": "fader",
+      "name": "STEP 16",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "2D",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 316,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 413,
+      "type": "fader",
+      "name": "STEP 17",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        216,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "30",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 317,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 414,
+      "type": "fader",
+      "name": "STEP 18",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        216,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "33",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 318,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 415,
+      "type": "fader",
+      "name": "STEP 19",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        304,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "36",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 319,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 416,
+      "type": "fader",
+      "name": "STEP 20",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        304,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "39",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 320,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 417,
+      "type": "fader",
+      "name": "STEP 21",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        304,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "3C",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 321,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 418,
+      "type": "fader",
+      "name": "STEP 22",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        304,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "3F",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 322,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 419,
+      "type": "fader",
+      "name": "STEP 23",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        304,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "42",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 323,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 420,
+      "type": "fader",
+      "name": "STEP 24",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        304,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "45",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 324,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 421,
+      "type": "fader",
+      "name": "STEP 25",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        392,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "48",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 325,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 422,
+      "type": "fader",
+      "name": "STEP 26",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        392,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "4B",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 326,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 423,
+      "type": "fader",
+      "name": "STEP 27",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        392,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "4E",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 327,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 424,
+      "type": "fader",
+      "name": "STEP 28",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        392,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "51",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 328,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 425,
+      "type": "fader",
+      "name": "STEP 29",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        392,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "54",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 329,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 426,
+      "type": "fader",
+      "name": "STEP 30",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        392,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "57",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 330,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 429,
+      "type": "fader",
+      "name": "STEP 31",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        480,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "5A",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 331,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 430,
+      "type": "fader",
+      "name": "STEP 32",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        480,
+        146,
+        56
+      ],
+      "pageId": 12,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "5D",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 332,
+            "min": 0,
+            "max": 127
+          },
           "id": "value"
         }
       ]
