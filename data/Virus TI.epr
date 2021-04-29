@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "Access Virus TI",
-  "projectId": "eZfNLQkUki8Bek4CfRv3",
+  "projectId": "TC5eI8v17eKbx7oc7xRx",
   "pages": [
     {
       "id": 1,
@@ -2081,338 +2081,6 @@
     {
       "id": 12,
       "items": [
-        { "index": 0, "label": "Off", "value": 0 },
-        { "index": 1, "label": "Amp Env Attack", "value": 38 },
-        { "index": 2, "label": "Amp Env Decay", "value": 39 },
-        { "index": 3, "label": "Amp Env Slope", "value": 41 },
-        { "index": 4, "label": "Amp Env Sustain", "value": 40 },
-        { "index": 5, "label": "Amp Env Release", "value": 42 },
-        { "index": 6, "label": "Arp Note Length", "value": 114 },
-        { "index": 7, "label": "Arp Pattern", "value": 116 },
-        { "index": 8, "label": "Arp Swing Factor", "value": 115 },
-        { "index": 9, "label": "Chorus Delay", "value": 65 },
-        { "index": 10, "label": "Chorus Feedback", "value": 66 },
-        { "index": 11, "label": "Chorus Mix", "value": 62 },
-        { "index": 12, "label": "Chorus Mod Depth", "value": 64 },
-        { "index": 13, "label": "Chorus Mod Rate", "value": 63 },
-        { "index": 14, "label": "Delay Coloration", "value": 92 },
-        { "index": 15, "label": "Delay Feedback", "value": 69 },
-        { "index": 16, "label": "Delay Mod Depth", "value": 71 },
-        { "index": 17, "label": "Delay Mod Rate", "value": 70 },
-        { "index": 18, "label": "Delay Send", "value": 67 },
-        { "index": 19, "label": "Delay Time", "value": 68 },
-        { "index": 20, "label": "Distortion Intensity", "value": 95 },
-        { "index": 21, "label": "Distortion Mix", "value": 127 },
-        { "index": 22, "label": "EQ Mid Frequency", "value": 118 },
-        { "index": 23, "label": "EQ Mid Gain", "value": 117 },
-        { "index": 24, "label": "FiltEnv>FM/Sync", "value": 18 },
-        { "index": 25, "label": "FiltEnv>OSC2Pitch", "value": 17 },
-        { "index": 26, "label": "Filter Balance", "value": 32 },
-        { "index": 27, "label": "Filter Env Attack", "value": 33 },
-        { "index": 28, "label": "Filter Env Decay", "value": 34 },
-        { "index": 29, "label": "Filter Env Slope", "value": 36 },
-        { "index": 30, "label": "Filter Env Sustain", "value": 35 },
-        { "index": 31, "label": "Filter Env Release", "value": 37 },
-        { "index": 32, "label": "Filter 1 Cutoff", "value": 24 },
-        { "index": 33, "label": "Filter 1 Env Amount", "value": 28 },
-        { "index": 34, "label": "Filter 1 Resonance", "value": 26 },
-        { "index": 35, "label": "Filter 2 Cutoff", "value": 25 },
-        { "index": 36, "label": "Filter 2 Env Amount", "value": 29 },
-        { "index": 37, "label": "Filter 2 Resonance", "value": 27 },
-        { "index": 38, "label": "Filterbank Poles", "value": 79 },
-        { "index": 39, "label": "Filterbank Reso", "value": 78 },
-        { "index": 40, "label": "Filterbank Slope", "value": 81 },
-        { "index": 41, "label": "FreqShifter Freq", "value": 96 },
-        { "index": 42, "label": "LFO 1 Assign Amount", "value": 100 },
-        { "index": 43, "label": "LFO 1 Contour", "value": 44 },
-        { "index": 44, "label": "LFO 1 Rate", "value": 43 },
-        { "index": 45, "label": "LFO 1>Filter Gain", "value": 49 },
-        { "index": 46, "label": "LFO 1>OSC 1 Pitch", "value": 45 },
-        { "index": 47, "label": "LFO 1>OSC 2 Pitch", "value": 46 },
-        { "index": 48, "label": "LFO 1>Pulsewidth", "value": 47 },
-        { "index": 49, "label": "LFO 1>Resonance", "value": 48 },
-        { "index": 50, "label": "LFO 2 Assign Amount", "value": 101 },
-        { "index": 51, "label": "LFO 2 Contour", "value": 51 },
-        { "index": 52, "label": "LFO 2 Rate", "value": 50 },
-        { "index": 53, "label": "LFO 2>Cutoff 1", "value": 54 },
-        { "index": 54, "label": "LFO 2>Cutoff 2", "value": 55 },
-        { "index": 55, "label": "LFO 2>FM Amount", "value": 53 },
-        { "index": 56, "label": "LFO 2>Panorama", "value": 56 },
-        { "index": 57, "label": "LFO 2>Shape", "value": 52 },
-        { "index": 58, "label": "LFO 3 Assign Amount", "value": 58 },
-        { "index": 59, "label": "LFO 3 Rate", "value": 57 },
-        { "index": 60, "label": "Noise Color", "value": 91 },
-        { "index": 61, "label": "Noise Volume", "value": 23 },
-        { "index": 62, "label": "OSC Balance", "value": 20 },
-        { "index": 63, "label": "OSC Volume", "value": 22 },
-        { "index": 64, "label": "OSC 1 F-Shift", "value": 123 },
-        { "index": 65, "label": "OSC 1 F-Spread", "value": 125 },
-        { "index": 66, "label": "OSC 1 Interpolation", "value": 2 },
-        { "index": 67, "label": "OSC 1 Pitch", "value": 9 },
-        { "index": 68, "label": "OSC 1 Pulse Width", "value": 7 },
-        { "index": 69, "label": "OSC 1 Shape/Index", "value": 6 },
-        { "index": 70, "label": "OSC 1 Wave Select", "value": 8 },
-        { "index": 71, "label": "OSC 2 Detune", "value": 15 },
-        { "index": 72, "label": "OSC 2 FM Amount", "value": 16 },
-        { "index": 73, "label": "OSC 2 F-Shift", "value": 124 },
-        { "index": 74, "label": "OSC 2 F-Spread", "value": 126 },
-        { "index": 75, "label": "OSC 2 Interpolation", "value": 19 },
-        { "index": 76, "label": "OSC 2 Pitch", "value": 14 },
-        { "index": 77, "label": "OSC 2 Pulse Width", "value": 12 },
-        { "index": 78, "label": "OSC 2 Shape/Index", "value": 11 },
-        { "index": 79, "label": "OSC 2 Wave Select", "value": 13 },
-        { "index": 80, "label": "OSC 3 Detune", "value": 99 },
-        { "index": 81, "label": "OSC 3 Pitch", "value": 98 },
-        { "index": 82, "label": "OSC 3 Volume", "value": 97 },
-        { "index": 83, "label": "Sub OSC Volume", "value": 21 },
-        { "index": 84, "label": "Pan Spread", "value": 60 },
-        { "index": 85, "label": "Panorama", "value": 3 },
-        { "index": 86, "label": "Patch Volume", "value": 1 },
-        { "index": 87, "label": "Phaser Feedback", "value": 106 },
-        { "index": 88, "label": "Phaser Frequency", "value": 105 },
-        { "index": 89, "label": "Phaser Mix", "value": 102 },
-        { "index": 90, "label": "Phaser Mod Depth", "value": 104 },
-        { "index": 91, "label": "Phaser Mod Rate", "value": 103 },
-        { "index": 92, "label": "Portamento", "value": 5 },
-        { "index": 93, "label": "Punch Intensity", "value": 89 },
-        { "index": 94, "label": "Reverb Send", "value": 72 },
-        { "index": 95, "label": "Reverb Color", "value": 110 },
-        { "index": 96, "label": "Reverb Damping", "value": 109 },
-        { "index": 97, "label": "Reverb Time", "value": 108 },
-        { "index": 98, "label": "Reverb PreDelay", "value": 111 },
-        { "index": 99, "label": "Ring Modulator", "value": 90 },
-        { "index": 100, "label": "Slot 1 Amount 1", "value": 82 },
-        { "index": 101, "label": "Slot 1 Amount 2", "value": 93 },
-        { "index": 102, "label": "Slot 1 Amount 3", "value": 94 },
-        { "index": 103, "label": "Slot 2 Amount 1", "value": 83 },
-        { "index": 104, "label": "Slot 2 Amount 2", "value": 84 },
-        { "index": 105, "label": "Slot 2 Amount 3", "value": 80 },
-        { "index": 106, "label": "Slot 3 Amount 1", "value": 85 },
-        { "index": 107, "label": "Slot 3 Amount 2", "value": 86 },
-        { "index": 108, "label": "Slot 3 Amount 3", "value": 87 },
-        { "index": 109, "label": "Slot 4 Amount 1", "value": 120 },
-        { "index": 110, "label": "Slot 4 Amount 2", "value": 76 },
-        { "index": 111, "label": "Slot 4 Amount 3", "value": 77 },
-        { "index": 112, "label": "Slot 5 Amount 1", "value": 121 },
-        { "index": 113, "label": "Slot 5 Amount 2", "value": 30 },
-        { "index": 114, "label": "Slot 5 Amount 3", "value": 31 },
-        { "index": 115, "label": "Slot 6 Amount 1", "value": 122 },
-        { "index": 116, "label": "Slot 6 Amount 2", "value": 75 },
-        { "index": 117, "label": "Slot 6 Amount 3", "value": 10 },
-        { "index": 118, "label": "Surround Balance", "value": 113 },
-        { "index": 119, "label": "Transpose", "value": 4 },
-        { "index": 120, "label": "Unison Detune", "value": 59 },
-        { "index": 121, "label": "Unison LFO Phase", "value": 61 }
-      ]
-    },
-    {
-      "id": 13,
-      "items": [
-        {
-          "index": 0,
-          "label": "Off",
-          "value": 0
-        },
-        {
-          "index": 1,
-          "label": "Pitch Bend",
-          "value": 1
-        },
-        {
-          "index": 2,
-          "label": "Channel Pressure",
-          "value": 2
-        },
-        {
-          "index": 3,
-          "label": "Mod Wheel",
-          "value": 3
-        },
-        {
-          "index": 4,
-          "label": "Breath",
-          "value": 4
-        },
-        {
-          "index": 5,
-          "label": "Control 3",
-          "value": 5
-        },
-        {
-          "index": 6,
-          "label": "Foot Pedal",
-          "value": 6
-        },
-        {
-          "index": 7,
-          "label": "Data Entry",
-          "value": 7
-        },
-        {
-          "index": 8,
-          "label": "Balance",
-          "value": 8
-        },
-        {
-          "index": 9,
-          "label": "Control 9",
-          "value": 9
-        },
-        {
-          "index": 10,
-          "label": "Expression",
-          "value": 10
-        },
-        {
-          "index": 11,
-          "label": "Control 12",
-          "value": 11
-        },
-        {
-          "index": 12,
-          "label": "Control 13",
-          "value": 12
-        },
-        {
-          "index": 13,
-          "label": "Control 14",
-          "value": 13
-        },
-        {
-          "index": 14,
-          "label": "Control 15",
-          "value": 14
-        },
-        {
-          "index": 15,
-          "label": "Control 16",
-          "value": 15
-        },
-        {
-          "index": 16,
-          "label": "Hold Pedal",
-          "value": 16
-        },
-        {
-          "index": 17,
-          "label": "Portamento Switch",
-          "value": 17
-        },
-        {
-          "index": 18,
-          "label": "Sustain Pedal",
-          "value": 18
-        },
-        {
-          "index": 19,
-          "label": "Amp Envelope",
-          "value": 19
-        },
-        {
-          "index": 20,
-          "label": "Flt Envelope",
-          "value": 20
-        },
-        {
-          "index": 21,
-          "label": "LFO 1 Bipol",
-          "value": 21
-        },
-        {
-          "index": 22,
-          "label": "LFO 2 Bipol",
-          "value": 22
-        },
-        {
-          "index": 23,
-          "label": "LFO 3 Bipol",
-          "value": 23
-        },
-        {
-          "index": 24,
-          "label": "Velo On",
-          "value": 24
-        },
-        {
-          "index": 25,
-          "label": "Velo Off",
-          "value": 25
-        },
-        {
-          "index": 26,
-          "label": "Keyfollow",
-          "value": 26
-        },
-        {
-          "index": 27,
-          "label": "Random",
-          "value": 27
-        },
-        {
-          "index": 28,
-          "label": "Arp Input",
-          "value": 28
-        },
-        {
-          "index": 29,
-          "label": "LFO 1 Unipol",
-          "value": 29
-        },
-        {
-          "index": 30,
-          "label": "LFO 2 Unipol",
-          "value": 30
-        },
-        {
-          "index": 31,
-          "label": "LFO 3 Unipol",
-          "value": 31
-        },
-        {
-          "index": 32,
-          "label": "1% Constant",
-          "value": 32
-        },
-        {
-          "index": 33,
-          "label": "10% Constant",
-          "value": 33
-        },
-        {
-          "index": 34,
-          "label": "AnaKey1 Fine",
-          "value": 34
-        },
-        {
-          "index": 35,
-          "label": "AnaKey2 Fine",
-          "value": 35
-        },
-        {
-          "index": 36,
-          "label": "AnaKey1 Coarse",
-          "value": 36
-        },
-        {
-          "index": 37,
-          "label": "AnaKey2 Coarse",
-          "value": 37
-        },
-        {
-          "index": 38,
-          "label": "Envelope 3",
-          "value": 38
-        },
-        {
-          "index": 39,
-          "label": "Envelope 4",
-          "value": 39
-        }
-      ]
-    },
-    {
-      "id": 14,
-      "items": [
         {
           "index": 0,
           "label": "OFF",
@@ -3052,6 +2720,826 @@
           "index": 127,
           "label": "Distortion Mix",
           "value": 127
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "items": [
+        {
+          "index": 0,
+          "label": "Off",
+          "value": 0
+        },
+        {
+          "index": 1,
+          "label": "Pitch Bend",
+          "value": 1
+        },
+        {
+          "index": 2,
+          "label": "Channel Pressure",
+          "value": 2
+        },
+        {
+          "index": 3,
+          "label": "Mod Wheel",
+          "value": 3
+        },
+        {
+          "index": 4,
+          "label": "Breath",
+          "value": 4
+        },
+        {
+          "index": 5,
+          "label": "Control 3",
+          "value": 5
+        },
+        {
+          "index": 6,
+          "label": "Foot Pedal",
+          "value": 6
+        },
+        {
+          "index": 7,
+          "label": "Data Entry",
+          "value": 7
+        },
+        {
+          "index": 8,
+          "label": "Balance",
+          "value": 8
+        },
+        {
+          "index": 9,
+          "label": "Control 9",
+          "value": 9
+        },
+        {
+          "index": 10,
+          "label": "Expression",
+          "value": 10
+        },
+        {
+          "index": 11,
+          "label": "Control 12",
+          "value": 11
+        },
+        {
+          "index": 12,
+          "label": "Control 13",
+          "value": 12
+        },
+        {
+          "index": 13,
+          "label": "Control 14",
+          "value": 13
+        },
+        {
+          "index": 14,
+          "label": "Control 15",
+          "value": 14
+        },
+        {
+          "index": 15,
+          "label": "Control 16",
+          "value": 15
+        },
+        {
+          "index": 16,
+          "label": "Hold Pedal",
+          "value": 16
+        },
+        {
+          "index": 17,
+          "label": "Portamento Switch",
+          "value": 17
+        },
+        {
+          "index": 18,
+          "label": "Sustain Pedal",
+          "value": 18
+        },
+        {
+          "index": 19,
+          "label": "Amp Envelope",
+          "value": 19
+        },
+        {
+          "index": 20,
+          "label": "Flt Envelope",
+          "value": 20
+        },
+        {
+          "index": 21,
+          "label": "LFO 1 Bipol",
+          "value": 21
+        },
+        {
+          "index": 22,
+          "label": "LFO 2 Bipol",
+          "value": 22
+        },
+        {
+          "index": 23,
+          "label": "LFO 3 Bipol",
+          "value": 23
+        },
+        {
+          "index": 24,
+          "label": "Velo On",
+          "value": 24
+        },
+        {
+          "index": 25,
+          "label": "Velo Off",
+          "value": 25
+        },
+        {
+          "index": 26,
+          "label": "Keyfollow",
+          "value": 26
+        },
+        {
+          "index": 27,
+          "label": "Random",
+          "value": 27
+        },
+        {
+          "index": 28,
+          "label": "Arp Input",
+          "value": 28
+        },
+        {
+          "index": 29,
+          "label": "LFO 1 Unipol",
+          "value": 29
+        },
+        {
+          "index": 30,
+          "label": "LFO 2 Unipol",
+          "value": 30
+        },
+        {
+          "index": 31,
+          "label": "LFO 3 Unipol",
+          "value": 31
+        },
+        {
+          "index": 32,
+          "label": "1% Constant",
+          "value": 32
+        },
+        {
+          "index": 33,
+          "label": "10% Constant",
+          "value": 33
+        },
+        {
+          "index": 34,
+          "label": "AnaKey1 Fine",
+          "value": 34
+        },
+        {
+          "index": 35,
+          "label": "AnaKey2 Fine",
+          "value": 35
+        },
+        {
+          "index": 36,
+          "label": "AnaKey1 Coarse",
+          "value": 36
+        },
+        {
+          "index": 37,
+          "label": "AnaKey2 Coarse",
+          "value": 37
+        },
+        {
+          "index": 38,
+          "label": "Envelope 3",
+          "value": 38
+        },
+        {
+          "index": 39,
+          "label": "Envelope 4",
+          "value": 39
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "items": [
+        {
+          "index": 0,
+          "label": "Off",
+          "value": 0
+        },
+        {
+          "index": 1,
+          "label": "Amp Env Attack",
+          "value": 38
+        },
+        {
+          "index": 2,
+          "label": "Amp Env Decay",
+          "value": 39
+        },
+        {
+          "index": 3,
+          "label": "Amp Env Slope",
+          "value": 41
+        },
+        {
+          "index": 4,
+          "label": "Amp Env Sustain",
+          "value": 40
+        },
+        {
+          "index": 5,
+          "label": "Amp Env Release",
+          "value": 42
+        },
+        {
+          "index": 6,
+          "label": "Arp Note Length",
+          "value": 114
+        },
+        {
+          "index": 7,
+          "label": "Arp Pattern",
+          "value": 116
+        },
+        {
+          "index": 8,
+          "label": "Arp Swing Factor",
+          "value": 115
+        },
+        {
+          "index": 9,
+          "label": "Chorus Delay",
+          "value": 65
+        },
+        {
+          "index": 10,
+          "label": "Chorus Feedback",
+          "value": 66
+        },
+        {
+          "index": 11,
+          "label": "Chorus Mix",
+          "value": 62
+        },
+        {
+          "index": 12,
+          "label": "Chorus Mod Depth",
+          "value": 64
+        },
+        {
+          "index": 13,
+          "label": "Chorus Mod Rate",
+          "value": 63
+        },
+        {
+          "index": 14,
+          "label": "Delay Coloration",
+          "value": 92
+        },
+        {
+          "index": 15,
+          "label": "Delay Feedback",
+          "value": 69
+        },
+        {
+          "index": 16,
+          "label": "Delay Mod Depth",
+          "value": 71
+        },
+        {
+          "index": 17,
+          "label": "Delay Mod Rate",
+          "value": 70
+        },
+        {
+          "index": 18,
+          "label": "Delay Send",
+          "value": 67
+        },
+        {
+          "index": 19,
+          "label": "Delay Time",
+          "value": 68
+        },
+        {
+          "index": 20,
+          "label": "Distortion Intensity",
+          "value": 95
+        },
+        {
+          "index": 21,
+          "label": "Distortion Mix",
+          "value": 127
+        },
+        {
+          "index": 22,
+          "label": "EQ Mid Frequency",
+          "value": 118
+        },
+        {
+          "index": 23,
+          "label": "EQ Mid Gain",
+          "value": 117
+        },
+        {
+          "index": 24,
+          "label": "FiltEnv>FM/Sync",
+          "value": 18
+        },
+        {
+          "index": 25,
+          "label": "FiltEnv>OSC2Pitch",
+          "value": 17
+        },
+        {
+          "index": 26,
+          "label": "Filter Balance",
+          "value": 32
+        },
+        {
+          "index": 27,
+          "label": "Filter Env Attack",
+          "value": 33
+        },
+        {
+          "index": 28,
+          "label": "Filter Env Decay",
+          "value": 34
+        },
+        {
+          "index": 29,
+          "label": "Filter Env Slope",
+          "value": 36
+        },
+        {
+          "index": 30,
+          "label": "Filter Env Sustain",
+          "value": 35
+        },
+        {
+          "index": 31,
+          "label": "Filter Env Release",
+          "value": 37
+        },
+        {
+          "index": 32,
+          "label": "Filter 1 Cutoff",
+          "value": 24
+        },
+        {
+          "index": 33,
+          "label": "Filter 1 Env Amount",
+          "value": 28
+        },
+        {
+          "index": 34,
+          "label": "Filter 1 Resonance",
+          "value": 26
+        },
+        {
+          "index": 35,
+          "label": "Filter 2 Cutoff",
+          "value": 25
+        },
+        {
+          "index": 36,
+          "label": "Filter 2 Env Amount",
+          "value": 29
+        },
+        {
+          "index": 37,
+          "label": "Filter 2 Resonance",
+          "value": 27
+        },
+        {
+          "index": 38,
+          "label": "Filterbank Poles",
+          "value": 79
+        },
+        {
+          "index": 39,
+          "label": "Filterbank Reso",
+          "value": 78
+        },
+        {
+          "index": 40,
+          "label": "Filterbank Slope",
+          "value": 81
+        },
+        {
+          "index": 41,
+          "label": "FreqShifter Freq",
+          "value": 96
+        },
+        {
+          "index": 42,
+          "label": "LFO 1 Assign Amount",
+          "value": 100
+        },
+        {
+          "index": 43,
+          "label": "LFO 1 Contour",
+          "value": 44
+        },
+        {
+          "index": 44,
+          "label": "LFO 1 Rate",
+          "value": 43
+        },
+        {
+          "index": 45,
+          "label": "LFO 1>Filter Gain",
+          "value": 49
+        },
+        {
+          "index": 46,
+          "label": "LFO 1>OSC 1 Pitch",
+          "value": 45
+        },
+        {
+          "index": 47,
+          "label": "LFO 1>OSC 2 Pitch",
+          "value": 46
+        },
+        {
+          "index": 48,
+          "label": "LFO 1>Pulsewidth",
+          "value": 47
+        },
+        {
+          "index": 49,
+          "label": "LFO 1>Resonance",
+          "value": 48
+        },
+        {
+          "index": 50,
+          "label": "LFO 2 Assign Amount",
+          "value": 101
+        },
+        {
+          "index": 51,
+          "label": "LFO 2 Contour",
+          "value": 51
+        },
+        {
+          "index": 52,
+          "label": "LFO 2 Rate",
+          "value": 50
+        },
+        {
+          "index": 53,
+          "label": "LFO 2>Cutoff 1",
+          "value": 54
+        },
+        {
+          "index": 54,
+          "label": "LFO 2>Cutoff 2",
+          "value": 55
+        },
+        {
+          "index": 55,
+          "label": "LFO 2>FM Amount",
+          "value": 53
+        },
+        {
+          "index": 56,
+          "label": "LFO 2>Panorama",
+          "value": 56
+        },
+        {
+          "index": 57,
+          "label": "LFO 2>Shape",
+          "value": 52
+        },
+        {
+          "index": 58,
+          "label": "LFO 3 Assign Amount",
+          "value": 58
+        },
+        {
+          "index": 59,
+          "label": "LFO 3 Rate",
+          "value": 57
+        },
+        {
+          "index": 60,
+          "label": "Noise Color",
+          "value": 91
+        },
+        {
+          "index": 61,
+          "label": "Noise Volume",
+          "value": 23
+        },
+        {
+          "index": 62,
+          "label": "OSC Balance",
+          "value": 20
+        },
+        {
+          "index": 63,
+          "label": "OSC Volume",
+          "value": 22
+        },
+        {
+          "index": 64,
+          "label": "OSC 1 F-Shift",
+          "value": 123
+        },
+        {
+          "index": 65,
+          "label": "OSC 1 F-Spread",
+          "value": 125
+        },
+        {
+          "index": 66,
+          "label": "OSC 1 Interpolation",
+          "value": 2
+        },
+        {
+          "index": 67,
+          "label": "OSC 1 Pitch",
+          "value": 9
+        },
+        {
+          "index": 68,
+          "label": "OSC 1 Pulse Width",
+          "value": 7
+        },
+        {
+          "index": 69,
+          "label": "OSC 1 Shape/Index",
+          "value": 6
+        },
+        {
+          "index": 70,
+          "label": "OSC 1 Wave Select",
+          "value": 8
+        },
+        {
+          "index": 71,
+          "label": "OSC 2 Detune",
+          "value": 15
+        },
+        {
+          "index": 72,
+          "label": "OSC 2 FM Amount",
+          "value": 16
+        },
+        {
+          "index": 73,
+          "label": "OSC 2 F-Shift",
+          "value": 124
+        },
+        {
+          "index": 74,
+          "label": "OSC 2 F-Spread",
+          "value": 126
+        },
+        {
+          "index": 75,
+          "label": "OSC 2 Interpolation",
+          "value": 19
+        },
+        {
+          "index": 76,
+          "label": "OSC 2 Pitch",
+          "value": 14
+        },
+        {
+          "index": 77,
+          "label": "OSC 2 Pulse Width",
+          "value": 12
+        },
+        {
+          "index": 78,
+          "label": "OSC 2 Shape/Index",
+          "value": 11
+        },
+        {
+          "index": 79,
+          "label": "OSC 2 Wave Select",
+          "value": 13
+        },
+        {
+          "index": 80,
+          "label": "OSC 3 Detune",
+          "value": 99
+        },
+        {
+          "index": 81,
+          "label": "OSC 3 Pitch",
+          "value": 98
+        },
+        {
+          "index": 82,
+          "label": "OSC 3 Volume",
+          "value": 97
+        },
+        {
+          "index": 83,
+          "label": "Sub OSC Volume",
+          "value": 21
+        },
+        {
+          "index": 84,
+          "label": "Pan Spread",
+          "value": 60
+        },
+        {
+          "index": 85,
+          "label": "Panorama",
+          "value": 3
+        },
+        {
+          "index": 86,
+          "label": "Patch Volume",
+          "value": 1
+        },
+        {
+          "index": 87,
+          "label": "Phaser Feedback",
+          "value": 106
+        },
+        {
+          "index": 88,
+          "label": "Phaser Frequency",
+          "value": 105
+        },
+        {
+          "index": 89,
+          "label": "Phaser Mix",
+          "value": 102
+        },
+        {
+          "index": 90,
+          "label": "Phaser Mod Depth",
+          "value": 104
+        },
+        {
+          "index": 91,
+          "label": "Phaser Mod Rate",
+          "value": 103
+        },
+        {
+          "index": 92,
+          "label": "Portamento",
+          "value": 5
+        },
+        {
+          "index": 93,
+          "label": "Punch Intensity",
+          "value": 89
+        },
+        {
+          "index": 94,
+          "label": "Reverb Send",
+          "value": 72
+        },
+        {
+          "index": 95,
+          "label": "Reverb Color",
+          "value": 110
+        },
+        {
+          "index": 96,
+          "label": "Reverb Damping",
+          "value": 109
+        },
+        {
+          "index": 97,
+          "label": "Reverb Time",
+          "value": 108
+        },
+        {
+          "index": 98,
+          "label": "Reverb PreDelay",
+          "value": 111
+        },
+        {
+          "index": 99,
+          "label": "Ring Modulator",
+          "value": 90
+        },
+        {
+          "index": 100,
+          "label": "Slot 1 Amount 1",
+          "value": 82
+        },
+        {
+          "index": 101,
+          "label": "Slot 1 Amount 2",
+          "value": 93
+        },
+        {
+          "index": 102,
+          "label": "Slot 1 Amount 3",
+          "value": 94
+        },
+        {
+          "index": 103,
+          "label": "Slot 2 Amount 1",
+          "value": 83
+        },
+        {
+          "index": 104,
+          "label": "Slot 2 Amount 2",
+          "value": 84
+        },
+        {
+          "index": 105,
+          "label": "Slot 2 Amount 3",
+          "value": 80
+        },
+        {
+          "index": 106,
+          "label": "Slot 3 Amount 1",
+          "value": 85
+        },
+        {
+          "index": 107,
+          "label": "Slot 3 Amount 2",
+          "value": 86
+        },
+        {
+          "index": 108,
+          "label": "Slot 3 Amount 3",
+          "value": 87
+        },
+        {
+          "index": 109,
+          "label": "Slot 4 Amount 1",
+          "value": 120
+        },
+        {
+          "index": 110,
+          "label": "Slot 4 Amount 2",
+          "value": 76
+        },
+        {
+          "index": 111,
+          "label": "Slot 4 Amount 3",
+          "value": 77
+        },
+        {
+          "index": 112,
+          "label": "Slot 5 Amount 1",
+          "value": 121
+        },
+        {
+          "index": 113,
+          "label": "Slot 5 Amount 2",
+          "value": 30
+        },
+        {
+          "index": 114,
+          "label": "Slot 5 Amount 3",
+          "value": 31
+        },
+        {
+          "index": 115,
+          "label": "Slot 6 Amount 1",
+          "value": 122
+        },
+        {
+          "index": 116,
+          "label": "Slot 6 Amount 2",
+          "value": 75
+        },
+        {
+          "index": 117,
+          "label": "Slot 6 Amount 3",
+          "value": 10
+        },
+        {
+          "index": 118,
+          "label": "Surround Balance",
+          "value": 113
+        },
+        {
+          "index": 119,
+          "label": "Transpose",
+          "value": 4
+        },
+        {
+          "index": 120,
+          "label": "Unison Detune",
+          "value": 59
+        },
+        {
+          "index": 121,
+          "label": "Unison LFO Phase",
+          "value": 61
         }
       ]
     },
@@ -3979,7 +4467,7 @@
   "controls": [
     {
       "id": 1,
-      "type": "fader",
+      "type": "list",
       "name": "MODE",
       "color": "F49500",
       "bounds": [
@@ -4065,7 +4553,7 @@
     },
     {
       "id": 3,
-      "type": "fader",
+      "type": "list",
       "name": "WAVETABLE",
       "color": "F49500",
       "bounds": [
@@ -4450,7 +4938,7 @@
     },
     {
       "id": 12,
-      "type": "fader",
+      "type": "list",
       "name": "SYNC",
       "color": "F49500",
       "bounds": [
@@ -4486,7 +4974,7 @@
     },
     {
       "id": 13,
-      "type": "fader",
+      "type": "list",
       "name": "MODE",
       "color": "C44795",
       "bounds": [
@@ -4569,7 +5057,7 @@
     },
     {
       "id": 15,
-      "type": "fader",
+      "type": "list",
       "name": "WAVETABLE",
       "color": "C44795",
       "bounds": [
@@ -4795,7 +5283,7 @@
     },
     {
       "id": 21,
-      "type": "fader",
+      "type": "list",
       "name": "FM MODE",
       "color": "C44795",
       "bounds": [
@@ -4951,7 +5439,7 @@
     },
     {
       "id": 25,
-      "type": "fader",
+      "type": "list",
       "name": "MODE / WAVE",
       "color": "F45C51",
       "bounds": [
@@ -5397,7 +5885,7 @@
     },
     {
       "id": 37,
-      "type": "fader",
+      "type": "list",
       "name": "MODE",
       "color": "03A598",
       "bounds": [
@@ -5538,7 +6026,7 @@
     },
     {
       "id": 41,
-      "type": "fader",
+      "type": "list",
       "name": "ROUTING",
       "color": "FFFFFF",
       "bounds": [
@@ -5656,7 +6144,7 @@
     },
     {
       "id": 44,
-      "type": "fader",
+      "type": "list",
       "name": "ENV POLARITY",
       "color": "03A598",
       "bounds": [
@@ -5876,7 +6364,7 @@
     },
     {
       "id": 49,
-      "type": "fader",
+      "type": "list",
       "name": "MODE",
       "color": "529DEC",
       "bounds": [
@@ -6014,7 +6502,7 @@
     },
     {
       "id": 53,
-      "type": "fader",
+      "type": "list",
       "name": "CUTOFF LINK",
       "color": "FFFFFF",
       "bounds": [
@@ -6100,7 +6588,7 @@
     },
     {
       "id": 56,
-      "type": "fader",
+      "type": "list",
       "name": "ENV POLARITY",
       "color": "529DEC",
       "bounds": [
@@ -6815,7 +7303,7 @@
     },
     {
       "id": 73,
-      "type": "fader",
+      "type": "list",
       "name": "CLOCK",
       "color": "FFFFFF",
       "bounds": [
@@ -6898,7 +7386,7 @@
     },
     {
       "id": 75,
-      "type": "fader",
+      "type": "list",
       "name": "SHAPE",
       "color": "FFFFFF",
       "bounds": [
@@ -6966,7 +7454,7 @@
     },
     {
       "id": 77,
-      "type": "fader",
+      "type": "list",
       "name": "MODE",
       "color": "FFFFFF",
       "bounds": [
@@ -7036,7 +7524,7 @@
     },
     {
       "id": 79,
-      "type": "fader",
+      "type": "list",
       "name": "ENVELOPE MODE",
       "color": "FFFFFF",
       "bounds": [
@@ -7246,7 +7734,7 @@
     },
     {
       "id": 85,
-      "type": "fader",
+      "type": "list",
       "name": "CLOCK",
       "color": "FFFFFF",
       "bounds": [
@@ -7329,7 +7817,7 @@
     },
     {
       "id": 87,
-      "type": "fader",
+      "type": "list",
       "name": "SHAPE",
       "color": "FFFFFF",
       "bounds": [
@@ -7400,7 +7888,7 @@
     },
     {
       "id": 89,
-      "type": "fader",
+      "type": "list",
       "name": "MODE",
       "color": "FFFFFF",
       "bounds": [
@@ -7470,7 +7958,7 @@
     },
     {
       "id": 91,
-      "type": "fader",
+      "type": "list",
       "name": "ENVELOPE MODE",
       "color": "FFFFFF",
       "bounds": [
@@ -7681,7 +8169,7 @@
     },
     {
       "id": 97,
-      "type": "fader",
+      "type": "list",
       "name": "CLOCK",
       "color": "FFFFFF",
       "bounds": [
@@ -7782,7 +8270,7 @@
     },
     {
       "id": 99,
-      "type": "fader",
+      "type": "list",
       "name": "SHAPE",
       "color": "FFFFFF",
       "bounds": [
@@ -7833,7 +8321,7 @@
     },
     {
       "id": 101,
-      "type": "fader",
+      "type": "list",
       "name": "MODE",
       "color": "FFFFFF",
       "bounds": [
@@ -7934,7 +8422,7 @@
     },
     {
       "id": 103,
-      "type": "fader",
+      "type": "list",
       "name": "ASSIGN TARGET",
       "color": "F49500",
       "bounds": [
@@ -7979,7 +8467,7 @@
           "min": 0,
           "max": 127,
           "defaultValue": 0,
-          "overlayId": 14
+          "overlayId": 12
         }
       ]
     },
@@ -8069,7 +8557,7 @@
     },
     {
       "id": 106,
-      "type": "fader",
+      "type": "list",
       "name": "ASSIGN TARGET",
       "color": "F49500",
       "bounds": [
@@ -8114,7 +8602,7 @@
           "min": 0,
           "max": 127,
           "defaultValue": 0,
-          "overlayId": 14
+          "overlayId": 12
         }
       ]
     },
@@ -8205,7 +8693,7 @@
     },
     {
       "id": 110,
-      "type": "fader",
+      "type": "list",
       "name": "SOURCE",
       "color": "F49500",
       "bounds": [
@@ -8253,7 +8741,7 @@
     },
     {
       "id": 111,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 1",
       "color": "F45C51",
       "bounds": [
@@ -8275,6 +8763,7 @@
           "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -8290,21 +8779,17 @@
               },
               "F7"
             ],
-            "min": 0,
-            "max": 121,
             "parameterNumber": 99,
-            "deviceId": 1
+            "min": 0,
+            "max": 127
           },
-          "min": 0,
-          "max": 121,
-          "defaultValue": 0,
-          "overlayId": 12
+          "overlayId": 14
         }
       ]
     },
     {
       "id": 112,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 2",
       "color": "529DEC",
       "bounds": [
@@ -8344,18 +8829,15 @@
             ],
             "parameterNumber": 101,
             "min": 0,
-            "max": 121
+            "max": 127
           },
-          "min": 0,
-          "max": 121,
-          "defaultValue": 0,
-          "overlayId": 12
+          "overlayId": 14
         }
       ]
     },
     {
       "id": 113,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 3",
       "color": "03A598",
       "bounds": [
@@ -8395,9 +8877,9 @@
             ],
             "parameterNumber": 103,
             "min": 0,
-            "max": 121
+            "max": 127
           },
-          "overlayId": 12
+          "overlayId": 14
         }
       ]
     },
@@ -8553,7 +9035,7 @@
     },
     {
       "id": 122,
-      "type": "fader",
+      "type": "list",
       "name": "SOURCE",
       "color": "F49500",
       "bounds": [
@@ -8601,7 +9083,7 @@
     },
     {
       "id": 123,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 1",
       "color": "F45C51",
       "bounds": [
@@ -8623,6 +9105,7 @@
           "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -8638,18 +9121,17 @@
               },
               "F7"
             ],
-            "min": 0,
-            "max": 121,
             "parameterNumber": 106,
-            "deviceId": 1
+            "min": 0,
+            "max": 127
           },
-          "overlayId": 12
+          "overlayId": 14
         }
       ]
     },
     {
       "id": 124,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 2",
       "color": "529DEC",
       "bounds": [
@@ -8671,6 +9153,7 @@
           "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -8686,18 +9169,17 @@
               },
               "F7"
             ],
-            "min": 0,
-            "max": 121,
             "parameterNumber": 108,
-            "deviceId": 1
+            "min": 0,
+            "max": 127
           },
-          "overlayId": 12
+          "overlayId": 14
         }
       ]
     },
     {
       "id": 125,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 3",
       "color": "03A598",
       "bounds": [
@@ -8719,6 +9201,7 @@
           "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -8734,12 +9217,11 @@
               },
               "F7"
             ],
-            "min": 0,
-            "max": 121,
             "parameterNumber": 110,
-            "deviceId": 1
+            "min": 0,
+            "max": 127
           },
-          "overlayId": 12
+          "overlayId": 14
         }
       ]
     },
@@ -8895,7 +9377,7 @@
     },
     {
       "id": 134,
-      "type": "fader",
+      "type": "list",
       "name": "SOURCE",
       "color": "F49500",
       "bounds": [
@@ -8943,7 +9425,7 @@
     },
     {
       "id": 135,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 1",
       "color": "F45C51",
       "bounds": [
@@ -8983,15 +9465,15 @@
             ],
             "parameterNumber": 113,
             "min": 0,
-            "max": 121
+            "max": 127
           },
-          "overlayId": 12
+          "overlayId": 14
         }
       ]
     },
     {
       "id": 136,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 2",
       "color": "529DEC",
       "bounds": [
@@ -9031,15 +9513,15 @@
             ],
             "parameterNumber": 115,
             "min": 0,
-            "max": 121
+            "max": 127
           },
-          "overlayId": 12
+          "overlayId": 14
         }
       ]
     },
     {
       "id": 137,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 3",
       "color": "03A598",
       "bounds": [
@@ -9061,6 +9543,7 @@
           "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -9076,12 +9559,11 @@
               },
               "F7"
             ],
-            "min": 0,
-            "max": 121,
             "parameterNumber": 117,
-            "deviceId": 1
+            "min": 0,
+            "max": 127
           },
-          "overlayId": 12
+          "overlayId": 14
         }
       ]
     },
@@ -9237,7 +9719,7 @@
     },
     {
       "id": 146,
-      "type": "fader",
+      "type": "list",
       "name": "SOURCE",
       "color": "F49500",
       "bounds": [
@@ -9285,7 +9767,7 @@
     },
     {
       "id": 147,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 1",
       "color": "F45C51",
       "bounds": [
@@ -9304,6 +9786,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -9324,16 +9807,15 @@
             ],
             "parameterNumber": 127,
             "min": 0,
-            "max": 121
+            "max": 127
           },
-          "overlayId": 12,
-          "id": "value"
+          "overlayId": 14
         }
       ]
     },
     {
       "id": 148,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 2",
       "color": "529DEC",
       "bounds": [
@@ -9352,6 +9834,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -9372,16 +9855,15 @@
             ],
             "parameterNumber": 129,
             "min": 0,
-            "max": 121
+            "max": 127
           },
-          "overlayId": 12,
-          "id": "value"
+          "overlayId": 14
         }
       ]
     },
     {
       "id": 149,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 3",
       "color": "03A598",
       "bounds": [
@@ -9400,8 +9882,10 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -9417,13 +9901,11 @@
               },
               "F7"
             ],
-            "min": 0,
-            "max": 121,
             "parameterNumber": 131,
-            "deviceId": 1
+            "min": 0,
+            "max": 127
           },
-          "overlayId": 12,
-          "id": "value"
+          "overlayId": 14
         }
       ]
     },
@@ -9579,7 +10061,7 @@
     },
     {
       "id": 158,
-      "type": "fader",
+      "type": "list",
       "name": "SOURCE",
       "color": "F49500",
       "bounds": [
@@ -9627,7 +10109,7 @@
     },
     {
       "id": 159,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 1",
       "color": "F45C51",
       "bounds": [
@@ -9646,8 +10128,10 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -9663,19 +10147,17 @@
               },
               "F7"
             ],
-            "min": 0,
-            "max": 121,
             "parameterNumber": 134,
-            "deviceId": 1
+            "min": 0,
+            "max": 127
           },
-          "overlayId": 12,
-          "id": "value"
+          "overlayId": 14
         }
       ]
     },
     {
       "id": 160,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 2",
       "color": "529DEC",
       "bounds": [
@@ -9694,6 +10176,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -9714,16 +10197,15 @@
             ],
             "parameterNumber": 136,
             "min": 0,
-            "max": 121
+            "max": 127
           },
-          "overlayId": 12,
-          "id": "value"
+          "overlayId": 14
         }
       ]
     },
     {
       "id": 161,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 3",
       "color": "03A598",
       "bounds": [
@@ -9742,6 +10224,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -9762,10 +10245,9 @@
             ],
             "parameterNumber": 138,
             "min": 0,
-            "max": 121
+            "max": 127
           },
-          "overlayId": 12,
-          "id": "value"
+          "overlayId": 14
         }
       ]
     },
@@ -9921,7 +10403,7 @@
     },
     {
       "id": 170,
-      "type": "fader",
+      "type": "list",
       "name": "SOURCE",
       "color": "F49500",
       "bounds": [
@@ -9969,7 +10451,7 @@
     },
     {
       "id": 171,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 1",
       "color": "F45C51",
       "bounds": [
@@ -9988,8 +10470,10 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -10005,19 +10489,17 @@
               },
               "F7"
             ],
-            "min": 0,
-            "max": 121,
             "parameterNumber": 141,
-            "deviceId": 1
+            "min": 0,
+            "max": 127
           },
-          "overlayId": 12,
-          "id": "value"
+          "overlayId": 14
         }
       ]
     },
     {
       "id": 172,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 2",
       "color": "529DEC",
       "bounds": [
@@ -10036,6 +10518,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -10056,16 +10539,15 @@
             ],
             "parameterNumber": 143,
             "min": 0,
-            "max": 121
+            "max": 127
           },
-          "overlayId": 12,
-          "id": "value"
+          "overlayId": 14
         }
       ]
     },
     {
       "id": 173,
-      "type": "fader",
+      "type": "list",
       "name": "TARGET 3",
       "color": "03A598",
       "bounds": [
@@ -10084,8 +10566,10 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -10101,13 +10585,11 @@
               },
               "F7"
             ],
-            "min": 0,
-            "max": 121,
             "parameterNumber": 145,
-            "deviceId": 1
+            "min": 0,
+            "max": 127
           },
-          "overlayId": 12,
-          "id": "value"
+          "overlayId": 14
         }
       ]
     },
@@ -10263,7 +10745,7 @@
     },
     {
       "id": 181,
-      "type": "fader",
+      "type": "list",
       "name": "TYPE",
       "color": "C44795",
       "bounds": [
@@ -10408,7 +10890,7 @@
     },
     {
       "id": 187,
-      "type": "fader",
+      "type": "list",
       "name": "TYPE",
       "color": "03A598",
       "bounds": [
@@ -10656,7 +11138,7 @@
     },
     {
       "id": 193,
-      "type": "fader",
+      "type": "list",
       "name": "TYPE",
       "color": "F45C51",
       "bounds": [
@@ -10855,7 +11337,7 @@
     },
     {
       "id": 201,
-      "type": "fader",
+      "type": "list",
       "name": "LFO WAVE",
       "color": "F45C51",
       "bounds": [
@@ -10952,7 +11434,7 @@
     },
     {
       "id": 205,
-      "type": "fader",
+      "type": "list",
       "name": "TYPE",
       "color": "F49500",
       "bounds": [
@@ -11068,7 +11550,7 @@
     },
     {
       "id": 208,
-      "type": "fader",
+      "type": "list",
       "name": "LEFT CLOCK",
       "color": "F49500",
       "bounds": [
@@ -11116,7 +11598,7 @@
     },
     {
       "id": 209,
-      "type": "fader",
+      "type": "list",
       "name": "RIGHT CLOCK",
       "color": "F49500",
       "bounds": [
@@ -11312,7 +11794,7 @@
     },
     {
       "id": 215,
-      "type": "fader",
+      "type": "list",
       "name": "RATIO",
       "color": "F49500",
       "bounds": [
@@ -11947,7 +12429,7 @@
     },
     {
       "id": 229,
-      "type": "fader",
+      "type": "list",
       "name": "MODE",
       "color": "03A598",
       "bounds": [
@@ -12043,7 +12525,7 @@
     },
     {
       "id": 231,
-      "type": "fader",
+      "type": "list",
       "name": "CLOCK",
       "color": "03A598",
       "bounds": [
@@ -12238,7 +12720,7 @@
     },
     {
       "id": 235,
-      "type": "fader",
+      "type": "list",
       "name": "TYPE",
       "color": "03A598",
       "bounds": [
@@ -12478,7 +12960,7 @@
     },
     {
       "id": 241,
-      "type": "fader",
+      "type": "list",
       "name": "INPUT",
       "color": "529DEC",
       "bounds": [
@@ -12675,7 +13157,7 @@
     },
     {
       "id": 246,
-      "type": "fader",
+      "type": "list",
       "name": "FILTER TYPE",
       "color": "FFFFFF",
       "bounds": [
@@ -12723,7 +13205,7 @@
     },
     {
       "id": 247,
-      "type": "fader",
+      "type": "list",
       "name": "TYPE",
       "color": "FFFFFF",
       "bounds": [
@@ -13021,7 +13503,7 @@
     },
     {
       "id": 253,
-      "type": "fader",
+      "type": "list",
       "name": "MODE",
       "color": "F45C51",
       "bounds": [
@@ -13916,7 +14398,7 @@
     },
     {
       "id": 278,
-      "type": "fader",
+      "type": "list",
       "name": "MODE",
       "color": "03A598",
       "bounds": [
@@ -13964,7 +14446,7 @@
     },
     {
       "id": 279,
-      "type": "fader",
+      "type": "list",
       "name": "INPUT",
       "color": "03A598",
       "bounds": [
@@ -14012,7 +14494,7 @@
     },
     {
       "id": 280,
-      "type": "fader",
+      "type": "list",
       "name": "OUTPUT",
       "color": "C44795",
       "bounds": [
@@ -14261,7 +14743,7 @@
     },
     {
       "id": 293,
-      "type": "fader",
+      "type": "list",
       "name": "SMOOTH MODE",
       "color": "FFFFFF",
       "bounds": [
@@ -14409,7 +14891,7 @@
     },
     {
       "id": 297,
-      "type": "fader",
+      "type": "list",
       "name": "SCALE",
       "color": "FFFFFF",
       "bounds": [
@@ -14457,7 +14939,7 @@
     },
     {
       "id": 301,
-      "type": "fader",
+      "type": "list",
       "name": "VOICES",
       "color": "FFFFFF",
       "bounds": [

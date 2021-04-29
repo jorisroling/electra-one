@@ -1,0 +1,227 @@
+{
+    "categories": [
+        {
+            "id": "vibrato",
+            "label": "Vibrato"
+        },
+        {
+            "id": "control",
+            "label": "Control"
+        }
+    ],
+    "id": "MC-101",
+    "manufacturer": "Roland",
+    "manufacturerId": "roland",
+    "name": "MC-101",
+    "overlays": [],
+    "parameters": [
+        {
+            "id": 1,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "MODULATION",
+            "type": "fader"
+        },
+        {
+            "id": 5,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "PORTAMENT TIME",
+            "type": "fader"
+        },
+        {
+            "id": 7,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "VOLUME",
+            "type": "fader"
+        },
+        {
+            "id": 10,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "PAN",
+            "type": "fader"
+        },
+        {
+            "id": 11,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "EXPRESSION",
+            "type": "fader"
+        },
+        {
+            "id": 64,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "HOLD 1",
+            "type": "fader"
+        },
+        {
+            "id": 65,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "PORTAMENTO",
+            "type": "fader"
+        },
+        {
+            "id": 66,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "SOSTENUTO",
+            "type": "fader"
+        },
+        {
+            "id": 67,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "SOFT",
+            "type": "fader"
+        },
+        {
+            "id": 68,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "LEGATO FOOT SW",
+            "type": "fader"
+        },
+        {
+            "id": 71,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "RESONANCE",
+            "type": "fader"
+        },
+        {
+            "id": 72,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "RELEASE",
+            "type": "fader"
+        },
+        {
+            "id": 73,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "ATTACK",
+            "type": "fader"
+        },
+        {
+            "id": 74,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "CUTOFF",
+            "type": "fader"
+        },
+        {
+            "id": 75,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "DECAY",
+            "type": "fader"
+        },
+        {
+            "categoryId": "vibrato",
+            "id": 76,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "VIBRATO RATE",
+            "type": "fader"
+        },
+        {
+            "categoryId": "vibrato",
+            "id": 77,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "VIBRATO DEPTH",
+            "type": "fader"
+        },
+        {
+            "categoryId": "vibrator",
+            "id": 78,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "VIBRATO DELAY",
+            "type": "fader"
+        },
+        {
+            "categoryId": "control",
+            "id": 83,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "SOUND",
+            "type": "fader"
+        },
+        {
+            "categoryId": "control",
+            "id": 80,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "FILTER",
+            "type": "fader"
+        },
+        {
+            "categoryId": "control",
+            "id": 81,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "MOD",
+            "type": "fader"
+        },
+        {
+            "categoryId": "control",
+            "id": 82,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "FX",
+            "type": "fader"
+        },
+        {
+            "id": 84,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "PORTAMENTO CTR",
+            "type": "fader"
+        },
+        {
+            "id": 91,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "REVERB SEND",
+            "type": "fader"
+        },
+        {
+            "id": 93,
+            "max": 127,
+            "min": 0,
+            "msg": "cc7",
+            "name": "DELAY SEND",
+            "type": "fader"
+        }
+    ],
+    "version": 2
+}
