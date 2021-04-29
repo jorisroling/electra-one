@@ -30,14 +30,54 @@ function writeState() {
 }
 
 
+let sendSingleRequestTimeoutID
+let sendSingleRequestLastTime
+let receivedSingleRequestLastTime
+const electraOneMidiChannel = 0
+const sendSingleRequestTimeoutTime = 500
 
 function handleIncoming(from,to,targetElectraOne,options) {
-  const electraOneMidiChannel = 0
-
   return (msg) => {
 //    debug('handleIncoming: %s %y',from,msg)
 /*    const outputMidiName = (from == options.electraOne) ? 'virus-ti' : options.electraOne*/
     const midiOutput = ElectraOne.output(to)
+
+    function sendSingleRequest() {
+      const now = Date.now()
+      debug('now: %y  diff: %y diff2: %y',now,(now - sendSingleRequestLastTime),(now - receivedSingleRequestLastTime))
+      function sendSingleRequestSysEx() {
+        midiOutput.send('sysex',[0xF0,0x00,0x20,0x33,0x01,0x00,0x30,0x00,mappedPart-1,0xF7])
+        sendSingleRequestLastTime = now
+        sendSingleRequestTimeoutID=null
+      }
+
+      clearTimeout(sendSingleRequestTimeoutID)
+      sendSingleRequestTimeoutID = setTimeout( sendSingleRequestSysEx, sendSingleRequestTimeoutTime)
+      return
+
+      if (receivedSingleRequestLastTime) {
+        if ((now - receivedSingleRequestLastTime) < sendSingleRequestTimeoutTime) {
+          clearTimeout(sendSingleRequestTimeoutID)
+          sendSingleRequestTimeoutID = setTimeout( sendSingleRequestSysEx, sendSingleRequestTimeoutTime - (now - receivedSingleRequestLastTime))
+        } else {
+          sendSingleRequestSysEx()
+        }
+      } else {
+        sendSingleRequestSysEx()
+      }
+
+/*      if (sendSingleRequestLastTime) {
+        if ((now - sendSingleRequestLastTime) < sendSingleRequestTimeoutTime) {
+          clearTimeout(sendSingleRequestTimeoutID)
+          sendSingleRequestTimeoutID = setTimeout( sendSingleRequestSysEx, sendSingleRequestTimeoutTime - (now - sendSingleRequestLastTime))
+        } else {
+          sendSingleRequestSysEx()
+        }
+      } else {
+        sendSingleRequestSysEx()
+      }
+*/
+    }
 //    const targetElectraOne = (from == options.virusTi)
     if (midiOutput) {
       switch (msg._type) {
@@ -54,10 +94,22 @@ function handleIncoming(from,to,targetElectraOne,options) {
         break
       case 'sysex':
         if (options.portMap=='virus-ti' && msg.bytes) {
+
+          /* Part Change Custom SysEx */
           if (msg.bytes.length==5 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x7D && msg.bytes[2]==0x20 && msg.bytes[4]==0xF7) {
             mappedPart = msg.bytes[3]
             writeState()
-            debug('Set mapped part: %y',mappedPart)
+            debug('Set mapped part: %y by %y',mappedPart,from)
+
+            sendSingleRequest()
+
+/*          } else if (msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 && msg.bytes[6]==0x72 && msg.bytes[10]==0xF7) {
+//            F0 00 20 33 01 00 72 00  1D 00 F7
+            mappedPart = msg.bytes[7]+1
+            debug('Set mapped part: %y by %y',mappedPart,from)
+
+            sendSingleRequest()
+*/
             /* Single SysEx Parameterchange F0 00 20 33 01 XX (6E - 72) YY */
           } else if (msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]>=0x6E && msg.bytes[6]<=0x72 && msg.bytes[7]==(targetElectraOne?(mappedPart-1):electraOneMidiChannel) && msg.bytes[10]==0xF7) {
             msg.bytes[7] = ( targetElectraOne ? electraOneMidiChannel : (mappedPart-1) )
@@ -68,15 +120,16 @@ function handleIncoming(from,to,targetElectraOne,options) {
 
             /* Single Request F0 00 20 33 01 XX 30 00 YY */
           } else if (msg.bytes.length==10 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]==0x30 && msg.bytes[7]==0x00 /* && msg.bytes[8]==0x00 */) {
-            msg.bytes[8] = ( targetElectraOne ? electraOneMidiChannel : mappedPart )
+            msg.bytes[8] = ( targetElectraOne ? electraOneMidiChannel : mappedPart - 1 )
             debug('Part mapping %y applied to Single Request SysEx to %y',msg.bytes[8],to)
             midiOutput.send('sysex',msg.bytes)
 
             /* Single Dump Buffer F0 00 20 33 01 XX 10 00 YY */
           } else if (msg.bytes.length==524 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]==0x10 && msg.bytes[7]==0x00 /* && msg.bytes[8]==0x00 */ ) {
-            msg.bytes[8] = ( targetElectraOne ? electraOneMidiChannel : mappedPart )
+            msg.bytes[8] = ( targetElectraOne ? electraOneMidiChannel : mappedPart - 1)
             debug('Part mapping %y applied to Single Dump SysEx to %y (debug %d)',msg.bytes[8]+1,to,msg.bytes[286+10])
             midiOutput.send('sysex',msg.bytes)
+            receivedSingleRequestLastTime=Date.now()
           }
         } else { /* Anything else */
           debug('Forwarding SysEx to %y',to)

@@ -653,7 +653,364 @@
       "id": 1,
       "name": "Access Virus TI",
       "port": 1,
-      "channel": 1
+      "channel": 1,
+      "patch": [
+        {
+          "request": [
+            "00",
+            "20",
+            "33",
+            "01",
+            "00",
+            "30",
+            "00",
+            "00"
+          ],
+          "responses": [
+            {
+              "header": [
+                "00",
+                "20",
+                "33",
+                "01",
+                "00",
+                "10",
+                "00",
+                "00"
+              ],
+              "rules": [
+                { "type": "cc7", "parameterNumber": 4, "byte": 4 },
+                { "type": "cc7", "parameterNumber": 5, "byte": 5 },
+                { "type": "cc7", "parameterNumber": 6, "byte": 6 },
+                { "type": "cc7", "parameterNumber": 7, "byte": 7 },
+                { "type": "cc7", "parameterNumber": 8, "byte": 8 },
+                { "type": "cc7", "parameterNumber": 9, "byte": 9 },
+                { "type": "cc7", "parameterNumber": 10, "byte": 10 },
+                { "type": "cc7", "parameterNumber": 11, "byte": 11 },
+                { "type": "cc7", "parameterNumber": 12, "byte": 12 },
+                { "type": "cc7", "parameterNumber": 13, "byte": 13 },
+                { "type": "cc7", "parameterNumber": 14, "byte": 14 },
+                { "type": "cc7", "parameterNumber": 15, "byte": 15 },
+                { "type": "cc7", "parameterNumber": 16, "byte": 16 },
+                { "type": "cc7", "parameterNumber": 17, "byte": 17 },
+                { "type": "cc7", "parameterNumber": 18, "byte": 18 },
+                { "type": "cc7", "parameterNumber": 19, "byte": 19 },
+                { "type": "cc7", "parameterNumber": 20, "byte": 20 },
+                { "type": "cc7", "parameterNumber": 21, "byte": 21 },
+                { "type": "cc7", "parameterNumber": 22, "byte": 22 },
+                { "type": "cc7", "parameterNumber": 23, "byte": 23 },
+                { "type": "cc7", "parameterNumber": 24, "byte": 24 },
+                { "type": "cc7", "parameterNumber": 25, "byte": 25 },
+                { "type": "cc7", "parameterNumber": 26, "byte": 26 },
+                { "type": "cc7", "parameterNumber": 27, "byte": 27 },
+                { "type": "cc7", "parameterNumber": 28, "byte": 28 },
+                { "type": "cc7", "parameterNumber": 29, "byte": 29 },
+                { "type": "cc7", "parameterNumber": 30, "byte": 30 },
+                { "type": "cc7", "parameterNumber": 31, "byte": 31 },
+
+                { "type": "cc7", "parameterNumber": 33, "byte": 33 },
+                { "type": "cc7", "parameterNumber": 34, "byte": 34 },
+                { "type": "cc7", "parameterNumber": 35, "byte": 35 },
+                { "type": "cc7", "parameterNumber": 36, "byte": 36 },
+                { "type": "cc7", "parameterNumber": 37, "byte": 37 },
+
+                { "type": "cc7", "parameterNumber": 39, "byte": 39 },
+                { "type": "cc7", "parameterNumber": 40, "byte": 40 },
+                { "type": "cc7", "parameterNumber": 41, "byte": 41 },
+                { "type": "cc7", "parameterNumber": 42, "byte": 42 },
+                { "type": "cc7", "parameterNumber": 43, "byte": 43 },
+                { "type": "cc7", "parameterNumber": 44, "byte": 44 },
+                { "type": "cc7", "parameterNumber": 45, "byte": 45 },
+                { "type": "cc7", "parameterNumber": 46, "byte": 46 },
+                { "type": "cc7", "parameterNumber": 47, "byte": 47 },
+                { "type": "cc7", "parameterNumber": 48, "byte": 48 },
+                { "type": "cc7", "parameterNumber": 49, "byte": 49 },
+                { "type": "cc7", "parameterNumber": 50, "byte": 50 },
+                { "type": "cc7", "parameterNumber": 51, "byte": 51 },
+                { "type": "cc7", "parameterNumber": 52, "byte": 52 },
+                { "type": "cc7", "parameterNumber": 53, "byte": 53 },
+                { "type": "cc7", "parameterNumber": 54, "byte": 54 },
+                { "type": "cc7", "parameterNumber": 55, "byte": 55 },
+                { "type": "cc7", "parameterNumber": 56, "byte": 56 },
+                { "type": "cc7", "parameterNumber": 57, "byte": 57 },
+                { "type": "cc7", "parameterNumber": 58, "byte": 58 },
+                { "type": "cc7", "parameterNumber": 59, "byte": 59 },
+
+                { "type": "cc7", "parameterNumber": 61, "byte": 61 },
+                { "type": "cc7", "parameterNumber": 62, "byte": 62 },
+                { "type": "cc7", "parameterNumber": 63, "byte": 63 },
+                { "type": "cc7", "parameterNumber": 64, "byte": 64 },
+                { "type": "cc7", "parameterNumber": 65, "byte": 65 },
+                { "type": "cc7", "parameterNumber": 66, "byte": 66 },
+                { "type": "cc7", "parameterNumber": 67, "byte": 67 },
+                { "type": "cc7", "parameterNumber": 68, "byte": 68 },
+                { "type": "cc7", "parameterNumber": 69, "byte": 69 },
+                { "type": "cc7", "parameterNumber": 70, "byte": 70 },
+                { "type": "cc7", "parameterNumber": 71, "byte": 71 },
+                { "type": "cc7", "parameterNumber": 72, "byte": 72 },
+                { "type": "cc7", "parameterNumber": 73, "byte": 73 },
+                { "type": "cc7", "parameterNumber": 74, "byte": 74 },
+                { "type": "cc7", "parameterNumber": 75, "byte": 75 },
+                { "type": "cc7", "parameterNumber": 76, "byte": 76 },
+                { "type": "cc7", "parameterNumber": 77, "byte": 77 },
+                { "type": "cc7", "parameterNumber": 78, "byte": 78 },
+                { "type": "cc7", "parameterNumber": 79, "byte": 79 },
+                { "type": "cc7", "parameterNumber": 80, "byte": 80 },
+                { "type": "cc7", "parameterNumber": 81, "byte": 81 },
+                { "type": "cc7", "parameterNumber": 82, "byte": 82 },
+                { "type": "cc7", "parameterNumber": 83, "byte": 83 },
+                { "type": "cc7", "parameterNumber": 84, "byte": 84 },
+                { "type": "cc7", "parameterNumber": 85, "byte": 85 },
+                { "type": "cc7", "parameterNumber": 86, "byte": 86 },
+                { "type": "cc7", "parameterNumber": 87, "byte": 87 },
+                { "type": "cc7", "parameterNumber": 88, "byte": 88 },
+                { "type": "cc7", "parameterNumber": 89, "byte": 89 },
+                { "type": "cc7", "parameterNumber": 90, "byte": 90 },
+                { "type": "cc7", "parameterNumber": 91, "byte": 91 },
+
+                { "type": "cc7", "parameterNumber": 93, "byte": 93 },
+                { "type": "cc7", "parameterNumber": 94, "byte": 94 },
+
+                { "type": "cc7", "parameterNumber": 103, "byte": 103 },
+                { "type": "cc7", "parameterNumber": 104, "byte": 104 },
+                { "type": "cc7", "parameterNumber": 105, "byte": 105 },
+                { "type": "cc7", "parameterNumber": 106, "byte": 106 },
+                { "type": "cc7", "parameterNumber": 107, "byte": 107 },
+                { "type": "cc7", "parameterNumber": 108, "byte": 108 },
+                { "type": "cc7", "parameterNumber": 109, "byte": 109 },
+                { "type": "cc7", "parameterNumber": 110, "byte": 110 },
+                { "type": "cc7", "parameterNumber": 111, "byte": 111 },
+                { "type": "cc7", "parameterNumber": 112, "byte": 112 },
+                { "type": "cc7", "parameterNumber": 113, "byte": 113 },
+                { "type": "cc7", "parameterNumber": 114, "byte": 114 },
+                { "type": "cc7", "parameterNumber": 115, "byte": 115 },
+                { "type": "cc7", "parameterNumber": 116, "byte": 116 },
+                { "type": "cc7", "parameterNumber": 117, "byte": 117 },
+                { "type": "cc7", "parameterNumber": 118, "byte": 118 },
+                { "type": "cc7", "parameterNumber": 119, "byte": 119 },
+
+                { "type": "cc7", "parameterNumber": 122, "byte": 122 },
+                { "type": "cc7", "parameterNumber": 123, "byte": 123 },
+
+
+                { "type": "sysex", "parameterNumber": 130, "byte": 130 },
+                { "type": "sysex", "parameterNumber": 131, "byte": 131 },
+                { "type": "sysex", "parameterNumber": 132, "byte": 132 },
+                { "type": "sysex", "parameterNumber": 133, "byte": 133 },
+                { "type": "sysex", "parameterNumber": 134, "byte": 134 },
+                { "type": "sysex", "parameterNumber": 135, "byte": 135 },
+                { "type": "sysex", "parameterNumber": 136, "byte": 136 },
+                { "type": "sysex", "parameterNumber": 137, "byte": 137 },
+                { "type": "sysex", "parameterNumber": 138, "byte": 138 },
+                { "type": "sysex", "parameterNumber": 139, "byte": 139 },
+                { "type": "sysex", "parameterNumber": 140, "byte": 140 },
+                { "type": "sysex", "parameterNumber": 141, "byte": 141 },
+
+                { "type": "sysex", "parameterNumber": 143, "byte": 143 },
+                { "type": "sysex", "parameterNumber": 144, "byte": 144 },
+                { "type": "sysex", "parameterNumber": 145, "byte": 145 },
+                { "type": "sysex", "parameterNumber": 146, "byte": 146 },
+                { "type": "sysex", "parameterNumber": 147, "byte": 147 },
+                { "type": "sysex", "parameterNumber": 148, "byte": 148 },
+                { "type": "sysex", "parameterNumber": 149, "byte": 149 },
+
+                { "type": "sysex", "parameterNumber": 153, "byte": 153 },
+                { "type": "sysex", "parameterNumber": 154, "byte": 154 },
+                { "type": "sysex", "parameterNumber": 155, "byte": 155 },
+                { "type": "sysex", "parameterNumber": 156, "byte": 156 },
+
+                { "type": "sysex", "parameterNumber": 158, "byte": 158 },
+                { "type": "sysex", "parameterNumber": 159, "byte": 159 },
+                { "type": "sysex", "parameterNumber": 160, "byte": 160 },
+                { "type": "sysex", "parameterNumber": 161, "byte": 161 },
+                { "type": "sysex", "parameterNumber": 162, "byte": 162 },
+                { "type": "sysex", "parameterNumber": 163, "byte": 163 },
+                { "type": "sysex", "parameterNumber": 164, "byte": 164 },
+
+                { "type": "sysex", "parameterNumber": 166, "byte": 166 },
+                { "type": "sysex", "parameterNumber": 167, "byte": 167 },
+
+                { "type": "sysex", "parameterNumber": 169, "byte": 169 },
+                { "type": "sysex", "parameterNumber": 170, "byte": 170 },
+                { "type": "sysex", "parameterNumber": 171, "byte": 171 },
+                { "type": "sysex", "parameterNumber": 172, "byte": 172 },
+                { "type": "sysex", "parameterNumber": 173, "byte": 173 },
+                { "type": "sysex", "parameterNumber": 174, "byte": 174 },
+                { "type": "sysex", "parameterNumber": 175, "byte": 175 },
+                { "type": "sysex", "parameterNumber": 176, "byte": 176 },
+                { "type": "sysex", "parameterNumber": 177, "byte": 177 },
+                { "type": "sysex", "parameterNumber": 178, "byte": 178 },
+                { "type": "sysex", "parameterNumber": 179, "byte": 179 },
+                { "type": "sysex", "parameterNumber": 180, "byte": 180 },
+                { "type": "sysex", "parameterNumber": 181, "byte": 181 },
+                { "type": "sysex", "parameterNumber": 182, "byte": 182 },
+                { "type": "sysex", "parameterNumber": 183, "byte": 183 },
+                { "type": "sysex", "parameterNumber": 184, "byte": 184 },
+                { "type": "sysex", "parameterNumber": 185, "byte": 185 },
+                { "type": "sysex", "parameterNumber": 186, "byte": 186 },
+
+                { "type": "sysex", "parameterNumber": 188, "byte": 188 },
+                { "type": "sysex", "parameterNumber": 189, "byte": 189 },
+                { "type": "sysex", "parameterNumber": 190, "byte": 190 },
+                { "type": "sysex", "parameterNumber": 191, "byte": 191 },
+                { "type": "sysex", "parameterNumber": 192, "byte": 192 },
+                { "type": "sysex", "parameterNumber": 193, "byte": 193 },
+                { "type": "sysex", "parameterNumber": 194, "byte": 194 },
+                { "type": "sysex", "parameterNumber": 195, "byte": 195 },
+                { "type": "sysex", "parameterNumber": 196, "byte": 196 },
+                { "type": "sysex", "parameterNumber": 197, "byte": 197 },
+                { "type": "sysex", "parameterNumber": 198, "byte": 198 },
+                { "type": "sysex", "parameterNumber": 199, "byte": 199 },
+                { "type": "sysex", "parameterNumber": 200, "byte": 200 },
+                { "type": "sysex", "parameterNumber": 201, "byte": 201 },
+                { "type": "sysex", "parameterNumber": 202, "byte": 202 },
+                { "type": "sysex", "parameterNumber": 203, "byte": 203 },
+                { "type": "sysex", "parameterNumber": 204, "byte": 204 },
+                { "type": "sysex", "parameterNumber": 205, "byte": 205 },
+                { "type": "sysex", "parameterNumber": 206, "byte": 206 },
+                { "type": "sysex", "parameterNumber": 207, "byte": 207 },
+                { "type": "sysex", "parameterNumber": 208, "byte": 208 },
+                { "type": "sysex", "parameterNumber": 209, "byte": 209 },
+                { "type": "sysex", "parameterNumber": 210, "byte": 210 },
+
+                { "type": "sysex", "parameterNumber": 212, "byte": 212 },
+                { "type": "sysex", "parameterNumber": 213, "byte": 213 },
+                { "type": "sysex", "parameterNumber": 214, "byte": 214 },
+                { "type": "sysex", "parameterNumber": 215, "byte": 215 },
+                { "type": "sysex", "parameterNumber": 216, "byte": 216 },
+                { "type": "sysex", "parameterNumber": 217, "byte": 217 },
+                { "type": "sysex", "parameterNumber": 218, "byte": 218 },
+
+                { "type": "sysex", "parameterNumber": 220, "byte": 220 },
+                { "type": "sysex", "parameterNumber": 221, "byte": 221 },
+                { "type": "sysex", "parameterNumber": 222, "byte": 222 },
+                { "type": "sysex", "parameterNumber": 223, "byte": 223 },
+                { "type": "sysex", "parameterNumber": 224, "byte": 224 },
+                { "type": "sysex", "parameterNumber": 225, "byte": 225 },
+                { "type": "sysex", "parameterNumber": 226, "byte": 226 },
+                { "type": "sysex", "parameterNumber": 227, "byte": 227 },
+                { "type": "sysex", "parameterNumber": 228, "byte": 228 },
+                { "type": "sysex", "parameterNumber": 229, "byte": 229 },
+
+                { "type": "sysex", "parameterNumber": 231, "byte": 231 },
+                { "type": "sysex", "parameterNumber": 232, "byte": 232 },
+                { "type": "sysex", "parameterNumber": 233, "byte": 233 },
+                { "type": "sysex", "parameterNumber": 234, "byte": 234 },
+                { "type": "sysex", "parameterNumber": 235, "byte": 235 },
+                { "type": "sysex", "parameterNumber": 236, "byte": 236 },
+                { "type": "sysex", "parameterNumber": 237, "byte": 237 },
+                { "type": "sysex", "parameterNumber": 238, "byte": 238 },
+                { "type": "sysex", "parameterNumber": 239, "byte": 239 },
+                { "type": "sysex", "parameterNumber": 240, "byte": 240 },
+                { "type": "sysex", "parameterNumber": 241, "byte": 241 },
+                { "type": "sysex", "parameterNumber": 242, "byte": 242 },
+                { "type": "sysex", "parameterNumber": 243, "byte": 243 },
+                { "type": "sysex", "parameterNumber": 244, "byte": 244 },
+                { "type": "sysex", "parameterNumber": 245, "byte": 245 },
+                { "type": "sysex", "parameterNumber": 246, "byte": 246 },
+                { "type": "sysex", "parameterNumber": 247, "byte": 247 },
+                { "type": "sysex", "parameterNumber": 248, "byte": 248 },
+                { "type": "sysex", "parameterNumber": 249, "byte": 249 },
+                { "type": "sysex", "parameterNumber": 250, "byte": 250 },
+                { "type": "sysex", "parameterNumber": 251, "byte": 251 },
+                { "type": "sysex", "parameterNumber": 252, "byte": 252 },
+
+
+                { "index": 0, "type": "sysex", "parameterNumber": 256, "byte": 256 },
+                { "index": 1, "type": "sysex", "parameterNumber": 257, "byte": 257 },
+                { "index": 2, "type": "sysex", "parameterNumber": 258, "byte": 258 },
+                { "index": 3, "type": "sysex", "parameterNumber": 259, "byte": 259 },
+                { "index": 4, "type": "sysex", "parameterNumber": 260, "byte": 260 },
+                { "index": 5, "type": "sysex", "parameterNumber": 261, "byte": 261 },
+                { "index": 6, "type": "sysex", "parameterNumber": 262, "byte": 262 },
+                { "index": 7, "type": "sysex", "parameterNumber": 263, "byte": 263 },
+                { "index": 8, "type": "sysex", "parameterNumber": 264, "byte": 264 },
+                { "index": 9, "type": "sysex", "parameterNumber": 265, "byte": 265 },
+
+                { "index": 11, "type": "sysex", "parameterNumber": 267, "byte": 267 },
+                { "index": 12, "type": "sysex", "parameterNumber": 268, "byte": 268 },
+                { "index": 13, "type": "sysex", "parameterNumber": 269, "byte": 269 },
+
+                { "index": 16, "type": "sysex", "parameterNumber": 272, "byte": 272 },
+
+                { "index": 18, "type": "sysex", "parameterNumber": 274, "byte": 274 },
+                { "index": 19, "type": "sysex", "parameterNumber": 275, "byte": 275 },
+                { "index": 20, "type": "sysex", "parameterNumber": 276, "byte": 276 },
+                { "index": 21, "type": "sysex", "parameterNumber": 277, "byte": 277 },
+                { "index": 22, "type": "sysex", "parameterNumber": 278, "byte": 278 },
+                { "index": 23, "type": "sysex", "parameterNumber": 279, "byte": 279 },
+                { "index": 24, "type": "sysex", "parameterNumber": 280, "byte": 280 },
+                { "index": 25, "type": "sysex", "parameterNumber": 281, "byte": 281 },
+
+                { "index": 27, "type": "sysex", "parameterNumber": 283, "byte": 283 },
+
+                { "index": 29, "type": "sysex", "parameterNumber": 285, "byte": 285 },
+
+                { "index": 34, "type": "sysex", "parameterNumber": 290, "byte": 290 },
+
+                { "index": 36, "type": "sysex", "parameterNumber": 292, "byte": 292 },
+
+                { "index": 41, "type": "sysex", "parameterNumber": 297, "byte": 297 },
+                { "index": 42, "type": "sysex", "parameterNumber": 298, "byte": 298 },
+                { "index": 43, "type": "sysex", "parameterNumber": 299, "byte": 299 },
+
+                { "index": 56, "type": "sysex", "parameterNumber": 312, "byte": 312 },
+
+                { "index": 61, "type": "sysex", "parameterNumber": 317, "byte": 317 },
+                { "index": 62, "type": "sysex", "parameterNumber": 318, "byte": 318 },
+                { "index": 63, "type": "sysex", "parameterNumber": 319, "byte": 319 },
+
+                { "index": 69, "type": "sysex", "parameterNumber": 325, "byte": 325 },
+                { "index": 70, "type": "sysex", "parameterNumber": 326, "byte": 326 },
+                { "index": 71, "type": "sysex", "parameterNumber": 327, "byte": 327 },
+                { "index": 72, "type": "sysex", "parameterNumber": 328, "byte": 328 },
+                { "index": 73, "type": "sysex", "parameterNumber": 329, "byte": 329 },
+
+                { "index": 79, "type": "sysex", "parameterNumber": 335, "byte": 335 },
+                { "index": 80, "type": "sysex", "parameterNumber": 336, "byte": 336 },
+                { "index": 81, "type": "sysex", "parameterNumber": 337, "byte": 337 },
+                { "index": 82, "type": "sysex", "parameterNumber": 338, "byte": 338 },
+                { "index": 83, "type": "sysex", "parameterNumber": 339, "byte": 339 },
+                { "index": 84, "type": "sysex", "parameterNumber": 340, "byte": 340 },
+                { "index": 85, "type": "sysex", "parameterNumber": 341, "byte": 341 },
+                { "index": 86, "type": "sysex", "parameterNumber": 342, "byte": 342 },
+                { "index": 87, "type": "sysex", "parameterNumber": 343, "byte": 343 },
+                { "index": 88, "type": "sysex", "parameterNumber": 344, "byte": 344 },
+                { "index": 89, "type": "sysex", "parameterNumber": 345, "byte": 345 },
+                { "index": 90, "type": "sysex", "parameterNumber": 346, "byte": 346 },
+                { "index": 91, "type": "sysex", "parameterNumber": 347, "byte": 347 },
+                { "index": 92, "type": "sysex", "parameterNumber": 348, "byte": 348 },
+                { "index": 93, "type": "sysex", "parameterNumber": 349, "byte": 349 },
+                { "index": 94, "type": "sysex", "parameterNumber": 350, "byte": 350 },
+                { "index": 95, "type": "sysex", "parameterNumber": 351, "byte": 351 },
+                { "index": 96, "type": "sysex", "parameterNumber": 352, "byte": 352 },
+                { "index": 97, "type": "sysex", "parameterNumber": 353, "byte": 353 },
+                { "index": 98, "type": "sysex", "parameterNumber": 354, "byte": 354 },
+                { "index": 99, "type": "sysex", "parameterNumber": 355, "byte": 355 },
+                { "index": 100, "type": "sysex", "parameterNumber": 356, "byte": 356 },
+                { "index": 101, "type": "sysex", "parameterNumber": 357, "byte": 357 },
+                { "index": 102, "type": "sysex", "parameterNumber": 358, "byte": 358 },
+                { "index": 103, "type": "sysex", "parameterNumber": 359, "byte": 359 },
+                { "index": 104, "type": "sysex", "parameterNumber": 360, "byte": 360 },
+                { "index": 105, "type": "sysex", "parameterNumber": 361, "byte": 361 },
+                { "index": 106, "type": "sysex", "parameterNumber": 362, "byte": 362 },
+
+                { "index": 126, "type": "sysex", "parameterNumber": 382, "byte": 382 },
+
+
+                {
+                  "type": "sysex",
+                  "parameterNumber": 287,
+                  "parameterBitPosition": 0,
+                  "byte": 287,
+                  "byteBitPosition": 0,
+                  "bitWidth": 7
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "overlays": [
@@ -4794,7 +5151,7 @@
             ],
             "min": 0,
             "max": 7,
-            "parameterNumber": 1,
+            "parameterNumber": 287,
             "deviceId": 1
           },
           "min": 0,
@@ -4951,7 +5308,7 @@
             ],
             "min": 0,
             "max": 127,
-            "parameterNumber": 34,
+            "parameterNumber": 299,
             "deviceId": 1
           },
           "min": 0,
@@ -4995,7 +5352,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 79,
+            "parameterNumber": 999,
             "min": 1,
             "max": 16
           },
@@ -5115,7 +5472,7 @@
             ],
             "min": 0,
             "max": 127,
-            "parameterNumber": 35,
+            "parameterNumber": 300,
             "deviceId": 1
           },
           "min": 0,
@@ -5165,7 +5522,7 @@
             ],
             "min": 0,
             "max": 127,
-            "parameterNumber": 37,
+            "parameterNumber": 292,
             "deviceId": 1
           },
           "min": 0,
@@ -7630,7 +7987,7 @@
             ],
             "min": 0,
             "max": 21,
-            "parameterNumber": 78,
+            "parameterNumber": 146,
             "deviceId": 1
           },
           "overlayId": 9,
@@ -8061,7 +8418,7 @@
             ],
             "min": 0,
             "max": 21,
-            "parameterNumber": 84,
+            "parameterNumber": 147,
             "deviceId": 1
           },
           "overlayId": 9,
@@ -8496,7 +8853,7 @@
             ],
             "min": 0,
             "max": 21,
-            "parameterNumber": 93,
+            "parameterNumber": 149,
             "deviceId": 1
           },
           "min": 0,
@@ -8547,7 +8904,7 @@
             ],
             "min": 0,
             "max": 127,
-            "parameterNumber": 94,
+            "parameterNumber": 135,
             "deviceId": 1
           },
           "min": 0,
@@ -8597,7 +8954,7 @@
             ],
             "min": 0,
             "max": 67,
-            "parameterNumber": 95,
+            "parameterNumber": 136,
             "deviceId": 1
           },
           "min": 0,
@@ -8648,7 +9005,7 @@
             ],
             "min": 0,
             "max": 127,
-            "parameterNumber": 340,
+            "parameterNumber": 141,
             "deviceId": 1
           },
           "id": "value"
@@ -8695,7 +9052,7 @@
             ],
             "min": 0,
             "max": 1,
-            "parameterNumber": 96,
+            "parameterNumber": 137,
             "deviceId": 1
           },
           "min": 0,
@@ -8746,7 +9103,7 @@
             ],
             "min": 0,
             "max": 127,
-            "parameterNumber": 97,
+            "parameterNumber": 138,
             "deviceId": 1
           },
           "min": 0,
@@ -8998,7 +9355,7 @@
             ],
             "min": 0,
             "max": 6,
-            "parameterNumber": 341,
+            "parameterNumber": 139,
             "deviceId": 1
           },
           "overlayId": 13,
@@ -9045,7 +9402,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 342,
+            "parameterNumber": 140,
             "min": 0,
             "max": 127
           },
@@ -10265,7 +10622,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 131,
+            "parameterNumber": 1131,
             "min": 0,
             "max": 127
           },
@@ -10362,7 +10719,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 130,
+            "parameterNumber": 1130,
             "min": 0,
             "max": 127
           },
@@ -10412,7 +10769,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 132,
+            "parameterNumber": 1132,
             "min": 0,
             "max": 127
           },
@@ -10463,7 +10820,7 @@
             ],
             "min": 0,
             "max": 39,
-            "parameterNumber": 133,
+            "parameterNumber": 1133,
             "deviceId": 1
           },
           "overlayId": 14,
@@ -10511,7 +10868,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 134,
+            "parameterNumber": 1134,
             "min": 0,
             "max": 127
           },
@@ -10559,7 +10916,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 136,
+            "parameterNumber": 1136,
             "min": 0,
             "max": 127
           },
@@ -10607,7 +10964,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 138,
+            "parameterNumber": 1138,
             "min": 0,
             "max": 127
           },
@@ -10654,7 +11011,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 135,
+            "parameterNumber": 1135,
             "min": 0,
             "max": 127
           },
@@ -10704,7 +11061,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 137,
+            "parameterNumber": 1137,
             "min": 0,
             "max": 127
           },
@@ -10754,7 +11111,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 139,
+            "parameterNumber": 1139,
             "min": 0,
             "max": 127
           },
@@ -10805,7 +11162,7 @@
             ],
             "min": 0,
             "max": 39,
-            "parameterNumber": 140,
+            "parameterNumber": 1140,
             "deviceId": 1
           },
           "overlayId": 14,
@@ -10853,7 +11210,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 141,
+            "parameterNumber": 1141,
             "min": 0,
             "max": 127
           },
@@ -10901,7 +11258,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 143,
+            "parameterNumber": 1143,
             "min": 0,
             "max": 127
           },
@@ -10949,7 +11306,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 145,
+            "parameterNumber": 1145,
             "min": 0,
             "max": 127
           },
@@ -11046,7 +11403,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 144,
+            "parameterNumber": 1144,
             "min": 0,
             "max": 127
           },
@@ -11096,7 +11453,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 146,
+            "parameterNumber": 1146,
             "min": 0,
             "max": 127
           },
@@ -11147,7 +11504,7 @@
             ],
             "min": 0,
             "max": 8,
-            "parameterNumber": 147,
+            "parameterNumber": 1147,
             "deviceId": 1
           },
           "overlayId": 16,
@@ -11245,7 +11602,7 @@
             ],
             "min": 0,
             "max": 127,
-            "parameterNumber": 149,
+            "parameterNumber": 1149,
             "deviceId": 1
           },
           "id": "value"
@@ -15368,7 +15725,7 @@
     {
       "id": 301,
       "type": "fader",
-      "name": "GLOBAL TEMPO",
+      "name": "TEMPO",
       "color": "03A598",
       "bounds": [
         0,
@@ -15405,7 +15762,7 @@
             ],
             "min": 0,
             "max": 127,
-            "parameterNumber": 227,
+            "parameterNumber": 144,
             "deviceId": 1
           },
           "min": 63,
@@ -15455,7 +15812,7 @@
             ],
             "min": 0,
             "max": 7,
-            "parameterNumber": 228,
+            "parameterNumber": 143,
             "deviceId": 1
           },
           "overlayId": 36,
@@ -15503,7 +15860,7 @@
             ],
             "min": 0,
             "max": 63,
-            "parameterNumber": 229,
+            "parameterNumber": 130,
             "deviceId": 1
           },
           "min": 1,
@@ -15554,7 +15911,7 @@
             ],
             "min": 0,
             "max": 3,
-            "parameterNumber": 230,
+            "parameterNumber": 131,
             "deviceId": 1
           },
           "min": 1,
@@ -15567,7 +15924,7 @@
     {
       "id": 305,
       "type": "fader",
-      "name": "RESOLUTION",
+      "name": "CLOCK",
       "color": "03A598",
       "bounds": [
         680,
@@ -15604,7 +15961,7 @@
             ],
             "min": 0,
             "max": 17,
-            "parameterNumber": 231,
+            "parameterNumber": 145,
             "deviceId": 1
           },
           "overlayId": 38,
@@ -15652,7 +16009,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 233,
+            "parameterNumber": 132,
             "onValue": 1,
             "offValue": 0
           },
@@ -15700,7 +16057,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 234,
+            "parameterNumber": 133,
             "min": 0,
             "max": 127
           },
@@ -15751,7 +16108,7 @@
             ],
             "min": 0,
             "max": 127,
-            "parameterNumber": 235,
+            "parameterNumber": 134,
             "deviceId": 1
           },
           "min": 50,
@@ -18601,7 +18958,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 286,
+            "parameterNumber": 1286,
             "onValue": 1,
             "offValue": 0
           },
@@ -18650,7 +19007,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 287,
+            "parameterNumber": 1287,
             "onValue": 1,
             "offValue": 0
           },
@@ -18895,7 +19252,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 292,
+            "parameterNumber": 1292,
             "onValue": 1,
             "offValue": 0
           },
@@ -19238,7 +19595,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 299,
+            "parameterNumber": 1299,
             "onValue": 1,
             "offValue": 0
           },
@@ -19287,7 +19644,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 300,
+            "parameterNumber": 1300,
             "onValue": 1,
             "offValue": 0
           },
