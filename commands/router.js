@@ -54,53 +54,55 @@ function writeState() {
 }
 
 
-let sendSingleRequestTimeoutID
 let sendSingleRequestLastTime
 let receivedSingleRequestLastTime
 const electraOneMidiChannel = 0
+let sendSingleRequestTimeoutID
 const sendSingleRequestTimeoutTime = 500
+
+let sendSingleDumpLastTime
+let sendSingleDumpTimeoutID
+const sendSingleDumpTimeoutTime = 1000
+
+function sendSingleDump(midiOutput, bytes) {
+  const now = Date.now()
+
+  function sendSingleDumpSysEx(midiOutput, bytes) {
+/*    debug('sendSingleDumpSysEx now: %y  diff: %y',now,(now - sendSingleDumpLastTime))*/
+    midiOutput.send('sysex',bytes)
+    sendSingleDumpLastTime = Date.now()
+    sendSingleDumpTimeoutID=null
+  }
+
+  clearTimeout(sendSingleDumpTimeoutID)
+  const timeout = sendSingleDumpLastTime ? ((sendSingleDumpTimeoutTime<(now-sendSingleDumpLastTime)) ? 0 : Math.max(sendSingleDumpTimeoutTime-(now-sendSingleDumpLastTime),0) ) : 0
+//  debug('sendSingleDump timeout: %y  now: %y  last: %y  diff: %y  tres: %y',timeout,now,sendSingleDumpLastTime,(now-sendSingleDumpLastTime),sendSingleDumpTimeoutTime)
+  sendSingleRequestDumpID = setTimeout( sendSingleDumpSysEx, timeout, midiOutput, bytes)
+}
+
+
+function sendSingleRequest(midiOutput) {
+  const now = Date.now()
+
+  function sendSingleRequestSysEx(midiOutput,bytes) {
+/*    debug('sendSingleRequestSysEx now: %y  diff: %y diff2: %y',now,(now - sendSingleRequestLastTime),(now - receivedSingleRequestLastTime))*/
+    midiOutput.send('sysex',bytes)
+    sendSingleRequestLastTime = Date.now()
+    sendSingleRequestTimeoutID=null
+  }
+
+  clearTimeout(sendSingleRequestTimeoutID)
+  const timeout = sendSingleRequestTimeoutTime ? ((sendSingleRequestTimeoutTime<(now-sendSingleRequestLastTime)) ? 0 : Math.max(sendSingleRequestTimeoutTime-(now-sendSingleRequestLastTime),0) ) : 0
+//  debug('sendSingleRequest timeout: %y',timeout)
+  const bytes = [0xF0,0x00,0x20,0x33,0x01,0x00,0x30,0x00,getMapping('part:-1'),0xF7]
+  sendSingleRequestTimeoutID = setTimeout( sendSingleRequestSysEx, sendSingleRequestTimeoutTime, midiOutput, bytes)
+}
 
 function handleIncoming(from,to,targetElectraOne,options) {
   return (msg) => {
 //    debug('handleIncoming: %s %y',from,msg)
     const midiOutput = ElectraOne.output(to)
 
-    function sendSingleRequest() {
-      const now = Date.now()
-      debug('now: %y  diff: %y diff2: %y',now,(now - sendSingleRequestLastTime),(now - receivedSingleRequestLastTime))
-      function sendSingleRequestSysEx() {
-        midiOutput.send('sysex',[0xF0,0x00,0x20,0x33,0x01,0x00,0x30,0x00,getMapping('part:-1'),0xF7])
-        sendSingleRequestLastTime = now
-        sendSingleRequestTimeoutID=null
-      }
-
-      clearTimeout(sendSingleRequestTimeoutID)
-      sendSingleRequestTimeoutID = setTimeout( sendSingleRequestSysEx, sendSingleRequestTimeoutTime)
-      return
-
-      if (receivedSingleRequestLastTime) {
-        if ((now - receivedSingleRequestLastTime) < sendSingleRequestTimeoutTime) {
-          clearTimeout(sendSingleRequestTimeoutID)
-          sendSingleRequestTimeoutID = setTimeout( sendSingleRequestSysEx, sendSingleRequestTimeoutTime - (now - receivedSingleRequestLastTime))
-        } else {
-          sendSingleRequestSysEx()
-        }
-      } else {
-        sendSingleRequestSysEx()
-      }
-
-/*      if (sendSingleRequestLastTime) {
-        if ((now - sendSingleRequestLastTime) < sendSingleRequestTimeoutTime) {
-          clearTimeout(sendSingleRequestTimeoutID)
-          sendSingleRequestTimeoutID = setTimeout( sendSingleRequestSysEx, sendSingleRequestTimeoutTime - (now - sendSingleRequestLastTime))
-        } else {
-          sendSingleRequestSysEx()
-        }
-      } else {
-        sendSingleRequestSysEx()
-      }
-*/
-    }
 //    const targetElectraOne = (from == options.virusTi)
     if (midiOutput) {
       switch (msg._type) {
@@ -132,14 +134,15 @@ function handleIncoming(from,to,targetElectraOne,options) {
             writeState()
             debug('Set mapped part: %y by %y',getMapping('part'),from)
 
-            sendSingleRequest()
+            receivedSingleRequestLastTime = Date.now()
+            sendSingleRequest(midiOutput)
 
 /*          } else if (msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 && msg.bytes[6]==0x72 && msg.bytes[10]==0xF7) {
 //            F0 00 20 33 01 00 72 00  1D 00 F7
             setMapping('part',msg.bytes[7]+1)
             debug('Set mapped part: %y by %y',getMapping('part'),from)
 
-            sendSingleRequest()
+            sendSingleRequest(midiOutput)
 */
             /* Single SysEx Parameterchange F0 00 20 33 01 XX (6E - 72) YY */
           } else if (msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]>=0x6E && msg.bytes[6]<=0x72 && msg.bytes[7]==(targetElectraOne?getMapping('part:-1'):electraOneMidiChannel) && msg.bytes[10]==0xF7) {
@@ -153,14 +156,17 @@ function handleIncoming(from,to,targetElectraOne,options) {
           } else if (msg.bytes.length==10 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]==0x30 && msg.bytes[7]==0x00 /* && msg.bytes[8]==0x00 */) {
             msg.bytes[8] = ( targetElectraOne ? electraOneMidiChannel : getMapping('part:-1') )
             debug('Part mapping %y applied to Single Request SysEx to %y',msg.bytes[8],to)
-            midiOutput.send('sysex',msg.bytes)
+//            midiOutput.send('sysex',msg.bytes)
+
+            receivedSingleRequestLastTime = Date.now()
+            sendSingleRequest(midiOutput)
 
             /* Single Dump Buffer F0 00 20 33 01 XX 10 00 YY */
           } else if (msg.bytes.length==524 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]==0x10 && msg.bytes[7]==0x00 /* && msg.bytes[8]==0x00 */ ) {
             msg.bytes[8] = ( targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'))
             debug('Part mapping %y applied to Single Dump SysEx to %y (debug %d)',msg.bytes[8]+1,to,msg.bytes[286+10])
-            midiOutput.send('sysex',msg.bytes)
-            receivedSingleRequestLastTime=Date.now()
+
+            sendSingleDump(midiOutput,msg.bytes)
           }
         } else { /* Anything else */
           debug('Forwarding SysEx to %y',to)

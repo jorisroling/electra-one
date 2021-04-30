@@ -5985,7 +5985,7 @@
             ],
             "min": 0,
             "max": 6,
-            "parameterNumber": 39,
+            "parameterNumber": 162,
             "deviceId": 1
           },
           "min": 0,
@@ -6764,7 +6764,7 @@
             ],
             "min": 0,
             "max": 127,
-            "parameterNumber": 56,
+            "parameterNumber": 161,
             "deviceId": 1
           },
           "id": "value"
@@ -6846,7 +6846,7 @@
             ],
             "min": 0,
             "max": 1,
-            "parameterNumber": 53,
+            "parameterNumber": 158,
             "deviceId": 1
           },
           "min": 0,
@@ -7204,7 +7204,7 @@
             ],
             "min": 0,
             "max": 1,
-            "parameterNumber": 55,
+            "parameterNumber": 160,
             "deviceId": 1
           },
           "min": 0,
@@ -7290,7 +7290,7 @@
             ],
             "min": 0,
             "max": 1,
-            "parameterNumber": 54,
+            "parameterNumber": 159,
             "deviceId": 1
           },
           "min": 0,
@@ -11815,7 +11815,7 @@
             ],
             "min": 0,
             "max": 127,
-            "parameterNumber": 153,
+            "parameterNumber": 1153,
             "deviceId": 1
           },
           "min": 0,
@@ -11865,7 +11865,7 @@
             ],
             "min": 0,
             "max": 127,
-            "parameterNumber": 154,
+            "parameterNumber": 1154,
             "deviceId": 1
           },
           "min": 0,
@@ -12211,7 +12211,7 @@
             ],
             "min": 0,
             "max": 3,
-            "parameterNumber": 155,
+            "parameterNumber": 1155,
             "deviceId": 1
           },
           "overlayId": 20,
@@ -12327,7 +12327,7 @@
             ],
             "min": 0,
             "max": 5,
-            "parameterNumber": 156,
+            "parameterNumber": 1156,
             "deviceId": 1
           },
           "overlayId": 22,
@@ -12455,7 +12455,7 @@
             ],
             "min": 0,
             "max": 127,
-            "parameterNumber": 158,
+            "parameterNumber": 1158,
             "deviceId": 1
           },
           "id": "value"
@@ -12571,7 +12571,7 @@
             ],
             "min": 0,
             "max": 6,
-            "parameterNumber": 159,
+            "parameterNumber": 1159,
             "deviceId": 1
           },
           "overlayId": 23,
@@ -12618,7 +12618,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 160,
+            "parameterNumber": 1160,
             "min": 0,
             "max": 127
           },
@@ -12666,7 +12666,7 @@
             ],
             "min": 0,
             "max": 127,
-            "parameterNumber": 161,
+            "parameterNumber": 1161,
             "deviceId": 1
           },
           "id": "value"
@@ -12712,7 +12712,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 162,
+            "parameterNumber": 1162,
             "min": 0,
             "max": 127
           },
@@ -15520,7 +15520,7 @@
             ],
             "min": 0,
             "max": 20,
-            "parameterNumber": 209,
+            "parameterNumber": 153,
             "deviceId": 1
           },
           "overlayId": 34,
@@ -15599,7 +15599,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 210,
+            "parameterNumber": 155,
             "min": 0,
             "max": 127
           },
@@ -15649,7 +15649,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 211,
+            "parameterNumber": 154,
             "min": 0,
             "max": 127
           },
@@ -15700,7 +15700,7 @@
             ],
             "min": 0,
             "max": 1,
-            "parameterNumber": 212,
+            "parameterNumber": 156,
             "deviceId": 1
           },
           "overlayId": 35,
