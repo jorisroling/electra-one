@@ -657,6 +657,24 @@
       "patch": [
         {
           "request": [
+            "7D",
+            "21"
+          ],
+          "responses": [
+            {
+              "header": [
+                "7D",
+                "20"
+              ],
+
+              "rules": [
+                { "type": "sysex", "parameterNumber": 999, "byte": 0 }
+              ]
+            }
+          ]
+        },
+        {
+          "request": [
             "00",
             "20",
             "33",
