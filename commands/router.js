@@ -146,19 +146,40 @@ function handleIncoming(from,to,targetElectraOne,options) {
 */
             /* Single SysEx Parameterchange F0 00 20 33 01 XX (6E - 72) YY */
           } else if (msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]>=0x6E && msg.bytes[6]<=0x72 && msg.bytes[7]==(targetElectraOne?getMapping('part:-1'):electraOneMidiChannel) && msg.bytes[10]==0xF7) {
-            msg.bytes[7] = ( targetElectraOne ? electraOneMidiChannel : getMapping('part:-1') )
             const page = String.fromCharCode(65 + ((msg.bytes[6] + (msg.bytes[6] < 0x70 ? 4 /* 5 */ : 0) ) - 0x70 ) )
             let info = `page ${page} parameter ${msg.bytes[8]} (0x${msg.bytes[8].toString(16).toUpperCase()}) value ${msg.bytes[9]}`
+
+            // F0 00 20 33 01 XX 72 00  21 32 F7 => preset change
+            // F0 00 20 33 01 XX 72 00  20 1A F7 => bank change
             if (msg.bytes[6]==0x72 && (msg.bytes[8]==0x20 || msg.bytes[8]==0x21)) {
               debug('Patch or Bank change, Single Request back')
               receivedSingleRequestLastTime = Date.now()
               sendSingleRequest(ElectraOne.output(from))
+
+              // F0 00 20 33 01 XX 72 01  1D 02 F7
+            } else if (msg.bytes[6]==0x72 && msg.bytes[8]==0x1D) {
+              debug('Part change, Single Request back')
+              setMapping('part',msg.bytes[7]+1)
+              writeState()
+              midiOutput.send('sysex',[0xF0, 0x7D, 0x20, getMapping('part'), 0xF7])
+              receivedSingleRequestLastTime = Date.now()
+              sendSingleRequest(ElectraOne.output(from))
             } else {
+              msg.bytes[7] = ( targetElectraOne ? electraOneMidiChannel : getMapping('part:-1') )
               debug('Part mapping %y applied %s to SysEx Parameterchange for %y',msg.bytes[7]+1,info,to)
               midiOutput.send('sysex',msg.bytes)
             }
 
             /* Single Request F0 00 20 33 01 XX 30 00 YY */
+          } else if (msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]>=0x6E && msg.bytes[6]<=0x72 && msg.bytes[10]==0xF7) {
+            if (msg.bytes[6]==0x72 && msg.bytes[8]==0x1D) {
+              debug('Part change to %y, Single Request back',msg.bytes[9]+1)
+              setMapping('part',msg.bytes[9]+1)
+              writeState()
+              midiOutput.send('sysex',[0xF0, 0x7D, 0x20, getMapping('part'), 0xF7])
+              receivedSingleRequestLastTime = Date.now()
+              sendSingleRequest(ElectraOne.output(from))
+            }
           } else if (msg.bytes.length==10 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]==0x30 && msg.bytes[7]==0x00 /* && msg.bytes[8]==0x00 */) {
             msg.bytes[8] = ( targetElectraOne ? electraOneMidiChannel : getMapping('part:-1') )
             debug('Part mapping %y applied to Single Request SysEx to %y',msg.bytes[8],to)
