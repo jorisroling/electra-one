@@ -163,6 +163,18 @@ function handleIncoming(from,to,targetElectraOne,options) {
 
             sendSingleRequest(midiOutput)
 */
+          /* Bank Change Custom SysEx */
+          } else if (msg.bytes.length==5 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x7D && msg.bytes[2]==0x22 && msg.bytes[4]==0xF7) {
+            const bank=msg.bytes[3]
+            debug('Bank: %y to %y',bank,to)
+            midiOutput.send('cc',{channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), controller: 0, value: bank})
+
+          } else if (msg.bytes.length==5 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x7D && msg.bytes[2]==0x23 && msg.bytes[4]==0xF7) {
+            const program=msg.bytes[3]
+            debug('Program: %y to %y',program,to)
+            midiOutput.send('program',{channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), number: program})
+            sendSingleRequest(midiOutput)
+
             /* Single SysEx Parameterchange F0 00 20 33 01 XX (6E - 72) YY */
           } else if (msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]>=0x6E && msg.bytes[6]<=0x72 && msg.bytes[7]==(targetElectraOne?getMapping('part:-1'):electraOneMidiChannel) && msg.bytes[10]==0xF7) {
             const page = String.fromCharCode(65 + ((msg.bytes[6] + (msg.bytes[6] < 0x70 ? 4 /* 5 */ : 0) ) - 0x70 ) )

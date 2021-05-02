@@ -657,6 +657,28 @@
         16
       ],
       "color": "FFFFFF"
+    },
+    {
+      "pageId": 9,
+      "name": "Control",
+      "color": "C44795",
+      "bounds": [
+        850,
+        192,
+        146,
+        16
+      ]
+    },
+    {
+      "pageId": 8,
+      "name": "Preset",
+      "bounds": [
+        850,
+        16,
+        146,
+        16
+      ],
+      "color": "FFFFFF"
     }
   ],
   "devices": [
@@ -6959,6 +6981,161 @@
       "items": [
         {
           "value": 0,
+          "label": "RAM A",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "RAM B",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "RAM C",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "RAM D",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "ROM A",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "ROM B",
+          "index": 5
+        },
+        {
+          "value": 6,
+          "label": "ROM C",
+          "index": 6
+        },
+        {
+          "value": 7,
+          "label": "ROM D",
+          "index": 7
+        },
+        {
+          "value": 8,
+          "label": "ROM E",
+          "index": 8
+        },
+        {
+          "value": 9,
+          "label": "ROM F",
+          "index": 9
+        },
+        {
+          "value": 10,
+          "label": "ROM G",
+          "index": 10
+        },
+        {
+          "value": 11,
+          "label": "ROM H",
+          "index": 11
+        },
+        {
+          "value": 12,
+          "label": "ROM I",
+          "index": 12
+        },
+        {
+          "value": 13,
+          "label": "ROM J",
+          "index": 13
+        },
+        {
+          "value": 14,
+          "label": "ROM K",
+          "index": 14
+        },
+        {
+          "value": 15,
+          "label": "ROM L",
+          "index": 15
+        },
+        {
+          "value": 16,
+          "label": "ROM M",
+          "index": 16
+        },
+        {
+          "value": 17,
+          "label": "ROM N",
+          "index": 17
+        },
+        {
+          "value": 18,
+          "label": "ROM O",
+          "index": 18
+        },
+        {
+          "value": 19,
+          "label": "ROM P",
+          "index": 19
+        },
+        {
+          "value": 20,
+          "label": "ROM Q",
+          "index": 20
+        },
+        {
+          "value": 21,
+          "label": "ROM R",
+          "index": 21
+        },
+        {
+          "value": 22,
+          "label": "ROM S",
+          "index": 22
+        },
+        {
+          "value": 23,
+          "label": "ROM T",
+          "index": 23
+        },
+        {
+          "value": 24,
+          "label": "ROM U",
+          "index": 24
+        },
+        {
+          "value": 25,
+          "label": "ROM V",
+          "index": 25
+        },
+        {
+          "value": 26,
+          "label": "ROM W",
+          "index": 26
+        },
+        {
+          "value": 27,
+          "label": "ROM X",
+          "index": 27
+        },
+        {
+          "value": 28,
+          "label": "ROM Y",
+          "index": 28
+        },
+        {
+          "value": 29,
+          "label": "ROM Z",
+          "index": 29
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "items": [
+        {
+          "value": 0,
           "label": "Off",
           "index": 0
         },
@@ -6975,7 +7152,7 @@
       ]
     },
     {
-      "id": 32,
+      "id": 33,
       "items": [
         {
           "value": 0,
@@ -6995,7 +7172,7 @@
       ]
     },
     {
-      "id": 33,
+      "id": 34,
       "items": [
         {
           "value": 0,
@@ -7050,7 +7227,7 @@
       ]
     },
     {
-      "id": 34,
+      "id": 35,
       "items": [
         {
           "value": 0,
@@ -7160,7 +7337,7 @@
       ]
     },
     {
-      "id": 35,
+      "id": 36,
       "items": [
         {
           "value": 0,
@@ -7175,7 +7352,7 @@
       ]
     },
     {
-      "id": 36,
+      "id": 37,
       "items": [
         {
           "value": 0,
@@ -7220,7 +7397,7 @@
       ]
     },
     {
-      "id": 37,
+      "id": 38,
       "items": [
         {
           "value": 1,
@@ -7230,7 +7407,7 @@
       ]
     },
     {
-      "id": 38,
+      "id": 39,
       "items": [
         {
           "value": 0,
@@ -7325,7 +7502,7 @@
       ]
     },
     {
-      "id": 39,
+      "id": 40,
       "items": [
         {
           "value": 0,
@@ -7335,7 +7512,7 @@
       ]
     },
     {
-      "id": 40,
+      "id": 41,
       "items": [
         {
           "value": 0,
@@ -16674,6 +16851,48 @@
       ]
     },
     {
+      "id": 258,
+      "type": "fader",
+      "name": "BANK",
+      "color": "529DEC",
+      "bounds": [
+        850,
+        40,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "7D",
+              "22",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 1001,
+            "min": 0,
+            "max": 29
+          },
+          "overlayId": 31,
+          "id": "value"
+        }
+      ]
+    },
+    {
       "id": 259,
       "type": "fader",
       "name": "SPREAD",
@@ -16834,6 +17053,47 @@
             "min": 0,
             "max": 127,
             "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 264,
+      "type": "fader",
+      "name": "PROGRAM",
+      "color": "529DEC",
+      "bounds": [
+        850,
+        128,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "7D",
+              "23",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 1002,
+            "min": 0,
+            "max": 127
           },
           "id": "value"
         }
@@ -17430,7 +17690,7 @@
             "parameterNumber": 509,
             "deviceId": 1
           },
-          "overlayId": 31,
+          "overlayId": 32,
           "id": "value"
         }
       ]
@@ -17478,7 +17738,7 @@
             "parameterNumber": 510,
             "deviceId": 1
           },
-          "overlayId": 32,
+          "overlayId": 33,
           "id": "value"
         }
       ]
@@ -17526,7 +17786,7 @@
             "parameterNumber": 206,
             "deviceId": 1
           },
-          "overlayId": 33,
+          "overlayId": 34,
           "id": "value"
         }
       ]
@@ -17775,7 +18035,7 @@
             "parameterNumber": 153,
             "deviceId": 1
           },
-          "overlayId": 34,
+          "overlayId": 35,
           "id": "value"
         }
       ]
@@ -17955,7 +18215,7 @@
             "parameterNumber": 156,
             "deviceId": 1
           },
-          "overlayId": 35,
+          "overlayId": 36,
           "id": "value"
         }
       ]
@@ -18153,7 +18413,7 @@
             "parameterNumber": 143,
             "deviceId": 1
           },
-          "overlayId": 36,
+          "overlayId": 37,
           "id": "value"
         }
       ]
@@ -18204,7 +18464,7 @@
           "min": 1,
           "max": 64,
           "defaultValue": 1,
-          "overlayId": 37,
+          "overlayId": 38,
           "id": "value"
         }
       ]
@@ -18302,7 +18562,39 @@
             "parameterNumber": 145,
             "deviceId": 1
           },
-          "overlayId": 38,
+          "overlayId": 39,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 306,
+      "type": "fader",
+      "name": "CONTROL 3",
+      "color": "C44795",
+      "bounds": [
+        850,
+        216,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 3,
+            "min": 0,
+            "max": 127
+          },
           "id": "value"
         }
       ]
@@ -18452,18 +18744,18 @@
           "min": 50,
           "max": 75,
           "defaultValue": 50,
-          "overlayId": 39,
+          "overlayId": 40,
           "id": "value"
         }
       ]
     },
     {
-      "id": 311,
+      "id": 310,
       "type": "fader",
       "name": "STEPS",
       "color": "03A598",
       "bounds": [
-        680,
+        510,
         304,
         146,
         56
@@ -18472,7 +18764,7 @@
       "controlSetId": 2,
       "inputs": [
         {
-          "potId": 11,
+          "potId": 10,
           "valueId": "value"
         }
       ],
@@ -18503,6 +18795,70 @@
           "min": 1,
           "max": 32,
           "defaultValue": 8,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 311,
+      "type": "fader",
+      "name": "CONTROL 11",
+      "color": "C44795",
+      "bounds": [
+        680,
+        304,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 11,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 312,
+      "type": "fader",
+      "name": "CONTROL 9",
+      "color": "C44795",
+      "bounds": [
+        850,
+        304,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 9,
+            "min": 0,
+            "max": 127
+          },
           "id": "value"
         }
       ]
@@ -18550,7 +18906,7 @@
             "parameterNumber": 505,
             "deviceId": 1
           },
-          "overlayId": 40,
+          "overlayId": 41,
           "id": "value"
         }
       ]
