@@ -57,3 +57,7 @@ It also containes to **scenario** setup, including the *default* one. Here you c
 ### Router in action
 
 To start routing enter `electra-one router`. This will run the router silently, no feedback is shown. If you like to see more action, enter `DEBUG=* electra-one router`, this will shows what is going on.
+
+To terminate the routing process, simply type CTRL-C.
+
+Enjoy! 😃
