@@ -24,11 +24,26 @@
     "url": "https://github.com/jorisroling/electra-one/issues"
   },
   "homepage": "https://github.com/jorisroling/electra-one#readme",
+  "files": [
+    "index.js",
+    "config/default.js",
+    "config/production.js",
+    "config/develop.js",
+    "lib/commands.js",
+    "lib/electraOne.js",
+    "lib/yves.js",
+    "commands/info.js",
+    "commands/list.js",
+    "commands/router.js",
+    "commands/upload.js",
+    "package.json",
+    "README.md"
+  ],
   "dependencies": {
     "args": "^5.0.1",
     "change-case": "^4.1.2",
     "config": "^3.3.6",
-    "easymidi": "^2.0.3",
+    "easymidi": "^2.0.4",
     "escape-regex-string": "^1.0.6",
     "fs-extra": "^9.1.0",
     "glob": "^7.1.6",
