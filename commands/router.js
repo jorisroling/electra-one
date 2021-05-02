@@ -102,6 +102,8 @@ function sendSingleRequest(midiOutput) {
   sendSingleRequestTimeoutID = setTimeout( sendSingleRequestSysEx, sendSingleRequestTimeoutTime, midiOutput, bytes)
 }
 
+const ccCache = {}
+
 function handleIncoming(from,to,targetElectraOne,options) {
   return (msg) => {
 /*   debug('handleIncoming: %s %y',from,msg)*/
@@ -112,9 +114,22 @@ function handleIncoming(from,to,targetElectraOne,options) {
       switch (msg._type) {
       case 'cc':
         if (options.channels.indexOf(msg.channel+1)>=0) {
-          if (options.portMap=='virus-ti' && (targetElectraOne && msg.channel == getMapping('part:-1')) || (!targetElectraOne && msg.channel == electraOneMidiChannel) ) {
-            midiOutput.send('cc',{channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), controller: msg.controller, value: msg.value})
-            debug('Part mapping %y applied to CC %d (value %d) to %y',(targetElectraOne ? (electraOneMidiChannel+1) : getMapping('part')),msg.controller,msg.value,to)
+          if (options.portMap=='virus-ti') {
+            if ((targetElectraOne && msg.channel == getMapping('part:-1')) || (!targetElectraOne && msg.channel == electraOneMidiChannel) ) {
+              if (msg.controller==6 || msg.controller==38 || msg.controller==98 || msg.controller==99) { // NRPN
+//                debug('NRPN %y=%y',msg.controller,msg.value)
+                _.set(ccCache,`${from}.channel_${getMapping('part:-1')}.controller_${msg.controller}`,msg.value)
+//                debug('ccCache %y',ccCache)
+                if (msg.controller==6 && _.get(ccCache,`${from}.channel_${getMapping('part:-1')}.controller_99`)==7 &&  _.get(ccCache,`${from}.channel_${getMapping('part:-1')}.controller_98`)==104 ) {
+                  const pitch = (_.get(ccCache,`${from}.channel_${getMapping('part:-1')}.controller_6`) << 0) | (_.get(ccCache,`${from}.channel_${getMapping('part:-1')}.controller_38`) << 7)
+                  debug('Pitch %y to %y',pitch - 8192,to)
+                  midiOutput.send('pitch',{value: pitch,channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1')})
+                }
+              } else {
+                midiOutput.send('cc',{channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), controller: msg.controller, value: msg.value})
+                debug('Part mapping %y applied to CC %d (value %d) to %y',(targetElectraOne ? (electraOneMidiChannel+1) : getMapping('part')),msg.controller,msg.value,to)
+              }
+            }
           } else {
             debug('Forwarding CC %d (value %d) on channel %d to %y',msg.controller,msg.value,msg.channel+1,to)
             midiOutput.send('cc',msg)
