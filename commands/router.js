@@ -5,6 +5,8 @@ const _ = require('lodash')
 const config = require('config')
 const os = require('os')
 const fs = require('fs-extra')
+const path = require('path')
+const untildify = require('untildify')
 const jsonfile = require('jsonfile')
 
 const ElectraOne = require('../lib/electraOne')
@@ -37,7 +39,7 @@ function doMapping(bytes) {
 
 
 function readState() {
-  const filePath = `${__dirname}/../state/router.json`
+  const filePath = path.resolve((process.env.NODE_ENV=='production')?untildify(`~/.electra-one/state/router.json`):`${__dirname}/../state/router.json`)
   if (fs.existsSync(filePath)) {
     const state = jsonfile.readFileSync(filePath)
     if (state.mapping) {
@@ -49,8 +51,10 @@ function readState() {
 
 
 function writeState() {
+  const filePath = path.resolve((process.env.NODE_ENV=='production')?untildify(`~/.electra-one/state/router.json`):`${__dirname}/../state/router.json`)
+  fs.ensureDirSync(path.dirname(filePath))
   const state = { mapping }
-  jsonfile.writeFileSync(`${__dirname}/../state/router.json`, state, { flag: 'w', spaces: 2 })
+  jsonfile.writeFileSync(filePath, state, { flag: 'w', spaces: 2 })
 }
 
 
@@ -221,21 +225,21 @@ function handleIncoming(from,to,targetElectraOne,options) {
 
 function setupMidi(options) {
   const scenario = _.get(config,`router.scenarios.${options.scenario}`)
-  if (scenario) {
-    const devices = Object.keys(scenario)
-    for (const device of devices) {
-      if (scenario[device].enabled && scenario[device].port && scenario[device].channels && scenario[device].channels.length) {
-        const electraOnePortName = `electra-one-${scenario[device].port}`
+  if (scenario && scenario.actors) {
+    const actors = Object.keys(scenario.actors)
+    for (const actor of actors) {
+      if (scenario.actors[actor].enabled && scenario.actors[actor].port && scenario.actors[actor].channels && scenario.actors[actor].channels.length) {
+        const electraOnePortName = `electra-one-${scenario.actors[actor].port}`
         const midiInput_electraOne = ElectraOne.input(electraOnePortName, true)
-        midiInput_electraOne.on('message', handleIncoming(electraOnePortName,device,false,scenario[device]) )
+        midiInput_electraOne.on('message', handleIncoming(electraOnePortName,actor,false,scenario.actors[actor]) )
 
-        const midiInput_device = ElectraOne.input(device, true)
-        midiInput_device.on('message', handleIncoming(device,electraOnePortName,true,scenario[device]) )
+        const midiInput_actor = ElectraOne.input(actor, true)
+        midiInput_actor.on('message', handleIncoming(actor,electraOnePortName,true,scenario.actors[actor]) )
 
-        if (scenario[device].initialize) {
-          for (const init in scenario[device].initialize) {
+        if (scenario.actors[actor].initialize) {
+          for (const init in scenario.actors[actor].initialize) {
             const midiOutput_init = ElectraOne.output(init)
-            midiOutput_init.send('sysex',doMapping(scenario[device].initialize[init]))
+            midiOutput_init.send('sysex',doMapping(scenario.actors[actor].initialize[init]))
           }
         }
       }
@@ -247,15 +251,6 @@ function setupMidi(options) {
 
 function routerConsole(name, sub, options) {
   readState()
-/*
-  const midiOutput = ElectraOne.output(options.electraOne, true)
-  if (midiOutput) {
-    midiOutput.send('sysex',[0xF0, 0x7D, 0x20, getMapping('part'), 0xF7])
-    debug('Initialise Electra One mapped part %y',getMapping('part'))
-  }
-
-  midiOutput.send('sysex',[0xF0,0x00,0x20,0x33,0x01,0x00,0x30,0x00,getMapping('part:-1'),0xF7])
-*/
   setupMidi(options)
 }
 

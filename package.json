@@ -36,6 +36,7 @@
     "lodash": "^4.17.21",
     "sleep": "^6.3.0",
     "table": "^6.6.0",
+    "untildify": "^4.0.0",
     "yves": "^1.0.78"
   },
   "devDependencies": {
