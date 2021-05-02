@@ -114,9 +114,9 @@ function handleIncoming(from,to,targetElectraOne,options) {
         if (options.channels.indexOf(msg.channel+1)>=0) {
           if (options.portMap=='virus-ti' && (targetElectraOne && msg.channel == getMapping('part:-1')) || (!targetElectraOne && msg.channel == electraOneMidiChannel) ) {
             midiOutput.send('cc',{channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), controller: msg.controller, value: msg.value})
-            debug('Part mapping %y applied to CC %d (value %d) for %y',(targetElectraOne ? (electraOneMidiChannel+1) : getMapping('part')),msg.controller,msg.value,to)
+            debug('Part mapping %y applied to CC %d (value %d) to %y',(targetElectraOne ? (electraOneMidiChannel+1) : getMapping('part')),msg.controller,msg.value,to)
           } else {
-            debug('Forwarding CC %d (value %d) on channel %d for %y',msg.controller,msg.value,msg.channel+1,to)
+            debug('Forwarding CC %d (value %d) on channel %d to %y',msg.controller,msg.value,msg.channel+1,to)
             midiOutput.send('cc',msg)
           }
         }
@@ -170,7 +170,7 @@ function handleIncoming(from,to,targetElectraOne,options) {
               sendSingleRequest(ElectraOne.output(from))
             } else {
               msg.bytes[7] = ( targetElectraOne ? electraOneMidiChannel : getMapping('part:-1') )
-              debug('Part mapping %y applied %s to SysEx Parameterchange for %y',msg.bytes[7]+1,info,to)
+              debug('Part mapping %y applied %s to SysEx Parameterchange to %y',msg.bytes[7]+1,info,to)
               midiOutput.send('sysex',msg.bytes)
             }
 
