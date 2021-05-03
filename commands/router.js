@@ -225,11 +225,11 @@ function handleIncoming(from,to,targetElectraOne,options) {
             debug('Part mapping %y applied to Single Dump SysEx to %y',msg.bytes[8]+1,to)
 //            debug('Part mapping %y applied to Single Dump SysEx to %y (debug %d)',msg.bytes[8]+1,to,msg.bytes[286+10])
 
-            // Temporary Fix until Electra One can handle larger SysEx Dumps
+/*            // Temporary Fix until Electra One can handle larger SysEx Dumps
             msg.bytes[511] = 0xF7
             sendSingleDump(midiOutput,msg.bytes.slice(0,512))
-
-            //sendSingleDump(midiOutput,msg.bytes)
+*/
+            sendSingleDump(midiOutput,msg.bytes)
           } else if (msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]==0x72 && msg.bytes[7]==0x00 ) {
             // F0 00 20 33 01 XX 72 00  21 32 F7 => preset change
             // F0 00 20 33 01 XX 72 00  20 1A F7 => bank change
