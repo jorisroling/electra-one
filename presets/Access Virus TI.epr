@@ -735,6 +735,21 @@
               "rules": [
                 {
                   "type": "cc7",
+                  "parameterNumber": 1,
+                  "byte": 1
+                },
+                {
+                  "type": "cc7",
+                  "parameterNumber": 2,
+                  "byte": 2
+                },
+                {
+                  "type": "cc7",
+                  "parameterNumber": 3,
+                  "byte": 3
+                },
+                {
+                  "type": "cc7",
                   "parameterNumber": 4,
                   "byte": 4
                 },
@@ -1352,6 +1367,16 @@
                   "type": "cc7",
                   "parameterNumber": 127,
                   "byte": 127
+                },
+                {
+                  "type": "sysex",
+                  "parameterNumber": 128,
+                  "byte": 128
+                },
+                {
+                  "type": "sysex",
+                  "parameterNumber": 129,
+                  "byte": 129
                 },
                 {
                   "type": "sysex",
