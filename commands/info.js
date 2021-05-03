@@ -14,8 +14,8 @@ function queryInfo(name, sub, options) {
   }
 
   midiInputCtrlPort.on('message', (msg) => {
-    if (msg._type=='sysex' && msg.bytes && msg.bytes.length>=7 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x21 && msg.bytes[3]==0x45 && msg.bytes[4]==0x01 && msg.bytes[5]==0x7F /*&& msg.bytes[msg.bytes.length-1]==0xF7*/) {
-      const info = JSON.parse(msg.bytes.slice(6, msg.bytes.length-1).reduce((a, c) => a+String.fromCharCode(parseInt(c)),''))
+    if (msg._type == 'sysex' && msg.bytes && msg.bytes.length >= 7 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x00 && msg.bytes[2] == 0x21 && msg.bytes[3] == 0x45 && msg.bytes[4] == 0x01 && msg.bytes[5] == 0x7F /*&& msg.bytes[msg.bytes.length-1]==0xF7*/) {
+      const info = JSON.parse(msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)),''))
       debug('info: %y',info)
 
       const data = []
@@ -45,7 +45,7 @@ function queryInfo(name, sub, options) {
 
   midiOutputCtrlPort.send('sysex',bytes)
 
- setTimeout( close, 2500)
+  setTimeout( close, 2500)
 
 }
 

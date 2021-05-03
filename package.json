@@ -11,6 +11,7 @@
     "list": "node index list",
     "pre2inst": "python submodules/ElectraOne/tools/pre2inst/pre2inst.py",
     "start": "npm run router",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -55,6 +56,8 @@
     "yves": "^1.0.78"
   },
   "devDependencies": {
+    "eslint": "^7.25.0",
+    "eslint-plugin-jest": "^24.3.6",
     "nodemon": "^2.0.7"
   }
 }
