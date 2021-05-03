@@ -102,7 +102,7 @@ function sendSingleRequest(midiOutput) {
   sendSingleRequestTimeoutID = setTimeout( sendSingleRequestSysEx, sendSingleRequestTimeoutTime, midiOutput, bytes)
 }
 
-const ccCache = {}
+const midiHistory = {}
 
 function handleIncoming(from,to,targetElectraOne,options) {
   return (msg) => {
@@ -112,22 +112,44 @@ function handleIncoming(from,to,targetElectraOne,options) {
 //    const targetElectraOne = (from == options.virusTi)
     if (midiOutput) {
       switch (msg._type) {
+      case 'program':
+/*        debug('PC: %y',msg)*/
+        if (options.channels.indexOf(msg.channel+1)>=0) {
+          if (options.portMap=='virus-ti') {
+            if ((targetElectraOne && msg.channel == getMapping('part:-1')) || (!targetElectraOne && msg.channel == electraOneMidiChannel) ) {
+              _.set(midiHistory,`${from}.channel_${getMapping('part:-1')}.program`,msg.number)
+              midiOutput.send('program',{channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), number: msg.number})
+              debug('Part mapping %y applied to PC %d to %y',(targetElectraOne ? (electraOneMidiChannel+1) : getMapping('part')),msg.number,to)
+              sendSingleRequest(midiOutput)
+            }
+          } else {
+            debug('Forwarding PC %d on channel %d to %y',msg.number,msg.channel+1,to)
+            midiOutput.send('cc',msg)
+          }
+        }
+        break
       case 'cc':
         if (options.channels.indexOf(msg.channel+1)>=0) {
           if (options.portMap=='virus-ti') {
             if ((targetElectraOne && msg.channel == getMapping('part:-1')) || (!targetElectraOne && msg.channel == electraOneMidiChannel) ) {
               if (msg.controller==6 || msg.controller==38 || msg.controller==98 || msg.controller==99) { // NRPN
 //                debug('NRPN %y=%y',msg.controller,msg.value)
-                _.set(ccCache,`${from}.channel_${getMapping('part:-1')}.controller_${msg.controller}`,msg.value)
-//                debug('ccCache %y',ccCache)
-                if (msg.controller==6 && _.get(ccCache,`${from}.channel_${getMapping('part:-1')}.controller_99`)==7 &&  _.get(ccCache,`${from}.channel_${getMapping('part:-1')}.controller_98`)==104 ) {
-                  const pitch = (_.get(ccCache,`${from}.channel_${getMapping('part:-1')}.controller_6`) << 0) | (_.get(ccCache,`${from}.channel_${getMapping('part:-1')}.controller_38`) << 7)
+                _.set(midiHistory,`${from}.channel_${getMapping('part:-1')}.controller_${msg.controller}`,msg.value)
+//                debug('midiHistory %y',midiHistory)
+                if (msg.controller==6 && _.get(midiHistory,`${from}.channel_${getMapping('part:-1')}.controller_99`)==7 &&  _.get(midiHistory,`${from}.channel_${getMapping('part:-1')}.controller_98`)==104 ) {
+                  const pitch = (_.get(midiHistory,`${from}.channel_${getMapping('part:-1')}.controller_6`) << 0) | (_.get(midiHistory,`${from}.channel_${getMapping('part:-1')}.controller_38`) << 7)
                   debug('Pitch %y to %y',pitch - 8192,to)
                   midiOutput.send('pitch',{value: pitch,channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1')})
                 }
               } else {
                 midiOutput.send('cc',{channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), controller: msg.controller, value: msg.value})
                 debug('Part mapping %y applied to CC %d (value %d) to %y',(targetElectraOne ? (electraOneMidiChannel+1) : getMapping('part')),msg.controller,msg.value,to)
+                if (msg.controller==0 && _.get(midiHistory,`${from}.channel_${getMapping('part:-1')}.program`,-1)>=0) {
+                  debug('Bank: %y to %y',msg.value,to)
+                  midiOutput.send('program',{channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), number: _.get(midiHistory,`${from}.channel_${getMapping('part:-1')}.program`)})
+                  debug('Part mapping %y applied to PC %d to %y',(targetElectraOne ? (electraOneMidiChannel+1) : getMapping('part')),_.get(midiHistory,`${from}.channel_${getMapping('part:-1')}.program`),to)
+                  sendSingleRequest(midiOutput)
+                }
               }
             }
           } else {
@@ -164,7 +186,7 @@ function handleIncoming(from,to,targetElectraOne,options) {
             sendSingleRequest(midiOutput)
 */
           /* Bank Change Custom SysEx */
-          } else if (msg.bytes.length==5 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x7D && msg.bytes[2]==0x22 && msg.bytes[4]==0xF7) {
+/*          } else if (msg.bytes.length==5 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x7D && msg.bytes[2]==0x22 && msg.bytes[4]==0xF7) {
             const bank=msg.bytes[3]
             debug('Bank: %y to %y',bank,to)
             midiOutput.send('cc',{channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), controller: 0, value: bank})
@@ -174,7 +196,7 @@ function handleIncoming(from,to,targetElectraOne,options) {
             debug('Program: %y to %y',program,to)
             midiOutput.send('program',{channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), number: program})
             sendSingleRequest(midiOutput)
-
+*/
             /* Single SysEx Parameterchange F0 00 20 33 01 XX (6E - 72) YY */
           } else if (msg.bytes.length==11 && msg.bytes[0]==0xF0 && msg.bytes[1]==0x00 && msg.bytes[2]==0x20 && msg.bytes[3]==0x33 && msg.bytes[4]==0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6]>=0x6E && msg.bytes[6]<=0x72 && msg.bytes[7]==(targetElectraOne?getMapping('part:-1'):electraOneMidiChannel) && msg.bytes[10]==0xF7) {
             const page = String.fromCharCode(65 + ((msg.bytes[6] + (msg.bytes[6] < 0x70 ? 4 /* 5 */ : 0) ) - 0x70 ) )
