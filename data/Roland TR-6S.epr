@@ -156,27 +156,13 @@
   "devices": [
     {
       "id": 26,
-      "name": "Generic MIDI",
+      "name": "Roland TR-6S",
       "port": 2,
       "channel": 10
     }
   ],
   "overlays": [
-    {
-      "id": 1,
-      "items": [
-        {
-          "value": 0,
-          "label": "Off",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "On",
-          "index": 1
-        }
-      ]
-    }
+
   ],
   "controls": [
     {
@@ -202,11 +188,13 @@
         {
           "message": {
             "type": "cc7",
+            "deviceId": 26,
             "parameterNumber": 20,
-            "min": 0,
-            "max": 127,
-            "deviceId": 26
+            "bitWidth": 7
           },
+          "min": -128,
+          "max": 127,
+          "defaultValue": 0,
           "id": "value"
         }
       ]
@@ -234,11 +222,13 @@
         {
           "message": {
             "type": "cc7",
+            "deviceId": 26,
             "parameterNumber": 25,
-            "min": 0,
-            "max": 127,
-            "deviceId": 26
+            "bitWidth": 7
           },
+          "min": -128,
+          "max": 127,
+          "defaultValue": 0,
           "id": "value"
         }
       ]
@@ -266,11 +256,13 @@
         {
           "message": {
             "type": "cc7",
+            "deviceId": 26,
             "parameterNumber": 46,
-            "min": 0,
-            "max": 127,
-            "deviceId": 26
+            "bitWidth": 7
           },
+          "min": -128,
+          "max": 127,
+          "defaultValue": 0,
           "id": "value"
         }
       ]
@@ -298,11 +290,13 @@
         {
           "message": {
             "type": "cc7",
+            "deviceId": 26,
             "parameterNumber": 58,
-            "min": 0,
-            "max": 127,
-            "deviceId": 26
+            "bitWidth": 7
           },
+          "min": -128,
+          "max": 127,
+          "defaultValue": 0,
           "id": "value"
         }
       ]
@@ -330,11 +324,13 @@
         {
           "message": {
             "type": "cc7",
+            "deviceId": 26,
             "parameterNumber": 61,
-            "min": 0,
-            "max": 127,
-            "deviceId": 26
+            "bitWidth": 7
           },
+          "min": -128,
+          "max": 127,
+          "defaultValue": 0,
           "id": "value"
         }
       ]
@@ -362,11 +358,13 @@
         {
           "message": {
             "type": "cc7",
+            "deviceId": 26,
             "parameterNumber": 80,
-            "min": 0,
-            "max": 127,
-            "deviceId": 26
+            "bitWidth": 7
           },
+          "min": -128,
+          "max": 127,
+          "defaultValue": 0,
           "id": "value"
         }
       ]
@@ -399,6 +397,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -431,6 +431,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -463,6 +465,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -495,6 +499,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -527,6 +533,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -559,6 +567,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -591,6 +601,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -623,6 +635,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -655,6 +669,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -687,6 +703,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -719,6 +737,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -751,6 +771,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -783,6 +805,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -815,6 +839,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -847,6 +873,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -879,6 +907,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -911,6 +941,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -943,6 +975,8 @@
             "max": 127,
             "deviceId": 26
           },
+          "min": 0,
+          "max": 255,
           "id": "value"
         }
       ]
@@ -1117,7 +1151,8 @@
     },
     {
       "id": 30,
-      "type": "fader",
+      "type": "pad",
+      "mode": "toggle",
       "name": "MASTER FX",
       "color": "FFFFFF",
       "bounds": [
@@ -1140,12 +1175,10 @@
             "type": "cc7",
             "deviceId": 26,
             "parameterNumber": 15,
-            "min": 0,
-            "max": 127
+            "onValue": 127,
+            "offValue": 0
           },
-          "min": 0,
-          "max": 1,
-          "overlayId": 1,
+          "defaultValue": "off",
           "id": "value"
         }
       ]
@@ -1280,7 +1313,8 @@
     },
     {
       "id": 36,
-      "type": "fader",
+      "type": "pad",
+      "mode": "toggle",
       "name": "AUTO FILL IN",
       "color": "FFFFFF",
       "bounds": [
@@ -1303,12 +1337,10 @@
             "type": "cc7",
             "deviceId": 26,
             "parameterNumber": 14,
-            "min": 0,
-            "max": 127
+            "onValue": 127,
+            "offValue": 0
           },
-          "min": 0,
-          "max": 1,
-          "overlayId": 1,
+          "defaultValue": "off",
           "id": "value"
         }
       ]

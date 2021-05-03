@@ -51,7 +51,7 @@ module.exports = {
             },
           },
           'tr-6s': {
-            enabled: false,
+            enabled: true,
             port: 2,
             channels: [10,11],
           },
