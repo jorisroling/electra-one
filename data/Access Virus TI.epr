@@ -16872,18 +16872,9 @@
       "values": [
         {
           "message": {
-            "type": "sysex",
+            "type": "cc7",
             "deviceId": 1,
-            "data": [
-              "F0",
-              "7D",
-              "22",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 1001,
+            "parameterNumber": 0,
             "min": 0,
             "max": 29
           },
@@ -17080,20 +17071,11 @@
       "values": [
         {
           "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "7D",
-              "23",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 1002,
+            "type": "program",
             "min": 0,
-            "max": 127
+            "max": 127,
+            "parameterNumber": 1003,
+            "deviceId": 1
           },
           "id": "value"
         }
@@ -20370,8 +20352,10 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -20387,13 +20371,11 @@
               },
               "F7"
             ],
+            "parameterNumber": 449,
             "min": 0,
-            "max": 127,
-            "parameterNumber": 451,
-            "deviceId": 1
+            "max": 127
           },
-          "defaultValue": 100,
-          "id": "value"
+          "defaultValue": 100
         }
       ]
     },
@@ -20850,8 +20832,10 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -20867,13 +20851,11 @@
               },
               "F7"
             ],
+            "parameterNumber": 479,
             "min": 0,
-            "max": 127,
-            "parameterNumber": 481,
-            "deviceId": 1
+            "max": 127
           },
-          "defaultValue": 100,
-          "id": "value"
+          "defaultValue": 100
         }
       ]
     },
@@ -22419,9 +22401,24 @@
       "values": [
         {
           "message": {
-            "type": "cc7",
+            "type": "sysex",
             "deviceId": 1,
-            "parameterNumber": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6F",
+              "00",
+              "5F",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 480,
             "onValue": 1,
             "offValue": 0
           },
