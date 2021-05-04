@@ -63,11 +63,11 @@ let sendSingleRequestLastTime
 let receivedSingleRequestLastTime
 const electraOneMidiChannel = 0
 let sendSingleRequestTimeoutID
-const sendSingleRequestTimeoutTime = 500
+const sendSingleRequestTimeoutTime = 200
 
 let sendSingleDumpLastTime
 let sendSingleDumpTimeoutID
-const sendSingleDumpTimeoutTime = 1000
+const sendSingleDumpTimeoutTime = 1200
 
 function sendSingleDump(midiOutput, bytes) {
   const now = Date.now()
@@ -81,7 +81,7 @@ function sendSingleDump(midiOutput, bytes) {
 
   clearTimeout(sendSingleDumpTimeoutID)
   const timeout = sendSingleDumpLastTime ? ((sendSingleDumpTimeoutTime < (now - sendSingleDumpLastTime)) ? 0 : Math.max(sendSingleDumpTimeoutTime - (now - sendSingleDumpLastTime),0) ) : 0
-  //  debug('sendSingleDump timeout: %y  now: %y  last: %y  diff: %y  tres: %y',timeout,now,sendSingleDumpLastTime,(now-sendSingleDumpLastTime),sendSingleDumpTimeoutTime)
+   debug('sendSingleDump timeout: %y  now: %y  last: %y  diff: %y  tres: %y',timeout,now,sendSingleDumpLastTime,(now-sendSingleDumpLastTime),sendSingleDumpTimeoutTime)
   sendSingleDumpTimeoutID = setTimeout( sendSingleDumpSysEx, timeout, midiOutput, bytes)
 }
 
@@ -202,8 +202,8 @@ function handleIncoming(from,to,targetElectraOne,options) {
             sendSingleRequest(midiOutput)
 */
             /* Single SysEx Parameterchange F0 00 20 33 01 XX (6E - 72) YY */
-          } else if (msg.bytes.length == 11 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x00 && msg.bytes[2] == 0x20 && msg.bytes[3] == 0x33 && msg.bytes[4] == 0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6] >= 0x6E && msg.bytes[6] <= 0x72 && msg.bytes[7] == (targetElectraOne ? getMapping('part:-1') : electraOneMidiChannel) && msg.bytes[10] == 0xF7) {
-            const page = String.fromCharCode(65 + ((msg.bytes[6] + (msg.bytes[6] < 0x70 ? 4 /* 5 */ : 0) ) - 0x70 ) )
+          } else if (msg.bytes.length == 11 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x00 && msg.bytes[2] == 0x20 && msg.bytes[3] == 0x33 && msg.bytes[4] == 0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6] >= 0x6E && msg.bytes[6] <= 0x73 && msg.bytes[7] == (targetElectraOne ? getMapping('part:-1') : electraOneMidiChannel) && msg.bytes[10] == 0xF7) {
+            const page = String.fromCharCode(65 + ((msg.bytes[6] + (msg.bytes[6] < 0x70 ? 4 /* 5 */ : (msg.bytes[6] > 0x71 ? 2 : 0)) ) - 0x70 ) )
             let info = `page ${page} parameter ${msg.bytes[8]} (0x${msg.bytes[8].toString(16).toUpperCase()}) value ${msg.bytes[9]}`
 
             // F0 00 20 33 01 XX 72 00  21 32 F7 => preset change from virus-ti

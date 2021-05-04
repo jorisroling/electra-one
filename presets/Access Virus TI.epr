@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "Access Virus TI",
-  "projectId": "h7ECtLfVNoTV21NaMXMN",
+  "projectId": "dBGpgrvBrrh7GMaRRckI",
   "pages": [
     {
       "id": 1,
@@ -712,6 +712,17 @@
         996,
         16
       ]
+    },
+    {
+      "pageId": 8,
+      "name": "Virus",
+      "bounds": [
+        850,
+        192,
+        146,
+        16
+      ],
+      "color": "FFFFFF"
     }
   ],
   "devices": [
@@ -8237,94 +8248,446 @@
     {
       "id": 43,
       "items": [
-        { "index": 0, "label": ">Para", "value": 0 },
-        { "index": 1, "label": "*3rds", "value": 1 },
-        { "index": 2, "label": "*4ths", "value": 2 },
-        { "index": 3, "label": "*5ths", "value": 3 },
-        { "index": 4, "label": "*7ths", "value": 4 },
-        { "index": 5, "label": "+octave", "value": 5 },
-        { "index": 6, "label": "Access", "value": 6 },
-        { "index": 7, "label": "ArpMode", "value": 7 },
-        { "index": 8, "label": "ArpOct", "value": 8 },
-        { "index": 9, "label": "Attack", "value": 9 },
-        { "index": 10, "label": "Balance", "value": 10 },
-        { "index": 11, "label": "Bite", "value": 72 },
-        { "index": 12, "label": "Bush", "value": 82 },
-        { "index": 13, "label": "Chorus", "value": 11 },
-        { "index": 14, "label": "Comb", "value": 86 },
-        { "index": 15, "label": "Cutoff", "value": 12 },
-        { "index": 16, "label": "Decay", "value": 13 },
-        { "index": 17, "label": "Delay", "value": 14 },
-        { "index": 18, "label": "Depth", "value": 15 },
-        { "index": 19, "label": "Destroy", "value": 16 },
-        { "index": 20, "label": "Detune", "value": 17 },
-        { "index": 21, "label": "Disolve", "value": 18 },
-        { "index": 22, "label": "Distort", "value": 19 },
-        { "index": 23, "label": "Dive", "value": 20 },
-        { "index": 24, "label": "Effects", "value": 21 },
-        { "index": 25, "label": "Elevate", "value": 22 },
-        { "index": 26, "label": "Energy", "value": 23 },
-        { "index": 27, "label": "EqHigh", "value": 24 },
-        { "index": 28, "label": "EqLow", "value": 25 },
-        { "index": 29, "label": "EqMid", "value": 26 },
-        { "index": 30, "label": "FM", "value": 30 },
-        { "index": 31, "label": "Fast", "value": 27 },
-        { "index": 32, "label": "Fear", "value": 28 },
-        { "index": 33, "label": "Filter", "value": 29 },
-        { "index": 34, "label": "Flanger", "value": 73 },
-        { "index": 35, "label": "Fuzz", "value": 76 },
-        { "index": 36, "label": "F-Shift", "value": 80 },
-        { "index": 37, "label": "F-Spread", "value": 81 },
-        { "index": 38, "label": "Glide", "value": 31 },
-        { "index": 39, "label": "Hold", "value": 32 },
-        { "index": 40, "label": "Hype", "value": 33 },
-        { "index": 41, "label": "Infect", "value": 34 },
-        { "index": 42, "label": "Interpolation", "value": 79 },
-        { "index": 43, "label": "Length", "value": 35 },
-        { "index": 44, "label": "Mix", "value": 36 },
-        { "index": 45, "label": "Modulate", "value": 77 },
-        { "index": 46, "label": "Morph", "value": 37 },
-        { "index": 47, "label": "Muscle", "value": 83 },
-        { "index": 48, "label": "Mutate", "value": 38 },
-        { "index": 49, "label": "Noise", "value": 39 },
-        { "index": 50, "label": "Open", "value": 40 },
-        { "index": 51, "label": "Orbit", "value": 41 },
-        { "index": 52, "label": "PWM", "value": 48 },
-        { "index": 53, "label": "Pan", "value": 42 },
-        { "index": 54, "label": "Party!", "value": 78 },
-        { "index": 55, "label": "Phaser", "value": 43 },
-        { "index": 56, "label": "Phatter", "value": 44 },
-        { "index": 57, "label": "Pitch", "value": 45 },
-        { "index": 58, "label": "Pulsate", "value": 46 },
-        { "index": 59, "label": "Punch", "value": 75 },
-        { "index": 60, "label": "Push", "value": 47 },
-        { "index": 61, "label": "Rate", "value": 49 },
-        { "index": 62, "label": "Release", "value": 50 },
-        { "index": 63, "label": "Reso", "value": 51 },
-        { "index": 64, "label": "Reverb", "value": 52 },
-        { "index": 65, "label": "RingMod", "value": 74 },
-        { "index": 66, "label": "Sack", "value": 84 },
-        { "index": 67, "label": "Scream", "value": 53 },
-        { "index": 68, "label": "Shape", "value": 54 },
-        { "index": 69, "label": "Sharpen", "value": 55 },
-        { "index": 70, "label": "Slow", "value": 56 },
-        { "index": 71, "label": "Soften", "value": 57 },
-        { "index": 72, "label": "Speaker", "value": 87 },
-        { "index": 73, "label": "Speed", "value": 58 },
-        { "index": 74, "label": "SubOsc", "value": 59 },
-        { "index": 75, "label": "Sustain", "value": 60 },
-        { "index": 76, "label": "Sweep", "value": 61 },
-        { "index": 77, "label": "Swing", "value": 62 },
-        { "index": 78, "label": "Tempo", "value": 63 },
-        { "index": 79, "label": "Thinner", "value": 64 },
-        { "index": 80, "label": "Tone", "value": 65 },
-        { "index": 81, "label": "Tremolo", "value": 66 },
-        { "index": 82, "label": "Vibrato", "value": 67 },
-        { "index": 83, "label": "Vowel", "value": 85 },
-        { "index": 84, "label": "WahWah", "value": 68 },
-        { "index": 85, "label": "Warmth", "value": 69 },
-        { "index": 86, "label": "Warp", "value": 70 },
-        { "index": 87, "label": "Width", "value": 71 }
+        {
+          "index": 0,
+          "label": ">Para",
+          "value": 0
+        },
+        {
+          "index": 1,
+          "label": "*3rds",
+          "value": 1
+        },
+        {
+          "index": 2,
+          "label": "*4ths",
+          "value": 2
+        },
+        {
+          "index": 3,
+          "label": "*5ths",
+          "value": 3
+        },
+        {
+          "index": 4,
+          "label": "*7ths",
+          "value": 4
+        },
+        {
+          "index": 5,
+          "label": "+octave",
+          "value": 5
+        },
+        {
+          "index": 6,
+          "label": "Access",
+          "value": 6
+        },
+        {
+          "index": 7,
+          "label": "ArpMode",
+          "value": 7
+        },
+        {
+          "index": 8,
+          "label": "ArpOct",
+          "value": 8
+        },
+        {
+          "index": 9,
+          "label": "Attack",
+          "value": 9
+        },
+        {
+          "index": 10,
+          "label": "Balance",
+          "value": 10
+        },
+        {
+          "index": 11,
+          "label": "Bite",
+          "value": 72
+        },
+        {
+          "index": 12,
+          "label": "Bush",
+          "value": 82
+        },
+        {
+          "index": 13,
+          "label": "Chorus",
+          "value": 11
+        },
+        {
+          "index": 14,
+          "label": "Comb",
+          "value": 86
+        },
+        {
+          "index": 15,
+          "label": "Cutoff",
+          "value": 12
+        },
+        {
+          "index": 16,
+          "label": "Decay",
+          "value": 13
+        },
+        {
+          "index": 17,
+          "label": "Delay",
+          "value": 14
+        },
+        {
+          "index": 18,
+          "label": "Depth",
+          "value": 15
+        },
+        {
+          "index": 19,
+          "label": "Destroy",
+          "value": 16
+        },
+        {
+          "index": 20,
+          "label": "Detune",
+          "value": 17
+        },
+        {
+          "index": 21,
+          "label": "Disolve",
+          "value": 18
+        },
+        {
+          "index": 22,
+          "label": "Distort",
+          "value": 19
+        },
+        {
+          "index": 23,
+          "label": "Dive",
+          "value": 20
+        },
+        {
+          "index": 24,
+          "label": "Effects",
+          "value": 21
+        },
+        {
+          "index": 25,
+          "label": "Elevate",
+          "value": 22
+        },
+        {
+          "index": 26,
+          "label": "Energy",
+          "value": 23
+        },
+        {
+          "index": 27,
+          "label": "EqHigh",
+          "value": 24
+        },
+        {
+          "index": 28,
+          "label": "EqLow",
+          "value": 25
+        },
+        {
+          "index": 29,
+          "label": "EqMid",
+          "value": 26
+        },
+        {
+          "index": 30,
+          "label": "FM",
+          "value": 30
+        },
+        {
+          "index": 31,
+          "label": "Fast",
+          "value": 27
+        },
+        {
+          "index": 32,
+          "label": "Fear",
+          "value": 28
+        },
+        {
+          "index": 33,
+          "label": "Filter",
+          "value": 29
+        },
+        {
+          "index": 34,
+          "label": "Flanger",
+          "value": 73
+        },
+        {
+          "index": 35,
+          "label": "Fuzz",
+          "value": 76
+        },
+        {
+          "index": 36,
+          "label": "F-Shift",
+          "value": 80
+        },
+        {
+          "index": 37,
+          "label": "F-Spread",
+          "value": 81
+        },
+        {
+          "index": 38,
+          "label": "Glide",
+          "value": 31
+        },
+        {
+          "index": 39,
+          "label": "Hold",
+          "value": 32
+        },
+        {
+          "index": 40,
+          "label": "Hype",
+          "value": 33
+        },
+        {
+          "index": 41,
+          "label": "Infect",
+          "value": 34
+        },
+        {
+          "index": 42,
+          "label": "Interpolation",
+          "value": 79
+        },
+        {
+          "index": 43,
+          "label": "Length",
+          "value": 35
+        },
+        {
+          "index": 44,
+          "label": "Mix",
+          "value": 36
+        },
+        {
+          "index": 45,
+          "label": "Modulate",
+          "value": 77
+        },
+        {
+          "index": 46,
+          "label": "Morph",
+          "value": 37
+        },
+        {
+          "index": 47,
+          "label": "Muscle",
+          "value": 83
+        },
+        {
+          "index": 48,
+          "label": "Mutate",
+          "value": 38
+        },
+        {
+          "index": 49,
+          "label": "Noise",
+          "value": 39
+        },
+        {
+          "index": 50,
+          "label": "Open",
+          "value": 40
+        },
+        {
+          "index": 51,
+          "label": "Orbit",
+          "value": 41
+        },
+        {
+          "index": 52,
+          "label": "PWM",
+          "value": 48
+        },
+        {
+          "index": 53,
+          "label": "Pan",
+          "value": 42
+        },
+        {
+          "index": 54,
+          "label": "Party!",
+          "value": 78
+        },
+        {
+          "index": 55,
+          "label": "Phaser",
+          "value": 43
+        },
+        {
+          "index": 56,
+          "label": "Phatter",
+          "value": 44
+        },
+        {
+          "index": 57,
+          "label": "Pitch",
+          "value": 45
+        },
+        {
+          "index": 58,
+          "label": "Pulsate",
+          "value": 46
+        },
+        {
+          "index": 59,
+          "label": "Punch",
+          "value": 75
+        },
+        {
+          "index": 60,
+          "label": "Push",
+          "value": 47
+        },
+        {
+          "index": 61,
+          "label": "Rate",
+          "value": 49
+        },
+        {
+          "index": 62,
+          "label": "Release",
+          "value": 50
+        },
+        {
+          "index": 63,
+          "label": "Reso",
+          "value": 51
+        },
+        {
+          "index": 64,
+          "label": "Reverb",
+          "value": 52
+        },
+        {
+          "index": 65,
+          "label": "RingMod",
+          "value": 74
+        },
+        {
+          "index": 66,
+          "label": "Sack",
+          "value": 84
+        },
+        {
+          "index": 67,
+          "label": "Scream",
+          "value": 53
+        },
+        {
+          "index": 68,
+          "label": "Shape",
+          "value": 54
+        },
+        {
+          "index": 69,
+          "label": "Sharpen",
+          "value": 55
+        },
+        {
+          "index": 70,
+          "label": "Slow",
+          "value": 56
+        },
+        {
+          "index": 71,
+          "label": "Soften",
+          "value": 57
+        },
+        {
+          "index": 72,
+          "label": "Speaker",
+          "value": 87
+        },
+        {
+          "index": 73,
+          "label": "Speed",
+          "value": 58
+        },
+        {
+          "index": 74,
+          "label": "SubOsc",
+          "value": 59
+        },
+        {
+          "index": 75,
+          "label": "Sustain",
+          "value": 60
+        },
+        {
+          "index": 76,
+          "label": "Sweep",
+          "value": 61
+        },
+        {
+          "index": 77,
+          "label": "Swing",
+          "value": 62
+        },
+        {
+          "index": 78,
+          "label": "Tempo",
+          "value": 63
+        },
+        {
+          "index": 79,
+          "label": "Thinner",
+          "value": 64
+        },
+        {
+          "index": 80,
+          "label": "Tone",
+          "value": 65
+        },
+        {
+          "index": 81,
+          "label": "Tremolo",
+          "value": 66
+        },
+        {
+          "index": 82,
+          "label": "Vibrato",
+          "value": 67
+        },
+        {
+          "index": 83,
+          "label": "Vowel",
+          "value": 85
+        },
+        {
+          "index": 84,
+          "label": "WahWah",
+          "value": 68
+        },
+        {
+          "index": 85,
+          "label": "Warmth",
+          "value": 69
+        },
+        {
+          "index": 86,
+          "label": "Warp",
+          "value": 70
+        },
+        {
+          "index": 87,
+          "label": "Width",
+          "value": 71
+        }
       ]
     }
   ],
@@ -17873,6 +18236,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -17891,14 +18255,13 @@
               },
               "F7"
             ],
-            "parameterNumber": 193,
+            "parameterNumber": 188,
             "min": 0,
             "max": 127
           },
           "min": -100,
           "max": 100,
-          "defaultValue": 0,
-          "id": "value"
+          "defaultValue": 0
         }
       ]
     },
@@ -17923,6 +18286,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -17941,14 +18305,13 @@
               },
               "F7"
             ],
-            "parameterNumber": 194,
+            "parameterNumber": 189,
             "min": 0,
             "max": 127
           },
           "min": -100,
           "max": 100,
-          "defaultValue": 0,
-          "id": "value"
+          "defaultValue": 0
         }
       ]
     },
@@ -17973,6 +18336,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -17991,14 +18355,13 @@
               },
               "F7"
             ],
-            "parameterNumber": 195,
+            "parameterNumber": 178,
             "min": 0,
             "max": 127
           },
           "min": -100,
           "max": 100,
-          "defaultValue": 0,
-          "id": "value"
+          "defaultValue": 0
         }
       ]
     },
@@ -18023,6 +18386,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -18041,14 +18405,13 @@
               },
               "F7"
             ],
-            "parameterNumber": 196,
+            "parameterNumber": 175,
             "min": 0,
             "max": 127
           },
           "min": -100,
           "max": 100,
-          "defaultValue": 0,
-          "id": "value"
+          "defaultValue": 0
         }
       ]
     },
@@ -18073,6 +18436,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -18091,13 +18455,56 @@
               },
               "F7"
             ],
-            "parameterNumber": 197,
+            "parameterNumber": 176,
             "min": 0,
             "max": 127
           },
           "min": -100,
           "max": 100,
-          "defaultValue": 0,
+          "defaultValue": 0
+        }
+      ]
+    },
+    {
+      "id": 270,
+      "type": "fader",
+      "name": "PART",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        216,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "7D",
+              "20",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 999,
+            "min": 1,
+            "max": 16
+          },
+          "min": 1,
+          "max": 16,
+          "defaultValue": 1,
           "id": "value"
         }
       ]
@@ -18123,6 +18530,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -18141,14 +18549,13 @@
               },
               "F7"
             ],
-            "parameterNumber": 198,
+            "parameterNumber": 177,
             "min": 0,
             "max": 127
           },
           "min": -100,
           "max": 100,
-          "defaultValue": 0,
-          "id": "value"
+          "defaultValue": 0
         }
       ]
     },
@@ -18173,6 +18580,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -18191,14 +18599,13 @@
               },
               "F7"
             ],
-            "parameterNumber": 199,
+            "parameterNumber": 182,
             "min": 0,
             "max": 127
           },
           "min": -100,
           "max": 100,
-          "defaultValue": 0,
-          "id": "value"
+          "defaultValue": 0
         }
       ]
     },
@@ -18223,6 +18630,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -18241,14 +18649,13 @@
               },
               "F7"
             ],
-            "parameterNumber": 200,
+            "parameterNumber": 184,
             "min": 0,
             "max": 127
           },
           "min": -100,
           "max": 100,
-          "defaultValue": 0,
-          "id": "value"
+          "defaultValue": 0
         }
       ]
     },
@@ -18273,6 +18680,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -18291,14 +18699,13 @@
               },
               "F7"
             ],
-            "parameterNumber": 201,
+            "parameterNumber": 183,
             "min": 0,
             "max": 127
           },
           "min": -100,
           "max": 100,
-          "defaultValue": 0,
-          "id": "value"
+          "defaultValue": 0
         }
       ]
     },
@@ -18323,6 +18730,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -18341,14 +18749,13 @@
               },
               "F7"
             ],
-            "parameterNumber": 202,
+            "parameterNumber": 185,
             "min": 0,
             "max": 127
           },
           "min": -100,
           "max": 100,
-          "defaultValue": 0,
-          "id": "value"
+          "defaultValue": 0
         }
       ]
     },
@@ -18517,8 +18924,10 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -18533,14 +18942,9 @@
                 "type": "value"
               },
               "F7"
-            ],
-            "min": 0,
-            "max": 9,
-            "parameterNumber": 206,
-            "deviceId": 1
+            ]
           },
-          "overlayId": 34,
-          "id": "value"
+          "overlayId": 34
         }
       ]
     },
@@ -18565,6 +18969,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
             "deviceId": 1,
@@ -18583,14 +18988,13 @@
               },
               "F7"
             ],
-            "parameterNumber": 207,
+            "parameterNumber": 186,
             "min": 0,
             "max": 127
           },
           "min": -64,
           "max": 63,
-          "defaultValue": 0,
-          "id": "value"
+          "defaultValue": 0
         }
       ]
     },
@@ -18615,8 +19019,10 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -18633,13 +19039,10 @@
               "F7"
             ],
             "min": 0,
-            "max": 127,
-            "parameterNumber": 208,
-            "deviceId": 1
+            "max": 127
           },
           "min": 63,
-          "max": 190,
-          "id": "value"
+          "max": 190
         }
       ]
     },
@@ -19094,8 +19497,10 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "sysex",
+            "deviceId": 1,
             "data": [
               "F0",
               "00",
@@ -19112,14 +19517,11 @@
               "F7"
             ],
             "min": 0,
-            "max": 127,
-            "parameterNumber": 144,
-            "deviceId": 1
+            "max": 127
           },
           "min": 63,
           "max": 199,
-          "defaultValue": 120,
-          "id": "value"
+          "defaultValue": 120
         }
       ]
     },
@@ -19850,9 +20252,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 334,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 190
           },
           "overlayId": 42
         }
@@ -19898,9 +20298,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 335,
-            "min": 0,
-            "max": 87
+            "parameterNumber": 179
           },
           "overlayId": 43
         }
@@ -19946,9 +20344,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 336,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 191
           },
           "overlayId": 42
         }
@@ -19994,9 +20390,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 337,
-            "min": 0,
-            "max": 87
+            "parameterNumber": 180
           },
           "overlayId": 43
         }
@@ -20090,9 +20484,7 @@
               },
               "F7"
             ],
-            "parameterNumber": 339,
-            "min": 0,
-            "max": 87
+            "parameterNumber": 181
           },
           "overlayId": 43
         }
