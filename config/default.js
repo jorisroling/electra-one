@@ -34,6 +34,10 @@ module.exports = {
         darwin: 'iConnectMIDI4+ Midihub',
         linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 4 20:3',
       },
+      'acdgen': {
+        darwin: 'iConnectMIDI4+ ACDGEN',
+        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 11 20:10',
+      },
     },
   },
   router: {
@@ -51,7 +55,7 @@ module.exports = {
             },
           },
           'tr-6s': {
-            enabled: true,
+            enabled: false,
             port: 2,
             channels: [10,11],
           },
@@ -59,6 +63,12 @@ module.exports = {
             enabled: true,
             port: 2,
             channels: [6,7,8,9],
+          },
+          'acdgen': {
+            enabled: true,
+            port: 2,
+            channels: [13,16],
+            oneway: true,
           },
         },
       },

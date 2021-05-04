@@ -107,7 +107,7 @@ const midiHistory = {}
 
 function handleIncoming(from,to,targetElectraOne,options) {
   return (msg) => {
-    /*   debug('handleIncoming: %s %y',from,msg)*/
+//       debug('handleIncoming: %s %y',from,msg)
     const midiOutput = ElectraOne.output(to)
 
     //    const targetElectraOne = (from == options.virusTi)
@@ -125,8 +125,8 @@ function handleIncoming(from,to,targetElectraOne,options) {
               sendSingleRequest(midiOutput)
             }
           } else {
-            debug('Forwarding PC %d on channel %d to %y',msg.number,msg.channel + 1,to)
-            midiOutput.send('cc',msg)
+           debug('Forwarding PC %d on channel %d to %y',msg.number,msg.channel + 1,to)
+           midiOutput.send('cc',msg)
           }
         }
         break
@@ -156,8 +156,8 @@ function handleIncoming(from,to,targetElectraOne,options) {
               }
             }
           } else {
-            debug('Forwarding CC %d (value %d) on channel %d to %y',msg.controller,msg.value,msg.channel + 1,to)
-            midiOutput.send('cc',msg)
+           debug('Forwarding CC %d (value %d) on channel %d to %y',msg.controller,msg.value,msg.channel + 1,to)
+           midiOutput.send('cc',msg)
           }
         }
         break
@@ -272,8 +272,8 @@ function handleIncoming(from,to,targetElectraOne,options) {
 
           }
         } else { /* Anything else */
-          debug('Forwarding SysEx to %y',to)
-          midiOutput.send('sysex',msg.bytes)
+         debug('Forwarding SysEx to %y',to)
+         midiOutput.send('sysex',msg.bytes)
         }
         /*        debug('SysEx Bytes %y',msg.bytes.length)*/
         break
@@ -297,8 +297,10 @@ function setupMidi(options) {
         const midiInput_electraOne = ElectraOne.input(electraOnePortName, true)
         midiInput_electraOne.on('message', handleIncoming(electraOnePortName,actor,false,scenario.actors[actor]) )
 
-        const midiInput_actor = ElectraOne.input(actor, true)
-        midiInput_actor.on('message', handleIncoming(actor,electraOnePortName,true,scenario.actors[actor]) )
+        if (!scenario.actors[actor].oneway) {
+          const midiInput_actor = ElectraOne.input(actor, true)
+          midiInput_actor.on('message', handleIncoming(actor,electraOnePortName,true,scenario.actors[actor]) )
+        }
 
         if (scenario.actors[actor].initialize) {
           for (const init in scenario.actors[actor].initialize) {
