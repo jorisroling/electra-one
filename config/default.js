@@ -38,6 +38,10 @@ module.exports = {
         darwin: 'iConnectMIDI4+ ACDGEN',
         linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 11 20:10',
       },
+      'typhon': {
+        darwin: 'iConnectMIDI4+ Typhon',
+        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 1 20:0',
+      },
     },
   },
   router: {
@@ -68,6 +72,12 @@ module.exports = {
             enabled: true,
             port: 2,
             channels: [13,16],
+            oneway: true,
+          },
+          'typhon': {
+            enabled: true,
+            port: 2,
+            channels: [15],
             oneway: true,
           },
         },
