@@ -46,7 +46,7 @@
     "config": "^3.3.6",
     "easymidi": "^2.0.4",
     "escape-regex-string": "^1.0.6",
-    "fs-extra": "^9.1.0",
+    "fs-extra": "^10.0.0",
     "glob": "^7.1.6",
     "jsonfile": "^6.1.0",
     "lodash": "^4.17.21",
