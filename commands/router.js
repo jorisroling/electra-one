@@ -81,7 +81,7 @@ function sendSingleDump(midiOutput, bytes) {
 
   clearTimeout(sendSingleDumpTimeoutID)
   const timeout = sendSingleDumpLastTime ? ((sendSingleDumpTimeoutTime < (now - sendSingleDumpLastTime)) ? 0 : Math.max(sendSingleDumpTimeoutTime - (now - sendSingleDumpLastTime),0) ) : 0
-   debug('sendSingleDump timeout: %y  now: %y  last: %y  diff: %y  tres: %y',timeout,now,sendSingleDumpLastTime,(now-sendSingleDumpLastTime),sendSingleDumpTimeoutTime)
+  debug('sendSingleDump timeout: %y  now: %y  last: %y  diff: %y  tres: %y',timeout,now,sendSingleDumpLastTime,(now - sendSingleDumpLastTime),sendSingleDumpTimeoutTime)
   sendSingleDumpTimeoutID = setTimeout( sendSingleDumpSysEx, timeout, midiOutput, bytes)
 }
 
@@ -107,7 +107,7 @@ const midiHistory = {}
 
 function handleIncoming(from,to,targetElectraOne,options) {
   return (msg) => {
-//       debug('handleIncoming: %s %y',from,msg)
+    //       debug('handleIncoming: %s %y',from,msg)
     const midiOutput = ElectraOne.output(to)
 
     //    const targetElectraOne = (from == options.virusTi)
@@ -125,8 +125,8 @@ function handleIncoming(from,to,targetElectraOne,options) {
               sendSingleRequest(midiOutput)
             }
           } else {
-           debug('Forwarding PC %d on channel %d to %y',msg.number,msg.channel + 1,to)
-           midiOutput.send('cc',msg)
+            debug('Forwarding PC %d on channel %d to %y',msg.number,msg.channel + 1,to)
+            midiOutput.send('cc',msg)
           }
         }
         break
@@ -156,8 +156,8 @@ function handleIncoming(from,to,targetElectraOne,options) {
               }
             }
           } else {
-           debug('Forwarding CC %d (value %d) on channel %d to %y',msg.controller,msg.value,msg.channel + 1,to)
-           midiOutput.send('cc',msg)
+            debug('Forwarding CC %d (value %d) on channel %d to %y',msg.controller,msg.value,msg.channel + 1,to)
+            midiOutput.send('cc',msg)
           }
         }
         break
@@ -272,8 +272,8 @@ function handleIncoming(from,to,targetElectraOne,options) {
 
           }
         } else { /* Anything else */
-         debug('Forwarding SysEx to %y',to)
-         midiOutput.send('sysex',msg.bytes)
+          debug('Forwarding SysEx to %y',to)
+          midiOutput.send('sysex',msg.bytes)
         }
         /*        debug('SysEx Bytes %y',msg.bytes.length)*/
         break
@@ -322,6 +322,6 @@ function routerConsole(name, sub, options) {
 
 module.exports = {
   name: 'router',
-  description: 'Start router for Electra One <-> Virus TI',
+  description: 'Start router for Electra One <-> Devices defined in the scenario',
   handler: routerConsole,
 }
