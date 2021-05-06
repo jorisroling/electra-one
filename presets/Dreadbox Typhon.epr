@@ -19,20 +19,9 @@
   "groups": [
     {
       "pageId": 1,
-      "name": "LP Filter",
-      "bounds": [
-        0,
-        104,
-        316,
-        16
-      ],
-      "color": "03A598"
-    },
-    {
-      "pageId": 1,
       "name": "HP Filter",
       "bounds": [
-        340,
+        680,
         104,
         316,
         16
@@ -217,11 +206,11 @@
     },
     {
       "pageId": 1,
-      "name": "Main",
+      "name": "OSC",
       "bounds": [
         0,
         16,
-        996,
+        146,
         16
       ],
       "color": "FFFFFF"
@@ -244,6 +233,39 @@
       "bounds": [
         510,
         368,
+        486,
+        16
+      ]
+    },
+    {
+      "pageId": 1,
+      "name": "LP Filter",
+      "color": "03A598",
+      "bounds": [
+        680,
+        16,
+        316,
+        16
+      ]
+    },
+    {
+      "pageId": 1,
+      "name": "Filter",
+      "color": "F49500",
+      "bounds": [
+        170,
+        16,
+        486,
+        16
+      ]
+    },
+    {
+      "pageId": 1,
+      "name": "Amp",
+      "color": "529DEC",
+      "bounds": [
+        170,
+        104,
         486,
         16
       ]
@@ -606,9 +628,9 @@
     },
     {
       "id": 2,
-      "type": "fader",
-      "name": "OSC 2 TUNE",
-      "color": "FFFFFF",
+      "type": "adsr",
+      "name": "FILTER ENVELOP",
+      "color": "F49500",
       "bounds": [
         170,
         40,
@@ -620,314 +642,6 @@
       "inputs": [
         {
           "potId": 2,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 31,
-            "parameterNumber": 6,
-            "min": 0,
-            "max": 127
-          },
-          "min": -100,
-          "max": 100,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "type": "fader",
-      "name": "FILTER TIME",
-      "color": "FFFFFF",
-      "bounds": [
-        340,
-        40,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 3,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "min": 0,
-            "max": 127,
-            "parameterNumber": 31,
-            "deviceId": 31
-          },
-          "min": 0,
-          "max": 100,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "type": "fader",
-      "name": "AMP TIME",
-      "color": "FFFFFF",
-      "bounds": [
-        510,
-        40,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 4,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "min": 0,
-            "max": 127,
-            "parameterNumber": 38,
-            "deviceId": 31
-          },
-          "min": 0,
-          "max": 100,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "type": "fader",
-      "name": "VOLUME",
-      "color": "FFFFFF",
-      "bounds": [
-        680,
-        40,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 5,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "min": 0,
-            "max": 127,
-            "parameterNumber": 8,
-            "deviceId": 31
-          },
-          "min": 0,
-          "max": 100,
-          "defaultValue": 100,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 6,
-      "type": "fader",
-      "name": "EG LEVEL",
-      "color": "FFFFFF",
-      "bounds": [
-        850,
-        40,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 6,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 31,
-            "parameterNumber": 33,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 100,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 7,
-      "type": "fader",
-      "name": "CUTOFF",
-      "color": "03A598",
-      "bounds": [
-        0,
-        128,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 7,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "min": 0,
-            "max": 127,
-            "parameterNumber": 4,
-            "deviceId": 31
-          },
-          "min": 0,
-          "max": 100,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 8,
-      "type": "fader",
-      "name": "RESONANCE",
-      "color": "03A598",
-      "bounds": [
-        170,
-        128,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 8,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "min": 0,
-            "max": 127,
-            "parameterNumber": 3,
-            "deviceId": 31
-          },
-          "min": 0,
-          "max": 100,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "type": "fader",
-      "name": "CUTOFF",
-      "color": "C44795",
-      "bounds": [
-        340,
-        128,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 9,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "min": 0,
-            "max": 127,
-            "parameterNumber": 12,
-            "deviceId": 31
-          },
-          "min": 0,
-          "max": 100,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "type": "fader",
-      "name": "RESONANCE",
-      "color": "C44795",
-      "bounds": [
-        510,
-        128,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 10,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "min": 0,
-            "max": 127,
-            "parameterNumber": 13,
-            "deviceId": 31
-          },
-          "min": 0,
-          "max": 100,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 11,
-      "type": "adsr",
-      "name": "FILTER ENVELOP",
-      "color": "FFFFFF",
-      "bounds": [
-        680,
-        128,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 11,
           "valueId": "attack"
         }
       ],
@@ -987,12 +701,148 @@
       ]
     },
     {
-      "id": 12,
-      "type": "adsr",
-      "name": "AMP ENVELOPE",
-      "color": "FFFFFF",
+      "id": 3,
+      "type": "fader",
+      "name": "TIME",
+      "color": "F49500",
+      "bounds": [
+        340,
+        40,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 31,
+            "deviceId": 31
+          },
+          "min": 0,
+          "max": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "fader",
+      "name": "LEVEL",
+      "color": "F49500",
+      "bounds": [
+        510,
+        40,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 31,
+            "parameterNumber": 33,
+            "min": 0,
+            "max": 127
+          },
+          "min": 0,
+          "max": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "fader",
+      "name": "CUTOFF",
+      "color": "03A598",
+      "bounds": [
+        680,
+        40,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 4,
+            "deviceId": 31
+          },
+          "min": 0,
+          "max": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "fader",
+      "name": "RESONANCE",
+      "color": "03A598",
       "bounds": [
         850,
+        40,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 3,
+            "deviceId": 31
+          },
+          "min": 0,
+          "max": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "fader",
+      "name": "TUNE 2",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
         128,
         146,
         56
@@ -1001,7 +851,42 @@
       "controlSetId": 1,
       "inputs": [
         {
-          "potId": 12,
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 31,
+            "parameterNumber": 6,
+            "min": 0,
+            "max": 127
+          },
+          "min": -100,
+          "max": 100,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "type": "adsr",
+      "name": "AMP ENVELOPE",
+      "color": "529DEC",
+      "bounds": [
+        170,
+        128,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 8,
           "valueId": "attack"
         }
       ],
@@ -1057,6 +942,143 @@
           "min": 0,
           "max": 100,
           "defaultValue": 127
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "type": "fader",
+      "name": "TIME",
+      "color": "529DEC",
+      "bounds": [
+        340,
+        128,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 38,
+            "deviceId": 31
+          },
+          "min": 0,
+          "max": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "type": "fader",
+      "name": "VOLUME",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        128,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 8,
+            "deviceId": 31
+          },
+          "min": 0,
+          "max": 100,
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "type": "fader",
+      "name": "CUTOFF",
+      "color": "C44795",
+      "bounds": [
+        680,
+        128,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 12,
+            "deviceId": 31
+          },
+          "min": 0,
+          "max": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "type": "fader",
+      "name": "RESONANCE",
+      "color": "C44795",
+      "bounds": [
+        850,
+        128,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 13,
+            "deviceId": 31
+          },
+          "min": 0,
+          "max": 100,
+          "id": "value"
         }
       ]
     },
