@@ -63,6 +63,28 @@
         16
       ],
       "color": "FFFFFF"
+    },
+    {
+      "pageId": 1,
+      "name": "LP Filter",
+      "bounds": [
+        0,
+        104,
+        316,
+        16
+      ],
+      "color": "FFFFFF"
+    },
+    {
+      "pageId": 1,
+      "name": "HP Filter",
+      "bounds": [
+        340,
+        104,
+        316,
+        16
+      ],
+      "color": "FFFFFF"
     }
   ],
   "devices": [
@@ -80,7 +102,7 @@
     {
       "id": 1,
       "type": "fader",
-      "name": "MOD WHEEL",
+      "name": "WAVE",
       "color": "FFFFFF",
       "bounds": [
         0,
@@ -102,7 +124,7 @@
             "type": "cc7",
             "min": 0,
             "max": 127,
-            "parameterNumber": 1,
+            "parameterNumber": 5,
             "deviceId": 31
           },
           "min": 0,
@@ -114,7 +136,7 @@
     {
       "id": 2,
       "type": "fader",
-      "name": "BREATH",
+      "name": "OSC 2 TUNE",
       "color": "FFFFFF",
       "bounds": [
         170,
@@ -134,13 +156,14 @@
         {
           "message": {
             "type": "cc7",
+            "deviceId": 31,
+            "parameterNumber": 6,
             "min": 0,
-            "max": 127,
-            "parameterNumber": 2,
-            "deviceId": 31
+            "max": 127
           },
-          "min": 0,
+          "min": -100,
           "max": 100,
+          "defaultValue": 0,
           "id": "value"
         }
       ]
@@ -148,7 +171,7 @@
     {
       "id": 3,
       "type": "fader",
-      "name": "RESONANCE",
+      "name": "FILTER TRACKNG",
       "color": "FFFFFF",
       "bounds": [
         340,
@@ -170,7 +193,7 @@
             "type": "cc7",
             "min": 0,
             "max": 127,
-            "parameterNumber": 3,
+            "parameterNumber": 9,
             "deviceId": 31
           },
           "min": 0,
@@ -182,7 +205,7 @@
     {
       "id": 4,
       "type": "fader",
-      "name": "CUTOFF",
+      "name": "FILTER FM AMNT",
       "color": "FFFFFF",
       "bounds": [
         510,
@@ -202,10 +225,10 @@
         {
           "message": {
             "type": "cc7",
+            "deviceId": 31,
+            "parameterNumber": 11,
             "min": 0,
-            "max": 127,
-            "parameterNumber": 4,
-            "deviceId": 31
+            "max": 127
           },
           "min": 0,
           "max": 100,
@@ -216,7 +239,7 @@
     {
       "id": 5,
       "type": "fader",
-      "name": "WAVE",
+      "name": "VCO'S LEVEL",
       "color": "FFFFFF",
       "bounds": [
         680,
@@ -238,11 +261,12 @@
             "type": "cc7",
             "min": 0,
             "max": 127,
-            "parameterNumber": 5,
+            "parameterNumber": 8,
             "deviceId": 31
           },
           "min": 0,
           "max": 100,
+          "defaultValue": 100,
           "id": "value"
         }
       ]
@@ -250,7 +274,7 @@
     {
       "id": 6,
       "type": "fader",
-      "name": "OSC 2 TUNE",
+      "name": "MOD WHEEL",
       "color": "FFFFFF",
       "bounds": [
         850,
@@ -270,14 +294,13 @@
         {
           "message": {
             "type": "cc7",
-            "deviceId": 31,
-            "parameterNumber": 6,
             "min": 0,
-            "max": 127
+            "max": 127,
+            "parameterNumber": 1,
+            "deviceId": 31
           },
-          "min": -100,
+          "min": 0,
           "max": 100,
-          "defaultValue": 0,
           "id": "value"
         }
       ]
@@ -285,7 +308,7 @@
     {
       "id": 7,
       "type": "fader",
-      "name": "GLIDE AMOUNT",
+      "name": "CUTOFF",
       "color": "FFFFFF",
       "bounds": [
         0,
@@ -307,7 +330,7 @@
             "type": "cc7",
             "min": 0,
             "max": 127,
-            "parameterNumber": 7,
+            "parameterNumber": 4,
             "deviceId": 31
           },
           "min": 0,
@@ -319,7 +342,7 @@
     {
       "id": 8,
       "type": "fader",
-      "name": "VCO'S LEVEL",
+      "name": "RESONANCE",
       "color": "FFFFFF",
       "bounds": [
         170,
@@ -341,12 +364,11 @@
             "type": "cc7",
             "min": 0,
             "max": 127,
-            "parameterNumber": 8,
+            "parameterNumber": 3,
             "deviceId": 31
           },
           "min": 0,
           "max": 100,
-          "defaultValue": 100,
           "id": "value"
         }
       ]
@@ -354,7 +376,7 @@
     {
       "id": 9,
       "type": "fader",
-      "name": "FILTER TRACKNG",
+      "name": "CUTOFF",
       "color": "FFFFFF",
       "bounds": [
         340,
@@ -376,7 +398,7 @@
             "type": "cc7",
             "min": 0,
             "max": 127,
-            "parameterNumber": 9,
+            "parameterNumber": 12,
             "deviceId": 31
           },
           "min": 0,
@@ -388,7 +410,7 @@
     {
       "id": 10,
       "type": "fader",
-      "name": "FILTER FM AMNT",
+      "name": "RESONANCE",
       "color": "FFFFFF",
       "bounds": [
         510,
@@ -408,10 +430,10 @@
         {
           "message": {
             "type": "cc7",
-            "deviceId": 31,
-            "parameterNumber": 11,
             "min": 0,
-            "max": 127
+            "max": 127,
+            "parameterNumber": 13,
+            "deviceId": 31
           },
           "min": 0,
           "max": 100,
@@ -422,7 +444,7 @@
     {
       "id": 11,
       "type": "fader",
-      "name": "HP CUTOFF",
+      "name": "GLIDE AMOUNT",
       "color": "FFFFFF",
       "bounds": [
         680,
@@ -444,7 +466,7 @@
             "type": "cc7",
             "min": 0,
             "max": 127,
-            "parameterNumber": 12,
+            "parameterNumber": 7,
             "deviceId": 31
           },
           "min": 0,
@@ -456,7 +478,7 @@
     {
       "id": 12,
       "type": "fader",
-      "name": "HP RESONANCE",
+      "name": "BREATH",
       "color": "FFFFFF",
       "bounds": [
         850,
@@ -478,7 +500,7 @@
             "type": "cc7",
             "min": 0,
             "max": 127,
-            "parameterNumber": 13,
+            "parameterNumber": 2,
             "deviceId": 31
           },
           "min": 0,
