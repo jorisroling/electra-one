@@ -710,7 +710,7 @@
     {
       "id": 5,
       "type": "fader",
-      "name": "VCO'S LEVEL",
+      "name": "VOLUME",
       "color": "FFFFFF",
       "bounds": [
         680,
