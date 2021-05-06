@@ -139,28 +139,6 @@
       ]
     },
     {
-      "pageId": 1,
-      "name": "Filter Envelope",
-      "color": "F45C51",
-      "bounds": [
-        0,
-        192,
-        486,
-        16
-      ]
-    },
-    {
-      "pageId": 1,
-      "name": "Amp Envelope",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        192,
-        316,
-        16
-      ]
-    },
-    {
       "pageId": 2,
       "name": "FX",
       "color": "F49500",
@@ -228,12 +206,45 @@
     },
     {
       "pageId": 1,
+      "name": "Modulators",
+      "bounds": [
+        0,
+        368,
+        486,
+        16
+      ],
+      "color": "FFFFFF"
+    },
+    {
+      "pageId": 1,
+      "name": "Main",
+      "bounds": [
+        0,
+        16,
+        996,
+        16
+      ],
+      "color": "FFFFFF"
+    },
+    {
+      "pageId": 1,
+      "name": "FX",
+      "bounds": [
+        0,
+        456,
+        486,
+        16
+      ],
+      "color": "FFFFFF"
+    },
+    {
+      "pageId": 1,
       "name": "Sequencer",
       "color": "F49500",
       "bounds": [
-        0,
-        280,
-        656,
+        510,
+        368,
+        486,
         16
       ]
     }
@@ -249,6 +260,31 @@
   "overlays": [
     {
       "id": 1,
+      "items": [
+        {
+          "value": 0,
+          "label": "LFO",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Envelope",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Sample & Hold",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "Step Sequencer",
+          "index": 3
+        }
+      ]
+    },
+    {
+      "id": 2,
       "items": [
         {
           "value": 0,
@@ -413,7 +449,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": 3,
       "items": [
         {
           "value": 0,
@@ -434,6 +470,101 @@
           "value": 127,
           "label": "32",
           "index": 3
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "items": [
+        {
+          "value": 0,
+          "label": "Hard Clipping",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Foldback",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "S-Curve",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "Triangle Clip",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "Shred",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "Bit Crusher",
+          "index": 5
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "items": [
+        {
+          "value": 0,
+          "label": "Chorus",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Ensemble",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Flanger",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "Phaser",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "Pitch Shifter",
+          "index": 4
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "items": [
+        {
+          "value": 0,
+          "label": "Delay",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Ping Pong",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Large Reverb",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "Soft Reverb",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "Cloud Reverb",
+          "index": 4
         }
       ]
     }
@@ -511,7 +642,7 @@
     {
       "id": 3,
       "type": "fader",
-      "name": "FILTER TRACKNG",
+      "name": "FILTER TIME",
       "color": "FFFFFF",
       "bounds": [
         340,
@@ -533,7 +664,7 @@
             "type": "cc7",
             "min": 0,
             "max": 127,
-            "parameterNumber": 9,
+            "parameterNumber": 31,
             "deviceId": 31
           },
           "min": 0,
@@ -545,7 +676,7 @@
     {
       "id": 4,
       "type": "fader",
-      "name": "FILTER FM AMNT",
+      "name": "AMP TIME",
       "color": "FFFFFF",
       "bounds": [
         510,
@@ -565,10 +696,10 @@
         {
           "message": {
             "type": "cc7",
-            "deviceId": 31,
-            "parameterNumber": 11,
             "min": 0,
-            "max": 127
+            "max": 127,
+            "parameterNumber": 38,
+            "deviceId": 31
           },
           "min": 0,
           "max": 100,
@@ -614,7 +745,7 @@
     {
       "id": 6,
       "type": "fader",
-      "name": "MOD WHEEL",
+      "name": "EG LEVEL",
       "color": "FFFFFF",
       "bounds": [
         850,
@@ -634,10 +765,10 @@
         {
           "message": {
             "type": "cc7",
+            "deviceId": 31,
+            "parameterNumber": 33,
             "min": 0,
-            "max": 127,
-            "parameterNumber": 1,
-            "deviceId": 31
+            "max": 127
           },
           "min": 0,
           "max": 100,
@@ -783,8 +914,8 @@
     },
     {
       "id": 11,
-      "type": "fader",
-      "name": "GLIDE AMOUNT",
+      "type": "adsr",
+      "name": "FILTER ENVELOP",
       "color": "FFFFFF",
       "bounds": [
         680,
@@ -797,74 +928,6 @@
       "inputs": [
         {
           "potId": 11,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "min": 0,
-            "max": 127,
-            "parameterNumber": 7,
-            "deviceId": 31
-          },
-          "min": 0,
-          "max": 100,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 12,
-      "type": "fader",
-      "name": "BREATH",
-      "color": "FFFFFF",
-      "bounds": [
-        850,
-        128,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 12,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "min": 0,
-            "max": 127,
-            "parameterNumber": 2,
-            "deviceId": 31
-          },
-          "min": 0,
-          "max": 100,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 13,
-      "type": "adsr",
-      "name": "ADSR",
-      "color": "F45C51",
-      "bounds": [
-        0,
-        216,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 1,
           "valueId": "attack"
         }
       ],
@@ -924,89 +987,21 @@
       ]
     },
     {
-      "id": 14,
-      "type": "fader",
-      "name": "TIME",
-      "color": "F45C51",
-      "bounds": [
-        170,
-        216,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 2,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "min": 0,
-            "max": 127,
-            "parameterNumber": 31,
-            "deviceId": 31
-          },
-          "min": 0,
-          "max": 100,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 15,
-      "type": "fader",
-      "name": "LEVEL",
-      "color": "F45C51",
-      "bounds": [
-        340,
-        216,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 3,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 31,
-            "parameterNumber": 33,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 100,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 16,
+      "id": 12,
       "type": "adsr",
-      "name": "ADSR",
-      "color": "529DEC",
+      "name": "AMP ENVELOPE",
+      "color": "FFFFFF",
       "bounds": [
-        510,
-        216,
+        850,
+        128,
         146,
         56
       ],
       "pageId": 1,
-      "controlSetId": 2,
+      "controlSetId": 1,
       "inputs": [
         {
-          "potId": 4,
+          "potId": 12,
           "valueId": "attack"
         }
       ],
@@ -1066,44 +1061,10 @@
       ]
     },
     {
-      "id": 17,
-      "type": "fader",
-      "name": "TIME",
-      "color": "529DEC",
-      "bounds": [
-        680,
-        216,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 5,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "min": 0,
-            "max": 127,
-            "parameterNumber": 38,
-            "deviceId": 31
-          },
-          "min": 0,
-          "max": 100,
-          "id": "value"
-        }
-      ]
-    },
-    {
       "id": 19,
-      "type": "list",
-      "name": "LENGTH",
-      "color": "F49500",
+      "type": "fader",
+      "name": "FILTER TRACKNG",
+      "color": "FFFFFF",
       "bounds": [
         0,
         304,
@@ -1122,19 +1083,22 @@
         {
           "message": {
             "type": "cc7",
-            "deviceId": 31,
-            "parameterNumber": 89
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 9,
+            "deviceId": 31
           },
-          "overlayId": 1,
+          "min": 0,
+          "max": 100,
           "id": "value"
         }
       ]
     },
     {
       "id": 20,
-      "type": "list",
-      "name": "DIVISION",
-      "color": "F49500",
+      "type": "fader",
+      "name": "FILTER FM AMNT",
+      "color": "FFFFFF",
       "bounds": [
         170,
         304,
@@ -1154,9 +1118,12 @@
           "message": {
             "type": "cc7",
             "deviceId": 31,
-            "parameterNumber": 90
+            "parameterNumber": 11,
+            "min": 0,
+            "max": 127
           },
-          "overlayId": 2,
+          "min": 0,
+          "max": 100,
           "id": "value"
         }
       ]
@@ -1164,8 +1131,8 @@
     {
       "id": 21,
       "type": "fader",
-      "name": "PROBABILITY",
-      "color": "F49500",
+      "name": "GLIDE AMOUNT",
+      "color": "FFFFFF",
       "bounds": [
         340,
         304,
@@ -1177,6 +1144,263 @@
       "inputs": [
         {
           "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 7,
+            "deviceId": 31
+          },
+          "min": 0,
+          "max": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "type": "fader",
+      "name": "MOD WHEEL",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        304,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 1,
+            "deviceId": 31
+          },
+          "min": 0,
+          "max": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "type": "fader",
+      "name": "BREATH",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        304,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 2,
+            "deviceId": 31
+          },
+          "min": 0,
+          "max": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "type": "list",
+      "name": "M1 MODE",
+      "color": "F49500",
+      "bounds": [
+        0,
+        392,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 31,
+            "parameterNumber": 93
+          },
+          "overlayId": 1,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "type": "list",
+      "name": "M2 MODE",
+      "color": "03A598",
+      "bounds": [
+        170,
+        392,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 31,
+            "parameterNumber": 94
+          },
+          "overlayId": 1,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "type": "list",
+      "name": "M3 MODE",
+      "color": "C44795",
+      "bounds": [
+        340,
+        392,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 31,
+            "parameterNumber": 95
+          },
+          "overlayId": 1,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "type": "list",
+      "name": "LENGTH",
+      "color": "F49500",
+      "bounds": [
+        510,
+        392,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 31,
+            "parameterNumber": 89
+          },
+          "overlayId": 2,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "type": "list",
+      "name": "DIVISION",
+      "color": "F49500",
+      "bounds": [
+        680,
+        392,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 31,
+            "parameterNumber": 90
+          },
+          "overlayId": 3,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "type": "fader",
+      "name": "PROBABILITY",
+      "color": "F49500",
+      "bounds": [
+        850,
+        392,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 6,
           "valueId": "value"
         }
       ],
@@ -1196,21 +1420,114 @@
       ]
     },
     {
-      "id": 22,
-      "type": "fader",
-      "name": "SWING",
-      "color": "F49500",
+      "id": 31,
+      "type": "list",
+      "name": "FX1 TYPE",
+      "color": "FFFFFF",
       "bounds": [
-        510,
-        304,
+        0,
+        480,
         146,
         56
       ],
       "pageId": 1,
-      "controlSetId": 2,
+      "controlSetId": 3,
       "inputs": [
         {
-          "potId": 10,
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 31,
+            "parameterNumber": 96
+          },
+          "overlayId": 4,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "type": "list",
+      "name": "FX2 TYPE",
+      "color": "F45C51",
+      "bounds": [
+        170,
+        480,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 31,
+            "parameterNumber": 97
+          },
+          "overlayId": 5,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "type": "list",
+      "name": "FX3 TYPE",
+      "color": "529DEC",
+      "bounds": [
+        340,
+        480,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 31,
+            "parameterNumber": 98
+          },
+          "overlayId": 6,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "type": "fader",
+      "name": "SWING",
+      "color": "F49500",
+      "bounds": [
+        850,
+        480,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 12,
           "valueId": "value"
         }
       ],
