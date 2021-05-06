@@ -17,23 +17,23 @@
     },
     {
       "id": 4,
-      "name": "Mod Matrix 1"
-    },
-    {
-      "id": 5,
-      "name": "Mod Matrix 2"
-    },
-    {
-      "id": 6,
       "name": "FX 1"
     },
     {
-      "id": 7,
+      "id": 5,
       "name": "FX 2"
     },
     {
-      "id": 8,
+      "id": 6,
       "name": "FX 3"
+    },
+    {
+      "id": 7,
+      "name": "Mod Matrix 1"
+    },
+    {
+      "id": 8,
+      "name": "Mod Matrix 2"
     },
     {
       "id": 9,
@@ -241,7 +241,7 @@
       "color": "FFFFFF"
     },
     {
-      "pageId": 4,
+      "pageId": 7,
       "name": "Slot 1",
       "bounds": [
         170,
@@ -252,7 +252,7 @@
       "color": "FFFFFF"
     },
     {
-      "pageId": 4,
+      "pageId": 7,
       "name": "Slot 2",
       "bounds": [
         170,
@@ -263,7 +263,7 @@
       "color": "FFFFFF"
     },
     {
-      "pageId": 4,
+      "pageId": 7,
       "name": "Slot 3",
       "bounds": [
         170,
@@ -274,7 +274,7 @@
       "color": "FFFFFF"
     },
     {
-      "pageId": 5,
+      "pageId": 8,
       "name": "Slot 4",
       "bounds": [
         170,
@@ -285,7 +285,7 @@
       "color": "FFFFFF"
     },
     {
-      "pageId": 5,
+      "pageId": 8,
       "name": "Slot 5",
       "bounds": [
         170,
@@ -296,7 +296,7 @@
       "color": "FFFFFF"
     },
     {
-      "pageId": 5,
+      "pageId": 8,
       "name": "Slot 6",
       "bounds": [
         170,
@@ -307,7 +307,7 @@
       "color": "FFFFFF"
     },
     {
-      "pageId": 6,
+      "pageId": 4,
       "name": "Character",
       "color": "C44795",
       "bounds": [
@@ -318,7 +318,7 @@
       ]
     },
     {
-      "pageId": 6,
+      "pageId": 4,
       "name": "Distortion",
       "color": "03A598",
       "bounds": [
@@ -329,7 +329,7 @@
       ]
     },
     {
-      "pageId": 6,
+      "pageId": 4,
       "name": "Chorus",
       "color": "F45C51",
       "bounds": [
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "pageId": 6,
+      "pageId": 4,
       "name": "Delay",
       "color": "F49500",
       "bounds": [
@@ -351,7 +351,7 @@
       ]
     },
     {
-      "pageId": 7,
+      "pageId": 5,
       "name": "Phaser",
       "color": "F49500",
       "bounds": [
@@ -362,7 +362,7 @@
       ]
     },
     {
-      "pageId": 7,
+      "pageId": 5,
       "name": "EQ MID Q",
       "bounds": [
         850,
@@ -373,7 +373,7 @@
       "color": "FFFFFF"
     },
     {
-      "pageId": 7,
+      "pageId": 5,
       "name": "EQ Low",
       "bounds": [
         0,
@@ -384,7 +384,7 @@
       "color": "FFFFFF"
     },
     {
-      "pageId": 7,
+      "pageId": 5,
       "name": "EQ Mid",
       "bounds": [
         340,
@@ -395,7 +395,7 @@
       "color": "FFFFFF"
     },
     {
-      "pageId": 7,
+      "pageId": 5,
       "name": "EQ High",
       "bounds": [
         680,
@@ -406,7 +406,7 @@
       "color": "FFFFFF"
     },
     {
-      "pageId": 7,
+      "pageId": 5,
       "name": "Reverb",
       "color": "03A598",
       "bounds": [
@@ -417,7 +417,7 @@
       ]
     },
     {
-      "pageId": 7,
+      "pageId": 5,
       "name": "Input Follower",
       "color": "529DEC",
       "bounds": [
@@ -428,7 +428,7 @@
       ]
     },
     {
-      "pageId": 7,
+      "pageId": 5,
       "name": "Filter Bank",
       "bounds": [
         0,
@@ -439,7 +439,7 @@
       "color": "FFFFFF"
     },
     {
-      "pageId": 7,
+      "pageId": 5,
       "name": "VariSlope Filter",
       "bounds": [
         680,
@@ -450,7 +450,7 @@
       "color": "FFFFFF"
     },
     {
-      "pageId": 7,
+      "pageId": 5,
       "name": "XFade Filter",
       "bounds": [
         680,
@@ -461,7 +461,7 @@
       "color": "FFFFFF"
     },
     {
-      "pageId": 7,
+      "pageId": 5,
       "name": "Frequency Shifter",
       "bounds": [
         680,
@@ -472,7 +472,7 @@
       "color": "FFFFFF"
     },
     {
-      "pageId": 8,
+      "pageId": 6,
       "name": "Carrier",
       "color": "F49500",
       "bounds": [
@@ -483,7 +483,7 @@
       ]
     },
     {
-      "pageId": 8,
+      "pageId": 6,
       "name": "Vocoder",
       "color": "F45C51",
       "bounds": [
@@ -494,7 +494,7 @@
       ]
     },
     {
-      "pageId": 8,
+      "pageId": 6,
       "name": "Modulator",
       "color": "C44795",
       "bounds": [
@@ -505,7 +505,7 @@
       ]
     },
     {
-      "pageId": 8,
+      "pageId": 6,
       "name": "Inputs",
       "color": "03A598",
       "bounds": [
@@ -516,7 +516,7 @@
       ]
     },
     {
-      "pageId": 8,
+      "pageId": 6,
       "name": "Surround",
       "color": "C44795",
       "bounds": [
@@ -560,7 +560,7 @@
       "color": "03A598"
     },
     {
-      "pageId": 8,
+      "pageId": 6,
       "name": "Velocity",
       "bounds": [
         0,
@@ -670,7 +670,7 @@
       ]
     },
     {
-      "pageId": 8,
+      "pageId": 6,
       "name": "Preset",
       "bounds": [
         850,
@@ -714,7 +714,7 @@
       ]
     },
     {
-      "pageId": 8,
+      "pageId": 6,
       "name": "Virus",
       "bounds": [
         850,
@@ -12989,7 +12989,7 @@
       ]
     },
     {
-      "id": 110,
+      "id": 218,
       "type": "list",
       "name": "SOURCE",
       "color": "F49500",
@@ -12999,7 +12999,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 1,
       "inputs": [
         {
@@ -13037,7 +13037,7 @@
       ]
     },
     {
-      "id": 111,
+      "id": 219,
       "type": "list",
       "name": "TARGET 1",
       "color": "F45C51",
@@ -13047,7 +13047,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 1,
       "inputs": [
         {
@@ -13085,7 +13085,7 @@
       ]
     },
     {
-      "id": 112,
+      "id": 220,
       "type": "list",
       "name": "TARGET 2",
       "color": "529DEC",
@@ -13095,7 +13095,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 1,
       "inputs": [
         {
@@ -13133,7 +13133,7 @@
       ]
     },
     {
-      "id": 113,
+      "id": 221,
       "type": "list",
       "name": "TARGET 3",
       "color": "03A598",
@@ -13143,7 +13143,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 1,
       "inputs": [
         {
@@ -13181,7 +13181,7 @@
       ]
     },
     {
-      "id": 117,
+      "id": 225,
       "type": "fader",
       "name": "AMOUNT 1",
       "color": "F45C51",
@@ -13191,7 +13191,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 1,
       "inputs": [
         {
@@ -13231,7 +13231,7 @@
       ]
     },
     {
-      "id": 118,
+      "id": 226,
       "type": "fader",
       "name": "AMOUNT 2",
       "color": "529DEC",
@@ -13241,7 +13241,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 1,
       "inputs": [
         {
@@ -13281,7 +13281,7 @@
       ]
     },
     {
-      "id": 119,
+      "id": 227,
       "type": "fader",
       "name": "AMOUNT 3",
       "color": "03A598",
@@ -13291,7 +13291,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 1,
       "inputs": [
         {
@@ -13331,7 +13331,7 @@
       ]
     },
     {
-      "id": 122,
+      "id": 230,
       "type": "list",
       "name": "SOURCE",
       "color": "F49500",
@@ -13341,7 +13341,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 2,
       "inputs": [
         {
@@ -13379,7 +13379,7 @@
       ]
     },
     {
-      "id": 123,
+      "id": 231,
       "type": "list",
       "name": "TARGET 1",
       "color": "F45C51",
@@ -13389,7 +13389,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 2,
       "inputs": [
         {
@@ -13427,7 +13427,7 @@
       ]
     },
     {
-      "id": 124,
+      "id": 232,
       "type": "list",
       "name": "TARGET 2",
       "color": "529DEC",
@@ -13437,7 +13437,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 2,
       "inputs": [
         {
@@ -13475,7 +13475,7 @@
       ]
     },
     {
-      "id": 125,
+      "id": 233,
       "type": "list",
       "name": "TARGET 3",
       "color": "03A598",
@@ -13485,7 +13485,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 2,
       "inputs": [
         {
@@ -13523,7 +13523,7 @@
       ]
     },
     {
-      "id": 129,
+      "id": 237,
       "type": "fader",
       "name": "AMOUNT 1",
       "color": "F45C51",
@@ -13533,7 +13533,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 2,
       "inputs": [
         {
@@ -13573,7 +13573,7 @@
       ]
     },
     {
-      "id": 130,
+      "id": 238,
       "type": "fader",
       "name": "AMOUNT 2",
       "color": "529DEC",
@@ -13583,7 +13583,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 2,
       "inputs": [
         {
@@ -13623,7 +13623,7 @@
       ]
     },
     {
-      "id": 131,
+      "id": 239,
       "type": "fader",
       "name": "AMOUNT 3",
       "color": "03A598",
@@ -13633,7 +13633,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 2,
       "inputs": [
         {
@@ -13673,7 +13673,7 @@
       ]
     },
     {
-      "id": 134,
+      "id": 242,
       "type": "list",
       "name": "SOURCE",
       "color": "F49500",
@@ -13683,7 +13683,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 3,
       "inputs": [
         {
@@ -13721,7 +13721,7 @@
       ]
     },
     {
-      "id": 135,
+      "id": 243,
       "type": "list",
       "name": "TARGET 1",
       "color": "F45C51",
@@ -13731,7 +13731,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 3,
       "inputs": [
         {
@@ -13769,7 +13769,7 @@
       ]
     },
     {
-      "id": 136,
+      "id": 244,
       "type": "list",
       "name": "TARGET 2",
       "color": "529DEC",
@@ -13779,7 +13779,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 3,
       "inputs": [
         {
@@ -13817,7 +13817,7 @@
       ]
     },
     {
-      "id": 137,
+      "id": 245,
       "type": "list",
       "name": "TARGET 3",
       "color": "03A598",
@@ -13827,7 +13827,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 3,
       "inputs": [
         {
@@ -13865,7 +13865,7 @@
       ]
     },
     {
-      "id": 141,
+      "id": 249,
       "type": "fader",
       "name": "AMOUNT 1",
       "color": "F45C51",
@@ -13875,7 +13875,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 3,
       "inputs": [
         {
@@ -13915,7 +13915,7 @@
       ]
     },
     {
-      "id": 142,
+      "id": 250,
       "type": "fader",
       "name": "AMOUNT 2",
       "color": "529DEC",
@@ -13925,7 +13925,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 3,
       "inputs": [
         {
@@ -13965,7 +13965,7 @@
       ]
     },
     {
-      "id": 143,
+      "id": 251,
       "type": "fader",
       "name": "AMOUNT 3",
       "color": "03A598",
@@ -13975,7 +13975,7 @@
         146,
         56
       ],
-      "pageId": 4,
+      "pageId": 7,
       "controlSetId": 3,
       "inputs": [
         {
@@ -14015,7 +14015,7 @@
       ]
     },
     {
-      "id": 146,
+      "id": 254,
       "type": "list",
       "name": "SOURCE",
       "color": "F49500",
@@ -14025,7 +14025,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 1,
       "inputs": [
         {
@@ -14063,7 +14063,7 @@
       ]
     },
     {
-      "id": 147,
+      "id": 255,
       "type": "list",
       "name": "TARGET 1",
       "color": "F45C51",
@@ -14073,7 +14073,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 1,
       "inputs": [
         {
@@ -14111,7 +14111,7 @@
       ]
     },
     {
-      "id": 148,
+      "id": 256,
       "type": "list",
       "name": "TARGET 2",
       "color": "529DEC",
@@ -14121,7 +14121,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 1,
       "inputs": [
         {
@@ -14159,7 +14159,7 @@
       ]
     },
     {
-      "id": 149,
+      "id": 257,
       "type": "list",
       "name": "TARGET 3",
       "color": "03A598",
@@ -14169,7 +14169,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 1,
       "inputs": [
         {
@@ -14207,7 +14207,7 @@
       ]
     },
     {
-      "id": 153,
+      "id": 261,
       "type": "fader",
       "name": "AMOUNT 1",
       "color": "F45C51",
@@ -14217,7 +14217,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 1,
       "inputs": [
         {
@@ -14257,7 +14257,7 @@
       ]
     },
     {
-      "id": 154,
+      "id": 262,
       "type": "fader",
       "name": "AMOUNT 2",
       "color": "529DEC",
@@ -14267,7 +14267,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 1,
       "inputs": [
         {
@@ -14307,7 +14307,7 @@
       ]
     },
     {
-      "id": 155,
+      "id": 263,
       "type": "fader",
       "name": "AMOUNT 3",
       "color": "03A598",
@@ -14317,7 +14317,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 1,
       "inputs": [
         {
@@ -14357,7 +14357,7 @@
       ]
     },
     {
-      "id": 158,
+      "id": 266,
       "type": "list",
       "name": "SOURCE",
       "color": "F49500",
@@ -14367,7 +14367,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 2,
       "inputs": [
         {
@@ -14405,7 +14405,7 @@
       ]
     },
     {
-      "id": 159,
+      "id": 267,
       "type": "list",
       "name": "TARGET 1",
       "color": "F45C51",
@@ -14415,7 +14415,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 2,
       "inputs": [
         {
@@ -14453,7 +14453,7 @@
       ]
     },
     {
-      "id": 160,
+      "id": 268,
       "type": "list",
       "name": "TARGET 2",
       "color": "529DEC",
@@ -14463,7 +14463,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 2,
       "inputs": [
         {
@@ -14501,7 +14501,7 @@
       ]
     },
     {
-      "id": 161,
+      "id": 269,
       "type": "list",
       "name": "TARGET 3",
       "color": "03A598",
@@ -14511,7 +14511,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 2,
       "inputs": [
         {
@@ -14549,7 +14549,7 @@
       ]
     },
     {
-      "id": 165,
+      "id": 273,
       "type": "fader",
       "name": "AMOUNT 1",
       "color": "F45C51",
@@ -14559,7 +14559,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 2,
       "inputs": [
         {
@@ -14599,7 +14599,7 @@
       ]
     },
     {
-      "id": 166,
+      "id": 274,
       "type": "fader",
       "name": "AMOUNT 2",
       "color": "529DEC",
@@ -14609,7 +14609,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 2,
       "inputs": [
         {
@@ -14649,7 +14649,7 @@
       ]
     },
     {
-      "id": 167,
+      "id": 275,
       "type": "fader",
       "name": "AMOUNT 3",
       "color": "03A598",
@@ -14659,7 +14659,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 2,
       "inputs": [
         {
@@ -14699,7 +14699,7 @@
       ]
     },
     {
-      "id": 170,
+      "id": 278,
       "type": "list",
       "name": "SOURCE",
       "color": "F49500",
@@ -14709,7 +14709,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 3,
       "inputs": [
         {
@@ -14747,7 +14747,7 @@
       ]
     },
     {
-      "id": 171,
+      "id": 279,
       "type": "list",
       "name": "TARGET 1",
       "color": "F45C51",
@@ -14757,7 +14757,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 3,
       "inputs": [
         {
@@ -14795,7 +14795,7 @@
       ]
     },
     {
-      "id": 172,
+      "id": 280,
       "type": "list",
       "name": "TARGET 2",
       "color": "529DEC",
@@ -14805,7 +14805,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 3,
       "inputs": [
         {
@@ -14843,7 +14843,7 @@
       ]
     },
     {
-      "id": 173,
+      "id": 281,
       "type": "list",
       "name": "TARGET 3",
       "color": "03A598",
@@ -14853,7 +14853,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 3,
       "inputs": [
         {
@@ -14891,7 +14891,7 @@
       ]
     },
     {
-      "id": 177,
+      "id": 285,
       "type": "fader",
       "name": "AMOUNT 1",
       "color": "F45C51",
@@ -14901,7 +14901,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 3,
       "inputs": [
         {
@@ -14941,7 +14941,7 @@
       ]
     },
     {
-      "id": 178,
+      "id": 286,
       "type": "fader",
       "name": "AMOUNT 2",
       "color": "529DEC",
@@ -14951,7 +14951,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 3,
       "inputs": [
         {
@@ -14991,7 +14991,7 @@
       ]
     },
     {
-      "id": 179,
+      "id": 287,
       "type": "fader",
       "name": "AMOUNT 3",
       "color": "03A598",
@@ -15001,7 +15001,7 @@
         146,
         56
       ],
-      "pageId": 5,
+      "pageId": 8,
       "controlSetId": 3,
       "inputs": [
         {
@@ -15041,7 +15041,7 @@
       ]
     },
     {
-      "id": 181,
+      "id": 109,
       "type": "list",
       "name": "TYPE",
       "color": "C44795",
@@ -15051,7 +15051,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 1,
       "inputs": [
         {
@@ -15089,7 +15089,7 @@
       ]
     },
     {
-      "id": 182,
+      "id": 110,
       "type": "fader",
       "name": "INTENSITY",
       "color": "C44795",
@@ -15099,7 +15099,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 1,
       "inputs": [
         {
@@ -15139,7 +15139,7 @@
       ]
     },
     {
-      "id": 183,
+      "id": 111,
       "type": "fader",
       "name": "FREQUENCY",
       "color": "C44795",
@@ -15149,7 +15149,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 1,
       "inputs": [
         {
@@ -15186,7 +15186,7 @@
       ]
     },
     {
-      "id": 187,
+      "id": 115,
       "type": "list",
       "name": "TYPE",
       "color": "03A598",
@@ -15196,7 +15196,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 1,
       "inputs": [
         {
@@ -15234,7 +15234,7 @@
       ]
     },
     {
-      "id": 188,
+      "id": 116,
       "type": "fader",
       "name": "MIX",
       "color": "03A598",
@@ -15244,7 +15244,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 1,
       "inputs": [
         {
@@ -15284,7 +15284,7 @@
       ]
     },
     {
-      "id": 189,
+      "id": 117,
       "type": "fader",
       "name": "INTENSITY",
       "color": "03A598",
@@ -15294,7 +15294,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 1,
       "inputs": [
         {
@@ -15334,7 +15334,7 @@
       ]
     },
     {
-      "id": 190,
+      "id": 118,
       "type": "fader",
       "name": "TREBLE BOOST",
       "color": "03A598",
@@ -15344,7 +15344,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 1,
       "inputs": [
         {
@@ -15384,7 +15384,7 @@
       ]
     },
     {
-      "id": 191,
+      "id": 119,
       "type": "fader",
       "name": "HIGH CUT",
       "color": "03A598",
@@ -15394,7 +15394,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 1,
       "inputs": [
         {
@@ -15434,7 +15434,7 @@
       ]
     },
     {
-      "id": 193,
+      "id": 121,
       "type": "list",
       "name": "TYPE",
       "color": "F45C51",
@@ -15444,7 +15444,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 2,
       "inputs": [
         {
@@ -15467,7 +15467,7 @@
       ]
     },
     {
-      "id": 194,
+      "id": 122,
       "type": "fader",
       "name": "RATE",
       "color": "F45C51",
@@ -15477,7 +15477,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 2,
       "inputs": [
         {
@@ -15499,7 +15499,7 @@
       ]
     },
     {
-      "id": 195,
+      "id": 123,
       "type": "fader",
       "name": "DEPTH",
       "color": "F45C51",
@@ -15509,7 +15509,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 2,
       "inputs": [
         {
@@ -15534,7 +15534,7 @@
       ]
     },
     {
-      "id": 196,
+      "id": 124,
       "type": "fader",
       "name": "FEEDBACK",
       "color": "F45C51",
@@ -15544,7 +15544,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 2,
       "inputs": [
         {
@@ -15569,7 +15569,7 @@
       ]
     },
     {
-      "id": 197,
+      "id": 125,
       "type": "fader",
       "name": "DELAY",
       "color": "F45C51",
@@ -15579,7 +15579,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 2,
       "inputs": [
         {
@@ -15601,7 +15601,7 @@
       ]
     },
     {
-      "id": 200,
+      "id": 128,
       "type": "fader",
       "name": "CLASSIC MIX",
       "color": "F45C51",
@@ -15611,7 +15611,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 2,
       "inputs": [
         {
@@ -15633,7 +15633,7 @@
       ]
     },
     {
-      "id": 201,
+      "id": 129,
       "type": "list",
       "name": "LFO WAVE",
       "color": "F45C51",
@@ -15643,7 +15643,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 2,
       "inputs": [
         {
@@ -15666,7 +15666,7 @@
       ]
     },
     {
-      "id": 202,
+      "id": 130,
       "type": "fader",
       "name": "MIX",
       "color": "F45C51",
@@ -15676,7 +15676,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 2,
       "inputs": [
         {
@@ -15698,7 +15698,7 @@
       ]
     },
     {
-      "id": 203,
+      "id": 131,
       "type": "fader",
       "name": "X-OVER",
       "color": "F45C51",
@@ -15708,7 +15708,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 2,
       "inputs": [
         {
@@ -15730,7 +15730,7 @@
       ]
     },
     {
-      "id": 205,
+      "id": 133,
       "type": "list",
       "name": "TYPE",
       "color": "F49500",
@@ -15740,7 +15740,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 3,
       "inputs": [
         {
@@ -15778,7 +15778,7 @@
       ]
     },
     {
-      "id": 206,
+      "id": 134,
       "type": "fader",
       "name": "SEND",
       "color": "F49500",
@@ -15788,7 +15788,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 3,
       "inputs": [
         {
@@ -15811,7 +15811,7 @@
       ]
     },
     {
-      "id": 207,
+      "id": 135,
       "type": "fader",
       "name": "FEEDBACK",
       "color": "F49500",
@@ -15821,7 +15821,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 3,
       "inputs": [
         {
@@ -15846,7 +15846,7 @@
       ]
     },
     {
-      "id": 208,
+      "id": 136,
       "type": "list",
       "name": "LEFT CLOCK",
       "color": "F49500",
@@ -15856,7 +15856,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 3,
       "inputs": [
         {
@@ -15894,7 +15894,7 @@
       ]
     },
     {
-      "id": 209,
+      "id": 137,
       "type": "list",
       "name": "RIGHT CLOCK",
       "color": "F49500",
@@ -15904,7 +15904,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 3,
       "inputs": [
         {
@@ -15942,7 +15942,7 @@
       ]
     },
     {
-      "id": 211,
+      "id": 139,
       "type": "fader",
       "name": "FREQUENCY",
       "color": "F49500",
@@ -15952,7 +15952,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 3,
       "inputs": [
         {
@@ -15974,7 +15974,7 @@
       ]
     },
     {
-      "id": 212,
+      "id": 140,
       "type": "fader",
       "name": "BANDWIDTH",
       "color": "F49500",
@@ -15984,7 +15984,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 3,
       "inputs": [
         {
@@ -16021,7 +16021,7 @@
       ]
     },
     {
-      "id": 213,
+      "id": 141,
       "type": "fader",
       "name": "MODULATION",
       "color": "F49500",
@@ -16031,7 +16031,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 3,
       "inputs": [
         {
@@ -16056,7 +16056,7 @@
       ]
     },
     {
-      "id": 214,
+      "id": 142,
       "type": "fader",
       "name": "TIME",
       "color": "F49500",
@@ -16066,7 +16066,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 3,
       "inputs": [
         {
@@ -16090,7 +16090,7 @@
       ]
     },
     {
-      "id": 215,
+      "id": 143,
       "type": "list",
       "name": "RATIO",
       "color": "F49500",
@@ -16100,7 +16100,7 @@
         146,
         56
       ],
-      "pageId": 6,
+      "pageId": 4,
       "controlSetId": 3,
       "inputs": [
         {
@@ -16138,7 +16138,7 @@
       ]
     },
     {
-      "id": 217,
+      "id": 145,
       "type": "fader",
       "name": "MIX",
       "color": "F49500",
@@ -16148,7 +16148,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 1,
       "inputs": [
         {
@@ -16185,7 +16185,7 @@
       ]
     },
     {
-      "id": 218,
+      "id": 146,
       "type": "fader",
       "name": "FREQUENCY",
       "color": "F49500",
@@ -16195,7 +16195,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 1,
       "inputs": [
         {
@@ -16232,7 +16232,7 @@
       ]
     },
     {
-      "id": 219,
+      "id": 147,
       "type": "fader",
       "name": "FEEDBACK",
       "color": "F49500",
@@ -16242,7 +16242,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 1,
       "inputs": [
         {
@@ -16282,7 +16282,7 @@
       ]
     },
     {
-      "id": 220,
+      "id": 148,
       "type": "fader",
       "name": "MOD RATE",
       "color": "F49500",
@@ -16292,7 +16292,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 1,
       "inputs": [
         {
@@ -16329,7 +16329,7 @@
       ]
     },
     {
-      "id": 221,
+      "id": 149,
       "type": "fader",
       "name": "MOD DEPTH",
       "color": "F49500",
@@ -16339,7 +16339,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 1,
       "inputs": [
         {
@@ -16378,7 +16378,7 @@
       ]
     },
     {
-      "id": 222,
+      "id": 150,
       "type": "fader",
       "name": "Q-FACTOR",
       "color": "FFFFFF",
@@ -16388,7 +16388,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 1,
       "inputs": [
         {
@@ -16428,7 +16428,7 @@
       ]
     },
     {
-      "id": 223,
+      "id": 151,
       "type": "fader",
       "name": "FREQUENCY",
       "color": "FFFFFF",
@@ -16438,7 +16438,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 1,
       "inputs": [
         {
@@ -16478,7 +16478,7 @@
       ]
     },
     {
-      "id": 224,
+      "id": 152,
       "type": "fader",
       "name": "GAIN",
       "color": "FFFFFF",
@@ -16488,7 +16488,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 1,
       "inputs": [
         {
@@ -16528,7 +16528,7 @@
       ]
     },
     {
-      "id": 225,
+      "id": 153,
       "type": "fader",
       "name": "FREQUENCY",
       "color": "FFFFFF",
@@ -16538,7 +16538,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 1,
       "inputs": [
         {
@@ -16576,7 +16576,7 @@
       ]
     },
     {
-      "id": 226,
+      "id": 154,
       "type": "fader",
       "name": "GAIN",
       "color": "FFFFFF",
@@ -16586,7 +16586,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 1,
       "inputs": [
         {
@@ -16626,7 +16626,7 @@
       ]
     },
     {
-      "id": 227,
+      "id": 155,
       "type": "fader",
       "name": "FREQUENCY",
       "color": "FFFFFF",
@@ -16636,7 +16636,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 1,
       "inputs": [
         {
@@ -16675,7 +16675,7 @@
       ]
     },
     {
-      "id": 228,
+      "id": 156,
       "type": "fader",
       "name": "GAIN",
       "color": "FFFFFF",
@@ -16685,7 +16685,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 1,
       "inputs": [
         {
@@ -16725,7 +16725,7 @@
       ]
     },
     {
-      "id": 229,
+      "id": 157,
       "type": "list",
       "name": "MODE",
       "color": "03A598",
@@ -16735,7 +16735,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 2,
       "inputs": [
         {
@@ -16773,7 +16773,7 @@
       ]
     },
     {
-      "id": 230,
+      "id": 158,
       "type": "fader",
       "name": "SEND",
       "color": "03A598",
@@ -16783,7 +16783,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 2,
       "inputs": [
         {
@@ -16821,7 +16821,7 @@
       ]
     },
     {
-      "id": 231,
+      "id": 159,
       "type": "list",
       "name": "CLOCK",
       "color": "03A598",
@@ -16831,7 +16831,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 2,
       "inputs": [
         {
@@ -16869,7 +16869,7 @@
       ]
     },
     {
-      "id": 232,
+      "id": 160,
       "type": "fader",
       "name": "TIME",
       "color": "03A598",
@@ -16879,7 +16879,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 2,
       "inputs": [
         {
@@ -16916,7 +16916,7 @@
       ]
     },
     {
-      "id": 233,
+      "id": 161,
       "type": "fader",
       "name": "DAMPING",
       "color": "03A598",
@@ -16926,7 +16926,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 2,
       "inputs": [
         {
@@ -16966,7 +16966,7 @@
       ]
     },
     {
-      "id": 234,
+      "id": 162,
       "type": "fader",
       "name": "COLORATION",
       "color": "03A598",
@@ -16976,7 +16976,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 2,
       "inputs": [
         {
@@ -17016,7 +17016,7 @@
       ]
     },
     {
-      "id": 235,
+      "id": 163,
       "type": "list",
       "name": "TYPE",
       "color": "03A598",
@@ -17026,7 +17026,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 2,
       "inputs": [
         {
@@ -17064,7 +17064,7 @@
       ]
     },
     {
-      "id": 236,
+      "id": 164,
       "type": "fader",
       "name": "PRE-DELAY",
       "color": "03A598",
@@ -17074,7 +17074,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 2,
       "inputs": [
         {
@@ -17113,7 +17113,7 @@
       ]
     },
     {
-      "id": 237,
+      "id": 165,
       "type": "fader",
       "name": "FEEDBACK",
       "color": "03A598",
@@ -17123,7 +17123,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 2,
       "inputs": [
         {
@@ -17160,7 +17160,7 @@
       ]
     },
     {
-      "id": 239,
+      "id": 167,
       "type": "fader",
       "name": "POLES",
       "color": "FFFFFF",
@@ -17170,7 +17170,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 2,
       "inputs": [
         {
@@ -17209,7 +17209,7 @@
       ]
     },
     {
-      "id": 240,
+      "id": 168,
       "type": "fader",
       "name": "SLOPE",
       "color": "FFFFFF",
@@ -17219,7 +17219,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 2,
       "inputs": [
         {
@@ -17256,7 +17256,7 @@
       ]
     },
     {
-      "id": 241,
+      "id": 169,
       "type": "list",
       "name": "INPUT",
       "color": "529DEC",
@@ -17266,7 +17266,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 3,
       "inputs": [
         {
@@ -17304,7 +17304,7 @@
       ]
     },
     {
-      "id": 242,
+      "id": 170,
       "type": "fader",
       "name": "ATTACK",
       "color": "529DEC",
@@ -17314,7 +17314,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 3,
       "inputs": [
         {
@@ -17336,7 +17336,7 @@
       ]
     },
     {
-      "id": 243,
+      "id": 171,
       "type": "fader",
       "name": "RELEASE",
       "color": "529DEC",
@@ -17346,7 +17346,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 3,
       "inputs": [
         {
@@ -17368,7 +17368,7 @@
       ]
     },
     {
-      "id": 244,
+      "id": 172,
       "type": "fader",
       "name": "SENSITIVITY",
       "color": "529DEC",
@@ -17378,7 +17378,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 3,
       "inputs": [
         {
@@ -17403,7 +17403,7 @@
       ]
     },
     {
-      "id": 245,
+      "id": 173,
       "type": "fader",
       "name": "RESONANCE",
       "color": "FFFFFF",
@@ -17413,7 +17413,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 3,
       "inputs": [
         {
@@ -17453,7 +17453,7 @@
       ]
     },
     {
-      "id": 246,
+      "id": 174,
       "type": "fader",
       "name": "FILTER TYPE",
       "color": "FFFFFF",
@@ -17463,7 +17463,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 3,
       "inputs": [
         {
@@ -17501,7 +17501,7 @@
       ]
     },
     {
-      "id": 247,
+      "id": 175,
       "type": "list",
       "name": "TYPE",
       "color": "FFFFFF",
@@ -17511,7 +17511,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 3,
       "inputs": [
         {
@@ -17549,7 +17549,7 @@
       ]
     },
     {
-      "id": 248,
+      "id": 176,
       "type": "fader",
       "name": "MIX",
       "color": "FFFFFF",
@@ -17559,7 +17559,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 3,
       "inputs": [
         {
@@ -17599,7 +17599,7 @@
       ]
     },
     {
-      "id": 249,
+      "id": 177,
       "type": "fader",
       "name": "FREQUENCY",
       "color": "FFFFFF",
@@ -17609,7 +17609,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 3,
       "inputs": [
         {
@@ -17649,7 +17649,7 @@
       ]
     },
     {
-      "id": 250,
+      "id": 178,
       "type": "fader",
       "name": "STEREO PHASE",
       "color": "FFFFFF",
@@ -17659,7 +17659,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 3,
       "inputs": [
         {
@@ -17699,7 +17699,7 @@
       ]
     },
     {
-      "id": 251,
+      "id": 179,
       "type": "fader",
       "name": "SHAPE L",
       "color": "FFFFFF",
@@ -17709,7 +17709,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 3,
       "inputs": [
         {
@@ -17749,7 +17749,7 @@
       ]
     },
     {
-      "id": 252,
+      "id": 180,
       "type": "fader",
       "name": "SHAPE R",
       "color": "FFFFFF",
@@ -17759,7 +17759,7 @@
         146,
         56
       ],
-      "pageId": 7,
+      "pageId": 5,
       "controlSetId": 3,
       "inputs": [
         {
@@ -17799,7 +17799,7 @@
       ]
     },
     {
-      "id": 253,
+      "id": 181,
       "type": "list",
       "name": "MODE",
       "color": "F45C51",
@@ -17809,7 +17809,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 1,
       "inputs": [
         {
@@ -17847,7 +17847,7 @@
       ]
     },
     {
-      "id": 254,
+      "id": 182,
       "type": "fader",
       "name": "SOURCE BALANCE",
       "color": "F45C51",
@@ -17857,7 +17857,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 1,
       "inputs": [
         {
@@ -17879,7 +17879,7 @@
       ]
     },
     {
-      "id": 255,
+      "id": 183,
       "type": "fader",
       "name": "SPECTRAL BALNS",
       "color": "F45C51",
@@ -17889,7 +17889,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 1,
       "inputs": [
         {
@@ -17911,7 +17911,7 @@
       ]
     },
     {
-      "id": 256,
+      "id": 184,
       "type": "fader",
       "name": "BANDS",
       "color": "F45C51",
@@ -17921,7 +17921,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 1,
       "inputs": [
         {
@@ -17945,7 +17945,7 @@
       ]
     },
     {
-      "id": 257,
+      "id": 185,
       "type": "fader",
       "name": "OFFSET",
       "color": "C44795",
@@ -17955,7 +17955,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 1,
       "inputs": [
         {
@@ -17980,7 +17980,7 @@
       ]
     },
     {
-      "id": 258,
+      "id": 186,
       "type": "fader",
       "name": "BANK",
       "color": "529DEC",
@@ -17990,7 +17990,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 1,
       "inputs": [
         {
@@ -18013,7 +18013,7 @@
       ]
     },
     {
-      "id": 259,
+      "id": 187,
       "type": "fader",
       "name": "SPREAD",
       "color": "F49500",
@@ -18023,7 +18023,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 1,
       "inputs": [
         {
@@ -18048,7 +18048,7 @@
       ]
     },
     {
-      "id": 260,
+      "id": 188,
       "type": "fader",
       "name": "Q-FACTOR",
       "color": "F49500",
@@ -18058,7 +18058,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 1,
       "inputs": [
         {
@@ -18080,7 +18080,7 @@
       ]
     },
     {
-      "id": 261,
+      "id": 189,
       "type": "fader",
       "name": "CENTER FREQ",
       "color": "F49500",
@@ -18090,7 +18090,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 1,
       "inputs": [
         {
@@ -18115,7 +18115,7 @@
       ]
     },
     {
-      "id": 262,
+      "id": 190,
       "type": "fader",
       "name": "ATTACK",
       "color": "F49500",
@@ -18125,7 +18125,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 1,
       "inputs": [
         {
@@ -18147,7 +18147,7 @@
       ]
     },
     {
-      "id": 263,
+      "id": 191,
       "type": "fader",
       "name": "RELEASE",
       "color": "F49500",
@@ -18157,7 +18157,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 1,
       "inputs": [
         {
@@ -18179,7 +18179,7 @@
       ]
     },
     {
-      "id": 264,
+      "id": 192,
       "type": "fader",
       "name": "PROGRAM",
       "color": "529DEC",
@@ -18189,7 +18189,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 1,
       "inputs": [
         {
@@ -18211,7 +18211,7 @@
       ]
     },
     {
-      "id": 265,
+      "id": 193,
       "type": "fader",
       "name": "VOLUME",
       "color": "FFFFFF",
@@ -18221,7 +18221,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 2,
       "inputs": [
         {
@@ -18261,7 +18261,7 @@
       ]
     },
     {
-      "id": 266,
+      "id": 194,
       "type": "fader",
       "name": "PANORAMA",
       "color": "FFFFFF",
@@ -18271,7 +18271,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 2,
       "inputs": [
         {
@@ -18311,7 +18311,7 @@
       ]
     },
     {
-      "id": 267,
+      "id": 195,
       "type": "fader",
       "name": "FM AMOUNT",
       "color": "FFFFFF",
@@ -18321,7 +18321,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 2,
       "inputs": [
         {
@@ -18361,7 +18361,7 @@
       ]
     },
     {
-      "id": 268,
+      "id": 196,
       "type": "fader",
       "name": "OSC 1 SHAPE",
       "color": "FFFFFF",
@@ -18371,7 +18371,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 2,
       "inputs": [
         {
@@ -18411,7 +18411,7 @@
       ]
     },
     {
-      "id": 269,
+      "id": 197,
       "type": "fader",
       "name": "OSC 2 SHAPE",
       "color": "FFFFFF",
@@ -18421,7 +18421,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 2,
       "inputs": [
         {
@@ -18461,7 +18461,7 @@
       ]
     },
     {
-      "id": 270,
+      "id": 198,
       "type": "fader",
       "name": "PART",
       "color": "FFFFFF",
@@ -18471,7 +18471,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 2,
       "inputs": [
         {
@@ -18505,7 +18505,7 @@
       ]
     },
     {
-      "id": 271,
+      "id": 199,
       "type": "fader",
       "name": "PULSE WIDTH",
       "color": "FFFFFF",
@@ -18515,7 +18515,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 2,
       "inputs": [
         {
@@ -18555,7 +18555,7 @@
       ]
     },
     {
-      "id": 272,
+      "id": 200,
       "type": "fader",
       "name": "FILTER 1 ENV",
       "color": "FFFFFF",
@@ -18565,7 +18565,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 2,
       "inputs": [
         {
@@ -18605,7 +18605,7 @@
       ]
     },
     {
-      "id": 273,
+      "id": 201,
       "type": "fader",
       "name": "RESONANCE 1",
       "color": "FFFFFF",
@@ -18615,7 +18615,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 2,
       "inputs": [
         {
@@ -18655,7 +18655,7 @@
       ]
     },
     {
-      "id": 274,
+      "id": 202,
       "type": "fader",
       "name": "FILTER 2 ENV ",
       "color": "FFFFFF",
@@ -18665,7 +18665,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 2,
       "inputs": [
         {
@@ -18705,7 +18705,7 @@
       ]
     },
     {
-      "id": 275,
+      "id": 203,
       "type": "fader",
       "name": "RESONANCE 2",
       "color": "FFFFFF",
@@ -18715,7 +18715,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 2,
       "inputs": [
         {
@@ -18755,7 +18755,7 @@
       ]
     },
     {
-      "id": 277,
+      "id": 205,
       "type": "fader",
       "name": "ATOMIZER",
       "color": "03A598",
@@ -18765,7 +18765,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 3,
       "inputs": [
         {
@@ -18803,7 +18803,7 @@
       ]
     },
     {
-      "id": 278,
+      "id": 206,
       "type": "list",
       "name": "MODE",
       "color": "03A598",
@@ -18813,7 +18813,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 3,
       "inputs": [
         {
@@ -18851,7 +18851,7 @@
       ]
     },
     {
-      "id": 279,
+      "id": 207,
       "type": "list",
       "name": "INPUT",
       "color": "03A598",
@@ -18861,7 +18861,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 3,
       "inputs": [
         {
@@ -18899,7 +18899,7 @@
       ]
     },
     {
-      "id": 280,
+      "id": 208,
       "type": "list",
       "name": "OUTPUT",
       "color": "C44795",
@@ -18909,7 +18909,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 3,
       "inputs": [
         {
@@ -18945,7 +18945,7 @@
       ]
     },
     {
-      "id": 281,
+      "id": 209,
       "type": "fader",
       "name": "BALANCE",
       "color": "C44795",
@@ -18955,7 +18955,7 @@
         146,
         56
       ],
-      "pageId": 8,
+      "pageId": 6,
       "controlSetId": 3,
       "inputs": [
         {
