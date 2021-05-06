@@ -9,6 +9,7 @@
   "scripts": {
     "router": "nodemon --ignore state/router.json index router",
     "list": "node index list",
+    "page": "node index page",
     "pre2inst": "python submodules/ElectraOne/tools/pre2inst/pre2inst.py",
     "start": "npm run router",
     "lint": "eslint .",
