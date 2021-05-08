@@ -1,8 +1,8 @@
-const ElectraOne = require('../lib/electraOne')
+const Midi = require('../lib/midi')
 const fs = require('fs')
 
 function uploadPresetFile(name, sub, options) {
-  const midiOutputCtrlPort = ElectraOne.output(options.electraOneCtrl)
+  const midiOutputCtrlPort = Midi.output(options.electraOneCtrl)
 
   let bytes = [
     0xF0,   /* sysex start - 0xf0 */

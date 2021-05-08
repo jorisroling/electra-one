@@ -11,8 +11,9 @@ const labelColor = chalk.hex('#FF8800')
 let args
 
 function pageSwap(name, sub, options) {
-/*  debug('Options %y',options)*/
-/*  console.log(options)*/
+//  debug('Options %y',options)
+//  console.log(options)
+//  console.log(sub)
 
   if (options.filename) {
     if (fs.existsSync(options.filename)) {
@@ -33,47 +34,97 @@ function pageSwap(name, sub, options) {
       }
 
 
-      /*      debug('preset %y',preset)*/
-      if (Array.isArray(options.swap) && options.swap.length == 2 && options.swap[0] != options.swap[1] && parseInt(options.swap[0]) > 0 && parseInt(options.swap[0]) <= 12 && parseInt(options.swap[1]) > 0 && parseInt(options.swap[1]) <= 12) {
-        const pageA = (parseInt(options.swap[0]) < parseInt(options.swap[1])) ? parseInt(options.swap[0]) : parseInt(options.swap[1])
-        const pageB = (parseInt(options.swap[0]) < parseInt(options.swap[1])) ? parseInt(options.swap[1]) : parseInt(options.swap[0])
-        debug('swap page %y <=> %y',pageA,pageB)
-        preset.name += ` - Swapped ${pageA} & ${pageB}`
-        const tmp = preset.pages[pageA - 1]
-        preset.pages[pageA - 1] = preset.pages[pageB - 1]
-        preset.pages[pageB - 1] = tmp
-        preset.pages[pageA - 1].id = pageA
-        preset.pages[pageB - 1].id = pageB
-        for (let g in preset.groups) {
-          if (preset.groups[g].pageId == pageA) {
-            preset.groups[g].pageId = pageB
-          } else if (preset.groups[g].pageId == pageB) {
-            preset.groups[g].pageId = pageA
-          }
-        }
-        for (let c in preset.controls) {
-          if (preset.controls[c].pageId == pageA) {
-            preset.controls[c].id += (pageB - pageA) * 36
-            preset.controls[c].pageId = pageB
+      if (sub[0] == 'list') {
+          showPages()
+      } else if (sub[0] == 'copy') {
+        /*      debug('preset %y',preset)*/
+        if (Array.isArray(options.page) && options.page.length == 2 && options.page[0] != options.page[1] && parseInt(options.page[0]) > 0 && parseInt(options.page[0]) <= 12 && parseInt(options.page[1]) > 0 && parseInt(options.page[1]) <= 12) {
+          const sourcePage = parseInt(options.page[0])
+          const targetPage = parseInt(options.page[1])
+          const pageA = (parseInt(options.page[0]) < parseInt(options.page[1])) ? parseInt(options.page[0]) : parseInt(options.page[1])
+          const pageB = (parseInt(options.page[0]) < parseInt(options.page[1])) ? parseInt(options.page[1]) : parseInt(options.page[0])
+          debug('copy page %y => %y',sourcePage,targetPage)
+          preset.name += ` - Copied ${sourcePage} to ${targetPage}`
 
-          } else if (preset.controls[c].pageId == pageB) {
-            preset.controls[c].id -= (pageB - pageA) * 36
-            preset.controls[c].pageId = pageA
+// JJR
+          const tmp = preset.pages[pageA - 1]
+          preset.pages[pageA - 1] = preset.pages[pageB - 1]
+          preset.pages[pageB - 1] = tmp
+          preset.pages[pageA - 1].id = pageA
+          preset.pages[pageB - 1].id = pageB
+          for (let g in preset.groups) {
+            if (preset.groups[g].pageId == pageA) {
+              preset.groups[g].pageId = pageB
+            } else if (preset.groups[g].pageId == pageB) {
+              preset.groups[g].pageId = pageA
+            }
           }
-        }
+          for (let c in preset.controls) {
+            if (preset.controls[c].pageId == pageA) {
+              preset.controls[c].id += (pageB - pageA) * 36
+              preset.controls[c].pageId = pageB
 
-        showPages('new')
-        const parsed = path.parse(options.filename)
-        delete parsed.base
-        parsed.name += '.swap'
-        const newFilename = path.format(parsed)
-        jsonfile.writeFileSync(newFilename, preset, { flag: 'w', spaces: 2 })
-        debug('writen: %y',newFilename  )
+            } else if (preset.controls[c].pageId == pageB) {
+              preset.controls[c].id -= (pageB - pageA) * 36
+              preset.controls[c].pageId = pageA
+            }
+          }
+
+          showPages('new')
+          const parsed = path.parse(options.filename)
+          delete parsed.base
+          parsed.name += '.swap'
+          const newFilename = path.format(parsed)
+          jsonfile.writeFileSync(newFilename, preset, { flag: 'w', spaces: 2 })
+          debug('writen: %y',newFilename  )
+        } else {
+        }
+      } else if (sub[0] == 'swap') {
+          /*      debug('preset %y',preset)*/
+          if (Array.isArray(options.page) && options.page.length == 2 && options.page[0] != options.page[1] && parseInt(options.page[0]) > 0 && parseInt(options.page[0]) <= 12 && parseInt(options.page[1]) > 0 && parseInt(options.page[1]) <= 12) {
+            const pageA = (parseInt(options.page[0]) < parseInt(options.page[1])) ? parseInt(options.page[0]) : parseInt(options.page[1])
+            const pageB = (parseInt(options.page[0]) < parseInt(options.page[1])) ? parseInt(options.page[1]) : parseInt(options.page[0])
+            debug('swap page %y <=> %y',pageA,pageB)
+            preset.name += ` - Swapped ${pageA} & ${pageB}`
+            const tmp = preset.pages[pageA - 1]
+            preset.pages[pageA - 1] = preset.pages[pageB - 1]
+            preset.pages[pageB - 1] = tmp
+            preset.pages[pageA - 1].id = pageA
+            preset.pages[pageB - 1].id = pageB
+            for (let g in preset.groups) {
+              if (preset.groups[g].pageId == pageA) {
+                preset.groups[g].pageId = pageB
+              } else if (preset.groups[g].pageId == pageB) {
+                preset.groups[g].pageId = pageA
+              }
+            }
+            for (let c in preset.controls) {
+              if (preset.controls[c].pageId == pageA) {
+                preset.controls[c].id += (pageB - pageA) * 36
+                preset.controls[c].pageId = pageB
+
+              } else if (preset.controls[c].pageId == pageB) {
+                preset.controls[c].id -= (pageB - pageA) * 36
+                preset.controls[c].pageId = pageA
+              }
+            }
+
+            showPages('new')
+            const parsed = path.parse(options.filename)
+            delete parsed.base
+            parsed.name += '.swap'
+            const newFilename = path.format(parsed)
+            jsonfile.writeFileSync(newFilename, preset, { flag: 'w', spaces: 2 })
+            debug('writen: %y',newFilename  )
+        } else {
+          console.log(options)
+          console.error(`--page options not OK`)
+        }
       } else {
-        showPages()
+        args.showHelp()
       }
     } else {
-      console.error('Unable to load preset "%s"',options.filename)
+      console.error(`The file "${options.filename}" does not exist`)
     }
   } else {
     args.showHelp()
@@ -85,7 +136,12 @@ module.exports = {
     args = a
   },
   name: 'page',
-  description: 'Swap pages',
+  description: 'Operates on pages in a Preset File (.epr), possible subcommands: list, copy, swap',
+  examples: [
+    {usage:'electra-one page list --filename ./preset.epr', description:'List all pages in a Preset File (.epr)'},
+    {usage:'electra-one page copy --page 1 --page 2 --filename ./preset.epr', description:'Copy a page to a new position in a Preset File (.epr)'},
+    {usage:'electra-one page swap --page 1 --page 2 --filename ./preset.epr', description:'Swap two pages in a Preset File (.epr)'},
+  ],
   handler: pageSwap,
   aliases:[]
 }

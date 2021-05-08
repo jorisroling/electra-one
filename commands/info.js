@@ -1,11 +1,11 @@
-const ElectraOne = require('../lib/electraOne')
+const Midi = require('../lib/midi')
 const { table } = require('table')
 const chalk = require('chalk')
 const labelColor = chalk.hex('#FF8800')
 
 function queryInfo(name, sub, options) {
-  const midiInputCtrlPort = ElectraOne.input(options.electraOneCtrl)
-  const midiOutputCtrlPort = ElectraOne.output(options.electraOneCtrl)
+  const midiInputCtrlPort = Midi.input(options.electraOneCtrl)
+  const midiOutputCtrlPort = Midi.output(options.electraOneCtrl)
 
   function close() {
     midiInputCtrlPort.close()
