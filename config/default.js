@@ -202,7 +202,7 @@ module.exports = {
         shape: {
           nrpn: 58,
           min: 0,
-          max: 15,
+          max: 5,
           resolution: 16,
           default: 0,
         },

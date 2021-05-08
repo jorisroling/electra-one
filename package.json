@@ -11,7 +11,7 @@
     "list": "node index list",
     "page": "node index page",
     "info": "node index info",
-    "acid": "nodemon --verbose -L --ignore loops --ignore state index acid --input TR-6S --midi BCR2000 --transposePort \"KOMPLETE KONTROL M32\" --transposeChannel 1",
+    "acid": "nodemon --verbose -L --ignore loops --ignore state index acid --input TR-6S --midi \"Electra Controller Electra Port 2\" --transposePort \"KOMPLETE KONTROL M32\" --transposeChannel 1",
     "pre2inst": "python submodules/ElectraOne/tools/pre2inst/pre2inst.py",
     "start": "npm run router",
     "lint": "eslint .",

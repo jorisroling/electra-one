@@ -512,7 +512,8 @@ class State {
 
   sendProgramChange(dev) {
     if (_.get(this.device,`${dev}.portName`)) {
-      const output = Midi.output(_.get(this.device,`${dev}.portName`),true)
+/*      debug('name: %y',_.get(this.device,`${dev}.portName`))*/
+      const output = Midi.output(_.get(this.device,`${dev}.portName`),false,false)
       if (output) {
         debugMidiControlChange('%s %d CC %y = %y',this.device[dev].portName,_.get(this.device,`${dev}.channel`),0,_.get(this.device,`${dev}.bank`))
         output.send('cc',{channel:_.get(this.device,`${dev}.channel`) - 1,controller:0,value:_.get(this.device,`${dev}.bank`)})
@@ -549,7 +550,7 @@ class State {
     }
 
     return (msg) => {
-      /*    debug('handle: %y',msg)*/
+/*          debug('handle: %y',msg)*/
       _.set(midiCache[midiName],`channel_${_.padStart(msg.channel + 1,2,'0')}.controller_${_.padStart(msg.controller,3,'0')}`, msg.value)
       if ((msg.channel + 1) == config.acid.channel && ((msg.controller == 6) || (msg.controller == 38))) {
         const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_099`)
@@ -625,9 +626,9 @@ const txt=`$rev R1
           const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
           if (msb && msg.controller == 6) {
 
-            this.reset()
+/*            this.reset()
             this.sendValues()
-
+*/
             debug('reset')
           }
         }
@@ -638,7 +639,7 @@ const txt=`$rev R1
               tmp = Math.floor((tmp / 64) * 100)
             }
             if (tmp > 0) {
-              tmp = Math.floor((tmp / 64) * 100)
+              tmp = Math.floor((tmp / 63) * 100)
             }
             if (tmp != this.chance) {
               this.chance = tmp
@@ -735,7 +736,7 @@ const txt=`$rev R1
                   let names = []
 
                   if (key=='shape') {
-                    const idx = Math.floor((tmp/16) * shapes.length)
+                    const idx = tmp //Math.floor((tmp/16) * shapes.length)
                     this.lfo[l].shapeName = shapes[idx]
                     names.push(this.lfo[l].shapeName)
                   }
@@ -763,10 +764,14 @@ const txt=`$rev R1
                   let names = []
                   if (key == 'port') {
                     const midiNames = easymidi.getInputs()
+/*                    debug('names %y',midiNames)*/
                     if (midiNames /*&& _.get(this.device,`${dev}.${key}`) < midiNames.length*/) {
-                      const idx = Math.floor((tmp/64) * midiNames.length)
-                      names.push(midiNames[idx])
-                      _.set(this.device,`${dev}.${key}Name`,midiNames[idx])
+                      const idx = Math.floor((((tmp+1)/64)) * midiNames.length)
+                      if (idx<midiNames.length) {
+/*                        debug('idx %y',idx)*/
+                        names.push(midiNames[idx])
+                        _.set(this.device,`${dev}.${key}Name`,midiNames[idx])
+                      }
                     } else {
                       _.set(this.device,`${dev}.${key}Name`,null)
                     }
