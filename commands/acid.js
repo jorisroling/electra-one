@@ -932,7 +932,9 @@ function acidSequencer(name, sub, options) {
                       debugMidiControlChange('%s %d CC %y = %y',state.device[dev].portName,channel+1,state.lfo[l].control,midiValue)
                       output.send('cc',{channel,controller:state.lfo[l].control,value:midiValue})
                       _.set(midiCache[options.output],pth, midiValue)
-                      sendNRPN(midiOutputName,config.acid.lfo[l+1].show.nrpn,1,midiValue,0)
+
+                      // Can Electra handle many NRPN's?
+                      //sendNRPN(midiOutputName,config.acid.lfo[l+1].show.nrpn,1,midiValue,0)
                     }
                   }
                 }
