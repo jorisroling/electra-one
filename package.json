@@ -1,6 +1,6 @@
 {
   "name": "electra-one",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Router & Instrument Files for Electra One",
   "main": "index.js",
   "bin": {
