@@ -147,7 +147,7 @@ module.exports = {
             channels: [10,11],
           },
           'mc-101': {
-            enabled: true,
+            enabled: false,
             port: 2,
             channels: [6,7,8,9],
           },
