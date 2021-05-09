@@ -20,27 +20,110 @@ module.exports = {
       },
       'electra-one-ctrl': {
         darwin: 'Electra Controller Electra CTRL',
-        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 11 20:10',
+        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 12 20:11',
       },
-      'virus-ti': {
-        darwin: 'iConnectMIDI4+ Virus TI',
-        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 3 20:2',
+      'typhon': {
+        darwin: 'iConnectMIDI4+ Typhon',
+        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 1 20:0',
       },
       'tr-6s': {
         darwin: 'iConnectMIDI4+ TR-6S',
         linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 2 20:1',
       },
-      'mc-101': {
+      'virus-ti': {
+        darwin: 'iConnectMIDI4+ Virus TI',
+        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 3 20:2',
+      },
+      'midihub': {
         darwin: 'iConnectMIDI4+ Midihub',
         linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 4 20:3',
+      },
+      'deluge': {
+        darwin: 'iConnectMIDI4+ Deluge',
+        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 7 20:6',
       },
       'acdgen': {
         darwin: 'iConnectMIDI4+ ACDGEN',
         linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 11 20:10',
       },
-      'typhon': {
-        darwin: 'iConnectMIDI4+ Typhon',
-        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 1 20:0',
+    },
+  },
+  devices: {
+    'virus-ti': {
+      model: 'Virus TI',
+      manufacturer: 'Access',
+      channels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+      port: 'virus-ti',
+      electraOne: {
+        port: 1,
+        portMap: 'virus-ti',
+        initialize: {
+          'electra-one-1': [0xF0, 0x7D, 0x20, 'part', 0xF7],
+          'virus-ti': [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, 'part:-1', 0xF7],
+        },
+      },
+    },
+    'deluge': {
+      model: 'Deluge',
+      manufacturer: 'Synthstrom',
+      channels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+      port: 'deluge',
+      electraOne: {
+        port: 1,
+      },
+    },
+    'typhon': {
+      model: 'Typhon',
+      manufacturer: 'Dreadbox',
+      channels: [15],
+      port: 'typhon',
+      electraOne: {
+        port: 2,
+      },
+    },
+    'mb33': {
+      model: 'MB33',
+      manufacturer: 'MAM',
+      channels: [16],
+      port: 'midihub',
+      electraOne: {
+        port: 2,
+      },
+    },
+    'tr-6s': {
+      model: 'TR-6S',
+      manufacturer: 'Roland',
+      channels: [10, 11],
+      port: 'tr-6s',
+      electraOne: {
+        port: 2,
+      },
+    },
+    'mc-101': {
+      model: 'MC-101',
+      manufacturer: 'Roland',
+      channels: [6, 7, 8, 9],
+      port: 'midihub',
+      electraOne: {
+        port: 2,
+      },
+    },
+    'vp-03': {
+      model: 'VP-03',
+      manufacturer: 'Roland',
+      channels: [14],
+      port: 'midihub',
+      electraOne: {
+        port: 2,
+      },
+    },
+    'acdgen': {
+      model: 'ACDGEN',
+      manufacturer: 'Spektro Audio',
+      channels: [13],
+      port: 'acdgen',
+      electraOne: {
+        port: 2,
       },
     },
   },
@@ -384,6 +467,13 @@ module.exports = {
     },
     device: {
       A: {
+        device: {
+          nrpn: 64,
+          min: 0,
+          max: 63,
+          resolution: 64,
+          default: 0,
+        },
         port: {
           nrpn: 51,
           min: 0,
@@ -414,6 +504,13 @@ module.exports = {
         },
       },
       B: {
+        device: {
+          nrpn: 65,
+          min: 0,
+          max: 63,
+          resolution: 64,
+          default: 0,
+        },
         port: {
           nrpn: 53,
           min: 0,

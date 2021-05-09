@@ -6,6 +6,7 @@ const debugMidiNoteOff = yves.debugger(`${pkg.name.replace(/^@/,'').replace(/[/-
 const debugMidiControlChange = yves.debugger(`${pkg.name.replace(/^@/,'').replace(/[/-]+/g,':')}:midi:control:change`)
 const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/,'').replace(/[/-]+/g,':')}:midi:program:change`)
 
+const os = require('os')
 const deepEqual = require('deep-equal')
 //const Sequencer = require('../lib/sequencer')
 //const Grid = require('../lib/grid')
@@ -23,10 +24,6 @@ const jsonfile = require('jsonfile')
 
 const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max + 1))
 
-/*const ShutdownHook = require('shutdown-hook')
-const shutdownHook = new ShutdownHook()
-shutdownHook.register()
-*/
 const euclideanRhythms = require('euclidean-rhythms')
 
 const scaleMappings = require('../extra/scales/scales.json')
@@ -138,6 +135,7 @@ class State {
     ]
     this.values.device = {
       A: {
+        device: 0,
         port: 0,
         portName: null,
         channel: 1,
@@ -145,6 +143,7 @@ class State {
         program: 0,
       },
       B: {
+        device: 0,
         port: 0,
         portName: null,
         channel: 1,
@@ -422,12 +421,8 @@ class State {
   }
 
   sendValues() {
-    this.sendMainValues()
-    this.sendLFOValues()
-    this.sendProgramValues()
-  }
+    debug('Send Values')
 
-  sendTopValues() {
     sendNRPN(midiOutputName,config.acid.temperature.nrpn,1,(this.temperature * 100) & 0xFF,(this.temperature * 100) >> 7)
     sendNRPN(midiOutputName,config.acid.split.nrpn,1,this.split,0)
     sendNRPN(midiOutputName,config.acid.deviate.nrpn,1,this.deviate,0)
@@ -436,12 +431,6 @@ class State {
         sendNRPN(midiOutputName,_.get(config.acid.lfo[l + 1],`${key}.nrpn`),1,_.get(this.lfo[l],key),0)
       })
     }
-  }
-
-  sendMainValues() {
-    debug('send main')
-
-    this.sendTopValues()
 
     sendNRPN(midiOutputName,config.acid.transpose.nrpn,1,this.transpose + 12,0)
     sendNRPN(midiOutputName,config.acid.gate.nrpn,1,this.gate * 64,0)
@@ -455,29 +444,16 @@ class State {
     sendNRPN(midiOutputName,config.acid.base.nrpn,1,this.base,0)
     sendNRPN(midiOutputName,config.acid.shift.nrpn,1,this.shift + 16,0)
 
-  }
-
-  sendLFOValues() {
-    debug('send LFO');
-
-    this.sendTopValues()
-
+    // LFO
     for (let l = 0; l < 3; l++) {
       ['control','shape','rate','phase','amount','offset','density'].forEach( key => {
         sendNRPN(midiOutputName,_.get(config.acid.lfo[l + 1],`${key}.nrpn`),1,_.get(this.lfo[l],key),0)
       })
     }
 
-
-  }
-
-  sendProgramValues() {
-    debug('send program');
-
-    this.sendTopValues();
-
+    // PROGRAM
     ['A','B'].forEach( dev => {
-      ['port','channel','bank','program'].forEach( key => {
+      ['device','port','channel','bank','program'].forEach( key => {
         sendNRPN(midiOutputName,_.get(config.acid.device,`${dev}.${key}.nrpn`),1,_.get(this.device,`${dev}.${key}`),0)
       })
     })
@@ -712,7 +688,7 @@ class State {
         }
 
         ['A','B'].forEach( dev => {
-          ['port','channel','bank','program'].forEach( key => {
+          ['device','port','channel','bank','program'].forEach( key => {
             if (msb == _.get(config.acid.device,`${dev}.${key}.nrpn`) && (lsb >= 1 && lsb <= 8)) {
               if (msg.controller == 6) { //MSB
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
@@ -721,11 +697,45 @@ class State {
 //                  const nameA = typhonCCs[this.lfo[l].control]
 //                  const nameB = virusCCs[this.lfo[l].control]
                   let names = []
+                  if (key == 'device') {
+                    if (tmp>0 && config.devices) {
+                      const deviceKeys = Object.keys(config.devices)
+                      if (deviceKeys.length > tmp-1) {
+                        const device = deviceKeys[tmp-1]
+                        debug ('device: %y',device)
+                        const port = _.get(config,`devices.${device}.port`)
+                        if (port) {
+                          const portName = _.get(config,`midi.ports.${port}.${os.platform()}`)
+                          if (portName) {
+                            const midiNames = easymidi.getInputs()
+                            if (midiNames) {
+                              const idx = midiNames.indexOf(portName)
+                              if (idx>=0) {
+                                tmp = idx
+                                key = 'port' // fall through next condition
+                                _.set(this.device,`${dev}.port`,idx)
+                                sendNRPN(midiOutputName,_.get(config.acid.device,`${dev}.port.nrpn`),1,_.get(this.device,`${dev}.port`),0)
+
+                                const channels = _.get(config,`devices.${device}.channels`)
+                                if (Array.isArray(channels) && channels.length) {
+                                  const channel = _.get(this.device,`${dev}.channel`)
+                                  if (channels.indexOf(channel)<0) {
+                                    _.set(this.device,`${dev}.channel`,channels[0])
+                                    sendNRPN(midiOutputName,_.get(config.acid.device,`${dev}.channel.nrpn`),1,_.get(this.device,`${dev}.channel`),0)
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                   if (key == 'port') {
                     const midiNames = easymidi.getInputs()
 /*                    debug('names %y',midiNames)*/
                     if (midiNames /*&& _.get(this.device,`${dev}.${key}`) < midiNames.length*/) {
-                      const idx = Math.floor((((tmp+1)/64)) * midiNames.length)
+                      const idx = tmp //Math.floor((((tmp+1)/64)) * midiNames.length)
                       if (idx<midiNames.length) {
 /*                        debug('idx %y',idx)*/
                         names.push(midiNames[idx])
@@ -814,35 +824,6 @@ function acidSequencer(name, sub, options) {
       }
     }
   })
-
-/*
-  shutdownHook.add(_ => {
-    debug('shutdown NotesSend %y',notesSend)
-
-    for (let midiNote = 0; midiNote < 128; midiNote++) {
-      debugMidiNoteOff('%s %d %y',state.device[dev].portName,deviceChannels.A,midiNote)
-      output.send('noteoff', {
-        note: midiNote,
-        velocity: 127 ,
-        channel: deviceChannels.A - 1,
-      })
-      debugMidiNoteOff('%s %d %y',state.device[dev].portName,deviceChannels.B,midiNote)
-      output.send('noteoff', {
-        note: midiNote,
-        velocity: 127 ,
-        channel: deviceChannels.B - 1,
-      })
-    }
-
-
-    return new Promise((resolve,reject) => {
-      setTimeout(() => {
-        resolve(0)
-        debug('bye')
-      },500)
-    })
-  })
-*/
 
   /*  debug('options: %y',options)*/
 
