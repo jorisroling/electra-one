@@ -7,12 +7,11 @@
     "electra-one": "./index.js"
   },
   "scripts": {
-    "router": "nodemon --ignore state/router.json index router",
+    "router": "nodemon --ignore state index router",
     "list": "node index list",
     "page": "node index page",
     "info": "node index info",
-    "acid": "nodemon --verbose -L --ignore loops --ignore state index acid --input TR-6S --midi \"Electra Controller Electra Port 2\" --transposePort \"KOMPLETE KONTROL M32\" --transposeChannel 1",
-    "pre2inst": "python submodules/ElectraOne/tools/pre2inst/pre2inst.py",
+    "acid": "nodemon --verbose -L --ignore state index acid --input TR-6S --midi \"Electra Controller Electra Port 2\" --transposePort \"KOMPLETE KONTROL M32\" --transposeChannel 1",
     "start": "npm run router",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"

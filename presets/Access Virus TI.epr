@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "Access Virus TI",
-  "projectId": "dBGpgrvBrrh7GMaRRckI",
+  "projectId": "QtizXhBO4nMCftxlHlLh",
   "pages": [
     {
       "id": 1,
@@ -535,7 +535,7 @@
         826,
         16
       ],
-      "color": "FFFFFF"
+      "color": "C44795"
     },
     {
       "pageId": 9,
@@ -546,7 +546,7 @@
         486,
         16
       ],
-      "color": "FFFFFF"
+      "color": "F45C51"
     },
     {
       "pageId": 9,
@@ -579,7 +579,7 @@
         656,
         16
       ],
-      "color": "FFFFFF"
+      "color": "529DEC"
     },
     {
       "pageId": 9,
@@ -656,7 +656,7 @@
         316,
         16
       ],
-      "color": "FFFFFF"
+      "color": "F49500"
     },
     {
       "pageId": 9,
@@ -723,6 +723,17 @@
         16
       ],
       "color": "FFFFFF"
+    },
+    {
+      "pageId": 2,
+      "name": "Virus",
+      "color": "F49500",
+      "bounds": [
+        680,
+        368,
+        316,
+        16
+      ]
     }
   ],
   "devices": [
@@ -4389,6 +4400,161 @@
       "id": 9,
       "items": [
         {
+          "value": 0,
+          "label": "RAM A",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "RAM B",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "RAM C",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "RAM D",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "ROM A",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "ROM B",
+          "index": 5
+        },
+        {
+          "value": 6,
+          "label": "ROM C",
+          "index": 6
+        },
+        {
+          "value": 7,
+          "label": "ROM D",
+          "index": 7
+        },
+        {
+          "value": 8,
+          "label": "ROM E",
+          "index": 8
+        },
+        {
+          "value": 9,
+          "label": "ROM F",
+          "index": 9
+        },
+        {
+          "value": 10,
+          "label": "ROM G",
+          "index": 10
+        },
+        {
+          "value": 11,
+          "label": "ROM H",
+          "index": 11
+        },
+        {
+          "value": 12,
+          "label": "ROM I",
+          "index": 12
+        },
+        {
+          "value": 13,
+          "label": "ROM J",
+          "index": 13
+        },
+        {
+          "value": 14,
+          "label": "ROM K",
+          "index": 14
+        },
+        {
+          "value": 15,
+          "label": "ROM L",
+          "index": 15
+        },
+        {
+          "value": 16,
+          "label": "ROM M",
+          "index": 16
+        },
+        {
+          "value": 17,
+          "label": "ROM N",
+          "index": 17
+        },
+        {
+          "value": 18,
+          "label": "ROM O",
+          "index": 18
+        },
+        {
+          "value": 19,
+          "label": "ROM P",
+          "index": 19
+        },
+        {
+          "value": 20,
+          "label": "ROM Q",
+          "index": 20
+        },
+        {
+          "value": 21,
+          "label": "ROM R",
+          "index": 21
+        },
+        {
+          "value": 22,
+          "label": "ROM S",
+          "index": 22
+        },
+        {
+          "value": 23,
+          "label": "ROM T",
+          "index": 23
+        },
+        {
+          "value": 24,
+          "label": "ROM U",
+          "index": 24
+        },
+        {
+          "value": 25,
+          "label": "ROM V",
+          "index": 25
+        },
+        {
+          "value": 26,
+          "label": "ROM W",
+          "index": 26
+        },
+        {
+          "value": 27,
+          "label": "ROM X",
+          "index": 27
+        },
+        {
+          "value": 28,
+          "label": "ROM Y",
+          "index": 28
+        },
+        {
+          "value": 29,
+          "label": "ROM Z",
+          "index": 29
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "items": [
+        {
           "index": 0,
           "label": "Off",
           "value": 0
@@ -4501,7 +4667,7 @@
       ]
     },
     {
-      "id": 10,
+      "id": 11,
       "items": [
         {
           "index": 0,
@@ -4846,7 +5012,7 @@
       ]
     },
     {
-      "id": 11,
+      "id": 12,
       "items": [
         {
           "value": 0,
@@ -4861,7 +5027,7 @@
       ]
     },
     {
-      "id": 12,
+      "id": 13,
       "items": [
         {
           "index": 0,
@@ -5506,7 +5672,7 @@
       ]
     },
     {
-      "id": 13,
+      "id": 14,
       "items": [
         {
           "value": 0,
@@ -5546,7 +5712,757 @@
       ]
     },
     {
-      "id": 14,
+      "id": 15,
+      "items": [
+        {
+          "value": 0,
+          "label": "Analog Boost",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Vintage 1",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Vintage 2",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "Vintage 3",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "Pad Opener",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "Lead Enhancer",
+          "index": 5
+        },
+        {
+          "value": 6,
+          "label": "Bass Enhancer",
+          "index": 6
+        },
+        {
+          "value": 7,
+          "label": "Stereo Widener",
+          "index": 7
+        },
+        {
+          "value": 8,
+          "label": "Speaker Cab",
+          "index": 8
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "items": [
+        {
+          "value": 0,
+          "label": "Off",
+          "index": 0
+        },
+        {
+          "value": 12,
+          "label": "Wide",
+          "index": 1
+        },
+        {
+          "value": 1,
+          "label": "Light",
+          "index": 2
+        },
+        {
+          "value": 2,
+          "label": "Soft",
+          "index": 3
+        },
+        {
+          "value": 3,
+          "label": "Medium",
+          "index": 4
+        },
+        {
+          "value": 4,
+          "label": "Hard",
+          "index": 5
+        },
+        {
+          "value": 5,
+          "label": "Digital",
+          "index": 6
+        },
+        {
+          "value": 6,
+          "label": "Wave Shaper",
+          "index": 7
+        },
+        {
+          "value": 7,
+          "label": "Rectifier",
+          "index": 8
+        },
+        {
+          "value": 19,
+          "label": "Bit Reducer",
+          "index": 9
+        },
+        {
+          "value": 18,
+          "label": "Rate Reducer",
+          "index": 10
+        },
+        {
+          "value": 13,
+          "label": "Soft Bounce",
+          "index": 11
+        },
+        {
+          "value": 14,
+          "label": "Hard Bounce",
+          "index": 12
+        },
+        {
+          "value": 15,
+          "label": "Sine Fold",
+          "index": 13
+        },
+        {
+          "value": 16,
+          "label": "Triangle Fold",
+          "index": 14
+        },
+        {
+          "value": 17,
+          "label": "Sawtooth Fold",
+          "index": 15
+        },
+        {
+          "value": 10,
+          "label": "Low Pass",
+          "index": 16
+        },
+        {
+          "value": 11,
+          "label": "High Pass",
+          "index": 17
+        },
+        {
+          "value": 8,
+          "label": "Bit Reducr Old",
+          "index": 18
+        },
+        {
+          "value": 9,
+          "label": "Rate Redcr Old",
+          "index": 19
+        },
+        {
+          "value": 20,
+          "label": "Mint Overdrive",
+          "index": 20
+        },
+        {
+          "value": 21,
+          "label": "Curry Overdrve",
+          "index": 21
+        },
+        {
+          "value": 22,
+          "label": "Saffron Ovrdrv",
+          "index": 22
+        },
+        {
+          "value": 23,
+          "label": "Onion Overdrve",
+          "index": 23
+        },
+        {
+          "value": 24,
+          "label": "Pepper Overdrv",
+          "index": 24
+        },
+        {
+          "value": 25,
+          "label": "Chilli Overdrv",
+          "index": 25
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "items": [
+        {
+          "value": 0,
+          "label": "Off",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Classic",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Vintage",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "Hyper Chorus",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "Air Chorus",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "Vibrato",
+          "index": 5
+        },
+        {
+          "value": 6,
+          "label": "Rotary Speaker",
+          "index": 6
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "items": [
+        {
+          "value": 0,
+          "label": "Sine",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Triangle",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Sawtooth",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "Square",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "S&H",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "S&G",
+          "index": 5
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "items": [
+        {
+          "value": 0,
+          "label": "Classic",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Tape Clocked",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Tape Free",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "Tape Doppler",
+          "index": 3
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "items": [
+        {
+          "value": 0,
+          "label": "Off",
+          "index": 0
+        },
+        {
+          "value": 127,
+          "label": "Effect",
+          "index": 1
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "items": [
+        {
+          "value": 0,
+          "label": "1/32",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "1/16",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "2/16",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "3/16",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "4/16",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "5/16",
+          "index": 5
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "items": [
+        {
+          "value": 0,
+          "label": "1/4",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "2/4",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "3/4",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "4/4",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "4/3",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "4/2",
+          "index": 5
+        },
+        {
+          "value": 6,
+          "label": "4/1",
+          "index": 6
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "items": [
+        {
+          "value": 1,
+          "label": "Reverb",
+          "index": 0
+        },
+        {
+          "value": 2,
+          "label": "Feedback 1",
+          "index": 1
+        },
+        {
+          "value": 3,
+          "label": "Feedback 2",
+          "index": 2
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "items": [
+        {
+          "value": 0,
+          "label": "Off",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "1/64",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "1/32",
+          "index": 2
+        },
+        {
+          "value": 11,
+          "label": "1/24",
+          "index": 3
+        },
+        {
+          "value": 7,
+          "label": "3/64",
+          "index": 4
+        },
+        {
+          "value": 3,
+          "label": "1/16",
+          "index": 5
+        },
+        {
+          "value": 12,
+          "label": "1/12",
+          "index": 6
+        },
+        {
+          "value": 8,
+          "label": "3/32",
+          "index": 7
+        },
+        {
+          "value": 4,
+          "label": "1/8",
+          "index": 8
+        },
+        {
+          "value": 13,
+          "label": "1/6",
+          "index": 9
+        },
+        {
+          "value": 9,
+          "label": "3/16",
+          "index": 10
+        },
+        {
+          "value": 5,
+          "label": "1/4",
+          "index": 11
+        },
+        {
+          "value": 14,
+          "label": "1/3",
+          "index": 12
+        },
+        {
+          "value": 10,
+          "label": "3/8",
+          "index": 13
+        },
+        {
+          "value": 6,
+          "label": "1/2",
+          "index": 14
+        },
+        {
+          "value": 15,
+          "label": "2/3",
+          "index": 15
+        },
+        {
+          "value": 16,
+          "label": "3/4",
+          "index": 16
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "items": [
+        {
+          "value": 0,
+          "label": "Ambience",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Small Room",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Large Room",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "Hall",
+          "index": 3
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "items": [
+        {
+          "value": 0,
+          "label": "Off",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "In L",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "In L+R",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "In R",
+          "index": 3
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "items": [
+        {
+          "value": 0,
+          "label": "Low Pass",
+          "index": 0
+        },
+        {
+          "value": 127,
+          "label": "High Pass",
+          "index": 1
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "items": [
+        {
+          "value": 0,
+          "label": "Off",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Ring Modulator",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Freq Shifter",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "Vowel Filter",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "Comb Filter",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "1 Pole XFade",
+          "index": 5
+        },
+        {
+          "value": 6,
+          "label": "2 Pole XFade",
+          "index": 6
+        },
+        {
+          "value": 7,
+          "label": "4 Pole XFade",
+          "index": 7
+        },
+        {
+          "value": 8,
+          "label": "6 Pole XFade",
+          "index": 8
+        },
+        {
+          "value": 9,
+          "label": "LP VariSlope",
+          "index": 9
+        },
+        {
+          "value": 10,
+          "label": "HP VariSlope",
+          "index": 10
+        },
+        {
+          "value": 11,
+          "label": "BP VariSlope",
+          "index": 11
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "items": [
+        {
+          "value": 0,
+          "label": "Off",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Oscillator",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Osc Hold",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "Noise",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "In L",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "In L+R",
+          "index": 5
+        },
+        {
+          "value": 6,
+          "label": "In R",
+          "index": 6
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "items": [
+        {
+          "value": 0,
+          "label": "Off",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Dynamic",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Static",
+          "index": 2
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "items": [
+        {
+          "value": 0,
+          "label": "Left",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "L+R",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Right",
+          "index": 2
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "items": [
+        {
+          "value": 0,
+          "label": "Off",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Out 1 L",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Out 1 L+R",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "Out 1 R",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "Out 2 L",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "Out 2 L+R",
+          "index": 5
+        },
+        {
+          "value": 6,
+          "label": "Out 2 R",
+          "index": 6
+        },
+        {
+          "value": 7,
+          "label": "Out 3 L",
+          "index": 7
+        },
+        {
+          "value": 8,
+          "label": "Out 3 L+R",
+          "index": 8
+        },
+        {
+          "value": 9,
+          "label": "Out 3 R",
+          "index": 9
+        }
+      ]
+    },
+    {
+      "id": 33,
       "items": [
         {
           "index": 0,
@@ -5751,7 +6667,7 @@
       ]
     },
     {
-      "id": 15,
+      "id": 34,
       "items": [
         {
           "index": 0,
@@ -6362,911 +7278,6 @@
           "index": 121,
           "label": "Unison LFO Phase",
           "value": 61
-        }
-      ]
-    },
-    {
-      "id": 16,
-      "items": [
-        {
-          "value": 0,
-          "label": "Analog Boost",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "Vintage 1",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "Vintage 2",
-          "index": 2
-        },
-        {
-          "value": 3,
-          "label": "Vintage 3",
-          "index": 3
-        },
-        {
-          "value": 4,
-          "label": "Pad Opener",
-          "index": 4
-        },
-        {
-          "value": 5,
-          "label": "Lead Enhancer",
-          "index": 5
-        },
-        {
-          "value": 6,
-          "label": "Bass Enhancer",
-          "index": 6
-        },
-        {
-          "value": 7,
-          "label": "Stereo Widener",
-          "index": 7
-        },
-        {
-          "value": 8,
-          "label": "Speaker Cab",
-          "index": 8
-        }
-      ]
-    },
-    {
-      "id": 17,
-      "items": [
-        {
-          "value": 0,
-          "label": "Off",
-          "index": 0
-        },
-        {
-          "value": 12,
-          "label": "Wide",
-          "index": 1
-        },
-        {
-          "value": 1,
-          "label": "Light",
-          "index": 2
-        },
-        {
-          "value": 2,
-          "label": "Soft",
-          "index": 3
-        },
-        {
-          "value": 3,
-          "label": "Medium",
-          "index": 4
-        },
-        {
-          "value": 4,
-          "label": "Hard",
-          "index": 5
-        },
-        {
-          "value": 5,
-          "label": "Digital",
-          "index": 6
-        },
-        {
-          "value": 6,
-          "label": "Wave Shaper",
-          "index": 7
-        },
-        {
-          "value": 7,
-          "label": "Rectifier",
-          "index": 8
-        },
-        {
-          "value": 19,
-          "label": "Bit Reducer",
-          "index": 9
-        },
-        {
-          "value": 18,
-          "label": "Rate Reducer",
-          "index": 10
-        },
-        {
-          "value": 13,
-          "label": "Soft Bounce",
-          "index": 11
-        },
-        {
-          "value": 14,
-          "label": "Hard Bounce",
-          "index": 12
-        },
-        {
-          "value": 15,
-          "label": "Sine Fold",
-          "index": 13
-        },
-        {
-          "value": 16,
-          "label": "Triangle Fold",
-          "index": 14
-        },
-        {
-          "value": 17,
-          "label": "Sawtooth Fold",
-          "index": 15
-        },
-        {
-          "value": 10,
-          "label": "Low Pass",
-          "index": 16
-        },
-        {
-          "value": 11,
-          "label": "High Pass",
-          "index": 17
-        },
-        {
-          "value": 8,
-          "label": "Bit Reducr Old",
-          "index": 18
-        },
-        {
-          "value": 9,
-          "label": "Rate Redcr Old",
-          "index": 19
-        },
-        {
-          "value": 20,
-          "label": "Mint Overdrive",
-          "index": 20
-        },
-        {
-          "value": 21,
-          "label": "Curry Overdrve",
-          "index": 21
-        },
-        {
-          "value": 22,
-          "label": "Saffron Ovrdrv",
-          "index": 22
-        },
-        {
-          "value": 23,
-          "label": "Onion Overdrve",
-          "index": 23
-        },
-        {
-          "value": 24,
-          "label": "Pepper Overdrv",
-          "index": 24
-        },
-        {
-          "value": 25,
-          "label": "Chilli Overdrv",
-          "index": 25
-        }
-      ]
-    },
-    {
-      "id": 18,
-      "items": [
-        {
-          "value": 0,
-          "label": "Off",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "Classic",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "Vintage",
-          "index": 2
-        },
-        {
-          "value": 3,
-          "label": "Hyper Chorus",
-          "index": 3
-        },
-        {
-          "value": 4,
-          "label": "Air Chorus",
-          "index": 4
-        },
-        {
-          "value": 5,
-          "label": "Vibrato",
-          "index": 5
-        },
-        {
-          "value": 6,
-          "label": "Rotary Speaker",
-          "index": 6
-        }
-      ]
-    },
-    {
-      "id": 19,
-      "items": [
-        {
-          "value": 0,
-          "label": "Sine",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "Triangle",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "Sawtooth",
-          "index": 2
-        },
-        {
-          "value": 3,
-          "label": "Square",
-          "index": 3
-        },
-        {
-          "value": 4,
-          "label": "S&H",
-          "index": 4
-        },
-        {
-          "value": 5,
-          "label": "S&G",
-          "index": 5
-        }
-      ]
-    },
-    {
-      "id": 20,
-      "items": [
-        {
-          "value": 0,
-          "label": "Classic",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "Tape Clocked",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "Tape Free",
-          "index": 2
-        },
-        {
-          "value": 3,
-          "label": "Tape Doppler",
-          "index": 3
-        }
-      ]
-    },
-    {
-      "id": 21,
-      "items": [
-        {
-          "value": 0,
-          "label": "Off",
-          "index": 0
-        },
-        {
-          "value": 127,
-          "label": "Effect",
-          "index": 1
-        }
-      ]
-    },
-    {
-      "id": 22,
-      "items": [
-        {
-          "value": 0,
-          "label": "1/32",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "1/16",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "2/16",
-          "index": 2
-        },
-        {
-          "value": 3,
-          "label": "3/16",
-          "index": 3
-        },
-        {
-          "value": 4,
-          "label": "4/16",
-          "index": 4
-        },
-        {
-          "value": 5,
-          "label": "5/16",
-          "index": 5
-        }
-      ]
-    },
-    {
-      "id": 23,
-      "items": [
-        {
-          "value": 0,
-          "label": "1/4",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "2/4",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "3/4",
-          "index": 2
-        },
-        {
-          "value": 3,
-          "label": "4/4",
-          "index": 3
-        },
-        {
-          "value": 4,
-          "label": "4/3",
-          "index": 4
-        },
-        {
-          "value": 5,
-          "label": "4/2",
-          "index": 5
-        },
-        {
-          "value": 6,
-          "label": "4/1",
-          "index": 6
-        }
-      ]
-    },
-    {
-      "id": 24,
-      "items": [
-        {
-          "value": 1,
-          "label": "Reverb",
-          "index": 0
-        },
-        {
-          "value": 2,
-          "label": "Feedback 1",
-          "index": 1
-        },
-        {
-          "value": 3,
-          "label": "Feedback 2",
-          "index": 2
-        }
-      ]
-    },
-    {
-      "id": 25,
-      "items": [
-        {
-          "value": 0,
-          "label": "Off",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "1/64",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "1/32",
-          "index": 2
-        },
-        {
-          "value": 11,
-          "label": "1/24",
-          "index": 3
-        },
-        {
-          "value": 7,
-          "label": "3/64",
-          "index": 4
-        },
-        {
-          "value": 3,
-          "label": "1/16",
-          "index": 5
-        },
-        {
-          "value": 12,
-          "label": "1/12",
-          "index": 6
-        },
-        {
-          "value": 8,
-          "label": "3/32",
-          "index": 7
-        },
-        {
-          "value": 4,
-          "label": "1/8",
-          "index": 8
-        },
-        {
-          "value": 13,
-          "label": "1/6",
-          "index": 9
-        },
-        {
-          "value": 9,
-          "label": "3/16",
-          "index": 10
-        },
-        {
-          "value": 5,
-          "label": "1/4",
-          "index": 11
-        },
-        {
-          "value": 14,
-          "label": "1/3",
-          "index": 12
-        },
-        {
-          "value": 10,
-          "label": "3/8",
-          "index": 13
-        },
-        {
-          "value": 6,
-          "label": "1/2",
-          "index": 14
-        },
-        {
-          "value": 15,
-          "label": "2/3",
-          "index": 15
-        },
-        {
-          "value": 16,
-          "label": "3/4",
-          "index": 16
-        }
-      ]
-    },
-    {
-      "id": 26,
-      "items": [
-        {
-          "value": 0,
-          "label": "Ambience",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "Small Room",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "Large Room",
-          "index": 2
-        },
-        {
-          "value": 3,
-          "label": "Hall",
-          "index": 3
-        }
-      ]
-    },
-    {
-      "id": 27,
-      "items": [
-        {
-          "value": 0,
-          "label": "Off",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "In L",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "In L+R",
-          "index": 2
-        },
-        {
-          "value": 3,
-          "label": "In R",
-          "index": 3
-        }
-      ]
-    },
-    {
-      "id": 28,
-      "items": [
-        {
-          "value": 0,
-          "label": "Low Pass",
-          "index": 0
-        },
-        {
-          "value": 127,
-          "label": "High Pass",
-          "index": 1
-        }
-      ]
-    },
-    {
-      "id": 29,
-      "items": [
-        {
-          "value": 0,
-          "label": "Off",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "Ring Modulator",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "Freq Shifter",
-          "index": 2
-        },
-        {
-          "value": 3,
-          "label": "Vowel Filter",
-          "index": 3
-        },
-        {
-          "value": 4,
-          "label": "Comb Filter",
-          "index": 4
-        },
-        {
-          "value": 5,
-          "label": "1 Pole XFade",
-          "index": 5
-        },
-        {
-          "value": 6,
-          "label": "2 Pole XFade",
-          "index": 6
-        },
-        {
-          "value": 7,
-          "label": "4 Pole XFade",
-          "index": 7
-        },
-        {
-          "value": 8,
-          "label": "6 Pole XFade",
-          "index": 8
-        },
-        {
-          "value": 9,
-          "label": "LP VariSlope",
-          "index": 9
-        },
-        {
-          "value": 10,
-          "label": "HP VariSlope",
-          "index": 10
-        },
-        {
-          "value": 11,
-          "label": "BP VariSlope",
-          "index": 11
-        }
-      ]
-    },
-    {
-      "id": 30,
-      "items": [
-        {
-          "value": 0,
-          "label": "Off",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "Oscillator",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "Osc Hold",
-          "index": 2
-        },
-        {
-          "value": 3,
-          "label": "Noise",
-          "index": 3
-        },
-        {
-          "value": 4,
-          "label": "In L",
-          "index": 4
-        },
-        {
-          "value": 5,
-          "label": "In L+R",
-          "index": 5
-        },
-        {
-          "value": 6,
-          "label": "In R",
-          "index": 6
-        }
-      ]
-    },
-    {
-      "id": 31,
-      "items": [
-        {
-          "value": 0,
-          "label": "RAM A",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "RAM B",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "RAM C",
-          "index": 2
-        },
-        {
-          "value": 3,
-          "label": "RAM D",
-          "index": 3
-        },
-        {
-          "value": 4,
-          "label": "ROM A",
-          "index": 4
-        },
-        {
-          "value": 5,
-          "label": "ROM B",
-          "index": 5
-        },
-        {
-          "value": 6,
-          "label": "ROM C",
-          "index": 6
-        },
-        {
-          "value": 7,
-          "label": "ROM D",
-          "index": 7
-        },
-        {
-          "value": 8,
-          "label": "ROM E",
-          "index": 8
-        },
-        {
-          "value": 9,
-          "label": "ROM F",
-          "index": 9
-        },
-        {
-          "value": 10,
-          "label": "ROM G",
-          "index": 10
-        },
-        {
-          "value": 11,
-          "label": "ROM H",
-          "index": 11
-        },
-        {
-          "value": 12,
-          "label": "ROM I",
-          "index": 12
-        },
-        {
-          "value": 13,
-          "label": "ROM J",
-          "index": 13
-        },
-        {
-          "value": 14,
-          "label": "ROM K",
-          "index": 14
-        },
-        {
-          "value": 15,
-          "label": "ROM L",
-          "index": 15
-        },
-        {
-          "value": 16,
-          "label": "ROM M",
-          "index": 16
-        },
-        {
-          "value": 17,
-          "label": "ROM N",
-          "index": 17
-        },
-        {
-          "value": 18,
-          "label": "ROM O",
-          "index": 18
-        },
-        {
-          "value": 19,
-          "label": "ROM P",
-          "index": 19
-        },
-        {
-          "value": 20,
-          "label": "ROM Q",
-          "index": 20
-        },
-        {
-          "value": 21,
-          "label": "ROM R",
-          "index": 21
-        },
-        {
-          "value": 22,
-          "label": "ROM S",
-          "index": 22
-        },
-        {
-          "value": 23,
-          "label": "ROM T",
-          "index": 23
-        },
-        {
-          "value": 24,
-          "label": "ROM U",
-          "index": 24
-        },
-        {
-          "value": 25,
-          "label": "ROM V",
-          "index": 25
-        },
-        {
-          "value": 26,
-          "label": "ROM W",
-          "index": 26
-        },
-        {
-          "value": 27,
-          "label": "ROM X",
-          "index": 27
-        },
-        {
-          "value": 28,
-          "label": "ROM Y",
-          "index": 28
-        },
-        {
-          "value": 29,
-          "label": "ROM Z",
-          "index": 29
-        }
-      ]
-    },
-    {
-      "id": 32,
-      "items": [
-        {
-          "value": 0,
-          "label": "Off",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "Dynamic",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "Static",
-          "index": 2
-        }
-      ]
-    },
-    {
-      "id": 33,
-      "items": [
-        {
-          "value": 0,
-          "label": "Left",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "L+R",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "Right",
-          "index": 2
-        }
-      ]
-    },
-    {
-      "id": 34,
-      "items": [
-        {
-          "value": 0,
-          "label": "Off",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "Out 1 L",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "Out 1 L+R",
-          "index": 2
-        },
-        {
-          "value": 3,
-          "label": "Out 1 R",
-          "index": 3
-        },
-        {
-          "value": 4,
-          "label": "Out 2 L",
-          "index": 4
-        },
-        {
-          "value": 5,
-          "label": "Out 2 L+R",
-          "index": 5
-        },
-        {
-          "value": 6,
-          "label": "Out 2 R",
-          "index": 6
-        },
-        {
-          "value": 7,
-          "label": "Out 3 L",
-          "index": 7
-        },
-        {
-          "value": 8,
-          "label": "Out 3 L+R",
-          "index": 8
-        },
-        {
-          "value": 9,
-          "label": "Out 3 R",
-          "index": 9
         }
       ]
     },
@@ -11247,6 +11258,83 @@
       ]
     },
     {
+      "id": 65,
+      "type": "fader",
+      "name": "PART",
+      "color": "F49500",
+      "bounds": [
+        680,
+        392,
+        146,
+        56
+      ],
+      "pageId": 2,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "7D",
+              "20",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 999,
+            "min": 1,
+            "max": 16
+          },
+          "min": 1,
+          "max": 16,
+          "defaultValue": 1
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "type": "fader",
+      "name": "BANK",
+      "color": "F49500",
+      "bounds": [
+        850,
+        392,
+        146,
+        56
+      ],
+      "pageId": 2,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 0,
+            "min": 0,
+            "max": 29
+          },
+          "overlayId": 9,
+          "id": "value"
+        }
+      ]
+    },
+    {
       "id": 67,
       "type": "adsr",
       "name": "AMPLITUDE",
@@ -11524,6 +11612,38 @@
       ]
     },
     {
+      "id": 72,
+      "type": "fader",
+      "name": "PROGRAM",
+      "color": "F49500",
+      "bounds": [
+        850,
+        480,
+        146,
+        56
+      ],
+      "pageId": 2,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "program",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 1003,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
       "id": 73,
       "type": "list",
       "name": "CLOCK",
@@ -11566,7 +11686,7 @@
             "parameterNumber": 146,
             "deviceId": 1
           },
-          "overlayId": 9,
+          "overlayId": 10,
           "id": "value"
         }
       ]
@@ -11634,7 +11754,7 @@
             "max": 67,
             "deviceId": 1
           },
-          "overlayId": 10,
+          "overlayId": 11,
           "id": "value"
         }
       ]
@@ -11704,7 +11824,7 @@
           },
           "min": 0,
           "max": 1,
-          "overlayId": 11,
+          "overlayId": 12,
           "id": "value"
         }
       ]
@@ -11997,7 +12117,7 @@
             "parameterNumber": 147,
             "deviceId": 1
           },
-          "overlayId": 9,
+          "overlayId": 10,
           "id": "value"
         }
       ]
@@ -12068,7 +12188,7 @@
           "min": 0,
           "max": 67,
           "defaultValue": 0,
-          "overlayId": 10,
+          "overlayId": 11,
           "id": "value"
         }
       ]
@@ -12139,7 +12259,7 @@
           "min": 0,
           "max": 1,
           "defaultValue": 0,
-          "overlayId": 11,
+          "overlayId": 12,
           "id": "value"
         }
       ]
@@ -12435,7 +12555,7 @@
           "min": 0,
           "max": 21,
           "defaultValue": 0,
-          "overlayId": 9,
+          "overlayId": 10,
           "id": "value"
         }
       ]
@@ -12536,7 +12656,7 @@
           "min": 0,
           "max": 67,
           "defaultValue": 0,
-          "overlayId": 10,
+          "overlayId": 11,
           "id": "value"
         }
       ]
@@ -12634,7 +12754,7 @@
           "min": 0,
           "max": 1,
           "defaultValue": 0,
-          "overlayId": 11,
+          "overlayId": 12,
           "id": "value"
         }
       ]
@@ -12736,7 +12856,7 @@
           "min": 0,
           "max": 127,
           "defaultValue": 0,
-          "overlayId": 12
+          "overlayId": 13
         }
       ]
     },
@@ -12837,7 +12957,7 @@
           "min": 0,
           "max": 127,
           "defaultValue": 0,
-          "overlayId": 12
+          "overlayId": 13
         }
       ]
     },
@@ -12934,7 +13054,7 @@
             "parameterNumber": 139,
             "deviceId": 1
           },
-          "overlayId": 13,
+          "overlayId": 14,
           "id": "value"
         }
       ]
@@ -12989,2058 +13109,6 @@
       ]
     },
     {
-      "id": 218,
-      "type": "list",
-      "name": "SOURCE",
-      "color": "F49500",
-      "bounds": [
-        170,
-        40,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 2,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "40",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 192,
-            "min": 0,
-            "max": 39
-          },
-          "overlayId": 14,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 219,
-      "type": "list",
-      "name": "TARGET 1",
-      "color": "F45C51",
-      "bounds": [
-        340,
-        40,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 3,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "41",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 193,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 220,
-      "type": "list",
-      "name": "TARGET 2",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        40,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 4,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "5A",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 347,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 221,
-      "type": "list",
-      "name": "TARGET 3",
-      "color": "03A598",
-      "bounds": [
-        680,
-        40,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 5,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "5C",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 349,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 225,
-      "type": "fader",
-      "name": "AMOUNT 1",
-      "color": "F45C51",
-      "bounds": [
-        340,
-        128,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 9,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "42",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 194,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 226,
-      "type": "fader",
-      "name": "AMOUNT 2",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        128,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 10,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "5B",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 348,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 227,
-      "type": "fader",
-      "name": "AMOUNT 3",
-      "color": "03A598",
-      "bounds": [
-        680,
-        128,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 11,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "5D",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 350,
-            "min": 0,
-            "max": 127
-          },
-          "min": -63,
-          "max": 64,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 230,
-      "type": "list",
-      "name": "SOURCE",
-      "color": "F49500",
-      "bounds": [
-        170,
-        216,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 2,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "43",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "min": 0,
-            "max": 39,
-            "parameterNumber": 195,
-            "deviceId": 1
-          },
-          "overlayId": 14
-        }
-      ]
-    },
-    {
-      "id": 231,
-      "type": "list",
-      "name": "TARGET 1",
-      "color": "F45C51",
-      "bounds": [
-        340,
-        216,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 3,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "44",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 196,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 232,
-      "type": "list",
-      "name": "TARGET 2",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        216,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 4,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "46",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 198,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 233,
-      "type": "list",
-      "name": "TARGET 3",
-      "color": "03A598",
-      "bounds": [
-        680,
-        216,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 5,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "5E",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 351,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 237,
-      "type": "fader",
-      "name": "AMOUNT 1",
-      "color": "F45C51",
-      "bounds": [
-        340,
-        304,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 9,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "45",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 197,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 238,
-      "type": "fader",
-      "name": "AMOUNT 2",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        304,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 10,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "47",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 199,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 239,
-      "type": "fader",
-      "name": "AMOUNT 3",
-      "color": "03A598",
-      "bounds": [
-        680,
-        304,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 11,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "5F",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 352,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0
-        }
-      ]
-    },
-    {
-      "id": 242,
-      "type": "list",
-      "name": "SOURCE",
-      "color": "F49500",
-      "bounds": [
-        170,
-        392,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 2,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "48",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "min": 0,
-            "max": 39,
-            "parameterNumber": 200,
-            "deviceId": 1
-          },
-          "overlayId": 14
-        }
-      ]
-    },
-    {
-      "id": 243,
-      "type": "list",
-      "name": "TARGET 1",
-      "color": "F45C51",
-      "bounds": [
-        340,
-        392,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 3,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "49",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 201,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 244,
-      "type": "list",
-      "name": "TARGET 2",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        392,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 4,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "4B",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 203,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 245,
-      "type": "list",
-      "name": "TARGET 3",
-      "color": "03A598",
-      "bounds": [
-        680,
-        392,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 5,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "4D",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 205,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 249,
-      "type": "fader",
-      "name": "AMOUNT 1",
-      "color": "F45C51",
-      "bounds": [
-        340,
-        480,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 9,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "4A",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 202,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 250,
-      "type": "fader",
-      "name": "AMOUNT 2",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        480,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 10,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "4C",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 204,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 251,
-      "type": "fader",
-      "name": "AMOUNT 3",
-      "color": "03A598",
-      "bounds": [
-        680,
-        480,
-        146,
-        56
-      ],
-      "pageId": 7,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 11,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "4E",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 206,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 254,
-      "type": "list",
-      "name": "SOURCE",
-      "color": "F49500",
-      "bounds": [
-        170,
-        40,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 2,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "67",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "min": 0,
-            "max": 39,
-            "parameterNumber": 231,
-            "deviceId": 1
-          },
-          "overlayId": 14,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 255,
-      "type": "list",
-      "name": "TARGET 1",
-      "color": "F45C51",
-      "bounds": [
-        340,
-        40,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 3,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "68",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 232,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 256,
-      "type": "list",
-      "name": "TARGET 2",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        40,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 4,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "60",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 353,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 257,
-      "type": "list",
-      "name": "TARGET 3",
-      "color": "03A598",
-      "bounds": [
-        680,
-        40,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 5,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "62",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 355,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 261,
-      "type": "fader",
-      "name": "AMOUNT 1",
-      "color": "F45C51",
-      "bounds": [
-        340,
-        128,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 9,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "69",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 233,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 262,
-      "type": "fader",
-      "name": "AMOUNT 2",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        128,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 10,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "61",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 354,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 263,
-      "type": "fader",
-      "name": "AMOUNT 3",
-      "color": "03A598",
-      "bounds": [
-        680,
-        128,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 11,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "63",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 356,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 266,
-      "type": "list",
-      "name": "SOURCE",
-      "color": "F49500",
-      "bounds": [
-        170,
-        216,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 2,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "6A",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "min": 0,
-            "max": 39,
-            "parameterNumber": 234,
-            "deviceId": 1
-          },
-          "overlayId": 14,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 267,
-      "type": "list",
-      "name": "TARGET 1",
-      "color": "F45C51",
-      "bounds": [
-        340,
-        216,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 3,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "6B",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 235,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 268,
-      "type": "list",
-      "name": "TARGET 2",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        216,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 4,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "64",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 357,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 269,
-      "type": "list",
-      "name": "TARGET 3",
-      "color": "03A598",
-      "bounds": [
-        680,
-        216,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 5,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "66",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 359,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 273,
-      "type": "fader",
-      "name": "AMOUNT 1",
-      "color": "F45C51",
-      "bounds": [
-        340,
-        304,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 9,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "6C",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 236,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 274,
-      "type": "fader",
-      "name": "AMOUNT 2",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        304,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 10,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "65",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 358,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 275,
-      "type": "fader",
-      "name": "AMOUNT 3",
-      "color": "03A598",
-      "bounds": [
-        680,
-        304,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 11,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "67",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 360,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 278,
-      "type": "list",
-      "name": "SOURCE",
-      "color": "F49500",
-      "bounds": [
-        170,
-        392,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 2,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "6D",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "min": 0,
-            "max": 39,
-            "parameterNumber": 237,
-            "deviceId": 1
-          },
-          "overlayId": 14,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 279,
-      "type": "list",
-      "name": "TARGET 1",
-      "color": "F45C51",
-      "bounds": [
-        340,
-        392,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 3,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "6E",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 238,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 280,
-      "type": "list",
-      "name": "TARGET 2",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        392,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 4,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "68",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 361,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 281,
-      "type": "list",
-      "name": "TARGET 3",
-      "color": "03A598",
-      "bounds": [
-        680,
-        392,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 5,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "6A",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 363,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
-      "id": 285,
-      "type": "fader",
-      "name": "AMOUNT 1",
-      "color": "F45C51",
-      "bounds": [
-        340,
-        480,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 9,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "71",
-              "00",
-              "6F",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 239,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 286,
-      "type": "fader",
-      "name": "AMOUNT 2",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        480,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 10,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "69",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 362,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 287,
-      "type": "fader",
-      "name": "AMOUNT 3",
-      "color": "03A598",
-      "bounds": [
-        680,
-        480,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 11,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "sysex",
-            "deviceId": 1,
-            "data": [
-              "F0",
-              "00",
-              "20",
-              "33",
-              "01",
-              "00",
-              "6E",
-              "00",
-              "6B",
-              {
-                "type": "value"
-              },
-              "F7"
-            ],
-            "parameterNumber": 364,
-            "min": 0,
-            "max": 127
-          },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
-          "id": "value"
-        }
-      ]
-    },
-    {
       "id": 109,
       "type": "list",
       "name": "TYPE",
@@ -15083,7 +13151,7 @@
             "parameterNumber": 283,
             "deviceId": 1
           },
-          "overlayId": 16,
+          "overlayId": 15,
           "id": "value"
         }
       ]
@@ -15228,7 +13296,7 @@
             "parameterNumber": 228,
             "deviceId": 1
           },
-          "overlayId": 17,
+          "overlayId": 16,
           "id": "value"
         }
       ]
@@ -15461,7 +13529,7 @@
             "max": 6,
             "deviceId": 1
           },
-          "overlayId": 18,
+          "overlayId": 17,
           "id": "value"
         }
       ]
@@ -15660,7 +13728,7 @@
             "max": 5,
             "deviceId": 1
           },
-          "overlayId": 19,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -15772,7 +13840,7 @@
             "parameterNumber": 267,
             "deviceId": 1
           },
-          "overlayId": 20,
+          "overlayId": 19,
           "id": "value"
         }
       ]
@@ -15805,7 +13873,7 @@
             "max": 127,
             "deviceId": 1
           },
-          "overlayId": 21,
+          "overlayId": 20,
           "id": "value"
         }
       ]
@@ -15888,7 +13956,7 @@
             "parameterNumber": 270,
             "deviceId": 1
           },
-          "overlayId": 22,
+          "overlayId": 21,
           "id": "value"
         }
       ]
@@ -15936,7 +14004,7 @@
             "parameterNumber": 271,
             "deviceId": 1
           },
-          "overlayId": 22,
+          "overlayId": 21,
           "id": "value"
         }
       ]
@@ -16132,7 +14200,7 @@
             "parameterNumber": 269,
             "deviceId": 1
           },
-          "overlayId": 23,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -16767,7 +14835,7 @@
             "parameterNumber": 258,
             "deviceId": 1
           },
-          "overlayId": 24,
+          "overlayId": 23,
           "id": "value"
         }
       ]
@@ -16815,7 +14883,7 @@
             "parameterNumber": 259,
             "deviceId": 1
           },
-          "overlayId": 21,
+          "overlayId": 20,
           "id": "value"
         }
       ]
@@ -16863,7 +14931,7 @@
             "parameterNumber": 265,
             "deviceId": 1
           },
-          "overlayId": 25,
+          "overlayId": 24,
           "id": "value"
         }
       ]
@@ -17058,7 +15126,7 @@
             "parameterNumber": 260,
             "deviceId": 1
           },
-          "overlayId": 26,
+          "overlayId": 25,
           "id": "value"
         }
       ]
@@ -17298,7 +15366,7 @@
             "parameterNumber": 166,
             "deviceId": 1
           },
-          "overlayId": 27,
+          "overlayId": 26,
           "id": "value"
         }
       ]
@@ -17495,7 +15563,7 @@
             "parameterNumber": 280,
             "deviceId": 1
           },
-          "overlayId": 28,
+          "overlayId": 27,
           "id": "value"
         }
       ]
@@ -17543,7 +15611,7 @@
             "parameterNumber": 276,
             "deviceId": 1
           },
-          "overlayId": 29,
+          "overlayId": 28,
           "id": "value"
         }
       ]
@@ -17841,7 +15909,7 @@
             "parameterNumber": 167,
             "deviceId": 1
           },
-          "overlayId": 30,
+          "overlayId": 29,
           "id": "value"
         }
       ]
@@ -18007,7 +16075,7 @@
             "min": 0,
             "max": 29
           },
-          "overlayId": 31,
+          "overlayId": 9,
           "id": "value"
         }
       ]
@@ -18845,7 +16913,7 @@
             "parameterNumber": 509,
             "deviceId": 1
           },
-          "overlayId": 32,
+          "overlayId": 30,
           "id": "value"
         }
       ]
@@ -18893,7 +16961,7 @@
             "parameterNumber": 510,
             "deviceId": 1
           },
-          "overlayId": 33,
+          "overlayId": 31,
           "id": "value"
         }
       ]
@@ -18940,7 +17008,7 @@
             ],
             "parameterNumber": 2000
           },
-          "overlayId": 34
+          "overlayId": 32
         }
       ]
     },
@@ -18995,10 +17063,2062 @@
       ]
     },
     {
+      "id": 218,
+      "type": "list",
+      "name": "SOURCE",
+      "color": "F49500",
+      "bounds": [
+        170,
+        40,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "40",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 192,
+            "min": 0,
+            "max": 39
+          },
+          "overlayId": 33,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 219,
+      "type": "list",
+      "name": "TARGET 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        40,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "41",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 193,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 220,
+      "type": "list",
+      "name": "TARGET 2",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        40,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "5A",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 347,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 221,
+      "type": "list",
+      "name": "TARGET 3",
+      "color": "03A598",
+      "bounds": [
+        680,
+        40,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "5C",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 349,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 225,
+      "type": "fader",
+      "name": "AMOUNT 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        128,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "42",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 194,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 226,
+      "type": "fader",
+      "name": "AMOUNT 2",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        128,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "5B",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 348,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 227,
+      "type": "fader",
+      "name": "AMOUNT 3",
+      "color": "03A598",
+      "bounds": [
+        680,
+        128,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "5D",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 350,
+            "min": 0,
+            "max": 127
+          },
+          "min": -63,
+          "max": 64,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 230,
+      "type": "list",
+      "name": "SOURCE",
+      "color": "F49500",
+      "bounds": [
+        170,
+        216,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "43",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 39,
+            "parameterNumber": 195,
+            "deviceId": 1
+          },
+          "overlayId": 33
+        }
+      ]
+    },
+    {
+      "id": 231,
+      "type": "list",
+      "name": "TARGET 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        216,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "44",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 196,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 232,
+      "type": "list",
+      "name": "TARGET 2",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "46",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 198,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 233,
+      "type": "list",
+      "name": "TARGET 3",
+      "color": "03A598",
+      "bounds": [
+        680,
+        216,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "5E",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 351,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 237,
+      "type": "fader",
+      "name": "AMOUNT 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        304,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "45",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 197,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 238,
+      "type": "fader",
+      "name": "AMOUNT 2",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        304,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "47",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 199,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 239,
+      "type": "fader",
+      "name": "AMOUNT 3",
+      "color": "03A598",
+      "bounds": [
+        680,
+        304,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "5F",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 352,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0
+        }
+      ]
+    },
+    {
+      "id": 242,
+      "type": "list",
+      "name": "SOURCE",
+      "color": "F49500",
+      "bounds": [
+        170,
+        392,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "48",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 39,
+            "parameterNumber": 200,
+            "deviceId": 1
+          },
+          "overlayId": 33
+        }
+      ]
+    },
+    {
+      "id": 243,
+      "type": "list",
+      "name": "TARGET 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        392,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "49",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 201,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 244,
+      "type": "list",
+      "name": "TARGET 2",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        392,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "4B",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 203,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 245,
+      "type": "list",
+      "name": "TARGET 3",
+      "color": "03A598",
+      "bounds": [
+        680,
+        392,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "4D",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 205,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 249,
+      "type": "fader",
+      "name": "AMOUNT 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        480,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "4A",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 202,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 250,
+      "type": "fader",
+      "name": "AMOUNT 2",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        480,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "4C",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 204,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 251,
+      "type": "fader",
+      "name": "AMOUNT 3",
+      "color": "03A598",
+      "bounds": [
+        680,
+        480,
+        146,
+        56
+      ],
+      "pageId": 7,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "4E",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 206,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 254,
+      "type": "list",
+      "name": "SOURCE",
+      "color": "F49500",
+      "bounds": [
+        170,
+        40,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "67",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 39,
+            "parameterNumber": 231,
+            "deviceId": 1
+          },
+          "overlayId": 33,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 255,
+      "type": "list",
+      "name": "TARGET 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        40,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "68",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 232,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 256,
+      "type": "list",
+      "name": "TARGET 2",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        40,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "60",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 353,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 257,
+      "type": "list",
+      "name": "TARGET 3",
+      "color": "03A598",
+      "bounds": [
+        680,
+        40,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "62",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 355,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 261,
+      "type": "fader",
+      "name": "AMOUNT 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        128,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "69",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 233,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 262,
+      "type": "fader",
+      "name": "AMOUNT 2",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        128,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "61",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 354,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 263,
+      "type": "fader",
+      "name": "AMOUNT 3",
+      "color": "03A598",
+      "bounds": [
+        680,
+        128,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "63",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 356,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 266,
+      "type": "list",
+      "name": "SOURCE",
+      "color": "F49500",
+      "bounds": [
+        170,
+        216,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "6A",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 39,
+            "parameterNumber": 234,
+            "deviceId": 1
+          },
+          "overlayId": 33,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 267,
+      "type": "list",
+      "name": "TARGET 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        216,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "6B",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 235,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 268,
+      "type": "list",
+      "name": "TARGET 2",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "64",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 357,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 269,
+      "type": "list",
+      "name": "TARGET 3",
+      "color": "03A598",
+      "bounds": [
+        680,
+        216,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "66",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 359,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 273,
+      "type": "fader",
+      "name": "AMOUNT 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        304,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "6C",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 236,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 274,
+      "type": "fader",
+      "name": "AMOUNT 2",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        304,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "65",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 358,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 275,
+      "type": "fader",
+      "name": "AMOUNT 3",
+      "color": "03A598",
+      "bounds": [
+        680,
+        304,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "67",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 360,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 278,
+      "type": "list",
+      "name": "SOURCE",
+      "color": "F49500",
+      "bounds": [
+        170,
+        392,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "6D",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "min": 0,
+            "max": 39,
+            "parameterNumber": 237,
+            "deviceId": 1
+          },
+          "overlayId": 33,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 279,
+      "type": "list",
+      "name": "TARGET 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        392,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "6E",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 238,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 280,
+      "type": "list",
+      "name": "TARGET 2",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        392,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "68",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 361,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 281,
+      "type": "list",
+      "name": "TARGET 3",
+      "color": "03A598",
+      "bounds": [
+        680,
+        392,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "6A",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 363,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 34
+        }
+      ]
+    },
+    {
+      "id": 285,
+      "type": "fader",
+      "name": "AMOUNT 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        480,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "71",
+              "00",
+              "6F",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 239,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 286,
+      "type": "fader",
+      "name": "AMOUNT 2",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        480,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "69",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 362,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 287,
+      "type": "fader",
+      "name": "AMOUNT 3",
+      "color": "03A598",
+      "bounds": [
+        680,
+        480,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 1,
+            "data": [
+              "F0",
+              "00",
+              "20",
+              "33",
+              "01",
+              "00",
+              "6E",
+              "00",
+              "6B",
+              {
+                "type": "value"
+              },
+              "F7"
+            ],
+            "parameterNumber": 364,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
       "id": 289,
       "type": "fader",
       "name": "MULTI TEMPO",
-      "color": "FFFFFF",
+      "color": "C44795",
       "bounds": [
         0,
         40,
@@ -19047,7 +19167,7 @@
       "id": 290,
       "type": "fader",
       "name": "VOLUME",
-      "color": "FFFFFF",
+      "color": "C44795",
       "bounds": [
         170,
         40,
@@ -19079,7 +19199,7 @@
       "id": 291,
       "type": "fader",
       "name": "PANORAMA",
-      "color": "FFFFFF",
+      "color": "C44795",
       "bounds": [
         340,
         40,
@@ -19114,7 +19234,7 @@
       "id": 292,
       "type": "fader",
       "name": "TRANSPOSE",
-      "color": "FFFFFF",
+      "color": "C44795",
       "bounds": [
         510,
         40,
@@ -19149,7 +19269,7 @@
       "id": 293,
       "type": "list",
       "name": "SMOOTH MODE",
-      "color": "FFFFFF",
+      "color": "C44795",
       "bounds": [
         680,
         40,
@@ -19229,7 +19349,7 @@
       "id": 295,
       "type": "fader",
       "name": "DOWN",
-      "color": "FFFFFF",
+      "color": "F45C51",
       "bounds": [
         0,
         128,
@@ -19279,7 +19399,7 @@
       "id": 296,
       "type": "fader",
       "name": "UP",
-      "color": "FFFFFF",
+      "color": "F45C51",
       "bounds": [
         170,
         128,
@@ -19329,7 +19449,7 @@
       "id": 297,
       "type": "list",
       "name": "SCALE",
-      "color": "FFFFFF",
+      "color": "F45C51",
       "bounds": [
         340,
         128,
@@ -19377,7 +19497,7 @@
       "id": 298,
       "type": "fader",
       "name": "PITCH BEND",
-      "color": "FFFFFF",
+      "color": "F49500",
       "bounds": [
         510,
         128,
@@ -19413,7 +19533,7 @@
       "id": 299,
       "type": "fader",
       "name": "MODULATION",
-      "color": "FFFFFF",
+      "color": "F49500",
       "bounds": [
         680,
         128,
@@ -19675,7 +19795,7 @@
     {
       "id": 305,
       "type": "list",
-      "name": "Resolution",
+      "name": "RESOLUTION",
       "color": "03A598",
       "bounds": [
         680,
@@ -20020,7 +20140,7 @@
       "id": 313,
       "type": "list",
       "name": "VOICES",
-      "color": "FFFFFF",
+      "color": "529DEC",
       "bounds": [
         0,
         392,
@@ -20068,7 +20188,7 @@
       "id": 314,
       "type": "fader",
       "name": "DETUNE",
-      "color": "FFFFFF",
+      "color": "529DEC",
       "bounds": [
         170,
         392,
@@ -20115,7 +20235,7 @@
       "id": 315,
       "type": "fader",
       "name": "PAN SPREAD",
-      "color": "FFFFFF",
+      "color": "529DEC",
       "bounds": [
         340,
         392,
@@ -20164,7 +20284,7 @@
       "id": 316,
       "type": "fader",
       "name": "LFO PHASE",
-      "color": "FFFFFF",
+      "color": "529DEC",
       "bounds": [
         510,
         392,

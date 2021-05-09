@@ -474,6 +474,13 @@ module.exports = {
           resolution: 64,
           default: 0,
         },
+        mute: {
+          nrpn: 66,
+          min: 0,
+          max: 1,
+          resolution: 64,
+          default: 0,
+        },
         port: {
           nrpn: 51,
           min: 0,
@@ -508,6 +515,13 @@ module.exports = {
           nrpn: 65,
           min: 0,
           max: 63,
+          resolution: 64,
+          default: 0,
+        },
+        mute: {
+          nrpn: 67,
+          min: 0,
+          max: 1,
           resolution: 64,
           default: 0,
         },

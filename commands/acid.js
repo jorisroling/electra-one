@@ -136,6 +136,7 @@ class State {
     this.values.device = {
       A: {
         device: 0,
+        mute: 0,
         port: 0,
         portName: null,
         channel: 1,
@@ -144,6 +145,7 @@ class State {
       },
       B: {
         device: 0,
+        mute: 0,
         port: 0,
         portName: null,
         channel: 1,
@@ -453,7 +455,7 @@ class State {
 
     // PROGRAM
     ['A','B'].forEach( dev => {
-      ['device','port','channel','bank','program'].forEach( key => {
+      ['device','mute','port','channel','bank','program'].forEach( key => {
         sendNRPN(midiOutputName,_.get(config.acid.device,`${dev}.${key}.nrpn`),1,_.get(this.device,`${dev}.${key}`),0)
       })
     })
@@ -561,9 +563,9 @@ class State {
           const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
           if (msb && msg.controller == 6) {
 
-/*            this.reset()
+            this.reset()
             this.sendValues()
-*/
+
             debug('reset')
           }
         }
@@ -688,7 +690,7 @@ class State {
         }
 
         ['A','B'].forEach( dev => {
-          ['device','port','channel','bank','program'].forEach( key => {
+          ['device','mute','port','channel','bank','program'].forEach( key => {
             if (msb == _.get(config.acid.device,`${dev}.${key}.nrpn`) && (lsb >= 1 && lsb <= 8)) {
               if (msg.controller == 6) { //MSB
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
@@ -747,7 +749,9 @@ class State {
                   }
                   debug('device.%s.%s: %y %s', dev, key, _.get(this.device,`${dev}.${key}`),names.length ? ` [ ${names.join(', ')} ]` : '')
 
-                  this.sendProgramChange(dev)
+                  if (key == 'bank' || key == 'program') {
+                    this.sendProgramChange(dev)
+                  }
                   this.write(true) // write because device values are deep values
                 }
               }
@@ -911,7 +915,7 @@ function acidSequencer(name, sub, options) {
               if (state.lfo[l].device.B) devs.push('B')
 
               devs.forEach( dev => {
-                if (state.device[dev].portName) {
+                if (!state.device[dev].mute && state.device[dev].portName) {
                   const channel = state.device[dev].channel - 1
                   const pth = `port_${state.device[dev].portName}.channel_${_.padStart(channel + 1,2,'0')}.controller_${_.padStart(state.lfo[l].control,3,'0')}`
                   const midiValue = Math.min(127,value)
@@ -947,7 +951,7 @@ function acidSequencer(name, sub, options) {
               const midiNoteFromBase = (midiNote + state.base) % 12
               const midiNoteBase =  midiNote - midiNoteFromBase
               if (scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
-                debug('scale: %s %y => %y',scaleMapping.name, midiNoteFromBase, scaleMapping.mapping[midiNoteFromBase])
+//                debug('scale: %s %y => %y',scaleMapping.name, midiNoteFromBase, scaleMapping.mapping[midiNoteFromBase])
                 midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - state.base
               }
               const rnd = getRandomInt(100)
@@ -957,7 +961,7 @@ function acidSequencer(name, sub, options) {
 
               const dev =  (midiNote <= state.split) ? (switchChannel ? 'B' : 'A') : (switchChannel ? 'A' : 'B')
 
-              if (state.device[dev].portName) {
+              if (!state.device[dev].mute && state.device[dev].portName) {
                 const output = Midi.output(state.device[dev].portName,true)
                 if (output) {
                   const channel = state.device[dev].channel - 1
