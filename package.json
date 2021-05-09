@@ -34,7 +34,6 @@
     "config/production.js",
     "config/develop.js",
     "lib/acid.js",
-    "lib/bacara.js",
     "lib/commands.js",
     "lib/devices.js",
     "lib/midi.js",

@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "Bacara Acid",
-  "projectId": "s3FJtXCLPkTk7F5yhHXM",
+  "projectId": "eJTQ1C3UJ6c3LxEeDFSj",
   "pages": [
     {
       "id": 1,
@@ -51,7 +51,7 @@
       "name": "Device A",
       "color": "F45C51",
       "bounds": [
-        0,
+        170,
         368,
         316,
         16
@@ -62,7 +62,7 @@
       "name": "Device B",
       "color": "529DEC",
       "bounds": [
-        340,
+        510,
         368,
         316,
         16
@@ -74,7 +74,16 @@
       "id": 17,
       "name": "Bacara Acid",
       "port": 2,
-      "channel": 1
+      "channel": 1,
+      "patch": [
+        {
+          "request": [
+            "7D",
+            "00",
+            "03"
+          ]
+        }
+      ]
     }
   ],
   "overlays": [
@@ -329,7 +338,7 @@
           "message": {
             "type": "nrpn",
             "deviceId": 17,
-            "lsbFirst": false,
+            "lsbFirst": true,
             "parameterNumber": 1153,
             "min": 100,
             "max": 500
@@ -413,9 +422,8 @@
     },
     {
       "id": 4,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "PREVIOUS",
+      "type": "fader",
+      "name": "OCTAVE",
       "color": "FFFFFF",
       "bounds": [
         510,
@@ -437,20 +445,21 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 1409,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 1921,
+            "min": 0,
+            "max": 127
           },
-          "defaultValue": "off",
+          "min": -100,
+          "max": 100,
+          "defaultValue": 0,
           "id": "value"
         }
       ]
     },
     {
       "id": 5,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "RESET",
+      "type": "fader",
+      "name": "SPLIT",
       "color": "FFFFFF",
       "bounds": [
         680,
@@ -472,19 +481,20 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 3073,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 2817,
+            "min": 0,
+            "max": 127
           },
-          "defaultValue": "off",
+          "defaultValue": 127,
           "id": "value"
         }
       ]
     },
     {
       "id": 6,
-      "type": "fader",
-      "name": "KILL STEPS",
+      "type": "pad",
+      "mode": "momentary",
+      "name": "PREVIOUS",
       "color": "FFFFFF",
       "bounds": [
         850,
@@ -506,19 +516,20 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 2177,
-            "min": 0,
-            "max": 16
+            "parameterNumber": 1409,
+            "onValue": 1,
+            "offValue": 0
           },
-          "defaultValue": 0,
+          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 7,
-      "type": "fader",
-      "name": "OCTAVE",
+      "type": "pad",
+      "mode": "momentary",
+      "name": "GENERATE",
       "color": "FFFFFF",
       "bounds": [
         0,
@@ -540,13 +551,11 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 1921,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 1281,
+            "onValue": 1,
+            "offValue": 0
           },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0,
+          "defaultValue": "off",
           "id": "value"
         }
       ]
@@ -588,7 +597,7 @@
     {
       "id": 9,
       "type": "fader",
-      "name": "SCALE",
+      "name": "KILL STEPS",
       "color": "FFFFFF",
       "bounds": [
         340,
@@ -610,20 +619,19 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 2433,
+            "parameterNumber": 2177,
             "min": 0,
-            "max": 36
+            "max": 16
           },
-          "overlayId": 1,
+          "defaultValue": 0,
           "id": "value"
         }
       ]
     },
     {
       "id": 10,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "NEXT",
+      "type": "fader",
+      "name": "KILL SHIFT",
       "color": "FFFFFF",
       "bounds": [
         510,
@@ -636,75 +644,6 @@
       "inputs": [
         {
           "potId": 10,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 1537,
-            "onValue": 1,
-            "offValue": 0
-          },
-          "defaultValue": "off",
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 11,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "GENERATE",
-      "color": "FFFFFF",
-      "bounds": [
-        680,
-        128,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 11,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 1281,
-            "onValue": 1,
-            "offValue": 0
-          },
-          "defaultValue": "off",
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 12,
-      "type": "fader",
-      "name": "KILL SHIFT",
-      "color": "FFFFFF",
-      "bounds": [
-        850,
-        128,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 12,
           "valueId": "value"
         }
       ],
@@ -726,12 +665,80 @@
       ]
     },
     {
-      "id": 13,
+      "id": 11,
       "type": "fader",
-      "name": "SHIFT",
+      "name": "DEVIATE",
       "color": "FFFFFF",
       "bounds": [
-        0,
+        680,
+        128,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2945,
+            "min": 0,
+            "max": 100
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "type": "pad",
+      "mode": "momentary",
+      "name": "NEXT",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        128,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 1537,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "type": "fader",
+      "name": "SCALE",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
         216,
         146,
         56
@@ -740,7 +747,74 @@
       "controlSetId": 2,
       "inputs": [
         {
-          "potId": 1,
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2433,
+            "min": 0,
+            "max": 36
+          },
+          "overlayId": 1,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "type": "fader",
+      "name": "BASE",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        216,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2561,
+            "min": 0,
+            "max": 11
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "type": "fader",
+      "name": "SHIFT",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
           "valueId": "value"
         }
       ],
@@ -762,13 +836,14 @@
       ]
     },
     {
-      "id": 14,
-      "type": "fader",
-      "name": "SPLIT",
+      "id": 24,
+      "type": "pad",
+      "mode": "momentary",
+      "name": "RESET",
       "color": "FFFFFF",
       "bounds": [
-        170,
-        216,
+        850,
+        304,
         146,
         56
       ],
@@ -776,7 +851,7 @@
       "controlSetId": 2,
       "inputs": [
         {
-          "potId": 2,
+          "potId": 12,
           "valueId": "value"
         }
       ],
@@ -786,88 +861,22 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 2817,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 3073,
+            "onValue": 1,
+            "offValue": 0
           },
-          "defaultValue": 127,
+          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
-      "id": 15,
-      "type": "fader",
-      "name": "DEVIATE",
-      "color": "FFFFFF",
-      "bounds": [
-        340,
-        216,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 3,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 2945,
-            "min": 0,
-            "max": 100
-          },
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 17,
-      "type": "fader",
-      "name": "BASE",
-      "color": "FFFFFF",
-      "bounds": [
-        680,
-        216,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 5,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 2561,
-            "min": 0,
-            "max": 11
-          },
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 25,
+      "id": 26,
       "type": "fader",
       "name": "PORT",
       "color": "F45C51",
       "bounds": [
-        0,
+        170,
         392,
         146,
         56
@@ -876,7 +885,7 @@
       "controlSetId": 3,
       "inputs": [
         {
-          "potId": 1,
+          "potId": 2,
           "valueId": "value"
         }
       ],
@@ -895,12 +904,12 @@
       ]
     },
     {
-      "id": 26,
+      "id": 27,
       "type": "fader",
       "name": "CHANNEL",
       "color": "F45C51",
       "bounds": [
-        170,
+        340,
         392,
         146,
         56
@@ -909,7 +918,7 @@
       "controlSetId": 3,
       "inputs": [
         {
-          "potId": 2,
+          "potId": 3,
           "valueId": "value"
         }
       ],
@@ -929,42 +938,9 @@
       ]
     },
     {
-      "id": 27,
-      "type": "fader",
-      "name": "PORT",
-      "color": "529DEC",
-      "bounds": [
-        340,
-        392,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 3,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 6786,
-            "min": 0,
-            "max": 63
-          },
-          "id": "value"
-        }
-      ]
-    },
-    {
       "id": 28,
       "type": "fader",
-      "name": "CHANNEL",
+      "name": "PORT",
       "color": "529DEC",
       "bounds": [
         510,
@@ -986,6 +962,39 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
+            "parameterNumber": 6786,
+            "min": 0,
+            "max": 63
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "type": "fader",
+      "name": "CHANNEL",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        392,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
             "parameterNumber": 6913,
             "min": 1,
             "max": 16
@@ -996,42 +1005,9 @@
       ]
     },
     {
-      "id": 31,
-      "type": "fader",
-      "name": "BANK",
-      "color": "F45C51",
-      "bounds": [
-        0,
-        480,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 7,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 6017,
-            "min": 0,
-            "max": 127
-          },
-          "id": "value"
-        }
-      ]
-    },
-    {
       "id": 32,
       "type": "fader",
-      "name": "PROGRAM",
+      "name": "BANK",
       "color": "F45C51",
       "bounds": [
         170,
@@ -1053,7 +1029,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6145,
+            "parameterNumber": 6017,
             "min": 0,
             "max": 127
           },
@@ -1064,8 +1040,8 @@
     {
       "id": 33,
       "type": "fader",
-      "name": "BANK",
-      "color": "529DEC",
+      "name": "PROGRAM",
+      "color": "F45C51",
       "bounds": [
         340,
         480,
@@ -1086,7 +1062,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6273,
+            "parameterNumber": 6145,
             "min": 0,
             "max": 127
           },
@@ -1097,7 +1073,7 @@
     {
       "id": 34,
       "type": "fader",
-      "name": "PROGRAM",
+      "name": "BANK",
       "color": "529DEC",
       "bounds": [
         510,
@@ -1110,6 +1086,39 @@
       "inputs": [
         {
           "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6273,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "type": "fader",
+      "name": "PROGRAM",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        480,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 11,
           "valueId": "value"
         }
       ],

@@ -14,8 +14,6 @@ const easymidi = require('easymidi')
 
 const Acid = require('../lib/acid')
 
-const Bacara = require('../lib/bacara')
-
 const Midi = require('../lib/midi')
 
 const _ = require('lodash')
@@ -68,7 +66,6 @@ class State {
     this.values.lastBut = 0
 
     this.values.size = 16
-    this.values.page = 0
 
     this.reset(false)
     this.read()
@@ -160,22 +157,6 @@ class State {
     this.genSounding()
     if (write) {
       this.write()
-    }
-  }
-
-  get page() {
-    return this.values.page
-  }
-  set page(value) {
-    if (!deepEqual(this.values.page,value,{strict:true})) {
-      this.values.page = value
-      this.write()
-
-      const midiOutput = Midi.output(midiOutputName,true)
-      if (midiOutput) {
-        midiOutput.send('program',{channel:config.acid.channel - 1,number:this.page})
-      }
-      this.sendValues()
     }
   }
 
@@ -441,21 +422,13 @@ class State {
   }
 
   sendValues() {
-    switch (this.page) {
-    case 0x00: // ACID Main
-      this.sendMainValues()
-      break;
-    case 0x01: // ACID LFO
-      this.sendLFOValues()
-      break;
-    case 0x02: // ACID Program
-      this.sendProgramValues()
-      break;
-    }
+    this.sendMainValues()
+    this.sendLFOValues()
+    this.sendProgramValues()
   }
 
   sendTopValues() {
-    sendNRPN(midiOutputName,config.acid.temperature.nrpn,1,(this.temperature * 100) >> 7,(this.temperature * 100) & 0xFF)
+    sendNRPN(midiOutputName,config.acid.temperature.nrpn,1,(this.temperature * 100) & 0xFF,(this.temperature * 100) >> 7)
     sendNRPN(midiOutputName,config.acid.split.nrpn,1,this.split,0)
     sendNRPN(midiOutputName,config.acid.deviate.nrpn,1,this.deviate,0)
     for (let l = 0; l < 3; l++) {
@@ -530,14 +503,9 @@ class State {
     }
 
     return (msg) => {
-//        debug('SysEx: %d %y',msg.bytes.length,msg.bytes)
-      if (msg && msg.bytes && msg.bytes.length >= 5 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x7D && msg.bytes[4] == 0xF7) {
-        const data1 = msg.bytes[2]
-        const data2 = msg.bytes[3]
-
-        if (data1 == 0) { // preset switch on BCR2000, data2 holds new page number
-          this.page = data2
-        }
+/*       debug('SysEx: %d %y',msg.bytes.length,msg.bytes)*/
+      if (msg && msg.bytes && msg.bytes.length >= 5 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x7D && msg.bytes[2] == 0x00 && msg.bytes[3] == 0x03 && msg.bytes[4] == 0xF7) {
+        state.sendValues()
       }
     }
 
@@ -570,7 +538,7 @@ class State {
         if (msb == config.acid.temperature.nrpn && (lsb >= 1 && lsb <= 8)) {
           const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
           const lsb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_038`)
-          this.temperature = (((msb << 7) | lsb) / 100)
+          this.temperature = (((lsb << 7) | msb) / 100)
           debug('temperature %y',this.temperature)
         }
         if (msb == config.acid.transpose.nrpn && (lsb >= 1 && lsb <= 8)) {
@@ -578,15 +546,6 @@ class State {
             const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
             this.transpose = (msb - 12)
             debug('transpose: %y',this.transpose)
-
-/*
-const txt=`$rev R1
-[encoder group:1, encoder:7, type: nrpn, msb: ${config.acid.test.nrpn}, lsb:1, min:${config.acid.test.min}, max:${msb}, channel:${config.acid.channel}, leds:1dot, showvalue:on, resolution: ${config.acid.test.resolution}, default:${config.acid.test.default}]
-`
-            const txt2 = Bacara.prepare_BCR2000(txt,{midi:'BCR2000'})
-            debug('bcr2000: %y',txt2)
-            Bacara.instruct_BCR2000(txt2,{midi:'BCR2000'})
-*/
           }
         }
         if (msb == config.acid.gate.nrpn && (lsb >= 1 && lsb <= 8)) {
@@ -799,8 +758,8 @@ function sendNRPN(midiName,msb,lsb,valueMsb,valueLsb) {
     if (midiOutput) {
       midiOutput.send('cc',{channel:config.acid.channel - 1,controller:99,value:msb})
       midiOutput.send('cc',{channel:config.acid.channel - 1,controller:98,value:lsb})
-      midiOutput.send('cc',{channel:config.acid.channel - 1,controller:6,value: valueMsb})
-      midiOutput.send('cc',{channel:config.acid.channel - 1,controller:38,value: valueLsb})
+      midiOutput.send('cc',{channel:config.acid.channel - 1,controller:38,value: valueMsb})
+      midiOutput.send('cc',{channel:config.acid.channel - 1,controller:6,value: valueLsb})
     }
   }
 }
@@ -1083,20 +1042,7 @@ function acidSequencer(name, sub, options) {
   }
 
 
-  const midiOutput = Midi.output(midiOutputName,true)
-  if (midiOutput) {
-    debug('PC : %y',state.page)
-    midiOutput.send('program',{channel:config.acid.channel - 1,number:state.page})
-  }
-
   state.sendValues()
-/*
-  const txt = `
-$rev R1
-[encoder group:1, encoder:7, type: nrpn, msb: ${config.acid.test.nrpn}, lsb:1, min:${config.acid.test.min}, max:${config.acid.test.max}, channel:${config.acid.channel}, leds:1dot, showvalue:on, resolution: ${config.acid.test.resolution}, default:${config.acid.test.default}]
-`
-  Bacara.instruct_BCR2000(Bacara.prepare_BCR2000(txt,options),options)
-*/
   Acid.table(state)
 }
 
