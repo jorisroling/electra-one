@@ -10,20 +10,14 @@ const yves = require('./lib/yves')
 const pkg = require('./package.json')
 
 args
- .option('electra-one-ctrl', 'Electra One MIDI CTRL interface name','electra-one-ctrl')
-//  .option('electra-one', 'Electra One MIDI interface name','electra-one-1')
-//  .option('virus-ti', 'Virus TI MIDI interface name','virus-ti')
   .option('filename', 'Filename to process')
   .option('scenario', 'Routing Scenario','default')
   .option('page', 'Page ID to operate on, this options can be used more than once. Use \'electra-one page list --filename preset.epr\' to show available Page ID\'s')
 
-  .option('midi', 'Output MIDI interface name (part)')
-  .option('input', 'Input MIDI interface name (part)')
-  .option('clock', 'Clock Input MIDI interface name (part)')
-  .option('transposePort', 'Transpose Input MIDI interface name (part)')
-  .option('transposeChannel', 'Transpose Input Channel (1-16)')
-
-//  .example('electra-one page swap --page 1 --page 2', 'Swap two pages in a Preset File (.epr)')
+  .option('electra', 'Electra One MIDI interface name (part)','Electra Controller Electra Port 2')
+  .option('clock', 'Clock Input MIDI interface name (part)','TR-6S')
+  .option('transpose', 'Transpose Input MIDI interface name (part)','KOMPLETE KONTROL M32')
+  .option('transposeChannel', 'Transpose Input Channel (1-16)',1)
 
 const commands = require('./lib/commands')
 

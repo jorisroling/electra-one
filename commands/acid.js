@@ -19,7 +19,9 @@ const Midi = require('../lib/midi')
 
 const _ = require('lodash')
 const config = require('config')
-const fs = require('fs')
+const fs = require('fs-extra')
+const path = require('path')
+const untildify = require('untildify')
 const jsonfile = require('jsonfile')
 
 const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max + 1))
@@ -363,9 +365,8 @@ class State {
     }
   }
 
-
   read() {
-    const filePath = `${__dirname}/../state/acid.json`
+    const filePath = path.resolve( (process.env.NODE_ENV == 'production') ? untildify('~/.electra-one/state/acid.json') : `${__dirname}/../state/acid.json` )
     if (fs.existsSync(filePath)) {
       const state = jsonfile.readFileSync(filePath)
       const keys = Object.keys(this.values)
@@ -378,7 +379,9 @@ class State {
   }
 
   write(quiet = false) {
-    jsonfile.writeFileSync(`${__dirname}/../state/acid.json`, this.values, { flag: 'w', spaces: 2 })
+    const filePath = path.resolve((process.env.NODE_ENV == 'production') ? untildify('~/.electra-one/state/acid.json') : `${__dirname}/../state/acid.json`)
+    fs.ensureDirSync(path.dirname(filePath))
+    jsonfile.writeFileSync(filePath, this.values, { flag: 'w', spaces: 2 })
     if (!quiet) {
       Acid.table(this)
     }
@@ -802,9 +805,9 @@ function acidSequencer(name, sub, options) {
 
   state = new State()
 
-  const input = Midi.input(options.input, true)
-  const output = Midi.output(options.output, true)
-  const transpose = (options.transposePort ? Midi.input(options.transposePort, true) : null)
+  const clockInput = Midi.input(options.clock, true)
+
+  const transposeInput = (options.transpose ? Midi.input(options.transpose, true) : null)
 
 
   if (!midiCache[options.output]) {
@@ -831,9 +834,9 @@ function acidSequencer(name, sub, options) {
 
   /*  debug('options: %y',options)*/
 
-  if (options.midi) {
-    midiInputName = options.midi
-    midiOutputName = options.midi
+  if (options.electra) {
+    midiInputName = options.electra
+    midiOutputName = options.electra
   }
 
   function radians(degrees) {
@@ -867,8 +870,8 @@ function acidSequencer(name, sub, options) {
     return -1
   }
 
-  if (transpose) {
-    transpose.on('message', (msg) => {
+  if (transposeInput) {
+    transposeInput.on('message', (msg) => {
       //debug('transpose: %y',msg)
       if ((!options.transposeChannel || msg.channel == (options.transposeChannel-1)) && msg._type == 'noteon') {
         state.transpose = msg.note - 48
@@ -881,7 +884,7 @@ function acidSequencer(name, sub, options) {
 
   let lastTime = 0
   let pulseTime = [0, 0]
-  input.on('clock', () => {
+  clockInput.on('clock', () => {
     //    pulses++
     //    debug('playing: %y %y',state.playing,pulses)
     const deltaTime = process.hrtime(pulseTime)
@@ -1001,7 +1004,7 @@ function acidSequencer(name, sub, options) {
     pulses++
   })
 
-  input.on('start', () => {
+  clockInput.on('start', () => {
     state.playing = true
     pulses = 0
     steps = 0
@@ -1009,12 +1012,12 @@ function acidSequencer(name, sub, options) {
     debug('start')
   })
 
-  input.on('stop', () => {
+  clockInput.on('stop', () => {
     state.playing = false
     debug('stop')
   })
 
-  input.on('continue', () => {
+  clockInput.on('continue', () => {
     state.playing = true
     pulseTime = process.hrtime()
     debug('continue')
@@ -1034,6 +1037,9 @@ function acidSequencer(name, sub, options) {
 module.exports = {
   name: 'acid',
   description: 'Acid Sequencer',
+  examples: [
+    {usage:'electra-one acid', description:'Starts acid sequencer'},
+  ],
   handler: acidSequencer,
 }
 
