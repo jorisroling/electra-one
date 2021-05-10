@@ -794,12 +794,7 @@ const midiCache = {}
 
 function acidSequencer(name, sub, options) {
 
-  /*  debug('args: %y',options)*/
-  /*  if (!state.pattern) {
-   state.pattern = Acid.generate(state)
-  }
-
-*/  /*  debug('playing: %y\ntemperature: %y\ntranspose: %y\npattern: %y',playing,temperature,transpose,pattern)*/
+  /*  debug('options: %y',options)*/
 
   state = new State()
 
@@ -825,8 +820,6 @@ function acidSequencer(name, sub, options) {
       }
     }
   })
-
-  /*  debug('options: %y',options)*/
 
   if (options.electra) {
     midiInputName = options.electra
