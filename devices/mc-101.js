@@ -5,27 +5,27 @@ module.exports = {
   released: 'September 25, 2020',
   tracks: {
     1: {
-      name: "Track 1",
+      name: 'Track 1',
       channel: 6,
       controls: 'parameters',
     },
     2: {
-      name: "Track 2",
+      name: 'Track 2',
       channel: 7,
       controls: 'parameters',
     },
     3: {
-      name: "Track 3",
+      name: 'Track 3',
       channel: 8,
       controls: 'parameters',
     },
     4: {
-      name: "Track 4",
+      name: 'Track 4',
       channel: 9,
       controls: 'parameters',
     },
     control: {
-      name: "Control",
+      name: 'Control',
       channel: 16,
     },
   },

@@ -5,18 +5,16 @@ const labelColor = chalk.hex('#FF8800')
 
 function queryInfo(name, sub, options) {
   const midiInputCtrlPort = Midi.input(options.electraOneCtrl)
-  const midiOutputCtrlPort = Midi.output(options.electraOneCtrl)
 
   function close() {
     midiInputCtrlPort.close()
-    midiOutputCtrlPort.close()
     process.exit()
   }
 
   midiInputCtrlPort.on('message', (msg) => {
     if (msg._type == 'sysex' && msg.bytes && msg.bytes.length >= 7 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x00 && msg.bytes[2] == 0x21 && msg.bytes[3] == 0x45 && msg.bytes[4] == 0x01 && msg.bytes[5] == 0x7F /*&& msg.bytes[msg.bytes.length-1]==0xF7*/) {
       const info = JSON.parse(msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)),''))
-/*      debug('info: %y',info)*/
+      /*      debug('info: %y',info)*/
 
       const data = []
       const keys = Object.keys(data)
@@ -43,7 +41,7 @@ function queryInfo(name, sub, options) {
   ]
 
 
-  midiOutputCtrlPort.send('sysex',bytes)
+  Midi.send(options.electraOneCtrl,'sysex',bytes)
 
   setTimeout( close, 2500)
 

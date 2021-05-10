@@ -43,8 +43,6 @@ const deviceChannels = {  // 1-based channels
   B: 2,
 }
 
-const notesSend = []
-
 let midiInputName
 let midiOutputName
 
@@ -477,16 +475,11 @@ class State {
   }
 
   sendProgramChange(dev) {
-    if (_.get(this.device,`${dev}.portName`)) {
-/*      debug('name: %y',_.get(this.device,`${dev}.portName`))*/
-      const output = Midi.output(_.get(this.device,`${dev}.portName`),false,false)
-      if (output) {
-        debugMidiControlChange('%s %d CC %y = %y',this.device[dev].portName,_.get(this.device,`${dev}.channel`),0,_.get(this.device,`${dev}.bank`))
-        output.send('cc',{channel:_.get(this.device,`${dev}.channel`) - 1,controller:0,value:_.get(this.device,`${dev}.bank`)})
-        debugMidiProgramChange('%s %d %y',this.device[dev].portName,_.get(this.device,`${dev}.channel`),_.get(this.device,`${dev}.program`))
-        output.send('program',{channel:_.get(this.device,`${dev}.channel`) - 1,number:_.get(this.device,`${dev}.program`)})
-      }
-    }
+    /*      debug('name: %y',_.get(this.device,`${dev}.portName`))*/
+    debugMidiControlChange('%s %d CC %y = %y',this.device[dev].portName,_.get(this.device,`${dev}.channel`),0,_.get(this.device,`${dev}.bank`))
+    Midi.send(this.device[dev].portName,'cc',{channel:_.get(this.device,`${dev}.channel`) - 1,controller:0,value:_.get(this.device,`${dev}.bank`)})
+    debugMidiProgramChange('%s %d %y',this.device[dev].portName,_.get(this.device,`${dev}.channel`),_.get(this.device,`${dev}.program`))
+    Midi.send(this.device[dev].portName,'program',{channel:_.get(this.device,`${dev}.channel`) - 1,number:_.get(this.device,`${dev}.program`)})
   }
 
 
@@ -496,7 +489,7 @@ class State {
     }
 
     return (msg) => {
-/*       debug('SysEx: %d %y',msg.bytes.length,msg.bytes)*/
+      /*       debug('SysEx: %d %y',msg.bytes.length,msg.bytes)*/
       if (msg && msg.bytes && msg.bytes.length >= 5 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x7D && msg.bytes[2] == 0x00 && msg.bytes[3] == 0x03 && msg.bytes[4] == 0xF7) {
         state.sendValues()
       }
@@ -511,7 +504,7 @@ class State {
     }
 
     return (msg) => {
-/*          debug('handle: %y',msg)*/
+      /*          debug('handle: %y',msg)*/
       _.set(midiCache[midiName],`channel_${_.padStart(msg.channel + 1,2,'0')}.controller_${_.padStart(msg.controller,3,'0')}`, msg.value)
       if ((msg.channel + 1) == config.acid.channel && ((msg.controller == 6) || (msg.controller == 38))) {
         const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_099`)
@@ -690,20 +683,24 @@ class State {
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                 if (tmp != _.get(this.lfo[l],key)) {
                   _.set(this.lfo[l],key,tmp)
-//                  const nameA = typhonCCs[this.lfo[l].control]
-//                  const nameB = virusCCs[this.lfo[l].control]
+                  //                  const nameA = typhonCCs[this.lfo[l].control]
+                  //                  const nameB = virusCCs[this.lfo[l].control]
                   let names = []
 
-                  if (key=='shape') {
+                  if (key == 'shape') {
                     const idx = tmp //Math.floor((tmp/16) * shapes.length)
                     this.lfo[l].shapeName = shapes[idx]
                     names.push(this.lfo[l].shapeName)
                   }
-                  if (key=='control' && typhonCCs[this.lfo[l].control]) names.push('typhon '+typhonCCs[this.lfo[l].control])
-                  if (key=='control' && virusCCs[this.lfo[l].control]) names.push('virus '+virusCCs[this.lfo[l].control])
+                  if (key == 'control' && typhonCCs[this.lfo[l].control]) {
+                    names.push('typhon ' + typhonCCs[this.lfo[l].control])
+                  }
+                  if (key == 'control' && virusCCs[this.lfo[l].control]) {
+                    names.push('virus ' + virusCCs[this.lfo[l].control])
+                  }
 
-                  debug('lfo.%d.%s: %y%s', l + 1, key, _.get(this.lfo[l],key),names.length ? ` [ ${names.join(', ')} ]`: '')
-//                  if (key=='shape') debug('shape %s',this.lfo[l].shapeName)
+                  debug('lfo.%d.%s: %y%s', l + 1, key, _.get(this.lfo[l],key),names.length ? ` [ ${names.join(', ')} ]` : '')
+                  //                  if (key=='shape') debug('shape %s',this.lfo[l].shapeName)
                   this.write(true) // write because lfo values are deep values
                 }
               }
@@ -718,14 +715,14 @@ class State {
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                 if (tmp != _.get(this.device,`${dev}.${key}`)) {
                   _.set(this.device,`${dev}.${key}`,tmp)
-//                  const nameA = typhonCCs[this.lfo[l].control]
-//                  const nameB = virusCCs[this.lfo[l].control]
+                  //                  const nameA = typhonCCs[this.lfo[l].control]
+                  //                  const nameB = virusCCs[this.lfo[l].control]
                   let names = []
                   if (key == 'device') {
-                    if (tmp>0 && config.devices) {
+                    if (tmp > 0 && config.devices) {
                       const deviceKeys = Object.keys(config.devices)
-                      if (deviceKeys.length > tmp-1) {
-                        const device = deviceKeys[tmp-1]
+                      if (deviceKeys.length > tmp - 1) {
+                        const device = deviceKeys[tmp - 1]
                         debug ('device: %y',device)
                         const port = _.get(config,`devices.${device}.port`)
                         if (port) {
@@ -734,7 +731,7 @@ class State {
                             const midiNames = easymidi.getInputs()
                             if (midiNames) {
                               const idx = midiNames.indexOf(portName)
-                              if (idx>=0) {
+                              if (idx >= 0) {
                                 tmp = idx
                                 key = 'port' // fall through next condition
                                 _.set(this.device,`${dev}.port`,idx)
@@ -743,7 +740,7 @@ class State {
                                 const channels = _.get(config,`devices.${device}.channels`)
                                 if (Array.isArray(channels) && channels.length) {
                                   const channel = _.get(this.device,`${dev}.channel`)
-                                  if (channels.indexOf(channel)<0) {
+                                  if (channels.indexOf(channel) < 0) {
                                     _.set(this.device,`${dev}.channel`,channels[0])
                                     sendNRPN(midiOutputName,_.get(config.acid.device,`${dev}.channel.nrpn`),1,_.get(this.device,`${dev}.channel`),0)
                                   }
@@ -757,11 +754,11 @@ class State {
                   }
                   if (key == 'port') {
                     const midiNames = easymidi.getInputs()
-/*                    debug('names %y',midiNames)*/
+                    /*                    debug('names %y',midiNames)*/
                     if (midiNames /*&& _.get(this.device,`${dev}.${key}`) < midiNames.length*/) {
                       const idx = tmp //Math.floor((((tmp+1)/64)) * midiNames.length)
-                      if (idx<midiNames.length) {
-/*                        debug('idx %y',idx)*/
+                      if (idx < midiNames.length) {
+                        /*                        debug('idx %y',idx)*/
                         names.push(midiNames[idx])
                         _.set(this.device,`${dev}.${key}Name`,midiNames[idx])
                       }
@@ -789,33 +786,15 @@ let state // = new State()
 
 
 function sendNRPN(midiName,msb,lsb,valueMsb,valueLsb) {
-  if (midiName) {
-    const midiOutput = Midi.output(midiName,true)
-    if (midiOutput) {
-      midiOutput.send('cc',{channel:config.acid.channel - 1,controller:99,value:msb})
-      midiOutput.send('cc',{channel:config.acid.channel - 1,controller:98,value:lsb})
-      midiOutput.send('cc',{channel:config.acid.channel - 1,controller:38,value: valueMsb})
-      midiOutput.send('cc',{channel:config.acid.channel - 1,controller:6,value: valueLsb})
-    }
-  }
+  Midi.send(midiName,'nrpn',{channel:config.acid.channel - 1,msb,lsb,valueMsb,valueLsb},`NRPN_c:${config.acid.channel - 1}_n:${(msb << 7) | (lsb & 0x7F)}`,50)
 }
-
-/*const delta = process.hrtime(time)
-debug('delta %y',delta)
-
-const deltaDuration = (delta[0] * 1000) + (delta[1] / 1000000)
-pulses = Math.ceil(deltaDuration / pulseDuration)
-if (pulses == Infinity) pulses=0
-
-debug('pulses %y',pulses)
-*/
 
 const midiCache = {}
 
 
 function acidSequencer(name, sub, options) {
 
-/*  debug('args: %y',options)*/
+  /*  debug('args: %y',options)*/
   /*  if (!state.pattern) {
    state.pattern = Acid.generate(state)
   }
@@ -835,18 +814,14 @@ function acidSequencer(name, sub, options) {
 
   ['A', 'B'].forEach( dev => {
     if (state.device[dev].portName) {
-      const output = Midi.output(state.device[dev].portName,true)
-      if (output) {
-        const channel = state.device[dev].channel - 1
-
-        for (let midiNote = 0; midiNote < 128; midiNote++) {
-          debugMidiNoteOff('%s %d %y',state.device[dev].portName,channel+1,midiNote)
-          output.send('noteoff', {
-            note: midiNote,
-            velocity: 127 ,
-            channel: channel,
-          })
-        }
+      const channel = state.device[dev].channel - 1
+      for (let midiNote = 0; midiNote < 128; midiNote++) {
+        debugMidiNoteOff('%s %d %y',state.device[dev].portName,channel + 1,midiNote)
+        Midi.send(state.device[dev].portName,'noteoff', {
+          note: midiNote,
+          velocity: 127 ,
+          channel: channel,
+        })
       }
     }
   })
@@ -865,26 +840,26 @@ function acidSequencer(name, sub, options) {
 
   function lfo(step, stepsPerCycle, shape, phase) {
     let cycleStep = ((step + 0) + (((phase + 0.0) % 1.0) * stepsPerCycle)) % stepsPerCycle
-//    debug('JJR lfo: step: %y  stepsPerCycle: %y  shape: %y  phase: %y  cycleStep: %y',step, stepsPerCycle, shape, phase, cycleStep)
+    //    debug('JJR lfo: step: %y  stepsPerCycle: %y  shape: %y  phase: %y  cycleStep: %y',step, stepsPerCycle, shape, phase, cycleStep)
     switch (shape) {
-      case 'sine':
-        cycleStep = ((step + 0) + (((phase + 0.75) % 1.0) * stepsPerCycle)) % stepsPerCycle
-        return (Math.sin(radians(((cycleStep / stepsPerCycle) * 360 ))) + 1.0) * 64
-      case 'triangle':
-        cycleStep = cycleStep / 2
-        if (cycleStep < (stepsPerCycle * 0.25)) {
-          return ( 0.0 + ((cycleStep/(stepsPerCycle/4)))) * 128
-        } else {
-          return ( 1.0 - ((cycleStep - (stepsPerCycle/4) )/(stepsPerCycle/4))) * 128
-        }
-      case 'saw-up':
-        return (((cycleStep * 2) / stepsPerCycle) * 128) % 128
-      case 'saw-down':
-        return (( 2.0 - ( (cycleStep * 2) / stepsPerCycle)) * 128) % 128
-      case 'square':
-        return (cycleStep < (stepsPerCycle / 4)) || ((cycleStep >= (stepsPerCycle / 2)) && (cycleStep < (stepsPerCycle * 0.75))) ? 128 : 0
-      case 'random':
-        return getRandomInt(127)
+    case 'sine':
+      cycleStep = ((step + 0) + (((phase + 0.75) % 1.0) * stepsPerCycle)) % stepsPerCycle
+      return (Math.sin(radians(((cycleStep / stepsPerCycle) * 360 ))) + 1.0) * 64
+    case 'triangle':
+      cycleStep = cycleStep / 2
+      if (cycleStep < (stepsPerCycle * 0.25)) {
+        return ( 0.0 + ((cycleStep / (stepsPerCycle / 4)))) * 128
+      } else {
+        return ( 1.0 - ((cycleStep - (stepsPerCycle / 4) ) / (stepsPerCycle / 4))) * 128
+      }
+    case 'saw-up':
+      return (((cycleStep * 2) / stepsPerCycle) * 128) % 128
+    case 'saw-down':
+      return (( 2.0 - ( (cycleStep * 2) / stepsPerCycle)) * 128) % 128
+    case 'square':
+      return (cycleStep < (stepsPerCycle / 4)) || ((cycleStep >= (stepsPerCycle / 2)) && (cycleStep < (stepsPerCycle * 0.75))) ? 128 : 0
+    case 'random':
+      return getRandomInt(127)
     }
     return -1
   }
@@ -892,7 +867,7 @@ function acidSequencer(name, sub, options) {
   if (transposeInput) {
     transposeInput.on('message', (msg) => {
       //debug('transpose: %y',msg)
-      if ((!options.transposeChannel || msg.channel == (options.transposeChannel-1)) && msg._type == 'noteon') {
+      if ((!options.transposeChannel || msg.channel == (options.transposeChannel - 1)) && msg._type == 'noteon') {
         state.transpose = msg.note - 48
         debug('transpose: %y',state.transpose)
         sendNRPN(midiOutputName,config.acid.transpose.nrpn,1,state.transpose + 12,0)
@@ -921,20 +896,24 @@ function acidSequencer(name, sub, options) {
       // if (! (stepIdx % 1) ) {
       for (let l = 0; l < 3; l++) {
         if (state.lfo[l].control && state.lfo[l].amount && (state.lfo[l].device.A || state.lfo[l].device.B)) {
-          if (!(steps % ((128-state.lfo[l].density)*2))) {
-//            debug('JJR: l:%d steps:%y stepIdx:%y ticks:%y',l,steps,stepIdx,ticks)
+          if (!(steps % ((128 - state.lfo[l].density) * 2))) {
+            //            debug('JJR: l:%d steps:%y stepIdx:%y ticks:%y',l,steps,stepIdx,ticks)
             const factor = (state.lfo[l].amount / 100)
             const base = Math.floor((((100 - state.lfo[l].amount) / 100) * 128) / 2)
             const offset = Math.floor(base * (((state.lfo[l].offset - 50) ) / 50) )
             const mod = lfo( steps, (128 - state.lfo[l].rate) * 4, state.lfo[l].shapeName, state.lfo[l].phase / 100)
-            if (mod>=0) {
+            if (mod >= 0) {
               const value = Math.min(127,Math.max(0,Math.floor(( mod * factor) + base + offset )))
-//             debug('JJR base: %y  factor: %y  offset: %y  amount: %y  rate: %y  phase: %y  mod: %y   value: %y  ',base,factor,offset,state.lfo[l].amount,state.lfo[l].rate,state.lfo[l].phase,mod,value)
+              //             debug('JJR base: %y  factor: %y  offset: %y  amount: %y  rate: %y  phase: %y  mod: %y   value: %y  ',base,factor,offset,state.lfo[l].amount,state.lfo[l].rate,state.lfo[l].phase,mod,value)
 
               const devs = []
 
-              if (state.lfo[l].device.A) devs.push('A')
-              if (state.lfo[l].device.B) devs.push('B')
+              if (state.lfo[l].device.A) {
+                devs.push('A')
+              }
+              if (state.lfo[l].device.B) {
+                devs.push('B')
+              }
 
               devs.forEach( dev => {
                 if (!state.device[dev].mute && state.device[dev].portName) {
@@ -946,15 +925,12 @@ function acidSequencer(name, sub, options) {
                     // debug('offset: %y, value %y base %y  mod %y',offset,midiValue,base,mod)
                     // debug('LFO%d step [%d] channel %d  control %d  amount %d  rate %d value %f',l+1,stepIdx,channel+1,state.lfo[l].control,state.lfo[l].amount,state.lfo[l].rate,value)
 
-                    const output = Midi.output(state.device[dev].portName,true)
-                    if (output) {
-                      debugMidiControlChange('%s %d CC %y = %y',state.device[dev].portName,channel+1,state.lfo[l].control,midiValue)
-                      output.send('cc',{channel,controller:state.lfo[l].control,value:midiValue})
-                      _.set(midiCache[options.output],pth, midiValue)
+                    debugMidiControlChange('%s %d CC %y = %y',state.device[dev].portName,channel + 1,state.lfo[l].control,midiValue)
+                    Midi.send(state.device[dev].portName,'cc',{channel,controller:state.lfo[l].control,value:midiValue})
+                    _.set(midiCache[options.output],pth, midiValue)
 
-                      // Can Electra handle many NRPN's?
-                      sendNRPN(midiOutputName,config.acid.lfo[l+1].show.nrpn,1,midiValue,0)
-                    }
+                    // Can Electra handle many NRPN's?
+                    sendNRPN(midiOutputName,config.acid.lfo[l + 1].show.nrpn,1,midiValue,0)
                   }
                 }
               })
@@ -975,7 +951,7 @@ function acidSequencer(name, sub, options) {
               const midiNoteFromBase = (midiNote + state.base) % 12
               const midiNoteBase =  midiNote - midiNoteFromBase
               if (scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
-//                debug('scale: %s %y => %y',scaleMapping.name, midiNoteFromBase, scaleMapping.mapping[midiNoteFromBase])
+                //                debug('scale: %s %y => %y',scaleMapping.name, midiNoteFromBase, scaleMapping.mapping[midiNoteFromBase])
                 midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - state.base
               }
               const rnd = getRandomInt(100)
@@ -986,35 +962,26 @@ function acidSequencer(name, sub, options) {
               const dev =  (midiNote <= state.split) ? (switchChannel ? 'B' : 'A') : (switchChannel ? 'A' : 'B')
 
               let rnd2 = getRandomInt(100)
-//              debug('rnd: probability %y rnd2 %y  %y',state.probability,rnd2,state.probability >= rnd2)
+              //              debug('rnd: probability %y rnd2 %y  %y',state.probability,rnd2,state.probability >= rnd2)
               if (!state.device[dev].mute && state.device[dev].portName && state.probability >= rnd2) {
-                const output = Midi.output(state.device[dev].portName,true)
-                if (output) {
-                  const channel = state.device[dev].channel - 1
-                  debugMidiNoteOn('%s %d %y',state.device[dev].portName,channel+1,midiNote)
-                  output.send('noteon', {
+                const channel = state.device[dev].channel - 1
+                debugMidiNoteOn('%s %d %y',state.device[dev].portName,channel + 1,midiNote)
+                Midi.send(state.device[dev].portName,'noteon', {
+                  note: midiNote,
+                  velocity: 127 * note.velocity,
+                  channel: channel,
+                })
+
+                const b = Math.floor(note.durationTicks / ticksPerStep) * ticksPerStep
+                const r = (note.durationTicks % ticksPerStep) * state.gate
+                setTimeout((portName,midiNote, channel) => {
+                  debugMidiNoteOff('%s %d %y',portName,channel + 1,midiNote)
+                  Midi.send(portName,'noteoff', {
                     note: midiNote,
-                    velocity: 127 * note.velocity,
+                    velocity: 127 ,
                     channel: channel,
                   })
-
-                  notesSend.push(midiNote)
-
-                  const b = Math.floor(note.durationTicks / ticksPerStep) * ticksPerStep
-                  const r = (note.durationTicks % ticksPerStep) * state.gate
-                  setTimeout((midiNote) => {
-                    debugMidiNoteOff('%s %d %y',state.device[dev].portName,channel+1,midiNote)
-                    output.send('noteoff', {
-                      note: midiNote,
-                      velocity: 127 ,
-                      channel: channel,
-                    })
-                    const pos = notesSend.indexOf(midiNote)
-                    if (pos >= 0) {
-                      notesSend.splice(pos,1)
-                    }
-                  }, b + r /*(note.durationTicks * tickDuration) * gate*/, midiNote)
-                }
+                }, b + r, state.device[dev].portName,midiNote,channel)
               }
             }
           }

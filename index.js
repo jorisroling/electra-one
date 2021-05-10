@@ -10,6 +10,7 @@ const yves = require('./lib/yves')
 const pkg = require('./package.json')
 
 args
+  .option('electra-one-ctrl', 'Electra One MIDI CTRL interface name','electra-one-ctrl')
   .option('filename', 'Filename to process')
   .option('scenario', 'Routing Scenario','default')
   .option('page', 'Page ID to operate on, this options can be used more than once. Use \'electra-one page list --filename preset.epr\' to show available Page ID\'s')
