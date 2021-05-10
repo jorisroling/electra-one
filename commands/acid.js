@@ -934,7 +934,7 @@ function acidSequencer(name, sub, options) {
                       _.set(midiCache[options.output],pth, midiValue)
 
                       // Can Electra handle many NRPN's?
-                      //sendNRPN(midiOutputName,config.acid.lfo[l+1].show.nrpn,1,midiValue,0)
+                      sendNRPN(midiOutputName,config.acid.lfo[l+1].show.nrpn,1,midiValue,0)
                     }
                   }
                 }
