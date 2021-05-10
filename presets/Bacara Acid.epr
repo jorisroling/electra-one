@@ -371,6 +371,16 @@
       "items": [
         {
           "value": 0,
+          "label": "Off",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "items": [
+        {
+          "value": 0,
           "label": "Sine",
           "index": 0
         },
@@ -1414,6 +1424,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
@@ -1422,7 +1433,7 @@
             "min": 0,
             "max": 127
           },
-          "id": "value"
+          "overlayId": 3
         }
       ]
     },
@@ -1455,7 +1466,7 @@
             "min": 0,
             "max": 5
           },
-          "overlayId": 3,
+          "overlayId": 4,
           "id": "value"
         }
       ]
@@ -1757,6 +1768,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
@@ -1765,7 +1777,7 @@
             "min": 0,
             "max": 127
           },
-          "id": "value"
+          "overlayId": 3
         }
       ]
     },
@@ -1798,7 +1810,7 @@
             "min": 0,
             "max": 5
           },
-          "overlayId": 3,
+          "overlayId": 4,
           "id": "value"
         }
       ]
@@ -2100,6 +2112,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
@@ -2108,7 +2121,7 @@
             "min": 0,
             "max": 127
           },
-          "id": "value"
+          "overlayId": 3
         }
       ]
     },
@@ -2141,7 +2154,7 @@
             "min": 0,
             "max": 5
           },
-          "overlayId": 3,
+          "overlayId": 4,
           "id": "value"
         }
       ]
