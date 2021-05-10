@@ -83,6 +83,7 @@ class State {
     this.values.chance = 0
     this.values.octaves = []
     this.values.density = 100
+    this.values.probability = 100
     this.values.sounding = []
     this.values.killSteps = 0
     this.values.killShift = 1
@@ -265,6 +266,16 @@ class State {
     }
   }
 
+  get probability() {
+    return this.values.probability
+  }
+  set probability(value) {
+    if (!deepEqual(this.values.probability,value,{strict:true})) {
+      this.values.probability = value
+      this.write()
+    }
+  }
+
   get sounding() {
     return this.values.sounding
   }
@@ -442,6 +453,7 @@ class State {
     sendNRPN(midiOutputName,config.acid.octave.nrpn,1,((this.chance / 100) * 64) + 64,0)
 
     sendNRPN(midiOutputName,config.acid.density.nrpn,1,this.density,0)
+    sendNRPN(midiOutputName,config.acid.probability.nrpn,1,this.probability,0)
     sendNRPN(midiOutputName,config.acid.killSteps.nrpn,1,this.killSteps,0)
     sendNRPN(midiOutputName,config.acid.killShift.nrpn,1,this.killShift + 15,0)
 
@@ -583,7 +595,6 @@ class State {
             }
             if (tmp != this.chance) {
               this.chance = tmp
-//              this.genOctaves(this.chance)
               debug('chance: %y', this.chance)
             }
           }
@@ -593,8 +604,16 @@ class State {
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
             if (tmp != this.density) {
               this.density = tmp
-//              this.genSounding(this.density)
               debug('density: %y', this.density)
+            }
+          }
+        }
+        if (msb == config.acid.probability.nrpn && (lsb >= 1 && lsb <= 8)) {
+          if (msg.controller == 6) { //MSB
+            let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
+            if (tmp != this.probability) {
+              this.probability = tmp
+              debug('probability: %y', this.probability)
             }
           }
         }
@@ -966,7 +985,9 @@ function acidSequencer(name, sub, options) {
 
               const dev =  (midiNote <= state.split) ? (switchChannel ? 'B' : 'A') : (switchChannel ? 'A' : 'B')
 
-              if (!state.device[dev].mute && state.device[dev].portName) {
+              let rnd2 = getRandomInt(100)
+//              debug('rnd: probability %y rnd2 %y  %y',state.probability,rnd2,state.probability >= rnd2)
+              if (!state.device[dev].mute && state.device[dev].portName && state.probability >= rnd2) {
                 const output = Midi.output(state.device[dev].portName,true)
                 if (output) {
                   const channel = state.device[dev].channel - 1

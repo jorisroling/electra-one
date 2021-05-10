@@ -169,6 +169,9 @@ module.exports = {
   },
   acid: {
     channel: 1,
+    last_used: {
+      nrpn: 68,
+    },
     generate: {
       nrpn: 10,
     },
@@ -211,6 +214,13 @@ module.exports = {
       min: 0,
       max: 100,
       resolution: 101,
+      default: 100,
+    },
+    probability: {
+      nrpn: 68,
+      min: 0,
+      max: 100,
+      resolution: 64,
       default: 100,
     },
     killSteps: {
