@@ -58,11 +58,12 @@ class State {
 
     this.values.playing = false
     this.values.pattern = null
-    this.values.lastBut = 0
+    this.values.last_pattern_but = 0
+    this.values.last_preset_but = 0
 
     this.values.size = 16
 
-    this.reset(false)
+    this.reset_preset(false)
     this.read()
     this.sendProgramChange('A')
     this.sendProgramChange('B')
@@ -72,7 +73,7 @@ class State {
     }
   }
 
-  reset(write = true) {
+  reset_preset(write = true) {
     this.values.temperature = 1.0
     this.values.transpose = 0
     this.values.gate = 1.0
@@ -82,7 +83,7 @@ class State {
     this.values.probability = 100
     this.values.sounding = []
     this.values.killSteps = 0
-    this.values.killShift = 1
+    this.values.killShift = 0
     this.values.scales = 0
     this.values.base = 0
     this.values.shift = 0
@@ -180,12 +181,22 @@ class State {
     }
   }
 
-  get lastBut() {
-    return this.values.lastBut
+  get last_pattern_but() {
+    return this.values.last_pattern_but
   }
-  set lastBut(value) {
-    if (!deepEqual(this.values.lastBut,value,{strict:true})) {
-      this.values.lastBut = value
+  set last_pattern_but(value) {
+    if (!deepEqual(this.values.last_pattern_but,value,{strict:true})) {
+      this.values.last_pattern_but = value
+      this.write()
+    }
+  }
+
+  get last_preset_but() {
+    return this.values.last_preset_but
+  }
+  set last_preset_but(value) {
+    if (!deepEqual(this.values.last_preset_but,value,{strict:true})) {
+      this.values.last_preset_but = value
       this.write()
     }
   }
@@ -511,7 +522,7 @@ class State {
           if (msg.controller == 6) { //MSB
             if (msg.value) {
               this.pattern = Acid.generate(state)
-              this.lastBut = 0
+              this.last_pattern_but = 0
             }
           }
           if (msg.controller == 38) { //LSB
@@ -541,34 +552,74 @@ class State {
             debug('gate: %y',this.gate)
           }
         }
-        if (msb == config.acid.prev.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.previous_pattern.nrpn && (lsb >= 1 && lsb <= 8)) {
           const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
           if (msb && msg.controller == 6) {
 
-            this.lastBut += 1
+            this.last_pattern_but += 1
 
-            this.pattern = Acid.last(state)
-            debug('prev: %y', this.lastBut)
+            this.pattern = Acid.load_pattern(state)
+            debug('previous_pattern: %y', this.last_pattern_but)
           }
         }
-        if (msb == config.acid.next.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.next_pattern.nrpn && (lsb >= 1 && lsb <= 8)) {
           const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
           if (msb && msg.controller == 6) {
 
-            this.lastBut -= 1
-            if (this.lastBut < 0) {
-              this.lastBut = 0
+            this.last_pattern_but -= 1
+            if (this.last_pattern_but < 0) {
+              this.last_pattern_but = 0
             }
 
-            this.pattern = Acid.last(state)
-            debug('next: %y', this.lastBut)
+            this.pattern = Acid.load_pattern(state)
+            debug('next_pattern: %y', this.last_pattern_but)
           }
         }
-        if (msb == config.acid.reset.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.previous_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
           const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
           if (msb && msg.controller == 6) {
 
-            this.reset()
+            this.last_preset_but += 1
+
+            Acid.load_preset(state)
+            this.sendProgramChange('A')
+            this.sendProgramChange('B')
+            this.sendValues()
+            this.write(true)
+            debug('previous_preset: %y', this.last_preset_but)
+          }
+        }
+        if (msb == config.acid.next_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
+          const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
+          if (msb && msg.controller == 6) {
+
+            this.last_preset_but -= 1
+            if (this.last_preset_but < 0) {
+              this.last_preset_but = 0
+            }
+
+            Acid.load_preset(state)
+            this.sendProgramChange('A')
+            this.sendProgramChange('B')
+            this.sendValues()
+            this.write(true)
+            debug('next_preset: %y', this.last_preset_but)
+          }
+        }
+        if (msb == config.acid.save_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
+          const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
+          if (msb && msg.controller == 6) {
+
+            Acid.save_preset(state)
+            this.last_preset_but = 0
+            debug('save_pattern')
+          }
+        }
+        if (msb == config.acid.reset_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
+          const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
+          if (msb && msg.controller == 6) {
+
+            this.reset_preset()
             this.sendValues()
 
             debug('reset')

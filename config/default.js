@@ -170,7 +170,7 @@ module.exports = {
   acid: {
     channel: 1,
     last_used: {
-      nrpn: 68,
+      nrpn: 71,
     },
     generate: {
       nrpn: 10,
@@ -182,10 +182,10 @@ module.exports = {
       resolution: 256,
       default: 100,
     },
-    prev: {
+    previous_pattern: {
       nrpn: 11,
     },
-    next: {
+    next_pattern: {
       nrpn: 12,
     },
     transpose: {
@@ -272,8 +272,17 @@ module.exports = {
       resolution: 100,
       default: 0,
     },
-    reset: {
+    reset_preset: {
       nrpn: 24,
+    },
+    previous_preset: {
+      nrpn: 69,
+    },
+    next_preset: {
+      nrpn: 70,
+    },
+    save_preset: {
+      nrpn: 71,
     },
     lfo: {
       1: {
