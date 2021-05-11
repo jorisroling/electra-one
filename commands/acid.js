@@ -614,9 +614,11 @@ class State {
           const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
           if (msb && msg.controller == 6) {
 
-            Acid.save_preset(state)
-            this.last_preset_but = 0
-            debug('save_pattern')
+            const filename = Acid.save_preset(state)
+            if (filename) {
+              this.last_preset_but = 0
+              debug('save_pattern: %y %y',this.last_preset_but,path.basename(filename))
+            }
           }
         }
         if (msb == config.acid.reset_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
