@@ -27,7 +27,7 @@
     {
       "pageId": 2,
       "name": "LFO 2",
-      "color": "F45C51",
+      "color": "03A598",
       "bounds": [
         0,
         192,
@@ -1660,7 +1660,7 @@
       "type": "pad",
       "mode": "toggle",
       "name": "DEVICE A",
-      "color": "F49500",
+      "color": "F45C51",
       "bounds": [
         680,
         40,
@@ -1797,7 +1797,7 @@
       "type": "pad",
       "mode": "toggle",
       "name": "DEVICE B",
-      "color": "F49500",
+      "color": "529DEC",
       "bounds": [
         680,
         128,
@@ -1867,7 +1867,7 @@
       "id": 49,
       "type": "fader",
       "name": "CONTROL",
-      "color": "F45C51",
+      "color": "03A598",
       "bounds": [
         0,
         216,
@@ -1901,7 +1901,7 @@
       "id": 50,
       "type": "fader",
       "name": "SHAPE",
-      "color": "F45C51",
+      "color": "03A598",
       "bounds": [
         170,
         216,
@@ -1935,7 +1935,7 @@
       "id": 51,
       "type": "fader",
       "name": "RATE",
-      "color": "F45C51",
+      "color": "03A598",
       "bounds": [
         340,
         216,
@@ -1969,7 +1969,7 @@
       "id": 52,
       "type": "fader",
       "name": "PHASE",
-      "color": "F45C51",
+      "color": "03A598",
       "bounds": [
         510,
         216,
@@ -2038,7 +2038,7 @@
       "id": 56,
       "type": "fader",
       "name": "AMOUNT",
-      "color": "F45C51",
+      "color": "03A598",
       "bounds": [
         170,
         304,
@@ -2072,7 +2072,7 @@
       "id": 57,
       "type": "fader",
       "name": "OFFSET",
-      "color": "F45C51",
+      "color": "03A598",
       "bounds": [
         340,
         304,
@@ -2106,7 +2106,7 @@
       "id": 58,
       "type": "fader",
       "name": "DENSITY",
-      "color": "F45C51",
+      "color": "03A598",
       "bounds": [
         510,
         304,
@@ -2141,7 +2141,7 @@
       "type": "pad",
       "mode": "toggle",
       "name": "DEVICE B",
-      "color": "F45C51",
+      "color": "529DEC",
       "bounds": [
         680,
         304,
@@ -2175,7 +2175,7 @@
       "id": 60,
       "type": "fader",
       "name": "SHOW",
-      "color": "F45C51",
+      "color": "03A598",
       "bounds": [
         850,
         304,
@@ -2348,7 +2348,7 @@
       "type": "pad",
       "mode": "toggle",
       "name": "DEVICE A",
-      "color": "C44795",
+      "color": "F45C51",
       "bounds": [
         680,
         392,
@@ -2485,7 +2485,7 @@
       "type": "pad",
       "mode": "toggle",
       "name": "DEVICE B",
-      "color": "C44795",
+      "color": "529DEC",
       "bounds": [
         680,
         480,
