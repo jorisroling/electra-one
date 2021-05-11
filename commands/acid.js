@@ -581,12 +581,14 @@ class State {
 
             this.last_preset_but += 1
 
-            Acid.load_preset(state)
-            this.sendProgramChange('A')
-            this.sendProgramChange('B')
-            this.sendValues()
-            this.write(true)
-            debug('previous_preset: %y', this.last_preset_but)
+            const filename = Acid.load_preset(state)
+            if (filename) {
+              this.sendProgramChange('A')
+              this.sendProgramChange('B')
+              this.sendValues()
+              this.write(true)
+              debug('previous_preset: %y %y', this.last_preset_but,path.basename(filename))
+            }
           }
         }
         if (msb == config.acid.next_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
@@ -598,12 +600,14 @@ class State {
               this.last_preset_but = 0
             }
 
-            Acid.load_preset(state)
-            this.sendProgramChange('A')
-            this.sendProgramChange('B')
-            this.sendValues()
-            this.write(true)
-            debug('next_preset: %y', this.last_preset_but)
+            const filename = Acid.load_preset(state)
+            if (filename) {
+              this.sendProgramChange('A')
+              this.sendProgramChange('B')
+              this.sendValues()
+              this.write(true)
+              debug('next_preset: %y %y', this.last_preset_but,path.basename(filename))
+            }
           }
         }
         if (msb == config.acid.save_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
