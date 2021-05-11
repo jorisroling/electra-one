@@ -824,8 +824,8 @@ class State {
 let state
 
 
-function sendNRPN(midiName,msb,lsb,valueMsb,valueLsb) {
-  Midi.send(midiName,'nrpn',{channel:config.acid.channel - 1,msb,lsb,valueMsb,valueLsb},`NRPN_c:${config.acid.channel - 1}_n:${(msb << 7) | (lsb & 0x7F)}`,50)
+function sendNRPN(midiName,msb,lsb,valueMsb,valueLsb,timeout = 0) {
+  Midi.send(midiName,'nrpn',{channel:config.acid.channel - 1,msb,lsb,valueMsb,valueLsb},timeout ? `NRPN_c:${config.acid.channel - 1}_n:${(msb << 7) | (lsb & 0x7F)}` : null,timeout)
 }
 
 const midiCache = {}
@@ -959,7 +959,7 @@ function acidSequencer(name, sub, options) {
                     _.set(midiCache[options.output],pth, midiValue)
 
                     // Can Electra handle many NRPN's?
-                    sendNRPN(midiOutputName,config.acid.lfo[l + 1].show.nrpn,1,midiValue,0)
+                    sendNRPN(midiOutputName,config.acid.lfo[l + 1].show.nrpn,1,midiValue,0,50)
                   }
                 }
               })
