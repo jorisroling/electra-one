@@ -290,6 +290,7 @@ class State {
   set killSteps(value) {
     if (!deepEqual(this.values.killSteps,value,{strict:true})) {
       this.values.killSteps = value
+      this.euclidian(this.values.killSteps,16,this.values.killShift)
       this.write()
     }
   }
@@ -300,6 +301,7 @@ class State {
   set killShift(value) {
     if (!deepEqual(this.values.killShift,value,{strict:true})) {
       this.values.killShift = value
+      this.euclidian(this.values.killSteps,16,this.values.killShift)
       this.write()
     }
   }
@@ -615,7 +617,6 @@ class State {
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
             if (tmp != this.killSteps) {
               this.killSteps = tmp
-              this.euclidian(this.killSteps,16,this.killShift)
               debug('killSteps: %y', this.killSteps)
             }
           }
@@ -625,7 +626,6 @@ class State {
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`) - 15
             if (tmp != this.killShift) {
               this.killShift = tmp
-              this.euclidian(this.killSteps,16,this.killShift)
               debug('killShift: %y', this.killShift)
             }
           }
