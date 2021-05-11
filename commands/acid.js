@@ -8,8 +8,6 @@ const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/,'').replac
 
 const os = require('os')
 const deepEqual = require('deep-equal')
-//const Sequencer = require('../lib/sequencer')
-//const Grid = require('../lib/grid')
 
 const easymidi = require('easymidi')
 
@@ -477,7 +475,6 @@ class State {
   }
 
   sendProgramChange(dev) {
-    /*      debug('name: %y',_.get(this.device,`${dev}.portName`))*/
     debugMidiControlChange('%s %d CC %y = %y',this.device[dev].portName,_.get(this.device,`${dev}.channel`),0,_.get(this.device,`${dev}.bank`))
     Midi.send(this.device[dev].portName,'cc',{channel:_.get(this.device,`${dev}.channel`) - 1,controller:0,value:_.get(this.device,`${dev}.bank`)})
     debugMidiProgramChange('%s %d %y',this.device[dev].portName,_.get(this.device,`${dev}.channel`),_.get(this.device,`${dev}.program`))
@@ -491,7 +488,6 @@ class State {
     }
 
     return (msg) => {
-      /*       debug('SysEx: %d %y',msg.bytes.length,msg.bytes)*/
       if (msg && msg.bytes && msg.bytes.length >= 5 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x7D && msg.bytes[2] == 0x00 && msg.bytes[3] == 0x03 && msg.bytes[4] == 0xF7) {
         state.sendValues()
       }
@@ -516,7 +512,6 @@ class State {
             if (msg.value) {
               this.pattern = Acid.generate(state)
               this.lastBut = 0
-              /*            debug('HI %y',msg.value)*/
             }
           }
           if (msg.controller == 38) { //LSB
@@ -683,8 +678,6 @@ class State {
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                 if (tmp != _.get(this.lfo[l],key)) {
                   _.set(this.lfo[l],key,tmp)
-                  //                  const nameA = typhonCCs[this.lfo[l].control]
-                  //                  const nameB = virusCCs[this.lfo[l].control]
                   let names = []
 
                   if (key == 'shape') {
@@ -700,7 +693,6 @@ class State {
                   }
 
                   debug('lfo.%d.%s: %y%s', l + 1, key, _.get(this.lfo[l],key),names.length ? ` [ ${names.join(', ')} ]` : '')
-                  //                  if (key=='shape') debug('shape %s',this.lfo[l].shapeName)
                   this.write(true) // write because lfo values are deep values
                 }
               }
@@ -715,8 +707,6 @@ class State {
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                 if (tmp != _.get(this.device,`${dev}.${key}`)) {
                   _.set(this.device,`${dev}.${key}`,tmp)
-                  //                  const nameA = typhonCCs[this.lfo[l].control]
-                  //                  const nameB = virusCCs[this.lfo[l].control]
                   let names = []
                   if (key == 'device') {
                     if (tmp > 0 && config.devices) {
@@ -754,11 +744,9 @@ class State {
                   }
                   if (key == 'port') {
                     const midiNames = easymidi.getInputs()
-                    /*                    debug('names %y',midiNames)*/
-                    if (midiNames /*&& _.get(this.device,`${dev}.${key}`) < midiNames.length*/) {
-                      const idx = tmp //Math.floor((((tmp+1)/64)) * midiNames.length)
+                    if (midiNames) {
+                      const idx = tmp
                       if (idx < midiNames.length) {
-                        /*                        debug('idx %y',idx)*/
                         names.push(midiNames[idx])
                         _.set(this.device,`${dev}.${key}Name`,midiNames[idx])
                       }
@@ -782,7 +770,7 @@ class State {
   }
 }
 
-let state // = new State()
+let state
 
 
 function sendNRPN(midiName,msb,lsb,valueMsb,valueLsb) {
@@ -859,7 +847,6 @@ function acidSequencer(name, sub, options) {
 
   if (transposeInput) {
     transposeInput.on('message', (msg) => {
-      //debug('transpose: %y',msg)
       if ((!options.transposeChannel || msg.channel == (options.transposeChannel - 1)) && msg._type == 'noteon') {
         state.transpose = msg.note - 48
         debug('transpose: %y',state.transpose)
@@ -886,7 +873,6 @@ function acidSequencer(name, sub, options) {
       const tickDuration = pulseDuration / 20
       const shiftedTicks = (ticks + (ticksPerStep * state.shift)) % (ticksPerStep * 16)
 
-      // if (! (stepIdx % 1) ) {
       for (let l = 0; l < 3; l++) {
         if (state.lfo[l].control && state.lfo[l].amount && (state.lfo[l].device.A || state.lfo[l].device.B)) {
           if (!(steps % ((128 - state.lfo[l].density) * 2))) {
@@ -897,7 +883,6 @@ function acidSequencer(name, sub, options) {
             const mod = lfo( steps, (128 - state.lfo[l].rate) * 4, state.lfo[l].shapeName, state.lfo[l].phase / 100)
             if (mod >= 0) {
               const value = Math.min(127,Math.max(0,Math.floor(( mod * factor) + base + offset )))
-              //             debug('JJR base: %y  factor: %y  offset: %y  amount: %y  rate: %y  phase: %y  mod: %y   value: %y  ',base,factor,offset,state.lfo[l].amount,state.lfo[l].rate,state.lfo[l].phase,mod,value)
 
               const devs = []
 
@@ -931,15 +916,12 @@ function acidSequencer(name, sub, options) {
           }
         }
       }
-      // }
       if (state.pattern) {
-        state.pattern.tracks[0].notes.forEach( (note/*,idx*/) => {
+        state.pattern.tracks[0].notes.forEach( (note) => {
           if (note.ticks == shiftedTicks) {
-          /*                    debug('* %y %y',stepIdx,sounding[stepIdx])*/
             if (stepIdx < state.sounding.length && state.sounding[stepIdx]) {
               let midiNote = note.midi + state.transpose + ((stepIdx < state.octaves.length && state.octaves[stepIdx]) ? (state.octaves[stepIdx] * 12) : 0)
 
-              /*            debug('midiNote %y',midiNote)*/
               const scaleMapping = scaleMappings.scales[state.scales]
               const midiNoteFromBase = (midiNote + state.base) % 12
               const midiNoteBase =  midiNote - midiNoteFromBase
