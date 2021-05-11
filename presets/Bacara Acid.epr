@@ -337,7 +337,7 @@
       "items": [
         {
           "value": 0,
-          "label": "Off",
+          "label": "Unknown",
           "index": 0
         },
         {
@@ -363,17 +363,17 @@
         {
           "value": 5,
           "label": "TR-6S",
-          "index": 7
+          "index": 5
         },
         {
           "value": 6,
           "label": "MC-101",
-          "index": 5
+          "index": 6
         },
         {
           "value": 7,
           "label": "VP-03",
-          "index": 6
+          "index": 7
         }
       ]
     },

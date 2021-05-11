@@ -765,6 +765,10 @@ class State {
                 if (tmp != _.get(this.device,`${dev}.${key}`)) {
                   _.set(this.device,`${dev}.${key}`,tmp)
                   let names = []
+                  if (key == 'port') {
+                    _.set(this.device,`${dev}.device`,0)
+                    sendNRPN(midiOutputName,_.get(config.acid.device,`${dev}.device.nrpn`),1,_.get(this.device,`${dev}.device`),0)
+                  }
                   if (key == 'device') {
                     if (tmp > 0 && config.devices) {
                       const deviceKeys = Object.keys(config.devices)
