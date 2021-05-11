@@ -52,6 +52,9 @@ let pulseDuration = 0
 
 let writeState = true
 
+let state
+const midiCache = {}
+
 class State {
   constructor() {
     this.values = {}
@@ -765,9 +768,42 @@ class State {
                 if (tmp != _.get(this.device,`${dev}.${key}`)) {
                   _.set(this.device,`${dev}.${key}`,tmp)
                   let names = []
-                  if (key == 'port') {
-                    _.set(this.device,`${dev}.device`,0)
+                  if (key == 'port' || key == 'channel') {
+                    let deviceIdx = 0
+                    let portName
+                    const midiNames = easymidi.getInputs()
+                    if (midiNames) {
+                      const port = _.get(this.device,`${dev}.port`)
+                      if (port < midiNames.length) {
+                        portName = midiNames[port]
+                      }
+                    }
+                    if (portName) {
+                      const deviceKeys = Object.keys(config.devices)
+                      const matchingDevices = deviceKeys.filter( deviceKey => {
+                        const devicePortKey = _.get(config,`devices.${deviceKey}.port`)
+                        const devicePortName = _.get(config,`midi.ports.${devicePortKey}.${os.platform()}`)
+                        return devicePortName == portName
+                      })
+                      matchingDevices.forEach( deviceKey => {
+                        const channel = _.get(this.device,`${dev}.channel`)
+                        const channels = _.get(config,`devices.${deviceKey}.channels`)
+                        if (channels.indexOf(channel) >= 0) {
+                          const devIdx = deviceKeys.indexOf(matchingDevices[0])
+                          if (devIdx >= 0) {
+                            deviceIdx = devIdx + 1
+                          }
+                        }
+                      } )
+//                      debug('JJR %y %y %y',portName,deviceKeys,matchingDevices)
+                    }
+
+                    _.set(this.device,`${dev}.device`,deviceIdx)
                     sendNRPN(midiOutputName,_.get(config.acid.device,`${dev}.device.nrpn`),1,_.get(this.device,`${dev}.device`),0)
+                    if (!deviceIdx) {
+                      _.set(this.device,`${dev}.mute`,1)
+                      sendNRPN(midiOutputName,_.get(config.acid.device,`${dev}.mute.nrpn`),1,_.get(this.device,`${dev}.mute`),0)
+                    }
                   }
                   if (key == 'device') {
                     if (tmp > 0 && config.devices) {
@@ -831,15 +867,13 @@ class State {
   }
 }
 
-let state
+
+
 
 
 function sendNRPN(midiName,msb,lsb,valueMsb,valueLsb,timeout = 0) {
   Midi.send(midiName,'nrpn',{channel:config.acid.channel - 1,msb,lsb,valueMsb,valueLsb},timeout ? `NRPN_c:${config.acid.channel - 1}_n:${(msb << 7) | (lsb & 0x7F)}` : null,timeout)
 }
-
-const midiCache = {}
-
 
 function acidSequencer(name, sub, options) {
 
@@ -1002,11 +1036,19 @@ function acidSequencer(name, sub, options) {
               if (!state.device[dev].mute && state.device[dev].portName && state.probability >= rnd2) {
                 const channel = state.device[dev].channel - 1
                 debugMidiNoteOn('%s %d %y',state.device[dev].portName,channel + 1,midiNote)
+                if (_.get(midiCache,`${state.device[dev].portName}.note_${midiNote}`)) {
+                  Midi.send(state.device[dev].portName,'noteoff', {
+                    note: midiNote,
+                    velocity: 127 ,
+                    channel: channel,
+                  })
+                }
                 Midi.send(state.device[dev].portName,'noteon', {
                   note: midiNote,
                   velocity: 127 * note.velocity,
                   channel: channel,
                 })
+                _.set(midiCache,`${state.device[dev].portName}.note_${midiNote}`,true)
 
                 const b = Math.floor(note.durationTicks / ticksPerStep) * ticksPerStep
                 const r = (note.durationTicks % ticksPerStep) * state.gate
@@ -1017,6 +1059,7 @@ function acidSequencer(name, sub, options) {
                     velocity: 127 ,
                     channel: channel,
                   })
+                  _.set(midiCache,`${portName}.note_${midiNote}`,false)
                 }, b + r, state.device[dev].portName,midiNote,channel)
               }
             }
