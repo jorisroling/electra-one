@@ -20,7 +20,7 @@ function listPorts(name, sub, options) {
   ]
 
   for (let i = 0; i < midiInputNames.length || i < midiOutputNames.length; i++) {
-    data.push([i < midiInputNames.length && midiInputNames[i]?labelColor(midiInputNames[i]):'',i < midiOutputNames.length && midiOutputNames[i]?labelColor(midiOutputNames[i]):''])
+    data.push([i < midiInputNames.length && midiInputNames[i] ? labelColor(midiInputNames[i]) : '',i < midiOutputNames.length && midiOutputNames[i] ? labelColor(midiOutputNames[i]) : ''])
   }
 
   const output = table(data, {})
