@@ -106,9 +106,9 @@
       "name": "Scale",
       "color": "C44795",
       "bounds": [
-        510,
+        680,
         104,
-        486,
+        316,
         16
       ]
     },
@@ -639,7 +639,7 @@
     {
       "id": 7,
       "type": "fader",
-      "name": "OCTAVE",
+      "name": "OCTAVE CHANCE",
       "color": "F49500",
       "bounds": [
         0,
@@ -745,8 +745,8 @@
     {
       "id": 10,
       "type": "fader",
-      "name": "SCALE",
-      "color": "C44795",
+      "name": "SHIFT",
+      "color": "F49500",
       "bounds": [
         510,
         128,
@@ -767,11 +767,13 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 2433,
+            "parameterNumber": 2689,
             "min": 0,
-            "max": 36
+            "max": 32
           },
-          "overlayId": 1,
+          "min": -16,
+          "max": 16,
+          "defaultValue": 0,
           "id": "value"
         }
       ]
@@ -779,7 +781,7 @@
     {
       "id": 11,
       "type": "fader",
-      "name": "BASE",
+      "name": "SCALE",
       "color": "C44795",
       "bounds": [
         680,
@@ -801,10 +803,11 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 2561,
+            "parameterNumber": 2433,
             "min": 0,
-            "max": 11
+            "max": 36
           },
+          "overlayId": 1,
           "id": "value"
         }
       ]
@@ -812,7 +815,7 @@
     {
       "id": 12,
       "type": "fader",
-      "name": "SHIFT",
+      "name": "BASE",
       "color": "C44795",
       "bounds": [
         850,
@@ -834,13 +837,10 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 2689,
+            "parameterNumber": 2561,
             "min": 0,
-            "max": 32
+            "max": 11
           },
-          "min": -16,
-          "max": 16,
-          "defaultValue": 0,
           "id": "value"
         }
       ]

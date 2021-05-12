@@ -767,7 +767,6 @@ class State {
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                 if (tmp != _.get(this.device,`${dev}.${key}`)) {
                   _.set(this.device,`${dev}.${key}`,tmp)
-                  let names = []
                   if (key == 'port' || key == 'channel') {
                     let deviceIdx = 0
                     let portName
@@ -843,14 +842,15 @@ class State {
                     if (midiNames) {
                       const idx = tmp
                       if (idx < midiNames.length) {
-                        names.push(midiNames[idx])
-                        _.set(this.device,`${dev}.${key}Name`,midiNames[idx])
+                        let name = midiNames[idx]
+                        const ports = Object.keys(config.midi.ports).filter( p => config.midi.ports[p][os.platform()] == name )
+                        if (ports && ports.length == 1) name = ports[0]
+                        _.set(this.device,`${dev}.${key}Name`,name)
                       }
                     } else {
                       _.set(this.device,`${dev}.${key}Name`,null)
                     }
                   }
-                  debug('device.%s.%s: %y %s', dev, key, _.get(this.device,`${dev}.${key}`),names.length ? ` [ ${names.join(', ')} ]` : '')
 
                   if (key == 'bank' || key == 'program') {
                     this.sendProgramChange(dev)
@@ -871,6 +871,7 @@ class State {
 
 
 function sendNRPN(midiName,msb,lsb,valueMsb,valueLsb,timeout = 0) {
+//  if (!timeout) timeout=1
   Midi.send(midiName,'nrpn',{channel:config.acid.channel - 1,msb,lsb,valueMsb,valueLsb},timeout ? `NRPN_c:${config.acid.channel - 1}_n:${(msb << 7) | (lsb & 0x7F)}` : null,timeout)
 }
 
@@ -1016,15 +1017,17 @@ function acidSequencer(name, sub, options) {
         state.pattern.tracks[0].notes.forEach( (note) => {
           if (note.ticks == shiftedTicks) {
             if (stepIdx < state.sounding.length && state.sounding[stepIdx]) {
-              let midiNote = note.midi + state.transpose + ((stepIdx < state.octaves.length && state.octaves[stepIdx]) ? (state.octaves[stepIdx] * 12) : 0)
+              let midiNote = note.midi // + state.transpose + ((stepIdx < state.octaves.length && state.octaves[stepIdx]) ? (state.octaves[stepIdx] * 12) : 0)
 
               const scaleMapping = scaleMappings.scales[state.scales]
               const midiNoteFromBase = (midiNote + state.base) % 12
               const midiNoteBase =  midiNote - midiNoteFromBase
               if (scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
-                //                debug('scale: %s %y => %y',scaleMapping.name, midiNoteFromBase, scaleMapping.mapping[midiNoteFromBase])
                 midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - state.base
               }
+
+              midiNote += state.transpose + ((stepIdx < state.octaves.length && state.octaves[stepIdx]) ? (state.octaves[stepIdx] * 12) : 0)
+
               const rnd = getRandomInt(100)
 
               const switchChannel = (state.deviate && state.deviate >= rnd)
