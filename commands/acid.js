@@ -21,6 +21,7 @@ const fs = require('fs-extra')
 const path = require('path')
 const untildify = require('untildify')
 const jsonfile = require('jsonfile')
+const chalk = require('chalk')
 
 const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max + 1))
 
@@ -28,10 +29,8 @@ const euclideanRhythms = require('euclidean-rhythms')
 
 const scaleMappings = require('../extra/scales/scales.json')
 
-const { deviceCCs } = require('../lib/devices')
-
-const typhonCCs = deviceCCs('typhon')
-const virusCCs = deviceCCs('virus')
+const { knownDeviceCCs } = require('../lib/devices')
+const deviceCCs=knownDeviceCCs()
 
 const shapes = ['sine','triangle','saw-up','saw-down','square','random']
 
@@ -745,13 +744,20 @@ class State {
                     this.lfo[l].shapeName = shapes[idx]
                     names.push(this.lfo[l].shapeName)
                   }
-                  if (key == 'control' && typhonCCs[this.lfo[l].control]) {
-                    names.push('typhon ' + typhonCCs[this.lfo[l].control])
-                  }
-                  if (key == 'control' && virusCCs[this.lfo[l].control]) {
-                    names.push('virus ' + virusCCs[this.lfo[l].control])
-                  }
+                  if (key == 'control') {
+                    if (this.lfo[l].control) ['A','B'].forEach( dev => {
+                      const deviceIdx = _.get(this.device,`${dev}.device`)
+                      if (deviceIdx > 0 && config.devices) {
+                        const deviceKeys = Object.keys(config.devices)
+                        if (deviceKeys.length > deviceIdx - 1) {
+                          const device = deviceKeys[deviceIdx-1]
+                          const deviceColor = (dev=='A') ? chalk.hex('#FF0000') : chalk.hex('#0000FF')
+                          names.push(deviceColor(`${dev}:` + device+' '+_.get(deviceCCs,`${device}.${this.lfo[l].control}`)))
+                        }
+                      }
+                    } )
 
+                  }
                   debug('lfo.%d.%s: %y%s', l + 1, key, _.get(this.lfo[l],key),names.length ? ` [ ${names.join(', ')} ]` : '')
                   this.write(true) // write because lfo values are deep values
                 }
