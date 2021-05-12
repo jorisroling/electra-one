@@ -2,6 +2,7 @@ const pkg = require('../package.json')
 const debugPrefix = pkg.name
 const path = require('path')
 
+const bacaraAcidVirtualName = 'Bacara Acid'
 /*
  iConnectMIDI4+:iConnectMIDI4+ MIDI 3 20:2   ║ Virus TI
 */
@@ -45,6 +46,10 @@ module.exports = {
       'acdgen': {
         darwin: 'iConnectMIDI4+ ACDGEN',
         linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 11 20:10',
+      },
+      'bacara': {
+        darwin: bacaraAcidVirtualName,
+        linux: bacaraAcidVirtualName,
       },
     },
   },
@@ -117,6 +122,15 @@ module.exports = {
         port: 2,
       },
     },
+    'bacara': {
+      model: 'Bacara',
+      manufacturer: 'Me',
+      channels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+      port: 'bacara',
+      electraOne: {
+        port: 2,
+      },
+    },
     'acdgen': {
       model: 'ACDGEN',
       manufacturer: 'Spektro Audio',
@@ -167,7 +181,11 @@ module.exports = {
       },
     },
   },
+  list: {
+    virtual: bacaraAcidVirtualName,
+  },
   acid: {
+    virtual: bacaraAcidVirtualName,
     channel: 1,
     last_used: {
       nrpn: 71,

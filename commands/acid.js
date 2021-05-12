@@ -771,7 +771,7 @@ class State {
                   if (key == 'port' || key == 'channel') {
                     let deviceIdx = 0
                     let portName
-                    const midiNames = easymidi.getInputs()
+                    const midiNames = easymidi.getOutputs()
                     if (midiNames) {
                       const port = _.get(this.device,`${dev}.port`)
                       if (port < midiNames.length) {
@@ -795,7 +795,6 @@ class State {
                           }
                         }
                       } )
-//                      debug('JJR %y %y %y',portName,deviceKeys,matchingDevices)
                     }
 
                     _.set(this.device,`${dev}.device`,deviceIdx)
@@ -815,7 +814,7 @@ class State {
                         if (port) {
                           const portName = _.get(config,`midi.ports.${port}.${os.platform()}`)
                           if (portName) {
-                            const midiNames = easymidi.getInputs()
+                            const midiNames = easymidi.getOutputs()
                             if (midiNames) {
                               const idx = midiNames.indexOf(portName)
                               if (idx >= 0) {
@@ -840,7 +839,7 @@ class State {
                     }
                   }
                   if (key == 'port') {
-                    const midiNames = easymidi.getInputs()
+                    const midiNames = easymidi.getOutputs()
                     if (midiNames) {
                       const idx = tmp
                       if (idx < midiNames.length) {
@@ -879,11 +878,13 @@ function acidSequencer(name, sub, options) {
 
   /*  debug('options: %y',options)*/
 
+  Midi.setupVirtualPorts(config.acid.virtual)
+
   state = new State()
 
-  const clockInput = Midi.input(options.clock, true)
+  const clockInput = Midi.input(options.clock, true, true)
 
-  const transposeInput = (options.transpose ? Midi.input(options.transpose, true) : null)
+  const transposeInput = (options.transpose ? Midi.input(options.transpose, true, true) : null)
 
 
   if (!midiCache[options.output]) {
@@ -1093,7 +1094,7 @@ function acidSequencer(name, sub, options) {
   })
 
   if (midiInputName) {
-    const midiInput = Midi.input(midiInputName, true)
+    const midiInput = Midi.input(midiInputName, true, true)
     midiInput.on('cc', state.handleNamedCC(midiInputName) )
     midiInput.on('sysex', state.handleNamedSysEx(midiInputName) )
   }

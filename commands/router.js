@@ -232,6 +232,8 @@ function setupMidi(options) {
 }
 
 function routerConsole(name, sub, options) {
+  //Midi.setupVirtualPorts()
+
   readState()
   setupMidi(options)
 }
