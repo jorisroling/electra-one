@@ -374,6 +374,11 @@
           "value": 7,
           "label": "VP-03",
           "index": 7
+        },
+        {
+          "value": 8,
+          "label": "Bacara Acid",
+          "index": 8
         }
       ]
     },
