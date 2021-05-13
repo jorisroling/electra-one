@@ -891,7 +891,7 @@ function acidSequencer(name, sub, options) {
 
   /*  debug('options: %y',options)*/
 
-  Midi.setupVirtualPorts(config.acid.interface.virtual)
+  Midi.setupVirtualPorts(config.acid.virtual)
 
   state = new State()
 
