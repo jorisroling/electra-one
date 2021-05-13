@@ -116,15 +116,21 @@
       "pageId": 1,
       "name": "Preset",
       "bounds": [
-        680,
+        510,
         192,
-        316,
+        486,
         16
       ],
       "color": "FFFFFF"
     }
   ],
   "devices": [
+    {
+      "id": 1,
+      "name": "Generic MIDI",
+      "port": 1,
+      "channel": 1
+    },
     {
       "id": 17,
       "name": "Bacara Acid",
@@ -450,18 +456,18 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 1665,
             "min": 0,
-            "max": 24
+            "max": 127
           },
-          "min": -12,
-          "max": 12,
-          "defaultValue": 0,
-          "id": "value"
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0
         }
       ]
     },
@@ -915,6 +921,39 @@
       ]
     },
     {
+      "id": 16,
+      "type": "fader",
+      "name": "BANK",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 9217,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
       "id": 17,
       "type": "pad",
       "mode": "momentary",
@@ -1050,6 +1089,39 @@
             "offValue": 0
           },
           "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "type": "fader",
+      "name": "PROGRAM",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        304,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": true,
+            "parameterNumber": 9345,
+            "min": 0,
+            "max": 127
+          },
           "id": "value"
         }
       ]
