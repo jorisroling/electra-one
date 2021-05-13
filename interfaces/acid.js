@@ -406,4 +406,164 @@ module.exports = {
       },
     },
   },
+  matrix: {
+    slot: [
+      {
+        source: {
+          nrpn: 74,
+          min: 0,
+          max: 2,
+          default: 0,
+        },
+        destination: [
+          {
+            target: {
+              nrpn: 75,
+              min: 0,
+              max: 39,
+              default: 0,
+            },
+            amount: {
+              nrpn: 78,
+              min: 0,
+              max: 127,
+              default: 0,
+            },
+          },
+          {
+            target: {
+              nrpn: 76,
+              min: 0,
+              max: 39,
+              default: 0,
+            },
+            amount: {
+              nrpn: 79,
+              min: 0,
+              max: 127,
+              default: 0,
+            },
+          },
+          {
+            target: {
+              nrpn: 77,
+              min: 0,
+              max: 39,
+              default: 0,
+            },
+            amount: {
+              nrpn: 80,
+              min: 0,
+              max: 127,
+              default: 0,
+            },
+          },
+        ],
+      },
+      {
+        source: {
+          nrpn: 81,
+          min: 0,
+          max: 2,
+          default: 0,
+        },
+        destination: [
+          {
+            target: {
+              nrpn: 82,
+              min: 0,
+              max: 39,
+              default: 0,
+            },
+            amount: {
+              nrpn: 85,
+              min: 0,
+              max: 127,
+              default: 0,
+            },
+          },
+          {
+            target: {
+              nrpn: 83,
+              min: 0,
+              max: 39,
+              default: 0,
+            },
+            amount: {
+              nrpn: 86,
+              min: 0,
+              max: 127,
+              default: 0,
+            },
+          },
+          {
+            target: {
+              nrpn: 84,
+              min: 0,
+              max: 39,
+              default: 0,
+            },
+            amount: {
+              nrpn: 87,
+              min: 0,
+              max: 127,
+              default: 0,
+            },
+          },
+        ],
+      },
+      {
+        source: {
+          nrpn: 88,
+          min: 0,
+          max: 2,
+          default: 0,
+        },
+        destination: [
+          {
+            target: {
+              nrpn: 89,
+              min: 0,
+              max: 39,
+              default: 0,
+            },
+            amount: {
+              nrpn: 92,
+              min: 0,
+              max: 127,
+              default: 0,
+            },
+          },
+          {
+            target: {
+              nrpn: 90,
+              min: 0,
+              max: 39,
+              default: 0,
+            },
+            amount: {
+              nrpn: 93,
+              min: 0,
+              max: 127,
+              default: 0,
+            },
+          },
+          {
+            target: {
+              nrpn: 91,
+              min: 0,
+              max: 39,
+              default: 0,
+            },
+            amount: {
+              nrpn: 94,
+              min: 0,
+              max: 127,
+              default: 0,
+            },
+          },
+        ],
+      },
+    ],
+  },
 }

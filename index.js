@@ -20,6 +20,12 @@ args
   .option('transpose', 'Transpose Input MIDI interface name (part)','KOMPLETE KONTROL M32')
   .option('transposeChannel', 'Transpose Input Channel (1-16)',1)
 
+  .option('transpose', 'Transpose Input MIDI interface name (part)','KOMPLETE KONTROL M32')
+  .option('transposeChannel', 'Transpose Input Channel (1-16)',1)
+
+  .option('general', 'General Input MIDI interface name (part)','KOMPLETE KONTROL M32')
+  .option('generalChannel', 'General Input Channel (1-16)',1)
+
 const commands = require('./lib/commands')
 
 Object.keys(commands).forEach( command => {
