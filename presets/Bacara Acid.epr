@@ -163,12 +163,6 @@
   ],
   "devices": [
     {
-      "id": 1,
-      "name": "Generic MIDI",
-      "port": 1,
-      "channel": 1
-    },
-    {
       "id": 17,
       "name": "Bacara Acid",
       "port": 2,
@@ -2908,14 +2902,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 9473
           },
-          "overlayId": 5,
-          "id": "value"
+          "overlayId": 5
         }
       ]
     },
@@ -2940,14 +2934,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 9601
           },
-          "overlayId": 6,
-          "id": "value"
+          "overlayId": 6
         }
       ]
     },
@@ -2975,7 +2969,7 @@
           "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 9729
           },
@@ -3007,7 +3001,7 @@
           "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 9857
           },
@@ -3038,7 +3032,7 @@
         {
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 9985,
             "min": 0,
@@ -3074,7 +3068,7 @@
         {
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 10113,
             "min": 0,
@@ -3110,7 +3104,7 @@
         {
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 10241,
             "min": 0,
@@ -3147,7 +3141,7 @@
           "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 10369
           },
@@ -3179,7 +3173,7 @@
           "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 10497
           },
@@ -3211,7 +3205,7 @@
           "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 10625
           },
@@ -3243,7 +3237,7 @@
           "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 10753
           },
@@ -3274,7 +3268,7 @@
         {
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 10881,
             "min": 0,
@@ -3310,7 +3304,7 @@
         {
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 11009,
             "min": 0,
@@ -3346,7 +3340,7 @@
         {
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 11137,
             "min": 0,
@@ -3383,7 +3377,7 @@
           "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 11265
           },
@@ -3415,7 +3409,7 @@
           "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 11393
           },
@@ -3447,7 +3441,7 @@
           "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 11521
           },
@@ -3479,7 +3473,7 @@
           "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 11649
           },
@@ -3510,7 +3504,7 @@
         {
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 11777,
             "min": 0,
@@ -3546,7 +3540,7 @@
         {
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 11905,
             "min": 0,
@@ -3582,7 +3576,7 @@
         {
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 12033,
             "min": 0,
