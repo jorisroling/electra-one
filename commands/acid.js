@@ -91,6 +91,8 @@ class State {
     this.values.shift = 0
     this.values.split = 127
     this.values.deviate = 0
+    this.values.bank = 0
+    this.values.program = 0
     this.values.lfo = [
       {
         device: {
@@ -367,6 +369,26 @@ class State {
     }
   }
 
+  get bank() {
+    return this.values.bank
+  }
+  set bank(value) {
+    if (!deepEqual(this.values.bank,value,{strict:true})) {
+      this.values.bank = value
+      this.write()
+    }
+  }
+
+  get program() {
+    return this.values.program
+  }
+  set program(value) {
+    if (!deepEqual(this.values.program,value,{strict:true})) {
+      this.values.program = value
+      this.write()
+    }
+  }
+
   get lfo() {
     return this.values.lfo
   }
@@ -631,6 +653,24 @@ class State {
             this.sendValues()
 
             debug('reset')
+          }
+        }
+        if (msb == config.acid.interface.bank.nrpn && (lsb >= 1 && lsb <= 8)) {
+          if (msg.controller == 6) { //MSB
+            let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
+            if (tmp != this.bank) {
+              this.bank = tmp
+              debug('bank: %y', this.bank)
+            }
+          }
+        }
+        if (msb == config.acid.interface.program.nrpn && (lsb >= 1 && lsb <= 8)) {
+          if (msg.controller == 6) { //MSB
+            let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
+            if (tmp != this.program) {
+              this.program = tmp
+              debug('program: %y', this.program)
+            }
           }
         }
         if (msb == config.acid.interface.octave.nrpn && (lsb >= 1 && lsb <= 8)) {
