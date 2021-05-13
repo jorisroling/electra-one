@@ -19,9 +19,9 @@ module.exports = {
   transpose: {
     cc: 13,
     nrpn: 13,
-    min: 0,
-    max: 24,
-    default: 12,
+    min: -64,
+    max: 63,
+    default: 0,
   },
   gate: {
     cc: 14,

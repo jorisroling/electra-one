@@ -1047,6 +1047,17 @@ class State {
       }
     }
   }
+
+  modulated(keyPath) {
+    const value = _.get(this,keyPath)
+    if (typeof value != 'undefined') {
+      const min = _.get(config.acid.interface,`${keyPath}.min`)
+      const max = _.get(config.acid.interface,`${keyPath}.max`)
+
+
+    }
+  }
+
 }
 
 
