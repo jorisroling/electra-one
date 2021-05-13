@@ -494,6 +494,9 @@ class State {
     sendNRPN(midiOutputName,config.acid.interface.base.nrpn,1,this.base,0)
     sendNRPN(midiOutputName,config.acid.interface.shift.nrpn,1,this.shift + 16,0)
 
+    sendNRPN(midiOutputName,config.acid.interface.bank.nrpn,1,this.bank,0)
+    sendNRPN(midiOutputName,config.acid.interface.program.nrpn,1,this.program,0)
+
     // LFO
     for (let l = 0; l < 3; l++) {
       ['control','shape','rate','phase','amount','offset','density'].forEach( key => {
@@ -640,7 +643,8 @@ class State {
 
             const filename = Acid.save_preset(state)
             if (filename) {
-              this.last_preset_but = 0
+              this.sendValues()
+              this.write(true)
               debug('save_pattern: %y %y',this.last_preset_but,path.basename(filename))
             }
           }
@@ -668,8 +672,21 @@ class State {
           if (msg.controller == 6) { //MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
             if (tmp != this.program) {
-              this.program = tmp
-              debug('program: %y', this.program)
+              const presetFilesCount = Acid.presetFiles(this,true)
+              if (tmp>=0 && tmp<presetFilesCount) {
+                this.program = tmp
+
+                this.last_preset_but = presetFilesCount - (this.program + 1)
+
+                const filename = Acid.load_preset(state)
+                if (filename) {
+                  this.sendProgramChange('A')
+                  this.sendProgramChange('B')
+                  this.sendValues()
+                  this.write(true)
+                  debug('program: %y %y', this.program,path.basename(filename))
+                }
+              }
             }
           }
         }
