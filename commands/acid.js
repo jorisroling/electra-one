@@ -31,7 +31,7 @@ const scaleMappings = require('../extra/scales/scales.json')
 
 const { knownDeviceCCs } = require('../lib/devices')
 const deviceCCs = knownDeviceCCs()
-
+//debug('deviceCCs %y',deviceCCs['bacara-acid'])
 const shapes = ['sine','triangle','saw-up','saw-down','square','random']
 
 let output
