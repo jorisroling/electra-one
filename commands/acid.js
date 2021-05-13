@@ -450,39 +450,39 @@ class State {
   sendValues() {
     debug('Send Values')
 
-    sendNRPN(midiOutputName,config.acid.temperature.nrpn,1,(this.temperature * 100) & 0xFF,(this.temperature * 100) >> 7)
-    sendNRPN(midiOutputName,config.acid.split.nrpn,1,this.split,0)
-    sendNRPN(midiOutputName,config.acid.deviate.nrpn,1,this.deviate,0)
+    sendNRPN(midiOutputName,config.acid.interface.temperature.nrpn,1,(this.temperature * 100) & 0xFF,(this.temperature * 100) >> 7)
+    sendNRPN(midiOutputName,config.acid.interface.split.nrpn,1,this.split,0)
+    sendNRPN(midiOutputName,config.acid.interface.deviate.nrpn,1,this.deviate,0)
     for (let l = 0; l < 3; l++) {
       ['device.A','device.B'].forEach( key => {
-        sendNRPN(midiOutputName,_.get(config.acid.lfo[l + 1],`${key}.nrpn`),1,_.get(this.lfo[l],key),0)
+        sendNRPN(midiOutputName,_.get(config.acid.interface.lfo[l + 1],`${key}.nrpn`),1,_.get(this.lfo[l],key),0)
       })
     }
 
-    sendNRPN(midiOutputName,config.acid.transpose.nrpn,1,this.transpose + 12,0)
-    sendNRPN(midiOutputName,config.acid.gate.nrpn,1,this.gate * 64,0)
-    sendNRPN(midiOutputName,config.acid.octave.nrpn,1,((this.chance / 100) * 64) + 64,0)
+    sendNRPN(midiOutputName,config.acid.interface.transpose.nrpn,1,this.transpose + 64,0)
+    sendNRPN(midiOutputName,config.acid.interface.gate.nrpn,1,this.gate * 64,0)
+    sendNRPN(midiOutputName,config.acid.interface.octave.nrpn,1,((this.chance / 100) * 64) + 64,0)
 
-    sendNRPN(midiOutputName,config.acid.density.nrpn,1,this.density,0)
-    sendNRPN(midiOutputName,config.acid.probability.nrpn,1,this.probability,0)
-    sendNRPN(midiOutputName,config.acid.killSteps.nrpn,1,this.killSteps,0)
-    sendNRPN(midiOutputName,config.acid.killShift.nrpn,1,this.killShift + 15,0)
+    sendNRPN(midiOutputName,config.acid.interface.density.nrpn,1,this.density,0)
+    sendNRPN(midiOutputName,config.acid.interface.probability.nrpn,1,this.probability,0)
+    sendNRPN(midiOutputName,config.acid.interface.killSteps.nrpn,1,this.killSteps,0)
+    sendNRPN(midiOutputName,config.acid.interface.killShift.nrpn,1,this.killShift + 15,0)
 
-    sendNRPN(midiOutputName,config.acid.scales.nrpn,1,this.scales,0)
-    sendNRPN(midiOutputName,config.acid.base.nrpn,1,this.base,0)
-    sendNRPN(midiOutputName,config.acid.shift.nrpn,1,this.shift + 16,0)
+    sendNRPN(midiOutputName,config.acid.interface.scales.nrpn,1,this.scales,0)
+    sendNRPN(midiOutputName,config.acid.interface.base.nrpn,1,this.base,0)
+    sendNRPN(midiOutputName,config.acid.interface.shift.nrpn,1,this.shift + 16,0)
 
     // LFO
     for (let l = 0; l < 3; l++) {
       ['control','shape','rate','phase','amount','offset','density'].forEach( key => {
-        sendNRPN(midiOutputName,_.get(config.acid.lfo[l + 1],`${key}.nrpn`),1,_.get(this.lfo[l],key),0)
+        sendNRPN(midiOutputName,_.get(config.acid.interface.lfo[l + 1],`${key}.nrpn`),1,_.get(this.lfo[l],key),0)
       })
     }
 
     // PROGRAM
     ['A','B'].forEach( dev => {
       ['device','mute','port','channel','bank','program'].forEach( key => {
-        sendNRPN(midiOutputName,_.get(config.acid.device,`${dev}.${key}.nrpn`),1,_.get(this.device,`${dev}.${key}`),0)
+        sendNRPN(midiOutputName,_.get(config.acid.interface.device,`${dev}.${key}.nrpn`),1,_.get(this.device,`${dev}.${key}`),0)
       })
     })
   }
@@ -520,7 +520,7 @@ class State {
       if ((msg.channel + 1) == config.acid.channel && ((msg.controller == 6) || (msg.controller == 38))) {
         const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_099`)
         const lsb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_098`)
-        if (msb == config.acid.generate.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.generate.nrpn && (lsb >= 1 && lsb <= 8)) {
           if (msg.controller == 6) { //MSB
             if (msg.value) {
               this.pattern = Acid.generate(state)
@@ -531,20 +531,20 @@ class State {
             // not used as value is always < 128
           }
         }
-        if (msb == config.acid.temperature.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.temperature.nrpn && (lsb >= 1 && lsb <= 8)) {
           const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
           const lsb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_038`)
           this.temperature = (((lsb << 7) | msb) / 100)
           debug('temperature %y',this.temperature)
         }
-        if (msb == config.acid.transpose.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.transpose.nrpn && (lsb >= 1 && lsb <= 8)) {
           if (msg.controller == 6) { //MSB
             const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
-            this.transpose = (msb - 12)
+            this.transpose = (msb - 64)
             debug('transpose: %y',this.transpose)
           }
         }
-        if (msb == config.acid.gate.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.gate.nrpn && (lsb >= 1 && lsb <= 8)) {
           if (msg.controller == 6) { //MSB
             const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
             this.gate = parseFloat((msb / 64 ).toFixed(2))
@@ -554,7 +554,7 @@ class State {
             debug('gate: %y',this.gate)
           }
         }
-        if (msb == config.acid.previous_pattern.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.previous_pattern.nrpn && (lsb >= 1 && lsb <= 8)) {
           const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
           if (msb && msg.controller == 6) {
 
@@ -564,7 +564,7 @@ class State {
             debug('previous_pattern: %y', this.last_pattern_but)
           }
         }
-        if (msb == config.acid.next_pattern.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.next_pattern.nrpn && (lsb >= 1 && lsb <= 8)) {
           const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
           if (msb && msg.controller == 6) {
 
@@ -577,7 +577,7 @@ class State {
             debug('next_pattern: %y', this.last_pattern_but)
           }
         }
-        if (msb == config.acid.previous_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.previous_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
           const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
           if (msb && msg.controller == 6) {
 
@@ -593,7 +593,7 @@ class State {
             }
           }
         }
-        if (msb == config.acid.next_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.next_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
           const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
           if (msb && msg.controller == 6) {
 
@@ -612,7 +612,7 @@ class State {
             }
           }
         }
-        if (msb == config.acid.save_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.save_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
           const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
           if (msb && msg.controller == 6) {
 
@@ -623,7 +623,7 @@ class State {
             }
           }
         }
-        if (msb == config.acid.reset_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.reset_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
           const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
           if (msb && msg.controller == 6) {
 
@@ -633,7 +633,7 @@ class State {
             debug('reset')
           }
         }
-        if (msb == config.acid.octave.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.octave.nrpn && (lsb >= 1 && lsb <= 8)) {
           if (msg.controller == 6) { //MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`) - 64
             if (tmp < 0) {
@@ -648,7 +648,7 @@ class State {
             }
           }
         }
-        if (msb == config.acid.density.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.density.nrpn && (lsb >= 1 && lsb <= 8)) {
           if (msg.controller == 6) { //MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
             if (tmp != this.density) {
@@ -657,7 +657,7 @@ class State {
             }
           }
         }
-        if (msb == config.acid.probability.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.probability.nrpn && (lsb >= 1 && lsb <= 8)) {
           if (msg.controller == 6) { //MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
             if (tmp != this.probability) {
@@ -666,7 +666,7 @@ class State {
             }
           }
         }
-        if (msb == config.acid.killSteps.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.killSteps.nrpn && (lsb >= 1 && lsb <= 8)) {
           if (msg.controller == 6) { //MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
             if (tmp != this.killSteps) {
@@ -675,7 +675,7 @@ class State {
             }
           }
         }
-        if (msb == config.acid.killShift.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.killShift.nrpn && (lsb >= 1 && lsb <= 8)) {
           if (msg.controller == 6) { //MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`) - 15
             if (tmp != this.killShift) {
@@ -684,7 +684,7 @@ class State {
             }
           }
         }
-        if (msb == config.acid.scales.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.scales.nrpn && (lsb >= 1 && lsb <= 8)) {
           if (msg.controller == 6) { //MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
             if (tmp != this.scales) {
@@ -693,7 +693,7 @@ class State {
             }
           }
         }
-        if (msb == config.acid.base.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.base.nrpn && (lsb >= 1 && lsb <= 8)) {
           if (msg.controller == 6) { //MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
             if (tmp != this.base) {
@@ -702,7 +702,7 @@ class State {
             }
           }
         }
-        if (msb == config.acid.shift.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.shift.nrpn && (lsb >= 1 && lsb <= 8)) {
           if (msg.controller == 6) { //MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`) - 16
             if (tmp != this.shift) {
@@ -711,7 +711,7 @@ class State {
             }
           }
         }
-        if (msb == config.acid.split.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.split.nrpn && (lsb >= 1 && lsb <= 8)) {
           if (msg.controller == 6) { //MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
             if (tmp != this.split) {
@@ -720,7 +720,7 @@ class State {
             }
           }
         }
-        if (msb == config.acid.deviate.nrpn && (lsb >= 1 && lsb <= 8)) {
+        if (msb == config.acid.interface.deviate.nrpn && (lsb >= 1 && lsb <= 8)) {
           if (msg.controller == 6) { //MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
             if (tmp != this.deviate) {
@@ -732,7 +732,7 @@ class State {
 
         for (let l = 0; l < 3; l++) {
           ['control','shape','rate','phase','amount','offset','density','device.A','device.B'].forEach( key => {
-            if (msb == _.get(config.acid.lfo[l + 1],`${key}.nrpn`) && (lsb >= 1 && lsb <= 8)) {
+            if (msb == _.get(config.acid.interface.lfo[l + 1],`${key}.nrpn`) && (lsb >= 1 && lsb <= 8)) {
               if (msg.controller == 6) { //MSB
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                 if (tmp != _.get(this.lfo[l],key)) {
@@ -770,10 +770,12 @@ class State {
 
         ['A','B'].forEach( dev => {
           ['device','mute','port','channel','bank','program'].forEach( key => {
-            if (msb == _.get(config.acid.device,`${dev}.${key}.nrpn`) && (lsb >= 1 && lsb <= 8)) {
+            if (msb == _.get(config.acid.interface.device,`${dev}.${key}.nrpn`) && (lsb >= 1 && lsb <= 8)) {
               if (msg.controller == 6) { //MSB
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                 if (tmp != _.get(this.device,`${dev}.${key}`)) {
+                  debug('device %s %s = %y', (dev == 'A') ? chalk.hex('#FF0000')(dev) : chalk.hex('#0000FF')(dev),key,tmp)
+
                   _.set(this.device,`${dev}.${key}`,tmp)
                   if (key == 'port' || key == 'channel') {
                     let deviceIdx = 0
@@ -805,10 +807,10 @@ class State {
                     }
 
                     _.set(this.device,`${dev}.device`,deviceIdx)
-                    sendNRPN(midiOutputName,_.get(config.acid.device,`${dev}.device.nrpn`),1,_.get(this.device,`${dev}.device`),0)
+                    sendNRPN(midiOutputName,_.get(config.acid.interface.device,`${dev}.device.nrpn`),1,_.get(this.device,`${dev}.device`),0)
                     if (!deviceIdx) {
                       _.set(this.device,`${dev}.mute`,1)
-                      sendNRPN(midiOutputName,_.get(config.acid.device,`${dev}.mute.nrpn`),1,_.get(this.device,`${dev}.mute`),0)
+                      sendNRPN(midiOutputName,_.get(config.acid.interface.device,`${dev}.mute.nrpn`),1,_.get(this.device,`${dev}.mute`),0)
                     }
                   }
                   if (key == 'device') {
@@ -828,14 +830,14 @@ class State {
                                 tmp = idx
                                 key = 'port' // fall through next condition
                                 _.set(this.device,`${dev}.port`,idx)
-                                sendNRPN(midiOutputName,_.get(config.acid.device,`${dev}.port.nrpn`),1,_.get(this.device,`${dev}.port`),0)
+                                sendNRPN(midiOutputName,_.get(config.acid.interface.device,`${dev}.port.nrpn`),1,_.get(this.device,`${dev}.port`),0)
 
                                 const channels = _.get(config,`devices.${device}.channels`)
                                 if (Array.isArray(channels) && channels.length) {
                                   const channel = _.get(this.device,`${dev}.channel`)
                                   if (channels.indexOf(channel) < 0) {
                                     _.set(this.device,`${dev}.channel`,channels[0])
-                                    sendNRPN(midiOutputName,_.get(config.acid.device,`${dev}.channel.nrpn`),1,_.get(this.device,`${dev}.channel`),0)
+                                    sendNRPN(midiOutputName,_.get(config.acid.interface.device,`${dev}.channel.nrpn`),1,_.get(this.device,`${dev}.channel`),0)
                                   }
                                 }
                               }
@@ -889,7 +891,7 @@ function acidSequencer(name, sub, options) {
 
   /*  debug('options: %y',options)*/
 
-  Midi.setupVirtualPorts(config.acid.virtual)
+  Midi.setupVirtualPorts(config.acid.interface.virtual)
 
   state = new State()
 
@@ -957,7 +959,7 @@ function acidSequencer(name, sub, options) {
       if ((!options.transposeChannel || msg.channel == (options.transposeChannel - 1)) && msg._type == 'noteon') {
         state.transpose = msg.note - 48
         debug('transpose: %y',state.transpose)
-        sendNRPN(midiOutputName,config.acid.transpose.nrpn,1,state.transpose + 12,0)
+        sendNRPN(midiOutputName,config.acid.interface.transpose.nrpn,1,state.transpose + 64,0)
       }
     })
   }
@@ -1015,7 +1017,7 @@ function acidSequencer(name, sub, options) {
                     _.set(midiCache[options.output],pth, midiValue)
 
                     // Can Electra handle many NRPN's?
-                    sendNRPN(midiOutputName,config.acid.lfo[l + 1].show.nrpn,1,midiValue,0,50)
+                    sendNRPN(midiOutputName,config.acid.interface.lfo[l + 1].show.nrpn,1,midiValue,0,50)
                   }
                 }
               })
