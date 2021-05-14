@@ -175,7 +175,7 @@ class State {
       slot: [
         {
           source: 0,
-//          value: 0,
+          value: 0,
           destination: [
             {
               target: 0,
@@ -193,7 +193,7 @@ class State {
         },
         {
           source: 0,
-//          value: 0,
+          value: 0,
           destination: [
             {
               target: 0,
@@ -211,7 +211,7 @@ class State {
         },
         {
           source: 0,
-//          value: 0,
+          value: 0,
           destination: [
             {
               target: 0,
@@ -495,8 +495,8 @@ class State {
     let result = 0
     this.matrix.slot.forEach( (slot,slotIdx) => {
       if (slot.source>0) {
-        slot.destination.forEach( (destination, destIdx) => {
-          if (destination.target == cc && destination.amount) result++
+        _.get(slot,'destination',[]).forEach( (destination, destIdx) => {
+          if (destination && destination.target == cc && destination.amount) result++
         })
       }
     })
@@ -521,14 +521,16 @@ class State {
 
 
   matrixRemodulate(reason) {
+
     const performancePaths = _.get(deviceCCs,'bacara-acid').filter ( cc => !!cc )
     const oldValues = {}
     performancePaths.forEach( perfPath => oldValues[perfPath] = _.get(this,perfPath) )
 
     this.modulation = {}
     _.get(this,'matrix.slot',[]).forEach( (slot,slotIdx) => {
-      if (slot && slot.source>0) {
-/*        debug('modulate (because of %s): slot %d = %y',reason,slotIdx+1,slot.value)*/
+      if (slot && _.get(this,`matrix.slot.${slotIdx}.value`)>0) {
+
+        //debug('modulate (because of %s): slot %d = %y',reason,slotIdx+1,_.get(this,`matrix.slot.${slotIdx}.value`))
         _.get(slot,'destination',[]).forEach( (destination, destIdx) => {
           if (destination) {
             if (destination.target>0 && destination.target < _.get(deviceCCs,'bacara-acid.length') && destination.amount) {
@@ -536,7 +538,8 @@ class State {
               const targetCount = this.matrixTargetCount(destination.target)
   /*           debug('slot %d destination %d target: %y',slotIdx+1,destIdx+1,targetPath)*/
 
-              const mod = (((slot.value+1) / 128) * (destination.amount / 100)) / targetCount //+ (destination.amount>0 ? 1 : 0 )
+              const mod = (((_.get(this,`matrix.slot.${slotIdx}.value`)+1) / 128) * (destination.amount / 100)) / targetCount //+ (destination.amount>0 ? 1 : 0 )
+//    debug('matrixRemodulate: %y %y %y',reason,mod,_.get(this,`matrix.slot.${slotIdx}.value`))
               _.set(this.modulation,targetPath,_.get(this.modulation,targetPath,0)+mod)
             }
           }
@@ -557,6 +560,8 @@ class State {
     if (deltaValues['density']) {
       this.genSounding(this.density)
     }
+//    debug('matrixRemodulate: %y %y',reason,deltaValues)
+
     if (Object.keys(deltaValues).length) {
       Acid.table(this)
       debug('modulation impact: %y',deltaValues)
@@ -625,55 +630,55 @@ class State {
 
   sendValues() {
     debug('Send Values')
-
-    sendNRPN(midiOutputName,config.acid.interface.temperature.nrpn,1,(this.temperature * 100) & 0xFF,(this.temperature * 100) >> 7)
-    sendNRPN(midiOutputName,config.acid.interface.split.nrpn,1,this.split,0)
-    sendNRPN(midiOutputName,config.acid.interface.deviate.nrpn,1,this.deviate,0)
+    // Mind you, we should use the underlaying 'this.values' instead og 'this', we want to see the basic values on Electra One, noit the modulated versions
+    sendNRPN(midiOutputName,config.acid.interface.temperature.nrpn,1,(this.temperature * 100) & 0xFF,(this.values.temperature * 100) >> 7)
+    sendNRPN(midiOutputName,config.acid.interface.split.nrpn,1,this.values.split,0)
+    sendNRPN(midiOutputName,config.acid.interface.deviate.nrpn,1,this.values.deviate,0)
     for (let l = 0; l < 3; l++) {
       ['device.A','device.B'].forEach( key => {
-        sendNRPN(midiOutputName,_.get(config.acid.interface,`lfo.${l+1}.${key}.nrpn`),1,_.get(this,`lfo.${l}.${key}`),0)
+        sendNRPN(midiOutputName,_.get(config.acid.interface,`lfo.${l+1}.${key}.nrpn`),1,_.get(this.values,`lfo.${l}.${key}`),0)
       })
     }
 
-    sendNRPN(midiOutputName,config.acid.interface.transpose.nrpn,1,this.transpose + 64,0)
-    sendNRPN(midiOutputName,config.acid.interface.gate.nrpn,1,this.gate * 64,0)
-    sendNRPN(midiOutputName,config.acid.interface.octave.nrpn,1,((this.chance / 100) * 64) + 64,0)
+    sendNRPN(midiOutputName,config.acid.interface.transpose.nrpn,1,this.values.transpose + 64,0)
+    sendNRPN(midiOutputName,config.acid.interface.gate.nrpn,1,this.values.gate * 64,0)
+    sendNRPN(midiOutputName,config.acid.interface.octave.nrpn,1,((this.values.chance / 100) * 64) + 64,0)
 
-    sendNRPN(midiOutputName,config.acid.interface.density.nrpn,1,this.density,0)
-    sendNRPN(midiOutputName,config.acid.interface.probability.nrpn,1,this.probability,0)
-    sendNRPN(midiOutputName,config.acid.interface.killSteps.nrpn,1,this.killSteps,0)
-    sendNRPN(midiOutputName,config.acid.interface.killShift.nrpn,1,this.killShift + 15,0)
+    sendNRPN(midiOutputName,config.acid.interface.density.nrpn,1,this.values.density,0)
+    sendNRPN(midiOutputName,config.acid.interface.probability.nrpn,1,this.values.probability,0)
+    sendNRPN(midiOutputName,config.acid.interface.killSteps.nrpn,1,this.values.killSteps,0)
+    sendNRPN(midiOutputName,config.acid.interface.killShift.nrpn,1,this.values.killShift + 15,0)
 
-    sendNRPN(midiOutputName,config.acid.interface.scales.nrpn,1,this.scales,0)
-    sendNRPN(midiOutputName,config.acid.interface.base.nrpn,1,this.base,0)
-    sendNRPN(midiOutputName,config.acid.interface.shift.nrpn,1,this.shift + 16,0)
+    sendNRPN(midiOutputName,config.acid.interface.scales.nrpn,1,this.values.scales,0)
+    sendNRPN(midiOutputName,config.acid.interface.base.nrpn,1,this.values.base,0)
+    sendNRPN(midiOutputName,config.acid.interface.shift.nrpn,1,this.values.shift + 16,0)
 
-    sendNRPN(midiOutputName,config.acid.interface.bank.nrpn,1,this.bank,0)
-    sendNRPN(midiOutputName,config.acid.interface.program.nrpn,1,this.program,0)
+    sendNRPN(midiOutputName,config.acid.interface.bank.nrpn,1,this.values.bank,0)
+    sendNRPN(midiOutputName,config.acid.interface.program.nrpn,1,this.values.program,0)
 
     // LFO
     for (let l = 0; l < 3; l++) {
       ['control','shape','rate','phase','amount','offset','density'].forEach( key => {
-        sendNRPN(midiOutputName,_.get(config.acid.interface,`lfo.${l+1}.${key}.nrpn`),1,_.get(this,`lfo.${l}.${key}`),0)
+        sendNRPN(midiOutputName,_.get(config.acid.interface,`lfo.${l+1}.${key}.nrpn`),1,_.get(this.values,`lfo.${l}.${key}`),0)
       })
     }
 
     // PROGRAM
     ['A','B'].forEach( dev => {
       ['device','mute','port','channel','bank','program'].forEach( key => {
-        sendNRPN(midiOutputName,_.get(config.acid.interface,`device.${dev}.${key}.nrpn`),1,_.get(this,`device.${dev}.${key}`),0)
+        sendNRPN(midiOutputName,_.get(config.acid.interface,`device.${dev}.${key}.nrpn`),1,_.get(this.values,`device.${dev}.${key}`),0)
       })
     })
 
     // MOD MATRIX
     for (let s = 0; s < 3; s++) {
-      ['source'].forEach( key => {
-        sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.${key}.nrpn`),1,_.get(this,`matrix.slot.${s}.${key}`),0)
-        for (let d = 0; d < 3; d++) {
-          sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.destination.${d}.target.nrpn`),1,_.get(this,`matrix.slot.${s}.destination.${d}.target`),0)
-          sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.destination.${d}.amount.nrpn`),1,(_.get(this,`matrix.slot.${s}.destination.${d}.amount`,0) +100)*(128/200),0)
-        }
+      ['source','value'].forEach( key => {
+        sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.${key}.nrpn`),1,_.get(this.values,`matrix.slot.${s}.${key}`),0)
       })
+      for (let d = 0; d < 3; d++) {
+        sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.destination.${d}.target.nrpn`),1,_.get(this.values,`matrix.slot.${s}.destination.${d}.target`),0)
+        sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.destination.${d}.amount.nrpn`),1,(_.get(this.values,`matrix.slot.${s}.destination.${d}.amount`,0) +100)*(128/200),0)
+      }
     }
   }
 
@@ -1101,7 +1106,7 @@ class State {
         // MOD MATRIX
 
         for (let s = 0; s < 3; s++) {
-          ['source'].forEach( key => {
+          ['source','value'].forEach( key => {
             if (msb == _.get(config.acid.interface,`matrix.slot.${s}.${key}.nrpn`) && (lsb >= 1 && lsb <= 8)) {
               if (msg.controller == 6) { //MSB
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
@@ -1120,7 +1125,6 @@ class State {
                 if (msg.controller == 6) { //MSB
                   let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                   if (tmp != _.get(this,`matrix.slot.${s}.${key}`)) {
-//                    debug('tmp: %y %y',tmp,(tmp-63) * (100/(tmp<63?63:64)))
                     if (key=='amount') tmp = Math.round((tmp-63) * (100/(tmp<63?63:64)))
                     _.set(this,`matrix.slot.${s}.destination.${d}.${key}`,tmp)
                     debug('matrix.slot.%d.destination.%d.%s: %y', s + 1,d+1, key, _.get(this,`matrix.slot.${s}.destination.${d}.${key}`))
@@ -1135,17 +1139,6 @@ class State {
       }
     }
   }
-
-  modulated(keyPath) {
-    const value = _.get(this,keyPath)
-    if (typeof value != 'undefined') {
-      const min = _.get(config.acid.interface,`${keyPath}.min`)
-      const max = _.get(config.acid.interface,`${keyPath}.max`)
-
-
-    }
-  }
-
 }
 
 
@@ -1241,12 +1234,13 @@ function acidSequencer(name, sub, options) {
 //        debug('generalInput: %y',msg)
       if (msg._type == 'noteon' && (!options.generalChannel || msg.channel == (options.generalChannel - 1))) {
         let changed = 0
-        state.matrix.slot.forEach( (slot,index) => {
+        state.matrix.slot.forEach( (slot,slotIdx) => {
           if (slot.source == 2 /* VELOCITY */) {
-            if (slot.value !== msg.velocity) {
-              slot.value = msg.velocity
+            if (_.get(state,`matrix.slot.${slotIdx}.value`) !== msg.velocity) {
+              _.set(state.values,`matrix.slot.${slotIdx}.value`,msg.velocity)
               changed++
-//              debug('velocity: slot %d = %y',index+1,slot.value)
+              sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${slotIdx}.value.nrpn`),1,_.get(state,`matrix.slot.${slotIdx}.value`),0)
+/*             debug('velocity: slot %d = %y',slotIdx+1,_.get(state,`matrix.slot.${slotIdx}.value`))*/
             }
           }
         })
@@ -1256,12 +1250,13 @@ function acidSequencer(name, sub, options) {
       }
       if (msg._type == 'cc' && (!options.generalChannel || msg.channel == (options.generalChannel - 1)) && msg.controller==1) {
         let changed = 0
-        state.matrix.slot.forEach( (slot,index) => {
+        state.matrix.slot.forEach( (slot,slotIdx) => {
           if (slot.source == 1 /* MOD WHEEL */) {
-            if (slot.value !== msg.value) {
-              slot.value = msg.value
+            if (_.get(state,`matrix.slot.${slotIdx}.value`) !== msg.value) {
+              _.set(state.values,`matrix.slot.${slotIdx}.value`,msg.value)
               changed++
-//              debug('modwheel: slot %d = %y',index+1,slot.value)
+              sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${slotIdx}.value.nrpn`),1,_.get(state,`matrix.slot.${slotIdx}.value`),0)
+/*             debug('modwheel: slot %d = %y',slotIdx+1,_.get(state,`matrix.slot.${slotIdx}.value`))*/
             }
           }
         })

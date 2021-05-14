@@ -1,4 +1,4 @@
-// LAST USED NRPN 73
+// LAST USED NRPN 97
 
 module.exports = {
   generate: {
@@ -415,6 +415,12 @@ module.exports = {
           max: 2,
           default: 0,
         },
+        value: {
+          nrpn: 95,
+          min: 0,
+          max: 127,
+          default: 0,
+        },
         destination: [
           {
             target: {
@@ -467,6 +473,12 @@ module.exports = {
           max: 2,
           default: 0,
         },
+        value: {
+          nrpn: 96,
+          min: 0,
+          max: 127,
+          default: 0,
+        },
         destination: [
           {
             target: {
@@ -517,6 +529,12 @@ module.exports = {
           nrpn: 88,
           min: 0,
           max: 2,
+          default: 0,
+        },
+        value: {
+          nrpn: 97,
+          min: 0,
+          max: 127,
           default: 0,
         },
         destination: [
