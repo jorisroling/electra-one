@@ -32,6 +32,7 @@
     "config/default.js",
     "config/production.js",
     "config/develop.js",
+    "interfaces/acid.js",
     "lib/acid.js",
     "lib/commands.js",
     "lib/devices.js",
