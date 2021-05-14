@@ -526,17 +526,19 @@ class State {
     performancePaths.forEach( perfPath => oldValues[perfPath] = _.get(this,perfPath) )
 
     this.modulation = {}
-    this.matrix.slot.forEach( (slot,slotIdx) => {
-      if (slot.source>0) {
+    _.get(this,'matrix.slot',[]).forEach( (slot,slotIdx) => {
+      if (slot && slot.source>0) {
 /*        debug('modulate (because of %s): slot %d = %y',reason,slotIdx+1,slot.value)*/
-        slot.destination.forEach( (destination, destIdx) => {
-          if (destination.target>0 && destination.target < _.get(deviceCCs,'bacara-acid.length') && destination.amount) {
-            const targetPath = deviceCCs['bacara-acid'][destination.target]
-            const targetCount = this.matrixTargetCount(destination.target)
-/*           debug('slot %d destination %d target: %y',slotIdx+1,destIdx+1,targetPath)*/
+        _.get(slot,'destination',[]).forEach( (destination, destIdx) => {
+          if (destination) {
+            if (destination.target>0 && destination.target < _.get(deviceCCs,'bacara-acid.length') && destination.amount) {
+              const targetPath = deviceCCs['bacara-acid'][destination.target]
+              const targetCount = this.matrixTargetCount(destination.target)
+  /*           debug('slot %d destination %d target: %y',slotIdx+1,destIdx+1,targetPath)*/
 
-            const mod = (((slot.value+1) / 128) * (destination.amount / 100)) / targetCount //+ (destination.amount>0 ? 1 : 0 )
-            _.set(this.modulation,targetPath,_.get(this.modulation,targetPath,0)+mod)
+              const mod = (((slot.value+1) / 128) * (destination.amount / 100)) / targetCount //+ (destination.amount>0 ? 1 : 0 )
+              _.set(this.modulation,targetPath,_.get(this.modulation,targetPath,0)+mod)
+            }
           }
         })
       }
