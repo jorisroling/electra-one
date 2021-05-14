@@ -3010,6 +3010,39 @@
       ]
     },
     {
+      "id": 80,
+      "type": "fader",
+      "name": "VALUE",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        128,
+        146,
+        56
+      ],
+      "pageId": 3,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 12161,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
       "id": 81,
       "type": "fader",
       "name": "AMOUNT 1",
@@ -3246,6 +3279,39 @@
       ]
     },
     {
+      "id": 92,
+      "type": "fader",
+      "name": "VALUE",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        304,
+        146,
+        56
+      ],
+      "pageId": 3,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 12289,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
       "id": 93,
       "type": "fader",
       "name": "AMOUNT 1",
@@ -3478,6 +3544,39 @@
             "parameterNumber": 11649
           },
           "overlayId": 6
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "type": "fader",
+      "name": "VALUE",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        480,
+        146,
+        56
+      ],
+      "pageId": 3,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 12417,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
         }
       ]
     },
