@@ -668,9 +668,8 @@ class State {
       ['source'].forEach( key => {
         sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.${key}.nrpn`),1,_.get(this,`matrix.slot.${s}.${key}`),0)
         for (let d = 0; d < 3; d++) {
-          ['target','amount'].forEach( key => {
-            sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.destination.${d}.${key}.nrpn`),1,_.get(this,`matrix.slot.${s}.destination.${d}.${key}`),0)
-          })
+          sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.destination.${d}.target.nrpn`),1,_.get(this,`matrix.slot.${s}.destination.${d}.target`),0)
+          sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.destination.${d}.amount.nrpn`),1,(_.get(this,`matrix.slot.${s}.destination.${d}.amount`,0) +100)*(128/200),0)
         }
       })
     }
@@ -958,7 +957,7 @@ class State {
               if (msg.controller == 6) { //MSB
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                 if (tmp != _.get(this,`lfo.${l}.${key}`)) {
-                  _.set(this.lfo[l],key,tmp)
+                  _.set(this,`lfo.${l}.${key}`,tmp)
                   let names = []
 
                   if (key == 'shape') {
@@ -1105,7 +1104,7 @@ class State {
               if (msg.controller == 6) { //MSB
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                 if (tmp != _.get(this,`matrix.slot.${s}.${key}`)) {
-                  _.set(this.matrix.slot[s],key,tmp)
+                  _.set(this,`matrix.slot.${s}.${key}`,tmp)
                   debug('matrix.slot.%d.%s: %y', s + 1, key, _.get(this,`matrix.slot.${s}.${key}`))
                   state.matrixRemodulate(key)
                   this.write(true) // write because matrix values are deep values
@@ -1121,7 +1120,7 @@ class State {
                   if (tmp != _.get(this,`matrix.slot.${s}.${key}`)) {
 //                    debug('tmp: %y %y',tmp,(tmp-63) * (100/(tmp<63?63:64)))
                     if (key=='amount') tmp = Math.round((tmp-63) * (100/(tmp<63?63:64)))
-                    _.set(this.matrix.slot[s].destination[d],key,tmp)
+                    _.set(this,`matrix.slot.${s}.destination.${d}.${key}`,tmp)
                     debug('matrix.slot.%d.destination.%d.%s: %y', s + 1,d+1, key, _.get(this,`matrix.slot.${s}.destination.${d}.${key}`))
                     state.matrixRemodulate(key)
                     this.write(true) // write because matrix values are deep values

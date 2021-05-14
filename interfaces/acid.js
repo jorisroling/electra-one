@@ -27,8 +27,8 @@ module.exports = {
     cc: 14,
     nrpn: 14,
     min: 0,
-    max: 127,
-    default: 64,
+    max: 192,
+    default: 96,
   },
   octave: {
     cc: 15,
