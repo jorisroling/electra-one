@@ -31,7 +31,6 @@ const scaleMappings = require('../extra/scales/scales.json')
 
 const { knownDeviceCCs } = require('../lib/devices')
 const deviceCCs = knownDeviceCCs()
-//debug('deviceCCs %y',deviceCCs['bacara-acid'])
 const shapes = ['sine','triangle','saw-up','saw-down','square','random']
 
 let output
@@ -287,6 +286,7 @@ class State {
     return this.values.transpose
   }
   set transpose(value) {
+    debug('JJR: %y',value)
     if (!deepEqual(this.values.transpose,value,{strict:true})) {
       this.values.transpose = value
       this.write()
@@ -475,6 +475,44 @@ class State {
       this.values.matrix = value
       this.write()
     }
+  }
+
+  matrixTargetCount(cc) {
+    let result = 0
+    this.matrix.slot.forEach( (slot,slotIdx) => {
+      if (slot.source>0) {
+        slot.destination.forEach( (destination, destIdx) => {
+          if (destination.target == cc) result++
+        })
+      }
+    })
+    return result
+  }
+
+  modulate(reason) {
+    //JJR
+//    _.set(state,'transpose',0)
+//        state.transpose = 0
+    this.matrix.slot.forEach( (slot,slotIdx) => {
+      if (slot.source>0) {
+        debug('modulate (because of %s): slot %d = %y',reason,slotIdx+1,slot.value)
+        slot.destination.forEach( (destination, destIdx) => {
+          if (destination.target>0 && destination.target < _.get(deviceCCs,'bacara-acid.length')) {
+            const targetPath = deviceCCs['bacara-acid'][destination.target]
+            //debug('deviceCCs %y',deviceCCs['bacara-acid'])
+            debug('slot %d destination %d target: %y (times %d)',slotIdx+1,destIdx+1,targetPath,this.matrixTargetCount(destination.target))
+
+            const currentTargetValue = _.get(this,targetPath)
+            const minTargetValue = _.get(config.acid.interface,`${targetPath}.min`)
+            const maxTargetValue = _.get(config.acid.interface,`${targetPath}.max`)
+            const defaultTargetValue = _.get(config.acid.interface,`${targetPath}.default`)
+
+            debug('current: %y  min: %y  max: %y  default: %y',currentTargetValue,minTargetValue,maxTargetValue,defaultTargetValue)
+          }
+        })
+      }
+    })
+/*    debug('state: %y',this.values)*/
   }
 
   read() {
@@ -1152,12 +1190,19 @@ function acidSequencer(name, sub, options) {
     generalInput.on('message', (msg) => {
       if (msg._type == 'noteon' && (!options.generalChannel || msg.channel == (options.generalChannel - 1))) {
 /*        debug('note: %y',msg)*/
+        let changed = 0
         state.matrix.slot.forEach( (slot,index) => {
           if (slot.source == 2 /* VELOCITY */) {
-            slot.value = msg.velocity
-            debug('velocity: slot %d = %y',index+1,slot.value)
+            if (slot.value !== msg.velocity) {
+              slot.value = msg.velocity
+              changed++
+              debug('velocity: slot %d = %y',index+1,slot.value)
+            }
           }
         })
+        if (changed) {
+          state.modulate('velocity')
+        }
       }
     })
   }
