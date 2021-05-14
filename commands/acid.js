@@ -33,6 +33,21 @@ const { knownDeviceCCs } = require('../lib/devices')
 const deviceCCs = knownDeviceCCs()
 const shapes = ['sine','triangle','saw-up','saw-down','square','random']
 
+
+/**
+ * Deep diff between two object, using lodash
+ * @param  {Object} object Object compared
+ * @param  {Object} base   Object to compare with
+ * @return {Object}        Return a new object who represent the diff
+ */
+function difference(object, base) {
+	return _.transform(object, (result, value, key) => {
+		if (!_.isEqual(value, base[key])) {
+			result[key] = _.isObject(value) && _.isObject(base[key]) ? difference(value, base[key]) : value
+		}
+	})
+}
+
 let output
 const deviceChannels = {  // 1-based channels
   A: 1,
@@ -283,10 +298,9 @@ class State {
   }
 
   get transpose() {
-    return this.values.transpose
+    return this.modulate('transpose')
   }
   set transpose(value) {
-    debug('JJR: %y',value)
     if (!deepEqual(this.values.transpose,value,{strict:true})) {
       this.values.transpose = value
       this.write()
@@ -294,7 +308,7 @@ class State {
   }
 
   get gate() {
-    return this.values.gate
+    return this.modulate('gate')
   }
   set gate(value) {
     if (!deepEqual(this.values.gate,value,{strict:true})) {
@@ -304,7 +318,7 @@ class State {
   }
 
   get chance() {
-    return this.values.chance
+    return this.modulate('chance')
   }
   set chance(value) {
     if (!deepEqual(this.values.chance,value,{strict:true})) {
@@ -325,7 +339,7 @@ class State {
   }
 
   get density() {
-    return this.values.density
+    return this.modulate('density')
   }
   set density(value) {
     if (!deepEqual(this.values.density,value,{strict:true})) {
@@ -336,7 +350,7 @@ class State {
   }
 
   get probability() {
-    return this.values.probability
+    return this.modulate('probability')
   }
   set probability(value) {
     if (!deepEqual(this.values.probability,value,{strict:true})) {
@@ -356,29 +370,29 @@ class State {
   }
 
   get killSteps() {
-    return this.values.killSteps
+    return this.modulate('killSteps')
   }
   set killSteps(value) {
     if (!deepEqual(this.values.killSteps,value,{strict:true})) {
       this.values.killSteps = value
-      this.euclidian(this.values.killSteps,16,this.values.killShift)
+      this.euclidian(this.killSteps,16,this.killShift)
       this.write()
     }
   }
 
   get killShift() {
-    return this.values.killShift
+    return this.modulate('killShift')
   }
   set killShift(value) {
     if (!deepEqual(this.values.killShift,value,{strict:true})) {
       this.values.killShift = value
-      this.euclidian(this.values.killSteps,16,this.values.killShift)
+      this.euclidian(this.killSteps,16,this.killShift)
       this.write()
     }
   }
 
   get scales() {
-    return this.values.scales
+    return this.modulate('scales')
   }
   set scales(value) {
     if (!deepEqual(this.values.scales,value,{strict:true})) {
@@ -388,7 +402,7 @@ class State {
   }
 
   get base() {
-    return this.values.base
+    return this.modulate('base')
   }
   set base(value) {
     if (!deepEqual(this.values.base,value,{strict:true})) {
@@ -398,7 +412,7 @@ class State {
   }
 
   get shift() {
-    return this.values.shift
+    return this.modulate('shift')
   }
   set shift(value) {
     if (!deepEqual(this.values.shift,value,{strict:true})) {
@@ -408,7 +422,7 @@ class State {
   }
 
   get split() {
-    return this.values.split
+    return this.modulate('split')
   }
   set split(value) {
     if (!deepEqual(this.values.split,value,{strict:true})) {
@@ -418,7 +432,7 @@ class State {
   }
 
   get deviate() {
-    return this.values.deviate
+    return this.modulate('deviate')
   }
   set deviate(value) {
     if (!deepEqual(this.values.deviate,value,{strict:true})) {
@@ -482,37 +496,69 @@ class State {
     this.matrix.slot.forEach( (slot,slotIdx) => {
       if (slot.source>0) {
         slot.destination.forEach( (destination, destIdx) => {
-          if (destination.target == cc) result++
+          if (destination.target == cc && destination.amount) result++
         })
       }
     })
     return result
   }
 
-  modulate(reason) {
-    //JJR
-//    _.set(state,'transpose',0)
-//        state.transpose = 0
+  modulate(path) {
+    const value = _.get(this.values,path)
+    let result = value
+
+    const modFactor = _.get(this.modulation,path)
+    if (modFactor) {
+      if (modFactor > 0) {
+        result = value + Math.round((_.get(config.acid.interface,`${path}.max`) - value) * modFactor)
+      } else {
+        result = value + Math.round((value - _.get(config.acid.interface,`${path}.min`)) * modFactor)
+      }
+    }
+
+    return result
+  }
+
+
+  matrixRemodulate(reason) {
+    const performancePaths = _.get(deviceCCs,'bacara-acid').filter ( cc => !!cc )
+    const oldValues = {}
+    performancePaths.forEach( perfPath => oldValues[perfPath] = _.get(this,perfPath) )
+
+    this.modulation = {}
     this.matrix.slot.forEach( (slot,slotIdx) => {
       if (slot.source>0) {
-        debug('modulate (because of %s): slot %d = %y',reason,slotIdx+1,slot.value)
+/*        debug('modulate (because of %s): slot %d = %y',reason,slotIdx+1,slot.value)*/
         slot.destination.forEach( (destination, destIdx) => {
-          if (destination.target>0 && destination.target < _.get(deviceCCs,'bacara-acid.length')) {
+          if (destination.target>0 && destination.target < _.get(deviceCCs,'bacara-acid.length') && destination.amount) {
             const targetPath = deviceCCs['bacara-acid'][destination.target]
-            //debug('deviceCCs %y',deviceCCs['bacara-acid'])
-            debug('slot %d destination %d target: %y (times %d)',slotIdx+1,destIdx+1,targetPath,this.matrixTargetCount(destination.target))
+            const targetCount = this.matrixTargetCount(destination.target)
+/*           debug('slot %d destination %d target: %y',slotIdx+1,destIdx+1,targetPath)*/
 
-            const currentTargetValue = _.get(this,targetPath)
-            const minTargetValue = _.get(config.acid.interface,`${targetPath}.min`)
-            const maxTargetValue = _.get(config.acid.interface,`${targetPath}.max`)
-            const defaultTargetValue = _.get(config.acid.interface,`${targetPath}.default`)
-
-            debug('current: %y  min: %y  max: %y  default: %y',currentTargetValue,minTargetValue,maxTargetValue,defaultTargetValue)
+            const mod = (((slot.value+1) / 128) * (destination.amount / 100)) / targetCount //+ (destination.amount>0 ? 1 : 0 )
+            _.set(this.modulation,targetPath,_.get(this.modulation,targetPath,0)+mod)
           }
         })
       }
     })
-/*    debug('state: %y',this.values)*/
+/*    debug('matrixRemodulate: %y',this.modulation)*/
+    const newValues = {}
+    performancePaths.forEach( perfPath => newValues[perfPath] = _.get(this,perfPath) )
+    const deltaValues = difference(newValues,oldValues)
+
+    if (deltaValues['killSteps'] || deltaValues['killShift']) {
+      this.euclidian(this.killSteps,16,this.killShift)
+    }
+    if (deltaValues['chance']) {
+      this.genOctaves(this.chance)
+    }
+    if (deltaValues['density']) {
+      this.genSounding(this.density)
+    }
+    if (Object.keys(deltaValues).length) {
+      Acid.table(this)
+      debug('modulation impact: %y',deltaValues)
+    }
   }
 
   read() {
@@ -1061,6 +1107,7 @@ class State {
                 if (tmp != _.get(this,`matrix.slot.${s}.${key}`)) {
                   _.set(this.matrix.slot[s],key,tmp)
                   debug('matrix.slot.%d.%s: %y', s + 1, key, _.get(this,`matrix.slot.${s}.${key}`))
+                  state.matrixRemodulate(key)
                   this.write(true) // write because matrix values are deep values
                 }
               }
@@ -1072,9 +1119,11 @@ class State {
                 if (msg.controller == 6) { //MSB
                   let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                   if (tmp != _.get(this,`matrix.slot.${s}.${key}`)) {
-                    if (key=='amount') tmp = Math.round((tmp-64) * (100/(tmp<64?64:63)))
+//                    debug('tmp: %y %y',tmp,(tmp-63) * (100/(tmp<63?63:64)))
+                    if (key=='amount') tmp = Math.round((tmp-63) * (100/(tmp<63?63:64)))
                     _.set(this.matrix.slot[s].destination[d],key,tmp)
                     debug('matrix.slot.%d.destination.%d.%s: %y', s + 1,d+1, key, _.get(this,`matrix.slot.${s}.destination.${d}.${key}`))
+                    state.matrixRemodulate(key)
                     this.write(true) // write because matrix values are deep values
                   }
                 }
@@ -1188,20 +1237,35 @@ function acidSequencer(name, sub, options) {
 
   if (generalInput) {
     generalInput.on('message', (msg) => {
+//        debug('generalInput: %y',msg)
       if (msg._type == 'noteon' && (!options.generalChannel || msg.channel == (options.generalChannel - 1))) {
-/*        debug('note: %y',msg)*/
         let changed = 0
         state.matrix.slot.forEach( (slot,index) => {
           if (slot.source == 2 /* VELOCITY */) {
             if (slot.value !== msg.velocity) {
               slot.value = msg.velocity
               changed++
-              debug('velocity: slot %d = %y',index+1,slot.value)
+//              debug('velocity: slot %d = %y',index+1,slot.value)
             }
           }
         })
         if (changed) {
-          state.modulate('velocity')
+          state.matrixRemodulate('velocity')
+        }
+      }
+      if (msg._type == 'cc' && (!options.generalChannel || msg.channel == (options.generalChannel - 1)) && msg.controller==1) {
+        let changed = 0
+        state.matrix.slot.forEach( (slot,index) => {
+          if (slot.source == 1 /* MOD WHEEL */) {
+            if (slot.value !== msg.value) {
+              slot.value = msg.value
+              changed++
+//              debug('modwheel: slot %d = %y',index+1,slot.value)
+            }
+          }
+        })
+        if (changed) {
+          state.matrixRemodulate('modwheel')
         }
       }
     })
