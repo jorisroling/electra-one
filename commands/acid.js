@@ -34,18 +34,12 @@ const deviceCCs = knownDeviceCCs()
 const shapes = ['sine','triangle','saw-up','saw-down','square','random']
 
 
-/**
- * Deep diff between two object, using lodash
- * @param  {Object} object Object compared
- * @param  {Object} base   Object to compare with
- * @return {Object}        Return a new object who represent the diff
- */
 function difference(object, base) {
-	return _.transform(object, (result, value, key) => {
-		if (!_.isEqual(value, base[key])) {
-			result[key] = _.isObject(value) && _.isObject(base[key]) ? difference(value, base[key]) : value
-		}
-	})
+  return _.transform(object, (result, value, key) => {
+    if (!_.isEqual(value, base[key])) {
+      result[key] = _.isObject(value) && _.isObject(base[key]) ? difference(value, base[key]) : value
+    }
+  })
 }
 
 let output
@@ -230,8 +224,9 @@ class State {
       ],
     }
 
-    this.genOctaves()
-    this.genSounding()
+    this.modulation = null
+    this.genOctaves(this.chance)
+    this.genSounding(this.density)
     if (write) {
       this.write()
     }
@@ -494,9 +489,11 @@ class State {
   matrixTargetCount(cc) {
     let result = 0
     this.matrix.slot.forEach( (slot,slotIdx) => {
-      if (slot.source>0) {
+      if (slot.source > 0) {
         _.get(slot,'destination',[]).forEach( (destination, destIdx) => {
-          if (destination && destination.target == cc && destination.amount) result++
+          if (destination && destination.target == cc && destination.amount) {
+            result++
+          }
         })
       }
     })
@@ -528,25 +525,21 @@ class State {
 
     this.modulation = {}
     _.get(this,'matrix.slot',[]).forEach( (slot,slotIdx) => {
-      if (slot && _.get(this,`matrix.slot.${slotIdx}.value`)>0) {
+      if (slot && _.get(this,`matrix.slot.${slotIdx}.value`) > 0) {
 
-        //debug('modulate (because of %s): slot %d = %y',reason,slotIdx+1,_.get(this,`matrix.slot.${slotIdx}.value`))
         _.get(slot,'destination',[]).forEach( (destination, destIdx) => {
           if (destination) {
-            if (destination.target>0 && destination.target < _.get(deviceCCs,'bacara-acid.length') && destination.amount) {
+            if (destination.target > 0 && destination.target < _.get(deviceCCs,'bacara-acid.length') && destination.amount) {
               const targetPath = deviceCCs['bacara-acid'][destination.target]
               const targetCount = this.matrixTargetCount(destination.target)
-  /*           debug('slot %d destination %d target: %y',slotIdx+1,destIdx+1,targetPath)*/
 
-              const mod = (((_.get(this,`matrix.slot.${slotIdx}.value`)+1) / 128) * (destination.amount / 100)) / targetCount //+ (destination.amount>0 ? 1 : 0 )
-//    debug('matrixRemodulate: %y %y %y',reason,mod,_.get(this,`matrix.slot.${slotIdx}.value`))
-              _.set(this.modulation,targetPath,_.get(this.modulation,targetPath,0)+mod)
+              const mod = (((_.get(this,`matrix.slot.${slotIdx}.value`) + 1) / 128) * (destination.amount / 100)) / targetCount
+              _.set(this.modulation,targetPath,_.get(this.modulation,targetPath,0) + mod)
             }
           }
         })
       }
     })
-/*    debug('matrixRemodulate: %y',this.modulation)*/
     const newValues = {}
     performancePaths.forEach( perfPath => newValues[perfPath] = _.get(this,perfPath) )
     const deltaValues = difference(newValues,oldValues)
@@ -560,8 +553,6 @@ class State {
     if (deltaValues['density']) {
       this.genSounding(this.density)
     }
-//    debug('matrixRemodulate: %y %y',reason,deltaValues)
-
     if (Object.keys(deltaValues).length) {
       Acid.table(this)
       debug('modulation impact: %y',deltaValues)
@@ -591,18 +582,18 @@ class State {
   }
 
 
-  genOctaves() {
+  genOctaves(chance) {
     for (let idx = 0; idx < 16; idx++) {
       const rnd = getRandomInt(100)
-      const octave = (Math.abs(this.chance) > rnd)
-      this.values.octaves[idx] = (octave ? (this.values.chance > 0 ? 1 : -1) : 0)
+      const octave = (Math.abs(chance) > rnd)
+      this.values.octaves[idx] = (octave ? (chance > 0 ? 1 : -1) : 0)
     }
   }
 
-  genSounding() {
+  genSounding(density) {
     for (let idx = 0; idx < 16; idx++) {
       const rnd = getRandomInt(100)
-      this.values.sounding[idx] = (this.values.density && (this.values.density >= rnd)) ? 1 : 0
+      this.values.sounding[idx] = (density && (density >= rnd)) ? 1 : 0
     }
   }
 
@@ -630,13 +621,14 @@ class State {
 
   sendValues() {
     debug('Send Values')
-    // Mind you, we should use the underlaying 'this.values' instead og 'this', we want to see the basic values on Electra One, noit the modulated versions
+    // Mind you, we should use the underlaying 'this.values' instead of 'this', we want to see the raw values on Electra One, not the modulated versions
+
     sendNRPN(midiOutputName,config.acid.interface.temperature.nrpn,1,(this.temperature * 100) & 0xFF,(this.values.temperature * 100) >> 7)
     sendNRPN(midiOutputName,config.acid.interface.split.nrpn,1,this.values.split,0)
     sendNRPN(midiOutputName,config.acid.interface.deviate.nrpn,1,this.values.deviate,0)
     for (let l = 0; l < 3; l++) {
       ['device.A','device.B'].forEach( key => {
-        sendNRPN(midiOutputName,_.get(config.acid.interface,`lfo.${l+1}.${key}.nrpn`),1,_.get(this.values,`lfo.${l}.${key}`),0)
+        sendNRPN(midiOutputName,_.get(config.acid.interface,`lfo.${l + 1}.${key}.nrpn`),1,_.get(this.values,`lfo.${l}.${key}`),0)
       })
     }
 
@@ -659,7 +651,7 @@ class State {
     // LFO
     for (let l = 0; l < 3; l++) {
       ['control','shape','rate','phase','amount','offset','density'].forEach( key => {
-        sendNRPN(midiOutputName,_.get(config.acid.interface,`lfo.${l+1}.${key}.nrpn`),1,_.get(this.values,`lfo.${l}.${key}`),0)
+        sendNRPN(midiOutputName,_.get(config.acid.interface,`lfo.${l + 1}.${key}.nrpn`),1,_.get(this.values,`lfo.${l}.${key}`),0)
       })
     }
 
@@ -677,7 +669,7 @@ class State {
       })
       for (let d = 0; d < 3; d++) {
         sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.destination.${d}.target.nrpn`),1,_.get(this.values,`matrix.slot.${s}.destination.${d}.target`),0)
-        sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.destination.${d}.amount.nrpn`),1,(_.get(this.values,`matrix.slot.${s}.destination.${d}.amount`,0) +100)*(128/200),0)
+        sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.destination.${d}.amount.nrpn`),1,(_.get(this.values,`matrix.slot.${s}.destination.${d}.amount`,0) + 100) * (128 / 200),0)
       }
     }
   }
@@ -710,19 +702,18 @@ class State {
     }
 
     return (msg) => {
-      /*          debug('handle: %y',msg)*/
       _.set(midiCache[midiName],`channel_${_.padStart(msg.channel + 1,2,'0')}.controller_${_.padStart(msg.controller,3,'0')}`, msg.value)
       if ((msg.channel + 1) == config.acid.channel && ((msg.controller == 6) || (msg.controller == 38))) {
         const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_099`)
         const lsb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_098`)
         if (msb == config.acid.interface.generate.nrpn && (lsb >= 1 && lsb <= 8)) {
-          if (msg.controller == 6) { //MSB
+          if (msg.controller == 6) { // MSB
             if (msg.value) {
               this.pattern = Acid.generate(state)
               this.last_pattern_but = 0
             }
           }
-          if (msg.controller == 38) { //LSB
+          if (msg.controller == 38) { // LSB
             // not used as value is always < 128
           }
         }
@@ -730,23 +721,23 @@ class State {
           const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
           const lsb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_038`)
           this.temperature = (((lsb << 7) | msb) / 100)
-          debug('temperature %y',this.temperature)
+          debug('temperature %y',this.values.temperature)
         }
         if (msb == config.acid.interface.transpose.nrpn && (lsb >= 1 && lsb <= 8)) {
-          if (msg.controller == 6) { //MSB
+          if (msg.controller == 6) { // MSB
             const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
             this.transpose = (msb - 64)
-            debug('transpose: %y',this.transpose)
+            debug('transpose: %y',this.values.transpose)
           }
         }
         if (msb == config.acid.interface.gate.nrpn && (lsb >= 1 && lsb <= 8)) {
-          if (msg.controller == 6) { //MSB
+          if (msg.controller == 6) { // MSB
             const msb = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
             this.gate = parseFloat((msb / 64 ).toFixed(2))
-            if (this.gate > 1.92) {
+            if (this.values.gate > 1.92) {
               this.gate = 1.92
             }
-            debug('gate: %y',this.gate)
+            debug('gate: %y',this.values.gate)
           }
         }
         if (msb == config.acid.interface.previous_pattern.nrpn && (lsb >= 1 && lsb <= 8)) {
@@ -756,7 +747,7 @@ class State {
             this.last_pattern_but += 1
 
             this.pattern = Acid.load_pattern(state)
-            debug('previous_pattern: %y', this.last_pattern_but)
+            debug('previous_pattern: %y', this.values.last_pattern_but)
           }
         }
         if (msb == config.acid.interface.next_pattern.nrpn && (lsb >= 1 && lsb <= 8)) {
@@ -764,12 +755,12 @@ class State {
           if (msb && msg.controller == 6) {
 
             this.last_pattern_but -= 1
-            if (this.last_pattern_but < 0) {
-              this.last_pattern_but = 0
+            if (this.values.last_pattern_but < 0) {
+              this.values.last_pattern_but = 0
             }
 
             this.pattern = Acid.load_pattern(state)
-            debug('next_pattern: %y', this.last_pattern_but)
+            debug('next_pattern: %y', this.values.last_pattern_but)
           }
         }
         if (msb == config.acid.interface.previous_preset.nrpn && (lsb >= 1 && lsb <= 8)) {
@@ -784,7 +775,7 @@ class State {
               this.sendProgramChange('B')
               this.sendValues()
               this.write(true)
-              debug('previous_preset: %y %y', this.last_preset_but,path.basename(filename))
+              debug('previous_preset: %y %y', this.values.last_preset_but,path.basename(filename))
             }
           }
         }
@@ -793,7 +784,7 @@ class State {
           if (msb && msg.controller == 6) {
 
             this.last_preset_but -= 1
-            if (this.last_preset_but < 0) {
+            if (this.values.last_preset_but < 0) {
               this.last_preset_but = 0
             }
 
@@ -803,7 +794,7 @@ class State {
               this.sendProgramChange('B')
               this.sendValues()
               this.write(true)
-              debug('next_preset: %y %y', this.last_preset_but,path.basename(filename))
+              debug('next_preset: %y %y', this.values.last_preset_but,path.basename(filename))
             }
           }
         }
@@ -815,7 +806,7 @@ class State {
             if (filename) {
               this.sendValues()
               this.write(true)
-              debug('save_pattern: %y %y',this.last_preset_but,path.basename(filename))
+              debug('save_pattern: %y %y',this.values.last_preset_but,path.basename(filename))
             }
           }
         }
@@ -830,23 +821,23 @@ class State {
           }
         }
         if (msb == config.acid.interface.bank.nrpn && (lsb >= 1 && lsb <= 8)) {
-          if (msg.controller == 6) { //MSB
+          if (msg.controller == 6) { // MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
-            if (tmp != this.bank) {
+            if (tmp != this.values.bank) {
               this.bank = tmp
-              debug('bank: %y', this.bank)
+              debug('bank: %y', this.values.bank)
             }
           }
         }
         if (msb == config.acid.interface.program.nrpn && (lsb >= 1 && lsb <= 8)) {
-          if (msg.controller == 6) { //MSB
+          if (msg.controller == 6) { // MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
-            if (tmp != this.program) {
+            if (tmp != this.values.program) {
               const presetFilesCount = Acid.presetFiles(this,true)
-              if (tmp>=0 && tmp<presetFilesCount) {
+              if (tmp >= 0 && tmp < presetFilesCount) {
                 this.program = tmp
 
-                this.last_preset_but = presetFilesCount - (this.program + 1)
+                this.last_preset_but = presetFilesCount - (this.values.program + 1)
 
                 const filename = Acid.load_preset(state)
                 if (filename) {
@@ -854,14 +845,14 @@ class State {
                   this.sendProgramChange('B')
                   this.sendValues()
                   this.write(true)
-                  debug('program: %y %y', this.program,path.basename(filename))
+                  debug('program: %y %y', this.values.program,path.basename(filename))
                 }
               }
             }
           }
         }
         if (msb == config.acid.interface.octave.nrpn && (lsb >= 1 && lsb <= 8)) {
-          if (msg.controller == 6) { //MSB
+          if (msg.controller == 6) { // MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`) - 64
             if (tmp < 0) {
               tmp = Math.floor((tmp / 64) * 100)
@@ -869,90 +860,90 @@ class State {
             if (tmp > 0) {
               tmp = Math.floor((tmp / 63) * 100)
             }
-            if (tmp != this.chance) {
+            if (tmp != this.values.chance) {
               this.chance = tmp
-              debug('chance: %y', this.chance)
+              debug('chance: %y', this.values.chance)
             }
           }
         }
         if (msb == config.acid.interface.density.nrpn && (lsb >= 1 && lsb <= 8)) {
-          if (msg.controller == 6) { //MSB
+          if (msg.controller == 6) { // MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
-            if (tmp != this.density) {
+            if (tmp != this.values.density) {
               this.density = tmp
-              debug('density: %y', this.density)
+              debug('density: %y', this.values.density)
             }
           }
         }
         if (msb == config.acid.interface.probability.nrpn && (lsb >= 1 && lsb <= 8)) {
-          if (msg.controller == 6) { //MSB
+          if (msg.controller == 6) { // MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
-            if (tmp != this.probability) {
+            if (tmp != this.values.probability) {
               this.probability = tmp
-              debug('probability: %y', this.probability)
+              debug('probability: %y', this.values.probability)
             }
           }
         }
         if (msb == config.acid.interface.killSteps.nrpn && (lsb >= 1 && lsb <= 8)) {
-          if (msg.controller == 6) { //MSB
+          if (msg.controller == 6) { // MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
-            if (tmp != this.killSteps) {
+            if (tmp != this.values.killSteps) {
               this.killSteps = tmp
-              debug('killSteps: %y', this.killSteps)
+              debug('killSteps: %y', this.values.killSteps)
             }
           }
         }
         if (msb == config.acid.interface.killShift.nrpn && (lsb >= 1 && lsb <= 8)) {
-          if (msg.controller == 6) { //MSB
+          if (msg.controller == 6) { // MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`) - 15
-            if (tmp != this.killShift) {
+            if (tmp != this.values.killShift) {
               this.killShift = tmp
-              debug('killShift: %y', this.killShift)
+              debug('killShift: %y', this.values.killShift)
             }
           }
         }
         if (msb == config.acid.interface.scales.nrpn && (lsb >= 1 && lsb <= 8)) {
-          if (msg.controller == 6) { //MSB
+          if (msg.controller == 6) { // MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
-            if (tmp != this.scales) {
+            if (tmp != this.values.scales) {
               this.scales = tmp
-              debug('scales: %y = %s', this.scales, scaleMappings.scales[this.scales].name )
+              debug('scales: %y = %s', this.values.scales, scaleMappings.scales[this.values.scales].name )
             }
           }
         }
         if (msb == config.acid.interface.base.nrpn && (lsb >= 1 && lsb <= 8)) {
-          if (msg.controller == 6) { //MSB
+          if (msg.controller == 6) { // MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
-            if (tmp != this.base) {
+            if (tmp != this.values.base) {
               this.base = tmp
-              debug('base: %y', this.base)
+              debug('base: %y', this.values.base)
             }
           }
         }
         if (msb == config.acid.interface.shift.nrpn && (lsb >= 1 && lsb <= 8)) {
-          if (msg.controller == 6) { //MSB
+          if (msg.controller == 6) { // MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`) - 16
-            if (tmp != this.shift) {
+            if (tmp != this.values.shift) {
               this.shift = tmp
-              debug('shift: %y', this.shift)
+              debug('shift: %y', this.values.shift)
             }
           }
         }
         if (msb == config.acid.interface.split.nrpn && (lsb >= 1 && lsb <= 8)) {
-          if (msg.controller == 6) { //MSB
+          if (msg.controller == 6) { // MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
-            if (tmp != this.split) {
+            if (tmp != this.values.split) {
               this.split = tmp
-              debug('split: %y', this.split)
+              debug('split: %y', this.values.split)
             }
           }
         }
         if (msb == config.acid.interface.deviate.nrpn && (lsb >= 1 && lsb <= 8)) {
-          if (msg.controller == 6) { //MSB
+          if (msg.controller == 6) { // MSB
             let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
-            if (tmp != this.deviate) {
+            if (tmp != this.values.deviate) {
               this.deviate = tmp
-              debug('deviate: %y', this.deviate)
+              debug('deviate: %y', this.values.deviate)
             }
           }
         }
@@ -960,20 +951,20 @@ class State {
         // LFO
         for (let l = 0; l < 3; l++) {
           ['control','shape','rate','phase','amount','offset','density','device.A','device.B'].forEach( key => {
-            if (msb == _.get(config.acid.interface,`lfo.${l+1}.${key}.nrpn`) && (lsb >= 1 && lsb <= 8)) {
-              if (msg.controller == 6) { //MSB
+            if (msb == _.get(config.acid.interface,`lfo.${l + 1}.${key}.nrpn`) && (lsb >= 1 && lsb <= 8)) {
+              if (msg.controller == 6) { // MSB
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                 if (tmp != _.get(this,`lfo.${l}.${key}`)) {
                   _.set(this,`lfo.${l}.${key}`,tmp)
                   let names = []
 
                   if (key == 'shape') {
-                    const idx = tmp //Math.floor((tmp/16) * shapes.length)
+                    const idx = tmp
                     this.lfo[l].shapeName = shapes[idx]
-                    names.push(this.lfo[l].shapeName)
+                    names.push(this.values.lfo[l].shapeName)
                   }
                   if (key == 'control') {
-                    if (this.lfo[l].control) {
+                    if (this.values.lfo[l].control) {
                       ['A','B'].forEach( dev => {
                         const deviceIdx = _.get(this,`device.${dev}.device`)
                         if (deviceIdx > 0 && config.devices) {
@@ -981,7 +972,7 @@ class State {
                           if (deviceKeys.length > deviceIdx - 1) {
                             const device = deviceKeys[deviceIdx - 1]
                             const deviceColor = (dev == 'A') ? chalk.hex('#FF0000') : chalk.hex('#0000FF')
-                            names.push(deviceColor(`${dev}:` + device + ' ' + _.get(deviceCCs,`${device}.${this.lfo[l].control}`)))
+                            names.push(deviceColor(`${dev}:` + device + ' ' + _.get(deviceCCs,`${device}.${this.values.lfo[l].control}`)))
                           }
                         }
                       } )
@@ -1000,7 +991,7 @@ class State {
         ['A','B'].forEach( dev => {
           ['device','mute','port','channel','bank','program'].forEach( key => {
             if (msb == _.get(config.acid.interface,`device.${dev}.${key}.nrpn`) && (lsb >= 1 && lsb <= 8)) {
-              if (msg.controller == 6) { //MSB
+              if (msg.controller == 6) { // MSB
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                 if (tmp != _.get(this,`device.${dev}.${key}`)) {
                   debug('device %s %s = %y', (dev == 'A') ? chalk.hex('#FF0000')(dev) : chalk.hex('#0000FF')(dev),key,tmp)
@@ -1108,7 +1099,7 @@ class State {
         for (let s = 0; s < 3; s++) {
           ['source','value'].forEach( key => {
             if (msb == _.get(config.acid.interface,`matrix.slot.${s}.${key}.nrpn`) && (lsb >= 1 && lsb <= 8)) {
-              if (msg.controller == 6) { //MSB
+              if (msg.controller == 6) { // MSB
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                 if (tmp != _.get(this,`matrix.slot.${s}.${key}`)) {
                   _.set(this,`matrix.slot.${s}.${key}`,tmp)
@@ -1122,12 +1113,14 @@ class State {
           for (let d = 0; d < 3; d++) {
             ['target','amount'].forEach( key => {
               if (msb == _.get(config.acid.interface,`matrix.slot.${s}.destination.${d}.${key}.nrpn`) && (lsb >= 1 && lsb <= 8)) {
-                if (msg.controller == 6) { //MSB
+                if (msg.controller == 6) { // MSB
                   let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                   if (tmp != _.get(this,`matrix.slot.${s}.${key}`)) {
-                    if (key=='amount') tmp = Math.round((tmp-63) * (100/(tmp<63?63:64)))
+                    if (key == 'amount') {
+                      tmp = Math.round((tmp - 63) * (100 / (tmp < 63 ? 63 : 64)))
+                    }
                     _.set(this,`matrix.slot.${s}.destination.${d}.${key}`,tmp)
-                    debug('matrix.slot.%d.destination.%d.%s: %y', s + 1,d+1, key, _.get(this,`matrix.slot.${s}.destination.${d}.${key}`))
+                    debug('matrix.slot.%d.destination.%d.%s: %y', s + 1,d + 1, key, _.get(this,`matrix.slot.${s}.destination.${d}.${key}`))
                     state.matrixRemodulate(key)
                     this.write(true) // write because matrix values are deep values
                   }
@@ -1146,13 +1139,10 @@ class State {
 
 
 function sendNRPN(midiName,msb,lsb,valueMsb,valueLsb,timeout = 0) {
-//  if (!timeout) timeout=1
   Midi.send(midiName,'nrpn',{channel:config.acid.channel - 1,msb,lsb,valueMsb,valueLsb},timeout ? `NRPN_c:${config.acid.channel - 1}_n:${(msb << 7) | (lsb & 0x7F)}` : null,timeout)
 }
 
 function acidSequencer(name, sub, options) {
-
-  /*  debug('options: %y',options)*/
 
   Midi.setupVirtualPorts(config.acid.virtual)
 
@@ -1217,7 +1207,7 @@ function acidSequencer(name, sub, options) {
 
   const transposeInput = (options.transpose ? Midi.input(options.transpose, true, true) : null)
 
-  if (0 && transposeInput) {
+  if (transposeInput) {
     transposeInput.on('message', (msg) => {
       if (msg._type == 'noteon' && (!options.transposeChannel || msg.channel == (options.transposeChannel - 1))) {
         state.transpose = msg.note - 48
@@ -1231,16 +1221,15 @@ function acidSequencer(name, sub, options) {
 
   if (generalInput) {
     generalInput.on('message', (msg) => {
-//        debug('generalInput: %y',msg)
+      //        debug('generalInput: %y',msg)
       if (msg._type == 'noteon' && (!options.generalChannel || msg.channel == (options.generalChannel - 1))) {
         let changed = 0
         state.matrix.slot.forEach( (slot,slotIdx) => {
-          if (slot.source == 2 /* VELOCITY */) {
+          if (slot.source == 2) { // VELOCITY
             if (_.get(state,`matrix.slot.${slotIdx}.value`) !== msg.velocity) {
               _.set(state.values,`matrix.slot.${slotIdx}.value`,msg.velocity)
               changed++
               sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${slotIdx}.value.nrpn`),1,_.get(state,`matrix.slot.${slotIdx}.value`),0)
-/*             debug('velocity: slot %d = %y',slotIdx+1,_.get(state,`matrix.slot.${slotIdx}.value`))*/
             }
           }
         })
@@ -1248,15 +1237,14 @@ function acidSequencer(name, sub, options) {
           state.matrixRemodulate('velocity')
         }
       }
-      if (msg._type == 'cc' && (!options.generalChannel || msg.channel == (options.generalChannel - 1)) && msg.controller==1) {
+      if (msg._type == 'cc' && (!options.generalChannel || msg.channel == (options.generalChannel - 1)) && msg.controller == 1) {
         let changed = 0
         state.matrix.slot.forEach( (slot,slotIdx) => {
-          if (slot.source == 1 /* MOD WHEEL */) {
+          if (slot.source == 1) { // MOD WHEEL
             if (_.get(state,`matrix.slot.${slotIdx}.value`) !== msg.value) {
               _.set(state.values,`matrix.slot.${slotIdx}.value`,msg.value)
               changed++
               sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${slotIdx}.value.nrpn`),1,_.get(state,`matrix.slot.${slotIdx}.value`),0)
-/*             debug('modwheel: slot %d = %y',slotIdx+1,_.get(state,`matrix.slot.${slotIdx}.value`))*/
             }
           }
         })
@@ -1271,8 +1259,6 @@ function acidSequencer(name, sub, options) {
   let lastTime = 0
   let pulseTime = [0, 0]
   clockInput.on('clock', () => {
-    //    pulses++
-    //    debug('playing: %y %y',state.playing,pulses)
     const deltaTime = process.hrtime(pulseTime)
     pulseTime = process.hrtime()
 
@@ -1288,7 +1274,6 @@ function acidSequencer(name, sub, options) {
       for (let l = 0; l < 3; l++) {
         if (state.lfo[l].control && state.lfo[l].amount && (state.lfo[l].device.A || state.lfo[l].device.B)) {
           if (!(steps % ((128 - state.lfo[l].density) * 2))) {
-            //            debug('JJR: l:%d steps:%y stepIdx:%y ticks:%y',l,steps,stepIdx,ticks)
             const factor = (state.lfo[l].amount / 100)
             const base = Math.floor((((100 - state.lfo[l].amount) / 100) * 128) / 2)
             const offset = Math.floor(base * (((state.lfo[l].offset - 50) ) / 50) )
@@ -1312,8 +1297,6 @@ function acidSequencer(name, sub, options) {
                   const midiValue = Math.min(127,value)
 
                   if (_.get(midiCache[options.output],pth) != midiValue) {
-                    // debug('offset: %y, value %y base %y  mod %y',offset,midiValue,base,mod)
-                    // debug('LFO%d step [%d] channel %d  control %d  amount %d  rate %d value %f',l+1,stepIdx,channel+1,state.lfo[l].control,state.lfo[l].amount,state.lfo[l].rate,value)
 
                     debugMidiControlChange('%s %d CC %y = %y',state.device[dev].portName,channel + 1,state.lfo[l].control,midiValue)
                     Midi.send(state.device[dev].portName,'cc',{channel,controller:state.lfo[l].control,value:midiValue})
@@ -1332,7 +1315,7 @@ function acidSequencer(name, sub, options) {
         state.pattern.tracks[0].notes.forEach( (note) => {
           if (note.ticks == shiftedTicks) {
             if (stepIdx < state.sounding.length && state.sounding[stepIdx]) {
-              let midiNote = note.midi // + state.transpose + ((stepIdx < state.octaves.length && state.octaves[stepIdx]) ? (state.octaves[stepIdx] * 12) : 0)
+              let midiNote = note.midi
 
               const scaleMapping = scaleMappings.scales[state.scales]
               const midiNoteFromBase = (midiNote + state.base) % 12
@@ -1351,7 +1334,6 @@ function acidSequencer(name, sub, options) {
               const dev =  (midiNote <= state.split) ? (switchChannel ? 'B' : 'A') : (switchChannel ? 'A' : 'B')
 
               let rnd2 = getRandomInt(100)
-              //              debug('rnd: probability %y rnd2 %y  %y',state.probability,rnd2,state.probability >= rnd2)
               if (!state.device[dev].mute && state.device[dev].portName && state.probability >= rnd2) {
                 const channel = state.device[dev].channel - 1
                 debugMidiNoteOn('%s %d %y',state.device[dev].portName,channel + 1,midiNote)
