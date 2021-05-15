@@ -62,6 +62,12 @@ let writeState = true
 let state
 const midiCache = {}
 
+const matrixSlotSources = {
+  off: 0,
+  modWheel: 1,
+  velocity: 2,
+}
+
 class State {
   constructor() {
     this.values = {}
@@ -87,7 +93,7 @@ class State {
     this.values.temperature = 1.0
     this.values.transpose = 0
     this.values.gate = 1.0
-    this.values.chance = 0
+    this.values.octaveChance = 0
     this.values.octaves = []
     this.values.density = 100
     this.values.probability = 100
@@ -170,6 +176,7 @@ class State {
         {
           source: 0,
           value: 0,
+          slewLimiter: 0,
           destination: [
             {
               target: 0,
@@ -188,6 +195,7 @@ class State {
         {
           source: 0,
           value: 0,
+          slewLimiter: 0,
           destination: [
             {
               target: 0,
@@ -206,6 +214,7 @@ class State {
         {
           source: 0,
           value: 0,
+          slewLimiter: 0,
           destination: [
             {
               target: 0,
@@ -225,7 +234,7 @@ class State {
     }
 
     this.modulation = null
-    this.genOctaves(this.chance)
+    this.genOctaves(this.octaveChance)
     this.genSounding(this.density)
     if (write) {
       this.write()
@@ -312,13 +321,13 @@ class State {
     }
   }
 
-  get chance() {
-    return this.modulate('chance')
+  get octaveChance() {
+    return this.modulate('octaveChance')
   }
-  set chance(value) {
-    if (!deepEqual(this.values.chance,value,{strict:true})) {
-      this.values.chance = value
-      this.genOctaves(this.chance)
+  set octaveChance(value) {
+    if (!deepEqual(this.values.octaveChance,value,{strict:true})) {
+      this.values.octaveChance = value
+      this.genOctaves(this.octaveChance)
       this.write()
     }
   }
@@ -547,8 +556,8 @@ class State {
     if (deltaValues['killSteps'] || deltaValues['killShift']) {
       this.euclidian(this.killSteps,16,this.killShift)
     }
-    if (deltaValues['chance']) {
-      this.genOctaves(this.chance)
+    if (deltaValues['octaveChance']) {
+      this.genOctaves(this.octaveChance)
     }
     if (deltaValues['density']) {
       this.genSounding(this.density)
@@ -582,11 +591,11 @@ class State {
   }
 
 
-  genOctaves(chance) {
+  genOctaves(octaveChance) {
     for (let idx = 0; idx < 16; idx++) {
       const rnd = getRandomInt(100)
-      const octave = (Math.abs(chance) > rnd)
-      this.values.octaves[idx] = (octave ? (chance > 0 ? 1 : -1) : 0)
+      const octave = (Math.abs(octaveChance) > rnd)
+      this.values.octaves[idx] = (octave ? (octaveChance > 0 ? 1 : -1) : 0)
     }
   }
 
@@ -623,52 +632,52 @@ class State {
     debug('Send Values')
     // Mind you, we should use the underlaying 'this.values' instead of 'this', we want to see the raw values on Electra One, not the modulated versions
 
-    sendNRPN(midiOutputName,config.acid.interface.temperature.nrpn,1,(this.temperature * 100) & 0xFF,(this.values.temperature * 100) >> 7)
-    sendNRPN(midiOutputName,config.acid.interface.split.nrpn,1,this.values.split,0)
-    sendNRPN(midiOutputName,config.acid.interface.deviate.nrpn,1,this.values.deviate,0)
+    sendNRPN(midiOutputName,config.acid.interface.temperature.nrpn,1,(this.temperature * 100) & 0xFF,(_.get(this.values,'temperature',0) * 100) >> 7)
+    sendNRPN(midiOutputName,config.acid.interface.split.nrpn,1,_.get(this.values,'split',0),0)
+    sendNRPN(midiOutputName,config.acid.interface.deviate.nrpn,1,_.get(this.values,'deviate',0),0)
     for (let l = 0; l < 3; l++) {
       ['device.A','device.B'].forEach( key => {
-        sendNRPN(midiOutputName,_.get(config.acid.interface,`lfo.${l + 1}.${key}.nrpn`),1,_.get(this.values,`lfo.${l}.${key}`),0)
+        sendNRPN(midiOutputName,_.get(config.acid.interface,`lfo.${l + 1}.${key}.nrpn`),1,_.get(this.values,`lfo.${l}.${key}`,0),0)
       })
     }
 
-    sendNRPN(midiOutputName,config.acid.interface.transpose.nrpn,1,this.values.transpose + 64,0)
-    sendNRPN(midiOutputName,config.acid.interface.gate.nrpn,1,this.values.gate * 64,0)
-    sendNRPN(midiOutputName,config.acid.interface.octave.nrpn,1,((this.values.chance / 100) * 64) + 64,0)
+    sendNRPN(midiOutputName,config.acid.interface.transpose.nrpn,1,_.get(this.values,'transpose',0) + 64,0)
+    sendNRPN(midiOutputName,config.acid.interface.gate.nrpn,1,_.get(this.values,'gate',0) * 64,0)
+    sendNRPN(midiOutputName,config.acid.interface.octave.nrpn,1,((_.get(this.values,'octaveChance',0) / 100) * 64) + 64,0)
 
-    sendNRPN(midiOutputName,config.acid.interface.density.nrpn,1,this.values.density,0)
-    sendNRPN(midiOutputName,config.acid.interface.probability.nrpn,1,this.values.probability,0)
-    sendNRPN(midiOutputName,config.acid.interface.killSteps.nrpn,1,this.values.killSteps,0)
-    sendNRPN(midiOutputName,config.acid.interface.killShift.nrpn,1,this.values.killShift + 15,0)
+    sendNRPN(midiOutputName,config.acid.interface.density.nrpn,1,_.get(this.values,'density',0),0)
+    sendNRPN(midiOutputName,config.acid.interface.probability.nrpn,1,_.get(this.values,'probability',0),0)
+    sendNRPN(midiOutputName,config.acid.interface.killSteps.nrpn,1,_.get(this.values,'killSteps',0),0)
+    sendNRPN(midiOutputName,config.acid.interface.killShift.nrpn,1,_.get(this.values,'killShift',0) + 15,0)
 
-    sendNRPN(midiOutputName,config.acid.interface.scales.nrpn,1,this.values.scales,0)
-    sendNRPN(midiOutputName,config.acid.interface.base.nrpn,1,this.values.base,0)
-    sendNRPN(midiOutputName,config.acid.interface.shift.nrpn,1,this.values.shift + 16,0)
+    sendNRPN(midiOutputName,config.acid.interface.scales.nrpn,1,_.get(this.values,'scales',0),0)
+    sendNRPN(midiOutputName,config.acid.interface.base.nrpn,1,_.get(this.values,'base',0),0)
+    sendNRPN(midiOutputName,config.acid.interface.shift.nrpn,1,_.get(this.values,'shift',0) + 16,0)
 
-    sendNRPN(midiOutputName,config.acid.interface.bank.nrpn,1,this.values.bank,0)
-    sendNRPN(midiOutputName,config.acid.interface.program.nrpn,1,this.values.program,0)
+    sendNRPN(midiOutputName,config.acid.interface.bank.nrpn,1,_.get(this.values,'bank',0),0)
+    sendNRPN(midiOutputName,config.acid.interface.program.nrpn,1,_.get(this.values,'program',0),0)
 
     // LFO
     for (let l = 0; l < 3; l++) {
       ['control','shape','rate','phase','amount','offset','density'].forEach( key => {
-        sendNRPN(midiOutputName,_.get(config.acid.interface,`lfo.${l + 1}.${key}.nrpn`),1,_.get(this.values,`lfo.${l}.${key}`),0)
+        sendNRPN(midiOutputName,_.get(config.acid.interface,`lfo.${l + 1}.${key}.nrpn`),1,_.get(this.values,`lfo.${l}.${key}`,0),0)
       })
     }
 
     // PROGRAM
     ['A','B'].forEach( dev => {
       ['device','mute','port','channel','bank','program'].forEach( key => {
-        sendNRPN(midiOutputName,_.get(config.acid.interface,`device.${dev}.${key}.nrpn`),1,_.get(this.values,`device.${dev}.${key}`),0)
+        sendNRPN(midiOutputName,_.get(config.acid.interface,`device.${dev}.${key}.nrpn`),1,_.get(this.values,`device.${dev}.${key}`,0),0)
       })
     })
 
     // MOD MATRIX
     for (let s = 0; s < 3; s++) {
-      ['source','value'].forEach( key => {
-        sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.${key}.nrpn`),1,_.get(this.values,`matrix.slot.${s}.${key}`),0)
+      ['source','value','slewLimiter'].forEach( key => {
+        sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.${key}.nrpn`),1,_.get(this.values,`matrix.slot.${s}.${key}`,0),0)
       })
       for (let d = 0; d < 3; d++) {
-        sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.destination.${d}.target.nrpn`),1,_.get(this.values,`matrix.slot.${s}.destination.${d}.target`),0)
+        sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.destination.${d}.target.nrpn`),1,_.get(this.values,`matrix.slot.${s}.destination.${d}.target`,0),0)
         sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${s}.destination.${d}.amount.nrpn`),1,(_.get(this.values,`matrix.slot.${s}.destination.${d}.amount`,0) + 100) * (128 / 200),0)
       }
     }
@@ -860,9 +869,9 @@ class State {
             if (tmp > 0) {
               tmp = Math.floor((tmp / 63) * 100)
             }
-            if (tmp != this.values.chance) {
-              this.chance = tmp
-              debug('chance: %y', this.values.chance)
+            if (tmp != this.values.octaveChance) {
+              this.octaveChance = tmp
+              debug('octaveChance: %y', this.values.octaveChance)
             }
           }
         }
@@ -1097,7 +1106,7 @@ class State {
         // MOD MATRIX
 
         for (let s = 0; s < 3; s++) {
-          ['source','value'].forEach( key => {
+          ['source','value','slewLimiter'].forEach( key => {
             if (msb == _.get(config.acid.interface,`matrix.slot.${s}.${key}.nrpn`) && (lsb >= 1 && lsb <= 8)) {
               if (msg.controller == 6) { // MSB
                 let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
@@ -1178,6 +1187,22 @@ function acidSequencer(name, sub, options) {
     return (degrees % 360) * (Math.PI / 180)
   }
 
+  const slewLimiterTimouts = []
+  const slewLimiterTime = 5000
+
+
+  function slewLimiterTimer(slotIdx, step, timeout,newValue) {
+    const valueDelta = (newValue - _.get(state,`matrix.slot.${slotIdx}.value`,0)) / (step + 1)
+    const stepValue = step ? Math.round(_.get(state.values,`matrix.slot.${slotIdx}.value`,0) + valueDelta ) : newValue
+    //    debug('slewLimiterTimer slotIdx %y step %y timeout %y valueDelta %y currentValue %y stepValue %y newValue %y',slotIdx,step,timeout,valueDelta,_.get(state.values,`matrix.slot.${slotIdx}.value`,0),stepValue,newValue)
+    _.set(state.values,`matrix.slot.${slotIdx}.value`,stepValue)
+    sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${slotIdx}.value.nrpn`),1,_.get(state,`matrix.slot.${slotIdx}.value`,0),0)
+    state.matrixRemodulate('slewLimiter')
+    if (step > 0) {
+      clearTimeout(slewLimiterTimouts[slotIdx])
+      slewLimiterTimouts[slotIdx] = setTimeout( slewLimiterTimer ,timeout, slotIdx, step - 1, timeout, newValue)
+    }
+  }
 
   function lfo(step, stepsPerCycle, shape, phase) {
     let cycleStep = ((step + 0) + (((phase + 0.0) % 1.0) * stepsPerCycle)) % stepsPerCycle
@@ -1211,43 +1236,64 @@ function acidSequencer(name, sub, options) {
     transposeInput.on('message', (msg) => {
       if (msg._type == 'noteon' && (!options.transposeChannel || msg.channel == (options.transposeChannel - 1))) {
         state.transpose = msg.note - 48
-        debug('transpose: %y',state.transpose)
+        debug('Note -> transpose: %y',state.transpose)
         sendNRPN(midiOutputName,config.acid.interface.transpose.nrpn,1,state.transpose + 64,0)
       }
     })
   }
 
   const generalInput = (options.general ? Midi.input(options.general, true, true) : null)
-
   if (generalInput) {
+
     generalInput.on('message', (msg) => {
       //        debug('generalInput: %y',msg)
       if (msg._type == 'noteon' && (!options.generalChannel || msg.channel == (options.generalChannel - 1))) {
         let changed = 0
-        state.matrix.slot.forEach( (slot,slotIdx) => {
-          if (slot.source == 2) { // VELOCITY
+        for (let slotIdx = 0; slotIdx < 3; slotIdx++) {
+          //        if (state.matrix) state.matrix.slot.forEach( (slot,slotIdx) => {
+          if (_.get(state,`matrix.slot.${slotIdx}.source`) == matrixSlotSources.velocity) { // VELOCITY
             if (_.get(state,`matrix.slot.${slotIdx}.value`) !== msg.velocity) {
-              _.set(state.values,`matrix.slot.${slotIdx}.value`,msg.velocity)
-              changed++
-              sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${slotIdx}.value.nrpn`),1,_.get(state,`matrix.slot.${slotIdx}.value`),0)
+              const slewLimiter = _.get(state,`matrix.slot.${slotIdx}.slewLimiter`)
+              if (slewLimiter) {
+                const newValue = msg.velocity
+                const timeout = 10 //slewLimiterTime/slewLimiter
+                const steps = slewLimiter //Math.ceil(slewLimiterTime/slewLimiter)
+
+                slewLimiterTimer(slotIdx, steps, timeout, newValue)
+
+              } else {
+                _.set(state.values,`matrix.slot.${slotIdx}.value`,msg.velocity)
+                changed++
+                sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${slotIdx}.value.nrpn`),1,_.get(state,`matrix.slot.${slotIdx}.value`),0)
+              }
             }
           }
-        })
+        }
         if (changed) {
           state.matrixRemodulate('velocity')
         }
       }
       if (msg._type == 'cc' && (!options.generalChannel || msg.channel == (options.generalChannel - 1)) && msg.controller == 1) {
         let changed = 0
-        state.matrix.slot.forEach( (slot,slotIdx) => {
-          if (slot.source == 1) { // MOD WHEEL
+        for (let slotIdx = 0; slotIdx < 3; slotIdx++) {
+          if (_.get(state,`matrix.slot.${slotIdx}.source`) == matrixSlotSources.modWheel) { // MOD WHEEL
             if (_.get(state,`matrix.slot.${slotIdx}.value`) !== msg.value) {
-              _.set(state.values,`matrix.slot.${slotIdx}.value`,msg.value)
-              changed++
-              sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${slotIdx}.value.nrpn`),1,_.get(state,`matrix.slot.${slotIdx}.value`),0)
+              const slewLimiter = _.get(state,`matrix.slot.${slotIdx}.slewLimiter`)
+              if (slewLimiter) {
+                const newValue = msg.value
+                const timeout = 10 //slewLimiterTime/slewLimiter
+                const steps = slewLimiter //Math.ceil(slewLimiterTime/slewLimiter)
+
+                slewLimiterTimer(slotIdx, steps, timeout, newValue)
+
+              } else {
+                _.set(state.values,`matrix.slot.${slotIdx}.value`,msg.value)
+                changed++
+                sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${slotIdx}.value.nrpn`),1,_.get(state,`matrix.slot.${slotIdx}.value`),0)
+              }
             }
           }
-        })
+        }
         if (changed) {
           state.matrixRemodulate('modwheel')
         }

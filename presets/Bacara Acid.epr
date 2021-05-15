@@ -2882,6 +2882,40 @@
       ]
     },
     {
+      "id": 73,
+      "type": "fader",
+      "name": "SLEW LIMITER",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        40,
+        146,
+        56
+      ],
+      "pageId": 3,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 12545,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 3,
+          "id": "value"
+        }
+      ]
+    },
+    {
       "id": 74,
       "type": "list",
       "name": "SOURCE",
@@ -3010,12 +3044,12 @@
       ]
     },
     {
-      "id": 80,
+      "id": 79,
       "type": "fader",
       "name": "VALUE",
       "color": "FFFFFF",
       "bounds": [
-        170,
+        0,
         128,
         146,
         56
@@ -3024,7 +3058,7 @@
       "controlSetId": 1,
       "inputs": [
         {
-          "potId": 8,
+          "potId": 7,
           "valueId": "value"
         }
       ],
@@ -3146,6 +3180,40 @@
           "min": -100,
           "max": 100,
           "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "type": "fader",
+      "name": "SLEW LIMITER",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        216,
+        146,
+        56
+      ],
+      "pageId": 3,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 12673,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 3,
           "id": "value"
         }
       ]
@@ -3279,12 +3347,12 @@
       ]
     },
     {
-      "id": 92,
+      "id": 91,
       "type": "fader",
       "name": "VALUE",
       "color": "FFFFFF",
       "bounds": [
-        170,
+        0,
         304,
         146,
         56
@@ -3293,7 +3361,7 @@
       "controlSetId": 2,
       "inputs": [
         {
-          "potId": 8,
+          "potId": 7,
           "valueId": "value"
         }
       ],
@@ -3415,6 +3483,40 @@
           "min": -100,
           "max": 100,
           "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "type": "fader",
+      "name": "SLEW LIMITER",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        392,
+        146,
+        56
+      ],
+      "pageId": 3,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 12801,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 3,
           "id": "value"
         }
       ]
@@ -3548,12 +3650,12 @@
       ]
     },
     {
-      "id": 104,
+      "id": 103,
       "type": "fader",
       "name": "VALUE",
       "color": "FFFFFF",
       "bounds": [
-        170,
+        0,
         480,
         146,
         56
@@ -3562,7 +3664,7 @@
       "controlSetId": 3,
       "inputs": [
         {
-          "potId": 8,
+          "potId": 7,
           "valueId": "value"
         }
       ],

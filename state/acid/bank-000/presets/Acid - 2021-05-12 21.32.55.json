@@ -122,7 +122,7 @@
   "temperature": 3.07,
   "transpose": 3,
   "gate": 0.44,
-  "chance": 42,
+  "octaveChance": 42,
   "octaves": [
     1,
     0,

@@ -421,6 +421,12 @@ module.exports = {
           max: 127,
           default: 0,
         },
+        slewLimiter: {
+          nrpn: 98,
+          min: 0,
+          max: 127,
+          default: 0,
+        },
         destination: [
           {
             target: {
@@ -479,6 +485,12 @@ module.exports = {
           max: 127,
           default: 0,
         },
+        slewLimiter: {
+          nrpn: 99,
+          min: 0,
+          max: 127,
+          default: 0,
+        },
         destination: [
           {
             target: {
@@ -533,6 +545,12 @@ module.exports = {
         },
         value: {
           nrpn: 97,
+          min: 0,
+          max: 127,
+          default: 0,
+        },
+        slewLimiter: {
+          nrpn: 100,
           min: 0,
           max: 127,
           default: 0,

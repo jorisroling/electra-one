@@ -140,7 +140,7 @@
   "temperature": 3.07,
   "transpose": 0,
   "gate": 1.22,
-  "chance": -2,
+  "octaveChance": -2,
   "octaves": [
     0,
     0,

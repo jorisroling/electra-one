@@ -4,7 +4,7 @@
     "header": {
       "keySignatures": [],
       "meta": [],
-      "name": "Acid - 2021-05-11 12:51:31",
+      "name": "Acid - 2021-05-09 14:09:51",
       "ppq": 480,
       "tempos": [],
       "timeSignatures": []
@@ -15,17 +15,17 @@
         "controlChanges": {},
         "pitchBends": [],
         "instrument": {
-          "family": "bass",
-          "name": "synth bass 1",
-          "number": 38
+          "family": "piano",
+          "name": "acoustic grand piano",
+          "number": 0
         },
-        "name": "Acid - 2021-05-11 12:51:31",
+        "name": "Acid - 2021-05-09 14:09:51",
         "notes": [
           {
-            "duration": 0.0625,
-            "durationTicks": 60,
-            "midi": 56,
-            "name": "G#3",
+            "duration": 0.1875,
+            "durationTicks": 180,
+            "midi": 60,
+            "name": "C4",
             "ticks": 0,
             "time": 0,
             "velocity": 0.7874015748031497
@@ -33,26 +33,17 @@
           {
             "duration": 0.1875,
             "durationTicks": 180,
-            "midi": 32,
-            "name": "G#1",
-            "ticks": 120,
-            "time": 0.125,
-            "velocity": 0.7874015748031497
-          },
-          {
-            "duration": 0.0625,
-            "durationTicks": 60,
-            "midi": 44,
-            "name": "G#2",
+            "midi": 57,
+            "name": "A3",
             "ticks": 240,
             "time": 0.25,
             "velocity": 0.7874015748031497
           },
           {
-            "duration": 0.1875,
-            "durationTicks": 180,
-            "midi": 44,
-            "name": "G#2",
+            "duration": 0.0625,
+            "durationTicks": 60,
+            "midi": 45,
+            "name": "A2",
             "ticks": 360,
             "time": 0.375,
             "velocity": 0.7874015748031497
@@ -60,53 +51,71 @@
           {
             "duration": 0.0625,
             "durationTicks": 60,
-            "midi": 56,
-            "name": "G#3",
-            "ticks": 960,
-            "time": 1,
+            "midi": 25,
+            "name": "C#1",
+            "ticks": 480,
+            "time": 0.5,
             "velocity": 1
           },
           {
             "duration": 0.0625,
             "durationTicks": 60,
-            "midi": 56,
-            "name": "G#3",
-            "ticks": 1080,
-            "time": 1.125,
+            "midi": 46,
+            "name": "A#2",
+            "ticks": 600,
+            "time": 0.625,
             "velocity": 1
           },
           {
-            "duration": 0.0625,
-            "durationTicks": 60,
-            "midi": 32,
-            "name": "G#1",
-            "ticks": 1200,
-            "time": 1.25,
-            "velocity": 0.7874015748031497
-          },
-          {
-            "duration": 0.0625,
-            "durationTicks": 60,
-            "midi": 31,
-            "name": "G1",
-            "ticks": 1440,
-            "time": 1.5,
-            "velocity": 1
-          },
-          {
-            "duration": 0.0625,
-            "durationTicks": 60,
-            "midi": 32,
-            "name": "G#1",
-            "ticks": 1560,
-            "time": 1.625,
+            "duration": 0.1875,
+            "durationTicks": 180,
+            "midi": 43,
+            "name": "G2",
+            "ticks": 720,
+            "time": 0.75,
             "velocity": 0.7874015748031497
           },
           {
             "duration": 0.1875,
             "durationTicks": 180,
-            "midi": 59,
-            "name": "B3",
+            "midi": 67,
+            "name": "G4",
+            "ticks": 960,
+            "time": 1,
+            "velocity": 0.7874015748031497
+          },
+          {
+            "duration": 0.1875,
+            "durationTicks": 180,
+            "midi": 36,
+            "name": "C2",
+            "ticks": 1200,
+            "time": 1.25,
+            "velocity": 1
+          },
+          {
+            "duration": 0.1875,
+            "durationTicks": 180,
+            "midi": 41,
+            "name": "F2",
+            "ticks": 1320,
+            "time": 1.375,
+            "velocity": 0.7874015748031497
+          },
+          {
+            "duration": 0.1875,
+            "durationTicks": 180,
+            "midi": 36,
+            "name": "C2",
+            "ticks": 1440,
+            "time": 1.5,
+            "velocity": 0.7874015748031497
+          },
+          {
+            "duration": 0.0625,
+            "durationTicks": 60,
+            "midi": 24,
+            "name": "C1",
             "ticks": 1680,
             "time": 1.75,
             "velocity": 1
@@ -114,11 +123,11 @@
           {
             "duration": 0.0625,
             "durationTicks": 60,
-            "midi": 43,
-            "name": "G2",
+            "midi": 24,
+            "name": "C1",
             "ticks": 1800,
             "time": 1.875,
-            "velocity": 1
+            "velocity": 0.7874015748031497
           }
         ],
         "endOfTrackTicks": 1860
@@ -126,28 +135,28 @@
     ]
   },
   "last_pattern_but": 0,
-  "last_preset_but": 0,
+  "last_preset_but": 2,
   "size": 16,
-  "temperature": 2.8,
-  "transpose": 3,
-  "gate": 1.13,
-  "octaveChance": 17,
+  "temperature": 3.07,
+  "transpose": 0,
+  "gate": 1.67,
+  "octaveChance": 74,
   "octaves": [
-    0,
-    0,
-    0,
+    1,
     1,
     0,
     0,
+    1,
+    1,
+    1,
+    1,
+    1,
     0,
+    1,
     0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
+    1,
+    1,
+    1,
     0
   ],
   "density": 100,
@@ -172,11 +181,13 @@
   ],
   "killSteps": 0,
   "killShift": 0,
-  "scales": 28,
-  "base": 4,
+  "scales": 22,
+  "base": 3,
   "shift": 0,
-  "split": 48,
-  "deviate": 29,
+  "split": 56,
+  "deviate": 15,
+  "bank": 0,
+  "program": 11,
   "lfo": [
     {
       "device": {
@@ -227,7 +238,7 @@
       "portName": "iConnectMIDI4+ Virus TI",
       "channel": 1,
       "bank": 25,
-      "program": 34,
+      "program": 18,
       "device": 1,
       "mute": 0
     },
@@ -236,9 +247,35 @@
       "portName": "iConnectMIDI4+ Virus TI",
       "channel": 2,
       "bank": 13,
-      "program": 80,
+      "program": 74,
       "device": 1,
       "mute": 0
     }
+  },
+  "matrix": {
+    "slot": [
+      {
+        "source": 2,
+        "destination": [
+          {
+            "target": 16,
+            "amount": -100
+          }
+        ],
+        "slewLimiter": 23,
+        "value": 0
+      },
+      {
+        "slewLimiter": 34,
+        "source": 1,
+        "destination": [
+          {
+            "target": 68,
+            "amount": -100
+          }
+        ],
+        "value": 0
+      }
+    ]
   }
 }
