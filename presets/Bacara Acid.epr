@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "Bacara Acid",
-  "projectId": "0a5SqNoejiAMxJbLdv12",
+  "projectId": "9swRP05YZx2Il5tGEAsn",
   "pages": [
     {
       "id": 1,
@@ -88,9 +88,9 @@
       "name": "Device",
       "color": "03A598",
       "bounds": [
-        680,
+        850,
         16,
-        316,
+        146,
         16
       ]
     },
@@ -102,17 +102,6 @@
         0,
         16,
         656,
-        16
-      ]
-    },
-    {
-      "pageId": 1,
-      "name": "Scale",
-      "color": "C44795",
-      "bounds": [
-        680,
-        104,
-        316,
         16
       ]
     },
@@ -159,6 +148,17 @@
         16
       ],
       "color": "FFFFFF"
+    },
+    {
+      "pageId": 1,
+      "name": "Scale",
+      "color": "C44795",
+      "bounds": [
+        680,
+        16,
+        146,
+        16
+      ]
     }
   ],
   "devices": [
@@ -839,8 +839,8 @@
     {
       "id": 5,
       "type": "fader",
-      "name": "SPLIT",
-      "color": "03A598",
+      "name": "MODE",
+      "color": "C44795",
       "bounds": [
         680,
         40,
@@ -861,11 +861,11 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 2817,
+            "parameterNumber": 2433,
             "min": 0,
-            "max": 127
+            "max": 36
           },
-          "defaultValue": 127,
+          "overlayId": 1,
           "id": "value"
         }
       ]
@@ -873,7 +873,7 @@
     {
       "id": 6,
       "type": "fader",
-      "name": "DEVIATE",
+      "name": "SPLIT",
       "color": "03A598",
       "bounds": [
         850,
@@ -895,10 +895,11 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 2945,
+            "parameterNumber": 2817,
             "min": 0,
-            "max": 100
+            "max": 127
           },
+          "defaultValue": 127,
           "id": "value"
         }
       ]
@@ -1048,7 +1049,7 @@
     {
       "id": 11,
       "type": "fader",
-      "name": "SCALE",
+      "name": "BASE",
       "color": "C44795",
       "bounds": [
         680,
@@ -1066,24 +1067,23 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 2433,
+            "parameterNumber": 2561,
             "min": 0,
-            "max": 36
-          },
-          "overlayId": 1,
-          "id": "value"
+            "max": 12
+          }
         }
       ]
     },
     {
       "id": 12,
       "type": "fader",
-      "name": "BASE",
-      "color": "C44795",
+      "name": "DEVIATE",
+      "color": "03A598",
       "bounds": [
         850,
         128,
@@ -1104,9 +1104,9 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 2561,
+            "parameterNumber": 2945,
             "min": 0,
-            "max": 11
+            "max": 100
           },
           "id": "value"
         }

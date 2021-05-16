@@ -76,7 +76,7 @@ module.exports = {
     cc: 21,
     nrpn: 20,
     min: 0,
-    max: 11,
+    max: 12,
     default: 0,
   },
   shift: {
