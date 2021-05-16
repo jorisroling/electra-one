@@ -109,9 +109,9 @@
       "pageId": 1,
       "name": "Preset",
       "bounds": [
-        510,
+        340,
         192,
-        486,
+        656,
         16
       ],
       "color": "FFFFFF"
@@ -1239,6 +1239,41 @@
             "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 1409,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "MUTE",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        216,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 12929,
             "onValue": 1,
             "offValue": 0
           },

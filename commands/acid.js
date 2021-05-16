@@ -752,6 +752,7 @@ class State {
               if (msg.value) {
                 this.pattern = Acid.generate(state)
                 this.last_pattern_but = 0
+                debug('generated')
               }
             }
             if (msg.controller == 38) { // LSB
