@@ -469,15 +469,23 @@
       "items": [
         {
           "value": 0,
-          "label": "Off"
+          "label": "Off",
+          "index": 0
         },
         {
           "value": 1,
-          "label": "Mod Wheel"
+          "label": "Mod Wheel",
+          "index": 1
         },
         {
           "value": 2,
-          "label": "Velocity"
+          "label": "Velocity",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "CH Aftertouch",
+          "index": 3
         }
       ]
     },

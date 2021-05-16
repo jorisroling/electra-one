@@ -62,10 +62,12 @@ let writeState = true
 let state
 const midiCache = {}
 
+const matrixSetSlotValueTimout = 10
 const matrixSlotSources = {
   off: 0,
   modWheel: 1,
   velocity: 2,
+  channelAftertouch: 3,
 }
 
 class State {
@@ -1191,16 +1193,21 @@ function acidSequencer(name, sub, options) {
   const slewLimiterTime = 5000
 
 
-  function slewLimiterTimer(slotIdx, step, timeout,newValue) {
+  function matrixSetSlotValue(slotIdx, step, timeout,newValue) {
     const valueDelta = (newValue - _.get(state,`matrix.slot.${slotIdx}.value`,0)) / (step + 1)
     const stepValue = step ? Math.round(_.get(state.values,`matrix.slot.${slotIdx}.value`,0) + valueDelta ) : newValue
-    //    debug('slewLimiterTimer slotIdx %y step %y timeout %y valueDelta %y currentValue %y stepValue %y newValue %y',slotIdx,step,timeout,valueDelta,_.get(state.values,`matrix.slot.${slotIdx}.value`,0),stepValue,newValue)
-    _.set(state.values,`matrix.slot.${slotIdx}.value`,stepValue)
-    sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${slotIdx}.value.nrpn`),1,_.get(state,`matrix.slot.${slotIdx}.value`,0),0)
-    state.matrixRemodulate('slewLimiter')
-    if (step > 0) {
+    if (slewLimiterTimouts[slotIdx]) {
       clearTimeout(slewLimiterTimouts[slotIdx])
-      slewLimiterTimouts[slotIdx] = setTimeout( slewLimiterTimer ,timeout, slotIdx, step - 1, timeout, newValue)
+      slewLimiterTimouts[slotIdx]=null
+    }
+    //debug('matrixSetSlotValue slotIdx %y step %y timeout %y valueDelta %y currentValue %y stepValue %y newValue %y',slotIdx,step,timeout,valueDelta,_.get(state.values,`matrix.slot.${slotIdx}.value`,0),stepValue,newValue)
+    if (_.get(state.values,`matrix.slot.${slotIdx}.value`,0) != stepValue) {
+      _.set(state.values,`matrix.slot.${slotIdx}.value`,stepValue)
+      sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${slotIdx}.value.nrpn`),1,_.get(state,`matrix.slot.${slotIdx}.value`,0),0)
+      state.matrixRemodulate('slewLimiter')
+    }
+    if (step > 0) {
+      slewLimiterTimouts[slotIdx] = setTimeout( matrixSetSlotValue ,timeout, slotIdx, step - 1, timeout, newValue)
     }
   }
 
@@ -1245,57 +1252,40 @@ function acidSequencer(name, sub, options) {
   const generalInput = (options.general ? Midi.input(options.general, true, true) : null)
   if (generalInput) {
 
+/*
+  electra-one generalInput: {
+  electra-one     channel: 0,
+  electra-one     pressure: 0,
+  electra-one     _type: 'channel aftertouch',
+  electra-one } +11ms
+*/
     generalInput.on('message', (msg) => {
-      //        debug('generalInput: %y',msg)
+   //         debug('generalInput: %y',msg)
       if (msg._type == 'noteon' && (!options.generalChannel || msg.channel == (options.generalChannel - 1))) {
-        let changed = 0
         for (let slotIdx = 0; slotIdx < 3; slotIdx++) {
-          //        if (state.matrix) state.matrix.slot.forEach( (slot,slotIdx) => {
           if (_.get(state,`matrix.slot.${slotIdx}.source`) == matrixSlotSources.velocity) { // VELOCITY
             if (_.get(state,`matrix.slot.${slotIdx}.value`) !== msg.velocity) {
-              const slewLimiter = _.get(state,`matrix.slot.${slotIdx}.slewLimiter`)
-              if (slewLimiter) {
-                const newValue = msg.velocity
-                const timeout = 10 //slewLimiterTime/slewLimiter
-                const steps = slewLimiter //Math.ceil(slewLimiterTime/slewLimiter)
-
-                slewLimiterTimer(slotIdx, steps, timeout, newValue)
-
-              } else {
-                _.set(state.values,`matrix.slot.${slotIdx}.value`,msg.velocity)
-                changed++
-                sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${slotIdx}.value.nrpn`),1,_.get(state,`matrix.slot.${slotIdx}.value`),0)
-              }
+              matrixSetSlotValue(slotIdx, _.get(state,`matrix.slot.${slotIdx}.slewLimiter`,0), matrixSetSlotValueTimout, msg.velocity)
             }
           }
-        }
-        if (changed) {
-          state.matrixRemodulate('velocity')
         }
       }
       if (msg._type == 'cc' && (!options.generalChannel || msg.channel == (options.generalChannel - 1)) && msg.controller == 1) {
-        let changed = 0
         for (let slotIdx = 0; slotIdx < 3; slotIdx++) {
           if (_.get(state,`matrix.slot.${slotIdx}.source`) == matrixSlotSources.modWheel) { // MOD WHEEL
             if (_.get(state,`matrix.slot.${slotIdx}.value`) !== msg.value) {
-              const slewLimiter = _.get(state,`matrix.slot.${slotIdx}.slewLimiter`)
-              if (slewLimiter) {
-                const newValue = msg.value
-                const timeout = 10 //slewLimiterTime/slewLimiter
-                const steps = slewLimiter //Math.ceil(slewLimiterTime/slewLimiter)
-
-                slewLimiterTimer(slotIdx, steps, timeout, newValue)
-
-              } else {
-                _.set(state.values,`matrix.slot.${slotIdx}.value`,msg.value)
-                changed++
-                sendNRPN(midiOutputName,_.get(config.acid.interface,`matrix.slot.${slotIdx}.value.nrpn`),1,_.get(state,`matrix.slot.${slotIdx}.value`),0)
-              }
+              matrixSetSlotValue(slotIdx, _.get(state,`matrix.slot.${slotIdx}.slewLimiter`,0), matrixSetSlotValueTimout, msg.value)
             }
           }
         }
-        if (changed) {
-          state.matrixRemodulate('modwheel')
+      }
+      if (msg._type == 'channel aftertouch' && (!options.generalChannel || msg.channel == (options.generalChannel - 1))) {
+        for (let slotIdx = 0; slotIdx < 3; slotIdx++) {
+          if (_.get(state,`matrix.slot.${slotIdx}.source`) == matrixSlotSources.channelAftertouch) { // CHANNEL AFTERTOUCH
+            if (_.get(state,`matrix.slot.${slotIdx}.value`) !== msg.pressure) {
+              matrixSetSlotValue(slotIdx, _.get(state,`matrix.slot.${slotIdx}.slewLimiter`,0), matrixSetSlotValueTimout, msg.pressure)
+            }
+          }
         }
       }
     })
