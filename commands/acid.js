@@ -34,7 +34,9 @@ const deviceCCs = knownDeviceCCs()
 
 const performanceMap = {}
 _.get(deviceCCs,'bacara-acid',[]).forEach((name,idx) => {
-  if (name) performanceMap[idx]=name
+  if (name) {
+    performanceMap[idx] = name
+  }
 })
 
 //debug('performanceMap %y',performanceMap)
@@ -541,7 +543,7 @@ class State {
   matrixRemodulate(reason) {
 
     const performancePaths = _.get(deviceCCs,'bacara-acid').filter ( cc => !!cc )
-//    debug('performancePaths %y',performancePaths)
+    //    debug('performancePaths %y',performancePaths)
     const oldValues = {}
     performancePaths.forEach( perfPath => oldValues[perfPath] = _.get(this,perfPath) )
 
@@ -981,7 +983,9 @@ class State {
                   if (tmp != _.get(this,`lfo.${l}.${key}`)) {
                     let oldShapeName = this.lfo[l].shapeName
                     const phaseValues = []
-                    for (let p = 0; p<=100; p++) phaseValues[p]=lfoValue(l,p)
+                    for (let p = 0; p <= 100; p++) {
+                      phaseValues[p] = lfoValue(l,p)
+                    }
 
                     _.set(this,`lfo.${l}.${key}`,tmp)
 
@@ -1012,55 +1016,55 @@ class State {
                       }
                     }
 
-                    const phaseDetectionShapes = ['sine','triangle','saw-up','saw-down']
-                    const phaseDetectionParameters = ['shape','amount','rate','offset','density']
-                    if (phaseDetectionShapes.indexOf(this.lfo[l].shapeName)>=0 && phaseDetectionShapes.indexOf(oldShapeName)>=0) {
-                      if (phaseDetectionParameters.indexOf(key)>=0) {
+                    if (lfoHistory.length >= 2) {
+                      const phaseDetectionShapes = ['sine','triangle','saw-up','saw-down']
+                      const phaseDetectionParameters = ['shape','amount','rate','offset','density']
+                      if (phaseDetectionShapes.indexOf(this.lfo[l].shapeName) >= 0 && phaseDetectionShapes.indexOf(oldShapeName) >= 0) {
+                        if (phaseDetectionParameters.indexOf(key) >= 0) {
 
-                        const value=lfoValue(l)
+                          const value = lfoValue(l)
+                          if (Number.isInteger(value)) {
 
-//                        debug('YES HI %y %y %y',value,lfoHistory[l],phaseValues)
-
-                        let pIndex
-                        let pDiff = 255
-                        for (let p = 0; p <= 100; p++) {
-                          const diff = Math.abs(phaseValues[p]-value)
-                          if (diff < pDiff) {
-                            pIndex = p
-                            pDiff = diff
-                          }
-                        }
-                        if (Number.isInteger(pIndex)) {
-                          if (lfoHistory.length>=2) {
-                            let pDelta = Math.abs(pIndex - _.get(this,`lfo.${l}.phase`,0))
-
+                            // debug('YES HI %y %y %y',value,lfoHistory[l],phaseValues)
+                            let pIndex
+                            let pDiff = 255
                             for (let p = 0; p <= 100; p++) {
-                              const diff = Math.abs(phaseValues[p]-value)
-                              if (diff == pDiff) {
-                                const delta = Math.abs(p - _.get(this,`lfo.${l}.phase`,0))
-                                const pDir = (phaseValues[p] - phaseValues[p>0?p-1:100]) > 0 ? 1 : -1
-                                const rDir = (lfoHistory[l][0] - lfoHistory[l][1]) > 0 ? 1 : -1
-/*                                debug('Diff pos %y  pDir:%y curr:%y prev:%y  rDir:%y history:%y',p,pDir,phaseValues[p],phaseValues[p>0?p-1:100],rDir,lfoHistory[l])*/
-                                if (pDir == rDir && delta<=pDelta) { // Direction is same, prefer this re-position of Phase
-                                  pIndex = p
-                                  pDelta = delta
-/*                                  debug('better %y %y',p,delta)*/
-                                }
+                              const diff = Math.abs(phaseValues[p] - value)
+                              if (diff < pDiff) {
+                                pIndex = p
+                                pDiff = diff
                               }
                             }
+                            if (Number.isInteger(pIndex)) {
+                              let pDelta = Math.abs(pIndex - _.get(this,`lfo.${l}.phase`,0))
+
+                              for (let p = 0; p <= 100; p++) {
+                                const diff = Math.abs(phaseValues[p] - value)
+                                if (diff == pDiff) {
+                                  const delta = Math.abs(p - _.get(this,`lfo.${l}.phase`,0))
+                                  const pDir = (phaseValues[p] - phaseValues[p > 0 ? p - 1 : 100]) > 0 ? 1 : -1
+                                  const rDir = (lfoHistory[l][0] - lfoHistory[l][1]) > 0 ? 1 : -1
+                                  // debug('Diff pos %y  pDir:%y curr:%y prev:%y  rDir:%y history:%y',p,pDir,phaseValues[p],phaseValues[p>0?p-1:100],rDir,lfoHistory[l])
+                                  if (pDir == rDir && delta <= pDelta) { // Direction is same, prefer this re-position of Phase
+                                    pIndex = p
+                                    pDelta = delta
+                                    // debug('better %y %y',p,delta)
+                                  }
+                                }
+                              }
+                              _.set(this,`lfo.${l}.phase`,pIndex)
+                              sendNRPN(midiOutputName,_.get(config.acid.interface,`lfo.${l + 1}.phase.nrpn`),1,_.get(this.values,`lfo.${l}.phase`,0),0)
+                              debug('Reposition Phase: %y',pIndex)
+                            }
                           }
-                          _.set(this,`lfo.${l}.phase`,pIndex)
-                          sendNRPN(midiOutputName,_.get(config.acid.interface,`lfo.${l + 1}.phase.nrpn`),1,_.get(this.values,`lfo.${l}.phase`,0),0)
-                          debug('Reposition Phase: %y',pIndex)
+
+                        } else {
+                          // debug('NO %y',phaseDetectionParameters.indexOf(key))
                         }
-
                       } else {
-//                        debug('NO %y',phaseDetectionParameters.indexOf(key))
+                        // debug('NO %y %y',phaseDetectionShapes.indexOf(this.lfo[l].shapeName)>=0,phaseDetectionShapes.indexOf(oldShapeName)>=0)
                       }
-                    } else {
-//                      debug('NO %y %y',phaseDetectionShapes.indexOf(this.lfo[l].shapeName)>=0,phaseDetectionShapes.indexOf(oldShapeName)>=0)
                     }
-
 
                     debug('lfo.%d.%s: %y%s', l + 1, key, _.get(this,`lfo.${l}.${key}`),names.length ? ` [ ${names.join(', ')} ]` : '')
                     this.write(true) // write because lfo values are deep values
@@ -1256,7 +1260,9 @@ function lfoValue(l,phase /*optional*/) {
     const factor = (state.lfo[l].amount / 100)
     const base = Math.floor((((100 - state.lfo[l].amount) / 100) * 128) / 2)
     const offset = Math.floor(base * (((state.lfo[l].offset - 50) ) / 50) )
-    if (!Number.isInteger(phase)) phase = state.lfo[l].phase
+    if (!Number.isInteger(phase)) {
+      phase = state.lfo[l].phase
+    }
     const mod = lfo( steps, (128 - state.lfo[l].rate) * 4, state.lfo[l].shapeName, phase / 100)
     if (mod >= 0) {
       const value = Math.min(127,Math.max(0,Math.floor(( mod * factor) + base + offset )))
@@ -1322,7 +1328,7 @@ function acidSequencer(name, sub, options) {
     const stepValue = step ? Math.round(_.get(state.values,`matrix.slot.${slotIdx}.value`,0) + valueDelta ) : newValue
     if (slewLimiterTimouts[slotIdx]) {
       clearTimeout(slewLimiterTimouts[slotIdx])
-      slewLimiterTimouts[slotIdx]=null
+      slewLimiterTimouts[slotIdx] = null
     }
     //debug('matrixSetSlotValue slotIdx %y step %y timeout %y valueDelta %y currentValue %y stepValue %y newValue %y',slotIdx,step,timeout,valueDelta,_.get(state.values,`matrix.slot.${slotIdx}.value`,0),stepValue,newValue)
     if (_.get(state.values,`matrix.slot.${slotIdx}.value`,0) != stepValue) {
@@ -1350,7 +1356,7 @@ function acidSequencer(name, sub, options) {
   const generalInput = (options.general ? Midi.input(options.general, true, true) : null)
   if (generalInput) {
 
-/*
+    /*
   electra-one generalInput: {
   electra-one     channel: 0,
   electra-one     pressure: 0,
@@ -1358,7 +1364,7 @@ function acidSequencer(name, sub, options) {
   electra-one } +11ms
 */
     generalInput.on('message', (msg) => {
-   //         debug('generalInput: %y',msg)
+      //         debug('generalInput: %y',msg)
       if (msg._type == 'noteon' && (!options.generalChannel || msg.channel == (options.generalChannel - 1))) {
         for (let slotIdx = 0; slotIdx < 3; slotIdx++) {
           if (_.get(state,`matrix.slot.${slotIdx}.source`) == matrixSlotSources.velocity) { // VELOCITY
@@ -1391,7 +1397,9 @@ function acidSequencer(name, sub, options) {
         const paramName = performanceMap[msg.controller]
         let value = msg.value
         const nrpn = _.get(config.acid.interface,`${paramName}.nrpn`)
-        if (nrpn) sendNRPN(midiOutputName,nrpn,1,value,0)
+        if (nrpn) {
+          sendNRPN(midiOutputName,nrpn,1,value,0)
+        }
         _.set(state,paramName,value)
         debug('CC %y',performanceMap[msg.controller])
       }
@@ -1415,7 +1423,7 @@ function acidSequencer(name, sub, options) {
       const shiftedTicks = (ticks + (ticksPerStep * state.shift)) % (ticksPerStep * 16)
 
       for (let l = 0; l < 3; l++) {
-/*
+        /*
         if (state.lfo[l].control && state.lfo[l].amount && (state.lfo[l].device.A || state.lfo[l].device.B)) {
           if (!(steps % ((128 - state.lfo[l].density) * 2))) {
             const factor = (state.lfo[l].amount / 100)
@@ -1476,7 +1484,11 @@ function acidSequencer(name, sub, options) {
 
                 debugMidiControlChange('%s %d CC %y = %y',state.device[dev].portName,channel + 1,state.lfo[l].control,midiValue)
 
-                if (!lfoHistory[l].length || lfoHistory[l][0]!=midiValue) if (lfoHistory[l].unshift(midiValue)>2) lfoHistory[l].splice(2)
+                if (!lfoHistory[l].length || lfoHistory[l][0] != midiValue) {
+                  if (lfoHistory[l].unshift(midiValue) > 2) {
+                    lfoHistory[l].splice(2)
+                  }
+                }
 
                 Midi.send(state.device[dev].portName,'cc',{channel,controller:state.lfo[l].control,value:midiValue})
                 _.set(midiCache[options.output],pth, midiValue)
