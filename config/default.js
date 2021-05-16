@@ -187,6 +187,6 @@ module.exports = {
   acid: {
     virtual: bacaraAcidVirtualName,
     channel: 1,
-    interface: require('../interfaces/acid')
+    interface: require('../interfaces/acid').parameters
   }
 }

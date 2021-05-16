@@ -14,6 +14,9 @@ const easymidi = require('easymidi')
 const Acid = require('../lib/acid')
 
 const Midi = require('../lib/midi')
+const Machine = require('../lib/machine')
+
+const stateMachine = new Machine('acid')
 
 const _ = require('lodash')
 const config = require('config')
@@ -121,6 +124,7 @@ class State {
     this.values.deviate = 0
     this.values.bank = 0
     this.values.program = 0
+    this.values.mute = 0
     this.values.lfo = [
       {
         device: {
@@ -132,7 +136,7 @@ class State {
         shapeName: 'sine',
         rate: 64,
         phase: 0,
-        amount: 0,
+        amount: 100,
         offset: 50,
         density: 0,
       },
@@ -146,7 +150,7 @@ class State {
         shapeName: 'sine',
         rate: 64,
         phase: 0,
-        amount: 0,
+        amount: 100,
         offset: 50,
         density: 0,
       },
@@ -160,7 +164,7 @@ class State {
         shapeName: 'sine',
         rate: 64,
         phase: 0,
-        amount: 0,
+        amount: 100,
         offset: 50,
         density: 0,
       }
@@ -479,6 +483,16 @@ class State {
     }
   }
 
+  get mute() {
+    return this.values.mute
+  }
+  set mute(value) {
+    if (!deepEqual(this.values.mute,value,{strict:true})) {
+      this.values.mute = value
+      this.write()
+    }
+  }
+
   get lfo() {
     return this.values.lfo
   }
@@ -671,6 +685,7 @@ class State {
 
     sendNRPN(midiOutputName,config.acid.interface.bank.nrpn,1,_.get(this.values,'bank',0),0)
     sendNRPN(midiOutputName,config.acid.interface.program.nrpn,1,_.get(this.values,'program',0),0)
+    sendNRPN(midiOutputName,config.acid.interface.mute.nrpn,1,_.get(this.values,'mute',0),0)
 
     // LFO
     for (let l = 0; l < 3; l++) {
@@ -874,6 +889,15 @@ class State {
                     debug('program: %y %y', this.values.program,path.basename(filename))
                   }
                 }
+              }
+            }
+          }
+          if (msb == config.acid.interface.mute.nrpn && (lsb >= 1 && lsb <= 8)) {
+            if (msg.controller == 6) { // MSB
+              let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
+              if (tmp != this.values.mute) {
+                this.mute = tmp
+                debug('mute: %y', this.values.mute)
               }
             }
           }
@@ -1422,85 +1446,47 @@ function acidSequencer(name, sub, options) {
       const tickDuration = pulseDuration / 20
       const shiftedTicks = (ticks + (ticksPerStep * state.shift)) % (ticksPerStep * 16)
 
-      for (let l = 0; l < 3; l++) {
-        /*
-        if (state.lfo[l].control && state.lfo[l].amount && (state.lfo[l].device.A || state.lfo[l].device.B)) {
-          if (!(steps % ((128 - state.lfo[l].density) * 2))) {
-            const factor = (state.lfo[l].amount / 100)
-            const base = Math.floor((((100 - state.lfo[l].amount) / 100) * 128) / 2)
-            const offset = Math.floor(base * (((state.lfo[l].offset - 50) ) / 50) )
-            const mod = lfo( steps, (128 - state.lfo[l].rate) * 4, state.lfo[l].shapeName, state.lfo[l].phase / 100)
-            if (mod >= 0) {
-              const value = Math.min(127,Math.max(0,Math.floor(( mod * factor) + base + offset )))
+      if (!state.mute) {
+        for (let l = 0; l < 3; l++) {
+          const value = lfoValue(l)
+          if (Number.isInteger(value)) {
+            const devs = []
 
-              const devs = []
-
-              if (state.lfo[l].device.A) {
-                devs.push('A')
-              }
-              if (state.lfo[l].device.B) {
-                devs.push('B')
-              }
-
-              devs.forEach( dev => {
-                if (!state.device[dev].mute && state.device[dev].portName) {
-                  const channel = state.device[dev].channel - 1
-                  const pth = `port_${state.device[dev].portName}.channel_${_.padStart(channel + 1,2,'0')}.controller_${_.padStart(state.lfo[l].control,3,'0')}`
-                  const midiValue = Math.min(127,value)
-
-                  if (_.get(midiCache[options.output],pth) != midiValue) {
-
-                    debugMidiControlChange('%s %d CC %y = %y',state.device[dev].portName,channel + 1,state.lfo[l].control,midiValue)
-                    Midi.send(state.device[dev].portName,'cc',{channel,controller:state.lfo[l].control,value:midiValue})
-                    _.set(midiCache[options.output],pth, midiValue)
-
-                    // Can Electra handle many NRPN's?
-                    sendNRPN(midiOutputName,config.acid.interface.lfo[l + 1].show.nrpn,1,midiValue,0,50)
-                  }
-                }
-              })
+            if (state.lfo[l].device.A) {
+              devs.push('A')
             }
-          }
-        }
-*/
-        const value = lfoValue(l)
-        if (Number.isInteger(value)) {
-          const devs = []
-
-          if (state.lfo[l].device.A) {
-            devs.push('A')
-          }
-          if (state.lfo[l].device.B) {
-            devs.push('B')
-          }
-
-          devs.forEach( dev => {
-            if (!state.device[dev].mute && state.device[dev].portName) {
-              const channel = state.device[dev].channel - 1
-              const pth = `port_${state.device[dev].portName}.channel_${_.padStart(channel + 1,2,'0')}.controller_${_.padStart(state.lfo[l].control,3,'0')}`
-              const midiValue = Math.min(127,value)
-
-              if (_.get(midiCache[options.output],pth) != midiValue) {
-
-                debugMidiControlChange('%s %d CC %y = %y',state.device[dev].portName,channel + 1,state.lfo[l].control,midiValue)
-
-                if (!lfoHistory[l].length || lfoHistory[l][0] != midiValue) {
-                  if (lfoHistory[l].unshift(midiValue) > 2) {
-                    lfoHistory[l].splice(2)
-                  }
-                }
-
-                Midi.send(state.device[dev].portName,'cc',{channel,controller:state.lfo[l].control,value:midiValue})
-                _.set(midiCache[options.output],pth, midiValue)
-
-                // Can Electra handle many NRPN's?
-                sendNRPN(midiOutputName,config.acid.interface.lfo[l + 1].show.nrpn,1,midiValue,0,50)
-              }
+            if (state.lfo[l].device.B) {
+              devs.push('B')
             }
-          })
+
+            devs.forEach( dev => {
+              if (!state.device[dev].mute && state.device[dev].portName) {
+                const channel = state.device[dev].channel - 1
+                const pth = `port_${state.device[dev].portName}.channel_${_.padStart(channel + 1,2,'0')}.controller_${_.padStart(state.lfo[l].control,3,'0')}`
+                const midiValue = Math.min(127,value)
+
+                if (_.get(midiCache[options.output],pth) != midiValue) {
+
+                  debugMidiControlChange('%s %d CC %y = %y',state.device[dev].portName,channel + 1,state.lfo[l].control,midiValue)
+
+                  if (!lfoHistory[l].length || lfoHistory[l][0] != midiValue) {
+                    if (lfoHistory[l].unshift(midiValue) > 2) {
+                      lfoHistory[l].splice(2)
+                    }
+                  }
+
+                  Midi.send(state.device[dev].portName,'cc',{channel,controller:state.lfo[l].control,value:midiValue})
+                  _.set(midiCache[options.output],pth, midiValue)
+
+                  // Can Electra handle many NRPN's?
+                  sendNRPN(midiOutputName,config.acid.interface.lfo[l + 1].show.nrpn,1,midiValue,0,50)
+                }
+              }
+            })
+          }
         }
       }
-      if (state.pattern) {
+      if (state.pattern && !state.mute) {
         state.pattern.tracks[0].notes.forEach( (note) => {
           if (note.ticks == shiftedTicks) {
             if (stepIdx < state.sounding.length && state.sounding[stepIdx]) {
