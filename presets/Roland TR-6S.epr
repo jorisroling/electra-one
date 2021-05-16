@@ -190,7 +190,8 @@
             "type": "cc7",
             "deviceId": 26,
             "parameterNumber": 20,
-            "bitWidth": 7
+            "min": 0,
+            "max": 127
           },
           "min": -128,
           "max": 127,
@@ -224,7 +225,8 @@
             "type": "cc7",
             "deviceId": 26,
             "parameterNumber": 25,
-            "bitWidth": 7
+            "min": 0,
+            "max": 127
           },
           "min": -128,
           "max": 127,
@@ -258,7 +260,8 @@
             "type": "cc7",
             "deviceId": 26,
             "parameterNumber": 46,
-            "bitWidth": 7
+            "min": 0,
+            "max": 127
           },
           "min": -128,
           "max": 127,
@@ -292,7 +295,8 @@
             "type": "cc7",
             "deviceId": 26,
             "parameterNumber": 58,
-            "bitWidth": 7
+            "min": 0,
+            "max": 127
           },
           "min": -128,
           "max": 127,
@@ -326,7 +330,8 @@
             "type": "cc7",
             "deviceId": 26,
             "parameterNumber": 61,
-            "bitWidth": 7
+            "min": 0,
+            "max": 127
           },
           "min": -128,
           "max": 127,
@@ -360,7 +365,8 @@
             "type": "cc7",
             "deviceId": 26,
             "parameterNumber": 80,
-            "bitWidth": 7
+            "min": 0,
+            "max": 127
           },
           "min": -128,
           "max": 127,
