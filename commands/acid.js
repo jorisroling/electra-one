@@ -43,7 +43,7 @@ _.get(deviceCCs,'bacara-acid',[]).forEach((name,idx) => {
 
 
 const shapes = ['sine','triangle','saw-up','saw-down','square','random']
-
+const phaseDetection = true
 
 function difference(object, base) {
   return _.transform(object, (result, value, key) => {
@@ -1016,7 +1016,7 @@ class State {
                       }
                     }
 
-                    if (lfoHistory.length >= 2) {
+                    if (phaseDetection && lfoHistory.length >= 2) {
                       const phaseDetectionShapes = ['sine','triangle','saw-up','saw-down']
                       const phaseDetectionParameters = ['shape','amount','rate','offset','density']
                       if (phaseDetectionShapes.indexOf(this.lfo[l].shapeName) >= 0 && phaseDetectionShapes.indexOf(oldShapeName) >= 0) {
