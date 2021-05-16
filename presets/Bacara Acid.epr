@@ -374,6 +374,71 @@
       "items": [
         {
           "value": 0,
+          "label": "C",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "C#",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "D",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "D#",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "E",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "F",
+          "index": 5
+        },
+        {
+          "value": 6,
+          "label": "F#",
+          "index": 6
+        },
+        {
+          "value": 7,
+          "label": "G",
+          "index": 7
+        },
+        {
+          "value": 8,
+          "label": "G#",
+          "index": 8
+        },
+        {
+          "value": 9,
+          "label": "A",
+          "index": 9
+        },
+        {
+          "value": 10,
+          "label": "A#",
+          "index": 10
+        },
+        {
+          "value": 11,
+          "label": "B",
+          "index": 11
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "items": [
+        {
+          "value": 0,
           "label": "Unknown",
           "index": 0
         },
@@ -420,7 +485,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": 4,
       "items": [
         {
           "value": 0,
@@ -430,7 +495,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": 5,
       "items": [
         {
           "value": 0,
@@ -465,7 +530,7 @@
       ]
     },
     {
-      "id": 5,
+      "id": 6,
       "items": [
         {
           "value": 0,
@@ -490,7 +555,7 @@
       ]
     },
     {
-      "id": 6,
+      "id": 7,
       "items": [
         {
           "index": 0,
@@ -1074,8 +1139,9 @@
             "lsbFirst": true,
             "parameterNumber": 2561,
             "min": 0,
-            "max": 12
-          }
+            "max": 11
+          },
+          "overlayId": 2
         }
       ]
     },
@@ -1484,7 +1550,7 @@
             "lsbFirst": true,
             "parameterNumber": 8193
           },
-          "overlayId": 2,
+          "overlayId": 3,
           "id": "value"
         }
       ]
@@ -1582,7 +1648,7 @@
             "lsbFirst": true,
             "parameterNumber": 8321
           },
-          "overlayId": 2,
+          "overlayId": 3,
           "id": "value"
         }
       ]
@@ -1887,7 +1953,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 3
+          "overlayId": 4
         }
       ]
     },
@@ -1920,7 +1986,7 @@
             "min": 0,
             "max": 5
           },
-          "overlayId": 4,
+          "overlayId": 5,
           "id": "value"
         }
       ]
@@ -2231,7 +2297,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 3
+          "overlayId": 4
         }
       ]
     },
@@ -2264,7 +2330,7 @@
             "min": 0,
             "max": 5
           },
-          "overlayId": 4,
+          "overlayId": 5,
           "id": "value"
         }
       ]
@@ -2575,7 +2641,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 3
+          "overlayId": 4
         }
       ]
     },
@@ -2608,7 +2674,7 @@
             "min": 0,
             "max": 5
           },
-          "overlayId": 4,
+          "overlayId": 5,
           "id": "value"
         }
       ]
@@ -2918,7 +2984,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 3,
+          "overlayId": 4,
           "id": "value"
         }
       ]
@@ -2951,7 +3017,7 @@
             "lsbFirst": true,
             "parameterNumber": 9473
           },
-          "overlayId": 5
+          "overlayId": 6
         }
       ]
     },
@@ -2983,7 +3049,7 @@
             "lsbFirst": true,
             "parameterNumber": 9601
           },
-          "overlayId": 6
+          "overlayId": 7
         }
       ]
     },
@@ -3015,7 +3081,7 @@
             "lsbFirst": true,
             "parameterNumber": 9729
           },
-          "overlayId": 6
+          "overlayId": 7
         }
       ]
     },
@@ -3047,7 +3113,7 @@
             "lsbFirst": true,
             "parameterNumber": 9857
           },
-          "overlayId": 6
+          "overlayId": 7
         }
       ]
     },
@@ -3221,7 +3287,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 3,
+          "overlayId": 4,
           "id": "value"
         }
       ]
@@ -3254,7 +3320,7 @@
             "lsbFirst": true,
             "parameterNumber": 10369
           },
-          "overlayId": 5
+          "overlayId": 6
         }
       ]
     },
@@ -3286,7 +3352,7 @@
             "lsbFirst": true,
             "parameterNumber": 10497
           },
-          "overlayId": 6
+          "overlayId": 7
         }
       ]
     },
@@ -3318,7 +3384,7 @@
             "lsbFirst": true,
             "parameterNumber": 10625
           },
-          "overlayId": 6
+          "overlayId": 7
         }
       ]
     },
@@ -3350,7 +3416,7 @@
             "lsbFirst": true,
             "parameterNumber": 10753
           },
-          "overlayId": 6
+          "overlayId": 7
         }
       ]
     },
@@ -3524,7 +3590,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 3,
+          "overlayId": 4,
           "id": "value"
         }
       ]
@@ -3557,7 +3623,7 @@
             "lsbFirst": true,
             "parameterNumber": 11265
           },
-          "overlayId": 5
+          "overlayId": 6
         }
       ]
     },
@@ -3589,7 +3655,7 @@
             "lsbFirst": true,
             "parameterNumber": 11393
           },
-          "overlayId": 6
+          "overlayId": 7
         }
       ]
     },
@@ -3621,7 +3687,7 @@
             "lsbFirst": true,
             "parameterNumber": 11521
           },
-          "overlayId": 6
+          "overlayId": 7
         }
       ]
     },
@@ -3653,7 +3719,7 @@
             "lsbFirst": true,
             "parameterNumber": 11649
           },
-          "overlayId": 6
+          "overlayId": 7
         }
       ]
     },
