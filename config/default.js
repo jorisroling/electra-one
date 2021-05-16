@@ -161,9 +161,10 @@ module.exports = {
             channels: [10,11],
           },
           'mc-101': {
-            enabled: false,
+            enabled: true,
             port: 2,
             channels: [6,7,8,9],
+            oneway: true,
           },
           'acdgen': {
             enabled: true,
