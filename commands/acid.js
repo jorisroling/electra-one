@@ -79,6 +79,7 @@ const matrixSlotSources = {
   channelAftertouch: 3,
 }
 
+const lfoHistory = [[],[],[]]
 class State {
   constructor() {
     this.values = {}
@@ -978,13 +979,22 @@ class State {
                 if (msg.controller == 6) { // MSB
                   let tmp = _.get(midiCache,`${midiName}.channel_${_.padStart(config.acid.channel,2,'0')}.controller_006`)
                   if (tmp != _.get(this,`lfo.${l}.${key}`)) {
+                    let oldShapeName = this.lfo[l].shapeName
+                    const phaseValues = []
+                    for (let p = 0; p<=100; p++) phaseValues[p]=lfoValue(l,p)
+
                     _.set(this,`lfo.${l}.${key}`,tmp)
+
                     let names = []
 
                     if (key == 'shape') {
                       const idx = tmp
-                      this.lfo[l].shapeName = shapes[idx]
-                      names.push(this.values.lfo[l].shapeName)
+                      if (idx >= 0 && idx < shapes.length) {
+                        this.lfo[l].shapeName = shapes[idx]
+                        names.push(this.values.lfo[l].shapeName)
+                      } else {
+                        names.push('unknown')
+                      }
                     }
                     if (key == 'control') {
                       if (this.values.lfo[l].control) {
@@ -1000,8 +1010,58 @@ class State {
                           }
                         } )
                       }
-
                     }
+
+                    const phaseDetectionShapes = ['sine','triangle','saw-up','saw-down']
+                    const phaseDetectionParameters = ['shape','amount','rate','offset','density']
+                    if (phaseDetectionShapes.indexOf(this.lfo[l].shapeName)>=0 && phaseDetectionShapes.indexOf(oldShapeName)>=0) {
+                      if (phaseDetectionParameters.indexOf(key)>=0) {
+
+                        const value=lfoValue(l)
+
+//                        debug('YES HI %y %y %y',value,lfoHistory[l],phaseValues)
+
+                        let pIndex
+                        let pDiff = 255
+                        for (let p = 0; p <= 100; p++) {
+                          const diff = Math.abs(phaseValues[p]-value)
+                          if (diff < pDiff) {
+                            pIndex = p
+                            pDiff = diff
+                          }
+                        }
+                        if (Number.isInteger(pIndex)) {
+                          if (lfoHistory.length>=2) {
+                            let pDelta = Math.abs(pIndex - _.get(this,`lfo.${l}.phase`,0))
+
+                            for (let p = 0; p <= 100; p++) {
+                              const diff = Math.abs(phaseValues[p]-value)
+                              if (diff == pDiff) {
+                                const delta = Math.abs(p - _.get(this,`lfo.${l}.phase`,0))
+                                const pDir = (phaseValues[p] - phaseValues[p>0?p-1:100]) > 0 ? 1 : -1
+                                const rDir = (lfoHistory[l][0] - lfoHistory[l][1]) > 0 ? 1 : -1
+/*                                debug('Diff pos %y  pDir:%y curr:%y prev:%y  rDir:%y history:%y',p,pDir,phaseValues[p],phaseValues[p>0?p-1:100],rDir,lfoHistory[l])*/
+                                if (pDir == rDir && delta<=pDelta) { // Direction is same, prefer this re-position of Phase
+                                  pIndex = p
+                                  pDelta = delta
+/*                                  debug('better %y %y',p,delta)*/
+                                }
+                              }
+                            }
+                          }
+                          _.set(this,`lfo.${l}.phase`,pIndex)
+                          sendNRPN(midiOutputName,_.get(config.acid.interface,`lfo.${l + 1}.phase.nrpn`),1,_.get(this.values,`lfo.${l}.phase`,0),0)
+                          debug('Reposition Phase: %y',pIndex)
+                        }
+
+                      } else {
+//                        debug('NO %y',phaseDetectionParameters.indexOf(key))
+                      }
+                    } else {
+//                      debug('NO %y %y',phaseDetectionShapes.indexOf(this.lfo[l].shapeName)>=0,phaseDetectionShapes.indexOf(oldShapeName)>=0)
+                    }
+
+
                     debug('lfo.%d.%s: %y%s', l + 1, key, _.get(this,`lfo.${l}.${key}`),names.length ? ` [ ${names.join(', ')} ]` : '')
                     this.write(true) // write because lfo values are deep values
                   }
@@ -1159,7 +1219,62 @@ class State {
 }
 
 
+function radians(degrees) {
+  return (degrees % 360) * (Math.PI / 180)
+}
 
+
+function lfo(step, stepsPerCycle, shape, phase) {
+  let cycleStep = ((step + 0) + (((phase + 0.0) % 1.0) * stepsPerCycle)) % stepsPerCycle
+  //    debug('JJR lfo: step: %y  stepsPerCycle: %y  shape: %y  phase: %y  cycleStep: %y',step, stepsPerCycle, shape, phase, cycleStep)
+  switch (shape) {
+  case 'sine':
+    cycleStep = ((step + 0) + (((phase + 0.75) % 1.0) * stepsPerCycle)) % stepsPerCycle
+    return (Math.sin(radians(((cycleStep / stepsPerCycle) * 360 ))) + 1.0) * 64
+  case 'triangle':
+    cycleStep = cycleStep / 2
+    if (cycleStep < (stepsPerCycle * 0.25)) {
+      return ( 0.0 + ((cycleStep / (stepsPerCycle / 4)))) * 128
+    } else {
+      return ( 1.0 - ((cycleStep - (stepsPerCycle / 4) ) / (stepsPerCycle / 4))) * 128
+    }
+  case 'saw-up':
+    return (((cycleStep * 2) / stepsPerCycle) * 128) % 128
+  case 'saw-down':
+    return (( 2.0 - ( (cycleStep * 2) / stepsPerCycle)) * 128) % 128
+  case 'square':
+    return (cycleStep < (stepsPerCycle / 4)) || ((cycleStep >= (stepsPerCycle / 2)) && (cycleStep < (stepsPerCycle * 0.75))) ? 128 : 0
+  case 'random':
+    return getRandomInt(127)
+  }
+  return -1
+}
+
+function lfoValue(l,phase /*optional*/) {
+  let result
+  if (state.lfo[l].control && state.lfo[l].amount && (state.lfo[l].device.A || state.lfo[l].device.B)) {
+    const factor = (state.lfo[l].amount / 100)
+    const base = Math.floor((((100 - state.lfo[l].amount) / 100) * 128) / 2)
+    const offset = Math.floor(base * (((state.lfo[l].offset - 50) ) / 50) )
+    if (!Number.isInteger(phase)) phase = state.lfo[l].phase
+    const mod = lfo( steps, (128 - state.lfo[l].rate) * 4, state.lfo[l].shapeName, phase / 100)
+    if (mod >= 0) {
+      const value = Math.min(127,Math.max(0,Math.floor(( mod * factor) + base + offset )))
+
+      const devs = []
+
+      if (state.lfo[l].device.A) {
+        devs.push('A')
+      }
+      if (state.lfo[l].device.B) {
+        devs.push('B')
+      }
+
+      result = Math.min(127,value)
+    }
+  }
+  return result
+}
 
 
 function sendNRPN(midiName,msb,lsb,valueMsb,valueLsb,timeout = 0) {
@@ -1198,10 +1313,6 @@ function acidSequencer(name, sub, options) {
     midiOutputName = options.electra
   }
 
-  function radians(degrees) {
-    return (degrees % 360) * (Math.PI / 180)
-  }
-
   const slewLimiterTimouts = []
   const slewLimiterTime = 5000
 
@@ -1222,32 +1333,6 @@ function acidSequencer(name, sub, options) {
     if (step > 0) {
       slewLimiterTimouts[slotIdx] = setTimeout( matrixSetSlotValue ,timeout, slotIdx, step - 1, timeout, newValue)
     }
-  }
-
-  function lfo(step, stepsPerCycle, shape, phase) {
-    let cycleStep = ((step + 0) + (((phase + 0.0) % 1.0) * stepsPerCycle)) % stepsPerCycle
-    //    debug('JJR lfo: step: %y  stepsPerCycle: %y  shape: %y  phase: %y  cycleStep: %y',step, stepsPerCycle, shape, phase, cycleStep)
-    switch (shape) {
-    case 'sine':
-      cycleStep = ((step + 0) + (((phase + 0.75) % 1.0) * stepsPerCycle)) % stepsPerCycle
-      return (Math.sin(radians(((cycleStep / stepsPerCycle) * 360 ))) + 1.0) * 64
-    case 'triangle':
-      cycleStep = cycleStep / 2
-      if (cycleStep < (stepsPerCycle * 0.25)) {
-        return ( 0.0 + ((cycleStep / (stepsPerCycle / 4)))) * 128
-      } else {
-        return ( 1.0 - ((cycleStep - (stepsPerCycle / 4) ) / (stepsPerCycle / 4))) * 128
-      }
-    case 'saw-up':
-      return (((cycleStep * 2) / stepsPerCycle) * 128) % 128
-    case 'saw-down':
-      return (( 2.0 - ( (cycleStep * 2) / stepsPerCycle)) * 128) % 128
-    case 'square':
-      return (cycleStep < (stepsPerCycle / 4)) || ((cycleStep >= (stepsPerCycle / 2)) && (cycleStep < (stepsPerCycle * 0.75))) ? 128 : 0
-    case 'random':
-      return getRandomInt(127)
-    }
-    return -1
   }
 
   const transposeInput = (options.transpose ? Midi.input(options.transpose, true, true) : null)
@@ -1330,6 +1415,7 @@ function acidSequencer(name, sub, options) {
       const shiftedTicks = (ticks + (ticksPerStep * state.shift)) % (ticksPerStep * 16)
 
       for (let l = 0; l < 3; l++) {
+/*
         if (state.lfo[l].control && state.lfo[l].amount && (state.lfo[l].device.A || state.lfo[l].device.B)) {
           if (!(steps % ((128 - state.lfo[l].density) * 2))) {
             const factor = (state.lfo[l].amount / 100)
@@ -1367,6 +1453,39 @@ function acidSequencer(name, sub, options) {
               })
             }
           }
+        }
+*/
+        const value = lfoValue(l)
+        if (Number.isInteger(value)) {
+          const devs = []
+
+          if (state.lfo[l].device.A) {
+            devs.push('A')
+          }
+          if (state.lfo[l].device.B) {
+            devs.push('B')
+          }
+
+          devs.forEach( dev => {
+            if (!state.device[dev].mute && state.device[dev].portName) {
+              const channel = state.device[dev].channel - 1
+              const pth = `port_${state.device[dev].portName}.channel_${_.padStart(channel + 1,2,'0')}.controller_${_.padStart(state.lfo[l].control,3,'0')}`
+              const midiValue = Math.min(127,value)
+
+              if (_.get(midiCache[options.output],pth) != midiValue) {
+
+                debugMidiControlChange('%s %d CC %y = %y',state.device[dev].portName,channel + 1,state.lfo[l].control,midiValue)
+
+                if (!lfoHistory[l].length || lfoHistory[l][0]!=midiValue) if (lfoHistory[l].unshift(midiValue)>2) lfoHistory[l].splice(2)
+
+                Midi.send(state.device[dev].portName,'cc',{channel,controller:state.lfo[l].control,value:midiValue})
+                _.set(midiCache[options.output],pth, midiValue)
+
+                // Can Electra handle many NRPN's?
+                sendNRPN(midiOutputName,config.acid.interface.lfo[l + 1].show.nrpn,1,midiValue,0,50)
+              }
+            }
+          })
         }
       }
       if (state.pattern) {
