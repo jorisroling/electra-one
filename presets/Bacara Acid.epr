@@ -500,52 +500,52 @@
         {
           "index": 1,
           "label": "Transpose",
-          "value": 13
+          "value": 3
         },
         {
           "index": 2,
           "label": "Octave Chance",
-          "value": 15
+          "value": 9
         },
         {
           "index": 3,
           "label": "Density",
-          "value": 16
+          "value": 14
         },
         {
           "index": 4,
           "label": "Probability",
-          "value": 68
+          "value": 15
         },
         {
           "index": 5,
           "label": "Kill Steps",
-          "value": 17
+          "value": 16
         },
         {
           "index": 6,
           "label": "Kill Shift",
-          "value": 18
+          "value": 17
         },
         {
           "index": 7,
           "label": "Gate",
-          "value": 14
+          "value": 18
         },
         {
           "index": 8,
           "label": "Shift",
-          "value": 21
+          "value": 19
         },
         {
           "index": 9,
           "label": "Scale Mode",
-          "value": 19
+          "value": 20
         },
         {
           "index": 10,
           "label": "Scale Base",
-          "value": 20
+          "value": 21
         },
         {
           "index": 11,
@@ -560,137 +560,137 @@
         {
           "index": 13,
           "label": "LFO 1 Control",
-          "value": 25
+          "value": 24
         },
         {
           "index": 14,
           "label": "LFO 1 Shape",
-          "value": 58
+          "value": 25
         },
         {
           "index": 15,
           "label": "LFO 1 Amount",
-          "value": 28
+          "value": 26
         },
         {
           "index": 16,
           "label": "LFO 1 Rate",
-          "value": 26
+          "value": 27
         },
         {
           "index": 17,
           "label": "LFO 1 Offset",
-          "value": 29
+          "value": 28
         },
         {
           "index": 18,
           "label": "LFO 1 Phase",
-          "value": 27
+          "value": 29
         },
         {
           "index": 19,
           "label": "LFO 1 Density",
-          "value": 61
+          "value": 30
         },
         {
           "index": 20,
           "label": "LFO 1 Device A",
-          "value": 41
+          "value": 31
         },
         {
           "index": 21,
           "label": "LFO 1 Device B",
-          "value": 42
+          "value": 85
         },
         {
           "index": 22,
           "label": "LFO 2 Control",
-          "value": 30
+          "value": 86
         },
         {
           "index": 23,
           "label": "LFO 2 Shape",
-          "value": 59
+          "value": 87
         },
         {
           "index": 24,
           "label": "LFO 2 Amount",
-          "value": 33
+          "value": 88
         },
         {
           "index": 25,
           "label": "LFO 2 Rate",
-          "value": 31
+          "value": 89
         },
         {
           "index": 26,
           "label": "LFO 2 Offset",
-          "value": 34
+          "value": 90
         },
         {
           "index": 27,
           "label": "LFO 2 Phase",
-          "value": 32
+          "value": 102
         },
         {
           "index": 28,
           "label": "LFO 2 Density",
-          "value": 62
+          "value": 103
         },
         {
           "index": 29,
           "label": "LFO 2 Device A",
-          "value": 43
+          "value": 104
         },
         {
           "index": 30,
           "label": "LFO 2 Device B",
-          "value": 44
+          "value": 105
         },
         {
           "index": 31,
           "label": "LFO 3 Control",
-          "value": 35
+          "value": 106
         },
         {
           "index": 32,
           "label": "LFO 3 Shape",
-          "value": 60
+          "value": 107
         },
         {
           "index": 33,
           "label": "LFO 3 Amount",
-          "value": 38
+          "value": 108
         },
         {
           "index": 34,
           "label": "LFO 3 Rate",
-          "value": 36
+          "value": 109
         },
         {
           "index": 35,
           "label": "LFO 3 Offset",
-          "value": 39
+          "value": 110
         },
         {
           "index": 36,
           "label": "LFO 3 Phase",
-          "value": 37
+          "value": 111
         },
         {
           "index": 37,
           "label": "LFO 3 Density",
-          "value": 63
+          "value": 112
         },
         {
           "index": 38,
           "label": "LFO 3 Device A",
-          "value": 45
+          "value": 113
         },
         {
           "index": 39,
           "label": "LFO 3 Device B",
-          "value": 46
+          "value": 114
         }
       ]
     }
