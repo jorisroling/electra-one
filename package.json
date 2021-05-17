@@ -70,6 +70,7 @@
     "cli-table3": "^0.6.0",
     "config": "^3.3.6",
     "deep-equal": "^2.0.5",
+    "deep-sort-object": "^1.0.2",
     "easymidi": "^2.0.4",
     "escape-regex-string": "^1.0.6",
     "euclidean-rhythms": "^2.0.1",
