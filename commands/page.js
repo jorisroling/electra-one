@@ -23,10 +23,10 @@ function pageSwap(name, sub, options) {
 
       function showPages(title) {
         const data = [
-          ['#','Page' + (title ? ` (${title})` : '')]
+          ['#', 'Page' + (title ? ` (${title})` : '')]
         ]
         for (let i = 0; i < preset.pages.length; i++) {
-          data.push([labelColor(preset.pages[i].id),labelColor(preset.pages[i].name)])
+          data.push([labelColor(preset.pages[i].id), labelColor(preset.pages[i].name)])
         }
         const output = table(data, {})
 
@@ -43,7 +43,7 @@ function pageSwap(name, sub, options) {
           const targetPage = parseInt(options.page[1])
           const pageA = (parseInt(options.page[0]) < parseInt(options.page[1])) ? parseInt(options.page[0]) : parseInt(options.page[1])
           const pageB = (parseInt(options.page[0]) < parseInt(options.page[1])) ? parseInt(options.page[1]) : parseInt(options.page[0])
-          debug('copy page %y => %y',sourcePage,targetPage)
+          debug('copy page %y => %y', sourcePage, targetPage)
           preset.name += ` - Copied ${sourcePage} to ${targetPage}`
 
           // JJR
@@ -76,7 +76,7 @@ function pageSwap(name, sub, options) {
           parsed.name += '.swap'
           const newFilename = path.format(parsed)
           jsonfile.writeFileSync(newFilename, preset, { flag: 'w', spaces: 2 })
-          debug('writen: %y',newFilename  )
+          debug('writen: %y', newFilename  )
           //        } else {
           // empty
         }
@@ -85,7 +85,7 @@ function pageSwap(name, sub, options) {
         if (Array.isArray(options.page) && options.page.length == 2 && options.page[0] != options.page[1] && parseInt(options.page[0]) > 0 && parseInt(options.page[0]) <= 12 && parseInt(options.page[1]) > 0 && parseInt(options.page[1]) <= 12) {
           const pageA = (parseInt(options.page[0]) < parseInt(options.page[1])) ? parseInt(options.page[0]) : parseInt(options.page[1])
           const pageB = (parseInt(options.page[0]) < parseInt(options.page[1])) ? parseInt(options.page[1]) : parseInt(options.page[0])
-          debug('swap page %y <=> %y',pageA,pageB)
+          debug('swap page %y <=> %y', pageA, pageB)
           preset.name += ` - Swapped ${pageA} & ${pageB}`
           const tmp = preset.pages[pageA - 1]
           preset.pages[pageA - 1] = preset.pages[pageB - 1]
@@ -116,7 +116,7 @@ function pageSwap(name, sub, options) {
           parsed.name += '.swap'
           const newFilename = path.format(parsed)
           jsonfile.writeFileSync(newFilename, preset, { flag: 'w', spaces: 2 })
-          debug('writen: %y',newFilename  )
+          debug('writen: %y', newFilename  )
         } else {
           console.log(options)
           console.error('--page options not OK')

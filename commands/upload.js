@@ -14,7 +14,7 @@ function uploadPresetFile(name, sub, options) {
     /* data */
   ]
 
-  const fileContent = fs.readFileSync(options.filename,'ascii')
+  const fileContent = fs.readFileSync(options.filename, 'ascii')
   const json = JSON.parse(fileContent)
   const data = JSON.stringify(json)
 
@@ -22,9 +22,9 @@ function uploadPresetFile(name, sub, options) {
 
   bytes.push(0xF7   /* sysex end - 0xf7 */)
 
-  debug('sysex size = %y bytes',bytes.length)
+  debug('sysex size = %y bytes', bytes.length)
 
-  midiOutputCtrlPort.send('sysex',bytes)
+  midiOutputCtrlPort.send('sysex', bytes)
   setTimeout(() => {
     midiOutputCtrlPort.close()
   }, 4 * 1000)

@@ -38,6 +38,13 @@ module.exports = {
       'error',
       'never'
     ],
+    'comma-spacing': [
+      'error',
+      {
+        before: false,
+        after: true,
+      }
+    ],
     'keyword-spacing': [
       'error',
       {

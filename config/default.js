@@ -8,7 +8,7 @@ const bacaraAcidVirtualName = 'Bacara Acid'
 */
 module.exports = {
   debugPrefix,
-  debug: Object.prototype.hasOwnProperty.call(process.env,'DEBUG') ? process.env.DEBUG : `${debugPrefix}*,-${debugPrefix}*:midi:*`,
+  debug: Object.prototype.hasOwnProperty.call(process.env, 'DEBUG') ? process.env.DEBUG : `${debugPrefix}*,-${debugPrefix}*:midi:*`,
   midi: {
     ports: {
       'electra-one-1': {
@@ -148,28 +148,28 @@ module.exports = {
           'virus-ti': {
             enabled: true,
             port: 1,
-            channels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+            channels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
             portMap: 'virus-ti',
             initialize: {
               'electra-one-1': [0xF0, 0x7D, 0x20, 'part', 0xF7],
-              'virus-ti': [0xF0,0x00,0x20,0x33,0x01,0x00,0x30,0x00,'part:-1',0xF7],
+              'virus-ti': [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, 'part:-1', 0xF7],
             },
           },
           'tr-6s': {
             enabled: true,
             port: 2,
-            channels: [10,11],
+            channels: [10, 11],
           },
           'mc-101': {
             enabled: true,
             port: 2,
-            channels: [6,7,8,9],
+            channels: [6, 7, 8, 9],
             oneway: true,
           },
           'acdgen': {
             enabled: true,
             port: 2,
-            channels: [13,16],
+            channels: [13, 16],
             oneway: true,
           },
           'typhon': {

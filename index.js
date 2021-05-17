@@ -10,21 +10,21 @@ const yves = require('./lib/yves')
 const pkg = require('./package.json')
 
 args
-  .option('electra-one-ctrl', 'Electra One MIDI CTRL interface name','electra-one-ctrl')
+  .option('electra-one-ctrl', 'Electra One MIDI CTRL interface name', 'electra-one-ctrl')
   .option('filename', 'Filename to process')
-  .option('scenario', 'Routing Scenario','default')
+  .option('scenario', 'Routing Scenario', 'default')
   .option('page', 'Page ID to operate on, this options can be used more than once. Use \'electra-one page list --filename preset.epr\' to show available Page ID\'s')
 
-  .option('electra', 'Electra One MIDI interface name (part)','Electra Controller Electra Port 2')
-  .option('clock', 'Clock Input MIDI interface name (part)','TR-6S')
-  .option('transpose', 'Transpose Input MIDI interface name (part)','KOMPLETE KONTROL M32')
-  .option('transposeChannel', 'Transpose Input Channel (1-16)',1)
+  .option('electra', 'Electra One MIDI interface name (part)', 'Electra Controller Electra Port 2')
+  .option('clock', 'Clock Input MIDI interface name (part)', 'TR-6S')
+  .option('transpose', 'Transpose Input MIDI interface name (part)', 'KOMPLETE KONTROL M32')
+  .option('transposeChannel', 'Transpose Input Channel (1-16)', 1)
 
-  .option('transpose', 'Transpose Input MIDI interface name (part)','KOMPLETE KONTROL M32')
-  .option('transposeChannel', 'Transpose Input Channel (1-16)',1)
+  .option('transpose', 'Transpose Input MIDI interface name (part)', 'KOMPLETE KONTROL M32')
+  .option('transposeChannel', 'Transpose Input Channel (1-16)', 1)
 
-  .option('general', 'General Input MIDI interface name (part)','KOMPLETE KONTROL M32')
-  .option('generalChannel', 'General Input Channel (1-16)',1)
+  .option('general', 'General Input MIDI interface name (part)', 'KOMPLETE KONTROL M32')
+  .option('generalChannel', 'General Input Channel (1-16)', 1)
 
 const commands = require('./lib/commands')
 
@@ -43,5 +43,5 @@ Object.keys(commands).forEach( command => {
 if (process.argv.length == 2) {
   process.argv.push('help')
 }
-args.parse(process.argv,{name:pkg.name,args})
+args.parse(process.argv, {name:pkg.name, args})
 
