@@ -86,6 +86,7 @@ module.exports = {
       min: 0.0,
       max: 1.92,
       default: 0.96,
+      precision: 2,
     },
     octaveChance: {
       name: 'Octave Chance',
@@ -105,15 +106,16 @@ module.exports = {
       min: -100,
       max: 100,
       default: 0,
+      precision: 0,
     },
     density: {
       name: 'Density',
       type: 'parameter',
       surface: {
         type: 'nrpn',
-        number: 7809,
+        number: 2049,
         min: 0,
-        max: 127,
+        max: 100,
       },
       external: {
         type: 'cc',
@@ -1018,7 +1020,7 @@ module.exports = {
           type: 'parameter',
           surface: {
             type: 'nrpn',
-            number: 8449,
+            number: 8577,
             min: 0,
             max: 1,
           },
@@ -1043,7 +1045,7 @@ module.exports = {
           type: 'parameter',
           surface: {
             type: 'nrpn',
-            number: 6657,
+            number: 6913,
             min: 1,
             max: 16,
           },

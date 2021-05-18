@@ -744,6 +744,17 @@ class State {
       _.set(midiCache[midiName], `channel_${_.padStart(msg.channel + 1, 2, '0')}.controller_${_.padStart(msg.controller, 3, '0')}`, msg.value)
 
       if ((msg.channel + 1) == config.acid.channel) {
+        if (((msg.controller == 100) || (msg.controller == 101)) /* (N)RPN Reset */
+          && _.get(midiCache, `${midiName}.channel_${_.padStart(msg.channel + 1, 2, '0')}.controller_100`, 0) == 127
+          && _.get(midiCache, `${midiName}.channel_${_.padStart(msg.channel + 1, 2, '0')}.controller_101`, 0) == 127) {
+          _.unset(midiCache[midiName], `channel_${_.padStart(msg.channel + 1, 2, '0')}.controller_006`)
+          _.unset(midiCache[midiName], `channel_${_.padStart(msg.channel + 1, 2, '0')}.controller_038`)
+          _.unset(midiCache[midiName], `channel_${_.padStart(msg.channel + 1, 2, '0')}.controller_098`)
+          _.unset(midiCache[midiName], `channel_${_.padStart(msg.channel + 1, 2, '0')}.controller_099`)
+          _.unset(midiCache[midiName], `channel_${_.padStart(msg.channel + 1, 2, '0')}.controller_100`)
+          _.unset(midiCache[midiName], `channel_${_.padStart(msg.channel + 1, 2, '0')}.controller_101`)
+          debug('(N)RPN Reset')
+        }
         if ((msg.controller == 6) || (msg.controller == 38)) {
           const msb = _.get(midiCache, `${midiName}.channel_${_.padStart(config.acid.channel, 2, '0')}.controller_099`)
           const lsb = _.get(midiCache, `${midiName}.channel_${_.padStart(config.acid.channel, 2, '0')}.controller_098`)
