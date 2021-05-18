@@ -3,12 +3,28 @@
 module.exports = {
 
   elements: {
+    test: {
+      name: 'Test',
+      type: 'parameter',
+      external: {
+        type: 'cc',
+        number: 2,
+        lsbFirst: false,
+        hiRes: true,
+        min: 0,
+        max: 511,
+      },
+      min: 1,
+      max: 512,
+      default: 1,
+    },
     generate: {
       name: 'Generate',
       type: 'action',
       surface: {
         type: 'nrpn',
         number: 1281,
+        lsbFirst:true,
         min: 0,
         max: 1,
       },
@@ -20,6 +36,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 1153,
+        lsbFirst:true,
         min: 100,
         max: 500,
       },
@@ -33,6 +50,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 1409,
+        lsbFirst:true,
         min: 0,
         max: 1,
       },
@@ -44,6 +62,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 1537,
+        lsbFirst:true,
         min: 0,
         max: 1,
       },
@@ -55,6 +74,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 1665,
+        lsbFirst:true,
         min: 0,
         max: 127,
       },
@@ -74,6 +94,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 1793,
+        lsbFirst:true,
         min: 0,
         max: 127,
       },
@@ -83,7 +104,7 @@ module.exports = {
         min: 0,
         max: 127,
       },
-      min: 0.0,
+      min: 0.02,
       max: 1.92,
       default: 0.96,
       precision: 2,
@@ -94,6 +115,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 1921,
+        lsbFirst:true,
         min: 0,
         max: 127,
       },
@@ -114,6 +136,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 2049,
+        lsbFirst:true,
         min: 0,
         max: 100,
       },
@@ -133,6 +156,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 8705,
+        lsbFirst:true,
         min: 0,
         max: 100,
       },
@@ -152,6 +176,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 2177,
+        lsbFirst:true,
         min: 0,
         max: 16,
       },
@@ -171,6 +196,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 2305,
+        lsbFirst:true,
         min: 0,
         max: 30,
       },
@@ -190,6 +216,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 2433,
+        lsbFirst:true,
         min: 0,
         max: 36,
       },
@@ -209,6 +236,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 2561,
+        lsbFirst:true,
         min: 0,
         max: 11,
       },
@@ -228,6 +256,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 2689,
+        lsbFirst:true,
         min: 0,
         max: 32,
       },
@@ -247,6 +276,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 2817,
+        lsbFirst:true,
         min: 0,
         max: 127,
       },
@@ -266,6 +296,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 2945,
+        lsbFirst:true,
         min: 0,
         max: 100,
       },
@@ -285,6 +316,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 3073,
+        lsbFirst:true,
         min: 0,
         max: 1,
       },
@@ -296,6 +328,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 8833,
+        lsbFirst:true,
         min: 0,
         max: 1,
       },
@@ -307,6 +340,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 8961,
+        lsbFirst:true,
         min: 0,
         max: 1,
       },
@@ -318,6 +352,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 9089,
+        lsbFirst:true,
         min: 0,
         max: 1,
       },
@@ -329,6 +364,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 9217,
+        lsbFirst:true,
         min: 0,
         max: 127,
       },
@@ -341,7 +377,8 @@ module.exports = {
       type: 'parameter',
       surface: {
         type: 'nrpn',
-        number: 6401,
+        number: 9345,
+        lsbFirst:true,
         min: 0,
         max: 127,
       },
@@ -355,6 +392,7 @@ module.exports = {
       surface: {
         type: 'nrpn',
         number: 12929,
+        lsbFirst:true,
         min: 0,
         max: 1,
       },
@@ -370,6 +408,7 @@ module.exports = {
             surface: {
               type: 'nrpn',
               number: 5249,
+              lsbFirst:true,
               min: 0,
               max: 1,
             },
@@ -388,6 +427,7 @@ module.exports = {
             surface: {
               type: 'nrpn',
               number: 5377,
+              lsbFirst:true,
               min: 0,
               max: 1,
             },
@@ -407,6 +447,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 3201,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -426,6 +467,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 7425,
+            lsbFirst:true,
             min: 0,
             max: 5,
           },
@@ -445,6 +487,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 3329,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -464,6 +507,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 3457,
+            lsbFirst:true,
             min: 0,
             max: 100,
           },
@@ -483,6 +527,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 3585,
+            lsbFirst:true,
             min: 0,
             max: 100,
           },
@@ -502,6 +547,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 3713,
+            lsbFirst:true,
             min: 0,
             max: 100,
           },
@@ -521,6 +567,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 7809,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -540,6 +587,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 7041,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -556,6 +604,7 @@ module.exports = {
             surface: {
               type: 'nrpn',
               number: 5505,
+              lsbFirst:true,
               min: 0,
               max: 1,
             },
@@ -574,6 +623,7 @@ module.exports = {
             surface: {
               type: 'nrpn',
               number: 5633,
+              lsbFirst:true,
               min: 0,
               max: 1,
             },
@@ -593,6 +643,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 3841,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -612,6 +663,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 7553,
+            lsbFirst:true,
             min: 0,
             max: 5,
           },
@@ -631,6 +683,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 3969,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -650,6 +703,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 4097,
+            lsbFirst:true,
             min: 0,
             max: 100,
           },
@@ -669,6 +723,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 4225,
+            lsbFirst:true,
             min: 0,
             max: 100,
           },
@@ -688,6 +743,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 4353,
+            lsbFirst:true,
             min: 0,
             max: 100,
           },
@@ -707,6 +763,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 7937,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -726,6 +783,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 7169,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -742,6 +800,7 @@ module.exports = {
             surface: {
               type: 'nrpn',
               number: 5761,
+              lsbFirst:true,
               min: 0,
               max: 1,
             },
@@ -760,6 +819,7 @@ module.exports = {
             surface: {
               type: 'nrpn',
               number: 5889,
+              lsbFirst:true,
               min: 0,
               max: 1,
             },
@@ -779,6 +839,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 4481,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -798,6 +859,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 7681,
+            lsbFirst:true,
             min: 0,
             max: 5,
           },
@@ -817,6 +879,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 4609,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -836,6 +899,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 4737,
+            lsbFirst:true,
             min: 0,
             max: 100,
           },
@@ -855,6 +919,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 4865,
+            lsbFirst:true,
             min: 0,
             max: 100,
           },
@@ -874,6 +939,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 4993,
+            lsbFirst:true,
             min: 0,
             max: 100,
           },
@@ -893,6 +959,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 8065,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -912,6 +979,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 7297,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -929,6 +997,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 8193,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -942,6 +1011,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 8449,
+            lsbFirst:true,
             min: 0,
             max: 1,
           },
@@ -954,6 +1024,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 6529,
+            lsbFirst:true,
             min: 0,
             max: 63,
           },
@@ -967,6 +1038,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 6657,
+            lsbFirst:true,
             min: 1,
             max: 16,
           },
@@ -980,6 +1052,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 6017,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -993,6 +1066,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 6145,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -1008,6 +1082,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 8321,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -1021,6 +1096,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 8577,
+            lsbFirst:true,
             min: 0,
             max: 1,
           },
@@ -1033,6 +1109,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 6785,
+            lsbFirst:true,
             min: 0,
             max: 63,
           },
@@ -1046,6 +1123,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 6913,
+            lsbFirst:true,
             min: 1,
             max: 16,
           },
@@ -1059,6 +1137,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 6273,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -1072,6 +1151,7 @@ module.exports = {
           surface: {
             type: 'nrpn',
             number: 6145,
+            lsbFirst:true,
             min: 0,
             max: 127,
           },
@@ -1090,6 +1170,7 @@ module.exports = {
             surface: {
               type: 'nrpn',
               number: 9473,
+              lsbFirst:true,
               min: 0,
               max: 3,
             },
@@ -1103,6 +1184,7 @@ module.exports = {
             surface: {
               type: 'nrpn',
               number: 12161,
+              lsbFirst:true,
               min: 0,
               max: 127,
             },
@@ -1116,6 +1198,7 @@ module.exports = {
             surface: {
               type: 'nrpn',
               number: 12545,
+              lsbFirst:true,
               min: 0,
               max: 127,
             },
@@ -1131,6 +1214,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 9601,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1144,6 +1228,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 9985,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1159,6 +1244,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 9729,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1172,6 +1258,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 10113,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1187,6 +1274,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 9857,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1200,6 +1288,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 10241,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1217,6 +1306,7 @@ module.exports = {
             surface: {
               type: 'nrpn',
               number: 10369,
+              lsbFirst:true,
               min: 0,
               max: 3,
             },
@@ -1230,6 +1320,7 @@ module.exports = {
             surface: {
               type: 'nrpn',
               number: 12289,
+              lsbFirst:true,
               min: 0,
               max: 127,
             },
@@ -1243,6 +1334,7 @@ module.exports = {
             surface: {
               type: 'nrpn',
               number: 12673,
+              lsbFirst:true,
               min: 0,
               max: 127,
             },
@@ -1258,6 +1350,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 10497,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1271,6 +1364,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 10881,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1286,6 +1380,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 10625,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1299,6 +1394,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 11009,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1314,6 +1410,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 10753,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1327,6 +1424,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 11137,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1344,6 +1442,7 @@ module.exports = {
             surface: {
               type: 'nrpn',
               number: 11265,
+              lsbFirst:true,
               min: 0,
               max: 3,
             },
@@ -1357,6 +1456,7 @@ module.exports = {
             surface: {
               type: 'nrpn',
               number: 12417,
+              lsbFirst:true,
               min: 0,
               max: 127,
             },
@@ -1370,6 +1470,7 @@ module.exports = {
             surface: {
               type: 'nrpn',
               number: 12801,
+              lsbFirst:true,
               min: 0,
               max: 127,
             },
@@ -1385,6 +1486,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 11393,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1398,6 +1500,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 11777,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1413,6 +1516,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 11521,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1426,6 +1530,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 11905,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1441,6 +1546,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 11649,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },
@@ -1454,6 +1560,7 @@ module.exports = {
                 surface: {
                   type: 'nrpn',
                   number: 12033,
+                  lsbFirst:true,
                   min: 0,
                   max: 127,
                 },

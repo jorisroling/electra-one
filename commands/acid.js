@@ -758,6 +758,7 @@ class State {
         if ((msg.controller == 6) || (msg.controller == 38)) {
           const msb = _.get(midiCache, `${midiName}.channel_${_.padStart(config.acid.channel, 2, '0')}.controller_099`)
           const lsb = _.get(midiCache, `${midiName}.channel_${_.padStart(config.acid.channel, 2, '0')}.controller_098`)
+          //          debug('NRPN => %y %y = %y',msb,lsb,(msb<<7)|lsb)
           if (msb == config.acid.interface.generate.nrpn && (lsb >= 1 && lsb <= 8)) {
             if (msg.controller == 6) { // MSB
               if (msg.value) {
@@ -900,6 +901,8 @@ class State {
                     this.write(true)
                     debug('program: %y %y', this.values.program, path.basename(filename))
                   }
+                } else {
+                  debug('program: NOT PRESET %y', tmp)
                 }
               }
             }
