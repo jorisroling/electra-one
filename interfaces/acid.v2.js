@@ -6,13 +6,13 @@ module.exports = {
     test: {
       name: 'Test',
       type: 'parameter',
-      external: {
+      surface: {
         type: 'cc',
         number: 2,
-        lsbFirst: false,
         hiRes: true,
+        lsbFirst: false,
         min: 0,
-        max: 511,
+        max: 100,
       },
       min: 1,
       max: 512,
@@ -1150,7 +1150,7 @@ module.exports = {
           type: 'parameter',
           surface: {
             type: 'nrpn',
-            number: 6145,
+            number: 6401,
             lsbFirst:true,
             min: 0,
             max: 127,

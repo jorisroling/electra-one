@@ -1588,9 +1588,9 @@ function acidSequencer(name, sub, options) {
     midiInput.on('cc', state.handleNamedCC(midiInputName) )
     midiInput.on('sysex', state.handleNamedSysEx(midiInputName) )
 
-    machine.connect('electra-one-2')
   }
 
+  machine.connect(options)
 
   state.sendValues()
   Acid.table(state)
