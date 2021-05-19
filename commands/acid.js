@@ -1,10 +1,12 @@
+const debug = require('debug')(require('../package.json').name + ':command:' + require('path').basename(__filename, '.js'))
+
 const yves = require('../lib/yves')
 const pkg = require('../package.json')
-const debugMidi = yves.debugger(`${pkg.name.replace(/^@/, '').replace(/[/-]+/g, ':')}:midi`)
-const debugMidiNoteOn = yves.debugger(`${pkg.name.replace(/^@/, '').replace(/[/-]+/g, ':')}:midi:note:on`)
-const debugMidiNoteOff = yves.debugger(`${pkg.name.replace(/^@/, '').replace(/[/-]+/g, ':')}:midi:note:off`)
-const debugMidiControlChange = yves.debugger(`${pkg.name.replace(/^@/, '').replace(/[/-]+/g, ':')}:midi:control:change`)
-const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '').replace(/[/-]+/g, ':')}:midi:program:change`)
+const debugMidi = yves.debugger(`${pkg.name.replace(/^@/, '')}:midi`)
+const debugMidiNoteOn = yves.debugger(`${pkg.name.replace(/^@/, '')}:midi:note:on`)
+const debugMidiNoteOff = yves.debugger(`${pkg.name.replace(/^@/, '')}:midi:note:off`)
+const debugMidiControlChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:midi:control:change`)
+const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:midi:program:change`)
 
 const os = require('os')
 const deepEqual = require('deep-equal')

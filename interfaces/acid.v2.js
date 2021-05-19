@@ -224,7 +224,7 @@ module.exports = {
         type: 'cc',
         number: 20,
         min: 0,
-        max: 36,
+        max: 127,
       },
       min: 0,
       max: 36,
