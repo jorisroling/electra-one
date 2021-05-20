@@ -593,8 +593,12 @@ class State {
     if (deltaValues['density']) {
       this.genSounding(this.density)
     }
-    if (Object.keys(deltaValues).length) {
-      Acid.table(this)
+    const tableParameters = ['scales','base','transpose','split','deviate']
+    const deltaKeys = Object.keys(deltaValues)
+    if (deltaKeys.length) {
+      if (_.intersection(deltaKeys, tableParameters)) {
+        Acid.table(this)
+      }
       debug('modulation impact: %y', deltaValues)
     }
   }
@@ -1439,7 +1443,7 @@ function acidSequencer(name, sub, options) {
         let value = msg.value
         const nrpn = _.get(config.acid.interface, `${paramName}.nrpn`)
         if (nrpn) {
-          sendNRPN(midiOutputName, nrpn, 1, value, 0)
+//          sendNRPN(midiOutputName, nrpn, 1, value, 0)
         }
         _.set(state, paramName, value)
         debug('CC %y', performanceMap[msg.controller])
