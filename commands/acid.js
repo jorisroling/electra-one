@@ -961,6 +961,7 @@ class State {
               if (tmp != this.values.killSteps) {
                 this.killSteps = tmp
                 debug('killSteps: %y', this.values.killSteps)
+
               }
             }
           }
@@ -1054,14 +1055,14 @@ class State {
                             if (deviceKeys.length > deviceIdx - 1) {
                               const device = deviceKeys[deviceIdx - 1]
                               const deviceColor = (dev == 'A') ? chalk.hex('#FF0000') : chalk.hex('#0000FF')
-                              names.push(deviceColor(`${dev}:` + device + ' ' + _.get(deviceCCs, `${device}.${this.values.lfo[l].control}`)))
+                              names.push(deviceColor(`${dev}: ` + device + ' ' + _.get(deviceCCs, `${device}.${this.values.lfo[l].control}`)))
                             }
                           }
                         } )
                       }
                     }
 
-                    if (phaseDetection && lfoHistory.length >= 2) {
+                    if (phaseDetection && this.playing && lfoHistory.length >= 2) {
                       const phaseDetectionShapes = ['sine', 'triangle', 'saw-up', 'saw-down']
                       const phaseDetectionParameters = ['shape', 'amount', 'rate', 'offset', 'density']
                       if (phaseDetectionShapes.indexOf(this.lfo[l].shapeName) >= 0 && phaseDetectionShapes.indexOf(oldShapeName) >= 0) {
@@ -1516,7 +1517,7 @@ function acidSequencer(name, sub, options) {
               const scaleMapping = scaleMappings.scales[state.scales]
               const midiNoteFromBase = (midiNote + state.base) % 12
               const midiNoteBase =  midiNote - midiNoteFromBase
-              if (scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
+              if (scaleMapping && scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
                 midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - state.base
               }
 

@@ -14,9 +14,26 @@ module.exports = {
         min: 0,
         max: 512,
       },
+      external: {
+        type: 'cc',
+        number: 20,
+        hiRes: false,
+        lsbFirst: false,
+        min: 0,
+        max: 127,
+      },
       min: 1,
       max: 513,
       default: 1,
+    },
+    load: {
+      name: 'Load',
+      type: 'action',
+      surface: {
+        type: 'sysex',
+        bytes: [0xF0,0x7D,0x00,0x03,0xF7],
+        number: 0x03,
+      },
     },
     generate: {
       name: 'Generate',
