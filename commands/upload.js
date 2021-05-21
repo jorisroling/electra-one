@@ -1,4 +1,4 @@
-const Midi = require('../lib/midi')
+const Midi = require('../lib/midi/midi')
 const fs = require('fs')
 
 function uploadPresetFile(name, sub, options) {

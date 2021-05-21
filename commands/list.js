@@ -6,7 +6,7 @@ const chalk = require('chalk')
 const labelColor = chalk.hex('#FF8800')
 const config = require('config')
 
-const Midi = require('../lib/midi')
+const Midi = require('../lib/midi/midi')
 
 function listPorts(name, sub, options) {
 

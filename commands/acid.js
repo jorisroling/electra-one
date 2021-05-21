@@ -15,9 +15,9 @@ const easymidi = require('easymidi')
 
 const Acid = require('../lib/acid')
 
-const Midi = require('../lib/midi')
+const Midi = require('../lib/midi/midi')
 
-const Machine = require('../lib/machine')
+const Machine = require('../lib/midi/machine')
 const machine = new Machine('acid.v2')
 
 const _ = require('lodash')

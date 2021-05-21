@@ -1,4 +1,4 @@
-const Midi = require('../lib/midi')
+const Midi = require('../lib/midi/midi')
 const { table } = require('table')
 const chalk = require('chalk')
 const labelColor = chalk.hex('#FF8800')

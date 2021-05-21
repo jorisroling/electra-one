@@ -8,13 +8,13 @@ const path = require('path')
 const untildify = require('untildify')
 const jsonfile = require('jsonfile')
 
-const Midi = require('../lib/midi')
+const Midi = require('../lib/midi/midi')
 
 const electraOneMidiChannel = 0
 const sendSingleRequestTimeoutTime = 200
 const sendSingleDumpTimeoutTime = 600
 
-const Machine = require('../lib/machine')
+const Machine = require('../lib/midi/machine')
 const machine = new Machine('router.v2')
 
 let mapping = {
