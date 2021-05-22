@@ -12,6 +12,7 @@
     "page": "node index page",
     "info": "node index info",
     "acid": "nodemon --verbose -L --ignore state index acid --clock TR-6S --transpose \"KOMPLETE KONTROL M32\"",
+    "acid.v2": "nodemon --verbose -L --ignore state index acid.v2 --clock TR-6S --transpose \"KOMPLETE KONTROL M32\"",
     "start": "npm run router",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -85,7 +86,7 @@
     "yves": "^1.0.78"
   },
   "devDependencies": {
-    "eslint": "^7.26.0",
+    "eslint": "^7.27.0",
     "eslint-plugin-jest": "^24.3.6",
     "nodemon": "^2.0.7"
   }

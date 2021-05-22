@@ -239,8 +239,8 @@ function routerConsole(name, sub, options) {
   readState()
   setupMidi(options)
 
-  machine.connect('electra-one-1','surface')
-  machine.connect('virus-ti','external')
+//  machine.connect('electra-one-1','surface')
+//  machine.connect('virus-ti','external')
 }
 
 module.exports = {

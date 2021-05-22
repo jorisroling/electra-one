@@ -1631,10 +1631,10 @@ function acidSequencer(name, sub, options) {
 
   }
 
-  machine.connect(options.electra, 'surface')
+/*  machine.connect(options.electra, 'surface')
   machine.connect(options.general, 'external')
   machine.connect(options.clock, 'clock')
-
+*/
   state.sendValues()
   Acid.table(state)
 }
