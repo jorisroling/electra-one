@@ -40,6 +40,35 @@ class AcidMachine extends Machine {
     this.state.pattern = Acid.generate(this.state)
 
     this.actionSideEffects = {
+      generate: (path, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
+        if (origin == 'surface') {
+          this.state.pattern = Acid.generate(this.state)
+          this.state.last_pattern_but = 0
+          debug('generated')
+        }
+      },
+      previous_pattern: (path, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
+        if (origin == 'surface') {
+          this.state.last_pattern_but += 1
+
+          this.state.pattern = Acid.load_pattern(this.state)
+          debug('previous_pattern: %y', this.state.last_pattern_but)
+        }
+      },
+      next_pattern: (path, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
+        if (origin == 'surface') {
+          this.state.last_pattern_but -= 1
+          if (this.state.last_pattern_but < 0) {
+            this.state.last_pattern_but = 0
+          }
+
+          this.state.pattern = Acid.load_pattern(this.state)
+          debug('next_pattern: %y', this.state.last_pattern_but)
+        }
+      },
       reset_preset: (path, origin) => {
         debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
         if (origin == 'surface') {
