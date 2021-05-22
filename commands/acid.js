@@ -58,22 +58,22 @@ class AcidMachine extends Machine {
     super(name)
 
     this.parameterSideEffects = {
-      density: (path,value,origin) => {
-        debug('Parameter Side Effect Density: Hello World! %y = %y (from %y)',path,value,origin)
+      density: (path, value, origin) => {
+        debug('Parameter Side Effect Density: Hello World! %y = %y (from %y)', path, value, origin)
         if (origin == 'surface' && value != 100) {
-          this.interface.setParameter('killSteps',0)
+          this.interface.setParameter('killSteps', 0)
         }
       },
-      killSteps: (path,value,origin) => {
-        debug('Parameter Side Effect killSteps: Hello World! %y = %y (from %y)',path,value,origin)
+      killSteps: (path, value, origin) => {
+        debug('Parameter Side Effect killSteps: Hello World! %y = %y (from %y)', path, value, origin)
         if (origin == 'surface' && value != 0) {
-          this.interface.setParameter('density',100)
+          this.interface.setParameter('density', 100)
         }
       },
       lfo: [
         {
-          control(path,value,origin) {
-            debug('Parameter Side Effect Control: Hello World! %y = %y (from %y)',path,value,origin)
+          control(path, value, origin) {
+            debug('Parameter Side Effect Control: Hello World! %y = %y (from %y)', path, value, origin)
           },
         },
       ],
@@ -627,7 +627,7 @@ class State {
     if (deltaValues['density']) {
       this.genSounding(this.density)
     }
-    const tableParameters = ['scales','base','transpose','split','deviate']
+    const tableParameters = ['scales', 'base', 'transpose', 'split', 'deviate']
     const deltaKeys = Object.keys(deltaValues)
     if (deltaKeys.length) {
       if (_.intersection(deltaKeys, tableParameters)) {
@@ -1478,7 +1478,7 @@ function acidSequencer(name, sub, options) {
         let value = msg.value
         const nrpn = _.get(config.acid.interface, `${paramName}.nrpn`)
         if (nrpn) {
-//          sendNRPN(midiOutputName, nrpn, 1, value, 0)
+          //          sendNRPN(midiOutputName, nrpn, 1, value, 0)
         }
         _.set(state, paramName, value)
         debug('CC %y', performanceMap[msg.controller])
@@ -1631,7 +1631,7 @@ function acidSequencer(name, sub, options) {
 
   }
 
-/*  machine.connect(options.electra, 'surface')
+  /*  machine.connect(options.electra, 'surface')
   machine.connect(options.general, 'external')
   machine.connect(options.clock, 'clock')
 */

@@ -36,23 +36,23 @@ class AcidMachine extends Machine {
     this.midiCache = new MidiCache()
     this.lfoHistory = [[], [], []]
 
-    this.state = {sounding:[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]}
+    this.state = {sounding:[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}
     this.state.pattern = Acid.generate(this.state)
 
     this.actionSideEffects = {
-      reset_preset: (path,origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)',path,origin)
+      reset_preset: (path, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
         if (origin == 'surface') {
           this.interface.reset()
         }
       },
-      load: (path,origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)',path,origin)
+      load: (path, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
         if (origin == 'surface') {
           // do it
         }
       },
-      clock: (path,origin) => {
+      clock: (path, origin) => {
         // debug('Action Side Effect %y: Hello World! (from %y)',path,origin)
         if (origin == 'clock') {
           const deltaTime = process.hrtime(this.pulseTime)
@@ -101,7 +101,7 @@ class AcidMachine extends Machine {
                         this.midiCache.setValue(this.getState(`device.${dev}.portName`), channel, 'cc', this.interface.getParameter(`lfo.${l}.control`), midiValue)
 
                         // Can Electra handle many NRPN's?
-                        this.interface.setParameter(`lfo.${l}.show`,Interface.remap(midiValue,0,127,-100,100))
+                        this.interface.setParameter(`lfo.${l}.show`, Interface.remap(midiValue, 0, 127, -100, 100))
                         //sendNRPN(midiOutputName, config.acid.interface.lfo[l + 1].show.nrpn, 1, midiValue, 0, 50)
                       }
                     }
@@ -171,51 +171,51 @@ class AcidMachine extends Machine {
           this.pulses++
         }
       },
-      start: (path,origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)',path,origin)
+      start: (path, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
         if (origin == 'clock') {
-          this.setState('playing',true)
+          this.setState('playing', true)
           this.pulses = 0
           this.steps = 0
           this.pulseTime = process.hrtime()
           debug('start')
         }
       },
-      stop: (path,origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)',path,origin)
+      stop: (path, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
         if (origin == 'clock') {
-          this.setState('playing',false)
+          this.setState('playing', false)
           debug('stop')
         }
       },
-      continue: (path,origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)',path,origin)
+      continue: (path, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
         if (origin == 'clock') {
-          this.setState('playing',true)
-          pulseTime = process.hrtime()
+          this.setState('playing', true)
+          this.pulseTime = process.hrtime()
           debug('continue')
         }
       },
     }
 
     const devicePortChange = (dev) => {
-      return (path,value,origin) => {
-        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)',dev,path,value,origin)
-        this.setState(`device.${dev}.portName`,Midi.normalisePortName(value))
+      return (path, value, origin) => {
+        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, path, value, origin)
+        this.setState(`device.${dev}.portName`, Midi.normalisePortName(value))
       }
     }
 
     const lfoShapeChange = (lfoIdx) => {
-      return (path,value,origin) => {
-        debug('Parameter Side Effect lfo.%d.shape: Hello World! %y = %y (from %y)',lfoIdx,path,value,origin)
+      return (path, value, origin) => {
+        debug('Parameter Side Effect lfo.%d.shape: Hello World! %y = %y (from %y)', lfoIdx, path, value, origin)
         const shapes = ['sine', 'triangle', 'saw-up', 'saw-down', 'square', 'random']
-        this.setState(`lfo.${lfoIdx}.shapeName`,shapes[value])
+        this.setState(`lfo.${lfoIdx}.shapeName`, shapes[value])
       }
     }
 
     this.parameterSideEffects = {
-      octaveChance: (path,value,origin) => {
-        debug('Parameter Side Effect %y: Hello World! %y (from %y)',path,value,origin)
+      octaveChance: (path, value, origin) => {
+        debug('Parameter Side Effect %y: Hello World! %y (from %y)', path, value, origin)
         if (origin == 'surface' || !this.state.octaves) {
           this.state.octaves = []
           for (let idx = 0; idx < 16; idx++) {
@@ -225,10 +225,10 @@ class AcidMachine extends Machine {
           }
         }
       },
-      density: (path,value,origin) => {
-        debug('Parameter Side Effect %y: Hello World! %y (from %y)',path,value,origin)
+      density: (path, value, origin) => {
+        debug('Parameter Side Effect %y: Hello World! %y (from %y)', path, value, origin)
         if (origin == 'surface' && value != 100) {
-          this.interface.setParameter('killSteps',0)
+          this.interface.setParameter('killSteps', 0)
         }
         if (origin == 'surface' || !this.state.sounding) {
           this.state.sounding = []
@@ -238,18 +238,18 @@ class AcidMachine extends Machine {
           }
         }
       },
-      killSteps: (path,value,origin) => {
-        debug('Parameter Side Effect %y: Hello World! %y (from %y)',path,value,origin)
+      killSteps: (path, value, origin) => {
+        debug('Parameter Side Effect %y: Hello World! %y (from %y)', path, value, origin)
         if (origin == 'surface' && value != 0) {
-          this.interface.setParameter('density',100)
+          this.interface.setParameter('density', 100)
         }
-        if (origin == 'surface' || !this.state.sounding && value>0) {
+        if (origin == 'surface' || !this.state.sounding && value > 0) {
           this.euclidian(this.interface.getParameter('killSteps'), 16, this.interface.getParameter('killShift'))
         }
       },
-      killShift: (path,value,origin) => {
-        debug('Parameter Side Effect %y: Hello World! %y (from %y)',path,value,origin)
-        if (this.interface.getParameter('killSteps')>0) {
+      killShift: (path, value, origin) => {
+        debug('Parameter Side Effect %y: Hello World! %y (from %y)', path, value, origin)
+        if (this.interface.getParameter('killSteps') > 0) {
           if (origin == 'surface' || !this.state.sounding) {
             this.euclidian(this.interface.getParameter('killSteps'), 16, this.interface.getParameter('killShift'))
           }
@@ -267,12 +267,12 @@ class AcidMachine extends Machine {
     }
   }
 
-  getState(path,deflt) {
-    return _.get(this.state,path,deflt)
+  getState(path, deflt) {
+    return _.get(this.state, path, deflt)
   }
 
-  setState(path,value) {
-    _.set(this.state,path,value)
+  setState(path, value) {
+    _.set(this.state, path, value)
   }
 
 
@@ -297,7 +297,7 @@ class AcidMachine extends Machine {
     case 'square':
       return (cycleStep < (stepsPerCycle / 4)) || ((cycleStep >= (stepsPerCycle / 2)) && (cycleStep < (stepsPerCycle * 0.75))) ? 128 : 0
     case 'random':
-      return getRandomInt(127)
+      return Machine.getRandomInt(127)
     }
     return -1
   }
@@ -349,7 +349,7 @@ class AcidMachine extends Machine {
 
 function acidSequencer(name, sub, options) {
 
-//  Midi.setupVirtualPorts(config.acid.virtual)
+  //  Midi.setupVirtualPorts(config.acid.virtual)
 
   const machine = new AcidMachine('acid.v2')
   machine.readState()
@@ -359,7 +359,7 @@ function acidSequencer(name, sub, options) {
   machine.connect(options.general, 'external')
   machine.connect(options.clock, 'clock')
 
-  debug('State %y',machine.state)
+  debug('State %y', machine.state)
 }
 
 module.exports = {

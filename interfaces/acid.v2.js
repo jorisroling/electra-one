@@ -31,7 +31,7 @@ module.exports = {
       type: 'action',
       surface: {
         type: 'sysex',
-        bytes: [0xF0,0x7D,0x00,0x03,0xF7],
+        bytes: [0xF0, 0x7D, 0x00, 0x03, 0xF7],
         number: 0x03,
       },
     },
