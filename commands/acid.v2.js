@@ -1,5 +1,10 @@
 const debug = require('debug')(require('../package.json').name + ':command:' + require('path').basename(__filename, '.js'))
 
+const config = require('config')
+const os = require('os')
+const easymidi = require('easymidi')
+const glob = require('glob')
+
 const _ = require('lodash')
 
 const Acid = require('../lib/acid')
@@ -9,6 +14,7 @@ const Midi = require('../lib/midi/midi')
 const Machine = require('../lib/midi/machine')
 const Interface = require('../lib/midi/interface')
 const MidiCache = require('../lib/midi/cache')
+const path = require('path')
 
 const yves = require('../lib/yves')
 const pkg = require('../package.json')
@@ -36,20 +42,20 @@ class AcidMachine extends Machine {
     this.midiCache = new MidiCache()
     this.lfoHistory = [[], [], []]
 
-    this.state = {sounding:[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}
+    this.state.sounding = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     this.state.pattern = Acid.generate(this.state)
 
     this.actionSideEffects = {
-      generate: (path, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
+      generate: (elementPath, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'surface') {
           this.state.pattern = Acid.generate(this.state)
           this.state.last_pattern_but = 0
           debug('generated')
         }
       },
-      previous_pattern: (path, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
+      previous_pattern: (elementPath, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'surface') {
           this.state.last_pattern_but += 1
 
@@ -57,8 +63,8 @@ class AcidMachine extends Machine {
           debug('previous_pattern: %y', this.state.last_pattern_but)
         }
       },
-      next_pattern: (path, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
+      next_pattern: (elementPath, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'surface') {
           this.state.last_pattern_but -= 1
           if (this.state.last_pattern_but < 0) {
@@ -69,20 +75,60 @@ class AcidMachine extends Machine {
           debug('next_pattern: %y', this.state.last_pattern_but)
         }
       },
-      reset_preset: (path, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
+      previous_preset: (elementPath, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
+        if (origin == 'surface') {
+          this.state.last_preset_but += 1
+
+          const filename = this.load_preset()
+          if (filename) {
+            this.sendProgramChange('A')
+            this.sendProgramChange('B')
+            this.interface.sendValues(origin)
+            this.writeState()
+            debug('previous_preset: %y %y', this.state.last_preset_but, path.basename(filename))
+          }
+        }
+      },
+      next_preset: (elementPath, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
+        if (origin == 'surface') {
+
+          this.state.last_preset_but -= 1
+          if (this.state.last_preset_but < 0) {
+            this.state.last_preset_but = 0
+          }
+
+          const filename = this.load_preset()
+          if (filename) {
+            this.sendProgramChange('A')
+            this.sendProgramChange('B')
+            this.interface.sendValues(origin)
+            this.writeState()
+            debug('next_preset: %y %y', this.state.last_preset_but, path.basename(filename))
+          }
+        }
+      },
+      save_preset: (elementPath, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
+        if (origin == 'surface') {
+          this.save_preset()
+        }
+      },
+      reset_preset: (elementPath, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'surface') {
           this.interface.reset()
         }
       },
-      load: (path, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
+/*      load: (elementPath, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'surface') {
           // do it
         }
-      },
-      clock: (path, origin) => {
-        // debug('Action Side Effect %y: Hello World! (from %y)',path,origin)
+      },*/
+      clock: (elementPath, origin) => {
+        // debug('Action Side Effect %y: Hello World! (from %y)',elementPath,origin)
         if (origin == 'clock') {
           const deltaTime = process.hrtime(this.pulseTime)
           this.pulseTime = process.hrtime()
@@ -200,8 +246,8 @@ class AcidMachine extends Machine {
           this.pulses++
         }
       },
-      start: (path, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
+      start: (elementPath, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'clock') {
           this.setState('playing', true)
           this.pulses = 0
@@ -210,15 +256,15 @@ class AcidMachine extends Machine {
           debug('start')
         }
       },
-      stop: (path, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
+      stop: (elementPath, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'clock') {
           this.setState('playing', false)
           debug('stop')
         }
       },
-      continue: (path, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', path, origin)
+      continue: (elementPath, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'clock') {
           this.setState('playing', true)
           this.pulseTime = process.hrtime()
@@ -227,24 +273,116 @@ class AcidMachine extends Machine {
       },
     }
 
+    const deviceDeviceChange = (dev) => {
+      return (elementPath, value, origin) => {
+        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)
+        if (value > 0 && config.devices) {
+          const deviceKeys = Object.keys(config.devices)
+          if (deviceKeys.length > value - 1) {
+            const device = deviceKeys[value - 1]
+            const port = _.get(config, `devices.${device}.port`)
+            if (port) {
+              const portName = _.get(config, `midi.ports.${port}.${os.platform()}`)
+              if (portName) {
+                const midiNames = easymidi.getOutputs()
+                if (midiNames) {
+                  const idx = midiNames.indexOf(portName)
+                  if (idx >= 0) {
+                    this.interface.setParameter(`device.${dev}.port`,idx)
+                    const midiNames = easymidi.getOutputs()
+                    if (midiNames) {
+                      if (idx < midiNames.length) {
+                        let name = midiNames[idx]
+                        const ports = Object.keys(config.midi.ports).filter( p => config.midi.ports[p][os.platform()] == name )
+                        if (ports && ports.length == 1) {
+                          name = ports[0]
+                        }
+                        this.setState(`device.${dev}.portName`,name)
+                      }
+                    } else {
+                      this.clearState(`device.${dev}.portName`)
+                    }
+                    const channels = _.get(config, `devices.${device}.channels`)
+                    if (Array.isArray(channels) && channels.length) {
+                      const channel = this.interface.getParameter(`device.${dev}.channel`)//_.get(this, `device.${dev}.channel`)
+                      if (channels.indexOf(channel) < 0) {
+                        this.interface.setParameter(`device.${dev}.channel`,channels[0])
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    const devicePortOrChannelChanged = (dev) => {
+      let deviceIdx = 0
+      let portName
+      const midiNames = easymidi.getOutputs()
+      if (midiNames) {
+        const port = this.interface.getParameter(`device.${dev}.port`)
+        if (port < midiNames.length) {
+          portName = midiNames[port]
+        }
+      }
+      if (portName) {
+        const deviceKeys = Object.keys(config.devices)
+        const matchingDevices = deviceKeys.filter( deviceKey => {
+          const devicePortKey = _.get(config, `devices.${deviceKey}.port`)
+          const devicePortName = _.get(config, `midi.ports.${devicePortKey}.${os.platform()}`)
+          return devicePortName == portName
+        })
+        matchingDevices.forEach( deviceKey => {
+          const channel = this.interface.getParameter(`device.${dev}.channel`)
+          const channels = _.get(config, `devices.${deviceKey}.channels`)
+          if (channels.indexOf(channel) >= 0) {
+            const devIdx = deviceKeys.indexOf(matchingDevices[0])
+            if (devIdx >= 0) {
+              deviceIdx = devIdx + 1
+            }
+          }
+        } )
+      }
+
+      this.interface.setParameter(`device.${dev}.device`,deviceIdx)
+      if (!deviceIdx) {
+        this.interface.setParameter(`device.${dev}.mute`,1)
+      }
+    }
+
     const devicePortChange = (dev) => {
-      return (path, value, origin) => {
-        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, path, value, origin)
+      return (elementPath, value, origin) => {
+        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)
         this.setState(`device.${dev}.portName`, Midi.normalisePortName(value))
+        devicePortOrChannelChanged(dev)
+      }
+    }
+
+    const deviceChannelChange = (dev) => {
+      return (elementPath, value, origin) => {
+        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)
+        devicePortOrChannelChanged(dev)
       }
     }
 
     const lfoShapeChange = (lfoIdx) => {
-      return (path, value, origin) => {
-        debug('Parameter Side Effect lfo.%d.shape: Hello World! %y = %y (from %y)', lfoIdx, path, value, origin)
+      return (elementPath, value, origin) => {
+        debug('Parameter Side Effect lfo.%d.shape: Hello World! %y = %y (from %y)', lfoIdx, elementPath, value, origin)
         const shapes = ['sine', 'triangle', 'saw-up', 'saw-down', 'square', 'random']
         this.setState(`lfo.${lfoIdx}.shapeName`, shapes[value])
       }
     }
 
+
+
+
+
     this.parameterSideEffects = {
-      octaveChance: (path, value, origin) => {
-        debug('Parameter Side Effect %y: Hello World! %y (from %y)', path, value, origin)
+      octaveChance: (elementPath, value, origin) => {
+        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)
         if (origin == 'surface' || !this.state.octaves) {
           this.state.octaves = []
           for (let idx = 0; idx < 16; idx++) {
@@ -254,8 +392,8 @@ class AcidMachine extends Machine {
           }
         }
       },
-      density: (path, value, origin) => {
-        debug('Parameter Side Effect %y: Hello World! %y (from %y)', path, value, origin)
+      density: (elementPath, value, origin) => {
+        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)
         if (origin == 'surface' && value != 100) {
           this.interface.setParameter('killSteps', 0)
         }
@@ -267,8 +405,8 @@ class AcidMachine extends Machine {
           }
         }
       },
-      killSteps: (path, value, origin) => {
-        debug('Parameter Side Effect %y: Hello World! %y (from %y)', path, value, origin)
+      killSteps: (elementPath, value, origin) => {
+        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)
         if (origin == 'surface' && value != 0) {
           this.interface.setParameter('density', 100)
         }
@@ -276,8 +414,8 @@ class AcidMachine extends Machine {
           this.euclidian(this.interface.getParameter('killSteps'), 16, this.interface.getParameter('killShift'))
         }
       },
-      killShift: (path, value, origin) => {
-        debug('Parameter Side Effect %y: Hello World! %y (from %y)', path, value, origin)
+      killShift: (elementPath, value, origin) => {
+        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)
         if (this.interface.getParameter('killSteps') > 0) {
           if (origin == 'surface' || !this.state.sounding) {
             this.euclidian(this.interface.getParameter('killSteps'), 16, this.interface.getParameter('killShift'))
@@ -285,8 +423,16 @@ class AcidMachine extends Machine {
         }
       },
       device: {
-        A: { port: devicePortChange('A') },
-        B: { port: devicePortChange('B') },
+        A: {
+          device: deviceDeviceChange('A'),
+          port: devicePortChange('A'),
+          channel: deviceChannelChange('A'),
+        },
+        B: {
+          device: deviceDeviceChange('B'),
+          port: devicePortChange('B'),
+          channel: deviceChannelChange('B'),
+        },
       },
       lfo: [
         { shape: lfoShapeChange(0) },
@@ -296,12 +442,11 @@ class AcidMachine extends Machine {
     }
   }
 
-  getState(path, deflt) {
-    return _.get(this.state, path, deflt)
-  }
-
-  setState(path, value) {
-    _.set(this.state, path, value)
+  sendProgramChange(dev) {
+    debugMidiControlChange('%s %d CC %y = %y', this.getState(`device.${dev}.portName`), this.interface.getParameter(`device.${dev}.channel`), 0, this.interface.getParameter(`device.${dev}.bank`))
+    Midi.send(this.getState(`device.${dev}.portName`), 'cc', {channel:this.interface.getParameter(`device.${dev}.channel`,1) - 1, controller:0, value:this.interface.getParameter(`device.${dev}.bank`)})
+    debugMidiProgramChange('%s %d %y', this.getState(`device.${dev}.portName`), this.interface.getParameter(`device.${dev}.channel`,1) - 1, this.interface.getParameter(`device.${dev}.program`))
+    Midi.send(this.getState(`device.${dev}.portName`), 'program', {channel:this.interface.getParameter(`device.${dev}.channel`,1) - 1, number:this.interface.getParameter(`device.${dev}.program`)})
   }
 
 
@@ -372,6 +517,56 @@ class AcidMachine extends Machine {
     return pat
   }
 
+  load_preset() {
+
+    const presetFiles = this.presetFiles()
+
+    let but = (this.state && this.state.last_preset_but ? this.state.last_preset_but : 0)
+    if (!but) {
+      but = 0
+    }
+    if (but < 0) {
+      but = 0
+    }
+    if (but > (presetFiles.length - 1)) {
+      but = presetFiles.length - 1
+    }
+    if (this.state) {
+      this.state.last_preset_but = but
+    }
+
+    const filename = presetFiles[(presetFiles.length - 1) - but]
+    if (filename) {
+      const bank = this.interface.getParameter('bank',0)
+      const playing = this.state.playing
+      const last_preset_but = this.state.last_preset_but
+      this.readState(filename)
+      this.interface.setParameter('bank',bank)
+      this.interface.setParameter('program',((presetFiles.length - 1) - but) >= 0 ? ((presetFiles.length - 1) - but) : 0)
+      this.state.last_preset_but = last_preset_but
+      this.state.playing = playing
+      return filename
+    }
+  }
+
+  bankName() {
+    return `bank-${_.padStart(this.interface.getParameter('bank',0), 3, '0')}`
+  }
+
+  presetFiles(count = false) {
+    const files = glob.sync(path.resolve(
+      ( (process.env.NODE_ENV == 'production') ? path.join(untildify('~/.electra-one'), 'state', 'acid', this.bankName(), 'presets') : path.join(__dirname, '..', 'state', 'acid', this.bankName(), 'presets') ) + '/*.json'), {})
+    return count ? (Array.isArray(files) ? files.length : 0) : files
+  }
+
+  save_preset(state) {
+    const name = `Acid - ${new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')}`
+    const filePath = path.resolve((process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/acid/${Acid.bankName(state)}/presets/${name.replace(/:/g, '.')}.json`) : `${__dirname}/../state/acid/${this.bankName()}/presets/${name.replace(/:/g, '.')}.json`)
+    this.writeState(filePath)
+    this.state.last_preset_but = 0
+    this.interface.setParameter('program',this.presetFiles(true) - 1)
+    return filePath
+  }
 
 }
 
@@ -386,9 +581,12 @@ function acidSequencer(name, sub, options) {
 
   machine.connect(options.electra, 'surface')
   machine.connect(options.general, 'external')
-  machine.connect(options.clock, 'clock')
+  machine.connect(options.clock, 'clock');
 
-  debug('State %y', machine.state)
+
+  machine.notesReset()
+
+  debug('State %y', machine.getPreset())
 }
 
 module.exports = {
