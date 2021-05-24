@@ -42,6 +42,7 @@ class AcidMachine extends Machine {
     this.midiCache = new MidiCache()
     this.lfoHistory = [[], [], []]
 
+
     this.state.sounding = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     this.state.pattern = Acid.generate(this.state)
 
@@ -140,7 +141,7 @@ class AcidMachine extends Machine {
           const stepIdx = ticks / ticksPerStep
           if (this.getState('playing')) {
             const tickDuration = this.pulseDuration / 20
-            const shiftedTicks = (ticks + (ticksPerStep * this.interface.getParameter('shift'))) % (ticksPerStep * 16)
+            const shiftedTicks = (ticks + (ticksPerStep * this.interface.getParameter('shift','modulated'))) % (ticksPerStep * 16)
 
             if (!this.interface.getParameter('mute')) {
               for (let l = 0; l < 3; l++) {
@@ -158,13 +159,13 @@ class AcidMachine extends Machine {
                   devs.forEach( dev => {
                     if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`)) {
                       const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
-                      const pth = `port_${this.getState(`device.${dev}.portName`)}.channel_${_.padStart(channel + 1, 2, '0')}.controller_${_.padStart(this.interface.getParameter(`lfo.${l}.control`), 3, '0')}`
+                      const pth = `port_${this.getState(`device.${dev}.portName`)}.channel_${_.padStart(channel + 1, 2, '0')}.controller_${_.padStart(this.interface.getParameter(`lfo.${l}.control`,'modulated'), 3, '0')}`
                       const midiValue = Math.min(127, value)
 
-                      const cacheValue = this.midiCache.getValue(this.getState(`device.${dev}.portName`), channel, 'cc', this.interface.getParameter(`lfo.${l}.control`) )
+                      const cacheValue = this.midiCache.getValue(this.getState(`device.${dev}.portName`), channel, 'cc', this.interface.getParameter(`lfo.${l}.control`,'modulated') )
                       if (cacheValue != midiValue) {
 
-                        debugMidiControlChange('%s %d CC %y = %y', this.getState(`device.${dev}.portName`), channel + 1, this.interface.getParameter(`lfo.${l}.control`), midiValue)
+                        debugMidiControlChange('%s %d CC %y = %y', this.getState(`device.${dev}.portName`), channel + 1, this.interface.getParameter(`lfo.${l}.control`,'modulated'), midiValue)
 
                         if (!this.lfoHistory[l].length || this.lfoHistory[l][0] != midiValue) {
                           if (this.lfoHistory[l].unshift(midiValue) > 2) {
@@ -172,8 +173,8 @@ class AcidMachine extends Machine {
                           }
                         }
 
-                        Midi.send(this.getState(`device.${dev}.portName`), 'cc', {channel, controller:this.interface.getParameter(`lfo.${l}.control`), value:midiValue})
-                        this.midiCache.setValue(this.getState(`device.${dev}.portName`), channel, 'cc', this.interface.getParameter(`lfo.${l}.control`), midiValue)
+                        Midi.send(this.getState(`device.${dev}.portName`), 'cc', {channel, controller:this.interface.getParameter(`lfo.${l}.control`,'modulated'), value:midiValue})
+                        this.midiCache.setValue(this.getState(`device.${dev}.portName`), channel, 'cc', this.interface.getParameter(`lfo.${l}.control`,'modulated'), midiValue)
 
                         // Can Electra handle many NRPN's?
                         this.interface.setParameter(`lfo.${l}.show`, Interface.remap(midiValue, 0, 127, -100, 100))
@@ -190,22 +191,22 @@ class AcidMachine extends Machine {
                   if (stepIdx < this.state.sounding.length && this.state.sounding[stepIdx]) {
                     let midiNote = note.midi
 
-                    const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales')]
-                    const midiNoteFromBase = (midiNote + this.interface.getParameter('base')) % 12
+                    const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales','modulated')]
+                    const midiNoteFromBase = (midiNote + this.interface.getParameter('base','modulated')) % 12
                     const midiNoteBase =  midiNote - midiNoteFromBase
                     if (scaleMapping && scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
-                      midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base')
+                      midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base','modulated')
                     }
 
-                    midiNote += this.interface.getParameter('transpose') + ((stepIdx < this.state.octaves.length && this.state.octaves[stepIdx]) ? (this.state.octaves[stepIdx] * 12) : 0)
+                    midiNote += this.interface.getParameter('transpose','modulated') + ((stepIdx < this.state.octaves.length && this.state.octaves[stepIdx]) ? (this.state.octaves[stepIdx] * 12) : 0)
 
                     const deviateRnd = Machine.getRandomInt(100)
-                    const switchChannel = (this.interface.getParameter('deviate') && this.interface.getParameter('deviate') >= deviateRnd)
-                    const channel = (midiNote <= this.interface.getParameter('split')) ? (switchChannel ? 1 : 0) : (switchChannel ? 0 : 1)
-                    const dev =  (midiNote <= this.interface.getParameter('split')) ? (switchChannel ? 'B' : 'A') : (switchChannel ? 'A' : 'B')
+                    const switchChannel = (this.interface.getParameter('deviate','modulated') && this.interface.getParameter('deviate','modulated') >= deviateRnd)
+                    const channel = (midiNote <= this.interface.getParameter('split','modulated')) ? (switchChannel ? 1 : 0) : (switchChannel ? 0 : 1)
+                    const dev =  (midiNote <= this.interface.getParameter('split','modulated')) ? (switchChannel ? 'B' : 'A') : (switchChannel ? 'A' : 'B')
 
                     let probabilityRnd = Machine.getRandomInt(100)
-                    if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability') >= probabilityRnd) {
+                    if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability','modulated') >= probabilityRnd) {
                       const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
                       debugMidiNoteOn('%s %d %y', this.getState(`device.${dev}.portName`), channel + 1, midiNote)
 
@@ -224,7 +225,7 @@ class AcidMachine extends Machine {
                       this.midiCache.setValue(this.getState(`device.${dev}.portName`), channel, 'note', midiNote, true)
 
                       const b = Math.floor(note.durationTicks / ticksPerStep) * ticksPerStep
-                      const r = (note.durationTicks % ticksPerStep) * this.interface.getParameter('gate')
+                      const r = (note.durationTicks % ticksPerStep) * this.interface.getParameter('gate','modulated')
                       setTimeout((portName, midiNote, channel) => {
                         debugMidiNoteOff('%s %d %y', portName, channel + 1, midiNote)
                         Midi.send(portName, 'noteoff', {
@@ -376,7 +377,12 @@ class AcidMachine extends Machine {
       }
     }
 
-
+    const matrixRemodulate = (slotIdx,destIdx) => {
+      return (elementPath, value, origin) => {
+//        debug('Parameter Side Effect matrixRemodulate(%d,%d): Hello World! %y = %y (from %y)', slotIdx, destIdx, elementPath, value, origin)
+        this.interface.matrixRemodulate(elementPath)
+      }
+    }
 
 
 
@@ -439,6 +445,61 @@ class AcidMachine extends Machine {
         { shape: lfoShapeChange(1) },
         { shape: lfoShapeChange(2) },
       ],
+      matrix: {
+        slot: [
+          {
+            value: matrixRemodulate(0),
+            destination: [
+              {
+                target: matrixRemodulate(0,0),
+                amount: matrixRemodulate(0,0),
+              },
+              {
+                target: matrixRemodulate(0,1),
+                amount: matrixRemodulate(0,1),
+              },
+              {
+                target: matrixRemodulate(0,2),
+                amount: matrixRemodulate(0,2),
+              },
+            ],
+          },
+          {
+            value: matrixRemodulate(1),
+            destination: [
+              {
+                target: matrixRemodulate(1,0),
+                amount: matrixRemodulate(1,0),
+              },
+              {
+                target: matrixRemodulate(1,1),
+                amount: matrixRemodulate(1,1),
+              },
+              {
+                target: matrixRemodulate(1,2),
+                amount: matrixRemodulate(1,2),
+              },
+            ],
+          },
+          {
+            value: matrixRemodulate(2),
+            destination: [
+              {
+                target: matrixRemodulate(2,0),
+                amount: matrixRemodulate(2,0),
+              },
+              {
+                target: matrixRemodulate(2,1),
+                amount: matrixRemodulate(2,1),
+              },
+              {
+                target: matrixRemodulate(2,2),
+                amount: matrixRemodulate(2,2),
+              },
+            ],
+          },
+        ]
+      },
     }
   }
 
@@ -583,8 +644,8 @@ function acidSequencer(name, sub, options) {
   machine.connect(options.general, 'external')
   machine.connect(options.clock, 'clock');
 
-
   machine.notesReset()
+  machine.interface.sendValues('surface')
 
   debug('State %y', machine.getPreset())
 }
