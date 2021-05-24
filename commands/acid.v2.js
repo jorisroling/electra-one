@@ -15,6 +15,7 @@ const Machine = require('../lib/midi/machine')
 const Interface = require('../lib/midi/interface')
 const MidiCache = require('../lib/midi/cache')
 const path = require('path')
+const untildify = require('untildify')
 
 const yves = require('../lib/yves')
 const pkg = require('../package.json')
@@ -48,7 +49,7 @@ class AcidMachine extends Machine {
 
     this.actionSideEffects = {
       generate: (elementPath, origin) => {
-/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
+        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           this.state.pattern = Acid.generate(this.state)
           this.state.last_pattern_but = 0
@@ -56,7 +57,7 @@ class AcidMachine extends Machine {
         }
       },
       previous_pattern: (elementPath, origin) => {
-/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
+        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           this.state.last_pattern_but += 1
 
@@ -65,7 +66,7 @@ class AcidMachine extends Machine {
         }
       },
       next_pattern: (elementPath, origin) => {
-/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
+        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           this.state.last_pattern_but -= 1
           if (this.state.last_pattern_but < 0) {
@@ -77,7 +78,7 @@ class AcidMachine extends Machine {
         }
       },
       previous_preset: (elementPath, origin) => {
-/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
+        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           this.state.last_preset_but += 1
 
@@ -92,7 +93,7 @@ class AcidMachine extends Machine {
         }
       },
       next_preset: (elementPath, origin) => {
-/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
+        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
 
           this.state.last_preset_but -= 1
@@ -111,13 +112,13 @@ class AcidMachine extends Machine {
         }
       },
       save_preset: (elementPath, origin) => {
-/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
+        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'surface') {
           this.save_preset()
         }
       },
       reset_preset: (elementPath, origin) => {
-/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
+        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'surface') {
           this.interface.reset()
         }
@@ -135,47 +136,69 @@ class AcidMachine extends Machine {
           const stepIdx = ticks / ticksPerStep
           if (this.getState('playing')) {
             const tickDuration = this.pulseDuration / 20
-            const shiftedTicks = (ticks + (ticksPerStep * this.interface.getParameter('shift','modulated'))) % (ticksPerStep * 16)
+            const shiftedTicks = (ticks + (ticksPerStep * this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
 
             if (!this.interface.getParameter('mute')) {
               for (let l = 0; l < 3; l++) {
+                let control = this.interface.getParameter(`lfo.${l}.control`, 'modulated')
+
                 const value = this.lfoValue(l)
                 if (Number.isInteger(value)) {
+                  const midiValue = Math.min(127, Math.max(0, value))
+
                   const devs = []
 
-                  if (this.interface.getParameter(`lfo.${l}.device.A`)) {
-                    devs.push('A')
-                  }
-                  if (this.interface.getParameter(`lfo.${l}.device.B`)) {
-                    devs.push('B')
-                  }
+                  if (control < 128) {
+                    const path = this.interface.getMapPath('external', 'cc', control)
+                    if (path) {
+                      debug('int control %d %y = %y %d', l, control, path, midiValue)
 
-                  devs.forEach( dev => {
-                    if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`)) {
-                      const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
-                      const pth = `port_${this.getState(`device.${dev}.portName`)}.channel_${_.padStart(channel + 1, 2, '0')}.controller_${_.padStart(this.interface.getParameter(`lfo.${l}.control`,'modulated'), 3, '0')}`
-                      const midiValue = Math.min(127, value)
-
-                      const cacheValue = this.midiCache.getValue(this.getState(`device.${dev}.portName`), channel, 'cc', this.interface.getParameter(`lfo.${l}.control`,'modulated') )
-                      if (cacheValue != midiValue) {
-
-                        debugMidiControlChange('%s %d CC %y = %y', this.getState(`device.${dev}.portName`), channel + 1, this.interface.getParameter(`lfo.${l}.control`,'modulated'), midiValue)
-
-                        if (!this.lfoHistory[l].length || this.lfoHistory[l][0] != midiValue) {
-                          if (this.lfoHistory[l].unshift(midiValue) > 2) {
-                            this.lfoHistory[l].splice(2)
-                          }
+                      if (!this.lfoHistory[l].length || this.lfoHistory[l][0] != midiValue) {
+                        if (this.lfoHistory[l].unshift(midiValue) > 2) {
+                          this.lfoHistory[l].splice(2)
                         }
-
-                        Midi.send(this.getState(`device.${dev}.portName`), 'cc', {channel, controller:this.interface.getParameter(`lfo.${l}.control`,'modulated'), value:midiValue})
-                        this.midiCache.setValue(this.getState(`device.${dev}.portName`), channel, 'cc', this.interface.getParameter(`lfo.${l}.control`,'modulated'), midiValue)
-
-                        // Can Electra handle many NRPN's?
-                        this.interface.setParameter(`lfo.${l}.show`, Interface.remap(midiValue, 0, 127, -100, 100))
-                        //sendNRPN(midiOutputName, config.acid.interface.lfo[l + 1].show.nrpn, 1, midiValue, 0, 50)
                       }
+
+                      this.interface.setParameter(path, midiValue, 'external')
+                      // Can Electra handle many NRPN's?
+                      this.interface.setParameter(`lfo.${l}.show`, Interface.remap(midiValue, 0, 127, -100, 100))
                     }
-                  })
+                  } else {
+                    control -= 128
+                    if (this.interface.getParameter(`lfo.${l}.device.A`)) {
+                      devs.push('A')
+                    }
+                    if (this.interface.getParameter(`lfo.${l}.device.B`)) {
+                      devs.push('B')
+                    }
+
+                    devs.forEach( dev => {
+                      if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`)) {
+                        const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
+                        const pth = `port_${this.getState(`device.${dev}.portName`)}.channel_${_.padStart(channel + 1, 2, '0')}.controller_${_.padStart(this.interface.getParameter(`lfo.${l}.control`, 'modulated'), 3, '0')}`
+
+                        const cacheValue = this.midiCache.getValue(this.getState(`device.${dev}.portName`), channel, 'cc', this.interface.getParameter(`lfo.${l}.control`, 'modulated') )
+                        if (cacheValue != midiValue) {
+
+                          debugMidiControlChange('%s %d CC %y = %y', this.getState(`device.${dev}.portName`), channel + 1, this.interface.getParameter(`lfo.${l}.control`, 'modulated'), midiValue)
+                          debug('cc control %d %y = %d', l, control, midiValue)
+
+                          if (!this.lfoHistory[l].length || this.lfoHistory[l][0] != midiValue) {
+                            if (this.lfoHistory[l].unshift(midiValue) > 2) {
+                              this.lfoHistory[l].splice(2)
+                            }
+                          }
+
+                          Midi.send(this.getState(`device.${dev}.portName`), 'cc', {channel, controller:control, value:midiValue})
+                          this.midiCache.setValue(this.getState(`device.${dev}.portName`), channel, 'cc', control, midiValue)
+
+                          // Can Electra handle many NRPN's?
+                          this.interface.setParameter(`lfo.${l}.show`, Interface.remap(midiValue, 0, 127, -100, 100))
+                          //sendNRPN(midiOutputName, config.acid.interface.lfo[l + 1].show.nrpn, 1, midiValue, 0, 50)
+                        }
+                      }
+                    })
+                  }
                 }
               }
             }
@@ -185,22 +208,22 @@ class AcidMachine extends Machine {
                   if (stepIdx < this.state.sounding.length && this.state.sounding[stepIdx]) {
                     let midiNote = note.midi
 
-                    const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales','modulated')]
-                    const midiNoteFromBase = (midiNote + this.interface.getParameter('base','modulated')) % 12
+                    const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
+                    const midiNoteFromBase = (midiNote + this.interface.getParameter('base', 'modulated')) % 12
                     const midiNoteBase =  midiNote - midiNoteFromBase
                     if (scaleMapping && scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
-                      midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base','modulated')
+                      midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
                     }
 
-                    midiNote += this.interface.getParameter('transpose','modulated') + ((stepIdx < this.state.octaves.length && this.state.octaves[stepIdx]) ? (this.state.octaves[stepIdx] * 12) : 0)
+                    midiNote += this.interface.getParameter('transpose', 'modulated') + ((stepIdx < this.state.octaves.length && this.state.octaves[stepIdx]) ? (this.state.octaves[stepIdx] * 12) : 0)
 
                     const deviateRnd = Machine.getRandomInt(100)
-                    const switchChannel = (this.interface.getParameter('deviate','modulated') && this.interface.getParameter('deviate','modulated') >= deviateRnd)
-                    const channel = (midiNote <= this.interface.getParameter('split','modulated')) ? (switchChannel ? 1 : 0) : (switchChannel ? 0 : 1)
-                    const dev =  (midiNote <= this.interface.getParameter('split','modulated')) ? (switchChannel ? 'B' : 'A') : (switchChannel ? 'A' : 'B')
+                    const switchChannel = (this.interface.getParameter('deviate', 'modulated') && this.interface.getParameter('deviate', 'modulated') >= deviateRnd)
+                    const channel = (midiNote <= this.interface.getParameter('split', 'modulated')) ? (switchChannel ? 1 : 0) : (switchChannel ? 0 : 1)
+                    const dev =  (midiNote <= this.interface.getParameter('split', 'modulated')) ? (switchChannel ? 'B' : 'A') : (switchChannel ? 'A' : 'B')
 
                     let probabilityRnd = Machine.getRandomInt(100)
-                    if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability','modulated') >= probabilityRnd) {
+                    if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability', 'modulated') >= probabilityRnd) {
                       const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
                       debugMidiNoteOn('%s %d %y', this.getState(`device.${dev}.portName`), channel + 1, midiNote)
 
@@ -219,7 +242,7 @@ class AcidMachine extends Machine {
                       this.midiCache.setValue(this.getState(`device.${dev}.portName`), channel, 'note', midiNote, true)
 
                       const b = Math.floor(note.durationTicks / ticksPerStep) * ticksPerStep
-                      const r = (note.durationTicks % ticksPerStep) * this.interface.getParameter('gate','modulated')
+                      const r = (note.durationTicks % ticksPerStep) * this.interface.getParameter('gate', 'modulated')
                       setTimeout((portName, midiNote, channel) => {
                         debugMidiNoteOff('%s %d %y', portName, channel + 1, midiNote)
                         Midi.send(portName, 'noteoff', {
@@ -242,7 +265,7 @@ class AcidMachine extends Machine {
         }
       },
       start: (elementPath, origin) => {
-//        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
+        //        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'clock') {
           this.setState('playing', true)
           this.pulses = 0
@@ -252,14 +275,14 @@ class AcidMachine extends Machine {
         }
       },
       stop: (elementPath, origin) => {
-/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
+        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'clock') {
           this.setState('playing', false)
           debug('stop')
         }
       },
       continue: (elementPath, origin) => {
-/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
+        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'clock') {
           this.setState('playing', true)
           this.pulseTime = process.hrtime()
@@ -270,7 +293,7 @@ class AcidMachine extends Machine {
 
     const deviceDeviceChange = (dev) => {
       return (elementPath, value, origin) => {
-/*        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)*/
+        /*        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)*/
         if (value > 0 && config.devices) {
           const deviceKeys = Object.keys(config.devices)
           if (deviceKeys.length > value - 1) {
@@ -283,7 +306,7 @@ class AcidMachine extends Machine {
                 if (midiNames) {
                   const idx = midiNames.indexOf(portName)
                   if (idx >= 0) {
-                    this.interface.setParameter(`device.${dev}.port`,idx)
+                    this.interface.setParameter(`device.${dev}.port`, idx)
                     const midiNames = easymidi.getOutputs()
                     if (midiNames) {
                       if (idx < midiNames.length) {
@@ -292,7 +315,7 @@ class AcidMachine extends Machine {
                         if (ports && ports.length == 1) {
                           name = ports[0]
                         }
-                        this.setState(`device.${dev}.portName`,name)
+                        this.setState(`device.${dev}.portName`, name)
                       }
                     } else {
                       this.clearState(`device.${dev}.portName`)
@@ -301,7 +324,7 @@ class AcidMachine extends Machine {
                     if (Array.isArray(channels) && channels.length) {
                       const channel = this.interface.getParameter(`device.${dev}.channel`)//_.get(this, `device.${dev}.channel`)
                       if (channels.indexOf(channel) < 0) {
-                        this.interface.setParameter(`device.${dev}.channel`,channels[0])
+                        this.interface.setParameter(`device.${dev}.channel`, channels[0])
                       }
                     }
                   }
@@ -342,15 +365,16 @@ class AcidMachine extends Machine {
         } )
       }
 
-      this.interface.setParameter(`device.${dev}.device`,deviceIdx)
+      this.interface.setParameter(`device.${dev}.device`, deviceIdx)
       if (!deviceIdx) {
-        this.interface.setParameter(`device.${dev}.mute`,1)
+        this.interface.setParameter(`device.${dev}.mute`, 1)
       }
+      this.sendProgramChange(dev)
     }
 
     const devicePortChange = (dev) => {
       return (elementPath, value, origin) => {
-/*        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)*/
+        /*        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)*/
         this.setState(`device.${dev}.portName`, Midi.normalisePortName(value))
         devicePortOrChannelChanged(dev)
       }
@@ -358,22 +382,22 @@ class AcidMachine extends Machine {
 
     const deviceChannelChange = (dev) => {
       return (elementPath, value, origin) => {
-/*        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)*/
+        /*        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)*/
         devicePortOrChannelChanged(dev)
       }
     }
 
     const lfoShapeChange = (lfoIdx) => {
       return (elementPath, value, origin) => {
-/*        debug('Parameter Side Effect lfo.%d.shape: Hello World! %y = %y (from %y)', lfoIdx, elementPath, value, origin)*/
+        /*        debug('Parameter Side Effect lfo.%d.shape: Hello World! %y = %y (from %y)', lfoIdx, elementPath, value, origin)*/
         const shapes = ['sine', 'triangle', 'saw-up', 'saw-down', 'square', 'random']
         this.setState(`lfo.${lfoIdx}.shapeName`, shapes[value])
       }
     }
 
-    const matrixRemodulate = (slotIdx,destIdx) => {
+    const matrixRemodulate = (slotIdx, destIdx) => {
       return (elementPath, value, origin) => {
-//        debug('Parameter Side Effect matrixRemodulate(%d,%d): Hello World! %y = %y (from %y)', slotIdx, destIdx, elementPath, value, origin)
+        //        debug('Parameter Side Effect matrixRemodulate(%d,%d): Hello World! %y = %y (from %y)', slotIdx, destIdx, elementPath, value, origin)
         this.interface.matrixRemodulate(elementPath)
       }
     }
@@ -382,7 +406,7 @@ class AcidMachine extends Machine {
 
     this.parameterSideEffects = {
       octaveChance: (elementPath, value, origin) => {
-/*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
+        /*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
         if (origin == 'surface' || !this.state.octaves) {
           this.state.octaves = []
           for (let idx = 0; idx < 16; idx++) {
@@ -393,7 +417,7 @@ class AcidMachine extends Machine {
         }
       },
       density: (elementPath, value, origin) => {
-/*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
+        /*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
         if (origin == 'surface' && value != 100) {
           this.interface.setParameter('killSteps', 0)
         }
@@ -406,7 +430,7 @@ class AcidMachine extends Machine {
         }
       },
       killSteps: (elementPath, value, origin) => {
-/*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
+        /*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
         if (origin == 'surface' && value != 0) {
           this.interface.setParameter('density', 100)
         }
@@ -415,7 +439,7 @@ class AcidMachine extends Machine {
         }
       },
       killShift: (elementPath, value, origin) => {
-/*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
+        /*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
         if (this.interface.getParameter('killSteps') > 0) {
           if (origin == 'surface' || !this.state.sounding) {
             this.euclidian(this.interface.getParameter('killSteps'), 16, this.interface.getParameter('killShift'))
@@ -445,16 +469,16 @@ class AcidMachine extends Machine {
             value: matrixRemodulate(0),
             destination: [
               {
-                target: matrixRemodulate(0,0),
-                amount: matrixRemodulate(0,0),
+                target: matrixRemodulate(0, 0),
+                amount: matrixRemodulate(0, 0),
               },
               {
-                target: matrixRemodulate(0,1),
-                amount: matrixRemodulate(0,1),
+                target: matrixRemodulate(0, 1),
+                amount: matrixRemodulate(0, 1),
               },
               {
-                target: matrixRemodulate(0,2),
-                amount: matrixRemodulate(0,2),
+                target: matrixRemodulate(0, 2),
+                amount: matrixRemodulate(0, 2),
               },
             ],
           },
@@ -462,16 +486,16 @@ class AcidMachine extends Machine {
             value: matrixRemodulate(1),
             destination: [
               {
-                target: matrixRemodulate(1,0),
-                amount: matrixRemodulate(1,0),
+                target: matrixRemodulate(1, 0),
+                amount: matrixRemodulate(1, 0),
               },
               {
-                target: matrixRemodulate(1,1),
-                amount: matrixRemodulate(1,1),
+                target: matrixRemodulate(1, 1),
+                amount: matrixRemodulate(1, 1),
               },
               {
-                target: matrixRemodulate(1,2),
-                amount: matrixRemodulate(1,2),
+                target: matrixRemodulate(1, 2),
+                amount: matrixRemodulate(1, 2),
               },
             ],
           },
@@ -479,16 +503,16 @@ class AcidMachine extends Machine {
             value: matrixRemodulate(2),
             destination: [
               {
-                target: matrixRemodulate(2,0),
-                amount: matrixRemodulate(2,0),
+                target: matrixRemodulate(2, 0),
+                amount: matrixRemodulate(2, 0),
               },
               {
-                target: matrixRemodulate(2,1),
-                amount: matrixRemodulate(2,1),
+                target: matrixRemodulate(2, 1),
+                amount: matrixRemodulate(2, 1),
               },
               {
-                target: matrixRemodulate(2,2),
-                amount: matrixRemodulate(2,2),
+                target: matrixRemodulate(2, 2),
+                amount: matrixRemodulate(2, 2),
               },
             ],
           },
@@ -499,9 +523,9 @@ class AcidMachine extends Machine {
 
   sendProgramChange(dev) {
     debugMidiControlChange('%s %d CC %y = %y', this.getState(`device.${dev}.portName`), this.interface.getParameter(`device.${dev}.channel`), 0, this.interface.getParameter(`device.${dev}.bank`))
-    Midi.send(this.getState(`device.${dev}.portName`), 'cc', {channel:this.interface.getParameter(`device.${dev}.channel`,1) - 1, controller:0, value:this.interface.getParameter(`device.${dev}.bank`)})
-    debugMidiProgramChange('%s %d %y', this.getState(`device.${dev}.portName`), this.interface.getParameter(`device.${dev}.channel`,1) - 1, this.interface.getParameter(`device.${dev}.program`))
-    Midi.send(this.getState(`device.${dev}.portName`), 'program', {channel:this.interface.getParameter(`device.${dev}.channel`,1) - 1, number:this.interface.getParameter(`device.${dev}.program`)})
+    Midi.send(this.getState(`device.${dev}.portName`), 'cc', {channel:this.interface.getParameter(`device.${dev}.channel`, 1) - 1, controller:0, value:this.interface.getParameter(`device.${dev}.bank`)})
+    debugMidiProgramChange('%s %d %y', this.getState(`device.${dev}.portName`), this.interface.getParameter(`device.${dev}.channel`, 1) - 1, this.interface.getParameter(`device.${dev}.program`))
+    Midi.send(this.getState(`device.${dev}.portName`), 'program', {channel:this.interface.getParameter(`device.${dev}.channel`, 1) - 1, number:this.interface.getParameter(`device.${dev}.program`)})
   }
 
 
@@ -531,16 +555,16 @@ class AcidMachine extends Machine {
     return -1
   }
 
-  lfoValue(l, phase /*optional*/) {
+  lfoValue(lfoIdx, phase /*optional*/) {
     let result
-    if (this.interface.getParameter(`lfo.${l}.control`) && this.interface.getParameter(`lfo.${l}.amount`) && (this.interface.getParameter(`lfo.${l}.device.A`) || this.interface.getParameter(`lfo.${l}.device.B`))) {
-      const factor = (this.interface.getParameter(`lfo.${l}.amount`) / 100)
-      const base = Math.floor((((100 - this.interface.getParameter(`lfo.${l}.amount`)) / 100) * 128) / 2)
-      const offset = Math.floor(base * (((this.interface.getParameter(`lfo.${l}.offset`) - 50) ) / 50) )
+    if (this.interface.getParameter(`lfo.${lfoIdx}.control`, 'modulated') > 0 && this.interface.getParameter(`lfo.${lfoIdx}.amount`, 'modulated') && (this.interface.getParameter(`lfo.${lfoIdx}.control`, 'modulated') < 128 || (this.interface.getParameter(`lfo.${lfoIdx}.device.A`, 'modulated') || this.interface.getParameter(`lfo.${lfoIdx}.device.B`, 'modulated')))) {
+      const factor = (this.interface.getParameter(`lfo.${lfoIdx}.amount`, 'modulated') / 100)
+      const base = Math.floor((((100 - this.interface.getParameter(`lfo.${lfoIdx}.amount`, 'modulated')) / 100) * 128) / 2)
+      const offset = Math.floor(base * (((this.interface.getParameter(`lfo.${lfoIdx}.offset`, 'modulated') - 50) ) / 50) )
       if (!Number.isInteger(phase)) {
-        phase = this.interface.getParameter(`lfo.${l}.phase`)
+        phase = this.interface.getParameter(`lfo.${lfoIdx}.phase`, 'modulated')
       }
-      const mod = this.lfo( this.steps, (128 - this.interface.getParameter(`lfo.${l}.rate`)) * 4, this.getState(`lfo.${l}.shapeName`), phase / 100)
+      const mod = this.lfo( this.steps, (128 - this.interface.getParameter(`lfo.${lfoIdx}.rate`, 'modulated')) * 4, this.getState(`lfo.${lfoIdx}.shapeName`), phase / 100)
       if (mod >= 0) {
         const value = Math.min(127, Math.max(0, Math.floor(( mod * factor) + base + offset )))
         result = Math.min(127, value)
@@ -592,12 +616,12 @@ class AcidMachine extends Machine {
 
     const filename = presetFiles[(presetFiles.length - 1) - but]
     if (filename) {
-      const bank = this.interface.getParameter('bank',0)
+      const bank = this.interface.getParameter('bank', 0)
       const playing = this.state.playing
       const last_preset_but = this.state.last_preset_but
       this.readState(filename)
-      this.interface.setParameter('bank',bank)
-      this.interface.setParameter('program',((presetFiles.length - 1) - but) >= 0 ? ((presetFiles.length - 1) - but) : 0)
+      this.interface.setParameter('bank', bank)
+      this.interface.setParameter('program', ((presetFiles.length - 1) - but) >= 0 ? ((presetFiles.length - 1) - but) : 0)
       this.state.last_preset_but = last_preset_but
       this.state.playing = playing
       return filename
@@ -605,7 +629,7 @@ class AcidMachine extends Machine {
   }
 
   bankName() {
-    return `bank-${_.padStart(this.interface.getParameter('bank',0), 3, '0')}`
+    return `bank-${_.padStart(this.interface.getParameter('bank', 0), 3, '0')}`
   }
 
   presetFiles(count = false) {
@@ -619,7 +643,7 @@ class AcidMachine extends Machine {
     const filePath = path.resolve((process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/acid/${Acid.bankName(state)}/presets/${name.replace(/:/g, '.')}.json`) : `${__dirname}/../state/acid/${this.bankName()}/presets/${name.replace(/:/g, '.')}.json`)
     this.writeState(filePath)
     this.state.last_preset_but = 0
-    this.interface.setParameter('program',this.presetFiles(true) - 1)
+    this.interface.setParameter('program', this.presetFiles(true) - 1)
     return filePath
   }
 
@@ -636,12 +660,12 @@ function acidSequencer(name, sub, options) {
 
   machine.connect(options.electra, 'surface')
   machine.connect(options.general, 'external')
-  machine.connect(options.clock, 'clock');
+  machine.connect(options.clock, 'clock')
 
   machine.notesReset()
   machine.interface.sendValues('surface')
 
-  debug('State %y', machine.getPreset())
+//  debug('State %y', machine.getPreset())
 }
 
 module.exports = {
