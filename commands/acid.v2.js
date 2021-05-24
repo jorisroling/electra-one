@@ -48,7 +48,7 @@ class AcidMachine extends Machine {
 
     this.actionSideEffects = {
       generate: (elementPath, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
+/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           this.state.pattern = Acid.generate(this.state)
           this.state.last_pattern_but = 0
@@ -56,7 +56,7 @@ class AcidMachine extends Machine {
         }
       },
       previous_pattern: (elementPath, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
+/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           this.state.last_pattern_but += 1
 
@@ -65,7 +65,7 @@ class AcidMachine extends Machine {
         }
       },
       next_pattern: (elementPath, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
+/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           this.state.last_pattern_but -= 1
           if (this.state.last_pattern_but < 0) {
@@ -77,7 +77,7 @@ class AcidMachine extends Machine {
         }
       },
       previous_preset: (elementPath, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
+/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           this.state.last_preset_but += 1
 
@@ -92,7 +92,7 @@ class AcidMachine extends Machine {
         }
       },
       next_preset: (elementPath, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
+/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
 
           this.state.last_preset_but -= 1
@@ -111,23 +111,17 @@ class AcidMachine extends Machine {
         }
       },
       save_preset: (elementPath, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
+/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           this.save_preset()
         }
       },
       reset_preset: (elementPath, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
+/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           this.interface.reset()
         }
       },
-/*      load: (elementPath, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
-        if (origin == 'surface') {
-          // do it
-        }
-      },*/
       clock: (elementPath, origin) => {
         // debug('Action Side Effect %y: Hello World! (from %y)',elementPath,origin)
         if (origin == 'clock') {
@@ -248,7 +242,7 @@ class AcidMachine extends Machine {
         }
       },
       start: (elementPath, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
+//        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'clock') {
           this.setState('playing', true)
           this.pulses = 0
@@ -258,14 +252,14 @@ class AcidMachine extends Machine {
         }
       },
       stop: (elementPath, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
+/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'clock') {
           this.setState('playing', false)
           debug('stop')
         }
       },
       continue: (elementPath, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
+/*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'clock') {
           this.setState('playing', true)
           this.pulseTime = process.hrtime()
@@ -276,7 +270,7 @@ class AcidMachine extends Machine {
 
     const deviceDeviceChange = (dev) => {
       return (elementPath, value, origin) => {
-        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)
+/*        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)*/
         if (value > 0 && config.devices) {
           const deviceKeys = Object.keys(config.devices)
           if (deviceKeys.length > value - 1) {
@@ -356,7 +350,7 @@ class AcidMachine extends Machine {
 
     const devicePortChange = (dev) => {
       return (elementPath, value, origin) => {
-        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)
+/*        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)*/
         this.setState(`device.${dev}.portName`, Midi.normalisePortName(value))
         devicePortOrChannelChanged(dev)
       }
@@ -364,14 +358,14 @@ class AcidMachine extends Machine {
 
     const deviceChannelChange = (dev) => {
       return (elementPath, value, origin) => {
-        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)
+/*        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)*/
         devicePortOrChannelChanged(dev)
       }
     }
 
     const lfoShapeChange = (lfoIdx) => {
       return (elementPath, value, origin) => {
-        debug('Parameter Side Effect lfo.%d.shape: Hello World! %y = %y (from %y)', lfoIdx, elementPath, value, origin)
+/*        debug('Parameter Side Effect lfo.%d.shape: Hello World! %y = %y (from %y)', lfoIdx, elementPath, value, origin)*/
         const shapes = ['sine', 'triangle', 'saw-up', 'saw-down', 'square', 'random']
         this.setState(`lfo.${lfoIdx}.shapeName`, shapes[value])
       }
@@ -388,7 +382,7 @@ class AcidMachine extends Machine {
 
     this.parameterSideEffects = {
       octaveChance: (elementPath, value, origin) => {
-        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)
+/*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
         if (origin == 'surface' || !this.state.octaves) {
           this.state.octaves = []
           for (let idx = 0; idx < 16; idx++) {
@@ -399,7 +393,7 @@ class AcidMachine extends Machine {
         }
       },
       density: (elementPath, value, origin) => {
-        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)
+/*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
         if (origin == 'surface' && value != 100) {
           this.interface.setParameter('killSteps', 0)
         }
@@ -412,7 +406,7 @@ class AcidMachine extends Machine {
         }
       },
       killSteps: (elementPath, value, origin) => {
-        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)
+/*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
         if (origin == 'surface' && value != 0) {
           this.interface.setParameter('density', 100)
         }
@@ -421,7 +415,7 @@ class AcidMachine extends Machine {
         }
       },
       killShift: (elementPath, value, origin) => {
-        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)
+/*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
         if (this.interface.getParameter('killSteps') > 0) {
           if (origin == 'surface' || !this.state.sounding) {
             this.euclidian(this.interface.getParameter('killSteps'), 16, this.interface.getParameter('killShift'))
