@@ -47,7 +47,7 @@ class AcidMachine extends Machine {
 
 
     this.state.sounding = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-    this.state.pattern = Acid.generate(this.state)
+//    this.state.pattern = Acid.generate(this.state)
 
     this.actionSideEffects = {
       generate: (elementPath, origin) => {
@@ -404,7 +404,6 @@ class AcidMachine extends Machine {
 
     const devicePortChange = (dev) => {
       return (elementPath, value, origin) => {
-        /*        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)*/
         this.setState(`device.${dev}.portName`, Midi.normalisePortName(value))
         devicePortOrChannelChanged(dev)
       }
@@ -412,15 +411,18 @@ class AcidMachine extends Machine {
 
     const deviceChannelChange = (dev) => {
       return (elementPath, value, origin) => {
-        /*        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)*/
         devicePortOrChannelChanged(dev)
+      }
+    }
+    const deviceBankOrProgramChange = (dev) => {
+      return (elementPath, value, origin) => {
+        this.sendProgramChange(dev)
       }
     }
 
     const lfoShapeChange = (lfoIdx) => {
       const myLfoPhaseDetection = lfoPhaseDetection(lfoIdx)
       return (elementPath, value, origin) => {
-        /*        debug('Parameter Side Effect lfo.%d.shape: Hello World! %y = %y (from %y)', lfoIdx, elementPath, value, origin)*/
         const shapes = ['sine', 'triangle', 'saw-up', 'saw-down', 'square', 'random']
         this.setState(`lfo.${lfoIdx}.shapeName`, shapes[value])
         myLfoPhaseDetection(elementPath, value, origin)
@@ -534,11 +536,15 @@ class AcidMachine extends Machine {
           device: deviceDeviceChange('A'),
           port: devicePortChange('A'),
           channel: deviceChannelChange('A'),
+          bank: deviceBankOrProgramChange('A'),
+          program: deviceBankOrProgramChange('A'),
         },
         B: {
           device: deviceDeviceChange('B'),
           port: devicePortChange('B'),
           channel: deviceChannelChange('B'),
+          bank: deviceBankOrProgramChange('B'),
+          program: deviceBankOrProgramChange('B'),
         },
       },
 
