@@ -28,6 +28,8 @@ const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:midi
 const euclideanRhythms = require('euclidean-rhythms')
 const scaleMappings = require('../extra/scales/scales.json')
 
+const phaseDetection = true
+
 function radians(degrees) {
   return (degrees % 360) * (Math.PI / 180)
 }
@@ -139,8 +141,14 @@ class AcidMachine extends Machine {
             const shiftedTicks = (ticks + (ticksPerStep * this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
 
             if (!this.interface.getParameter('mute')) {
+              this.interface.clearModulation('lfo')
+
+              const performancePaths = this.interface.getMap('external', 'cc') ? Object.values(this.interface.getMap('external', 'cc')) : []
+              const oldValues = {}
+              performancePaths.forEach( perfPath => oldValues[perfPath] = this.interface.getParameter(perfPath, 'modulated') )
+
               for (let l = 0; l < 3; l++) {
-                let control = this.interface.getParameter(`lfo.${l}.control`, 'modulated')
+                let control = this.interface.getParameter(`lfo.${l}.control`)
 
                 const value = this.lfoValue(l)
                 if (Number.isInteger(value)) {
@@ -159,7 +167,15 @@ class AcidMachine extends Machine {
                         }
                       }
 
-                      this.interface.setParameter(path, midiValue, 'external')
+                      //this.interface.setParameter(path, midiValue, 'external')
+
+                      let lfoControlCount = 0
+                      for (let j = 0; j < 3; j++) {
+                        lfoControlCount += (this.interface.getParameter(`lfo.${l}.control`) == control ? 1 : 0)
+                      }
+                      const mod = Interface.remap(midiValue, 0, 127, -1.0, 1.0) / lfoControlCount
+                      this.interface.setModulation('lfo', path, this.interface.getModulation('lfo', path, 0) + mod)
+
                       // Can Electra handle many NRPN's?
                       this.interface.setParameter(`lfo.${l}.show`, Interface.remap(midiValue, 0, 127, -100, 100))
                     }
@@ -175,12 +191,12 @@ class AcidMachine extends Machine {
                     devs.forEach( dev => {
                       if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`)) {
                         const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
-                        const pth = `port_${this.getState(`device.${dev}.portName`)}.channel_${_.padStart(channel + 1, 2, '0')}.controller_${_.padStart(this.interface.getParameter(`lfo.${l}.control`, 'modulated'), 3, '0')}`
+                        const pth = `port_${this.getState(`device.${dev}.portName`)}.channel_${_.padStart(channel + 1, 2, '0')}.controller_${_.padStart(this.interface.getParameter(`lfo.${l}.control`), 3, '0')}`
 
-                        const cacheValue = this.midiCache.getValue(this.getState(`device.${dev}.portName`), channel, 'cc', this.interface.getParameter(`lfo.${l}.control`, 'modulated') )
+                        const cacheValue = this.midiCache.getValue(this.getState(`device.${dev}.portName`), channel, 'cc', this.interface.getParameter(`lfo.${l}.control`) )
                         if (cacheValue != midiValue) {
 
-                          debugMidiControlChange('%s %d CC %y = %y', this.getState(`device.${dev}.portName`), channel + 1, this.interface.getParameter(`lfo.${l}.control`, 'modulated'), midiValue)
+                          debugMidiControlChange('%s %d CC %y = %y', this.getState(`device.${dev}.portName`), channel + 1, this.interface.getParameter(`lfo.${l}.control`), midiValue)
                           debug('cc control %d %y = %d', l, control, midiValue)
 
                           if (!this.lfoHistory[l].length || this.lfoHistory[l][0] != midiValue) {
@@ -200,6 +216,20 @@ class AcidMachine extends Machine {
                     })
                   }
                 }
+              }
+              const newValues = {}
+              performancePaths.forEach( perfPath => newValues[perfPath] = this.interface.getParameter(perfPath, 'modulated') )
+              const deltaValues = Interface.difference(newValues, oldValues)
+
+              //      debug('modulation impact: old %y new %y delta %y ', oldValues, newValues, deltaValues)
+
+              const deltaKeys = Object.keys(deltaValues)
+
+              if (deltaKeys.length) {
+                deltaKeys.forEach( deltaKey => {
+                  this.interface.emit('modulationChange', deltaKey, deltaValues[deltaKey], 'lfo')
+                })
+                debug('lfo modulation impact: %y', deltaValues)
               }
             }
             if (this.getState('pattern') && !this.interface.getParameter('mute')) {
@@ -388,10 +418,64 @@ class AcidMachine extends Machine {
     }
 
     const lfoShapeChange = (lfoIdx) => {
+      const myLfoPhaseDetection = lfoPhaseDetection(lfoIdx)
       return (elementPath, value, origin) => {
         /*        debug('Parameter Side Effect lfo.%d.shape: Hello World! %y = %y (from %y)', lfoIdx, elementPath, value, origin)*/
         const shapes = ['sine', 'triangle', 'saw-up', 'saw-down', 'square', 'random']
         this.setState(`lfo.${lfoIdx}.shapeName`, shapes[value])
+        myLfoPhaseDetection(elementPath, value, origin)
+      }
+    }
+
+    const lfoPhaseDetection = (lfoIdx)  => {
+      return (elementPath, value, origin) => {
+        if (phaseDetection && this.getState('playing') && this.lfoHistory.length >= 2) {
+          const phaseDetectionShapes = ['sine', 'triangle', 'saw-up', 'saw-down']
+          if (phaseDetectionShapes.indexOf(this.getState(`lfo.${lfoIdx}.shapeName`)) >= 0 /*&& phaseDetectionShapes.indexOf(oldShapeName) >= 0*/) {
+            const value = this.lfoValue(lfoIdx)
+            if (Number.isInteger(value)) {
+
+              debug('hi')
+              const phaseValues = []
+              for (let p = 0; p <= 100; p++) {
+                phaseValues[p] = this.lfoValue(lfoIdx, p)
+              }
+
+              // debug('YES HI %y %y %y',value,lfoHistory[l],phaseValues)
+              let pIndex
+              let pDiff = 255
+              for (let p = 0; p <= 100; p++) {
+                const diff = Math.abs(phaseValues[p] - value)
+                if (diff < pDiff) {
+                  pIndex = p
+                  pDiff = diff
+                }
+              }
+              if (Number.isInteger(pIndex)) {
+                let pDelta = Math.abs(pIndex - this.interface.getParameter(`lfo.${lfoIdx}.phase`, 0))
+
+                for (let p = 0; p <= 100; p++) {
+                  const diff = Math.abs(phaseValues[p] - value)
+                  if (diff == pDiff) {
+                    const delta = Math.abs(p - this.interface.getParameter(`lfo.${lfoIdx}.phase`, 0))
+                    const pDir = (phaseValues[p] - phaseValues[p > 0 ? p - 1 : 100]) > 0 ? 1 : -1
+                    const rDir = (this.lfoHistory[lfoIdx][0] - this.lfoHistory[lfoIdx][1]) > 0 ? 1 : -1
+                    // debug('Diff pos %y  pDir:%y curr:%y prev:%y  rDir:%y history:%y',p,pDir,phaseValues[p],phaseValues[p>0?p-1:100],rDir,lfoHistory[l])
+                    if (pDir == rDir && delta <= pDelta) { // Direction is same, prefer this re-position of Phase
+                      pIndex = p
+                      pDelta = delta
+                      // debug('better %y %y',p,delta)
+                    }
+                  }
+                }
+                this.interface.setParameter(`lfo.${lfoIdx}.phase`, pIndex)
+                debug('Reposition Phase: %y', pIndex)
+              }
+            }
+          } else {
+            // debug('NO %y %y',phaseDetectionShapes.indexOf(this.lfo[l].shapeName)>=0,phaseDetectionShapes.indexOf(oldShapeName)>=0)
+          }
+        }
       }
     }
 
@@ -401,7 +485,6 @@ class AcidMachine extends Machine {
         this.interface.matrixRemodulate(elementPath)
       }
     }
-
 
 
     this.parameterSideEffects = {
@@ -458,11 +541,26 @@ class AcidMachine extends Machine {
           channel: deviceChannelChange('B'),
         },
       },
-      lfo: [
-        { shape: lfoShapeChange(0) },
-        { shape: lfoShapeChange(1) },
-        { shape: lfoShapeChange(2) },
-      ],
+
+      lfo: [{
+        shape: lfoShapeChange(0),
+        amount: lfoPhaseDetection(0),
+        rate: lfoPhaseDetection(0),
+        offset: lfoPhaseDetection(0),
+        density: lfoPhaseDetection(0),
+      }, {
+        shape: lfoShapeChange(1),
+        amount: lfoPhaseDetection(1),
+        rate: lfoPhaseDetection(1),
+        offset: lfoPhaseDetection(1),
+        density: lfoPhaseDetection(1),
+      }, {
+        shape: lfoShapeChange(2),
+        amount: lfoPhaseDetection(2),
+        rate: lfoPhaseDetection(2),
+        offset: lfoPhaseDetection(2),
+        density: lfoPhaseDetection(2),
+      }, ],
       matrix: {
         slot: [
           {
@@ -557,7 +655,7 @@ class AcidMachine extends Machine {
 
   lfoValue(lfoIdx, phase /*optional*/) {
     let result
-    if (this.interface.getParameter(`lfo.${lfoIdx}.control`, 'modulated') > 0 && this.interface.getParameter(`lfo.${lfoIdx}.amount`, 'modulated') && (this.interface.getParameter(`lfo.${lfoIdx}.control`, 'modulated') < 128 || (this.interface.getParameter(`lfo.${lfoIdx}.device.A`, 'modulated') || this.interface.getParameter(`lfo.${lfoIdx}.device.B`, 'modulated')))) {
+    if (this.interface.getParameter(`lfo.${lfoIdx}.control`) > 0 && this.interface.getParameter(`lfo.${lfoIdx}.amount`, 'modulated') && (this.interface.getParameter(`lfo.${lfoIdx}.control`) < 128 || (this.interface.getParameter(`lfo.${lfoIdx}.device.A`, 'modulated') || this.interface.getParameter(`lfo.${lfoIdx}.device.B`, 'modulated')))) {
       const factor = (this.interface.getParameter(`lfo.${lfoIdx}.amount`, 'modulated') / 100)
       const base = Math.floor((((100 - this.interface.getParameter(`lfo.${lfoIdx}.amount`, 'modulated')) / 100) * 128) / 2)
       const offset = Math.floor(base * (((this.interface.getParameter(`lfo.${lfoIdx}.offset`, 'modulated') - 50) ) / 50) )
