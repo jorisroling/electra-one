@@ -60,6 +60,8 @@ module.exports = {
       min: 1.0,
       max: 5.0,
       default: 1.0,
+      precision: 3,
+      unit: '°',
     },
     previous_pattern: {
       name: 'Previous Pattern',
@@ -104,6 +106,7 @@ module.exports = {
       min: -64,
       max: 63,
       default: 0,
+      unit: 'notes',
     },
     gate: {
       name: 'Gate',
@@ -125,6 +128,7 @@ module.exports = {
       max: 1.92,
       default: 0.96,
       precision: 2,
+      unit: 'steps',
     },
     octaveChance: {
       name: 'Octave Chance',
@@ -146,6 +150,7 @@ module.exports = {
       max: 100,
       default: 0,
       precision: 0,
+      unit: '%',
     },
     density: {
       name: 'Density',
@@ -166,6 +171,7 @@ module.exports = {
       min: 0,
       max: 100,
       default: 100,
+      unit: '%',
     },
     probability: {
       name: 'Probability',
@@ -186,6 +192,7 @@ module.exports = {
       min: 0,
       max: 100,
       default: 100,
+      unit: '%',
     },
     killSteps: {
       name: 'Kill Steps',
@@ -206,6 +213,7 @@ module.exports = {
       min: 0,
       max: 16,
       default: 0,
+      unit: 'steps',
     },
     killShift: {
       name: 'Kill Shift',
@@ -226,6 +234,7 @@ module.exports = {
       min: -15,
       max: 15,
       default: 0,
+      unit: 'steps',
     },
     scales: {
       name: 'Scales Mode',
@@ -244,9 +253,48 @@ module.exports = {
         max: 127,
       },
       min: 0,
-      max: 30,
+      max: 36,
       default: 0,
       integer: true,
+      list: [
+        'Chromatic',
+        '8-Tone Spanish',
+        'Bhairav',
+        'Dorian #4',
+        'Dorian mode',
+        'Half-Whole Dim',
+        'Hirajoshi',
+        'Insen',
+        'Iwato',
+        'Kumoi',
+        'Locrian Mode',
+        'Locrian Super',
+        'Lydian Augment',
+        'Lydian Dominan',
+        'Lydian Mode',
+        'Major Harmonic',
+        'Major Pentatnc',
+        'Major',
+        'Messiaen 3',
+        'Messiaen 4',
+        'Messiaen 5',
+        'Messiaen 6',
+        'Messiaen 7',
+        'Minor Blues',
+        'Minor Harmonic',
+        'Minor Hungrian',
+        'Minor Mldc Dwn',
+        'Minor Mldc Up',
+        'Minor Pentatnc',
+        'Minor',
+        'Mixolydian Mde',
+        'Pelog Selisir',
+        'Pelog Tembung',
+        'Phrygian Domnt',
+        'Phrygian Mode',
+        'Whole Tone',
+        'Whole-Half Dim',
+      ],
     },
     base: {
       name: 'Scales Base',
@@ -267,6 +315,7 @@ module.exports = {
       min: 0,
       max: 11,
       default: 0,
+      list: ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'],
     },
     shift: {
       name: 'Shift',
@@ -287,6 +336,7 @@ module.exports = {
       min: -16,
       max: 16,
       default: 0,
+      unit: 'steps',
     },
     split: {
       name: 'Split',
@@ -327,6 +377,7 @@ module.exports = {
       min: 0,
       max: 100,
       default: 0,
+      unit: '%',
     },
     reset_preset: {
       name: 'Reset Preset',
@@ -532,6 +583,7 @@ module.exports = {
           min: 0,
           max: 100,
           default: 100,
+          unit: '%',
         },
         amount: {
           name: 'LFO 1 Amount',
@@ -552,6 +604,7 @@ module.exports = {
           min: 0,
           max: 100,
           default: 100,
+          unit: '%',
         },
         offset: {
           name: 'LFO 1 Offset',
@@ -572,6 +625,7 @@ module.exports = {
           min: 0,
           max: 100,
           default: 50,
+          unit: '%',
         },
         density: {
           name: 'LFO 1 Density',
@@ -722,6 +776,7 @@ module.exports = {
           min: 0,
           max: 100,
           default: 100,
+          unit: '%',
         },
         amount: {
           name: 'LFO 2 Amount',
@@ -742,6 +797,7 @@ module.exports = {
           min: 0,
           max: 100,
           default: 100,
+          unit: '%',
         },
         offset: {
           name: 'LFO 2 Offset',
@@ -762,6 +818,7 @@ module.exports = {
           min: 0,
           max: 100,
           default: 50,
+          unit: '%',
         },
         density: {
           name: 'LFO 2 Density',
@@ -912,6 +969,7 @@ module.exports = {
           min: 0,
           max: 100,
           default: 100,
+          unit: '%',
         },
         amount: {
           name: 'LFO 3 Amount',
@@ -932,6 +990,7 @@ module.exports = {
           min: 0,
           max: 100,
           default: 100,
+          unit: '%',
         },
         offset: {
           name: 'LFO 3 Offset',
@@ -952,6 +1011,7 @@ module.exports = {
           min: 0,
           max: 100,
           default: 50,
+          unit: '%',
         },
         density: {
           name: 'LFO 3 Density',
@@ -1235,6 +1295,7 @@ module.exports = {
                 min: -100,
                 max: 100,
                 default: 0,
+                unit: '%',
               },
             },
             {
@@ -1265,6 +1326,7 @@ module.exports = {
                 min: -100,
                 max: 100,
                 default: 0,
+                unit: '%',
               },
             },
             {
@@ -1295,6 +1357,7 @@ module.exports = {
                 min: -100,
                 max: 100,
                 default: 0,
+                unit: '%',
               },
             },
           ],
@@ -1371,6 +1434,7 @@ module.exports = {
                 min: -100,
                 max: 100,
                 default: 0,
+                unit: '%',
               },
             },
             {
@@ -1401,6 +1465,7 @@ module.exports = {
                 min: -100,
                 max: 100,
                 default: 0,
+                unit: '%',
               },
             },
             {
@@ -1431,6 +1496,7 @@ module.exports = {
                 min: -100,
                 max: 100,
                 default: 0,
+                unit: '%',
               },
             },
           ],
@@ -1507,6 +1573,7 @@ module.exports = {
                 min: -100,
                 max: 100,
                 default: 0,
+                unit: '%',
               },
             },
             {
@@ -1537,6 +1604,7 @@ module.exports = {
                 min: -100,
                 max: 100,
                 default: 0,
+                unit: '%',
               },
             },
             {
@@ -1567,6 +1635,7 @@ module.exports = {
                 min: -100,
                 max: 100,
                 default: 0,
+                unit: '%',
               },
             },
           ],
