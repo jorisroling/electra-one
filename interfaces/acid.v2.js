@@ -315,7 +315,7 @@ module.exports = {
       min: 0,
       max: 11,
       default: 0,
-      list: ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'],
+      list: ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'],
     },
     shift: {
       name: 'Shift',
@@ -543,6 +543,7 @@ module.exports = {
           min: 0,
           max: 5,
           default: 0,
+          list: ['sine', 'triangle', 'saw-up', 'saw-down', 'square', 'random'],
         },
         rate: {
           name: 'LFO 1 Rate',
@@ -660,6 +661,7 @@ module.exports = {
           min: 0,
           max: 127,
           default: 0,
+          silent: true,
         },
       },
       {
@@ -736,6 +738,7 @@ module.exports = {
           min: 0,
           max: 5,
           default: 0,
+          list: ['sine', 'triangle', 'saw-up', 'saw-down', 'square', 'random'],
         },
         rate: {
           name: 'LFO 2 Rate',
@@ -929,6 +932,7 @@ module.exports = {
           min: 0,
           max: 5,
           default: 0,
+          list: ['sine', 'triangle', 'saw-up', 'saw-down', 'square', 'random'],
         },
         rate: {
           name: 'LFO 3 Rate',

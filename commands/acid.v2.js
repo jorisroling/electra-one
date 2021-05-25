@@ -51,7 +51,7 @@ class AcidMachine extends Machine {
 
 
     this.state.sounding = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-//    this.state.pattern = Acid.generate(this.state)
+    //    this.state.pattern = Acid.generate(this.state)
 
     this.actionSideEffects = {
       load: (elementPath, origin) => {
@@ -271,34 +271,11 @@ class AcidMachine extends Machine {
       }
     }
 
-    const lfoControlChange = (lfoIdx) => {
-      return (elementPath, value, origin) => {
-        if (origin == 'surface') {
-          if (value>=128) {
-            const control = value - 128
-            const names = [];
-            ['A', 'B'].forEach( dev => {
-              const deviceIdx = this.interface.getParameter(`device.${dev}.device`)
-              if (deviceIdx > 0 && config.devices) {
-                const deviceKeys = Object.keys(config.devices)
-                if (deviceKeys.length > deviceIdx - 1) {
-                  const device = deviceKeys[deviceIdx - 1]
-                  const deviceColor = (dev == 'A') ? chalk.hex('#FF0000') : chalk.hex('#0000FF')
-                  names.push(deviceColor(`${dev}: ` + device + ' ' + _.get(deviceCCs, `${device}.${control}`)))
-                }
-              }
-            } )
-            debug('LFO %d Control: %s', lfoIdx + 1, names.length ? ` [ ${names.join(', ')} ]` : '')
-          }
-        }
-      }
-    }
-
     const lfoShapeChange = (lfoIdx) => {
       const myLfoPhaseDetection = lfoPhaseDetection(lfoIdx)
       return (elementPath, value, origin) => {
-        const shapes = ['sine', 'triangle', 'saw-up', 'saw-down', 'square', 'random']
-        this.setState(`lfo.${lfoIdx}.shapeName`, shapes[value])
+        const list = this.interface.getElementAttribute(elementPath, 'list')
+        this.setState(`lfo.${lfoIdx}.shapeName`, list[value])
         myLfoPhaseDetection(elementPath, value, origin)
       }
     }
@@ -423,28 +400,29 @@ class AcidMachine extends Machine {
         },
       },
 
-      lfo: [{
-        control: lfoControlChange(0),
-        shape: lfoShapeChange(0),
-        amount: lfoPhaseDetection(0),
-        rate: lfoPhaseDetection(0),
-        offset: lfoPhaseDetection(0),
-        density: lfoPhaseDetection(0),
-      }, {
-        control: lfoControlChange(1),
-        shape: lfoShapeChange(1),
-        amount: lfoPhaseDetection(1),
-        rate: lfoPhaseDetection(1),
-        offset: lfoPhaseDetection(1),
-        density: lfoPhaseDetection(1),
-      }, {
-        control: lfoControlChange(2),
-        shape: lfoShapeChange(2),
-        amount: lfoPhaseDetection(2),
-        rate: lfoPhaseDetection(2),
-        offset: lfoPhaseDetection(2),
-        density: lfoPhaseDetection(2),
-      }, ],
+      lfo: [
+        {
+          shape: lfoShapeChange(0),
+          amount: lfoPhaseDetection(0),
+          rate: lfoPhaseDetection(0),
+          offset: lfoPhaseDetection(0),
+          density: lfoPhaseDetection(0),
+        },
+        {
+          shape: lfoShapeChange(1),
+          amount: lfoPhaseDetection(1),
+          rate: lfoPhaseDetection(1),
+          offset: lfoPhaseDetection(1),
+          density: lfoPhaseDetection(1),
+        },
+        {
+          shape: lfoShapeChange(2),
+          amount: lfoPhaseDetection(2),
+          rate: lfoPhaseDetection(2),
+          offset: lfoPhaseDetection(2),
+          density: lfoPhaseDetection(2),
+        },
+      ],
       matrix: {
         slot: [
           {
@@ -501,6 +479,48 @@ class AcidMachine extends Machine {
         ]
       },
     }
+
+
+
+    const lfoControlDisplay = (lfoIdx) => {
+      return (elementPath, value, origin, callback) => {
+        if (value >= 128 && value <= 255) {
+          const control = value - 128
+          const names = [];
+          ['A', 'B'].forEach( dev => {
+            const deviceIdx = this.interface.getParameter(`device.${dev}.device`)
+            if (deviceIdx > 0 && config.devices) {
+              const deviceKeys = Object.keys(config.devices)
+              if (deviceKeys.length > deviceIdx - 1) {
+                const device = deviceKeys[deviceIdx - 1]
+                const deviceColor = (dev == 'A') ? chalk.hex('#FF0000') : chalk.hex('#0000FF')
+                names.push(deviceColor(`${dev}: ` + device + ' ' + _.get(deviceCCs, `${device}.${control}`)))
+              }
+            }
+          } )
+          //          debug('LFO %d Control: %s', lfoIdx + 1, names.length ? ` [ ${names.join(', ')} ]` : '')
+          callback(`CC #${value - 128}` + (names.length ? ` [ ${names.join(', ')} ]` : ''))
+        } else {
+          const path = this.interface.getMapPath('external', 'cc', value)
+          if (path) {
+            const name = this.interface.getElementAttribute(path, 'name')
+            callback(name ? name : path)
+          }
+        }
+      }
+    }
+
+    this.displayHandlers = {
+      lfo: [{
+        control: lfoControlDisplay(0),
+      }, {
+        control: lfoControlDisplay(1),
+      }, {
+        control: lfoControlDisplay(2),
+      }, ],
+
+    }
+
   }
 
   sendProgramChange(dev) {
@@ -676,7 +696,7 @@ class AcidMachine extends Machine {
                   lfoControlCount += (this.interface.getParameter(`lfo.${j}.control`) == control ? 1 : 0)
                 }
                 const mod = Interface.remap(midiValue, 0, 127, 0.0, 1.0) / lfoControlCount
-/*                debug('mod %y=%y/%y',mod,midiValue,lfoControlCount)*/
+                /*                debug('mod %y=%y/%y',mod,midiValue,lfoControlCount)*/
                 this.interface.setModulation('lfo', path, this.interface.getModulation('lfo', path, 0) + mod)
 
                 // Can Electra handle many NRPN's?
@@ -700,7 +720,7 @@ class AcidMachine extends Machine {
                   if (cacheValue != midiValue) {
 
                     debugMidiControlChange('%s %d CC %y = %y', this.getState(`device.${dev}.portName`), channel + 1, this.interface.getParameter(`lfo.${l}.control`), midiValue)
-//                    debug('cc control %d %y = %d', l, control, midiValue)
+                    //                    debug('cc control %d %y = %d', l, control, midiValue)
 
                     if (!this.lfoHistory[l].length || this.lfoHistory[l][0] != midiValue) {
                       if (this.lfoHistory[l].unshift(midiValue) > 2) {
