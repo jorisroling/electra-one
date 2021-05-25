@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "Bacara Acid",
-  "projectId": "c9GhUWMxsRs26CB5jqMg",
+  "projectId": "VbwiUWbabmo1BCGlD2oV",
   "pages": [
     {
       "id": 1,
@@ -563,151 +563,6 @@
           "value": 0
         },
         {
-          "index": 1,
-          "label": "Transpose",
-          "value": 3
-        },
-        {
-          "index": 2,
-          "label": "Octave Chance",
-          "value": 9
-        },
-        {
-          "index": 3,
-          "label": "Density",
-          "value": 14
-        },
-        {
-          "index": 4,
-          "label": "Probability",
-          "value": 15
-        },
-        {
-          "index": 5,
-          "label": "Kill Steps",
-          "value": 16
-        },
-        {
-          "index": 6,
-          "label": "Kill Shift",
-          "value": 17
-        },
-        {
-          "index": 7,
-          "label": "Gate",
-          "value": 18
-        },
-        {
-          "index": 8,
-          "label": "Shift",
-          "value": 19
-        },
-        {
-          "index": 9,
-          "label": "Scale Mode",
-          "value": 20
-        },
-        {
-          "index": 10,
-          "label": "Scale Base",
-          "value": 21
-        },
-        {
-          "index": 11,
-          "label": "Device Split",
-          "value": 22
-        },
-        {
-          "index": 12,
-          "label": "Device Deviate",
-          "value": 23
-        },
-        {
-          "index": 23,
-          "label": "LFO 2 Shape",
-          "value": 87
-        },
-        {
-          "index": 24,
-          "label": "LFO 2 Amount",
-          "value": 88
-        },
-        {
-          "index": 25,
-          "label": "LFO 2 Rate",
-          "value": 89
-        },
-        {
-          "index": 26,
-          "label": "LFO 2 Offset",
-          "value": 90
-        },
-        {
-          "index": 27,
-          "label": "LFO 2 Phase",
-          "value": 102
-        },
-        {
-          "index": 28,
-          "label": "LFO 2 Density",
-          "value": 103
-        },
-        {
-          "index": 29,
-          "label": "LFO 2 Device A",
-          "value": 104
-        },
-        {
-          "index": 30,
-          "label": "LFO 2 Device B",
-          "value": 105
-        },
-        {
-          "index": 32,
-          "label": "LFO 3 Shape",
-          "value": 107
-        },
-        {
-          "index": 33,
-          "label": "LFO 3 Amount",
-          "value": 108
-        },
-        {
-          "index": 34,
-          "label": "LFO 3 Rate",
-          "value": 109
-        },
-        {
-          "index": 35,
-          "label": "LFO 3 Offset",
-          "value": 110
-        },
-        {
-          "index": 36,
-          "label": "LFO 3 Phase",
-          "value": 111
-        },
-        {
-          "index": 37,
-          "label": "LFO 3 Density",
-          "value": 112
-        },
-        {
-          "index": 38,
-          "label": "LFO 3 Device A",
-          "value": 113
-        },
-        {
-          "index": 39,
-          "label": "LFO 3 Device B",
-          "value": 114
-        },
-        {
-          "index": 40,
-          "label": "CC #0",
-          "value": 128
-        },
-        {
           "index": 41,
           "label": "CC #1",
           "value": 129
@@ -1341,6 +1196,146 @@
           "index": 167,
           "label": "CC #127",
           "value": 255
+        },
+        {
+          "index": 1,
+          "label": "Transpose",
+          "value": 3
+        },
+        {
+          "index": 2,
+          "label": "Octave Chance",
+          "value": 9
+        },
+        {
+          "index": 3,
+          "label": "Density",
+          "value": 14
+        },
+        {
+          "index": 4,
+          "label": "Probability",
+          "value": 15
+        },
+        {
+          "index": 5,
+          "label": "Kill Steps",
+          "value": 16
+        },
+        {
+          "index": 6,
+          "label": "Kill Shift",
+          "value": 17
+        },
+        {
+          "index": 7,
+          "label": "Gate",
+          "value": 18
+        },
+        {
+          "index": 8,
+          "label": "Shift",
+          "value": 19
+        },
+        {
+          "index": 9,
+          "label": "Scale Mode",
+          "value": 20
+        },
+        {
+          "index": 10,
+          "label": "Scale Base",
+          "value": 21
+        },
+        {
+          "index": 11,
+          "label": "Device Split",
+          "value": 22
+        },
+        {
+          "index": 12,
+          "label": "Device Deviate",
+          "value": 23
+        },
+        {
+          "index": 23,
+          "label": "LFO 2 Shape",
+          "value": 87
+        },
+        {
+          "index": 24,
+          "label": "LFO 2 Amount",
+          "value": 88
+        },
+        {
+          "index": 25,
+          "label": "LFO 2 Rate",
+          "value": 89
+        },
+        {
+          "index": 26,
+          "label": "LFO 2 Offset",
+          "value": 90
+        },
+        {
+          "index": 27,
+          "label": "LFO 2 Phase",
+          "value": 102
+        },
+        {
+          "index": 28,
+          "label": "LFO 2 Density",
+          "value": 103
+        },
+        {
+          "index": 29,
+          "label": "LFO 2 Device A",
+          "value": 104
+        },
+        {
+          "index": 30,
+          "label": "LFO 2 Device B",
+          "value": 105
+        },
+        {
+          "index": 32,
+          "label": "LFO 3 Shape",
+          "value": 107
+        },
+        {
+          "index": 33,
+          "label": "LFO 3 Amount",
+          "value": 108
+        },
+        {
+          "index": 34,
+          "label": "LFO 3 Rate",
+          "value": 109
+        },
+        {
+          "index": 35,
+          "label": "LFO 3 Offset",
+          "value": 110
+        },
+        {
+          "index": 36,
+          "label": "LFO 3 Phase",
+          "value": 111
+        },
+        {
+          "index": 37,
+          "label": "LFO 3 Density",
+          "value": 112
+        },
+        {
+          "index": 38,
+          "label": "LFO 3 Device A",
+          "value": 113
+        },
+        {
+          "index": 39,
+          "label": "LFO 3 Device B",
+          "value": 114
         }
       ]
     },
@@ -1388,6 +1383,641 @@
           "value": 0
         },
         {
+          "index": 41,
+          "label": "CC #1",
+          "value": 129
+        },
+        {
+          "index": 42,
+          "label": "CC #2",
+          "value": 130
+        },
+        {
+          "index": 43,
+          "label": "CC #3",
+          "value": 131
+        },
+        {
+          "index": 44,
+          "label": "CC #4",
+          "value": 132
+        },
+        {
+          "index": 45,
+          "label": "CC #5",
+          "value": 133
+        },
+        {
+          "index": 46,
+          "label": "CC #6",
+          "value": 134
+        },
+        {
+          "index": 47,
+          "label": "CC #7",
+          "value": 135
+        },
+        {
+          "index": 48,
+          "label": "CC #8",
+          "value": 136
+        },
+        {
+          "index": 49,
+          "label": "CC #9",
+          "value": 137
+        },
+        {
+          "index": 50,
+          "label": "CC #10",
+          "value": 138
+        },
+        {
+          "index": 51,
+          "label": "CC #11",
+          "value": 139
+        },
+        {
+          "index": 52,
+          "label": "CC #12",
+          "value": 140
+        },
+        {
+          "index": 53,
+          "label": "CC #13",
+          "value": 141
+        },
+        {
+          "index": 54,
+          "label": "CC #14",
+          "value": 142
+        },
+        {
+          "index": 55,
+          "label": "CC #15",
+          "value": 143
+        },
+        {
+          "index": 56,
+          "label": "CC #16",
+          "value": 144
+        },
+        {
+          "index": 57,
+          "label": "CC #17",
+          "value": 145
+        },
+        {
+          "index": 58,
+          "label": "CC #18",
+          "value": 146
+        },
+        {
+          "index": 59,
+          "label": "CC #19",
+          "value": 147
+        },
+        {
+          "index": 60,
+          "label": "CC #20",
+          "value": 148
+        },
+        {
+          "index": 61,
+          "label": "CC #21",
+          "value": 149
+        },
+        {
+          "index": 62,
+          "label": "CC #22",
+          "value": 150
+        },
+        {
+          "index": 63,
+          "label": "CC #23",
+          "value": 151
+        },
+        {
+          "index": 64,
+          "label": "CC #24",
+          "value": 152
+        },
+        {
+          "index": 65,
+          "label": "CC #25",
+          "value": 153
+        },
+        {
+          "index": 66,
+          "label": "CC #26",
+          "value": 154
+        },
+        {
+          "index": 67,
+          "label": "CC #27",
+          "value": 155
+        },
+        {
+          "index": 68,
+          "label": "CC #28",
+          "value": 156
+        },
+        {
+          "index": 69,
+          "label": "CC #29",
+          "value": 157
+        },
+        {
+          "index": 70,
+          "label": "CC #30",
+          "value": 158
+        },
+        {
+          "index": 71,
+          "label": "CC #31",
+          "value": 159
+        },
+        {
+          "index": 72,
+          "label": "CC #32",
+          "value": 160
+        },
+        {
+          "index": 73,
+          "label": "CC #33",
+          "value": 161
+        },
+        {
+          "index": 74,
+          "label": "CC #34",
+          "value": 162
+        },
+        {
+          "index": 75,
+          "label": "CC #35",
+          "value": 163
+        },
+        {
+          "index": 76,
+          "label": "CC #36",
+          "value": 164
+        },
+        {
+          "index": 77,
+          "label": "CC #37",
+          "value": 165
+        },
+        {
+          "index": 78,
+          "label": "CC #38",
+          "value": 166
+        },
+        {
+          "index": 79,
+          "label": "CC #39",
+          "value": 167
+        },
+        {
+          "index": 80,
+          "label": "CC #40",
+          "value": 168
+        },
+        {
+          "index": 81,
+          "label": "CC #41",
+          "value": 169
+        },
+        {
+          "index": 82,
+          "label": "CC #42",
+          "value": 170
+        },
+        {
+          "index": 83,
+          "label": "CC #43",
+          "value": 171
+        },
+        {
+          "index": 84,
+          "label": "CC #44",
+          "value": 172
+        },
+        {
+          "index": 85,
+          "label": "CC #45",
+          "value": 173
+        },
+        {
+          "index": 86,
+          "label": "CC #46",
+          "value": 174
+        },
+        {
+          "index": 87,
+          "label": "CC #47",
+          "value": 175
+        },
+        {
+          "index": 88,
+          "label": "CC #48",
+          "value": 176
+        },
+        {
+          "index": 89,
+          "label": "CC #49",
+          "value": 177
+        },
+        {
+          "index": 90,
+          "label": "CC #50",
+          "value": 178
+        },
+        {
+          "index": 91,
+          "label": "CC #51",
+          "value": 179
+        },
+        {
+          "index": 92,
+          "label": "CC #52",
+          "value": 180
+        },
+        {
+          "index": 93,
+          "label": "CC #53",
+          "value": 181
+        },
+        {
+          "index": 94,
+          "label": "CC #54",
+          "value": 182
+        },
+        {
+          "index": 95,
+          "label": "CC #55",
+          "value": 183
+        },
+        {
+          "index": 96,
+          "label": "CC #56",
+          "value": 184
+        },
+        {
+          "index": 97,
+          "label": "CC #57",
+          "value": 185
+        },
+        {
+          "index": 98,
+          "label": "CC #58",
+          "value": 186
+        },
+        {
+          "index": 99,
+          "label": "CC #59",
+          "value": 187
+        },
+        {
+          "index": 100,
+          "label": "CC #60",
+          "value": 188
+        },
+        {
+          "index": 101,
+          "label": "CC #61",
+          "value": 189
+        },
+        {
+          "index": 102,
+          "label": "CC #62",
+          "value": 190
+        },
+        {
+          "index": 103,
+          "label": "CC #63",
+          "value": 191
+        },
+        {
+          "index": 104,
+          "label": "CC #64",
+          "value": 192
+        },
+        {
+          "index": 105,
+          "label": "CC #65",
+          "value": 193
+        },
+        {
+          "index": 106,
+          "label": "CC #66",
+          "value": 194
+        },
+        {
+          "index": 107,
+          "label": "CC #67",
+          "value": 195
+        },
+        {
+          "index": 108,
+          "label": "CC #68",
+          "value": 196
+        },
+        {
+          "index": 109,
+          "label": "CC #69",
+          "value": 197
+        },
+        {
+          "index": 110,
+          "label": "CC #70",
+          "value": 198
+        },
+        {
+          "index": 111,
+          "label": "CC #71",
+          "value": 199
+        },
+        {
+          "index": 112,
+          "label": "CC #72",
+          "value": 200
+        },
+        {
+          "index": 113,
+          "label": "CC #73",
+          "value": 201
+        },
+        {
+          "index": 114,
+          "label": "CC #74",
+          "value": 202
+        },
+        {
+          "index": 115,
+          "label": "CC #75",
+          "value": 203
+        },
+        {
+          "index": 116,
+          "label": "CC #76",
+          "value": 204
+        },
+        {
+          "index": 117,
+          "label": "CC #77",
+          "value": 205
+        },
+        {
+          "index": 118,
+          "label": "CC #78",
+          "value": 206
+        },
+        {
+          "index": 119,
+          "label": "CC #79",
+          "value": 207
+        },
+        {
+          "index": 120,
+          "label": "CC #80",
+          "value": 208
+        },
+        {
+          "index": 121,
+          "label": "CC #81",
+          "value": 209
+        },
+        {
+          "index": 122,
+          "label": "CC #82",
+          "value": 210
+        },
+        {
+          "index": 123,
+          "label": "CC #83",
+          "value": 211
+        },
+        {
+          "index": 124,
+          "label": "CC #84",
+          "value": 212
+        },
+        {
+          "index": 125,
+          "label": "CC #85",
+          "value": 213
+        },
+        {
+          "index": 126,
+          "label": "CC #86",
+          "value": 214
+        },
+        {
+          "index": 127,
+          "label": "CC #87",
+          "value": 215
+        },
+        {
+          "index": 128,
+          "label": "CC #88",
+          "value": 216
+        },
+        {
+          "index": 129,
+          "label": "CC #89",
+          "value": 217
+        },
+        {
+          "index": 130,
+          "label": "CC #90",
+          "value": 218
+        },
+        {
+          "index": 131,
+          "label": "CC #91",
+          "value": 219
+        },
+        {
+          "index": 132,
+          "label": "CC #92",
+          "value": 220
+        },
+        {
+          "index": 133,
+          "label": "CC #93",
+          "value": 221
+        },
+        {
+          "index": 134,
+          "label": "CC #94",
+          "value": 222
+        },
+        {
+          "index": 135,
+          "label": "CC #95",
+          "value": 223
+        },
+        {
+          "index": 136,
+          "label": "CC #96",
+          "value": 224
+        },
+        {
+          "index": 137,
+          "label": "CC #97",
+          "value": 225
+        },
+        {
+          "index": 138,
+          "label": "CC #98",
+          "value": 226
+        },
+        {
+          "index": 139,
+          "label": "CC #99",
+          "value": 227
+        },
+        {
+          "index": 140,
+          "label": "CC #100",
+          "value": 228
+        },
+        {
+          "index": 141,
+          "label": "CC #101",
+          "value": 229
+        },
+        {
+          "index": 142,
+          "label": "CC #102",
+          "value": 230
+        },
+        {
+          "index": 143,
+          "label": "CC #103",
+          "value": 231
+        },
+        {
+          "index": 144,
+          "label": "CC #104",
+          "value": 232
+        },
+        {
+          "index": 145,
+          "label": "CC #105",
+          "value": 233
+        },
+        {
+          "index": 146,
+          "label": "CC #106",
+          "value": 234
+        },
+        {
+          "index": 147,
+          "label": "CC #107",
+          "value": 235
+        },
+        {
+          "index": 148,
+          "label": "CC #108",
+          "value": 236
+        },
+        {
+          "index": 149,
+          "label": "CC #109",
+          "value": 237
+        },
+        {
+          "index": 150,
+          "label": "CC #110",
+          "value": 238
+        },
+        {
+          "index": 151,
+          "label": "CC #111",
+          "value": 239
+        },
+        {
+          "index": 152,
+          "label": "CC #112",
+          "value": 240
+        },
+        {
+          "index": 153,
+          "label": "CC #113",
+          "value": 241
+        },
+        {
+          "index": 154,
+          "label": "CC #114",
+          "value": 242
+        },
+        {
+          "index": 155,
+          "label": "CC #115",
+          "value": 243
+        },
+        {
+          "index": 156,
+          "label": "CC #116",
+          "value": 244
+        },
+        {
+          "index": 157,
+          "label": "CC #117",
+          "value": 245
+        },
+        {
+          "index": 158,
+          "label": "CC #118",
+          "value": 246
+        },
+        {
+          "index": 159,
+          "label": "CC #119",
+          "value": 247
+        },
+        {
+          "index": 160,
+          "label": "CC #120",
+          "value": 248
+        },
+        {
+          "index": 161,
+          "label": "CC #121",
+          "value": 249
+        },
+        {
+          "index": 162,
+          "label": "CC #122",
+          "value": 250
+        },
+        {
+          "index": 163,
+          "label": "CC #123",
+          "value": 251
+        },
+        {
+          "index": 164,
+          "label": "CC #124",
+          "value": 252
+        },
+        {
+          "index": 165,
+          "label": "CC #125",
+          "value": 253
+        },
+        {
+          "index": 166,
+          "label": "CC #126",
+          "value": 254
+        },
+        {
+          "index": 167,
+          "label": "CC #127",
+          "value": 255
+        },
+        {
           "index": 1,
           "label": "Transpose",
           "value": 3
@@ -1526,11 +2156,16 @@
           "index": 39,
           "label": "LFO 3 Device B",
           "value": 114
-        },
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "items": [
         {
-          "index": 40,
-          "label": "CC #0",
-          "value": 128
+          "index": 0,
+          "label": "Off",
+          "value": 0
         },
         {
           "index": 41,
@@ -2166,16 +2801,6 @@
           "index": 167,
           "label": "CC #127",
           "value": 255
-        }
-      ]
-    },
-    {
-      "id": 12,
-      "items": [
-        {
-          "index": 0,
-          "label": "Off",
-          "value": 0
         },
         {
           "index": 1,
@@ -2316,646 +2941,6 @@
           "index": 30,
           "label": "LFO 2 Device B",
           "value": 105
-        },
-        {
-          "index": 40,
-          "label": "CC #0",
-          "value": 128
-        },
-        {
-          "index": 41,
-          "label": "CC #1",
-          "value": 129
-        },
-        {
-          "index": 42,
-          "label": "CC #2",
-          "value": 130
-        },
-        {
-          "index": 43,
-          "label": "CC #3",
-          "value": 131
-        },
-        {
-          "index": 44,
-          "label": "CC #4",
-          "value": 132
-        },
-        {
-          "index": 45,
-          "label": "CC #5",
-          "value": 133
-        },
-        {
-          "index": 46,
-          "label": "CC #6",
-          "value": 134
-        },
-        {
-          "index": 47,
-          "label": "CC #7",
-          "value": 135
-        },
-        {
-          "index": 48,
-          "label": "CC #8",
-          "value": 136
-        },
-        {
-          "index": 49,
-          "label": "CC #9",
-          "value": 137
-        },
-        {
-          "index": 50,
-          "label": "CC #10",
-          "value": 138
-        },
-        {
-          "index": 51,
-          "label": "CC #11",
-          "value": 139
-        },
-        {
-          "index": 52,
-          "label": "CC #12",
-          "value": 140
-        },
-        {
-          "index": 53,
-          "label": "CC #13",
-          "value": 141
-        },
-        {
-          "index": 54,
-          "label": "CC #14",
-          "value": 142
-        },
-        {
-          "index": 55,
-          "label": "CC #15",
-          "value": 143
-        },
-        {
-          "index": 56,
-          "label": "CC #16",
-          "value": 144
-        },
-        {
-          "index": 57,
-          "label": "CC #17",
-          "value": 145
-        },
-        {
-          "index": 58,
-          "label": "CC #18",
-          "value": 146
-        },
-        {
-          "index": 59,
-          "label": "CC #19",
-          "value": 147
-        },
-        {
-          "index": 60,
-          "label": "CC #20",
-          "value": 148
-        },
-        {
-          "index": 61,
-          "label": "CC #21",
-          "value": 149
-        },
-        {
-          "index": 62,
-          "label": "CC #22",
-          "value": 150
-        },
-        {
-          "index": 63,
-          "label": "CC #23",
-          "value": 151
-        },
-        {
-          "index": 64,
-          "label": "CC #24",
-          "value": 152
-        },
-        {
-          "index": 65,
-          "label": "CC #25",
-          "value": 153
-        },
-        {
-          "index": 66,
-          "label": "CC #26",
-          "value": 154
-        },
-        {
-          "index": 67,
-          "label": "CC #27",
-          "value": 155
-        },
-        {
-          "index": 68,
-          "label": "CC #28",
-          "value": 156
-        },
-        {
-          "index": 69,
-          "label": "CC #29",
-          "value": 157
-        },
-        {
-          "index": 70,
-          "label": "CC #30",
-          "value": 158
-        },
-        {
-          "index": 71,
-          "label": "CC #31",
-          "value": 159
-        },
-        {
-          "index": 72,
-          "label": "CC #32",
-          "value": 160
-        },
-        {
-          "index": 73,
-          "label": "CC #33",
-          "value": 161
-        },
-        {
-          "index": 74,
-          "label": "CC #34",
-          "value": 162
-        },
-        {
-          "index": 75,
-          "label": "CC #35",
-          "value": 163
-        },
-        {
-          "index": 76,
-          "label": "CC #36",
-          "value": 164
-        },
-        {
-          "index": 77,
-          "label": "CC #37",
-          "value": 165
-        },
-        {
-          "index": 78,
-          "label": "CC #38",
-          "value": 166
-        },
-        {
-          "index": 79,
-          "label": "CC #39",
-          "value": 167
-        },
-        {
-          "index": 80,
-          "label": "CC #40",
-          "value": 168
-        },
-        {
-          "index": 81,
-          "label": "CC #41",
-          "value": 169
-        },
-        {
-          "index": 82,
-          "label": "CC #42",
-          "value": 170
-        },
-        {
-          "index": 83,
-          "label": "CC #43",
-          "value": 171
-        },
-        {
-          "index": 84,
-          "label": "CC #44",
-          "value": 172
-        },
-        {
-          "index": 85,
-          "label": "CC #45",
-          "value": 173
-        },
-        {
-          "index": 86,
-          "label": "CC #46",
-          "value": 174
-        },
-        {
-          "index": 87,
-          "label": "CC #47",
-          "value": 175
-        },
-        {
-          "index": 88,
-          "label": "CC #48",
-          "value": 176
-        },
-        {
-          "index": 89,
-          "label": "CC #49",
-          "value": 177
-        },
-        {
-          "index": 90,
-          "label": "CC #50",
-          "value": 178
-        },
-        {
-          "index": 91,
-          "label": "CC #51",
-          "value": 179
-        },
-        {
-          "index": 92,
-          "label": "CC #52",
-          "value": 180
-        },
-        {
-          "index": 93,
-          "label": "CC #53",
-          "value": 181
-        },
-        {
-          "index": 94,
-          "label": "CC #54",
-          "value": 182
-        },
-        {
-          "index": 95,
-          "label": "CC #55",
-          "value": 183
-        },
-        {
-          "index": 96,
-          "label": "CC #56",
-          "value": 184
-        },
-        {
-          "index": 97,
-          "label": "CC #57",
-          "value": 185
-        },
-        {
-          "index": 98,
-          "label": "CC #58",
-          "value": 186
-        },
-        {
-          "index": 99,
-          "label": "CC #59",
-          "value": 187
-        },
-        {
-          "index": 100,
-          "label": "CC #60",
-          "value": 188
-        },
-        {
-          "index": 101,
-          "label": "CC #61",
-          "value": 189
-        },
-        {
-          "index": 102,
-          "label": "CC #62",
-          "value": 190
-        },
-        {
-          "index": 103,
-          "label": "CC #63",
-          "value": 191
-        },
-        {
-          "index": 104,
-          "label": "CC #64",
-          "value": 192
-        },
-        {
-          "index": 105,
-          "label": "CC #65",
-          "value": 193
-        },
-        {
-          "index": 106,
-          "label": "CC #66",
-          "value": 194
-        },
-        {
-          "index": 107,
-          "label": "CC #67",
-          "value": 195
-        },
-        {
-          "index": 108,
-          "label": "CC #68",
-          "value": 196
-        },
-        {
-          "index": 109,
-          "label": "CC #69",
-          "value": 197
-        },
-        {
-          "index": 110,
-          "label": "CC #70",
-          "value": 198
-        },
-        {
-          "index": 111,
-          "label": "CC #71",
-          "value": 199
-        },
-        {
-          "index": 112,
-          "label": "CC #72",
-          "value": 200
-        },
-        {
-          "index": 113,
-          "label": "CC #73",
-          "value": 201
-        },
-        {
-          "index": 114,
-          "label": "CC #74",
-          "value": 202
-        },
-        {
-          "index": 115,
-          "label": "CC #75",
-          "value": 203
-        },
-        {
-          "index": 116,
-          "label": "CC #76",
-          "value": 204
-        },
-        {
-          "index": 117,
-          "label": "CC #77",
-          "value": 205
-        },
-        {
-          "index": 118,
-          "label": "CC #78",
-          "value": 206
-        },
-        {
-          "index": 119,
-          "label": "CC #79",
-          "value": 207
-        },
-        {
-          "index": 120,
-          "label": "CC #80",
-          "value": 208
-        },
-        {
-          "index": 121,
-          "label": "CC #81",
-          "value": 209
-        },
-        {
-          "index": 122,
-          "label": "CC #82",
-          "value": 210
-        },
-        {
-          "index": 123,
-          "label": "CC #83",
-          "value": 211
-        },
-        {
-          "index": 124,
-          "label": "CC #84",
-          "value": 212
-        },
-        {
-          "index": 125,
-          "label": "CC #85",
-          "value": 213
-        },
-        {
-          "index": 126,
-          "label": "CC #86",
-          "value": 214
-        },
-        {
-          "index": 127,
-          "label": "CC #87",
-          "value": 215
-        },
-        {
-          "index": 128,
-          "label": "CC #88",
-          "value": 216
-        },
-        {
-          "index": 129,
-          "label": "CC #89",
-          "value": 217
-        },
-        {
-          "index": 130,
-          "label": "CC #90",
-          "value": 218
-        },
-        {
-          "index": 131,
-          "label": "CC #91",
-          "value": 219
-        },
-        {
-          "index": 132,
-          "label": "CC #92",
-          "value": 220
-        },
-        {
-          "index": 133,
-          "label": "CC #93",
-          "value": 221
-        },
-        {
-          "index": 134,
-          "label": "CC #94",
-          "value": 222
-        },
-        {
-          "index": 135,
-          "label": "CC #95",
-          "value": 223
-        },
-        {
-          "index": 136,
-          "label": "CC #96",
-          "value": 224
-        },
-        {
-          "index": 137,
-          "label": "CC #97",
-          "value": 225
-        },
-        {
-          "index": 138,
-          "label": "CC #98",
-          "value": 226
-        },
-        {
-          "index": 139,
-          "label": "CC #99",
-          "value": 227
-        },
-        {
-          "index": 140,
-          "label": "CC #100",
-          "value": 228
-        },
-        {
-          "index": 141,
-          "label": "CC #101",
-          "value": 229
-        },
-        {
-          "index": 142,
-          "label": "CC #102",
-          "value": 230
-        },
-        {
-          "index": 143,
-          "label": "CC #103",
-          "value": 231
-        },
-        {
-          "index": 144,
-          "label": "CC #104",
-          "value": 232
-        },
-        {
-          "index": 145,
-          "label": "CC #105",
-          "value": 233
-        },
-        {
-          "index": 146,
-          "label": "CC #106",
-          "value": 234
-        },
-        {
-          "index": 147,
-          "label": "CC #107",
-          "value": 235
-        },
-        {
-          "index": 148,
-          "label": "CC #108",
-          "value": 236
-        },
-        {
-          "index": 149,
-          "label": "CC #109",
-          "value": 237
-        },
-        {
-          "index": 150,
-          "label": "CC #110",
-          "value": 238
-        },
-        {
-          "index": 151,
-          "label": "CC #111",
-          "value": 239
-        },
-        {
-          "index": 152,
-          "label": "CC #112",
-          "value": 240
-        },
-        {
-          "index": 153,
-          "label": "CC #113",
-          "value": 241
-        },
-        {
-          "index": 154,
-          "label": "CC #114",
-          "value": 242
-        },
-        {
-          "index": 155,
-          "label": "CC #115",
-          "value": 243
-        },
-        {
-          "index": 156,
-          "label": "CC #116",
-          "value": 244
-        },
-        {
-          "index": 157,
-          "label": "CC #117",
-          "value": 245
-        },
-        {
-          "index": 158,
-          "label": "CC #118",
-          "value": 246
-        },
-        {
-          "index": 159,
-          "label": "CC #119",
-          "value": 247
-        },
-        {
-          "index": 160,
-          "label": "CC #120",
-          "value": 248
-        },
-        {
-          "index": 161,
-          "label": "CC #121",
-          "value": 249
-        },
-        {
-          "index": 162,
-          "label": "CC #122",
-          "value": 250
-        },
-        {
-          "index": 163,
-          "label": "CC #123",
-          "value": 251
-        },
-        {
-          "index": 164,
-          "label": "CC #124",
-          "value": 252
-        },
-        {
-          "index": 165,
-          "label": "CC #125",
-          "value": 253
-        },
-        {
-          "index": 166,
-          "label": "CC #126",
-          "value": 254
-        },
-        {
-          "index": 167,
-          "label": "CC #127",
-          "value": 255
         }
       ]
     },
@@ -3876,39 +3861,6 @@
       ]
     },
     {
-      "id": 21,
-      "type": "fader",
-      "name": "14-BIT CC",
-      "color": "FFFFFF",
-      "bounds": [
-        340,
-        304,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 9,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "cc14",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 2,
-            "min": 0,
-            "max": 512
-          },
-          "id": "value"
-        }
-      ]
-    },
-    {
       "id": 22,
       "type": "fader",
       "name": "PROGRAM",
@@ -4740,6 +4692,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
@@ -4747,11 +4700,7 @@
             "parameterNumber": 7041,
             "min": 0,
             "max": 127
-          },
-          "min": -100,
-          "max": 100,
-          "defaultValue": 0,
-          "id": "value"
+          }
         }
       ]
     },
@@ -5084,6 +5033,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
@@ -5091,11 +5041,7 @@
             "parameterNumber": 7169,
             "min": 0,
             "max": 127
-          },
-          "min": -100,
-          "max": 100,
-          "defaultValue": 0,
-          "id": "value"
+          }
         }
       ]
     },
@@ -5428,6 +5374,7 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
@@ -5435,11 +5382,7 @@
             "parameterNumber": 7297,
             "min": 0,
             "max": 127
-          },
-          "min": -100,
-          "max": 100,
-          "defaultValue": 0,
-          "id": "value"
+          }
         }
       ]
     },

@@ -28,6 +28,10 @@ const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:midi
 const euclideanRhythms = require('euclidean-rhythms')
 const scaleMappings = require('../extra/scales/scales.json')
 
+const chalk = require('chalk')
+const { knownDeviceCCs } = require('../lib/devices')
+const deviceCCs = knownDeviceCCs()
+
 const phaseDetection = true
 
 function radians(degrees) {
@@ -50,6 +54,13 @@ class AcidMachine extends Machine {
 //    this.state.pattern = Acid.generate(this.state)
 
     this.actionSideEffects = {
+      load: (elementPath, origin) => {
+        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
+        if (origin == 'surface') {
+          this.interface.sendValues(origin)
+          debug('load')
+        }
+      },
       generate: (elementPath, origin) => {
         /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
@@ -128,170 +139,7 @@ class AcidMachine extends Machine {
       clock: (elementPath, origin) => {
         // debug('Action Side Effect %y: Hello World! (from %y)',elementPath,origin)
         if (origin == 'clock') {
-          const deltaTime = process.hrtime(this.pulseTime)
-          this.pulseTime = process.hrtime()
-
-          const ticks = (this.pulses % (24 * 4)) * 20
-          this.pulseDuration = (deltaTime[0] * 1000) + (deltaTime[1] / 1000000)
-
-          const ticksPerStep = 120
-          const stepIdx = ticks / ticksPerStep
-          if (this.getState('playing')) {
-            const tickDuration = this.pulseDuration / 20
-            const shiftedTicks = (ticks + (ticksPerStep * this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
-
-            if (!this.interface.getParameter('mute')) {
-              this.interface.clearModulation('lfo')
-
-              const performancePaths = this.interface.getMap('external', 'cc') ? Object.values(this.interface.getMap('external', 'cc')) : []
-              const oldValues = {}
-              performancePaths.forEach( perfPath => oldValues[perfPath] = this.interface.getParameter(perfPath, 'modulated') )
-
-              for (let l = 0; l < 3; l++) {
-                let control = this.interface.getParameter(`lfo.${l}.control`)
-
-                const value = this.lfoValue(l)
-                if (Number.isInteger(value)) {
-                  const midiValue = Math.min(127, Math.max(0, value))
-
-                  const devs = []
-
-                  if (control < 128) {
-                    const path = this.interface.getMapPath('external', 'cc', control)
-                    if (path) {
-                      debug('int control %d %y = %y %d', l, control, path, midiValue)
-
-                      if (!this.lfoHistory[l].length || this.lfoHistory[l][0] != midiValue) {
-                        if (this.lfoHistory[l].unshift(midiValue) > 2) {
-                          this.lfoHistory[l].splice(2)
-                        }
-                      }
-
-                      //this.interface.setParameter(path, midiValue, 'external')
-
-                      let lfoControlCount = 0
-                      for (let j = 0; j < 3; j++) {
-                        lfoControlCount += (this.interface.getParameter(`lfo.${l}.control`) == control ? 1 : 0)
-                      }
-                      const mod = Interface.remap(midiValue, 0, 127, -1.0, 1.0) / lfoControlCount
-                      this.interface.setModulation('lfo', path, this.interface.getModulation('lfo', path, 0) + mod)
-
-                      // Can Electra handle many NRPN's?
-                      this.interface.setParameter(`lfo.${l}.show`, Interface.remap(midiValue, 0, 127, -100, 100))
-                    }
-                  } else {
-                    control -= 128
-                    if (this.interface.getParameter(`lfo.${l}.device.A`)) {
-                      devs.push('A')
-                    }
-                    if (this.interface.getParameter(`lfo.${l}.device.B`)) {
-                      devs.push('B')
-                    }
-
-                    devs.forEach( dev => {
-                      if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`)) {
-                        const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
-                        const pth = `port_${this.getState(`device.${dev}.portName`)}.channel_${_.padStart(channel + 1, 2, '0')}.controller_${_.padStart(this.interface.getParameter(`lfo.${l}.control`), 3, '0')}`
-
-                        const cacheValue = this.midiCache.getValue(this.getState(`device.${dev}.portName`), channel, 'cc', this.interface.getParameter(`lfo.${l}.control`) )
-                        if (cacheValue != midiValue) {
-
-                          debugMidiControlChange('%s %d CC %y = %y', this.getState(`device.${dev}.portName`), channel + 1, this.interface.getParameter(`lfo.${l}.control`), midiValue)
-                          debug('cc control %d %y = %d', l, control, midiValue)
-
-                          if (!this.lfoHistory[l].length || this.lfoHistory[l][0] != midiValue) {
-                            if (this.lfoHistory[l].unshift(midiValue) > 2) {
-                              this.lfoHistory[l].splice(2)
-                            }
-                          }
-
-                          Midi.send(this.getState(`device.${dev}.portName`), 'cc', {channel, controller:control, value:midiValue})
-                          this.midiCache.setValue(this.getState(`device.${dev}.portName`), channel, 'cc', control, midiValue)
-
-                          // Can Electra handle many NRPN's?
-                          this.interface.setParameter(`lfo.${l}.show`, Interface.remap(midiValue, 0, 127, -100, 100))
-                          //sendNRPN(midiOutputName, config.acid.interface.lfo[l + 1].show.nrpn, 1, midiValue, 0, 50)
-                        }
-                      }
-                    })
-                  }
-                }
-              }
-              const newValues = {}
-              performancePaths.forEach( perfPath => newValues[perfPath] = this.interface.getParameter(perfPath, 'modulated') )
-              const deltaValues = Interface.difference(newValues, oldValues)
-
-              //      debug('modulation impact: old %y new %y delta %y ', oldValues, newValues, deltaValues)
-
-              const deltaKeys = Object.keys(deltaValues)
-
-              if (deltaKeys.length) {
-                deltaKeys.forEach( deltaKey => {
-                  this.interface.emit('modulationChange', deltaKey, deltaValues[deltaKey], 'lfo')
-                })
-                debug('lfo modulation impact: %y', deltaValues)
-              }
-            }
-            if (this.getState('pattern') && !this.interface.getParameter('mute')) {
-              this.getState('pattern').tracks[0].notes.forEach( (note) => {
-                if (note.ticks == shiftedTicks) {
-                  if (stepIdx < this.state.sounding.length && this.state.sounding[stepIdx]) {
-                    let midiNote = note.midi
-
-                    const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
-                    const midiNoteFromBase = (midiNote + this.interface.getParameter('base', 'modulated')) % 12
-                    const midiNoteBase =  midiNote - midiNoteFromBase
-                    if (scaleMapping && scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
-                      midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
-                    }
-
-                    midiNote += this.interface.getParameter('transpose', 'modulated') + ((stepIdx < this.state.octaves.length && this.state.octaves[stepIdx]) ? (this.state.octaves[stepIdx] * 12) : 0)
-
-                    const deviateRnd = Machine.getRandomInt(100)
-                    const switchChannel = (this.interface.getParameter('deviate', 'modulated') && this.interface.getParameter('deviate', 'modulated') >= deviateRnd)
-                    const channel = (midiNote <= this.interface.getParameter('split', 'modulated')) ? (switchChannel ? 1 : 0) : (switchChannel ? 0 : 1)
-                    const dev =  (midiNote <= this.interface.getParameter('split', 'modulated')) ? (switchChannel ? 'B' : 'A') : (switchChannel ? 'A' : 'B')
-
-                    let probabilityRnd = Machine.getRandomInt(100)
-                    if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability', 'modulated') >= probabilityRnd) {
-                      const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
-                      debugMidiNoteOn('%s %d %y', this.getState(`device.${dev}.portName`), channel + 1, midiNote)
-
-                      if (this.midiCache.getValue(this.getState(`device.${dev}.portName`), channel, 'note', midiNote)) {
-                        Midi.send(this.getState(`device.${dev}.portName`), 'noteoff', {
-                          note: midiNote,
-                          velocity: 127,
-                          channel: channel,
-                        })
-                      }
-                      Midi.send(this.getState(`device.${dev}.portName`), 'noteon', {
-                        note: midiNote,
-                        velocity: 127 * note.velocity,
-                        channel: channel,
-                      })
-                      this.midiCache.setValue(this.getState(`device.${dev}.portName`), channel, 'note', midiNote, true)
-
-                      const b = Math.floor(note.durationTicks / ticksPerStep) * ticksPerStep
-                      const r = (note.durationTicks % ticksPerStep) * this.interface.getParameter('gate', 'modulated')
-                      setTimeout((portName, midiNote, channel) => {
-                        debugMidiNoteOff('%s %d %y', portName, channel + 1, midiNote)
-                        Midi.send(portName, 'noteoff', {
-                          note: midiNote,
-                          velocity: 127,
-                          channel: channel,
-                        })
-                        this.midiCache.clearValue(this.getState(`device.${dev}.portName`), channel, 'note', midiNote)
-                      }, b + r, this.getState(`device.${dev}.portName`), midiNote, channel)
-                    }
-                  }
-                }
-              })
-            }
-            if (! (ticks % 1) ) {
-              this.steps++
-            }
-          }
-          this.pulses++
+          this.sequencer()
         }
       },
       start: (elementPath, origin) => {
@@ -301,6 +149,7 @@ class AcidMachine extends Machine {
           this.pulses = 0
           this.steps = 0
           this.pulseTime = process.hrtime()
+          this.writeState()
           debug('start')
         }
       },
@@ -308,6 +157,7 @@ class AcidMachine extends Machine {
         /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'clock') {
           this.setState('playing', false)
+          this.writeState()
           debug('stop')
         }
       },
@@ -316,6 +166,7 @@ class AcidMachine extends Machine {
         if (origin == 'clock') {
           this.setState('playing', true)
           this.pulseTime = process.hrtime()
+          this.writeState()
           debug('continue')
         }
       },
@@ -420,6 +271,29 @@ class AcidMachine extends Machine {
       }
     }
 
+    const lfoControlChange = (lfoIdx) => {
+      return (elementPath, value, origin) => {
+        if (origin == 'surface') {
+          if (value>=128) {
+            const control = value - 128
+            const names = [];
+            ['A', 'B'].forEach( dev => {
+              const deviceIdx = this.interface.getParameter(`device.${dev}.device`)
+              if (deviceIdx > 0 && config.devices) {
+                const deviceKeys = Object.keys(config.devices)
+                if (deviceKeys.length > deviceIdx - 1) {
+                  const device = deviceKeys[deviceIdx - 1]
+                  const deviceColor = (dev == 'A') ? chalk.hex('#FF0000') : chalk.hex('#0000FF')
+                  names.push(deviceColor(`${dev}: ` + device + ' ' + _.get(deviceCCs, `${device}.${control}`)))
+                }
+              }
+            } )
+            debug('LFO %d Control: %s', lfoIdx + 1, names.length ? ` [ ${names.join(', ')} ]` : '')
+          }
+        }
+      }
+    }
+
     const lfoShapeChange = (lfoIdx) => {
       const myLfoPhaseDetection = lfoPhaseDetection(lfoIdx)
       return (elementPath, value, origin) => {
@@ -437,7 +311,6 @@ class AcidMachine extends Machine {
             const value = this.lfoValue(lfoIdx)
             if (Number.isInteger(value)) {
 
-              debug('hi')
               const phaseValues = []
               for (let p = 0; p <= 100; p++) {
                 phaseValues[p] = this.lfoValue(lfoIdx, p)
@@ -470,8 +343,10 @@ class AcidMachine extends Machine {
                     }
                   }
                 }
-                this.interface.setParameter(`lfo.${lfoIdx}.phase`, pIndex)
-                debug('Reposition Phase: %y', pIndex)
+                if (this.interface.getParameter(`lfo.${lfoIdx}.phase`) != pIndex) {
+                  this.interface.setParameter(`lfo.${lfoIdx}.phase`, pIndex)
+                  debug('Reposition Phase: %y', pIndex)
+                }
               }
             }
           } else {
@@ -549,18 +424,21 @@ class AcidMachine extends Machine {
       },
 
       lfo: [{
+        control: lfoControlChange(0),
         shape: lfoShapeChange(0),
         amount: lfoPhaseDetection(0),
         rate: lfoPhaseDetection(0),
         offset: lfoPhaseDetection(0),
         density: lfoPhaseDetection(0),
       }, {
+        control: lfoControlChange(1),
         shape: lfoShapeChange(1),
         amount: lfoPhaseDetection(1),
         rate: lfoPhaseDetection(1),
         offset: lfoPhaseDetection(1),
         density: lfoPhaseDetection(1),
       }, {
+        control: lfoControlChange(2),
         shape: lfoShapeChange(2),
         amount: lfoPhaseDetection(2),
         rate: lfoPhaseDetection(2),
@@ -751,6 +629,173 @@ class AcidMachine extends Machine {
     return filePath
   }
 
+  sequencer() {
+    const deltaTime = process.hrtime(this.pulseTime)
+    this.pulseTime = process.hrtime()
+
+    const ticks = (this.pulses % (24 * 4)) * 20
+    this.pulseDuration = (deltaTime[0] * 1000) + (deltaTime[1] / 1000000)
+
+    const ticksPerStep = 120
+    const stepIdx = ticks / ticksPerStep
+    if (this.getState('playing')) {
+      const tickDuration = this.pulseDuration / 20
+      const shiftedTicks = (ticks + (ticksPerStep * this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
+
+      if (!this.interface.getParameter('mute')) {
+        this.interface.clearModulation('lfo')
+
+        const performancePaths = this.interface.getMap('external', 'cc') ? Object.values(this.interface.getMap('external', 'cc')) : []
+        const oldValues = {}
+        performancePaths.forEach( perfPath => oldValues[perfPath] = this.interface.getParameter(perfPath, 'modulated') )
+
+        for (let l = 0; l < 3; l++) {
+          let control = this.interface.getParameter(`lfo.${l}.control`)
+
+          const value = this.lfoValue(l)
+          if (Number.isInteger(value)) {
+            const midiValue = Math.min(127, Math.max(0, value))
+
+            const devs = []
+
+            if (control < 128) {
+              const path = this.interface.getMapPath('external', 'cc', control)
+              if (path) {
+                debug('int control %d %y = %y %d', l, control, path, midiValue)
+
+                if (!this.lfoHistory[l].length || this.lfoHistory[l][0] != midiValue) {
+                  if (this.lfoHistory[l].unshift(midiValue) > 2) {
+                    this.lfoHistory[l].splice(2)
+                  }
+                }
+
+                //this.interface.setParameter(path, midiValue, 'external')
+
+                let lfoControlCount = 0
+                for (let j = 0; j < 3; j++) {
+                  lfoControlCount += (this.interface.getParameter(`lfo.${j}.control`) == control ? 1 : 0)
+                }
+                const mod = Interface.remap(midiValue, 0, 127, 0.0, 1.0) / lfoControlCount
+/*                debug('mod %y=%y/%y',mod,midiValue,lfoControlCount)*/
+                this.interface.setModulation('lfo', path, this.interface.getModulation('lfo', path, 0) + mod)
+
+                // Can Electra handle many NRPN's?
+                this.interface.setParameter(`lfo.${l}.show`, midiValue)
+              }
+            } else {
+              control -= 128
+              if (this.interface.getParameter(`lfo.${l}.device.A`)) {
+                devs.push('A')
+              }
+              if (this.interface.getParameter(`lfo.${l}.device.B`)) {
+                devs.push('B')
+              }
+
+              devs.forEach( dev => {
+                if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`)) {
+                  const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
+                  const pth = `port_${this.getState(`device.${dev}.portName`)}.channel_${_.padStart(channel + 1, 2, '0')}.controller_${_.padStart(this.interface.getParameter(`lfo.${l}.control`), 3, '0')}`
+
+                  const cacheValue = this.midiCache.getValue(this.getState(`device.${dev}.portName`), channel, 'cc', this.interface.getParameter(`lfo.${l}.control`) )
+                  if (cacheValue != midiValue) {
+
+                    debugMidiControlChange('%s %d CC %y = %y', this.getState(`device.${dev}.portName`), channel + 1, this.interface.getParameter(`lfo.${l}.control`), midiValue)
+//                    debug('cc control %d %y = %d', l, control, midiValue)
+
+                    if (!this.lfoHistory[l].length || this.lfoHistory[l][0] != midiValue) {
+                      if (this.lfoHistory[l].unshift(midiValue) > 2) {
+                        this.lfoHistory[l].splice(2)
+                      }
+                    }
+
+                    Midi.send(this.getState(`device.${dev}.portName`), 'cc', {channel, controller:control, value:midiValue})
+                    this.midiCache.setValue(this.getState(`device.${dev}.portName`), channel, 'cc', control, midiValue)
+
+                    // Can Electra handle many NRPN's?
+                    this.interface.setParameter(`lfo.${l}.show`, midiValue)
+                    //sendNRPN(midiOutputName, config.acid.interface.lfo[l + 1].show.nrpn, 1, midiValue, 0, 50)
+                  }
+                }
+              })
+            }
+          }
+        }
+        const newValues = {}
+        performancePaths.forEach( perfPath => newValues[perfPath] = this.interface.getParameter(perfPath, 'modulated') )
+        const deltaValues = Interface.difference(newValues, oldValues)
+
+        //      debug('modulation impact: old %y new %y delta %y ', oldValues, newValues, deltaValues)
+
+        const deltaKeys = Object.keys(deltaValues)
+
+        if (deltaKeys.length) {
+          deltaKeys.forEach( deltaKey => {
+            this.interface.emit('modulationChange', deltaKey, deltaValues[deltaKey], 'lfo')
+          })
+          debug('lfo modulation impact: %y', deltaValues)
+        }
+      }
+      if (this.getState('pattern') && !this.interface.getParameter('mute')) {
+        this.getState('pattern').tracks[0].notes.forEach( (note) => {
+          if (note.ticks == shiftedTicks) {
+            if (stepIdx < this.state.sounding.length && this.state.sounding[stepIdx]) {
+              let midiNote = note.midi
+
+              const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
+              const midiNoteFromBase = (midiNote + this.interface.getParameter('base', 'modulated')) % 12
+              const midiNoteBase =  midiNote - midiNoteFromBase
+              if (scaleMapping && scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
+                midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
+              }
+
+              midiNote += this.interface.getParameter('transpose', 'modulated') + ((stepIdx < this.state.octaves.length && this.state.octaves[stepIdx]) ? (this.state.octaves[stepIdx] * 12) : 0)
+
+              const deviateRnd = Machine.getRandomInt(100)
+              const switchChannel = (this.interface.getParameter('deviate', 'modulated') && this.interface.getParameter('deviate', 'modulated') >= deviateRnd)
+              const channel = (midiNote <= this.interface.getParameter('split', 'modulated')) ? (switchChannel ? 1 : 0) : (switchChannel ? 0 : 1)
+              const dev =  (midiNote <= this.interface.getParameter('split', 'modulated')) ? (switchChannel ? 'B' : 'A') : (switchChannel ? 'A' : 'B')
+
+              let probabilityRnd = Machine.getRandomInt(100)
+              if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability', 'modulated') >= probabilityRnd) {
+                const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
+                debugMidiNoteOn('%s %d %y', this.getState(`device.${dev}.portName`), channel + 1, midiNote)
+
+                if (this.midiCache.getValue(this.getState(`device.${dev}.portName`), channel, 'note', midiNote)) {
+                  Midi.send(this.getState(`device.${dev}.portName`), 'noteoff', {
+                    note: midiNote,
+                    velocity: 127,
+                    channel: channel,
+                  })
+                }
+                Midi.send(this.getState(`device.${dev}.portName`), 'noteon', {
+                  note: midiNote,
+                  velocity: 127 * note.velocity,
+                  channel: channel,
+                })
+                this.midiCache.setValue(this.getState(`device.${dev}.portName`), channel, 'note', midiNote, true)
+
+                const b = Math.floor(note.durationTicks / ticksPerStep) * ticksPerStep
+                const r = (note.durationTicks % ticksPerStep) * this.interface.getParameter('gate', 'modulated')
+                setTimeout((portName, midiNote, channel) => {
+                  debugMidiNoteOff('%s %d %y', portName, channel + 1, midiNote)
+                  Midi.send(portName, 'noteoff', {
+                    note: midiNote,
+                    velocity: 127,
+                    channel: channel,
+                  })
+                  this.midiCache.clearValue(this.getState(`device.${dev}.portName`), channel, 'note', midiNote)
+                }, b + r, this.getState(`device.${dev}.portName`), midiNote, channel)
+              }
+            }
+          }
+        })
+      }
+      if (! (ticks % 1) ) {
+        this.steps++
+      }
+    }
+    this.pulses++
+  }
 }
 
 
