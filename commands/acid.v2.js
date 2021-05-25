@@ -74,6 +74,8 @@ class AcidMachine extends Machine {
         if (origin == 'surface') {
           this.state.pattern = Acid.generate(this.state)
           this.state.last_pattern_but = 0
+          this.showPattern()
+          this.writeState()
           debug('generated')
         }
       },
@@ -83,6 +85,8 @@ class AcidMachine extends Machine {
           this.state.last_pattern_but += 1
 
           this.state.pattern = Acid.load_pattern(this.state)
+          this.showPattern()
+          this.writeState()
           debug('previous_pattern: %y', this.state.last_pattern_but)
         }
       },
@@ -95,6 +99,8 @@ class AcidMachine extends Machine {
           }
 
           this.state.pattern = Acid.load_pattern(this.state)
+          this.showPattern()
+          this.writeState()
           debug('next_pattern: %y', this.state.last_pattern_but)
         }
       },
@@ -105,6 +111,7 @@ class AcidMachine extends Machine {
           if (program >= 1 && program < 128) {
             const filename = this.load_preset(program - 1)
             if (filename) {
+              this.showPattern()
               this.sendProgramChange('A')
               this.sendProgramChange('B')
               this.interface.sendValues(origin)
@@ -121,6 +128,7 @@ class AcidMachine extends Machine {
           if (program >= 0 && program < 127) {
             const filename = this.load_preset(program + 1)
             if (filename) {
+              this.showPattern()
               this.sendProgramChange('A')
               this.sendProgramChange('B')
               this.interface.sendValues(origin)
@@ -130,16 +138,26 @@ class AcidMachine extends Machine {
           }
         }
       },
+      add_preset: (elementPath, origin) => {
+        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
+        if (origin == 'surface') {
+          const filename = this.add_preset()
+          debug('add_preset: %y',filename)
+        }
+      },
       save_preset: (elementPath, origin) => {
         debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'surface') {
-          this.save_preset()
+          const filename = this.save_preset()
+          debug('save_preset: %y',filename)
         }
       },
       reset_preset: (elementPath, origin) => {
         debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'surface') {
           this.interface.reset()
+          this.showPattern()
+          this.writeState()
         }
       },
       clock: (elementPath, origin) => {
@@ -744,12 +762,26 @@ class AcidMachine extends Machine {
     return count ? (Array.isArray(files) ? files.length : 0) : files
   }
 
-  save_preset(state) {
+  save_preset() {
+    const presetFiles = this.presetFiles()
+    const program = this.interface.getParameter('program')
+    if (program < presetFiles.length) {
+      const filePath = presetFiles[program]
+      this.writeState(filePath)
+      return filePath
+    }
+  }
+
+  add_preset() {
     const name = `Acid - ${new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')}`
     const filePath = path.resolve((process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/acid/${Acid.bankName(state)}/presets/${name.replace(/:/g, '.')}.json`) : `${__dirname}/../state/acid/${this.bankName()}/presets/${name.replace(/:/g, '.')}.json`)
     this.writeState(filePath)
     this.interface.setParameter('program', this.presetFiles(true) - 1)
     return filePath
+  }
+
+  bankName(state) {
+    return `bank-${('00' + this.interface.getParameter('bank',0)).slice(-3)}`
   }
 
   sequencer() {
