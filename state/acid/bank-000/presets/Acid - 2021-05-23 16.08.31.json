@@ -1,12 +1,11 @@
 {
   "name": "electra-one",
   "version": "1.0.22",
+  "model": "acid.v2",
+  "modulation": {},
   "state": {
     "device": {
       "A": {
-        "portName": "virus-ti"
-      },
-      "B": {
         "portName": "virus-ti"
       }
     },
@@ -244,7 +243,7 @@
         "program": 74
       }
     },
-    "gate": 1.67,
+    "gate": 1.0604761904761904,
     "killShift": 0,
     "killSteps": 0,
     "lfo": [
@@ -274,7 +273,7 @@
         "phase": 79,
         "rate": 1,
         "shape": 1,
-        "show": -51.181102362204726
+        "show": 0
       },
       {
         "amount": 0,
@@ -355,12 +354,11 @@
     "mute": 0,
     "octaveChance": 11,
     "probability": 100,
-    "program": 14,
+    "program": 20,
     "scales": 22,
     "shift": 0,
     "split": 56,
     "temperature": 3.07,
-    "test": 1,
     "transpose": 0
   }
 }

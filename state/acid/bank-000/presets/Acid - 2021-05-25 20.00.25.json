@@ -7,6 +7,9 @@
     "device": {
       "A": {
         "portName": "virus-ti"
+      },
+      "B": {
+        "portName": "typhon"
       }
     },
     "lfo": [
@@ -29,10 +32,10 @@
       0,
       0,
       0,
-      1,
       0,
       0,
-      1,
+      0,
+      0,
       0,
       0,
       0,
@@ -42,7 +45,7 @@
       "header": {
         "keySignatures": [],
         "meta": [],
-        "name": "Acid - 2021-05-12 13:57:49",
+        "name": "Acid - 2021-05-25 19:26:01",
         "ppq": 480,
         "tempos": [],
         "timeSignatures": []
@@ -57,31 +60,22 @@
             "name": "acoustic grand piano",
             "number": 0
           },
-          "name": "Acid - 2021-05-12 13:57:49",
+          "name": "Acid - 2021-05-25 19:26:01",
           "notes": [
             {
               "duration": 0.0625,
               "durationTicks": 60,
-              "midi": 65,
-              "name": "F4",
-              "ticks": 0,
-              "time": 0,
-              "velocity": 1
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 65,
-              "name": "F4",
+              "midi": 35,
+              "name": "B1",
               "ticks": 120,
               "time": 0.125,
               "velocity": 0.7874015748031497
             },
             {
-              "duration": 0.1875,
-              "durationTicks": 180,
-              "midi": 68,
-              "name": "G#4",
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 57,
+              "name": "A3",
               "ticks": 240,
               "time": 0.25,
               "velocity": 0.7874015748031497
@@ -89,91 +83,19 @@
             {
               "duration": 0.1875,
               "durationTicks": 180,
-              "midi": 53,
-              "name": "F3",
+              "midi": 64,
+              "name": "E4",
               "ticks": 360,
               "time": 0.375,
               "velocity": 0.7874015748031497
             },
             {
-              "duration": 0.1875,
-              "durationTicks": 180,
-              "midi": 57,
-              "name": "A3",
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 55,
+              "name": "G3",
               "ticks": 480,
               "time": 0.5,
-              "velocity": 0.7874015748031497
-            },
-            {
-              "duration": 0.1875,
-              "durationTicks": 180,
-              "midi": 53,
-              "name": "F3",
-              "ticks": 600,
-              "time": 0.625,
-              "velocity": 0.7874015748031497
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 29,
-              "name": "F1",
-              "ticks": 840,
-              "time": 0.875,
-              "velocity": 0.7874015748031497
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 37,
-              "name": "C#2",
-              "ticks": 960,
-              "time": 1,
-              "velocity": 1
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 29,
-              "name": "F1",
-              "ticks": 1080,
-              "time": 1.125,
-              "velocity": 0.7874015748031497
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 31,
-              "name": "G1",
-              "ticks": 1200,
-              "time": 1.25,
-              "velocity": 0.7874015748031497
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 31,
-              "name": "G1",
-              "ticks": 1320,
-              "time": 1.375,
-              "velocity": 0.7874015748031497
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 30,
-              "name": "F#1",
-              "ticks": 1440,
-              "time": 1.5,
-              "velocity": 0.7874015748031497
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 43,
-              "name": "G2",
-              "ticks": 1560,
-              "time": 1.625,
               "velocity": 1
             },
             {
@@ -181,17 +103,71 @@
               "durationTicks": 60,
               "midi": 33,
               "name": "A1",
-              "ticks": 1680,
-              "time": 1.75,
+              "ticks": 600,
+              "time": 0.625,
               "velocity": 0.7874015748031497
             },
             {
               "duration": 0.0625,
               "durationTicks": 60,
-              "midi": 31,
-              "name": "G1",
-              "ticks": 1800,
-              "time": 1.875,
+              "midi": 47,
+              "name": "B2",
+              "ticks": 720,
+              "time": 0.75,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 35,
+              "name": "B1",
+              "ticks": 840,
+              "time": 0.875,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 35,
+              "name": "B1",
+              "ticks": 1200,
+              "time": 1.25,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 37,
+              "name": "C#2",
+              "ticks": 1320,
+              "time": 1.375,
+              "velocity": 1
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 39,
+              "name": "D#2",
+              "ticks": 1440,
+              "time": 1.5,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 35,
+              "name": "B1",
+              "ticks": 1560,
+              "time": 1.625,
+              "velocity": 1
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 35,
+              "name": "B1",
+              "ticks": 1680,
+              "time": 1.75,
               "velocity": 0.7874015748031497
             }
           ],
@@ -222,69 +198,69 @@
   },
   "parameters": {
     "bank": 0,
-    "base": 3,
+    "base": 1,
     "density": 100,
-    "deviate": 15,
+    "deviate": 21,
     "device": {
       "A": {
-        "bank": 25,
+        "bank": 20,
         "channel": 1,
         "device": 1,
         "mute": 0,
         "port": 21,
-        "program": 18
+        "program": 20
       },
       "B": {
-        "bank": 13,
-        "channel": 2,
-        "device": 1,
+        "bank": 7,
+        "channel": 15,
+        "device": 3,
         "mute": 0,
-        "port": 21,
-        "program": 74
+        "port": 19,
+        "program": 19
       }
     },
-    "gate": 1.0755555555555556,
+    "gate": 0.96,
     "killShift": 0,
     "killSteps": 0,
     "lfo": [
       {
-        "amount": 79,
-        "control": 40,
+        "amount": 50,
+        "control": 168,
         "density": 127,
         "device": {
           "A": 1,
-          "B": 1
+          "B": 0
         },
-        "offset": 69,
-        "phase": 43,
-        "rate": 2,
+        "offset": 68,
+        "phase": 7,
+        "rate": 13,
         "shape": 1,
-        "show": 59.05511811023621
+        "show": 95
       },
       {
-        "amount": 86,
-        "control": 41,
+        "amount": 29,
+        "control": 132,
         "density": 127,
         "device": {
-          "A": 1,
+          "A": 0,
           "B": 1
         },
-        "offset": 76,
-        "phase": 79,
-        "rate": 1,
+        "offset": 67,
+        "phase": 0,
+        "rate": 6,
         "shape": 1,
-        "show": 0
+        "show": 76
       },
       {
-        "amount": 0,
+        "amount": 100,
         "control": 0,
-        "density": 0,
+        "density": 127,
         "device": {
           "A": 0,
           "B": 0
         },
         "offset": 50,
-        "phase": 0,
+        "phase": 100,
         "rate": 64,
         "shape": 0,
         "show": 0
@@ -295,8 +271,8 @@
         {
           "destination": [
             {
-              "amount": -100,
-              "target": 16
+              "amount": 0,
+              "target": 0
             },
             {
               "amount": 0,
@@ -307,15 +283,15 @@
               "target": 0
             }
           ],
-          "slewLimiter": 23,
-          "source": 2,
+          "slewLimiter": 0,
+          "source": 0,
           "value": 0
         },
         {
           "destination": [
             {
-              "amount": -100,
-              "target": 68
+              "amount": 0,
+              "target": 0
             },
             {
               "amount": 0,
@@ -326,8 +302,8 @@
               "target": 0
             }
           ],
-          "slewLimiter": 34,
-          "source": 1,
+          "slewLimiter": 0,
+          "source": 0,
           "value": 0
         },
         {
@@ -352,13 +328,13 @@
       ]
     },
     "mute": 0,
-    "octaveChance": 11,
+    "octaveChance": 0,
     "probability": 100,
-    "program": 19,
-    "scales": 22,
+    "program": 22,
+    "scales": 0,
     "shift": 0,
-    "split": 56,
-    "temperature": 3.07,
+    "split": 50,
+    "temperature": 1.24,
     "transpose": 0
   }
 }
