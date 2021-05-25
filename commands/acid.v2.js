@@ -11,6 +11,8 @@ const Acid = require('../lib/acid')
 
 const Midi = require('../lib/midi/midi')
 
+const { Midi:TonalMidi } = require('@tonaljs/tonal')
+
 const Machine = require('../lib/midi/machine')
 const Interface = require('../lib/midi/interface')
 const MidiCache = require('../lib/midi/cache')
@@ -33,6 +35,12 @@ const { knownDeviceCCs } = require('../lib/devices')
 const deviceCCs = knownDeviceCCs()
 
 const phaseDetection = true
+const tableParameters = ['scales', 'base', 'transpose', 'split', 'deviate']
+
+const toneJSmidi = require('@tonejs/midi')
+
+const Table = require('cli-table3')
+const ticksPerStep = 120
 
 function radians(degrees) {
   return (degrees % 360) * (Math.PI / 180)
@@ -93,34 +101,32 @@ class AcidMachine extends Machine {
       previous_preset: (elementPath, origin) => {
         /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
-          this.state.last_preset_but += 1
-
-          const filename = this.load_preset()
-          if (filename) {
-            this.sendProgramChange('A')
-            this.sendProgramChange('B')
-            this.interface.sendValues(origin)
-            this.writeState()
-            debug('previous_preset: %y %y', this.state.last_preset_but, path.basename(filename))
+          const program = this.interface.getParameter('program')
+          if (program >= 1 && program < 128) {
+            const filename = this.load_preset(program - 1)
+            if (filename) {
+              this.sendProgramChange('A')
+              this.sendProgramChange('B')
+              this.interface.sendValues(origin)
+              this.writeState()
+              debug('previous_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
+            }
           }
         }
       },
       next_preset: (elementPath, origin) => {
         /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
-
-          this.state.last_preset_but -= 1
-          if (this.state.last_preset_but < 0) {
-            this.state.last_preset_but = 0
-          }
-
-          const filename = this.load_preset()
-          if (filename) {
-            this.sendProgramChange('A')
-            this.sendProgramChange('B')
-            this.interface.sendValues(origin)
-            this.writeState()
-            debug('next_preset: %y %y', this.state.last_preset_but, path.basename(filename))
+          const program = this.interface.getParameter('program')
+          if (program >= 0 && program < 127) {
+            const filename = this.load_preset(program + 1)
+            if (filename) {
+              this.sendProgramChange('A')
+              this.sendProgramChange('B')
+              this.interface.sendValues(origin)
+              this.writeState()
+              debug('next_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
+            }
           }
         }
       },
@@ -383,6 +389,24 @@ class AcidMachine extends Machine {
           }
         }
       },
+      program: (elementPath, value, origin) => {
+        if (origin == 'surface') {
+          const presetFilesCount = Acid.presetFiles(this.state, true)
+          if (value >= 0 && value < presetFilesCount) {
+            const filename = this.load_preset(value)
+            if (filename) {
+              this.sendProgramChange('A')
+              this.sendProgramChange('B')
+              this.interface.sendValues()
+              this.writeState()
+              debug('program: %y %y', value, path.basename(filename))
+            }
+          } else {
+            debug('program: NOT PRESET %y', value)
+          }
+        }
+      },
+
       device: {
         A: {
           device: deviceDeviceChange('A'),
@@ -521,6 +545,94 @@ class AcidMachine extends Machine {
 
     }
 
+    this.interface.on('parameterChange', (path, value, origin) => {
+      if (tableParameters.indexOf(path) >= 0) {
+        this.showPattern()
+      }
+    })
+
+    this.interface.on('modulationChange', (path, value, reason) => {
+      if (tableParameters.indexOf(path) >= 0) {
+        this.showPattern()
+      }
+    })
+
+  }
+
+  showPattern() {
+
+    const pattern = this.getState('pattern')
+    const size = this.getState('size')
+    if (!pattern) {
+      return
+    }
+    const accentedColor = chalk.bgHex('#FF8800')
+    const normalColor = chalk.bgHex('#00BB00')
+    const disabledColor = chalk.bgHex('#666666')
+
+    const deviceAColor = chalk.hex('#FF0000')
+    const deviceBColor = chalk.hex('#0000FF')
+    //    const deviceAColor = chalk.hex('#F45C51')
+    //    const deviceBColor = chalk.hex('#529DEC')
+
+    let table = new Table(
+      {
+        head: [
+          'Device',
+          'Notes',
+          {colSpan:size, content:pattern.header.name + `              normal ${normalColor('  ')}   accented ${accentedColor('  ')}   disabled ${disabledColor('  ')}`}
+        ]
+        /*,style:{head:[],border:[]}*/
+      }
+    )
+
+    const notes = []
+    pattern.tracks[0].notes.forEach( note => {
+      if (notes.indexOf(note.midi) < 0) {
+        notes.push(note.midi)
+      }
+    })
+    notes.sort()
+    notes.reverse()
+
+    notes.forEach( noteMidi => {
+      let midiNote = noteMidi
+      const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
+      const midiNoteFromBase = (midiNote + this.interface.getParameter('base', 'modulated')) % 12
+      const midiNoteBase =  midiNote - midiNoteFromBase
+      if (scaleMapping && scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
+        //                debug('scale: %s %y => %y',scaleMapping.name, midiNoteFromBase, scaleMapping.mapping[midiNoteFromBase])
+        midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
+      }
+
+      const noteMidiTransposed = midiNote + this.interface.getParameter('transpose', 'modulated')
+
+
+      /*      debug('JJR: %y %y %y',(state && this.interface.getParameter('split','modulated') && noteMidiTransposed <= this.interface.getParameter('split','modulated')),this.interface.getParameter('split','modulated'),noteMidiTransposed)*/
+      const arr = [
+        {hAlign:'center', content:(this.interface.getParameter('split', 'modulated') && noteMidiTransposed <= this.interface.getParameter('split', 'modulated')) ? ((this.interface.getParameter('deviate', 'modulated') >= 50) ? deviceBColor('B') : deviceAColor('A')) : ((this.interface.getParameter('deviate', 'modulated') >= 50) ? deviceAColor('A') : deviceBColor('B')) },
+        {hAlign:'center', content:TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })/*+` ${noteMidi}`*/}
+      ]
+      for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
+        let chNote = '  '
+        pattern.tracks[0].notes.forEach( note => {
+          if (note.midi  == noteMidi && note.ticks == ticks) {
+            const count = Math.ceil(note.durationTicks / ticksPerStep)
+            const color = this.getState('sounding')[ticks / ticksPerStep] ? (note.velocity == 1 ? accentedColor : normalColor) : disabledColor
+            const rep = count * 2 + ((count - 1) * 3)
+            chNote = {colSpan:count, content:color(' '.repeat(rep >= 0 ? rep : 0))}
+            ticks += (count - 1) * ticksPerStep
+          }
+        })
+        if (chNote) {
+          arr.push(chNote)
+        }
+      }
+      table.push(arr)
+    })
+
+    /*    console.log(table.toString())*/
+    debug(table.toString())
   }
 
   sendProgramChange(dev) {
@@ -598,33 +710,25 @@ class AcidMachine extends Machine {
     return pat
   }
 
-  load_preset() {
-
+  load_preset(program) {
     const presetFiles = this.presetFiles()
 
-    let but = (this.state && this.state.last_preset_but ? this.state.last_preset_but : 0)
-    if (!but) {
-      but = 0
+    if (!program) {
+      program = 0
     }
-    if (but < 0) {
-      but = 0
+    if (program < 0) {
+      program = 0
     }
-    if (but > (presetFiles.length - 1)) {
-      but = presetFiles.length - 1
+    if (program > (presetFiles.length - 1)) {
+      program = presetFiles.length - 1
     }
-    if (this.state) {
-      this.state.last_preset_but = but
-    }
-
-    const filename = presetFiles[(presetFiles.length - 1) - but]
+    const filename = presetFiles[program]
     if (filename) {
       const bank = this.interface.getParameter('bank', 0)
       const playing = this.state.playing
-      const last_preset_but = this.state.last_preset_but
       this.readState(filename)
       this.interface.setParameter('bank', bank)
-      this.interface.setParameter('program', ((presetFiles.length - 1) - but) >= 0 ? ((presetFiles.length - 1) - but) : 0)
-      this.state.last_preset_but = last_preset_but
+      this.interface.setParameter('program', program)
       this.state.playing = playing
       return filename
     }
@@ -644,7 +748,6 @@ class AcidMachine extends Machine {
     const name = `Acid - ${new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')}`
     const filePath = path.resolve((process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/acid/${Acid.bankName(state)}/presets/${name.replace(/:/g, '.')}.json`) : `${__dirname}/../state/acid/${this.bankName()}/presets/${name.replace(/:/g, '.')}.json`)
     this.writeState(filePath)
-    this.state.last_preset_but = 0
     this.interface.setParameter('program', this.presetFiles(true) - 1)
     return filePath
   }
@@ -663,11 +766,14 @@ class AcidMachine extends Machine {
       const shiftedTicks = (ticks + (ticksPerStep * this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
 
       if (!this.interface.getParameter('mute')) {
-        this.interface.clearModulation('lfo')
 
         const performancePaths = this.interface.getMap('external', 'cc') ? Object.values(this.interface.getMap('external', 'cc')) : []
         const oldValues = {}
-        performancePaths.forEach( perfPath => oldValues[perfPath] = this.interface.getParameter(perfPath, 'modulated') )
+        performancePaths.forEach( perfPath => {
+          oldValues[perfPath] = this.interface.getParameter(perfPath, 'modulated')
+        })
+
+        this.interface.clearModulation('lfo')
 
         for (let l = 0; l < 3; l++) {
           let control = this.interface.getParameter(`lfo.${l}.control`)
@@ -681,7 +787,7 @@ class AcidMachine extends Machine {
             if (control < 128) {
               const path = this.interface.getMapPath('external', 'cc', control)
               if (path) {
-                debug('int control %d %y = %y %d', l, control, path, midiValue)
+                //debug('int control %d %y = %y %d', l, control, path, midiValue)
 
                 if (!this.lfoHistory[l].length || this.lfoHistory[l][0] != midiValue) {
                   if (this.lfoHistory[l].unshift(midiValue) > 2) {
@@ -751,8 +857,9 @@ class AcidMachine extends Machine {
         if (deltaKeys.length) {
           deltaKeys.forEach( deltaKey => {
             this.interface.emit('modulationChange', deltaKey, deltaValues[deltaKey], 'lfo')
+            //            debug('lfo modulation old: %y = %y', deltaKey, oldValues[deltaKey])
           })
-          debug('lfo modulation impact: %y', deltaValues)
+          debug('LFO Modulation Impact: %y', deltaValues)
         }
       }
       if (this.getState('pattern') && !this.interface.getParameter('mute')) {

@@ -3,7 +3,7 @@
 module.exports = {
 
   elements: {
-    test: {
+    /*    test: {
       name: 'Test',
       type: 'parameter',
       surface: {
@@ -26,6 +26,7 @@ module.exports = {
       max: 513,
       default: 1,
     },
+*/
     load: {
       name: 'Load',
       type: 'action',
