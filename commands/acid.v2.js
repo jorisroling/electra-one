@@ -35,7 +35,7 @@ const { knownDeviceCCs } = require('../lib/devices')
 const deviceCCs = knownDeviceCCs()
 
 const phaseDetection = true
-const tableParameters = ['scales', 'base', 'transpose', 'split', 'deviate']
+const tableParameters = ['transpose', 'density', 'killSteps', 'killShift', 'scales', 'base', 'split', 'deviate']
 
 const toneJSmidi = require('@tonejs/midi')
 
