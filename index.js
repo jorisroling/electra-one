@@ -26,8 +26,8 @@ args
   .option('general', 'General Input MIDI interface name (part)', 'KOMPLETE KONTROL M32')
   .option('generalChannel', 'General Input Channel (1-16)', 1)
 
-  .option('bank', 'Specify a bank as <1-6>', 0)
-  .option('slot', 'Specify a slot as <1-12>', 0)
+  .option('bank', 'For upload & remove commands: Specify a bank as <1-6>', 0)
+  .option('slot', 'For upload & remove commands: Specify a slot as <1-12>', 0)
 
 const commands = require('./lib/commands')
 
