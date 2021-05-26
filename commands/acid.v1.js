@@ -51,39 +51,6 @@ const shapes = ['sine', 'triangle', 'saw-up', 'saw-down', 'square', 'random']
 const phaseDetection = true
 
 
-const Machine = require('../lib/midi/machine')
-
-class AcidMachine extends Machine {
-  constructor(name) {
-    super(name)
-
-    this.parameterSideEffects = {
-      density: (path, value, origin) => {
-        debug('Parameter Side Effect Density: Hello World! %y = %y (from %y)', path, value, origin)
-        if (origin == 'surface' && value != 100) {
-          this.interface.setParameter('killSteps', 0)
-        }
-      },
-      killSteps: (path, value, origin) => {
-        debug('Parameter Side Effect killSteps: Hello World! %y = %y (from %y)', path, value, origin)
-        if (origin == 'surface' && value != 0) {
-          this.interface.setParameter('density', 100)
-        }
-      },
-      lfo: [
-        {
-          control(path, value, origin) {
-            debug('Parameter Side Effect Control: Hello World! %y = %y (from %y)', path, value, origin)
-          },
-        },
-      ],
-    }
-  }
-}
-const machine = new AcidMachine('acid.v2')
-machine.readState()
-machine.writeState()
-
 function difference(object, base) {
   return _.transform(object, (result, value, key) => {
     if (!_.isEqual(value, base[key])) {
@@ -1631,17 +1598,13 @@ function acidSequencer(name, sub, options) {
 
   }
 
-  /*  machine.connect(options.electra, 'surface')
-  machine.connect(options.general, 'external')
-  machine.connect(options.clock, 'clock')
-*/
   state.sendValues()
   Acid.table(state)
 }
 
 module.exports = {
-  name: 'acid',
-  description: 'Acid Sequencer',
+  name: 'acid.v1',
+  description: 'Acid Sequencer v1',
   examples: [
     {usage:'electra-one acid', description:'Starts acid sequencer'},
   ],

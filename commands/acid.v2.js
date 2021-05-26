@@ -142,14 +142,14 @@ class AcidMachine extends Machine {
         debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'surface') {
           const filename = this.add_preset()
-          debug('add_preset: %y',filename)
+          debug('add_preset: %y', filename)
         }
       },
       save_preset: (elementPath, origin) => {
         debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'surface') {
           const filename = this.save_preset()
-          debug('save_preset: %y',filename)
+          debug('save_preset: %y', filename)
         }
       },
       reset_preset: (elementPath, origin) => {
@@ -752,10 +752,6 @@ class AcidMachine extends Machine {
     }
   }
 
-  bankName() {
-    return `bank-${_.padStart(this.interface.getParameter('bank', 0), 3, '0')}`
-  }
-
   presetFiles(count = false) {
     const files = glob.sync(path.resolve(
       ( (process.env.NODE_ENV == 'production') ? path.join(untildify('~/.electra-one'), 'state', 'acid', this.bankName(), 'presets') : path.join(__dirname, '..', 'state', 'acid', this.bankName(), 'presets') ) + '/*.json'), {})
@@ -774,14 +770,14 @@ class AcidMachine extends Machine {
 
   add_preset() {
     const name = `Acid - ${new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')}`
-    const filePath = path.resolve((process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/acid/${Acid.bankName(state)}/presets/${name.replace(/:/g, '.')}.json`) : `${__dirname}/../state/acid/${this.bankName()}/presets/${name.replace(/:/g, '.')}.json`)
+    const filePath = path.resolve((process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/acid/${this.bankName()}/presets/${name.replace(/:/g, '.')}.json`) : `${__dirname}/../state/acid/${this.bankName()}/presets/${name.replace(/:/g, '.')}.json`)
     this.writeState(filePath)
     this.interface.setParameter('program', this.presetFiles(true) - 1)
     return filePath
   }
 
-  bankName(state) {
-    return `bank-${('00' + this.interface.getParameter('bank',0)).slice(-3)}`
+  bankName() {
+    return `bank-${_.padStart(this.interface.getParameter('bank', 0), 3, '0')}`
   }
 
   sequencer() {
