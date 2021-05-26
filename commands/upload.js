@@ -10,7 +10,7 @@ function uploadPresetFile(name, sub, options) {
 
   if (Number.isInteger(options.bank) && Number.isInteger(options.slot)) {
 
-    if (Array.isArray(sub) && sub[0]=='preset' && options.bank==0 && options.slot==0) {
+    if (Array.isArray(sub) && (sub[0]=='preset' || sub[0]=='config') && options.bank==0 && options.slot==0) {
       if (fs.existsSync(options.filename)) {
         const midiOutputCtrlPort = Midi.output(options.electraOneCtrl)
 
@@ -20,7 +20,7 @@ function uploadPresetFile(name, sub, options) {
           0x21,   /* manufacturer ID 2 - 0x21 */
           0x45,   /* manufacturer ID 3 - 0x45 */
           0x01,   /* Upload data */
-          0x01,   /* Preset File */
+          (sub[0]=='preset'?0x01:(sub[0]=='config'?0x02:0xFF),   /* Preset or Config File */
           /* data */
         ]
 

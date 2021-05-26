@@ -6,7 +6,7 @@ let args
 function removePresetFile(name, sub, options) {
   if (Number.isInteger(options.bank) && Number.isInteger(options.slot)) {
 
-    ['preset','script'].forEach( kind => {
+    ['preset','config','script'].forEach( kind => {
       if (Array.isArray(sub) && sub.indexOf(kind)>=0) {
         const midiOutputCtrlPort = Midi.output(options.electraOneCtrl)
 
@@ -16,7 +16,7 @@ function removePresetFile(name, sub, options) {
           0x21,   /* manufacturer ID 2 - 0x21 */
           0x45,   /* manufacturer ID 3 - 0x45 */
           0x05,   /* remove command */
-          kind=='preset'?0x01:(kind=='script'?0xC:0xFF),   /* Kind */
+          kind=='preset'?0x01:(kind=='script'?0xC:(kind=='config'?0x02:0xFF)),   /* Kind */
           /* optional bank & slot */
         ]
 
@@ -50,8 +50,10 @@ module.exports = {
   handler: removePresetFile,
   examples: [
     {usage:'electra-one remove preset --filename <filepath>', description:'Remove a Preset File from the currently active bank/slot'},
+    {usage:'electra-one remove config --filename <filepath>', description:'Remove a Config File from the currently active bank/slot'},
     {usage:'electra-one remove script --filename <filepath>', description:'Remove a LUA Script from the currently active bank/slot'},
     {usage:'electra-one remove preset --filename <filepath> --bank <1-6> --slot <1-12>', description:'Remove a Preset File from the specified bank/slot'},
+    {usage:'electra-one remove config --filename <filepath> --bank <1-6> --slot <1-12>', description:'Remove a Config File from the specified bank/slot'},
     {usage:'electra-one remove script --filename <filepath> --bank <1-6> --slot <1-12>', description:'Remove a LUA Script from the specified bank/slot'},
   ],
   aliases:[]
