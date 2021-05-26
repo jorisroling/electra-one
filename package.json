@@ -12,6 +12,7 @@
     "page": "node index page",
     "info": "node index info",
     "upload": "node index upload",
+    "remove": "node index remove",
     "acid.v1": "nodemon --verbose -L --ignore state index acid.v1 --clock TR-6S --transpose \"KOMPLETE KONTROL M32\"",
     "acid.v2": "nodemon --verbose -L --ignore state index acid.v2 --clock TR-6S --transpose \"KOMPLETE KONTROL M32\"",
     "start": "npm run router",
