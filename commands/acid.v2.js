@@ -42,6 +42,14 @@ const toneJSmidi = require('@tonejs/midi')
 const Table = require('cli-table3')
 const ticksPerStep = 120
 
+const matrixSetSlotValueTimout = 10
+const matrixSlotSources = {
+  off: 0,
+  modWheel: 1,
+  velocity: 2,
+  channelAftertouch: 3,
+}
+
 function radians(degrees) {
   return (degrees % 360) * (Math.PI / 180)
 }
@@ -56,6 +64,7 @@ class AcidMachine extends Machine {
     this.pulseDuration = 0
     this.midiCache = new MidiCache()
     this.lfoHistory = [[], [], []]
+    this.slewLimiterTimouts = []
 
 
     this.state.sounding = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
@@ -575,7 +584,57 @@ class AcidMachine extends Machine {
       }
     })
 
+    this.interface.on('incoming', (msg, origin, channel) => {
+      /*      debug('Incoming (from %y): %y',origin,msg)*/
+      /*      return*/
+
+      let modSlotIdx
+      let modSlotSource
+      let modSlotValue
+      if ((!Number.isInteger(channel) || msg.channel == channel)) {
+        if (msg._type == 'noteon') {
+          modSlotSource = matrixSlotSources.velocity
+          modSlotValue = msg.velocity
+        }
+        if (msg._type == 'cc' && msg.controller == 1) {
+          modSlotSource = matrixSlotSources.modWheel
+          modSlotValue = msg.value
+        }
+        if (msg._type == 'channel aftertouch') {
+          modSlotSource = matrixSlotSources.channelAftertouch
+          modSlotValue = msg.pressure
+        }
+      }
+
+      if (modSlotSource) {
+        for (let slotIdx = 0; slotIdx < 3; slotIdx++) {
+          if (this.interface.getParameter(`matrix.slot.${slotIdx}.source`) == modSlotSource) {
+            if (this.interface.getParameter(`matrix.slot.${slotIdx}.value`) !== modSlotValue) {
+              this.matrixSetSlotValue(slotIdx, this.interface.getParameter(`matrix.slot.${slotIdx}.slewLimiter`, 0), matrixSetSlotValueTimout, modSlotValue)
+            }
+          }
+        }
+      }
+    })
   }
+
+  matrixSetSlotValue(slotIdx, step, timeout, newValue) {
+    const valueDelta = (newValue - this.interface.getParameter(`matrix.slot.${slotIdx}.value`, 0)) / (step + 1)
+    const stepValue = step ? Math.round(this.interface.getParameter(`matrix.slot.${slotIdx}.value`, 0) + valueDelta ) : newValue
+    if (this.slewLimiterTimouts[slotIdx]) {
+      clearTimeout(this.slewLimiterTimouts[slotIdx])
+      this.slewLimiterTimouts[slotIdx] = null
+    }
+    //debug('matrixSetSlotValue slotIdx %y step %y timeout %y valueDelta %y currentValue %y stepValue %y newValue %y',slotIdx,step,timeout,valueDelta,_.get(state.values,`matrix.slot.${slotIdx}.value`,0),stepValue,newValue)
+    if (this.interface.getParameter(`matrix.slot.${slotIdx}.value`, 0) != stepValue) {
+      this.interface.setParameter(`matrix.slot.${slotIdx}.value`, stepValue)
+      this.interface.matrixRemodulate('slewLimiter')
+    }
+    if (step > 0) {
+      this.slewLimiterTimouts[slotIdx] = setTimeout( (slotIdx, step, timeout, newValue) => this.matrixSetSlotValue(slotIdx, step, timeout, newValue), timeout, slotIdx, step - 1, timeout, newValue)
+    }
+  }
+
 
   showPattern() {
 
@@ -958,16 +1017,16 @@ function acidSequencer(name, sub, options) {
 
   //  Midi.setupVirtualPorts(config.acid.virtual)
 
-  const machine = new AcidMachine('acid.v2')
-  machine.readState()
-  machine.writeState()
+  const acidMachine = new AcidMachine('acid.v2')
+  acidMachine.readState()
+  acidMachine.writeState()
 
-  machine.connect(options.electra, 'surface')
-  machine.connect(options.general, 'external')
-  machine.connect(options.clock, 'clock')
+  acidMachine.connect(options.electra, 'surface')
+  acidMachine.connect(options.general, 'external')
+  acidMachine.connect(options.clock, 'clock')
 
-  machine.notesReset()
-  machine.interface.sendValues('surface')
+  acidMachine.notesReset()
+  acidMachine.interface.sendValues('surface')
 
 //  debug('State %y', machine.getPreset())
 }

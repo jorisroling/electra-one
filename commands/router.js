@@ -14,9 +14,6 @@ const electraOneMidiChannel = 0
 const sendSingleRequestTimeoutTime = 200
 const sendSingleDumpTimeoutTime = 600
 
-const Machine = require('../lib/midi/machine')
-const machine = new Machine('router.v2')
-
 let mapping = {
   'part': 1,
 }
@@ -238,9 +235,6 @@ function routerConsole(name, sub, options) {
 
   readState()
   setupMidi(options)
-
-//  machine.connect('electra-one-1','surface')
-//  machine.connect('virus-ti','external')
 }
 
 module.exports = {

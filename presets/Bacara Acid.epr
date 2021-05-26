@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "Bacara Acid",
-  "projectId": "VbwiUWbabmo1BCGlD2oV",
+  "projectId": "i6uwlJBkuAucvn0i3HxM",
   "pages": [
     {
       "id": 1,
@@ -24,7 +24,7 @@
       "bounds": [
         0,
         16,
-        996,
+        826,
         16
       ]
     },
@@ -35,7 +35,7 @@
       "bounds": [
         0,
         192,
-        996,
+        826,
         16
       ]
     },
@@ -46,7 +46,7 @@
       "bounds": [
         0,
         368,
-        996,
+        826,
         16
       ]
     },
@@ -556,6 +556,41 @@
     },
     {
       "id": 9,
+      "items": [
+        {
+          "value": 0,
+          "label": "Sine",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Triangle",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Saw Up",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "Saw Down",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "Square",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "Random",
+          "index": 5
+        }
+      ]
+    },
+    {
+      "id": 10,
       "items": [
         {
           "index": 0,
@@ -1336,41 +1371,6 @@
           "index": 39,
           "label": "LFO 3 Device B",
           "value": 114
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "items": [
-        {
-          "value": 0,
-          "label": "Sine",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "Triangle",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "Saw Up",
-          "index": 2
-        },
-        {
-          "value": 3,
-          "label": "Saw Down",
-          "index": 3
-        },
-        {
-          "value": 4,
-          "label": "Square",
-          "index": 4
-        },
-        {
-          "value": 5,
-          "label": "Random",
-          "index": 5
         }
       ]
     },
@@ -3759,7 +3759,7 @@
       "id": 18,
       "type": "pad",
       "mode": "momentary",
-      "name": "SAVE",
+      "name": "ADD",
       "color": "FFFFFF",
       "bounds": [
         850,
@@ -3852,6 +3852,41 @@
             "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 1537,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "type": "pad",
+      "mode": "momentary",
+      "name": "SAVE",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        304,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 13057,
             "onValue": 1,
             "offValue": 0
           },
@@ -4365,8 +4400,8 @@
     },
     {
       "id": 37,
-      "type": "list",
-      "name": "TARGET",
+      "type": "fader",
+      "name": "SHAPE",
       "color": "F49500",
       "bounds": [
         0,
@@ -4384,23 +4419,23 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 3201,
+            "parameterNumber": 7425,
             "min": 0,
-            "max": 127
+            "max": 5
           },
-          "overlayId": 9
+          "overlayId": 9,
+          "id": "value"
         }
       ]
     },
     {
       "id": 38,
       "type": "fader",
-      "name": "SHAPE",
+      "name": "RATE",
       "color": "F49500",
       "bounds": [
         170,
@@ -4413,40 +4448,6 @@
       "inputs": [
         {
           "potId": 2,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 7425,
-            "min": 0,
-            "max": 5
-          },
-          "overlayId": 10,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 39,
-      "type": "fader",
-      "name": "RATE",
-      "color": "F49500",
-      "bounds": [
-        340,
-        40,
-        146,
-        56
-      ],
-      "pageId": 2,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 3,
           "valueId": "value"
         }
       ],
@@ -4466,12 +4467,12 @@
       ]
     },
     {
-      "id": 40,
+      "id": 39,
       "type": "fader",
       "name": "PHASE",
       "color": "F49500",
       "bounds": [
-        510,
+        340,
         40,
         146,
         56
@@ -4480,7 +4481,7 @@
       "controlSetId": 1,
       "inputs": [
         {
-          "potId": 4,
+          "potId": 3,
           "valueId": "value"
         }
       ],
@@ -4500,13 +4501,13 @@
       ]
     },
     {
-      "id": 41,
+      "id": 40,
       "type": "pad",
       "mode": "toggle",
       "name": "DEVICE A",
       "color": "F45C51",
       "bounds": [
-        680,
+        510,
         40,
         146,
         56
@@ -4515,7 +4516,7 @@
       "controlSetId": 1,
       "inputs": [
         {
-          "potId": 5,
+          "potId": 4,
           "valueId": "value"
         }
       ],
@@ -4535,12 +4536,46 @@
       ]
     },
     {
-      "id": 44,
+      "id": 41,
+      "type": "list",
+      "name": "TARGET",
+      "color": "F49500",
+      "bounds": [
+        680,
+        40,
+        146,
+        56
+      ],
+      "pageId": 2,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 3201,
+            "min": 0,
+            "max": 127
+          },
+          "overlayId": 10
+        }
+      ]
+    },
+    {
+      "id": 43,
       "type": "fader",
       "name": "AMOUNT",
       "color": "F49500",
       "bounds": [
-        170,
+        0,
         128,
         146,
         56
@@ -4549,7 +4584,7 @@
       "controlSetId": 1,
       "inputs": [
         {
-          "potId": 8,
+          "potId": 7,
           "valueId": "value"
         }
       ],
@@ -4569,12 +4604,12 @@
       ]
     },
     {
-      "id": 45,
+      "id": 44,
       "type": "fader",
       "name": "OFFSET",
       "color": "F49500",
       "bounds": [
-        340,
+        170,
         128,
         146,
         56
@@ -4583,7 +4618,7 @@
       "controlSetId": 1,
       "inputs": [
         {
-          "potId": 9,
+          "potId": 8,
           "valueId": "value"
         }
       ],
@@ -4603,12 +4638,12 @@
       ]
     },
     {
-      "id": 46,
+      "id": 45,
       "type": "fader",
       "name": "DENSITY",
       "color": "F49500",
       "bounds": [
-        510,
+        340,
         128,
         146,
         56
@@ -4617,7 +4652,7 @@
       "controlSetId": 1,
       "inputs": [
         {
-          "potId": 10,
+          "potId": 9,
           "valueId": "value"
         }
       ],
@@ -4637,13 +4672,13 @@
       ]
     },
     {
-      "id": 47,
+      "id": 46,
       "type": "pad",
       "mode": "toggle",
       "name": "DEVICE B",
       "color": "529DEC",
       "bounds": [
-        680,
+        510,
         128,
         146,
         56
@@ -4652,7 +4687,7 @@
       "controlSetId": 1,
       "inputs": [
         {
-          "potId": 11,
+          "potId": 10,
           "valueId": "value"
         }
       ],
@@ -4672,12 +4707,12 @@
       ]
     },
     {
-      "id": 48,
+      "id": 47,
       "type": "fader",
       "name": "VALUE",
-      "color": "FFFFFF",
+      "color": "F49500",
       "bounds": [
-        850,
+        680,
         128,
         146,
         56
@@ -4686,7 +4721,7 @@
       "controlSetId": 1,
       "inputs": [
         {
-          "potId": 12,
+          "potId": 11,
           "valueId": "value"
         }
       ],
@@ -4706,8 +4741,8 @@
     },
     {
       "id": 49,
-      "type": "list",
-      "name": "TARGET",
+      "type": "fader",
+      "name": "SHAPE",
       "color": "03A598",
       "bounds": [
         0,
@@ -4725,23 +4760,23 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 3841,
+            "parameterNumber": 7553,
             "min": 0,
-            "max": 127
+            "max": 5
           },
-          "overlayId": 11
+          "overlayId": 9,
+          "id": "value"
         }
       ]
     },
     {
       "id": 50,
       "type": "fader",
-      "name": "SHAPE",
+      "name": "RATE",
       "color": "03A598",
       "bounds": [
         170,
@@ -4754,40 +4789,6 @@
       "inputs": [
         {
           "potId": 2,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 7553,
-            "min": 0,
-            "max": 5
-          },
-          "overlayId": 10,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 51,
-      "type": "fader",
-      "name": "RATE",
-      "color": "03A598",
-      "bounds": [
-        340,
-        216,
-        146,
-        56
-      ],
-      "pageId": 2,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 3,
           "valueId": "value"
         }
       ],
@@ -4807,10 +4808,45 @@
       ]
     },
     {
-      "id": 52,
+      "id": 51,
       "type": "fader",
       "name": "PHASE",
       "color": "03A598",
+      "bounds": [
+        340,
+        216,
+        146,
+        56
+      ],
+      "pageId": 2,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 4097,
+            "min": 0,
+            "max": 100
+          },
+          "defaultValue": 100,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "type": "pad",
+      "mode": "toggle",
+      "name": "DEVICE A",
+      "color": "F45C51",
       "bounds": [
         510,
         216,
@@ -4831,21 +4867,20 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 4097,
-            "min": 0,
-            "max": 100
+            "parameterNumber": 5505,
+            "onValue": 1,
+            "offValue": 0
           },
-          "defaultValue": 100,
+          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 53,
-      "type": "pad",
-      "mode": "toggle",
-      "name": "DEVICE A",
-      "color": "F45C51",
+      "type": "list",
+      "name": "TARGET",
+      "color": "03A598",
       "bounds": [
         680,
         216,
@@ -4862,15 +4897,49 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 5505,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 3841,
+            "min": 0,
+            "max": 127
           },
-          "defaultValue": "off",
+          "overlayId": 11
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "type": "fader",
+      "name": "AMOUNT",
+      "color": "03A598",
+      "bounds": [
+        0,
+        304,
+        146,
+        56
+      ],
+      "pageId": 2,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 4225,
+            "min": 0,
+            "max": 100
+          },
+          "defaultValue": 100,
           "id": "value"
         }
       ]
@@ -4878,7 +4947,7 @@
     {
       "id": 56,
       "type": "fader",
-      "name": "AMOUNT",
+      "name": "OFFSET",
       "color": "03A598",
       "bounds": [
         170,
@@ -4900,11 +4969,11 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 4225,
+            "parameterNumber": 4353,
             "min": 0,
             "max": 100
           },
-          "defaultValue": 100,
+          "defaultValue": 50,
           "id": "value"
         }
       ]
@@ -4912,7 +4981,7 @@
     {
       "id": 57,
       "type": "fader",
-      "name": "OFFSET",
+      "name": "DENSITY",
       "color": "03A598",
       "bounds": [
         340,
@@ -4925,40 +4994,6 @@
       "inputs": [
         {
           "potId": 9,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 4353,
-            "min": 0,
-            "max": 100
-          },
-          "defaultValue": 50,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 58,
-      "type": "fader",
-      "name": "DENSITY",
-      "color": "03A598",
-      "bounds": [
-        510,
-        304,
-        146,
-        56
-      ],
-      "pageId": 2,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 10,
           "valueId": "value"
         }
       ],
@@ -4978,13 +5013,13 @@
       ]
     },
     {
-      "id": 59,
+      "id": 58,
       "type": "pad",
       "mode": "toggle",
       "name": "DEVICE B",
       "color": "529DEC",
       "bounds": [
-        680,
+        510,
         304,
         146,
         56
@@ -4993,7 +5028,7 @@
       "controlSetId": 2,
       "inputs": [
         {
-          "potId": 11,
+          "potId": 10,
           "valueId": "value"
         }
       ],
@@ -5013,12 +5048,12 @@
       ]
     },
     {
-      "id": 60,
+      "id": 59,
       "type": "fader",
       "name": "VALUE",
-      "color": "FFFFFF",
+      "color": "03A598",
       "bounds": [
-        850,
+        680,
         304,
         146,
         56
@@ -5027,7 +5062,7 @@
       "controlSetId": 2,
       "inputs": [
         {
-          "potId": 12,
+          "potId": 11,
           "valueId": "value"
         }
       ],
@@ -5047,8 +5082,8 @@
     },
     {
       "id": 61,
-      "type": "list",
-      "name": "TARGET",
+      "type": "fader",
+      "name": "SHAPE",
       "color": "C44795",
       "bounds": [
         0,
@@ -5066,23 +5101,23 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 4481,
+            "parameterNumber": 7681,
             "min": 0,
-            "max": 127
+            "max": 5
           },
-          "overlayId": 12
+          "overlayId": 9,
+          "id": "value"
         }
       ]
     },
     {
       "id": 62,
       "type": "fader",
-      "name": "SHAPE",
+      "name": "RATE",
       "color": "C44795",
       "bounds": [
         170,
@@ -5104,11 +5139,11 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 7681,
+            "parameterNumber": 4609,
             "min": 0,
-            "max": 5
+            "max": 127
           },
-          "overlayId": 10,
+          "defaultValue": 64,
           "id": "value"
         }
       ]
@@ -5116,7 +5151,7 @@
     {
       "id": 63,
       "type": "fader",
-      "name": "RATE",
+      "name": "PHASE",
       "color": "C44795",
       "bounds": [
         340,
@@ -5138,20 +5173,21 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 4609,
+            "parameterNumber": 4737,
             "min": 0,
-            "max": 127
+            "max": 100
           },
-          "defaultValue": 64,
+          "defaultValue": 100,
           "id": "value"
         }
       ]
     },
     {
       "id": 64,
-      "type": "fader",
-      "name": "PHASE",
-      "color": "C44795",
+      "type": "pad",
+      "mode": "toggle",
+      "name": "DEVICE A",
+      "color": "F45C51",
       "bounds": [
         510,
         392,
@@ -5172,21 +5208,20 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 4737,
-            "min": 0,
-            "max": 100
+            "parameterNumber": 5761,
+            "onValue": 1,
+            "offValue": 0
           },
-          "defaultValue": 100,
+          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 65,
-      "type": "pad",
-      "mode": "toggle",
-      "name": "DEVICE A",
-      "color": "F45C51",
+      "type": "list",
+      "name": "TARGET",
+      "color": "C44795",
       "bounds": [
         680,
         392,
@@ -5203,15 +5238,49 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 5761,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 4481,
+            "min": 0,
+            "max": 127
           },
-          "defaultValue": "off",
+          "overlayId": 12
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "type": "fader",
+      "name": "AMOUNT",
+      "color": "C44795",
+      "bounds": [
+        0,
+        480,
+        146,
+        56
+      ],
+      "pageId": 2,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 4865,
+            "min": 0,
+            "max": 100
+          },
+          "defaultValue": 100,
           "id": "value"
         }
       ]
@@ -5219,7 +5288,7 @@
     {
       "id": 68,
       "type": "fader",
-      "name": "AMOUNT",
+      "name": "OFFSET",
       "color": "C44795",
       "bounds": [
         170,
@@ -5241,11 +5310,11 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 4865,
+            "parameterNumber": 4993,
             "min": 0,
             "max": 100
           },
-          "defaultValue": 100,
+          "defaultValue": 50,
           "id": "value"
         }
       ]
@@ -5253,7 +5322,7 @@
     {
       "id": 69,
       "type": "fader",
-      "name": "OFFSET",
+      "name": "DENSITY",
       "color": "C44795",
       "bounds": [
         340,
@@ -5266,40 +5335,6 @@
       "inputs": [
         {
           "potId": 9,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 4993,
-            "min": 0,
-            "max": 100
-          },
-          "defaultValue": 50,
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 70,
-      "type": "fader",
-      "name": "DENSITY",
-      "color": "C44795",
-      "bounds": [
-        510,
-        480,
-        146,
-        56
-      ],
-      "pageId": 2,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 10,
           "valueId": "value"
         }
       ],
@@ -5319,13 +5354,13 @@
       ]
     },
     {
-      "id": 71,
+      "id": 70,
       "type": "pad",
       "mode": "toggle",
       "name": "DEVICE B",
       "color": "529DEC",
       "bounds": [
-        680,
+        510,
         480,
         146,
         56
@@ -5334,7 +5369,7 @@
       "controlSetId": 3,
       "inputs": [
         {
-          "potId": 11,
+          "potId": 10,
           "valueId": "value"
         }
       ],
@@ -5354,12 +5389,12 @@
       ]
     },
     {
-      "id": 72,
+      "id": 71,
       "type": "fader",
       "name": "VALUE",
-      "color": "FFFFFF",
+      "color": "C44795",
       "bounds": [
-        850,
+        680,
         480,
         146,
         56
@@ -5368,7 +5403,7 @@
       "controlSetId": 3,
       "inputs": [
         {
-          "potId": 12,
+          "potId": 11,
           "valueId": "value"
         }
       ],
