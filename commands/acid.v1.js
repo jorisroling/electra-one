@@ -1606,7 +1606,7 @@ module.exports = {
   name: 'acid.v1',
   description: 'Acid Sequencer v1',
   examples: [
-    {usage:'electra-one acid', description:'Starts acid sequencer'},
+    {usage:'electra-one acid.v1', description:'Starts acid.v1 sequencer'},
   ],
   handler: acidSequencer,
 }
