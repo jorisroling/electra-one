@@ -31,6 +31,11 @@ args
 
   .option('lua', 'LUA command for direct execution')
 
+  .option('id', 'Control Update ID')
+  .option('name', 'Control Update Name')
+  .option('color', 'Control Update Color')
+  .option('visible', 'Control Update Visible')
+
 const commands = require('./lib/commands')
 
 Object.keys(commands).forEach( command => {
