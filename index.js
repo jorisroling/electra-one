@@ -29,6 +29,8 @@ args
   .option('bank', 'For upload & remove commands: Specify a bank as <1-6>', 0)
   .option('slot', 'For upload & remove commands: Specify a slot as <1-12>', 0)
 
+  .option('lua', 'LUA command for direct execution')
+
 const commands = require('./lib/commands')
 
 Object.keys(commands).forEach( command => {

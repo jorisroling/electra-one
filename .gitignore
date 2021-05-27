@@ -106,7 +106,7 @@ dist
 
 tmp.*
 tmp
-
+jj*
 
 state/*.json
 state/acid/patterns/*.mid

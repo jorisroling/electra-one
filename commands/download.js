@@ -1,7 +1,4 @@
 const Midi = require('../lib/midi/midi')
-const { table } = require('table')
-const chalk = require('chalk')
-const labelColor = chalk.hex('#FF8800')
 const fs = require('fs')
 
 function downloadFile(name, sub, options) {
@@ -51,5 +48,8 @@ module.exports = {
   name: 'download',
   description: 'Get Console File',
   handler: downloadFile,
+  examples: [
+    {usage:'electra-one download <preset:config|script> --filename <filepath>', description:'Download a File from the currently active bank/slot'},
+  ],
   aliases:[]
 }
