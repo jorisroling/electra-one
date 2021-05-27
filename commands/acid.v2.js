@@ -587,12 +587,28 @@ class AcidMachine extends Machine {
     this.interface.on('incoming', (msg, origin, channel) => {
       /*      debug('Incoming (from %y): %y',origin,msg)*/
       /*      return*/
-
       let modSlotIdx
       let modSlotSource
       let modSlotValue
-      if ((!Number.isInteger(channel) || msg.channel == channel)) {
+
+      if (origin=='external' && (!Number.isInteger(channel) || msg.channel == channel)) {
+        if (msg._type == 'noteoff') {
+          const notes = this.interface.connection(origin).midiCache.playingNotes(channel?channel:0)
+          if (!notes || notes.length == 0) {
+            this.interface.setParameter('mute',1)
+          }
+          if (notes && notes.length > 0) {
+            notes.sort()
+            this.interface.setParameter('transpose',notes[0]+16,'external')
+          }
+        }
         if (msg._type == 'noteon') {
+          const notes = this.interface.connection(origin).midiCache.playingNotes(channel?channel:0)
+          if (notes && notes.length > 0) {
+            this.interface.setParameter('mute',0)
+            notes.sort()
+            this.interface.setParameter('transpose',notes[0]+16,'external')
+          }
           modSlotSource = matrixSlotSources.velocity
           modSlotValue = msg.velocity
         }
@@ -849,6 +865,7 @@ class AcidMachine extends Machine {
     const ticksPerStep = 120
     const stepIdx = ticks / ticksPerStep
     if (this.getState('playing')) {
+
       const tickDuration = this.pulseDuration / 20
       const shiftedTicks = (ticks + (ticksPerStep * this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
 
@@ -952,6 +969,7 @@ class AcidMachine extends Machine {
       if (this.getState('pattern') && !this.interface.getParameter('mute')) {
         this.getState('pattern').tracks[0].notes.forEach( (note) => {
           if (note.ticks == shiftedTicks) {
+
             if (stepIdx < this.state.sounding.length && this.state.sounding[stepIdx]) {
               let midiNote = note.midi
 

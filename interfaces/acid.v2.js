@@ -1270,6 +1270,7 @@ module.exports = {
             min: 0,
             max: 127,
             default: 0,
+            silent: true,
           },
           slewLimiter: {
             name: 'Matrix Slot 1 Slew Limiter',
@@ -1409,6 +1410,7 @@ module.exports = {
             min: 0,
             max: 127,
             default: 0,
+            silent: true,
           },
           slewLimiter: {
             name: 'Matrix Slot 2 Slew Limiter',
@@ -1548,6 +1550,7 @@ module.exports = {
             min: 0,
             max: 127,
             default: 0,
+            silent: true,
           },
           slewLimiter: {
             name: 'Matrix Slot 3 Slew Limiter',
