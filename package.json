@@ -96,7 +96,7 @@
     "sleep": "^6.3.0",
     "table": "^6.7.1",
     "untildify": "^4.0.0",
-    "yves": "^1.0.78"
+    "yves": "^1.0.79"
   },
   "devDependencies": {
     "eslint": "^7.27.0",
