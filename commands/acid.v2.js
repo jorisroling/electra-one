@@ -50,6 +50,8 @@ const matrixSlotSources = {
   channelAftertouch: 3,
 }
 
+const beatCC = 2 // -1 for off
+
 function radians(degrees) {
   return (degrees % 360) * (Math.PI / 180)
 }
@@ -380,8 +382,7 @@ class AcidMachine extends Machine {
         if (origin == 'surface' || !this.state.octaves) {
           this.state.octaves = []
           for (let idx = 0; idx < 16; idx++) {
-            const rnd = Machine.getRandomInt(100)
-            const octave = (Math.abs(value) > rnd)
+            const octave = (Math.abs(value) > Machine.getRandomInt(100))
             this.state.octaves[idx] = (octave ? (value > 0 ? 1 : -1) : 0)
           }
         }
@@ -394,8 +395,7 @@ class AcidMachine extends Machine {
         if (origin == 'surface' || !this.state.sounding) {
           this.state.sounding = []
           for (let idx = 0; idx < 16; idx++) {
-            const rnd = Machine.getRandomInt(100)
-            this.state.sounding[idx] = (value && (value >= rnd)) ? 1 : 0
+            this.state.sounding[idx] = (value && (value >= Machine.getRandomInt(100))) ? 1 : 0
           }
         }
       },
@@ -573,13 +573,15 @@ class AcidMachine extends Machine {
     }
 
     this.interface.on('parameterChange', (path, value, origin) => {
-      if (tableParameters.indexOf(path) >= 0) {
+      if (origin == 'surface' && tableParameters.indexOf(path) >= 0) {
+        /*        debug('parameterChange pattern because of %y',path)*/
         this.showPattern()
       }
     })
 
     this.interface.on('modulationChange', (path, value, reason) => {
       if (tableParameters.indexOf(path) >= 0) {
+        /*        debug('modulationChange pattern because of %y',path)*/
         this.showPattern()
       }
     })
@@ -591,37 +593,53 @@ class AcidMachine extends Machine {
       let modSlotSource
       let modSlotValue
 
-      if (origin=='external' && (!Number.isInteger(channel) || msg.channel == channel)) {
-        if (msg._type == 'noteoff') {
-          const notes = this.interface.connection(origin).midiCache.playingNotes(channel?channel:0)
-          if (!notes || notes.length == 0) {
-            this.interface.setParameter('mute',1)
+      if (!Number.isInteger(channel) || msg.channel == channel) {
+        if (origin == 'external') {
+          if (msg._type == 'noteoff') {
+            const notes = this.interface.connection(origin).midiCache.playingNotes(channel ? channel : 0)
+            if (!notes || notes.length == 0) {
+              this.interface.setParameter('mute', 1)
+            }
+            if (notes && notes.length > 0) {
+              notes.sort()
+              this.interface.setParameter('transpose', notes[0] + 16, 'external')
+            }
           }
-          if (notes && notes.length > 0) {
-            notes.sort()
-            this.interface.setParameter('transpose',notes[0]+16,'external')
+          if (msg._type == 'noteon') {
+            const notes = this.interface.connection(origin).midiCache.playingNotes(channel ? channel : 0)
+            if (notes && notes.length > 0) {
+              this.interface.setParameter('mute', 0)
+              notes.sort()
+              this.interface.setParameter('transpose', notes[0] + 16, 'external')
+            }
+            modSlotSource = matrixSlotSources.velocity
+            modSlotValue = msg.velocity
+          }
+          if (msg._type == 'cc' && msg.controller == 1) {
+            modSlotSource = matrixSlotSources.modWheel
+            modSlotValue = msg.value
+          }
+          if (msg._type == 'channel aftertouch') {
+            modSlotSource = matrixSlotSources.channelAftertouch
+            modSlotValue = msg.pressure
           }
         }
-        if (msg._type == 'noteon') {
-          const notes = this.interface.connection(origin).midiCache.playingNotes(channel?channel:0)
-          if (notes && notes.length > 0) {
-            this.interface.setParameter('mute',0)
-            notes.sort()
-            this.interface.setParameter('transpose',notes[0]+16,'external')
+        if (origin == 'clock' && msg.controller == beatCC && msg.value < 4) {
+          const offbeatPulses =  (((this.pulses - 1) % 96) - (24 * msg.value))
+          if (offbeatPulses) {
+            let amend = 0
+            if (this.pulses >= offbeatPulses ) {
+              amend = - offbeatPulses
+            } else {
+              amend = 96 - offbeatPulses
+            }
+            if (amend) {
+              debug('Amend pulses by %y at beat %y pulse %y offbeat %y', amend, (msg.value + 1), this.pulses, offbeatPulses )
+              this.pulses += amend
+            }
           }
-          modSlotSource = matrixSlotSources.velocity
-          modSlotValue = msg.velocity
-        }
-        if (msg._type == 'cc' && msg.controller == 1) {
-          modSlotSource = matrixSlotSources.modWheel
-          modSlotValue = msg.value
-        }
-        if (msg._type == 'channel aftertouch') {
-          modSlotSource = matrixSlotSources.channelAftertouch
-          modSlotValue = msg.pressure
         }
       }
-
       if (modSlotSource) {
         for (let slotIdx = 0; slotIdx < 3; slotIdx++) {
           if (this.interface.getParameter(`matrix.slot.${slotIdx}.source`) == modSlotSource) {
@@ -862,7 +880,6 @@ class AcidMachine extends Machine {
     const ticks = (this.pulses % (24 * 4)) * 20
     this.pulseDuration = (deltaTime[0] * 1000) + (deltaTime[1] / 1000000)
 
-    const ticksPerStep = 120
     const stepIdx = ticks / ticksPerStep
     if (this.getState('playing')) {
 
@@ -982,13 +999,10 @@ class AcidMachine extends Machine {
 
               midiNote += this.interface.getParameter('transpose', 'modulated') + ((stepIdx < this.state.octaves.length && this.state.octaves[stepIdx]) ? (this.state.octaves[stepIdx] * 12) : 0)
 
-              const deviateRnd = Machine.getRandomInt(100)
-              const switchChannel = (this.interface.getParameter('deviate', 'modulated') && this.interface.getParameter('deviate', 'modulated') >= deviateRnd)
-              const channel = (midiNote <= this.interface.getParameter('split', 'modulated')) ? (switchChannel ? 1 : 0) : (switchChannel ? 0 : 1)
-              const dev =  (midiNote <= this.interface.getParameter('split', 'modulated')) ? (switchChannel ? 'B' : 'A') : (switchChannel ? 'A' : 'B')
+              const switchSide = (this.interface.getParameter('deviate', 'modulated') && this.interface.getParameter('deviate', 'modulated') >= Machine.getRandomInt(100))
+              const dev =  (midiNote <= this.interface.getParameter('split', 'modulated')) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
 
-              let probabilityRnd = Machine.getRandomInt(100)
-              if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability', 'modulated') >= probabilityRnd) {
+              if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability', 'modulated') >= Machine.getRandomInt(100)) {
                 const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
                 debugMidiNoteOn('%s %d %y', this.getState(`device.${dev}.portName`), channel + 1, midiNote)
 

@@ -13,27 +13,45 @@ function controlUpdate(name, sub, options) {
     0x45,   /* manufacturer ID 3 - 0x45 */
     0x14,   /* Update runtime command */
     0x07,   /* Control */
-    (options.id>>0)&0x7F,
-    (options.id>>7)&0x7F,
+    (options.id >> 0) & 0x7F,
+    (options.id >> 7) & 0x7F,
   ]
 
   const json = {}
 
   function colorTrans(color) {
-    if (color=='white') return 'FFFFFF'
-    if (color=='red') return 'F45C51'
-    if (color=='orange') return 'F49500'
-    if (color=='blue') return '529DEC'
-    if (color=='green') return '03A598'
-    if (color=='magenta') return 'C44795'
+    if (color == 'white') {
+      return 'FFFFFF'
+    }
+    if (color == 'red') {
+      return 'F45C51'
+    }
+    if (color == 'orange') {
+      return 'F49500'
+    }
+    if (color == 'blue') {
+      return '529DEC'
+    }
+    if (color == 'green') {
+      return '03A598'
+    }
+    if (color == 'magenta') {
+      return 'C44795'
+    }
     return color
   }
-  if (options.name) json.name = options.name
-  if (options.color) json.color = colorTrans(options.color)
-  if (Object.prototype.hasOwnProperty.call(options,'visible')) json.visible = (options.visible == 'false' || options.visible == 'off' || options.visible == 0?false:true)
+  if (options.name) {
+    json.name = options.name
+  }
+  if (options.color) {
+    json.color = colorTrans(options.color)
+  }
+  if (Object.prototype.hasOwnProperty.call(options, 'visible')) {
+    json.visible = (options.visible == 'false' || options.visible == 'off' || options.visible == 0 ? false : true)
+  }
   const data = JSON.stringify(json)
-  debug('json %y',json)
-//  debug('options %y',options)
+  debug('json %y', json)
+  //  debug('options %y',options)
 
   bytes = bytes.concat(data.split('').map( char => char.charCodeAt(0) ))
 

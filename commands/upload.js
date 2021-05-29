@@ -17,15 +17,15 @@ function uploadPresetFile(name, sub, options) {
       fileContent = stdinBuffer.toString()
     }
     if (!fileContent) {
-      console.error(`No File content`)
+      console.error('No File content')
     }
 
-    if (Array.isArray(sub) && (sub[0]=='preset' || sub[0]=='config') && options.bank==0 && options.slot==0) {
+    if (Array.isArray(sub) && (sub[0] == 'preset' || sub[0] == 'config') && options.bank == 0 && options.slot == 0) {
       const midiInputCtrlPort = Midi.input(options.electraOneCtrl)
       midiInputCtrlPort.on('message', (msg) => {
-        debug('msg %y',msg)
+        debug('msg %y', msg)
         if (msg._type == 'sysex') {
-          debug('CTRL sysex = %y',msg.bytes)
+          debug('CTRL sysex = %y', msg.bytes)
         }
       })
 
@@ -37,7 +37,7 @@ function uploadPresetFile(name, sub, options) {
         0x21,   /* manufacturer ID 2 - 0x21 */
         0x45,   /* manufacturer ID 3 - 0x45 */
         0x01,   /* Upload data */
-        (sub[0]=='preset'?0x01:(sub[0]=='config'?0x02:0xFF)),   /* Preset or Config File */
+        (sub[0] == 'preset' ? 0x01 : (sub[0] == 'config' ? 0x02 : 0xFF)),   /* Preset or Config File */
         /* data */
       ]
 
@@ -61,7 +61,7 @@ function uploadPresetFile(name, sub, options) {
           midiOutputCtrlPort.close()
         }, 1 * 1000)
       }
-    } else if (Array.isArray(sub) && sub[0]=='script' && options.bank==0 && options.slot==0) {
+    } else if (Array.isArray(sub) && sub[0] == 'script' && options.bank == 0 && options.slot == 0) {
       const midiOutputCtrlPort = Midi.output(options.electraOneCtrl)
 
       let bytes = [
@@ -78,7 +78,7 @@ function uploadPresetFile(name, sub, options) {
 
       bytes.push(0xF7   /* sysex end - 0xf7 */)
 
-     debug('sysex size = %y bytes', bytes.length)
+      debug('sysex size = %y bytes', bytes.length)
 
       midiOutputCtrlPort.send('sysex', bytes)
       setTimeout(() => {

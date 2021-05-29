@@ -16,8 +16,8 @@ function downloadFile(name, sub, options) {
       try {
         const json = JSON.parse(msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)), ''))
         data = JSON.stringify(json, null, 2)
-      } catch(e) {
-        data = msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)),'')
+      } catch (e) {
+        data = msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)), '')
       }
       if (options.filename) {
         fs.writeFileSync(options.filename, data)
@@ -34,7 +34,7 @@ function downloadFile(name, sub, options) {
     0x21,   /* manufacturer ID 2 - 0x21 */
     0x45,   /* manufacturer ID 3 - 0x45 */
     0x02,   /* Query data */
-    sub[0]=='preset'?0x01:(sub[0]=='config'?0x02:(sub[0]=='script'?0x0C:0xFF)),   /* Config File */
+    sub[0] == 'preset' ? 0x01 : (sub[0] == 'config' ? 0x02 : (sub[0] == 'script' ? 0x0C : 0xFF)),   /* Config File */
     0xF7    /* sysex end - 0xf7 */
   ]
 

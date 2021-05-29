@@ -16,7 +16,7 @@ function executeLUA(name, sub, options) {
     data = stdinBuffer.toString()
   }
   if (data) {
-    if (data.length<=128) {
+    if (data.length <= 128) {
       let bytes = [
         0xF0,   /* sysex start - 0xf0 */
         0x00,   /* manufacturer ID 1 - 0x00 */

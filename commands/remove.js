@@ -6,8 +6,8 @@ let args
 function removePresetFile(name, sub, options) {
   if (Number.isInteger(options.bank) && Number.isInteger(options.slot)) {
 
-    ['preset','config','script'].forEach( kind => {
-      if (Array.isArray(sub) && sub.indexOf(kind)>=0) {
+    ['preset', 'config', 'script'].forEach( kind => {
+      if (Array.isArray(sub) && sub.indexOf(kind) >= 0) {
         const midiOutputCtrlPort = Midi.output(options.electraOneCtrl)
 
         let bytes = [
@@ -16,7 +16,7 @@ function removePresetFile(name, sub, options) {
           0x21,   /* manufacturer ID 2 - 0x21 */
           0x45,   /* manufacturer ID 3 - 0x45 */
           0x05,   /* remove command */
-          kind=='preset'?0x01:(kind=='script'?0xC:(kind=='config'?0x02:0xFF)),   /* Kind */
+          kind == 'preset' ? 0x01 : (kind == 'script' ? 0xC : (kind == 'config' ? 0x02 : 0xFF)),   /* Kind */
           /* optional bank & slot */
         ]
 
