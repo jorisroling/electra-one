@@ -63,6 +63,7 @@ class AcidMachine extends Machine {
 
     this.pulseTime = [0, 0]
     this.pulses = 0
+    this.steps = 0
     this.pulseDuration = 0
     this.midiCache = new MidiCache()
     this.lfoHistory = [[], [], []]
@@ -626,6 +627,7 @@ class AcidMachine extends Machine {
         }
         if (origin == 'clock' && msg.controller == beatCC && msg.value < 4) {
           const offbeatPulses =  (((this.pulses - 1) % 96) - (24 * msg.value))
+//         debug('Beat %y pulse %y offbeat %y steps %y', (msg.value + 1), this.pulses,offbeatPulses,this.steps )
           if (offbeatPulses) {
             let amend = 0
             if (this.pulses >= offbeatPulses ) {
@@ -634,7 +636,7 @@ class AcidMachine extends Machine {
               amend = 96 - offbeatPulses
             }
             if (amend) {
-              debug('Amend pulses by %y at beat %y pulse %y offbeat %y', amend, (msg.value + 1), this.pulses, offbeatPulses )
+//              debug('Amend pulses by %y at beat %y pulse %y offbeat %y steps %y', amend, (msg.value + 1), this.pulses, offbeatPulses,this.steps )
               this.pulses += amend
             }
           }
