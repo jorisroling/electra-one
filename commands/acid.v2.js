@@ -63,7 +63,6 @@ class AcidMachine extends Machine {
 
     this.pulseTime = [0, 0]
     this.pulses = 0
-    this.steps = 0
     this.pulseDuration = 0
     this.midiCache = new MidiCache()
     this.lfoHistory = [[], [], []]
@@ -71,7 +70,6 @@ class AcidMachine extends Machine {
 
 
     this.state.sounding = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-    //    this.state.pattern = Acid.generate(this.state)
 
     this.actionSideEffects = {
       load: (elementPath, origin) => {
@@ -183,7 +181,6 @@ class AcidMachine extends Machine {
         if (origin == 'clock') {
           this.setState('playing', true)
           this.pulses = 0
-          this.steps = 0
           this.pulseTime = process.hrtime()
           this.writeState()
           debug('start')
@@ -627,7 +624,6 @@ class AcidMachine extends Machine {
         }
         if (origin == 'clock' && msg.controller == beatCC && msg.value < 4) {
           const offbeatPulses =  (((this.pulses - 1) % 96) - (24 * msg.value))
-//         debug('Beat %y pulse %y offbeat %y steps %y', (msg.value + 1), this.pulses,offbeatPulses,this.steps )
           if (offbeatPulses) {
             let amend = 0
             if (this.pulses >= offbeatPulses ) {
@@ -636,7 +632,7 @@ class AcidMachine extends Machine {
               amend = 96 - offbeatPulses
             }
             if (amend) {
-//              debug('Amend pulses by %y at beat %y pulse %y offbeat %y steps %y', amend, (msg.value + 1), this.pulses, offbeatPulses,this.steps )
+              debug('Amend pulses by %y at beat %y pulse %y offbeat %y', amend, (msg.value + 1), this.pulses, offbeatPulses)
               this.pulses += amend
             }
           }
@@ -791,7 +787,7 @@ class AcidMachine extends Machine {
       if (!Number.isInteger(phase)) {
         phase = this.interface.getParameter(`lfo.${lfoIdx}.phase`, 'modulated')
       }
-      const mod = this.lfo( this.steps, (128 - this.interface.getParameter(`lfo.${lfoIdx}.rate`, 'modulated')) * 4, this.getState(`lfo.${lfoIdx}.shapeName`), phase / 100)
+      const mod = this.lfo( this.pulses, (128 - this.interface.getParameter(`lfo.${lfoIdx}.rate`, 'modulated')) * 4, this.getState(`lfo.${lfoIdx}.shapeName`), phase / 100)
       if (mod >= 0) {
         const value = Math.min(127, Math.max(0, Math.floor(( mod * factor) + base + offset )))
         result = Math.min(127, value)
@@ -1038,9 +1034,6 @@ class AcidMachine extends Machine {
           }
         })
       }
-      if (! (ticks % 1) ) {
-        this.steps++
-      }
     }
     this.pulses++
   }
@@ -1049,7 +1042,7 @@ class AcidMachine extends Machine {
 
 function acidSequencer(name, sub, options) {
 
-  //  Midi.setupVirtualPorts(config.acid.virtual)
+  Midi.setupVirtualPorts(config.acid.virtual)
 
   const acidMachine = new AcidMachine('acid.v2')
   acidMachine.readState()
