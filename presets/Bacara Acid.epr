@@ -549,6 +549,11 @@
         },
         {
           "value": 8,
+          "label": "NTS-1",
+          "index": 9
+        },
+        {
+          "value": 9,
           "label": "Bacara Acid",
           "index": 8
         }
@@ -4019,14 +4024,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 8193
           },
-          "overlayId": 8,
-          "id": "value"
+          "overlayId": 8
         }
       ]
     },
@@ -4117,14 +4122,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 8321
           },
-          "overlayId": 8,
-          "id": "value"
+          "overlayId": 8
         }
       ]
     },
