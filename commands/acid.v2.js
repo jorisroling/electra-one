@@ -295,7 +295,7 @@ class AcidMachine extends Machine {
 
     const deviceChannelChange = (dev) => {
       return (elementPath, value, origin) => {
-        devicePortOrChannelChanged(dev)
+//        devicePortOrChannelChanged(dev)
       }
     }
     const deviceBankOrProgramChange = (dev) => {

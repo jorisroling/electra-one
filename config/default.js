@@ -122,6 +122,15 @@ module.exports = {
         port: 2,
       },
     },
+    'nts-1': {
+      model: 'NTS-1',
+      manufacturer: 'Korg',
+      channels: [12],
+      port: 'midihub',
+      electraOne: {
+        port: 2,
+      },
+    },
     'bacara': {
       model: 'Bacara',
       manufacturer: 'Me',
