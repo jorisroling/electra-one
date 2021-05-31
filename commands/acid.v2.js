@@ -1054,7 +1054,7 @@ function acidSequencer(name, sub, options) {
 
   acidMachine.notesReset()
   acidMachine.interface.sendValues('surface')
-
+  acidMachine.showPattern()
 //  debug('State %y', machine.getPreset())
 }
 
