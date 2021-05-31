@@ -241,17 +241,17 @@
       "A": {
         "bank": 25,
         "channel": 16,
-        "device": 4,
+        "device": 34,
         "mute": 0,
-        "port": 22,
+        "port": 21,
         "program": 18
       },
       "B": {
         "bank": 3,
         "channel": 15,
-        "device": 3,
+        "device": 33,
         "mute": 0,
-        "port": 19,
+        "port": 18,
         "program": 11
       }
     },
@@ -363,7 +363,7 @@
     "mute": 0,
     "octaveChance": 23.80952380952381,
     "probability": 100,
-    "program": 27,
+    "program": 28,
     "scales": 13,
     "shift": 0,
     "split": 1,

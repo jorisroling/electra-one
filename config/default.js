@@ -57,6 +57,7 @@ module.exports = {
     'virus-ti': {
       model: 'Virus TI',
       manufacturer: 'Access',
+      instance: 'pt.#',
       channels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
       port: 'virus-ti',
       electraOne: {
@@ -99,6 +100,7 @@ module.exports = {
       model: 'TR-6S',
       manufacturer: 'Roland',
       channels: [10, 11],
+      instances: ['Patterns','Kits'],
       port: 'tr-6s',
       electraOne: {
         port: 2,
@@ -107,6 +109,7 @@ module.exports = {
     'mc-101': {
       model: 'MC-101',
       manufacturer: 'Roland',
+      instance: 'tk.#',
       channels: [6, 7, 8, 9],
       port: 'midihub',
       electraOne: {

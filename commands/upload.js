@@ -21,14 +21,14 @@ function uploadPresetFile(name, sub, options) {
     }
 
     if (Array.isArray(sub) && (sub[0] == 'preset' || sub[0] == 'config') && options.bank == 0 && options.slot == 0) {
-      const midiInputCtrlPort = Midi.input(options.electraOneCtrl)
+/*      const midiInputCtrlPort = Midi.input(options.electraOneCtrl)
       midiInputCtrlPort.on('message', (msg) => {
         debug('msg %y', msg)
         if (msg._type == 'sysex') {
           debug('CTRL sysex = %y', msg.bytes)
         }
       })
-
+*/
       const midiOutputCtrlPort = Midi.output(options.electraOneCtrl)
 
       let bytes = [

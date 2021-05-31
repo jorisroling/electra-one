@@ -209,10 +209,24 @@ class AcidMachine extends Machine {
       return (elementPath, value, origin) => {
         /*        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)*/
         if (value > 0 && config.devices) {
-          const deviceKeys = Object.keys(config.devices)
-          if (deviceKeys.length > value - 1) {
-            const device = deviceKeys[value - 1]
-            const port = _.get(config, `devices.${device}.port`)
+          let idx = 0
+          let choosenDeviceKey
+          let choosenChannel
+          for (let deviceKey in config.devices) {
+            if (Array.isArray(config.devices[deviceKey].channels)) {
+              for (let c in config.devices[deviceKey].channels) {
+                idx++
+                if (idx == value) {
+                  choosenDeviceKey = deviceKey
+                  choosenChannel = config.devices[deviceKey].channels[c]
+                }
+              }
+            }
+          }
+
+/*          debug ('new %y %y',choosenDeviceKey,choosenChannel)*/
+          if (choosenDeviceKey && Number.isInteger(choosenChannel)) {
+            const port = _.get(config, `devices.${choosenDeviceKey}.port`)
             if (port) {
               const portName = _.get(config, `midi.ports.${port}.${os.platform()}`)
               if (portName) {
@@ -234,13 +248,7 @@ class AcidMachine extends Machine {
                     } else {
                       this.clearState(`device.${dev}.portName`)
                     }
-                    const channels = _.get(config, `devices.${device}.channels`)
-                    if (Array.isArray(channels) && channels.length) {
-                      const channel = this.interface.getParameter(`device.${dev}.channel`)//_.get(this, `device.${dev}.channel`)
-                      if (channels.indexOf(channel) < 0) {
-                        this.interface.setParameter(`device.${dev}.channel`, channels[0])
-                      }
-                    }
+                    this.interface.setParameter(`device.${dev}.channel`, choosenChannel)
                   }
                 }
               }
@@ -251,37 +259,29 @@ class AcidMachine extends Machine {
     }
 
     const devicePortOrChannelChanged = (dev) => {
-      let deviceIdx = 0
       let portName
       const midiNames = easymidi.getOutputs()
       if (midiNames) {
         const port = this.interface.getParameter(`device.${dev}.port`)
         if (port < midiNames.length) {
-          portName = midiNames[port]
+          portName = Midi.normalisePortName(midiNames[port])
         }
       }
       if (portName) {
-        const deviceKeys = Object.keys(config.devices)
-        const matchingDevices = deviceKeys.filter( deviceKey => {
-          const devicePortKey = _.get(config, `devices.${deviceKey}.port`)
-          const devicePortName = _.get(config, `midi.ports.${devicePortKey}.${os.platform()}`)
-          return devicePortName == portName
-        })
-        matchingDevices.forEach( deviceKey => {
-          const channel = this.interface.getParameter(`device.${dev}.channel`)
-          const channels = _.get(config, `devices.${deviceKey}.channels`)
-          if (channels.indexOf(channel) >= 0) {
-            const devIdx = deviceKeys.indexOf(matchingDevices[0])
-            if (devIdx >= 0) {
-              deviceIdx = devIdx + 1
+        const deviceMenu = this.deviceMenu()
+        if (deviceMenu) {
+          let deviceIdx = 0
+          for (let d in deviceMenu) {
+            if (deviceMenu[d].port == portName && deviceMenu[d].channel == this.interface.getParameter(`device.${dev}.channel`)) {
+              deviceIdx = parseInt(d)
             }
           }
-        } )
-      }
 
-      this.interface.setParameter(`device.${dev}.device`, deviceIdx)
-      if (!deviceIdx) {
-        this.interface.setParameter(`device.${dev}.mute`, 1)
+          this.interface.setParameter(`device.${dev}.device`, deviceIdx)
+          if (!deviceIdx) {
+            this.interface.setParameter(`device.${dev}.mute`, 1)
+          }
+        }
       }
       this.sendProgramChange(dev)
     }
@@ -295,7 +295,7 @@ class AcidMachine extends Machine {
 
     const deviceChannelChange = (dev) => {
       return (elementPath, value, origin) => {
-//        devicePortOrChannelChanged(dev)
+       devicePortOrChannelChanged(dev)
       }
     }
     const deviceBankOrProgramChange = (dev) => {
@@ -1036,6 +1036,35 @@ class AcidMachine extends Machine {
       }
     }
     this.pulses++
+  }
+
+  deviceMenu() {
+    if (config.devices) {
+      const deviceMenu = [{
+        label: 'Unknown',
+        port: null,
+        channel: -1,
+      }]
+      for (let deviceKey in config.devices) {
+        let instance = config.devices[deviceKey].instance ? config.devices[deviceKey].instance : 'ch.#'
+        const model = config.devices[deviceKey].model
+        if (Array.isArray(config.devices[deviceKey].channels)) {
+          for (let c in config.devices[deviceKey].channels) {
+            if (Array.isArray(config.devices[deviceKey].instances) && config.devices[deviceKey].instances.length>c) {
+              instance = config.devices[deviceKey].instances[c]
+            }
+            const label = config.devices[deviceKey].channels.length>1?`${model} ${instance}`:model
+            const rLabel = label.replace('#',config.devices[deviceKey].instance?(parseInt(c)+1):config.devices[deviceKey].channels[c])
+            deviceMenu.push({
+              label: rLabel,
+              port: Midi.normalisePortName(config.devices[deviceKey].port),
+              channel: config.devices[deviceKey].channels[c],
+            })
+          }
+        }
+      }
+      return deviceMenu
+    }
   }
 }
 
