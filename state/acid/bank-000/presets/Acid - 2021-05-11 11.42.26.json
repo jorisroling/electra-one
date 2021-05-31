@@ -1,15 +1,12 @@
 {
   "name": "electra-one",
-  "version": "1.0.22",
+  "version": "1.1.4",
   "model": "acid.v2",
   "modulation": {},
   "state": {
     "device": {
       "A": {
         "portName": "virus-ti"
-      },
-      "B": {
-        "portName": "typhon"
       }
     },
     "lfo": [
@@ -207,7 +204,7 @@
         "channel": 1,
         "device": 1,
         "mute": 0,
-        "port": 21,
+        "port": 20,
         "program": 20
       },
       "B": {
@@ -235,7 +232,7 @@
         "phase": 7,
         "rate": 13,
         "shape": 1,
-        "show": 95
+        "show": 80
       },
       {
         "amount": 29,
@@ -248,8 +245,7 @@
         "offset": 67,
         "phase": 0,
         "rate": 6,
-        "shape": 1,
-        "show": 76
+        "shape": 1
       },
       {
         "amount": 100,
@@ -262,8 +258,7 @@
         "offset": 50,
         "phase": 100,
         "rate": 64,
-        "shape": 0,
-        "show": 0
+        "shape": 0
       }
     ],
     "matrix": {

@@ -1,11 +1,14 @@
 {
   "name": "electra-one",
-  "version": "1.0.22",
+  "version": "1.1.4",
   "model": "acid.v2",
   "modulation": {},
   "state": {
     "device": {
       "A": {
+        "portName": "virus-ti"
+      },
+      "B": {
         "portName": "virus-ti"
       }
     },
@@ -227,20 +230,20 @@
     "deviate": 15,
     "device": {
       "A": {
-        "bank": 25,
+        "bank": 21,
         "channel": 1,
         "device": 1,
         "mute": 0,
         "port": 21,
-        "program": 18
+        "program": 8
       },
       "B": {
         "bank": 13,
         "channel": 2,
-        "device": 1,
+        "device": 2,
         "mute": 0,
-        "port": 21,
-        "program": 74
+        "port": 20,
+        "program": 67
       }
     },
     "gate": 1.0755555555555556,
@@ -258,8 +261,7 @@
         "offset": 69,
         "phase": 43,
         "rate": 2,
-        "shape": 1,
-        "show": 59.05511811023621
+        "shape": 1
       },
       {
         "amount": 86,
@@ -272,8 +274,7 @@
         "offset": 76,
         "phase": 79,
         "rate": 1,
-        "shape": 1,
-        "show": 0
+        "shape": 1
       },
       {
         "amount": 0,
@@ -286,8 +287,7 @@
         "offset": 50,
         "phase": 0,
         "rate": 64,
-        "shape": 0,
-        "show": 0
+        "shape": 0
       }
     ],
     "matrix": {

@@ -241,17 +241,17 @@
       "A": {
         "bank": 25,
         "channel": 16,
-        "device": 4,
+        "device": 34,
         "mute": 0,
-        "port": 22,
+        "port": 21,
         "program": 18
       },
       "B": {
         "bank": 13,
-        "channel": 16,
-        "device": 1,
-        "mute": 1,
-        "port": 21,
+        "channel": 5,
+        "device": 5,
+        "mute": 0,
+        "port": 20,
         "program": 74
       }
     },

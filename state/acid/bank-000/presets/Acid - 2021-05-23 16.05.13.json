@@ -1,6 +1,8 @@
 {
   "name": "electra-one",
-  "version": "1.0.22",
+  "version": "1.1.4",
+  "model": "acid.v2",
+  "modulation": {},
   "state": {
     "device": {
       "A": {
@@ -233,15 +235,15 @@
         "device": 1,
         "mute": 0,
         "port": 21,
-        "program": 18
+        "program": 21
       },
       "B": {
-        "bank": 13,
+        "bank": 24,
         "channel": 2,
-        "device": 1,
+        "device": 2,
         "mute": 0,
-        "port": 21,
-        "program": 74
+        "port": 20,
+        "program": 43
       }
     },
     "gate": 1.67,
@@ -259,8 +261,7 @@
         "offset": 69,
         "phase": 43,
         "rate": 2,
-        "shape": 1,
-        "show": 41.73228346456693
+        "shape": 1
       },
       {
         "amount": 86,
@@ -273,8 +274,7 @@
         "offset": 76,
         "phase": 79,
         "rate": 1,
-        "shape": 1,
-        "show": -79.5275590551181
+        "shape": 1
       },
       {
         "amount": 0,
@@ -287,8 +287,7 @@
         "offset": 50,
         "phase": 0,
         "rate": 64,
-        "shape": 0,
-        "show": 0
+        "shape": 0
       }
     ],
     "matrix": {
@@ -355,12 +354,11 @@
     "mute": 0,
     "octaveChance": 11,
     "probability": 100,
-    "program": 14,
+    "program": 18,
     "scales": 22,
     "shift": 0,
     "split": 56,
     "temperature": 3.07,
-    "test": 1,
     "transpose": 0
   }
 }
