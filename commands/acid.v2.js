@@ -224,7 +224,7 @@ class AcidMachine extends Machine {
             }
           }
 
-/*          debug ('new %y %y',choosenDeviceKey,choosenChannel)*/
+          /*          debug ('new %y %y',choosenDeviceKey,choosenChannel)*/
           if (choosenDeviceKey && Number.isInteger(choosenChannel)) {
             const port = _.get(config, `devices.${choosenDeviceKey}.port`)
             if (port) {
@@ -295,7 +295,7 @@ class AcidMachine extends Machine {
 
     const deviceChannelChange = (dev) => {
       return (elementPath, value, origin) => {
-       devicePortOrChannelChanged(dev)
+        devicePortOrChannelChanged(dev)
       }
     }
     const deviceBankOrProgramChange = (dev) => {
@@ -1050,11 +1050,11 @@ class AcidMachine extends Machine {
         const model = config.devices[deviceKey].model
         if (Array.isArray(config.devices[deviceKey].channels)) {
           for (let c in config.devices[deviceKey].channels) {
-            if (Array.isArray(config.devices[deviceKey].instances) && config.devices[deviceKey].instances.length>c) {
+            if (Array.isArray(config.devices[deviceKey].instances) && config.devices[deviceKey].instances.length > c) {
               instance = config.devices[deviceKey].instances[c]
             }
-            const label = config.devices[deviceKey].channels.length>1?`${model} ${instance}`:model
-            const rLabel = label.replace('#',config.devices[deviceKey].instance?(parseInt(c)+1):config.devices[deviceKey].channels[c])
+            const label = config.devices[deviceKey].channels.length > 1 ? `${model} ${instance}` : model
+            const rLabel = label.replace('#', config.devices[deviceKey].instance ? (parseInt(c) + 1) : config.devices[deviceKey].channels[c])
             deviceMenu.push({
               label: rLabel,
               port: Midi.normalisePortName(config.devices[deviceKey].port),

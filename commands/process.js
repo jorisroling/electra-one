@@ -22,18 +22,18 @@ function preProcess(name, sub, options) {
                   label: 'Unknown',
                   index: 0,
                 }]
-                let idx=1
+                let idx = 1
                 for (let deviceKey in config.devices) {
                   let instance = config.devices[deviceKey].instance ? config.devices[deviceKey].instance : 'ch.#'
                   const model = config.devices[deviceKey].model
 
                   if (Array.isArray(config.devices[deviceKey].channels)) {
                     for (let c in config.devices[deviceKey].channels) {
-                      if (Array.isArray(config.devices[deviceKey].instances) && config.devices[deviceKey].instances.length>c) {
+                      if (Array.isArray(config.devices[deviceKey].instances) && config.devices[deviceKey].instances.length > c) {
                         instance = config.devices[deviceKey].instances[c]
                       }
-                      const label = config.devices[deviceKey].channels.length>1?`${model} ${instance}`:model
-                      const rLabel = label.replace('#',config.devices[deviceKey].instance?(parseInt(c)+1):config.devices[deviceKey].channels[c])
+                      const label = config.devices[deviceKey].channels.length > 1 ? `${model} ${instance}` : model
+                      const rLabel = label.replace('#', config.devices[deviceKey].instance ? (parseInt(c) + 1) : config.devices[deviceKey].channels[c])
 
                       overlay.items.push({
                         value: idx,
@@ -49,7 +49,7 @@ function preProcess(name, sub, options) {
           }
         }
       }
-      process.stdout.write(JSON.stringify(preset,null,2))
+      process.stdout.write(JSON.stringify(preset, null, 2))
     } else {
       console.error(`The file "${options.filename}" does not exist`)
     }

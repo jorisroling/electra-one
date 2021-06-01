@@ -100,7 +100,7 @@ module.exports = {
       model: 'TR-6S',
       manufacturer: 'Roland',
       channels: [10, 11],
-      instances: ['Patterns','Kits'],
+      instances: ['Patterns', 'Kits'],
       port: 'tr-6s',
       electraOne: {
         port: 2,
