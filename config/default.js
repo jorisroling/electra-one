@@ -8,7 +8,7 @@ const bacaraAcidVirtualName = 'Bacara Acid'
 */
 module.exports = {
   debugPrefix,
-  debug: Object.prototype.hasOwnProperty.call(process.env, 'DEBUG') ? process.env.DEBUG : `${debugPrefix}*,-${debugPrefix}:midi:*`,
+  debug: Object.prototype.hasOwnProperty.call(process.env, 'DEBUG') ? process.env.DEBUG : `${debugPrefix}*,-${debugPrefix}:midi:*,-${debugPrefix}:part*`,
   midi: {
     ports: {
       'electra-one-1': {
