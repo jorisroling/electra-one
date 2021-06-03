@@ -35,7 +35,7 @@ const { knownDeviceCCs } = require('../lib/devices')
 const deviceCCs = knownDeviceCCs()
 
 const phaseDetection = true
-const tableParameters = ['transpose', 'density', 'killSteps', 'killShift', 'scales', 'base', 'split', 'deviate']
+const tableParameters = ['transpose', 'density', 'killSteps', 'killShift', 'scales', 'base', 'split', 'deviate', 'shift']
 
 const toneJSmidi = require('@tonejs/midi')
 
@@ -723,9 +723,12 @@ class AcidMachine extends Machine {
         {hAlign:'center', content:TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })/*+` ${noteMidi}`*/}
       ]
       for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
+        let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
+        if (shiftedTicks<0) shiftedTicks += 1920
+        //debug ('ticks %y  shiftedTicks %y',ticks,shiftedTicks)
         let chNote = '  '
         pattern.tracks[0].notes.forEach( note => {
-          if (note.midi  == noteMidi && note.ticks == ticks) {
+          if (note.midi  == noteMidi && note.ticks == shiftedTicks) {
             const count = Math.ceil(note.durationTicks / ticksPerStep)
             const color = this.getState('sounding')[ticks / ticksPerStep] ? (note.velocity == 1 ? accentedColor : normalColor) : disabledColor
             const rep = count * 2 + ((count - 1) * 3)
@@ -882,7 +885,8 @@ class AcidMachine extends Machine {
     if (this.getState('playing')) {
 
       const tickDuration = this.pulseDuration / 20
-      const shiftedTicks = (ticks + (ticksPerStep * this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
+      let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
+      if (shiftedTicks<0) shiftedTicks += 1920
 
       if (!this.interface.getParameter('mute')) {
 
