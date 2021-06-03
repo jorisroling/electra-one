@@ -1,235 +1,319 @@
 {
-  "playing": true,
-  "pattern": {
-    "header": {
-      "keySignatures": [],
-      "meta": [],
-      "name": "Acid - 2021-05-12 11:48:51",
-      "ppq": 480,
-      "tempos": [],
-      "timeSignatures": []
-    },
-    "tracks": [
-      {
-        "channel": 0,
-        "controlChanges": {},
-        "pitchBends": [],
-        "instrument": {
-          "family": "piano",
-          "name": "acoustic grand piano",
-          "number": 0
-        },
-        "name": "Acid - 2021-05-12 11:48:51",
-        "notes": [
-          {
-            "duration": 0.0625,
-            "durationTicks": 60,
-            "midi": 51,
-            "name": "D#3",
-            "ticks": 0,
-            "time": 0,
-            "velocity": 1
-          },
-          {
-            "duration": 0.0625,
-            "durationTicks": 60,
-            "midi": 39,
-            "name": "D#2",
-            "ticks": 120,
-            "time": 0.125,
-            "velocity": 0.7874015748031497
-          },
-          {
-            "duration": 0.0625,
-            "durationTicks": 60,
-            "midi": 27,
-            "name": "D#1",
-            "ticks": 240,
-            "time": 0.25,
-            "velocity": 0.7874015748031497
-          },
-          {
-            "duration": 0.1875,
-            "durationTicks": 180,
-            "midi": 39,
-            "name": "D#2",
-            "ticks": 480,
-            "time": 0.5,
-            "velocity": 0.7874015748031497
-          },
-          {
-            "duration": 0.1875,
-            "durationTicks": 180,
-            "midi": 42,
-            "name": "F#2",
-            "ticks": 600,
-            "time": 0.625,
-            "velocity": 0.7874015748031497
-          },
-          {
-            "duration": 0.0625,
-            "durationTicks": 60,
-            "midi": 54,
-            "name": "F#3",
-            "ticks": 840,
-            "time": 0.875,
-            "velocity": 1
-          },
-          {
-            "duration": 0.0625,
-            "durationTicks": 60,
-            "midi": 57,
-            "name": "A3",
-            "ticks": 960,
-            "time": 1,
-            "velocity": 1
-          },
-          {
-            "duration": 0.1875,
-            "durationTicks": 180,
-            "midi": 33,
-            "name": "A1",
-            "ticks": 1080,
-            "time": 1.125,
-            "velocity": 0.7874015748031497
-          },
-          {
-            "duration": 0.0625,
-            "durationTicks": 60,
-            "midi": 57,
-            "name": "A3",
-            "ticks": 1200,
-            "time": 1.25,
-            "velocity": 0.7874015748031497
-          },
-          {
-            "duration": 0.0625,
-            "durationTicks": 60,
-            "midi": 60,
-            "name": "C4",
-            "ticks": 1320,
-            "time": 1.375,
-            "velocity": 0.7874015748031497
-          }
-        ],
-        "endOfTrackTicks": 1380
+  "name": "electra-one",
+  "version": "1.1.4",
+  "model": "acid.v2",
+  "modulation": {},
+  "state": {
+    "device": {
+      "A": {
+        "portName": "virus-ti"
+      },
+      "B": {
+        "portName": "virus-ti"
       }
+    },
+    "lfo": [
+      {
+        "shapeName": "triangle"
+      },
+      {
+        "shapeName": "triangle"
+      },
+      {
+        "shapeName": "sine"
+      }
+    ],
+    "octaves": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0
+    ],
+    "pattern": {
+      "header": {
+        "keySignatures": [],
+        "meta": [],
+        "name": "Acid - 2021-05-12 11:48:51",
+        "ppq": 480,
+        "tempos": [],
+        "timeSignatures": []
+      },
+      "tracks": [
+        {
+          "channel": 0,
+          "controlChanges": {},
+          "endOfTrackTicks": 1380,
+          "instrument": {
+            "family": "piano",
+            "name": "acoustic grand piano",
+            "number": 0
+          },
+          "name": "Acid - 2021-05-12 11:48:51",
+          "notes": [
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 51,
+              "name": "D#3",
+              "ticks": 0,
+              "time": 0,
+              "velocity": 1
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 39,
+              "name": "D#2",
+              "ticks": 120,
+              "time": 0.125,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 27,
+              "name": "D#1",
+              "ticks": 240,
+              "time": 0.25,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 39,
+              "name": "D#2",
+              "ticks": 480,
+              "time": 0.5,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 42,
+              "name": "F#2",
+              "ticks": 600,
+              "time": 0.625,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 54,
+              "name": "F#3",
+              "ticks": 840,
+              "time": 0.875,
+              "velocity": 1
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 57,
+              "name": "A3",
+              "ticks": 960,
+              "time": 1,
+              "velocity": 1
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 33,
+              "name": "A1",
+              "ticks": 1080,
+              "time": 1.125,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 57,
+              "name": "A3",
+              "ticks": 1200,
+              "time": 1.25,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 60,
+              "name": "C4",
+              "ticks": 1320,
+              "time": 1.375,
+              "velocity": 0.7874015748031497
+            }
+          ],
+          "pitchBends": []
+        }
+      ]
+    },
+    "playing": true,
+    "size": 16,
+    "sounding": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
     ]
   },
-  "last_pattern_but": 9,
-  "last_preset_but": 1,
-  "size": 16,
-  "temperature": 3.07,
-  "transpose": 3,
-  "gate": 0.44,
-  "octaveChance": 42,
-  "octaves": [
-    1,
-    0,
-    0,
-    0,
-    0,
-    1,
-    0,
-    1,
-    1,
-    0,
-    1,
-    0,
-    0,
-    1,
-    1,
-    0
-  ],
-  "density": 100,
-  "probability": 100,
-  "sounding": [
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1
-  ],
-  "killSteps": 0,
-  "killShift": 0,
-  "scales": 33,
-  "base": 4,
-  "shift": 0,
-  "split": 49,
-  "deviate": 14,
-  "lfo": [
-    {
-      "device": {
-        "A": 1,
-        "B": 0
+  "parameters": {
+    "bank": 0,
+    "base": 4,
+    "density": 100,
+    "deviate": 14,
+    "device": {
+      "A": {
+        "bank": 13,
+        "channel": 1,
+        "device": 1,
+        "mute": 0,
+        "port": 20,
+        "program": 24
       },
-      "control": 0,
-      "shape": 1,
-      "shapeName": "triangle",
-      "rate": 2,
-      "phase": 43,
-      "amount": 79,
-      "offset": 69,
-      "density": 127
+      "B": {
+        "bank": 13,
+        "channel": 2,
+        "device": 2,
+        "mute": 0,
+        "port": 20,
+        "program": 14
+      }
     },
-    {
-      "device": {
-        "A": 1,
-        "B": 1
+    "gate": 0.44,
+    "killShift": 0,
+    "killSteps": 0,
+    "lfo": [
+      {
+        "amount": 79,
+        "control": 0,
+        "density": 127,
+        "device": {
+          "A": 1,
+          "B": 0
+        },
+        "offset": 69,
+        "phase": 43,
+        "rate": 2,
+        "shape": 1
       },
-      "control": 41,
-      "shape": 1,
-      "shapeName": "triangle",
-      "rate": 1,
-      "phase": 79,
-      "amount": 86,
-      "offset": 76,
-      "density": 127
-    },
-    {
-      "device": {
-        "A": 0,
-        "B": 0
+      {
+        "amount": 86,
+        "control": 41,
+        "density": 127,
+        "device": {
+          "A": 1,
+          "B": 1
+        },
+        "offset": 76,
+        "phase": 79,
+        "rate": 1,
+        "shape": 1
       },
-      "control": 0,
-      "shape": 0,
-      "shapeName": "sine",
-      "rate": 64,
-      "phase": 0,
-      "amount": 0,
-      "offset": 50,
-      "density": 0
-    }
-  ],
-  "device": {
-    "A": {
-      "port": 22,
-      "portName": "midihub",
-      "channel": 8,
-      "bank": 0,
-      "program": 0,
-      "device": 4,
-      "mute": 0
+      {
+        "amount": 0,
+        "control": 0,
+        "density": 0,
+        "device": {
+          "A": 0,
+          "B": 0
+        },
+        "offset": 50,
+        "phase": 0,
+        "rate": 64,
+        "shape": 0
+      }
+    ],
+    "matrix": {
+      "slot": [
+        {
+          "destination": [
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            }
+          ],
+          "slewLimiter": 0,
+          "source": 0,
+          "value": 0
+        },
+        {
+          "destination": [
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            }
+          ],
+          "slewLimiter": 0,
+          "source": 0,
+          "value": 0
+        },
+        {
+          "destination": [
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            }
+          ],
+          "slewLimiter": 0,
+          "source": 0,
+          "value": 0
+        }
+      ]
     },
-    "B": {
-      "port": 22,
-      "portName": "midihub",
-      "channel": 9,
-      "bank": 13,
-      "program": 14,
-      "device": 4,
-      "mute": 0
-    }
+    "mute": 0,
+    "octaveChance": 42,
+    "probability": 100,
+    "program": 8,
+    "scales": 33,
+    "shift": 0,
+    "split": 49,
+    "temperature": 3.07,
+    "transpose": 3
   }
 }

@@ -2,11 +2,7 @@
   "name": "electra-one",
   "version": "1.1.4",
   "model": "acid.v2",
-  "modulation": {
-    "matrix": {
-      "killSteps": -0.15625
-    }
-  },
+  "modulation": {},
   "state": {
     "device": {
       "A": {
@@ -239,7 +235,7 @@
         "device": 1,
         "mute": 0,
         "port": 20,
-        "program": 18
+        "program": 48
       },
       "B": {
         "bank": 2,
@@ -358,7 +354,7 @@
     "mute": 0,
     "octaveChance": 11,
     "probability": 100,
-    "program": 14,
+    "program": 31,
     "scales": 22,
     "shift": 0,
     "split": 55,
