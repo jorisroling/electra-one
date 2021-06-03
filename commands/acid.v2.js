@@ -121,10 +121,10 @@ class AcidMachine extends Machine {
           if (program >= 1 && program < 128) {
             const filename = this.load_preset(program - 1)
             if (filename) {
-              this.showPattern()
               this.sendProgramChange('A')
               this.sendProgramChange('B')
               this.interface.sendValues(origin)
+              this.showPattern()
               this.writeState()
               debug('previous_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
             }
@@ -138,10 +138,10 @@ class AcidMachine extends Machine {
           if (program >= 0 && program < 127) {
             const filename = this.load_preset(program + 1)
             if (filename) {
-              this.showPattern()
               this.sendProgramChange('A')
               this.sendProgramChange('B')
               this.interface.sendValues(origin)
+              this.showPattern()
               this.writeState()
               debug('next_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
             }
