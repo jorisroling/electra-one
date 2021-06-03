@@ -17,13 +17,11 @@ args
 
   .option('electra', 'Electra One MIDI interface name (part)', 'Electra Controller Electra Port 2')
   .option('clock', 'Clock Input MIDI interface name (part)', 'TR-6S')
-  .option('transpose', 'Transpose Input MIDI interface name (part)', 'KOMPLETE KONTROL M32')
+
+  .option('transpose', 'Transpose Input MIDI interface name (part)', 'virus-ti')
   .option('transposeChannel', 'Transpose Input Channel (1-16)', 1)
 
-  .option('transpose', 'Transpose Input MIDI interface name (part)', 'KOMPLETE KONTROL M32')
-  .option('transposeChannel', 'Transpose Input Channel (1-16)', 1)
-
-  .option('general', 'General Input MIDI interface name (part)', 'KOMPLETE KONTROL M32')
+  .option('general', 'General Input MIDI interface name (part)', 'virus-ti')
   .option('generalChannel', 'General Input Channel (1-16)', 1)
 
   .option('bank', 'For upload & remove commands: Specify a bank as <1-6>', 0)
