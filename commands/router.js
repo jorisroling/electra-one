@@ -11,7 +11,7 @@ const jsonfile = require('jsonfile')
 const Midi = require('../lib/midi/midi')
 
 const electraOneMidiChannel = 0
-const sendProgramChangeTimeoutTime = 100
+const sendProgramChangeTimeoutTime = 200
 const sendSingleRequestTimeoutTime = 200
 const sendSingleDumpTimeoutTime = 600
 
