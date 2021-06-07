@@ -11,9 +11,9 @@ const jsonfile = require('jsonfile')
 const Midi = require('../lib/midi/midi')
 
 const electraOneMidiChannel = 0
-const sendProgramChangeTimeoutTime = 200
-const sendSingleRequestTimeoutTime = 200
-const sendSingleDumpTimeoutTime = 600
+const sendProgramChangeTimeoutTime = 0 // 200
+const sendSingleRequestTimeoutTime = 0 // 200
+const sendSingleDumpTimeoutTime = 0 // 600
 
 const pkg = require('../package.json')
 const debugPart = yves.debugger(`${pkg.name.replace(/^@/, '')}:part`)
