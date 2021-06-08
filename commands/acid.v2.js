@@ -724,7 +724,9 @@ class AcidMachine extends Machine {
       ]
       for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
         let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
-        if (shiftedTicks<0) shiftedTicks += 1920
+        if (shiftedTicks < 0) {
+          shiftedTicks += 1920
+        }
         //debug ('ticks %y  shiftedTicks %y',ticks,shiftedTicks)
         let chNote = '  '
         pattern.tracks[0].notes.forEach( note => {
@@ -749,9 +751,9 @@ class AcidMachine extends Machine {
 
   sendProgramChange(dev) {
     debugMidiControlChange('%s %d CC %y = %y', this.getState(`device.${dev}.portName`), this.interface.getParameter(`device.${dev}.channel`), 0, this.interface.getParameter(`device.${dev}.bank`))
-    Midi.send(this.getState(`device.${dev}.portName`), 'cc', {channel:this.interface.getParameter(`device.${dev}.channel`, 1) - 1, controller:0, value:this.interface.getParameter(`device.${dev}.bank`)},`bankChange-${dev}`,200)
+    Midi.send(this.getState(`device.${dev}.portName`), 'cc', {channel:this.interface.getParameter(`device.${dev}.channel`, 1) - 1, controller:0, value:this.interface.getParameter(`device.${dev}.bank`)}, `bankChange-${dev}`, 200)
     debugMidiProgramChange('%s %d %y', this.getState(`device.${dev}.portName`), this.interface.getParameter(`device.${dev}.channel`, 1) - 1, this.interface.getParameter(`device.${dev}.program`))
-    Midi.send(this.getState(`device.${dev}.portName`), 'program', {channel:this.interface.getParameter(`device.${dev}.channel`, 1) - 1, number:this.interface.getParameter(`device.${dev}.program`)},`programChange-${dev}`,200)
+    Midi.send(this.getState(`device.${dev}.portName`), 'program', {channel:this.interface.getParameter(`device.${dev}.channel`, 1) - 1, number:this.interface.getParameter(`device.${dev}.program`)}, `programChange-${dev}`, 200)
   }
 
 
@@ -886,7 +888,9 @@ class AcidMachine extends Machine {
 
       const tickDuration = this.pulseDuration / 20
       let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
-      if (shiftedTicks<0) shiftedTicks += 1920
+      if (shiftedTicks < 0) {
+        shiftedTicks += 1920
+      }
 
       if (!this.interface.getParameter('mute')) {
 
@@ -1003,7 +1007,7 @@ class AcidMachine extends Machine {
 
               const switchSide = (this.interface.getParameter('deviate', 'modulated') && this.interface.getParameter('deviate', 'modulated') >= Machine.getRandomInt(100))
               const dev =  (midiNote <= this.interface.getParameter('split', 'modulated')) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
-//              debug('hi')
+              //              debug('hi')
               if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability', 'modulated') >= Machine.getRandomInt(100)) {
                 const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
                 debugMidiNoteOn('%s %d %y', this.getState(`device.${dev}.portName`), channel + 1, midiNote)
