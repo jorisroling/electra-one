@@ -15,6 +15,7 @@
     "remove": "node index remove",
     "acid.v1": "nodemon --verbose -L --ignore state index acid.v1 --clock TR-6S --transpose \"KOMPLETE KONTROL M32\"",
     "acid.v2": "nodemon --verbose -L --ignore state index acid.v2 --clock TR-6S --transpose \"KOMPLETE KONTROL M32\"",
+    "process": "electra-one process --filename \"presets/Bacara Acid.epr\" | electra-one upload preset",
     "start": "npm run router",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"

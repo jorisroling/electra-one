@@ -106,16 +106,6 @@ module.exports = {
         port: 2,
       },
     },
-    'mc-101': {
-      model: 'MC-101',
-      manufacturer: 'Roland',
-      instance: 'tk.#',
-      channels: [6, 7, 8, 9],
-      port: 'midihub',
-      electraOne: {
-        port: 2,
-      },
-    },
     'vp-03': {
       model: 'VP-03',
       manufacturer: 'Roland',
@@ -171,12 +161,6 @@ module.exports = {
             enabled: true,
             port: 2,
             channels: [10, 11],
-          },
-          'mc-101': {
-            enabled: true,
-            port: 2,
-            channels: [6, 7, 8, 9],
-            oneway: true,
           },
           'acdgen': {
             enabled: true,

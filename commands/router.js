@@ -114,7 +114,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
             }
           }
         } else {
-          debug('Forwarding CC %d (value %d) on channel %d to %y', msg.controller, msg.value, msg.channel + 1, to)
+         debug('Forwarding CC %d (value %d) on channel %d to %y', msg.controller, msg.value, msg.channel + 1, to)
           Midi.send(to, 'cc', msg)
         }
       }
