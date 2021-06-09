@@ -161,6 +161,7 @@ module.exports = {
             enabled: true,
             port: 2,
             channels: [10, 11],
+            ignore: [2],
           },
           'acdgen': {
             enabled: true,

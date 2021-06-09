@@ -18,6 +18,9 @@ const sendSingleDumpTimeoutTime = 0 // 600
 const pkg = require('../package.json')
 const debugPart = yves.debugger(`${pkg.name.replace(/^@/, '')}:part`)
 
+const { knownDeviceCCs } = require('../lib/devices')
+const deviceCCs = knownDeviceCCs()
+
 let mapping = {
   'part': 1,
 }
@@ -114,8 +117,10 @@ function handleIncoming(from, to, targetElectraOne, options) {
             }
           }
         } else {
-         debug('Forwarding CC %d (value %d) on channel %d to %y', msg.controller, msg.value, msg.channel + 1, to)
-          Midi.send(to, 'cc', msg)
+          if (_.get(options,'ignore',[]).indexOf(msg.controller)<0) {
+            debug('Forwarding %y by %y CC %y value %y on channel %y to %y',_.get(deviceCCs, `${options.actor}.${msg.controller}`) ,options.actor, msg.controller ,msg.value, msg.channel + 1, to)
+            Midi.send(to, 'cc', msg)
+          }
         }
       }
       break
@@ -216,11 +221,11 @@ function setupMidi(options) {
       if (scenario.actors[actor].enabled && scenario.actors[actor].port && scenario.actors[actor].channels && scenario.actors[actor].channels.length) {
         const electraOnePortName = `electra-one-${scenario.actors[actor].port}`
         const midiInput_electraOne = Midi.input(electraOnePortName, true)
-        midiInput_electraOne.on('message', handleIncoming(electraOnePortName, actor, false, scenario.actors[actor]) )
+        midiInput_electraOne.on('message', handleIncoming(electraOnePortName, actor, false, {actor, ...scenario.actors[actor]}) )
 
         if (!scenario.actors[actor].oneway) {
           const midiInput_actor = Midi.input(actor, true)
-          midiInput_actor.on('message', handleIncoming(actor, electraOnePortName, true, scenario.actors[actor]) )
+          midiInput_actor.on('message', handleIncoming(actor, electraOnePortName, true, {actor, ...scenario.actors[actor]}) )
         }
 
         if (scenario.actors[actor].initialize) {
