@@ -585,7 +585,7 @@ class AcidMachine extends Machine {
     })
 
     this.interface.on('incoming', (msg, origin, channel) => {
-      /*      debug('Incoming (from %y): %y',origin,msg)*/
+/*     if (msg._type!='clock') debug('Incoming (from %y) ch.%y: %y',origin,msg,channel)*/
       /*      return*/
       let modSlotIdx
       let modSlotSource
@@ -596,19 +596,20 @@ class AcidMachine extends Machine {
           if (msg._type == 'noteoff') {
             const notes = this.interface.connection(origin).midiCache.playingNotes(channel ? channel : 0)
             if (!notes || notes.length == 0) {
-              this.interface.setParameter('mute', 1)
+//              this.interface.setParameter('mute', 1)
             }
             if (notes && notes.length > 0) {
               notes.sort()
-              this.interface.setParameter('transpose', notes[0] + 16, 'external')
+              this.interface.setParameter('transpose', notes[0] + 4, 'external')
             }
           }
           if (msg._type == 'noteon') {
             const notes = this.interface.connection(origin).midiCache.playingNotes(channel ? channel : 0)
+/*            debug('hi %y, %y',channel,notes)*/
             if (notes && notes.length > 0) {
               this.interface.setParameter('mute', 0)
               notes.sort()
-              this.interface.setParameter('transpose', notes[0] + 16, 'external')
+              this.interface.setParameter('transpose', notes[0]+4, 'external')
             }
             modSlotSource = matrixSlotSources.velocity
             modSlotValue = msg.velocity
@@ -1086,13 +1087,14 @@ function acidSequencer(name, sub, options) {
   acidMachine.writeState()
 
   acidMachine.connect(options.electra, 'surface')
-  acidMachine.connect(options.general, 'external')
+  acidMachine.connect(options.general, 'external', Number.isInteger(options.generalChannel) ? parseInt(options.generalChannel)-1 : 0)
   acidMachine.connect(options.clock, 'clock')
 
   acidMachine.notesReset()
   acidMachine.interface.sendValues('surface')
   acidMachine.showPattern()
 //  debug('State %y', machine.getPreset())
+/*  debug('Options %y', options)*/
 }
 
 module.exports = {

@@ -46,7 +46,7 @@ It also containes to **scenario** setup, including the *default* one. Here you c
 - enabled **true** or **false** : if it should include (**true**) or ignore (**false**) this *actor*
 - port **1** or **2** : the Electra One port to be used
 - channels **[1-16]** : which channels should be included in the routing (non specified ones are ignored)
-- portMap **"name"** : (optional) can be "virus-ti" for the Port Mapping of a Access Virus TI
+- flags : (optional) array, can contain 'virus-ti-portmap' for the Port Mapping of a Access Virus TI
 - initialize : (optional) contains a set of initial (kick-off) sysex commands
 
 

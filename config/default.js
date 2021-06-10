@@ -47,6 +47,10 @@ module.exports = {
         darwin: 'iConnectMIDI4+ ACDGEN',
         linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 11 20:10',
       },
+      'keystep-pro': {
+        darwin: 'iConnectMIDI4+ Keystep Pro',
+        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 6 20:5',
+      },
       'bacara': {
         darwin: bacaraAcidVirtualName,
         linux: bacaraAcidVirtualName,
@@ -62,7 +66,6 @@ module.exports = {
       port: 'virus-ti',
       electraOne: {
         port: 1,
-        portMap: 'virus-ti',
         initialize: {
           'electra-one-1': [0xF0, 0x7D, 0x20, 'part', 0xF7],
           'virus-ti': [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, 'part:-1', 0xF7],
@@ -124,20 +127,30 @@ module.exports = {
         port: 2,
       },
     },
-    'bacara': {
-      model: 'Bacara',
-      manufacturer: 'Me',
-      channels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-      port: 'bacara',
-      electraOne: {
-        port: 2,
-      },
-    },
     'acdgen': {
       model: 'ACDGEN',
       manufacturer: 'Spektro Audio',
       channels: [13],
       port: 'acdgen',
+      electraOne: {
+        port: 2,
+      },
+    },
+    'keystep-pro': {
+      model: 'KeyStep Pro',
+      manufacturer: 'Arturia',
+      instance: 't.#',
+      channels: [1, 2, 3, 4],
+      port: 'keystep-pro',
+      electraOne: {
+        port: 2,
+      },
+    },
+    'bacara': {
+      model: 'Bacara',
+      manufacturer: 'Me',
+      channels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+      port: 'bacara',
       electraOne: {
         port: 2,
       },
@@ -151,7 +164,7 @@ module.exports = {
             enabled: true,
             port: 1,
             channels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-            portMap: 'virus-ti',
+            flags: ['virus-ti-portmap'],
             initialize: {
               'electra-one-1': [0xF0, 0x7D, 0x20, 'part', 0xF7],
               'virus-ti': [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, 'part:-1', 0xF7],
@@ -173,6 +186,12 @@ module.exports = {
             enabled: true,
             port: 2,
             channels: [15],
+            oneway: true,
+          },
+          'midihub': {
+            enabled: true,
+            port: 2,
+            channels: [12,14],
             oneway: true,
           },
         },
