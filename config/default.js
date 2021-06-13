@@ -194,7 +194,14 @@ module.exports = {
             channels: [12,14],
             oneway: true,
           },
-        },
+/*          'keystep-pro': {
+            enabled: true,
+            port: 2,
+            channels: [1,2,3,4,10],
+            flags:['tracker'],
+            oneway: false,
+          },
+*/        },
       },
     },
   },
@@ -204,6 +211,19 @@ module.exports = {
   acid: {
     virtual: bacaraAcidVirtualName,
     channel: 1,
-    interface: require('../interfaces/acid.v1').parameters
-  }
+//    interface: require('../interfaces/acid.v1').parameters,
+    scenarios: {
+      'default': {
+        actors: {
+          'keystep-pro': {
+            enabled: true,
+            port: 2,
+            channels: [1,2,3,4,10],
+            flags:['tracker'],
+            oneway: false,
+          },
+        },
+      },
+    },
+  },
 }

@@ -19,10 +19,10 @@ args
   .option('clock', 'Clock Input MIDI interface name (part)', 'TR-6S')
 
   .option('transpose', 'Transpose Input MIDI interface name (part)', 'keystep-pro')
-  .option('transposeChannel', 'Transpose Input Channel (1-16)', 4)
+  .option('transposeChannel', 'Transpose Input Channel (1-16)', 1)
 
   .option('general', 'General Input MIDI interface name (part)', 'keystep-pro')
-  .option('generalChannel', 'General Input Channel (1-16)', 4)
+  .option('generalChannel', 'General Input Channel (1-16)', 1)
 
   .option('bank', 'For upload & remove commands: Specify a bank as <1-6>', 0)
   .option('slot', 'For upload & remove commands: Specify a slot as <1-12>', 0)

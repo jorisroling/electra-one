@@ -76,6 +76,16 @@ function handleIncoming(from, to, targetElectraOne, options) {
     //       debug('handleIncoming: %s %y',from,msg)
 
     switch (msg._type) {
+/*    case 'noteon': // fall-through
+    case 'noteoff':
+      if (options.channels.indexOf(msg.channel + 1) >= 0) {
+        if (_.get(options,'flags',[]).indexOf('tracker')>=0) {
+        } else {
+          debug('Forwarding Note %s %d (velocity %d) on channel %d to %y', msg._type =='noteon' ? 'On' : 'Off',msg.note, msg.velocity,msg.channel + 1, to)
+          Midi.send(to, msg._type, msg)
+        }
+      }
+      break*/
     case 'program':
       if (options.channels.indexOf(msg.channel + 1) >= 0) {
         if (_.get(options,'flags',[]).indexOf('virus-ti-portmap')>=0) {
@@ -87,7 +97,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
           }
         } else {
           debug('Forwarding PC %d on channel %d to %y', msg.number, msg.channel + 1, to)
-          Midi.send(to, 'cc', msg)
+          Midi.send(to, 'program', msg)
         }
       }
       break

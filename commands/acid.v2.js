@@ -121,8 +121,8 @@ class AcidMachine extends Machine {
           if (program >= 1 && program < 128) {
             const filename = this.load_preset(program - 1)
             if (filename) {
-              this.sendProgramChange('A')
-              this.sendProgramChange('B')
+              this.sendDeviceProgramChange('A')
+              this.sendDeviceProgramChange('B')
               this.interface.sendValues(origin)
               this.showPattern()
               this.writeState()
@@ -138,8 +138,8 @@ class AcidMachine extends Machine {
           if (program >= 0 && program < 127) {
             const filename = this.load_preset(program + 1)
             if (filename) {
-              this.sendProgramChange('A')
-              this.sendProgramChange('B')
+              this.sendDeviceProgramChange('A')
+              this.sendDeviceProgramChange('B')
               this.interface.sendValues(origin)
               this.showPattern()
               this.writeState()
@@ -283,7 +283,7 @@ class AcidMachine extends Machine {
           }
         }
       }
-      this.sendProgramChange(dev)
+      this.sendDeviceProgramChange(dev)
     }
 
     const devicePortChange = (dev) => {
@@ -300,9 +300,75 @@ class AcidMachine extends Machine {
     }
     const deviceBankOrProgramChange = (dev) => {
       return (elementPath, value, origin) => {
-        this.sendProgramChange(dev)
+        this.sendDeviceProgramChange(dev)
       }
     }
+
+    const trackDeviceChange = (trk) => {
+      return (elementPath, value, origin) => {
+        /*        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)*/
+        if (value > 0 && config.devices) {
+          let idx = 0
+          let choosenDeviceKey
+          let choosenChannel
+          for (let deviceKey in config.devices) {
+            if (Array.isArray(config.devices[deviceKey].channels)) {
+              for (let c in config.devices[deviceKey].channels) {
+                idx++
+                if (idx == value) {
+                  choosenDeviceKey = deviceKey
+                  choosenChannel = config.devices[deviceKey].channels[c]
+                }
+              }
+            }
+          }
+
+          /*          debug ('new %y %y',choosenDeviceKey,choosenChannel)*/
+          if (choosenDeviceKey && Number.isInteger(choosenChannel)) {
+            this.setState(`track.${trk}.channel`, choosenChannel)
+
+            const port = _.get(config, `devices.${choosenDeviceKey}.port`)
+            if (port) {
+              const portName = _.get(config, `midi.ports.${port}.${os.platform()}`)
+              if (portName) {
+                const midiNames = easymidi.getOutputs()
+                if (midiNames) {
+                  const idx = midiNames.indexOf(portName)
+                  if (idx >= 0) {
+//                    this.interface.setParameter(`device.${dev}.port`, idx)
+                    const midiNames = easymidi.getOutputs()
+                    if (midiNames) {
+                      if (idx < midiNames.length) {
+                        let name = midiNames[idx]
+                        const ports = Object.keys(config.midi.ports).filter( p => config.midi.ports[p][os.platform()] == name )
+                        if (ports && ports.length == 1) {
+                          name = ports[0]
+                        }
+                        this.setState(`track.${trk}.portName`, name)
+                      }
+                    } else {
+                      this.clearState(`track.${trk}.portName`)
+                    }
+/*                    this.interface.setParameter(`device.${dev}.channel`, choosenChannel)*/
+                  }
+                }
+              }
+            }
+          } else {
+            this.clearState(`track.${trk}.portName`)
+            this.clearState(`track.${trk}.channel`)
+          }
+        }
+      }
+    }
+
+    const trackBankOrProgramChange = (trk) => {
+      return (elementPath, value, origin) => {
+        this.sendTrackProgramChange(trk)
+      }
+    }
+
+
 
     const lfoShapeChange = (lfoIdx) => {
       const myLfoPhaseDetection = lfoPhaseDetection(lfoIdx)
@@ -420,8 +486,8 @@ class AcidMachine extends Machine {
           if (value >= 0 && value < presetFilesCount) {
             const filename = this.load_preset(value)
             if (filename) {
-              this.sendProgramChange('A')
-              this.sendProgramChange('B')
+              this.sendDeviceProgramChange('A')
+              this.sendDeviceProgramChange('B')
               this.interface.sendValues()
               this.writeState()
               debug('program: %y %y', value, path.basename(filename))
@@ -449,6 +515,38 @@ class AcidMachine extends Machine {
         },
       },
 
+      track: [
+        {
+          device: trackDeviceChange(0),
+          bank: trackBankOrProgramChange(0),
+          program: trackBankOrProgramChange(0),
+        },
+        {
+          device: trackDeviceChange(1),
+          bank: trackBankOrProgramChange(1),
+          program: trackBankOrProgramChange(1),
+        },
+        {
+          device: trackDeviceChange(2),
+          bank: trackBankOrProgramChange(2),
+          program: trackBankOrProgramChange(2),
+        },
+        {
+          device: trackDeviceChange(3),
+          bank: trackBankOrProgramChange(3),
+          program: trackBankOrProgramChange(3),
+        },
+        {
+          device: trackDeviceChange(4),
+          bank: trackBankOrProgramChange(4),
+          program: trackBankOrProgramChange(4),
+        },
+        {
+          device: trackDeviceChange(5),
+          bank: trackBankOrProgramChange(5),
+          program: trackBankOrProgramChange(5),
+        },
+      ],
       lfo: [
         {
           shape: lfoShapeChange(0),
@@ -585,14 +683,15 @@ class AcidMachine extends Machine {
     })
 
     this.interface.on('incoming', (msg, origin, channel) => {
-/*     if (msg._type!='clock') debug('Incoming (from %y) ch.%y: %y',origin,msg,channel)*/
+//     if (msg._type!='clock' /*&& origin!='clock'*/) debug('Incoming (from %y) ch.%y: %y',origin,channel,msg)
       /*      return*/
       let modSlotIdx
       let modSlotSource
       let modSlotValue
 
+      // dedicated functions like beat & transpose
       if (!Number.isInteger(channel) || msg.channel == channel) {
-        if (origin == 'external') {
+        if (origin == 'transpose') {
           if (msg._type == 'noteoff') {
             const notes = this.interface.connection(origin).midiCache.playingNotes(channel ? channel : 0)
             if (!notes || notes.length == 0) {
@@ -638,7 +737,17 @@ class AcidMachine extends Machine {
             }
           }
         }
+      } else {
       }
+
+      if (origin == 'external') {
+//        if (msg._type!='clock' /*&& origin!='clock'*/) debug('Incoming (from %y) ch.%y: %y',origin,channel,msg)
+
+        if (Number.isInteger(msg.channel)) { // is it Voice Message?
+          //debug('Incoming (from %y) ch.%y: %y',origin,channel,msg)
+        }
+      }
+
       if (modSlotSource) {
         for (let slotIdx = 0; slotIdx < 3; slotIdx++) {
           if (this.interface.getParameter(`matrix.slot.${slotIdx}.source`) == modSlotSource) {
@@ -750,11 +859,18 @@ class AcidMachine extends Machine {
     debug(table.toString())
   }
 
-  sendProgramChange(dev) {
+  sendDeviceProgramChange(dev) {
     debugMidiControlChange('%s %d CC %y = %y', this.getState(`device.${dev}.portName`), this.interface.getParameter(`device.${dev}.channel`), 0, this.interface.getParameter(`device.${dev}.bank`))
     Midi.send(this.getState(`device.${dev}.portName`), 'cc', {channel:this.interface.getParameter(`device.${dev}.channel`, 1) - 1, controller:0, value:this.interface.getParameter(`device.${dev}.bank`)}, `bankChange-${dev}`, 200)
     debugMidiProgramChange('%s %d %y', this.getState(`device.${dev}.portName`), this.interface.getParameter(`device.${dev}.channel`, 1) - 1, this.interface.getParameter(`device.${dev}.program`))
     Midi.send(this.getState(`device.${dev}.portName`), 'program', {channel:this.interface.getParameter(`device.${dev}.channel`, 1) - 1, number:this.interface.getParameter(`device.${dev}.program`)}, `programChange-${dev}`, 200)
+  }
+
+  sendTrackProgramChange(trk) {
+    debugMidiControlChange('%s %d CC %y = %y', this.getState(`track.${trk}.portName`), this.getState(`track.${trk}.channel`) -1, 0, this.interface.getParameter(`track.${trk}.bank`))
+    Midi.send(this.getState(`track.${trk}.portName`), 'cc', {channel:this.getState(`track.${trk}.channel`, 1) - 1, controller:0, value:this.interface.getParameter(`track.${trk}.bank`)}, `bankChange-${trk}`, 200)
+    debugMidiProgramChange('%s %d %y', this.getState(`track.${trk}.portName`), this.getState(`track.${trk}.channel`, 1) - 1, this.interface.getParameter(`track.${trk}.program`))
+    Midi.send(this.getState(`track.${trk}.portName`), 'program', {channel:this.getState(`track.${trk}.channel`, 1) - 1, number:this.interface.getParameter(`track.${trk}.program`)}, `programChange-${trk}`, 200)
   }
 
 
@@ -1077,6 +1193,32 @@ class AcidMachine extends Machine {
   }
 }
 
+function setupMidi(options) {
+  const scenario = _.get(config, `acid.scenarios.${options.scenario}`)
+  if (scenario && scenario.actors) {
+    const actors = Object.keys(scenario.actors)
+    for (const actor of actors) {
+      if (scenario.actors[actor].enabled && scenario.actors[actor].port && scenario.actors[actor].channels && scenario.actors[actor].channels.length) {
+        const electraOnePortName = `electra-one-${scenario.actors[actor].port}`
+        const midiInput_electraOne = Midi.input(electraOnePortName, true)
+        midiInput_electraOne.on('message', handleIncoming(electraOnePortName, actor, false, {actor, ...scenario.actors[actor]}) )
+
+        if (!scenario.actors[actor].oneway) {
+          const midiInput_actor = Midi.input(actor, true)
+          midiInput_actor.on('message', handleIncoming(actor, electraOnePortName, true, {actor, ...scenario.actors[actor]}) )
+        }
+
+        if (scenario.actors[actor].initialize) {
+          for (const init in scenario.actors[actor].initialize) {
+            Midi.send(init, 'sysex', doMapping(scenario.actors[actor].initialize[init]))
+          }
+        }
+      }
+    }
+  } else {
+    console.error(`Unknown scenario "${options.scenario}"`)
+  }
+}
 
 function acidSequencer(name, sub, options) {
 
@@ -1088,13 +1230,16 @@ function acidSequencer(name, sub, options) {
 
   acidMachine.connect(options.electra, 'surface')
   acidMachine.connect(options.general, 'external', Number.isInteger(options.generalChannel) ? parseInt(options.generalChannel)-1 : 0)
-  acidMachine.connect(options.clock, 'clock')
+  acidMachine.connect(options.clock, 'clock',10-1)
+  acidMachine.connect(options.general, 'transpose', Number.isInteger(options.transposeChannel) ? parseInt(options.transposeChannel)-1 : 0)
 
   acidMachine.notesReset()
   acidMachine.interface.sendValues('surface')
   acidMachine.showPattern()
 //  debug('State %y', machine.getPreset())
 /*  debug('Options %y', options)*/
+
+/*  setupMidi(options)*/
 }
 
 module.exports = {
