@@ -6,7 +6,7 @@
   "state": {
     "device": {
       "A": {
-        "portName": "midihub"
+        "portName": "mb33"
       },
       "B": {
         "portName": "typhon"
@@ -243,7 +243,7 @@
         "channel": 16,
         "device": 34,
         "mute": 0,
-        "port": 21,
+        "port": 20,
         "program": 18
       },
       "B": {
@@ -368,6 +368,44 @@
     "shift": 0,
     "split": 1,
     "temperature": 3.09,
+    "track": [
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      }
+    ],
     "transpose": 6
   }
 }

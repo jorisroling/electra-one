@@ -6,7 +6,7 @@
   "state": {
     "device": {
       "A": {
-        "portName": "iConnectMIDI4+ Virus TI"
+        "portName": "virus-ti"
       },
       "B": {
         "portName": "iConnectMIDI4+ Deluge"

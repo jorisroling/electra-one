@@ -6,13 +6,12 @@
   "state": {
     "device": {
       "A": {
-        "portName": "bacara"
+        "portName": "virus-ti"
       },
       "B": {
         "portName": "virus-ti"
       }
     },
-    "last_pattern_but": 11,
     "lfo": [
       {
         "shapeName": "triangle"
@@ -55,7 +54,7 @@
         {
           "channel": 0,
           "controlChanges": {},
-          "pitchBends": [],
+          "endOfTrackTicks": 1740,
           "instrument": {
             "family": "piano",
             "name": "acoustic grand piano",
@@ -199,7 +198,7 @@
               "velocity": 0.7874015748031497
             }
           ],
-          "endOfTrackTicks": 1740
+          "pitchBends": []
         }
       ]
     },
@@ -228,23 +227,23 @@
     "bank": 0,
     "base": 5,
     "density": 100,
-    "deviate": 0,
+    "deviate": 52,
     "device": {
       "A": {
         "bank": 0,
-        "channel": 1,
-        "device": 43,
+        "channel": 4,
+        "device": 4,
         "mute": 0,
-        "port": 36,
+        "port": 14,
         "program": 0
       },
       "B": {
         "bank": 0,
-        "channel": 1,
-        "device": 0,
-        "mute": 1,
-        "port": 0,
-        "program": 0
+        "channel": 2,
+        "device": 2,
+        "mute": 0,
+        "port": 14,
+        "program": 17
       }
     },
     "gate": 0.96,
@@ -262,8 +261,7 @@
         "offset": 50,
         "phase": 100,
         "rate": 64,
-        "shape": 0,
-        "show": 0
+        "shape": 0
       },
       {
         "amount": 100,
@@ -276,8 +274,7 @@
         "offset": 50,
         "phase": 100,
         "rate": 64,
-        "shape": 0,
-        "show": 0
+        "shape": 0
       },
       {
         "amount": 100,
@@ -290,8 +287,7 @@
         "offset": 50,
         "phase": 100,
         "rate": 64,
-        "shape": 0,
-        "show": 0
+        "shape": 0
       }
     ],
     "matrix": {
@@ -358,11 +354,49 @@
     "mute": 0,
     "octaveChance": 0,
     "probability": 100,
-    "program": 0,
+    "program": 29,
     "scales": 24,
     "shift": 0,
     "split": 127,
     "temperature": 1,
+    "track": [
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      }
+    ],
     "transpose": 0
   }
 }

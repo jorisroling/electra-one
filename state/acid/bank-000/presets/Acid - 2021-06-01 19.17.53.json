@@ -6,7 +6,7 @@
   "state": {
     "device": {
       "A": {
-        "portName": "midihub"
+        "portName": "mb33"
       },
       "B": {
         "portName": "virus-ti"
@@ -225,7 +225,7 @@
         "channel": 16,
         "device": 34,
         "mute": 0,
-        "port": 22,
+        "port": 20,
         "program": 0
       },
       "B": {
@@ -253,7 +253,7 @@
         "phase": 0,
         "rate": 32,
         "shape": 0,
-        "show": 81
+        "show": 80
       },
       {
         "amount": 55,
@@ -267,7 +267,7 @@
         "phase": 14,
         "rate": 7,
         "shape": 0,
-        "show": 85
+        "show": 108
       },
       {
         "amount": 100,
@@ -352,6 +352,44 @@
     "shift": 0,
     "split": 50,
     "temperature": 1,
+    "track": [
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      }
+    ],
     "transpose": 0
   }
 }

@@ -6,7 +6,7 @@
   "state": {
     "device": {
       "A": {
-        "portName": "midihub"
+        "portName": "mb33"
       },
       "B": {
         "portName": "virus-ti"

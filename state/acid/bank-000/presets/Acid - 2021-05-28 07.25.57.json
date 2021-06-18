@@ -2,15 +2,11 @@
   "name": "electra-one",
   "version": "1.1.4",
   "model": "acid.v2",
-  "modulation": {
-    "matrix": {
-      "killSteps": -0.3125
-    }
-  },
+  "modulation": {},
   "state": {
     "device": {
       "A": {
-        "portName": "midihub"
+        "portName": "virus-ti"
       },
       "B": {
         "portName": "virus-ti"
@@ -208,10 +204,10 @@
     "device": {
       "A": {
         "bank": 25,
-        "channel": 16,
-        "device": 4,
+        "channel": 2,
+        "device": 2,
         "mute": 0,
-        "port": 22,
+        "port": 14,
         "program": 18
       },
       "B": {
@@ -238,8 +234,7 @@
         "offset": 69,
         "phase": 43,
         "rate": 2,
-        "shape": 1,
-        "show": 0
+        "shape": 1
       },
       {
         "amount": 86,
@@ -252,8 +247,7 @@
         "offset": 76,
         "phase": 79,
         "rate": 1,
-        "shape": 1,
-        "show": 0
+        "shape": 1
       },
       {
         "amount": 0,
@@ -266,8 +260,7 @@
         "offset": 50,
         "phase": 0,
         "rate": 64,
-        "shape": 0,
-        "show": 0
+        "shape": 0
       }
     ],
     "matrix": {
@@ -334,11 +327,49 @@
     "mute": 0,
     "octaveChance": 49.206349206349216,
     "probability": 100,
-    "program": 12,
+    "program": 26,
     "scales": 11,
     "shift": 0,
     "split": 56,
     "temperature": 3.07,
+    "track": [
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      }
+    ],
     "transpose": 0
   }
 }

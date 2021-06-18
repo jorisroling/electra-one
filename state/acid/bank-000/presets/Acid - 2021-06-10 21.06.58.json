@@ -10,10 +10,10 @@
   "state": {
     "device": {
       "A": {
-        "portName": "midihub"
+        "portName": "mb33"
       },
       "B": {
-        "portName": "midihub"
+        "portName": "mb33"
       }
     },
     "lfo": [

@@ -272,7 +272,7 @@
   "device": {
     "A": {
       "port": 21,
-      "portName": "iConnectMIDI4+ Virus TI",
+      "portName": "virus-ti",
       "channel": 1,
       "bank": 26,
       "program": 42,

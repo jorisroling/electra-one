@@ -251,7 +251,7 @@
     },
     "B": {
       "port": 21,
-      "portName": "iConnectMIDI4+ Virus TI",
+      "portName": "virus-ti",
       "channel": 2,
       "bank": 13,
       "program": 74,
