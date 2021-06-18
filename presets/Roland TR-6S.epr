@@ -156,8 +156,8 @@
   "devices": [
     {
       "id": 26,
-      "name": "Roland TR-6S",
-      "port": 2,
+      "name": "TR-6S",
+      "port": 1,
       "channel": 10
     }
   ],

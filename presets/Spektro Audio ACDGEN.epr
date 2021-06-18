@@ -47,25 +47,148 @@
     {
       "id": 1,
       "name": "ACDGEN",
-      "port": 2,
+      "port": 1,
       "channel": 13
-    },
-    {
-      "id": 29,
-      "name": "Generic MIDI",
-      "port": 2,
-      "channel": 13
-    },
-    {
-      "id": 32,
-      "name": "ACDGEN Ctrl",
-      "port": 2,
-      "channel": 16
     }
   ],
   "overlays": [
     {
       "id": 1,
+      "items": [
+        {
+          "label": "Major",
+          "index": 0,
+          "value": 0
+        },
+        {
+          "value": 127,
+          "label": "Minor",
+          "index": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "items": [
+        {
+          "value": 0,
+          "label": "3",
+          "index": 0
+        },
+        {
+          "value": 16,
+          "label": "4",
+          "index": 1
+        },
+        {
+          "value": 32,
+          "label": "5",
+          "index": 2
+        },
+        {
+          "value": 48,
+          "label": "6",
+          "index": 3
+        },
+        {
+          "value": 64,
+          "label": "7",
+          "index": 4
+        },
+        {
+          "value": 80,
+          "label": "8",
+          "index": 5
+        },
+        {
+          "value": 96,
+          "label": "16",
+          "index": 6
+        },
+        {
+          "value": 112,
+          "label": "32",
+          "index": 7
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "items": [
+        {
+          "value": 0,
+          "label": "12 Steps",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "24 Steps",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "36 Steps",
+          "index": 2
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "items": [
+        {
+          "value": 0,
+          "label": "Logic A to F",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "50% - 75%",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "50% - 60%",
+          "index": 2
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "items": [
+        {
+          "value": 0,
+          "label": "Normal",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Lowest",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Higher",
+          "index": 2
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "items": [
+        {
+          "value": 0,
+          "label": "Velocity",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Length",
+          "index": 1
+        }
+      ]
+    },
+    {
+      "id": 7,
       "items": [
         {
           "value": 0,
@@ -130,22 +253,7 @@
       ]
     },
     {
-      "id": 2,
-      "items": [
-        {
-          "label": "Major",
-          "index": 0,
-          "value": 0
-        },
-        {
-          "value": 127,
-          "label": "Minor",
-          "index": 1
-        }
-      ]
-    },
-    {
-      "id": 3,
+      "id": 8,
       "items": [
         {
           "value": 0,
@@ -186,81 +294,6 @@
           "value": 112,
           "label": "Arpware",
           "index": 7
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "items": [
-        {
-          "value": 0,
-          "label": "12 Steps",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "24 Steps",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "36 Steps",
-          "index": 2
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "items": [
-        {
-          "value": 0,
-          "label": "Logic A to F",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "50% - 75%",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "50% - 60%",
-          "index": 2
-        }
-      ]
-    },
-    {
-      "id": 6,
-      "items": [
-        {
-          "value": 0,
-          "label": "Normal",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "Lowest",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "Higher",
-          "index": 2
-        }
-      ]
-    },
-    {
-      "id": 7,
-      "items": [
-        {
-          "value": 0,
-          "label": "Velocity",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "Length",
-          "index": 1
         }
       ]
     }
@@ -356,12 +389,11 @@
         {
           "message": {
             "type": "cc7",
-            "deviceId": 29,
+            "deviceId": 1,
             "parameterNumber": 4,
             "min": 0,
-            "max": 120
+            "max": 127
           },
-          "overlayId": 1,
           "id": "value"
         }
       ]
@@ -392,14 +424,14 @@
             "deviceId": 1,
             "parameterNumber": 5
           },
-          "overlayId": 2,
+          "overlayId": 1,
           "id": "value"
         }
       ]
     },
     {
       "id": 5,
-      "type": "list",
+      "type": "fader",
       "name": "ALGORITHM",
       "color": "FFFFFF",
       "bounds": [
@@ -421,9 +453,10 @@
           "message": {
             "type": "cc7",
             "deviceId": 1,
-            "parameterNumber": 6
+            "parameterNumber": 6,
+            "min": 0,
+            "max": 127
           },
-          "overlayId": 3,
           "id": "value"
         }
       ]
@@ -595,7 +628,7 @@
     },
     {
       "id": 11,
-      "type": "fader",
+      "type": "list",
       "name": "LENGTH",
       "color": "FFFFFF",
       "bounds": [
@@ -616,12 +649,10 @@
         {
           "message": {
             "type": "cc7",
-            "min": 0,
-            "max": 127,
-            "parameterNumber": 2,
-            "deviceId": 1
+            "deviceId": 1,
+            "parameterNumber": 2
           },
-          "defaultValue": 96,
+          "overlayId": 2,
           "id": "value"
         }
       ]
@@ -682,7 +713,7 @@
         {
           "message": {
             "type": "cc7",
-            "deviceId": 32,
+            "deviceId": 1,
             "parameterNumber": 13,
             "min": 0,
             "max": 50
@@ -714,7 +745,7 @@
         {
           "message": {
             "type": "cc7",
-            "deviceId": 32,
+            "deviceId": 1,
             "parameterNumber": 100,
             "min": 0,
             "max": 60
@@ -746,11 +777,11 @@
         {
           "message": {
             "type": "cc7",
-            "deviceId": 32,
+            "deviceId": 1,
             "parameterNumber": 101
           },
           "defaultValue": 1,
-          "overlayId": 4,
+          "overlayId": 3,
           "id": "value"
         }
       ]
@@ -778,7 +809,7 @@
         {
           "message": {
             "type": "cc7",
-            "deviceId": 32,
+            "deviceId": 1,
             "parameterNumber": 113,
             "min": 1,
             "max": 7
@@ -811,10 +842,10 @@
         {
           "message": {
             "type": "cc7",
-            "parameterNumber": 115,
-            "deviceId": 32
+            "deviceId": 1,
+            "parameterNumber": 115
           },
-          "overlayId": 5,
+          "overlayId": 4,
           "id": "value"
         }
       ]
@@ -843,7 +874,7 @@
         {
           "message": {
             "type": "cc7",
-            "deviceId": 32,
+            "deviceId": 1,
             "parameterNumber": 107,
             "onValue": 1,
             "offValue": 0
@@ -876,11 +907,11 @@
         {
           "message": {
             "type": "cc7",
-            "deviceId": 32,
+            "deviceId": 1,
             "parameterNumber": 102
           },
           "defaultValue": 0,
-          "overlayId": 6,
+          "overlayId": 5,
           "id": "value"
         }
       ]
@@ -908,10 +939,10 @@
         {
           "message": {
             "type": "cc7",
-            "parameterNumber": 114,
-            "deviceId": 32
+            "deviceId": 1,
+            "parameterNumber": 114
           },
-          "overlayId": 7,
+          "overlayId": 6,
           "id": "value"
         }
       ]
@@ -940,7 +971,7 @@
         {
           "message": {
             "type": "cc7",
-            "deviceId": 32,
+            "deviceId": 1,
             "parameterNumber": 103,
             "onValue": 1,
             "offValue": 0
@@ -973,7 +1004,7 @@
         {
           "message": {
             "type": "cc7",
-            "deviceId": 32,
+            "deviceId": 1,
             "parameterNumber": 104,
             "min": 0,
             "max": 127
@@ -1006,7 +1037,7 @@
         {
           "message": {
             "type": "cc7",
-            "deviceId": 32,
+            "deviceId": 1,
             "parameterNumber": 105,
             "min": 0,
             "max": 127
@@ -1039,7 +1070,7 @@
         {
           "message": {
             "type": "cc7",
-            "deviceId": 32,
+            "deviceId": 1,
             "parameterNumber": 106,
             "min": 0,
             "max": 127
@@ -1075,7 +1106,71 @@
             "deviceId": 1,
             "parameterNumber": 4
           },
-          "overlayId": 1,
+          "overlayId": 7,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "type": "fader",
+      "name": "LENGTH",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        480,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 2,
+            "deviceId": 1
+          },
+          "defaultValue": 96,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "type": "list",
+      "name": "ALGORITHM",
+      "color": "FFFFFF",
+      "bounds": [
+        680,
+        480,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 6
+          },
+          "overlayId": 8,
           "id": "value"
         }
       ]
