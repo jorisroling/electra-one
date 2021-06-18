@@ -23,33 +23,45 @@ module.exports = {
         darwin: 'Electra Controller Electra CTRL',
         linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 12 20:11',
       },
-      'typhon': {
-        darwin: 'iConnectMIDI4+ Typhon',
-        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 1 20:0',
-      },
-      'tr-6s': {
-        darwin: 'iConnectMIDI4+ TR-6S',
-        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 2 20:1',
-      },
       'virus-ti': {
-        darwin: 'iConnectMIDI4+ Virus TI',
-        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 3 20:2',
-      },
-      'midihub': {
-        darwin: 'iConnectMIDI4+ Midihub',
-        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 4 20:3',
+        darwin: 'MRCC Port 1', // 'iConnectMIDI4+ Virus TI',
+        //        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 3 20:2',
       },
       'deluge': {
-        darwin: 'iConnectMIDI4+ Deluge',
-        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 7 20:6',
+        darwin: 'MRCC Port 2', // 'iConnectMIDI4+ Deluge',
+        //        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 7 20:6',
+      },
+      'typhon': {
+        darwin: 'MRCC Port 3', // 'iConnectMIDI4+ Typhon',
+        //        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 1 20:0',
+      },
+      'tr-6s': {
+        darwin: 'MRCC Port 4', // 'iConnectMIDI4+ TR-6S',
+        //        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 2 20:1',
+      },
+      'mb33': {
+        darwin: 'MRCC Port 7', // 'iConnectMIDI4+ TR-6S',
+        //        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 2 20:1',
+      },
+      'vp-03': {
+        darwin: 'MRCC Port 8', // 'iConnectMIDI4+ TR-6S',
+        //        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 2 20:1',
+      },
+      'nts-1': {
+        darwin: 'MRCC Port 9', // 'iConnectMIDI4+ TR-6S',
+        //        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 2 20:1',
       },
       'acdgen': {
-        darwin: 'iConnectMIDI4+ ACDGEN',
-        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 11 20:10',
+        darwin: 'MRCC Port 10',
+        //        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 11 20:10',
+      },
+      'midihub': {
+        darwin: 'MRCC Port 11',
+        //        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 4 20:3',
       },
       'keystep-pro': {
-        darwin: 'iConnectMIDI4+ Keystep Pro',
-        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 6 20:5',
+        darwin: 'MRCC Port 12', // darwin: 'iConnectMIDI4+ Keystep Pro',
+        //        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 6 20:5',
       },
       'bacara': {
         darwin: bacaraAcidVirtualName,
@@ -87,16 +99,16 @@ module.exports = {
       channels: [15],
       port: 'typhon',
       electraOne: {
-        port: 2,
+        port: 1,
       },
     },
     'mb33': {
       model: 'MB33',
       manufacturer: 'MAM',
       channels: [16],
-      port: 'midihub',
+      port: 'mb33',
       electraOne: {
-        port: 2,
+        port: 1,
       },
     },
     'tr-6s': {
@@ -106,25 +118,25 @@ module.exports = {
       instances: ['Patterns', 'Kits'],
       port: 'tr-6s',
       electraOne: {
-        port: 2,
+        port: 1,
       },
     },
     'vp-03': {
       model: 'VP-03',
       manufacturer: 'Roland',
       channels: [14],
-      port: 'midihub',
+      port: 'vp-03',
       electraOne: {
-        port: 2,
+        port: 1,
       },
     },
     'nts-1': {
       model: 'NTS-1',
       manufacturer: 'Korg',
       channels: [12],
-      port: 'midihub',
+      port: 'nts-1',
       electraOne: {
-        port: 2,
+        port: 1,
       },
     },
     'acdgen': {
@@ -133,7 +145,7 @@ module.exports = {
       channels: [13],
       port: 'acdgen',
       electraOne: {
-        port: 2,
+        port: 1,
       },
     },
     'keystep-pro': {
@@ -143,7 +155,7 @@ module.exports = {
       channels: [1, 2, 3, 4],
       port: 'keystep-pro',
       electraOne: {
-        port: 2,
+        port: 1,
       },
     },
     'bacara': {
@@ -172,29 +184,35 @@ module.exports = {
           },
           'tr-6s': {
             enabled: true,
-            port: 2,
+            port: 1,
             channels: [10, 11],
             ignore: [2],
           },
           'acdgen': {
             enabled: true,
-            port: 2,
+            port: 1,
             channels: [13, 16],
             oneway: true,
           },
           'typhon': {
             enabled: true,
-            port: 2,
+            port: 1,
             channels: [15],
             oneway: true,
           },
-          'midihub': {
+          'nts-1': {
             enabled: true,
-            port: 2,
-            channels: [12,14],
+            port: 1,
+            channels: [12],
             oneway: true,
           },
-/*          'keystep-pro': {
+          'vp-03': {
+            enabled: true,
+            port: 1,
+            channels: [14],
+            oneway: true,
+          },
+          /*          'keystep-pro': {
             enabled: true,
             port: 2,
             channels: [1,2,3,4,10],
@@ -211,14 +229,14 @@ module.exports = {
   acid: {
     virtual: bacaraAcidVirtualName,
     channel: 1,
-//    interface: require('../interfaces/acid.v1').parameters,
+    //    interface: require('../interfaces/acid.v1').parameters,
     scenarios: {
       'default': {
         actors: {
           'keystep-pro': {
             enabled: true,
             port: 2,
-            channels: [1,2,3,4,10],
+            channels: [1, 2, 3, 4, 10],
             flags:['tracker'],
             oneway: false,
           },

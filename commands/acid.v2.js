@@ -123,6 +123,9 @@ class AcidMachine extends Machine {
             if (filename) {
               this.sendDeviceProgramChange('A')
               this.sendDeviceProgramChange('B')
+              for (let trk = 0; trk < 6; trk++) {
+                this.sendTrackProgramChange(trk)
+              }
               this.interface.sendValues(origin)
               this.showPattern()
               this.writeState()
@@ -140,6 +143,9 @@ class AcidMachine extends Machine {
             if (filename) {
               this.sendDeviceProgramChange('A')
               this.sendDeviceProgramChange('B')
+              for (let trk = 0; trk < 6; trk++) {
+                this.sendTrackProgramChange(trk)
+              }
               this.interface.sendValues(origin)
               this.showPattern()
               this.writeState()
@@ -289,18 +295,24 @@ class AcidMachine extends Machine {
     const devicePortChange = (dev) => {
       return (elementPath, value, origin) => {
         this.setState(`device.${dev}.portName`, Midi.normalisePortName(value))
-        devicePortOrChannelChanged(dev)
+        if (origin != 'internal') {
+          devicePortOrChannelChanged(dev)
+        }
       }
     }
 
     const deviceChannelChange = (dev) => {
       return (elementPath, value, origin) => {
-        devicePortOrChannelChanged(dev)
+        if (origin != 'internal') {
+          devicePortOrChannelChanged(dev)
+        }
       }
     }
     const deviceBankOrProgramChange = (dev) => {
       return (elementPath, value, origin) => {
-        this.sendDeviceProgramChange(dev)
+        if (origin != 'internal') {
+          this.sendDeviceProgramChange(dev)
+        }
       }
     }
 
@@ -335,7 +347,7 @@ class AcidMachine extends Machine {
                 if (midiNames) {
                   const idx = midiNames.indexOf(portName)
                   if (idx >= 0) {
-//                    this.interface.setParameter(`device.${dev}.port`, idx)
+                    //                    this.interface.setParameter(`device.${dev}.port`, idx)
                     const midiNames = easymidi.getOutputs()
                     if (midiNames) {
                       if (idx < midiNames.length) {
@@ -349,7 +361,7 @@ class AcidMachine extends Machine {
                     } else {
                       this.clearState(`track.${trk}.portName`)
                     }
-/*                    this.interface.setParameter(`device.${dev}.channel`, choosenChannel)*/
+                    /*                    this.interface.setParameter(`device.${dev}.channel`, choosenChannel)*/
                   }
                 }
               }
@@ -364,7 +376,9 @@ class AcidMachine extends Machine {
 
     const trackBankOrProgramChange = (trk) => {
       return (elementPath, value, origin) => {
-        this.sendTrackProgramChange(trk)
+        if (origin != 'internal') {
+          this.sendTrackProgramChange(trk)
+        }
       }
     }
 
@@ -488,6 +502,9 @@ class AcidMachine extends Machine {
             if (filename) {
               this.sendDeviceProgramChange('A')
               this.sendDeviceProgramChange('B')
+              for (let trk = 0; trk < 6; trk++) {
+                this.sendTrackProgramChange(trk)
+              }
               this.interface.sendValues()
               this.writeState()
               debug('program: %y %y', value, path.basename(filename))
@@ -683,7 +700,7 @@ class AcidMachine extends Machine {
     })
 
     this.interface.on('incoming', (msg, origin, channel) => {
-//     if (msg._type!='clock' /*&& origin!='clock'*/) debug('Incoming (from %y) ch.%y: %y',origin,channel,msg)
+      //     if (msg._type!='clock' /*&& origin!='clock'*/) debug('Incoming (from %y) ch.%y: %y',origin,channel,msg)
       /*      return*/
       let modSlotIdx
       let modSlotSource
@@ -695,7 +712,7 @@ class AcidMachine extends Machine {
           if (msg._type == 'noteoff') {
             const notes = this.interface.connection(origin).midiCache.playingNotes(channel ? channel : 0)
             if (!notes || notes.length == 0) {
-//              this.interface.setParameter('mute', 1)
+              //              this.interface.setParameter('mute', 1)
             }
             if (notes && notes.length > 0) {
               notes.sort()
@@ -704,11 +721,11 @@ class AcidMachine extends Machine {
           }
           if (msg._type == 'noteon') {
             const notes = this.interface.connection(origin).midiCache.playingNotes(channel ? channel : 0)
-/*            debug('hi %y, %y',channel,notes)*/
+            /*            debug('hi %y, %y',channel,notes)*/
             if (notes && notes.length > 0) {
               this.interface.setParameter('mute', 0)
               notes.sort()
-              this.interface.setParameter('transpose', notes[0]+4, 'external')
+              this.interface.setParameter('transpose', notes[0] + 4, 'external')
             }
             modSlotSource = matrixSlotSources.velocity
             modSlotValue = msg.velocity
@@ -737,11 +754,10 @@ class AcidMachine extends Machine {
             }
           }
         }
-      } else {
       }
 
       if (origin == 'external') {
-//        if (msg._type!='clock' /*&& origin!='clock'*/) debug('Incoming (from %y) ch.%y: %y',origin,channel,msg)
+        //        if (msg._type!='clock' /*&& origin!='clock'*/) debug('Incoming (from %y) ch.%y: %y',origin,channel,msg)
 
         if (Number.isInteger(msg.channel)) { // is it Voice Message?
           //debug('Incoming (from %y) ch.%y: %y',origin,channel,msg)
@@ -860,17 +876,26 @@ class AcidMachine extends Machine {
   }
 
   sendDeviceProgramChange(dev) {
-    debugMidiControlChange('%s %d CC %y = %y', this.getState(`device.${dev}.portName`), this.interface.getParameter(`device.${dev}.channel`), 0, this.interface.getParameter(`device.${dev}.bank`))
-    Midi.send(this.getState(`device.${dev}.portName`), 'cc', {channel:this.interface.getParameter(`device.${dev}.channel`, 1) - 1, controller:0, value:this.interface.getParameter(`device.${dev}.bank`)}, `bankChange-${dev}`, 200)
-    debugMidiProgramChange('%s %d %y', this.getState(`device.${dev}.portName`), this.interface.getParameter(`device.${dev}.channel`, 1) - 1, this.interface.getParameter(`device.${dev}.program`))
-    Midi.send(this.getState(`device.${dev}.portName`), 'program', {channel:this.interface.getParameter(`device.${dev}.channel`, 1) - 1, number:this.interface.getParameter(`device.${dev}.program`)}, `programChange-${dev}`, 200)
+    const portName = this.getState(`device.${dev}.portName`)
+    const channel = this.interface.getParameter(`device.${dev}.channel`, 1)
+    const bank = this.interface.getParameter(`device.${dev}.bank`)
+    const program = this.interface.getParameter(`device.${dev}.program`)
+    debugMidiControlChange('%s %d CC %y = %y', portName, channel, 0, bank)
+    Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, `bankChange-${dev}`, 200)
+    debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
+    Midi.send(portName, 'program', {channel:channel - 1, number: program}, `programChange-${dev}`, 200)
   }
 
   sendTrackProgramChange(trk) {
-    debugMidiControlChange('%s %d CC %y = %y', this.getState(`track.${trk}.portName`), this.getState(`track.${trk}.channel`) -1, 0, this.interface.getParameter(`track.${trk}.bank`))
-    Midi.send(this.getState(`track.${trk}.portName`), 'cc', {channel:this.getState(`track.${trk}.channel`, 1) - 1, controller:0, value:this.interface.getParameter(`track.${trk}.bank`)}, `bankChange-${trk}`, 200)
-    debugMidiProgramChange('%s %d %y', this.getState(`track.${trk}.portName`), this.getState(`track.${trk}.channel`, 1) - 1, this.interface.getParameter(`track.${trk}.program`))
-    Midi.send(this.getState(`track.${trk}.portName`), 'program', {channel:this.getState(`track.${trk}.channel`, 1) - 1, number:this.interface.getParameter(`track.${trk}.program`)}, `programChange-${trk}`, 200)
+    /*   console.trace('JJR:'+trk)*/
+    const portName = this.getState(`track.${trk}.portName`)
+    const channel = this.getState(`track.${trk}.channel`, 1)
+    const bank = this.interface.getParameter(`track.${trk}.bank`)
+    const program = this.interface.getParameter(`track.${trk}.program`)
+    debugMidiControlChange('%s %d CC %y = %y', portName, channel - 1, 0, bank)
+    Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, `bankChange-${trk}`, 200)
+    debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
+    Midi.send(portName, 'program', {channel:channel - 1, number:program}, `programChange-${trk}`, 200)
   }
 
 
@@ -1193,7 +1218,7 @@ class AcidMachine extends Machine {
   }
 }
 
-function setupMidi(options) {
+/*function setupMidi(options) {
   const scenario = _.get(config, `acid.scenarios.${options.scenario}`)
   if (scenario && scenario.actors) {
     const actors = Object.keys(scenario.actors)
@@ -1219,6 +1244,7 @@ function setupMidi(options) {
     console.error(`Unknown scenario "${options.scenario}"`)
   }
 }
+*/
 
 function acidSequencer(name, sub, options) {
 
@@ -1229,15 +1255,17 @@ function acidSequencer(name, sub, options) {
   acidMachine.writeState()
 
   acidMachine.connect(options.electra, 'surface')
-  acidMachine.connect(options.general, 'external', Number.isInteger(options.generalChannel) ? parseInt(options.generalChannel)-1 : 0)
-  acidMachine.connect(options.clock, 'clock',10-1)
-  acidMachine.connect(options.general, 'transpose', Number.isInteger(options.transposeChannel) ? parseInt(options.transposeChannel)-1 : 0)
+  acidMachine.connect(options.general, 'external', Number.isInteger(options.generalChannel) ? parseInt(options.generalChannel) - 1 : 0)
+  acidMachine.connect(options.clock, 'clock', 10 - 1)
+  acidMachine.connect(options.general, 'transpose', Number.isInteger(options.transposeChannel) ? parseInt(options.transposeChannel) - 1 : 0)
+
+  acidMachine.interface.emitParameters('post-connect')
 
   acidMachine.notesReset()
   acidMachine.interface.sendValues('surface')
   acidMachine.showPattern()
-//  debug('State %y', machine.getPreset())
-/*  debug('Options %y', options)*/
+  //  debug('State %y', machine.getPreset())
+  /*  debug('Options %y', options)*/
 
 /*  setupMidi(options)*/
 }

@@ -76,7 +76,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
     //       debug('handleIncoming: %s %y',from,msg)
 
     switch (msg._type) {
-/*    case 'noteon': // fall-through
+    /*    case 'noteon': // fall-through
     case 'noteoff':
       if (options.channels.indexOf(msg.channel + 1) >= 0) {
         if (_.get(options,'flags',[]).indexOf('tracker')>=0) {
@@ -88,7 +88,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
       break*/
     case 'program':
       if (options.channels.indexOf(msg.channel + 1) >= 0) {
-        if (_.get(options,'flags',[]).indexOf('virus-ti-portmap')>=0) {
+        if (_.get(options, 'flags', []).indexOf('virus-ti-portmap') >= 0) {
           if ((targetElectraOne && msg.channel == getMapping('part:-1')) || (!targetElectraOne && msg.channel == electraOneMidiChannel) ) {
             _.set(midiHistory, `${from}.channel_${getMapping('part:-1')}.program`, msg.number)
             Midi.send(to, 'program', {channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), number: msg.number}, 'programChange', sendProgramChangeTimeoutTime)
@@ -103,7 +103,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
       break
     case 'cc':
       if (options.channels.indexOf(msg.channel + 1) >= 0) {
-        if (_.get(options,'flags',[]).indexOf('virus-ti-portmap')>=0) {
+        if (_.get(options, 'flags', []).indexOf('virus-ti-portmap') >= 0) {
           if ((targetElectraOne && msg.channel == getMapping('part:-1')) || (!targetElectraOne && msg.channel == electraOneMidiChannel) ) {
             if (msg.controller == 6 || msg.controller == 38 || msg.controller == 98 || msg.controller == 99) { // NRPN
               //                debug('NRPN %y=%y',msg.controller,msg.value)
@@ -127,15 +127,15 @@ function handleIncoming(from, to, targetElectraOne, options) {
             }
           }
         } else {
-          if (_.get(options,'ignore',[]).indexOf(msg.controller)<0) {
-            debug('Forwarding %y by %y CC %y value %y on channel %y to %y',_.get(deviceCCs, `${options.actor}.${msg.controller}`) ,options.actor, msg.controller ,msg.value, msg.channel + 1, to)
+          if (_.get(options, 'ignore', []).indexOf(msg.controller) < 0) {
+            debug('Forwarding %y by %y CC %y value %y on channel %y to %y', _.get(deviceCCs, `${options.actor}.${msg.controller}`), options.actor, msg.controller, msg.value, msg.channel + 1, to)
             Midi.send(to, 'cc', msg)
           }
         }
       }
       break
     case 'sysex':
-      if (_.get(options,'flags',[]).indexOf('virus-ti-portmap')>=0 && msg.bytes) {
+      if (_.get(options, 'flags', []).indexOf('virus-ti-portmap') >= 0 && msg.bytes) {
 
         /* Query Part Change Custom SysEx */
         if (msg.bytes.length == 5 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x7D && msg.bytes[2] == 0x21 && msg.bytes[3] == 0xF7) {

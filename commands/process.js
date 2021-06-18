@@ -56,19 +56,19 @@ function preProcess(name, sub, options) {
                   value: 0,
                 }]
                 let idx = 1
-                for (let ctrl=1;ctrl<128;ctrl++) {
+                for (let ctrl = 1; ctrl < 128; ctrl++) {
                   const path = interface.getMapPath('external', 'cc', ctrl)
-/*                 debug('path %y %y %y',path,`^lfo.${currentLfo-1}.`,path && path.match(`^lfo.${currentLfo-1}.`))*/
+                  /*                 debug('path %y %y %y',path,`^lfo.${currentLfo-1}.`,path && path.match(`^lfo.${currentLfo-1}.`))*/
                   if (path) {
                     overlay.items.push({
                       index: idx++,
-                      label: interface.getElementAttribute(path,'name'),
+                      label: interface.getElementAttribute(path, 'name'),
                       value: ctrl,
                     })
                   }
                 }
               }
-              lfoTargetMatch = overlayType.match(/lfo([\d])Target/)
+              const lfoTargetMatch = overlayType.match(/lfo([\d])Target/)
               if (lfoTargetMatch) {
                 const currentLfo = parseInt(lfoTargetMatch[1])
                 overlay.items = [{
@@ -77,32 +77,32 @@ function preProcess(name, sub, options) {
                   value: 0,
                 }]
                 let idx = 1
-                for (let ctrl =1;ctrl<128;ctrl++) {
+                for (let ctrl = 1; ctrl < 128; ctrl++) {
                   overlay.items.push({
                     index: idx++,
                     label: `Control #${ctrl}`,
-                    value: ctrl+128,
+                    value: ctrl + 128,
                   })
                 }
-/*                debug('map %y',interface.map)*/
-                for (let ctrl=1;ctrl<128;ctrl++) {
+                /*                debug('map %y',interface.map)*/
+                for (let ctrl = 1; ctrl < 128; ctrl++) {
                   const path = interface.getMapPath('external', 'cc', ctrl)
-/*                 debug('path %y %y %y',path,`^lfo.${currentLfo-1}.`,path && path.match(`^lfo.${currentLfo-1}.`))*/
-                  if (path && !path.match(`^lfo.${currentLfo-1}.`)) {
+                  /*                 debug('path %y %y %y',path,`^lfo.${currentLfo-1}.`,path && path.match(`^lfo.${currentLfo-1}.`))*/
+                  if (path && !path.match(`^lfo.${currentLfo - 1}.`)) {
                     overlay.items.push({
                       index: idx++,
-                      label: interface.getElementAttribute(path,'name'),
+                      label: interface.getElementAttribute(path, 'name'),
                       value: ctrl,
                     })
                   }
                 }
-/*               debug('hi %y %y', lfoTargetMatch,overlay)*/
+                /*               debug('hi %y %y', lfoTargetMatch,overlay)*/
               }
             }
           }
         }
       }
-     process.stdout.write(JSON.stringify(preset, null, 2))
+      process.stdout.write(JSON.stringify(preset, null, 2))
     } else {
       console.error(`The file "${options.filename}" does not exist`)
     }
