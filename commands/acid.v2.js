@@ -1257,7 +1257,7 @@ function acidSequencer(name, sub, options) {
   acidMachine.connect(options.electra, 'surface')
   acidMachine.connect(options.general, 'external', Number.isInteger(options.generalChannel) ? parseInt(options.generalChannel) - 1 : 0)
   acidMachine.connect(options.clock, 'clock', 10 - 1)
-  acidMachine.connect(options.general, 'transpose', Number.isInteger(options.transposeChannel) ? parseInt(options.transposeChannel) - 1 : 0)
+  acidMachine.connect(options.transpose, 'transpose', Number.isInteger(options.transposeChannel) ? parseInt(options.transposeChannel) - 1 : 0)
 
   acidMachine.interface.emitParameters('post-connect')
 

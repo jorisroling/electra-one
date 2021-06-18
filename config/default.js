@@ -67,6 +67,9 @@ module.exports = {
         darwin: bacaraAcidVirtualName,
         linux: bacaraAcidVirtualName,
       },
+      'komplete-kontrol': {
+        darwin: 'KOMPLETE KONTROL M32',
+      },
     },
   },
   devices: {

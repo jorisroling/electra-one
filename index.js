@@ -18,7 +18,7 @@ args
   .option('electra', 'Electra One MIDI interface name (part)', 'Electra Controller Electra Port 2')
   .option('clock', 'Clock Input MIDI interface name (part)', 'tr-6s')
 
-  .option('transpose', 'Transpose Input MIDI interface name (part)', 'keystep-pro')
+  .option('transpose', 'Transpose Input MIDI interface name (part)', 'komplete-kontrol')
   .option('transposeChannel', 'Transpose Input Channel (1-16)', 1)
 
   .option('general', 'General Input MIDI interface name (part)', 'keystep-pro')
