@@ -19,7 +19,7 @@ args
   .option('clock', 'Clock Input MIDI interface name (part)', 'tr-6s')
 
   .option('transpose', 'Transpose Input MIDI interface name (part)', 'komplete-kontrol')
-  .option('transposeChannel', 'Transpose Input Channel (1-16)', 1)
+  .option('transposeChannel', 'Transpose Input Channel (1-16)', 16)
 
   .option('general', 'General Input MIDI interface name (part)', 'keystep-pro')
   .option('generalChannel', 'General Input Channel (1-16)', 1)

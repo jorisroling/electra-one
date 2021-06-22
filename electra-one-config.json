@@ -2,6 +2,6 @@
   "version": 1,
   "uiFeatures": {
     "touchSwitchControlSets": true,
-    "useBarsForControlSets": false
+    "activeControlSetType":"dim"
   }
 }
