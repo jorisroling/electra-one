@@ -93,7 +93,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
             _.set(midiHistory, `${from}.channel_${getMapping('part:-1')}.program`, msg.number)
             Midi.send(to, 'program', {channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), number: msg.number}, 'programChange', sendProgramChangeTimeoutTime)
             debugPart('Part mapping %y applied to PC %d to %y', (targetElectraOne ? (electraOneMidiChannel + 1) : getMapping('part')), msg.number, to)
-            Midi.send(to, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
+            Midi.send(to, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
           }
         } else {
           debug('Forwarding PC %d on channel %d to %y', msg.number, msg.channel + 1, to)
@@ -121,7 +121,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
                 debug('Bank: %y to %y', msg.value, to)
                 Midi.send(to, 'program', {channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), number: _.get(midiHistory, `${from}.channel_${getMapping('part:-1')}.program`)}, 'programChange', sendProgramChangeTimeoutTime)
                 debugPart('Part mapping %y applied to PC %d to %y', (targetElectraOne ? (electraOneMidiChannel + 1) : getMapping('part')), _.get(midiHistory, `${from}.channel_${getMapping('part:-1')}.program`), to)
-                Midi.send(to, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
+                Midi.send(to, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
 
               }
             }
@@ -136,7 +136,6 @@ function handleIncoming(from, to, targetElectraOne, options) {
       break
     case 'sysex':
       if (_.get(options, 'flags', []).indexOf('virus-ti-portmap') >= 0 && msg.bytes) {
-
         /* Query Part Change Custom SysEx */
         if (msg.bytes.length == 5 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x7D && msg.bytes[2] == 0x21 && msg.bytes[3] == 0xF7) {
           debug('Get mapped part: %y by %y', getMapping('part'), from)
@@ -146,7 +145,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
         } else if (msg.bytes.length == 5 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x7D && msg.bytes[2] == 0x20 && msg.bytes[4] == 0xF7) {
           setMapping('part', msg.bytes[3])
           debug('Set mapped part: %y by %y', getMapping('part'), from)
-          Midi.send(to, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
+          Midi.send(to, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
 
           /* Single SysEx Parameterchange F0 00 20 33 01 XX (6E - 72) YY */
         } else if (msg.bytes.length == 11 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x00 && msg.bytes[2] == 0x20 && msg.bytes[3] == 0x33 && msg.bytes[4] == 0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6] >= 0x6E && msg.bytes[6] <= 0x73 && msg.bytes[7] == (targetElectraOne ? getMapping('part:-1') : electraOneMidiChannel) && msg.bytes[10] == 0xF7) {
@@ -157,7 +156,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
           // F0 00 20 33 01 XX 72 00  20 1A F7 => bank change from virus-ti
           if (msg.bytes[6] == 0x72 && (msg.bytes[8] == 0x20 || msg.bytes[8] == 0x21)) {
             debug('Patch or Bank change, Single Request back')
-            Midi.send(from, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
+            Midi.send(from, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
 
 
             if (targetElectraOne) {
@@ -174,7 +173,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
             debug('Part change (to %y), Single Request back', msg.bytes[7] + 1)
             setMapping('part', msg.bytes[7] + 1)
             Midi.send(to, 'sysex', [0xF0, 0x7D, 0x20, getMapping('part'), 0xF7])
-            Midi.send(from, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
+            Midi.send(from, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
 
           } else {
             msg.bytes[7] = ( targetElectraOne ? electraOneMidiChannel : getMapping('part:-1') )
@@ -188,13 +187,13 @@ function handleIncoming(from, to, targetElectraOne, options) {
             debug('Part change to %y, Single Request back', msg.bytes[9] + 1)
             setMapping('part', msg.bytes[9] + 1)
             Midi.send(to, 'sysex', [0xF0, 0x7D, 0x20, getMapping('part'), 0xF7])
-            Midi.send(from, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
+            Midi.send(from, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
 
           }
         } else if (msg.bytes.length == 10 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x00 && msg.bytes[2] == 0x20 && msg.bytes[3] == 0x33 && msg.bytes[4] == 0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6] == 0x30 && msg.bytes[7] == 0x00 /* && msg.bytes[8]==0x00 */) {
           msg.bytes[8] = ( targetElectraOne ? electraOneMidiChannel : getMapping('part:-1') )
           debugPart('Part mapping %y applied to Single Request SysEx to %y', msg.bytes[8], to)
-          Midi.send(to, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
+          Midi.send(to, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
 
           /* Single Dump Buffer F0 00 20 33 01 XX 10 00 YY */
         } else if (msg.bytes.length == 524 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x00 && msg.bytes[2] == 0x20 && msg.bytes[3] == 0x33 && msg.bytes[4] == 0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6] == 0x10 && msg.bytes[7] == 0x00 /* && msg.bytes[8]==0x00 */ ) {
@@ -207,7 +206,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
           // F0 00 20 33 01 XX 72 00  21 32 F7 => preset change
           // F0 00 20 33 01 XX 72 00  20 1A F7 => bank change
           debug('PC')
-          Midi.send(to, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
+          Midi.send(to, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
 
 
         }
