@@ -81,9 +81,9 @@ module.exports = {
       channels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
       port: 'virus-ti',
       electraOne: {
-        port: 1,
+        port: 2,
         initialize: {
-          'electra-one-1': [0xF0, 0x7D, 0x20, 'part', 0xF7],
+          'electra-one-2': [0xF0, 0x7D, 0x20, 'part', 0xF7],
           'virus-ti': [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, 'part:-1', 0xF7],
         },
       },
@@ -178,11 +178,11 @@ module.exports = {
         actors: {
           'virus-ti': {
             enabled: true,
-            port: 1,
+            port: 2,
             channels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
             flags: ['virus-ti-portmap'],
             initialize: {
-              'electra-one-1': [0xF0, 0x7D, 0x20, 'part', 0xF7],
+              'electra-one-2': [0xF0, 0x7D, 0x20, 'part', 0xF7],
               'virus-ti': [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, 'part:-1', 0xF7],
             },
           },

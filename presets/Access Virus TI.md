@@ -4,7 +4,9 @@ This *Preset File* on itself will allow editing of all parameters of part 1.  It
 
 This Preset will really shine when used in conjunction with the **electra-one router**, which is a command-line router (tested on MacOS and Raspberry PI), that does the routing and forwarding a bit clever, such that the actual **Part** can be chosen on the Electra One console (first page, top right). See for the full description here: [https://github.com/jorisroling/electra-one](https://github.com/jorisroling/electra-one)
 
-IMPORTANT: This Preset assumes you have set your Access Virus TI to MIDI Device ID to Omni.
+**IMPORTANT**: This Preset assumes you have set your Access Virus TI to MIDI Device ID to Omni.
+
+**MIND YOU**: This Preset is assuming you have your Access Virus connected via Electra One's port 2. Please adapt to your liking.
 
 Changelog:
 
