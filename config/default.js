@@ -68,7 +68,7 @@ module.exports = {
         linux: bacaraAcidVirtualName,
       },
       'komplete-kontrol': {
-//        darwin: 'KOMPLETE KONTROL M32',
+        //        darwin: 'KOMPLETE KONTROL M32',
         darwin: 'MRCC Port 12',
       },
     },
