@@ -2,7 +2,7 @@ const pkg = require('../package.json')
 const debugPrefix = pkg.name
 const path = require('path')
 
-const bacaraAcidVirtualName = 'Bacara Acid'
+const bacaraAcidVirtualName = 'Bacara'
 /*
  iConnectMIDI4+:iConnectMIDI4+ MIDI 3 20:2   ║ Virus TI
 */
