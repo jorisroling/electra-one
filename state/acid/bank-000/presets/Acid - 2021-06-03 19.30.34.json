@@ -247,8 +247,8 @@
       }
     },
     "gate": 1.67,
-    "killShift": -9,
-    "killSteps": 2,
+    "muteShift": -9,
+    "muteSteps": 2,
     "lfo": [
       {
         "amount": 79,

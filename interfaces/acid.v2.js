@@ -195,8 +195,8 @@ module.exports = {
       default: 100,
       unit: '%',
     },
-    killSteps: {
-      name: 'Kill Steps',
+    muteSteps: {
+      name: 'Mute Steps',
       type: 'parameter',
       surface: {
         type: 'nrpn',
@@ -216,8 +216,8 @@ module.exports = {
       default: 0,
       unit: 'steps',
     },
-    killShift: {
-      name: 'Kill Shift',
+    muteShift: {
+      name: 'Mute Shift',
       type: 'parameter',
       surface: {
         type: 'nrpn',

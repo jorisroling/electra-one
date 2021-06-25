@@ -220,8 +220,8 @@
       }
     },
     "gate": 1.0755555555555556,
-    "killShift": 0,
-    "killSteps": 0,
+    "muteShift": 0,
+    "muteSteps": 0,
     "lfo": [
       {
         "amount": 79,

@@ -53,14 +53,14 @@ module.exports = {
       max: 100,
       default: 100,
     },
-    killSteps: {
+    muteSteps: {
       cc: 16,
       nrpn: 17,
       min: 0,
       max: 16,
       default: 0,
     },
-    killShift: {
+    muteShift: {
       cc: 17,
       nrpn: 18,
       min: 0,

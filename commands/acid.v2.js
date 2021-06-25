@@ -35,7 +35,7 @@ const { knownDeviceCCs } = require('../lib/devices')
 const deviceCCs = knownDeviceCCs()
 
 const phaseDetection = true
-const tableParameters = ['transpose', 'density', 'killSteps', 'killShift', 'scales', 'base', 'split', 'deviate', 'shift']
+const tableParameters = ['transpose', 'density', 'muteSteps', 'muteShift', 'scales', 'base', 'split', 'deviate', 'shift']
 
 const toneJSmidi = require('@tonejs/midi')
 
@@ -468,7 +468,7 @@ class AcidMachine extends Machine {
       density: (elementPath, value, origin) => {
         /*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
         if (origin == 'surface' && value != 100) {
-          this.interface.setParameter('killSteps', 0)
+          this.interface.setParameter('muteSteps', 0)
         }
         if (origin == 'surface' || !this.state.sounding) {
           this.state.sounding = []
@@ -477,20 +477,20 @@ class AcidMachine extends Machine {
           }
         }
       },
-      killSteps: (elementPath, value, origin) => {
+      muteSteps: (elementPath, value, origin) => {
         /*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
         if (origin == 'surface' && value != 0) {
           this.interface.setParameter('density', 100)
         }
         if (origin == 'surface' || !this.state.sounding && value > 0) {
-          this.euclidian(this.interface.getParameter('killSteps'), 16, this.interface.getParameter('killShift'))
+          this.euclidian(this.interface.getParameter('muteSteps'), 16, this.interface.getParameter('muteShift'))
         }
       },
-      killShift: (elementPath, value, origin) => {
+      muteShift: (elementPath, value, origin) => {
         /*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
-        if (this.interface.getParameter('killSteps') > 0) {
+        if (this.interface.getParameter('muteSteps') > 0) {
           if (origin == 'surface' || !this.state.sounding) {
-            this.euclidian(this.interface.getParameter('killSteps'), 16, this.interface.getParameter('killShift'))
+            this.euclidian(this.interface.getParameter('muteSteps'), 16, this.interface.getParameter('muteShift'))
           }
         }
       },
@@ -943,7 +943,7 @@ class AcidMachine extends Machine {
     return result
   }
 
-  euclidian(killSteps, steps, killShift) {
+  euclidian(muteSteps, steps, muteShift) {
     function arrayRotate(arr, reverse) {
       if (reverse) {
         arr.unshift(arr.pop())
@@ -952,11 +952,11 @@ class AcidMachine extends Machine {
       }
       return arr
     }
-    let pat = euclideanRhythms.getPattern(killSteps, steps)
-    if (killShift) {
-      let p = Math.abs(killShift)
+    let pat = euclideanRhythms.getPattern(muteSteps, steps)
+    if (muteShift) {
+      let p = Math.abs(muteShift)
       while (--p) {
-        pat = arrayRotate(pat, killShift > 0)
+        pat = arrayRotate(pat, muteShift > 0)
       }
     }
     this.state.sounding = []

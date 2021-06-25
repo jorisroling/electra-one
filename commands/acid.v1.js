@@ -118,8 +118,8 @@ class State {
     this.values.density = 100
     this.values.probability = 100
     this.values.sounding = []
-    this.values.killSteps = 0
-    this.values.killShift = 0
+    this.values.muteSteps = 0
+    this.values.muteShift = 0
     this.values.scales = 0
     this.values.base = 0
     this.values.shift = 0
@@ -394,24 +394,24 @@ class State {
     }
   }
 
-  get killSteps() {
-    return this.modulate('killSteps')
+  get muteSteps() {
+    return this.modulate('muteSteps')
   }
-  set killSteps(value) {
-    if (!deepEqual(this.values.killSteps, value, {strict:true})) {
-      this.values.killSteps = value
-      this.euclidian(this.killSteps, 16, this.killShift)
+  set muteSteps(value) {
+    if (!deepEqual(this.values.muteSteps, value, {strict:true})) {
+      this.values.muteSteps = value
+      this.euclidian(this.muteSteps, 16, this.muteShift)
       this.write()
     }
   }
 
-  get killShift() {
-    return this.modulate('killShift')
+  get muteShift() {
+    return this.modulate('muteShift')
   }
-  set killShift(value) {
-    if (!deepEqual(this.values.killShift, value, {strict:true})) {
-      this.values.killShift = value
-      this.euclidian(this.killSteps, 16, this.killShift)
+  set muteShift(value) {
+    if (!deepEqual(this.values.muteShift, value, {strict:true})) {
+      this.values.muteShift = value
+      this.euclidian(this.muteSteps, 16, this.muteShift)
       this.write()
     }
   }
@@ -585,8 +585,8 @@ class State {
     performancePaths.forEach( perfPath => newValues[perfPath] = _.get(this, perfPath) )
     const deltaValues = difference(newValues, oldValues)
 
-    if (deltaValues['killSteps'] || deltaValues['killShift']) {
-      this.euclidian(this.killSteps, 16, this.killShift)
+    if (deltaValues['muteSteps'] || deltaValues['muteShift']) {
+      this.euclidian(this.muteSteps, 16, this.muteShift)
     }
     if (deltaValues['octaveChance']) {
       this.genOctaves(this.octaveChance)
@@ -642,7 +642,7 @@ class State {
     }
   }
 
-  euclidian(killSteps, steps, killShift) {
+  euclidian(muteSteps, steps, muteShift) {
     function arrayRotate(arr, reverse) {
       if (reverse) {
         arr.unshift(arr.pop())
@@ -651,11 +651,11 @@ class State {
       }
       return arr
     }
-    let pat = euclideanRhythms.getPattern(killSteps, steps)
-    if (killShift) {
-      let p = Math.abs(killShift)
+    let pat = euclideanRhythms.getPattern(muteSteps, steps)
+    if (muteShift) {
+      let p = Math.abs(muteShift)
       while (--p) {
-        pat = arrayRotate(pat, killShift > 0)
+        pat = arrayRotate(pat, muteShift > 0)
       }
     }
     for (let idx = 0; idx < 16; idx++) {
@@ -683,8 +683,8 @@ class State {
 
     sendNRPN(midiOutputName, config.acid.interface.density.nrpn, 1, _.get(this.values, 'density', 0), 0)
     sendNRPN(midiOutputName, config.acid.interface.probability.nrpn, 1, _.get(this.values, 'probability', 0), 0)
-    sendNRPN(midiOutputName, config.acid.interface.killSteps.nrpn, 1, _.get(this.values, 'killSteps', 0), 0)
-    sendNRPN(midiOutputName, config.acid.interface.killShift.nrpn, 1, _.get(this.values, 'killShift', 0) + 15, 0)
+    sendNRPN(midiOutputName, config.acid.interface.muteSteps.nrpn, 1, _.get(this.values, 'muteSteps', 0), 0)
+    sendNRPN(midiOutputName, config.acid.interface.muteShift.nrpn, 1, _.get(this.values, 'muteShift', 0) + 15, 0)
 
     sendNRPN(midiOutputName, config.acid.interface.scales.nrpn, 1, _.get(this.values, 'scales', 0), 0)
     sendNRPN(midiOutputName, config.acid.interface.base.nrpn, 1, _.get(this.values, 'base', 0), 0)
@@ -956,22 +956,22 @@ class State {
               }
             }
           }
-          if (msb == config.acid.interface.killSteps.nrpn && (lsb >= 1 && lsb <= 8)) {
+          if (msb == config.acid.interface.muteSteps.nrpn && (lsb >= 1 && lsb <= 8)) {
             if (msg.controller == 6) { // MSB
               let tmp = _.get(midiCache, `${midiName}.channel_${_.padStart(config.acid.channel, 2, '0')}.controller_006`)
-              if (tmp != this.values.killSteps) {
-                this.killSteps = tmp
-                debug('killSteps: %y', this.values.killSteps)
+              if (tmp != this.values.muteSteps) {
+                this.muteSteps = tmp
+                debug('muteSteps: %y', this.values.muteSteps)
 
               }
             }
           }
-          if (msb == config.acid.interface.killShift.nrpn && (lsb >= 1 && lsb <= 8)) {
+          if (msb == config.acid.interface.muteShift.nrpn && (lsb >= 1 && lsb <= 8)) {
             if (msg.controller == 6) { // MSB
               let tmp = _.get(midiCache, `${midiName}.channel_${_.padStart(config.acid.channel, 2, '0')}.controller_006`) - 15
-              if (tmp != this.values.killShift) {
-                this.killShift = tmp
-                debug('killShift: %y', this.values.killShift)
+              if (tmp != this.values.muteShift) {
+                this.muteShift = tmp
+                debug('muteShift: %y', this.values.muteShift)
               }
             }
           }

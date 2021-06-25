@@ -4,7 +4,7 @@
   "model": "acid.v2",
   "modulation": {
     "matrix": {
-      "killSteps": -0.8828125
+      "muteSteps": -0.8828125
     }
   },
   "state": {
@@ -251,8 +251,8 @@
       }
     },
     "gate": 1.67,
-    "killShift": -9,
-    "killSteps": 0,
+    "muteShift": -9,
+    "muteSteps": 0,
     "lfo": [
       {
         "amount": 79,
