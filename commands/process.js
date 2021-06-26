@@ -12,91 +12,94 @@ function preProcess(name, sub, options) {
   if (options.filename) {
     if (fs.existsSync(options.filename)) {
       const preset = jsonfile.readFileSync(options.filename)
-      if (Array.isArray(preset.overlays)) {
-        for (let overlay of preset.overlays) {
-          if (Array.isArray(overlay.items) && overlay.items.length && overlay.items[0].label) {
-            const match = overlay.items[0].label.match(/\s*\[\s*\[\s*(.*?)\s*\]\s*\]\s*/)
-            if (match) {
-              const overlayType = match[1]
-              if (overlayType == 'devices') {
-                if (config.devices) {
-                  overlay.items = [{
-                    index: 0,
-                    label: 'Unknown',
-                    value: 0,
-                  }]
-                  let idx = 1
-                  for (let deviceKey in config.devices) {
-                    let instance = config.devices[deviceKey].instance ? config.devices[deviceKey].instance : 'ch.#'
-                    const model = config.devices[deviceKey].model
+      if (preset) {
+        preset.name = preset.name.replace(' Template','')
+        if (Array.isArray(preset.overlays)) {
+          for (let overlay of preset.overlays) {
+            if (Array.isArray(overlay.items) && overlay.items.length && overlay.items[0].label) {
+              const match = overlay.items[0].label.match(/\s*\[\s*\[\s*(.*?)\s*\]\s*\]\s*/)
+              if (match) {
+                const overlayType = match[1]
+                if (overlayType == 'devices') {
+                  if (config.devices) {
+                    overlay.items = [{
+                      index: 0,
+                      label: 'Unknown',
+                      value: 0,
+                    }]
+                    let idx = 1
+                    for (let deviceKey in config.devices) {
+                      let instance = config.devices[deviceKey].instance ? config.devices[deviceKey].instance : 'ch.#'
+                      const model = config.devices[deviceKey].model
 
-                    if (Array.isArray(config.devices[deviceKey].channels)) {
-                      for (let c in config.devices[deviceKey].channels) {
-                        if (Array.isArray(config.devices[deviceKey].instances) && config.devices[deviceKey].instances.length > c) {
-                          instance = config.devices[deviceKey].instances[c]
+                      if (Array.isArray(config.devices[deviceKey].channels)) {
+                        for (let c in config.devices[deviceKey].channels) {
+                          if (Array.isArray(config.devices[deviceKey].instances) && config.devices[deviceKey].instances.length > c) {
+                            instance = config.devices[deviceKey].instances[c]
+                          }
+                          const label = config.devices[deviceKey].channels.length > 1 ? `${model} ${instance}` : model
+                          const rLabel = label.replace('#', config.devices[deviceKey].instance ? (parseInt(c) + 1) : config.devices[deviceKey].channels[c])
+
+                          overlay.items.push({
+                            index: idx,
+                            label: rLabel,
+                            value: idx,
+                          })
+                          idx++
                         }
-                        const label = config.devices[deviceKey].channels.length > 1 ? `${model} ${instance}` : model
-                        const rLabel = label.replace('#', config.devices[deviceKey].instance ? (parseInt(c) + 1) : config.devices[deviceKey].channels[c])
-
-                        overlay.items.push({
-                          index: idx,
-                          label: rLabel,
-                          value: idx,
-                        })
-                        idx++
                       }
                     }
                   }
                 }
-              }
-              if (overlayType == 'matrixTarget') {
-                overlay.items = [{
-                  index: 0,
-                  label: 'Off',
-                  value: 0,
-                }]
-                let idx = 1
-                for (let ctrl = 1; ctrl < 128; ctrl++) {
-                  const path = interface.getMapPath('external', 'cc', ctrl)
-                  /*                 debug('path %y %y %y',path,`^lfo.${currentLfo-1}.`,path && path.match(`^lfo.${currentLfo-1}.`))*/
-                  if (path) {
-                    overlay.items.push({
-                      index: idx++,
-                      label: interface.getElementAttribute(path, 'name'),
-                      value: ctrl,
-                    })
+                if (overlayType == 'matrixTarget') {
+                  overlay.items = [{
+                    index: 0,
+                    label: 'Off',
+                    value: 0,
+                  }]
+                  let idx = 1
+                  for (let ctrl = 1; ctrl < 128; ctrl++) {
+                    const path = interface.getMapPath('external', 'cc', ctrl)
+                    /*                 debug('path %y %y %y',path,`^lfo.${currentLfo-1}.`,path && path.match(`^lfo.${currentLfo-1}.`))*/
+                    if (path) {
+                      overlay.items.push({
+                        index: idx++,
+                        label: interface.getElementAttribute(path, 'name'),
+                        value: ctrl,
+                      })
+                    }
                   }
                 }
-              }
-              const lfoTargetMatch = overlayType.match(/lfo([\d])Target/)
-              if (lfoTargetMatch) {
-                const currentLfo = parseInt(lfoTargetMatch[1])
-                overlay.items = [{
-                  index: 0,
-                  label: 'Off',
-                  value: 0,
-                }]
-                let idx = 1
-                for (let ctrl = 1; ctrl < 128; ctrl++) {
-                  overlay.items.push({
-                    index: idx++,
-                    label: `Control #${ctrl}`,
-                    value: ctrl + 128,
-                  })
-                }
-                /*                debug('map %y',interface.map)*/
-                for (let ctrl = 1; ctrl < 128; ctrl++) {
-                  const path = interface.getMapPath('external', 'cc', ctrl)
-                  /*                 debug('path %y %y %y',path,`^lfo.${currentLfo-1}.`,path && path.match(`^lfo.${currentLfo-1}.`))*/
-                  if (path && !path.match(`^lfo.${currentLfo - 1}.`)) {
+                const lfoTargetMatch = overlayType.match(/lfo([\d])Target/)
+                if (lfoTargetMatch) {
+                  const currentLfo = parseInt(lfoTargetMatch[1])
+                  overlay.items = [{
+                    index: 0,
+                    label: 'Off',
+                    value: 0,
+                  }]
+                  let idx = 1
+                  for (let ctrl = 1; ctrl < 128; ctrl++) {
                     overlay.items.push({
                       index: idx++,
-                      label: interface.getElementAttribute(path, 'name'),
-                      value: ctrl,
+                      label: `Control #${ctrl}`,
+                      value: ctrl + 128,
                     })
                   }
+                  /*                debug('map %y',interface.map)*/
+                  for (let ctrl = 1; ctrl < 128; ctrl++) {
+                    const path = interface.getMapPath('external', 'cc', ctrl)
+                    /*                 debug('path %y %y %y',path,`^lfo.${currentLfo-1}.`,path && path.match(`^lfo.${currentLfo-1}.`))*/
+                    if (path && !path.match(`^lfo.${currentLfo - 1}.`)) {
+                      overlay.items.push({
+                        index: idx++,
+                        label: interface.getElementAttribute(path, 'name'),
+                        value: ctrl,
+                      })
+                    }
+                  }
+                  /*               debug('hi %y %y', lfoTargetMatch,overlay)*/
                 }
-                /*               debug('hi %y %y', lfoTargetMatch,overlay)*/
               }
             }
           }
