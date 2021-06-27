@@ -453,6 +453,42 @@ class AcidMachine extends Machine {
       }
     }
 
+    const virusPart = (elementPath, value, origin) => {
+       debug('Parameter Side Effect virusPart: Hello World! %y = %y (from %y)', elementPath, value, origin)
+    }
+
+    const virusLevel = (elementPath, value, origin) => {
+      debug('Parameter Side Effect virusLevel: Hello World! %y = %y (from %y)', elementPath, value, origin)
+      const portName = 'virus-ti'
+      const part = this.interface.getParameter(`virus.part`, 1)
+      const channel = part
+      const bank = this.interface.getParameter(`virus.bank`)
+      const program = this.interface.getParameter(`virus.program`)
+      debugMidiControlChange('%s %d CC %y = %y', portName, channel, 7, value)
+      Midi.send(portName, 'cc', {channel:channel - 1, controller:7, value}, `levelChange-virus`, 200)
+    }
+
+    const virusSendBankAndProgram = () => {
+      const portName = 'virus-ti'
+      const part = this.interface.getParameter(`virus.part`, 1)
+      const channel = part
+      const bank = this.interface.getParameter(`virus.bank`)
+      const program = this.interface.getParameter(`virus.program`)
+      debugMidiControlChange('%s %d CC %y = %y', portName, channel, 0, bank)
+      Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, `bankChange-virus`, 200)
+      debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
+      Midi.send(portName, 'program', {channel:channel - 1, number: program}, `programChange-virus`, 200)
+    }
+
+    const virusBank = (elementPath, value, origin) => {
+      debug('Parameter Side Effect virusBank: Hello World! %y = %y (from %y)', elementPath, value, origin)
+      virusSendBankAndProgram()
+    }
+
+    const virusProgram = (elementPath, value, origin) => {
+      debug('Parameter Side Effect virusProgram: Hello World! %y = %y (from %y)', elementPath, value, origin)
+      virusSendBankAndProgram()
+    }
 
     this.parameterSideEffects = {
       octaveChance: (elementPath, value, origin) => {
@@ -641,6 +677,12 @@ class AcidMachine extends Machine {
             ],
           },
         ]
+      },
+      virus: {
+        part: virusPart,
+        level: virusLevel,
+        bank: virusBank,
+        program: virusProgram,
       },
     }
 
