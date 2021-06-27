@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "Bacara Template",
-  "projectId": "WnXS3fwBA5kMXi6zEcUm",
+  "projectId": "2XJu2rXEhdQ9SOKrFlLp",
   "pages": [
     {
       "id": 1,
@@ -14,6 +14,10 @@
     {
       "id": 3,
       "name": "Mod Matrix"
+    },
+    {
+      "id": 4,
+      "name": "Virus"
     },
     {
       "id": 7,
@@ -685,6 +689,161 @@
           "index": 0,
           "label": "[[matrixTarget]]",
           "value": 0
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "items": [
+        {
+          "value": 0,
+          "label": "RAM A",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "RAM B",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "RAM C",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "RAM D",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "ROM A",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "ROM B",
+          "index": 5
+        },
+        {
+          "value": 6,
+          "label": "ROM C",
+          "index": 6
+        },
+        {
+          "value": 7,
+          "label": "ROM D",
+          "index": 7
+        },
+        {
+          "value": 8,
+          "label": "ROM E",
+          "index": 8
+        },
+        {
+          "value": 9,
+          "label": "ROM F",
+          "index": 9
+        },
+        {
+          "value": 10,
+          "label": "ROM G",
+          "index": 10
+        },
+        {
+          "value": 11,
+          "label": "ROM H",
+          "index": 11
+        },
+        {
+          "value": 12,
+          "label": "ROM I",
+          "index": 12
+        },
+        {
+          "value": 13,
+          "label": "ROM J",
+          "index": 13
+        },
+        {
+          "value": 14,
+          "label": "ROM K",
+          "index": 14
+        },
+        {
+          "value": 15,
+          "label": "ROM L",
+          "index": 15
+        },
+        {
+          "value": 16,
+          "label": "ROM M",
+          "index": 16
+        },
+        {
+          "value": 17,
+          "label": "ROM N",
+          "index": 17
+        },
+        {
+          "value": 18,
+          "label": "ROM O",
+          "index": 18
+        },
+        {
+          "value": 19,
+          "label": "ROM P",
+          "index": 19
+        },
+        {
+          "value": 20,
+          "label": "ROM Q",
+          "index": 20
+        },
+        {
+          "value": 21,
+          "label": "ROM R",
+          "index": 21
+        },
+        {
+          "value": 22,
+          "label": "ROM S",
+          "index": 22
+        },
+        {
+          "value": 23,
+          "label": "ROM T",
+          "index": 23
+        },
+        {
+          "value": 24,
+          "label": "ROM U",
+          "index": 24
+        },
+        {
+          "value": 25,
+          "label": "ROM V",
+          "index": 25
+        },
+        {
+          "value": 26,
+          "label": "ROM W",
+          "index": 26
+        },
+        {
+          "value": 27,
+          "label": "ROM X",
+          "index": 27
+        },
+        {
+          "value": 28,
+          "label": "ROM Y",
+          "index": 28
+        },
+        {
+          "value": 29,
+          "label": "ROM Z",
+          "index": 29
         }
       ]
     }
@@ -3854,6 +4013,430 @@
           },
           "min": -100,
           "max": 100,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 109,
+      "type": "fader",
+      "name": "PART",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        40,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 14849,
+            "min": 0,
+            "max": 15
+          },
+          "min": 1,
+          "max": 16,
+          "defaultValue": 1,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 110,
+      "type": "fader",
+      "name": "BANK",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        40,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 15105,
+            "min": 0,
+            "max": 29
+          },
+          "overlayId": 15
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "type": "fader",
+      "name": "X1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        40,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 15361,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 112,
+      "type": "fader",
+      "name": "X2",
+      "color": "03A598",
+      "bounds": [
+        510,
+        40,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 15617,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 113,
+      "type": "fader",
+      "name": "X3",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        40,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 15873,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 114,
+      "type": "fader",
+      "name": "X4",
+      "color": "C44795",
+      "bounds": [
+        850,
+        40,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 16129,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 115,
+      "type": "fader",
+      "name": "LEVEL",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        128,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 14977,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 116,
+      "type": "fader",
+      "name": "PROGRAM",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        128,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 15233,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 117,
+      "type": "fader",
+      "name": "Y1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        128,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 15489,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 118,
+      "type": "fader",
+      "name": "Y2",
+      "color": "03A598",
+      "bounds": [
+        510,
+        128,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 15745,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 119,
+      "type": "fader",
+      "name": "Y3",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        128,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 16001,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 120,
+      "type": "fader",
+      "name": "Y4",
+      "color": "C44795",
+      "bounds": [
+        850,
+        128,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 16257,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
           "defaultValue": 0,
           "id": "value"
         }

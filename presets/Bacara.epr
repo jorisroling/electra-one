@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "Bacara",
-  "projectId": "WnXS3fwBA5kMXi6zEcUm",
+  "projectId": "2XJu2rXEhdQ9SOKrFlLp",
   "pages": [
     {
       "id": 1,
@@ -14,6 +14,10 @@
     {
       "id": 3,
       "name": "Mod Matrix"
+    },
+    {
+      "id": 4,
+      "name": "Virus"
     },
     {
       "id": 7,
@@ -1603,101 +1607,121 @@
         },
         {
           "index": 136,
-          "label": "Scales Mode",
+          "label": "Virus X1",
           "value": 20
         },
         {
           "index": 137,
-          "label": "Scales Base",
+          "label": "Virus Y1",
           "value": 21
         },
         {
           "index": 138,
-          "label": "Split",
-          "value": 22
-        },
-        {
-          "index": 139,
-          "label": "Deviate",
+          "label": "Virus X2",
           "value": 23
         },
         {
+          "index": 139,
+          "label": "Virus Y2",
+          "value": 24
+        },
+        {
           "index": 140,
+          "label": "Virus X3",
+          "value": 26
+        },
+        {
+          "index": 141,
+          "label": "Virus Y3",
+          "value": 27
+        },
+        {
+          "index": 142,
+          "label": "Virus X4",
+          "value": 29
+        },
+        {
+          "index": 143,
+          "label": "Virus Y4",
+          "value": 30
+        },
+        {
+          "index": 144,
           "label": "LFO 2 Shape",
           "value": 87
         },
         {
-          "index": 141,
+          "index": 145,
           "label": "LFO 2 Amount",
           "value": 88
         },
         {
-          "index": 142,
+          "index": 146,
           "label": "LFO 2 Rate",
           "value": 89
         },
         {
-          "index": 143,
+          "index": 147,
           "label": "LFO 2 Offset",
           "value": 90
         },
         {
-          "index": 144,
+          "index": 148,
           "label": "LFO 2 Phase",
           "value": 102
         },
         {
-          "index": 145,
+          "index": 149,
           "label": "LFO 2 Density",
           "value": 103
         },
         {
-          "index": 146,
+          "index": 150,
           "label": "LFO 2 Device A",
           "value": 104
         },
         {
-          "index": 147,
+          "index": 151,
           "label": "LFO 2 Device B",
           "value": 105
         },
         {
-          "index": 148,
+          "index": 152,
           "label": "LFO 3 Shape",
           "value": 107
         },
         {
-          "index": 149,
+          "index": 153,
           "label": "LFO 3 Amount",
           "value": 108
         },
         {
-          "index": 150,
+          "index": 154,
           "label": "LFO 3 Rate",
           "value": 109
         },
         {
-          "index": 151,
+          "index": 155,
           "label": "LFO 3 Offset",
           "value": 110
         },
         {
-          "index": 152,
+          "index": 156,
           "label": "LFO 3 Phase",
           "value": 111
         },
         {
-          "index": 153,
+          "index": 157,
           "label": "LFO 3 Density",
           "value": 112
         },
         {
-          "index": 154,
+          "index": 158,
           "label": "LFO 3 Device A",
           "value": 113
         },
         {
-          "index": 155,
+          "index": 159,
           "label": "LFO 3 Device B",
           "value": 114
         }
@@ -2388,101 +2412,86 @@
         },
         {
           "index": 136,
-          "label": "Scales Mode",
+          "label": "Virus X1",
           "value": 20
         },
         {
           "index": 137,
-          "label": "Scales Base",
+          "label": "Virus Y1",
           "value": 21
         },
         {
           "index": 138,
-          "label": "Split",
-          "value": 22
-        },
-        {
-          "index": 139,
-          "label": "Deviate",
+          "label": "Virus X2",
           "value": 23
         },
         {
-          "index": 140,
-          "label": "LFO 1 Shape",
-          "value": 25
+          "index": 139,
+          "label": "Virus Y2",
+          "value": 24
         },
         {
-          "index": 141,
-          "label": "LFO 1 Amount",
+          "index": 140,
+          "label": "Virus X3",
           "value": 26
         },
         {
-          "index": 142,
-          "label": "LFO 1 Rate",
+          "index": 141,
+          "label": "Virus Y3",
           "value": 27
         },
         {
-          "index": 143,
-          "label": "LFO 1 Offset",
-          "value": 28
-        },
-        {
-          "index": 144,
-          "label": "LFO 1 Phase",
+          "index": 142,
+          "label": "Virus X4",
           "value": 29
         },
         {
-          "index": 145,
-          "label": "LFO 1 Density",
+          "index": 143,
+          "label": "Virus Y4",
           "value": 30
         },
         {
-          "index": 146,
-          "label": "LFO 1 Device A",
-          "value": 31
-        },
-        {
-          "index": 147,
+          "index": 144,
           "label": "LFO 1 Device B",
           "value": 85
         },
         {
-          "index": 148,
+          "index": 145,
           "label": "LFO 3 Shape",
           "value": 107
         },
         {
-          "index": 149,
+          "index": 146,
           "label": "LFO 3 Amount",
           "value": 108
         },
         {
-          "index": 150,
+          "index": 147,
           "label": "LFO 3 Rate",
           "value": 109
         },
         {
-          "index": 151,
+          "index": 148,
           "label": "LFO 3 Offset",
           "value": 110
         },
         {
-          "index": 152,
+          "index": 149,
           "label": "LFO 3 Phase",
           "value": 111
         },
         {
-          "index": 153,
+          "index": 150,
           "label": "LFO 3 Density",
           "value": 112
         },
         {
-          "index": 154,
+          "index": 151,
           "label": "LFO 3 Device A",
           "value": 113
         },
         {
-          "index": 155,
+          "index": 152,
           "label": "LFO 3 Device B",
           "value": 114
         }
@@ -3173,101 +3182,86 @@
         },
         {
           "index": 136,
-          "label": "Scales Mode",
+          "label": "Virus X1",
           "value": 20
         },
         {
           "index": 137,
-          "label": "Scales Base",
+          "label": "Virus Y1",
           "value": 21
         },
         {
           "index": 138,
-          "label": "Split",
-          "value": 22
-        },
-        {
-          "index": 139,
-          "label": "Deviate",
+          "label": "Virus X2",
           "value": 23
         },
         {
-          "index": 140,
-          "label": "LFO 1 Shape",
-          "value": 25
+          "index": 139,
+          "label": "Virus Y2",
+          "value": 24
         },
         {
-          "index": 141,
-          "label": "LFO 1 Amount",
+          "index": 140,
+          "label": "Virus X3",
           "value": 26
         },
         {
-          "index": 142,
-          "label": "LFO 1 Rate",
+          "index": 141,
+          "label": "Virus Y3",
           "value": 27
         },
         {
-          "index": 143,
-          "label": "LFO 1 Offset",
-          "value": 28
-        },
-        {
-          "index": 144,
-          "label": "LFO 1 Phase",
+          "index": 142,
+          "label": "Virus X4",
           "value": 29
         },
         {
-          "index": 145,
-          "label": "LFO 1 Density",
+          "index": 143,
+          "label": "Virus Y4",
           "value": 30
         },
         {
-          "index": 146,
-          "label": "LFO 1 Device A",
-          "value": 31
-        },
-        {
-          "index": 147,
+          "index": 144,
           "label": "LFO 1 Device B",
           "value": 85
         },
         {
-          "index": 148,
+          "index": 145,
           "label": "LFO 2 Shape",
           "value": 87
         },
         {
-          "index": 149,
+          "index": 146,
           "label": "LFO 2 Amount",
           "value": 88
         },
         {
-          "index": 150,
+          "index": 147,
           "label": "LFO 2 Rate",
           "value": 89
         },
         {
-          "index": 151,
+          "index": 148,
           "label": "LFO 2 Offset",
           "value": 90
         },
         {
-          "index": 152,
+          "index": 149,
           "label": "LFO 2 Phase",
           "value": 102
         },
         {
-          "index": 153,
+          "index": 150,
           "label": "LFO 2 Density",
           "value": 103
         },
         {
-          "index": 154,
+          "index": 151,
           "label": "LFO 2 Device A",
           "value": 104
         },
         {
-          "index": 155,
+          "index": 152,
           "label": "LFO 2 Device B",
           "value": 105
         }
@@ -3348,143 +3342,283 @@
         },
         {
           "index": 9,
-          "label": "Scales Mode",
+          "label": "Virus X1",
           "value": 20
         },
         {
           "index": 10,
-          "label": "Scales Base",
+          "label": "Virus Y1",
           "value": 21
         },
         {
           "index": 11,
-          "label": "Split",
-          "value": 22
-        },
-        {
-          "index": 12,
-          "label": "Deviate",
+          "label": "Virus X2",
           "value": 23
         },
         {
-          "index": 13,
-          "label": "LFO 1 Shape",
-          "value": 25
+          "index": 12,
+          "label": "Virus Y2",
+          "value": 24
         },
         {
-          "index": 14,
-          "label": "LFO 1 Amount",
+          "index": 13,
+          "label": "Virus X3",
           "value": 26
         },
         {
-          "index": 15,
-          "label": "LFO 1 Rate",
+          "index": 14,
+          "label": "Virus Y3",
           "value": 27
         },
         {
-          "index": 16,
-          "label": "LFO 1 Offset",
-          "value": 28
-        },
-        {
-          "index": 17,
-          "label": "LFO 1 Phase",
+          "index": 15,
+          "label": "Virus X4",
           "value": 29
         },
         {
-          "index": 18,
-          "label": "LFO 1 Density",
+          "index": 16,
+          "label": "Virus Y4",
           "value": 30
         },
         {
-          "index": 19,
-          "label": "LFO 1 Device A",
-          "value": 31
-        },
-        {
-          "index": 20,
+          "index": 17,
           "label": "LFO 1 Device B",
           "value": 85
         },
         {
-          "index": 21,
+          "index": 18,
           "label": "LFO 2 Shape",
           "value": 87
         },
         {
-          "index": 22,
+          "index": 19,
           "label": "LFO 2 Amount",
           "value": 88
         },
         {
-          "index": 23,
+          "index": 20,
           "label": "LFO 2 Rate",
           "value": 89
         },
         {
-          "index": 24,
+          "index": 21,
           "label": "LFO 2 Offset",
           "value": 90
         },
         {
-          "index": 25,
+          "index": 22,
           "label": "LFO 2 Phase",
           "value": 102
         },
         {
-          "index": 26,
+          "index": 23,
           "label": "LFO 2 Density",
           "value": 103
         },
         {
-          "index": 27,
+          "index": 24,
           "label": "LFO 2 Device A",
           "value": 104
         },
         {
-          "index": 28,
+          "index": 25,
           "label": "LFO 2 Device B",
           "value": 105
         },
         {
-          "index": 29,
+          "index": 26,
           "label": "LFO 3 Shape",
           "value": 107
         },
         {
-          "index": 30,
+          "index": 27,
           "label": "LFO 3 Amount",
           "value": 108
         },
         {
-          "index": 31,
+          "index": 28,
           "label": "LFO 3 Rate",
           "value": 109
         },
         {
-          "index": 32,
+          "index": 29,
           "label": "LFO 3 Offset",
           "value": 110
         },
         {
-          "index": 33,
+          "index": 30,
           "label": "LFO 3 Phase",
           "value": 111
         },
         {
-          "index": 34,
+          "index": 31,
           "label": "LFO 3 Density",
           "value": 112
         },
         {
-          "index": 35,
+          "index": 32,
           "label": "LFO 3 Device A",
           "value": 113
         },
         {
-          "index": 36,
+          "index": 33,
           "label": "LFO 3 Device B",
           "value": 114
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "items": [
+        {
+          "value": 0,
+          "label": "RAM A",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "RAM B",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "RAM C",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "RAM D",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "ROM A",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "ROM B",
+          "index": 5
+        },
+        {
+          "value": 6,
+          "label": "ROM C",
+          "index": 6
+        },
+        {
+          "value": 7,
+          "label": "ROM D",
+          "index": 7
+        },
+        {
+          "value": 8,
+          "label": "ROM E",
+          "index": 8
+        },
+        {
+          "value": 9,
+          "label": "ROM F",
+          "index": 9
+        },
+        {
+          "value": 10,
+          "label": "ROM G",
+          "index": 10
+        },
+        {
+          "value": 11,
+          "label": "ROM H",
+          "index": 11
+        },
+        {
+          "value": 12,
+          "label": "ROM I",
+          "index": 12
+        },
+        {
+          "value": 13,
+          "label": "ROM J",
+          "index": 13
+        },
+        {
+          "value": 14,
+          "label": "ROM K",
+          "index": 14
+        },
+        {
+          "value": 15,
+          "label": "ROM L",
+          "index": 15
+        },
+        {
+          "value": 16,
+          "label": "ROM M",
+          "index": 16
+        },
+        {
+          "value": 17,
+          "label": "ROM N",
+          "index": 17
+        },
+        {
+          "value": 18,
+          "label": "ROM O",
+          "index": 18
+        },
+        {
+          "value": 19,
+          "label": "ROM P",
+          "index": 19
+        },
+        {
+          "value": 20,
+          "label": "ROM Q",
+          "index": 20
+        },
+        {
+          "value": 21,
+          "label": "ROM R",
+          "index": 21
+        },
+        {
+          "value": 22,
+          "label": "ROM S",
+          "index": 22
+        },
+        {
+          "value": 23,
+          "label": "ROM T",
+          "index": 23
+        },
+        {
+          "value": 24,
+          "label": "ROM U",
+          "index": 24
+        },
+        {
+          "value": 25,
+          "label": "ROM V",
+          "index": 25
+        },
+        {
+          "value": 26,
+          "label": "ROM W",
+          "index": 26
+        },
+        {
+          "value": 27,
+          "label": "ROM X",
+          "index": 27
+        },
+        {
+          "value": 28,
+          "label": "ROM Y",
+          "index": 28
+        },
+        {
+          "value": 29,
+          "label": "ROM Z",
+          "index": 29
         }
       ]
     }
@@ -6654,6 +6788,430 @@
           },
           "min": -100,
           "max": 100,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 109,
+      "type": "fader",
+      "name": "PART",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        40,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 14849,
+            "min": 0,
+            "max": 15
+          },
+          "min": 1,
+          "max": 16,
+          "defaultValue": 1,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 110,
+      "type": "fader",
+      "name": "BANK",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        40,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 15105,
+            "min": 0,
+            "max": 29
+          },
+          "overlayId": 15
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "type": "fader",
+      "name": "X1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        40,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 15361,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 112,
+      "type": "fader",
+      "name": "X2",
+      "color": "03A598",
+      "bounds": [
+        510,
+        40,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 15617,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 113,
+      "type": "fader",
+      "name": "X3",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        40,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 15873,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 114,
+      "type": "fader",
+      "name": "X4",
+      "color": "C44795",
+      "bounds": [
+        850,
+        40,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 16129,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 115,
+      "type": "fader",
+      "name": "LEVEL",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        128,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 14977,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 116,
+      "type": "fader",
+      "name": "PROGRAM",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        128,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 15233,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 117,
+      "type": "fader",
+      "name": "Y1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        128,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 15489,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 118,
+      "type": "fader",
+      "name": "Y2",
+      "color": "03A598",
+      "bounds": [
+        510,
+        128,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 15745,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 119,
+      "type": "fader",
+      "name": "Y3",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        128,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 16001,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 120,
+      "type": "fader",
+      "name": "Y4",
+      "color": "C44795",
+      "bounds": [
+        850,
+        128,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 16257,
+            "min": 0,
+            "max": 16383
+          },
+          "min": -8192,
+          "max": 8191,
           "defaultValue": 0,
           "id": "value"
         }

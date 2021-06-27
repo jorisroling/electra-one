@@ -71,6 +71,9 @@ module.exports = {
         //        darwin: 'KOMPLETE KONTROL M32',
         darwin: 'MRCC Port 12',
       },
+      'lightpad-block': {
+        darwin: 'Lightpad BLOCK ', // Pfff, a trailing space, really?
+      },
     },
   },
   devices: {

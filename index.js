@@ -21,7 +21,7 @@ args
   .option('transpose', 'Transpose Input MIDI interface name (part)', 'komplete-kontrol')
   .option('transposeChannel', 'Transpose Input Channel (1-16)', 16)
 
-  .option('general', 'General Input MIDI interface name (part)', 'keystep-pro')
+  .option('general', 'General Input MIDI interface name (part)', 'lightpad-block')
   .option('generalChannel', 'General Input Channel (1-16)', 1)
 
   .option('bank', 'For upload & remove commands: Specify a bank as <1-6>', 0)
