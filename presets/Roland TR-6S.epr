@@ -6,10 +6,15 @@
     {
       "id": 1,
       "name": "TR-6S"
+    },
+    {
+      "id": 2,
+      "name": "Variations"
     }
   ],
   "groups": [
     {
+      "id": 1,
       "pageId": 1,
       "name": "Bass Drum",
       "color": "F45C51",
@@ -21,6 +26,7 @@
       ]
     },
     {
+      "id": 13,
       "pageId": 1,
       "name": "Bass Drum",
       "color": "F45C51",
@@ -32,6 +38,7 @@
       ]
     },
     {
+      "id": 2,
       "pageId": 1,
       "name": "Snare Drum",
       "color": "F49500",
@@ -43,6 +50,7 @@
       ]
     },
     {
+      "id": 14,
       "pageId": 1,
       "name": "Snare Drum",
       "color": "F49500",
@@ -54,6 +62,7 @@
       ]
     },
     {
+      "id": 3,
       "pageId": 1,
       "name": "Low Tom",
       "color": "529DEC",
@@ -65,6 +74,7 @@
       ]
     },
     {
+      "id": 15,
       "pageId": 1,
       "name": "Low Tom",
       "color": "529DEC",
@@ -76,6 +86,7 @@
       ]
     },
     {
+      "id": 4,
       "pageId": 1,
       "name": "Hand Clap",
       "color": "03A598",
@@ -87,6 +98,7 @@
       ]
     },
     {
+      "id": 16,
       "pageId": 1,
       "name": "Hand Clap",
       "color": "03A598",
@@ -98,6 +110,7 @@
       ]
     },
     {
+      "id": 5,
       "pageId": 1,
       "name": "Closed Hat",
       "color": "C44795",
@@ -109,6 +122,7 @@
       ]
     },
     {
+      "id": 17,
       "pageId": 1,
       "name": "Closed Hat",
       "color": "C44795",
@@ -120,6 +134,7 @@
       ]
     },
     {
+      "id": 6,
       "pageId": 1,
       "name": "Open Hat",
       "bounds": [
@@ -131,6 +146,7 @@
       "color": "FFFFFF"
     },
     {
+      "id": 18,
       "pageId": 1,
       "name": "Open Hat",
       "bounds": [
@@ -142,6 +158,7 @@
       "color": "FFFFFF"
     },
     {
+      "id": 25,
       "pageId": 1,
       "name": "Common",
       "bounds": [
@@ -151,6 +168,18 @@
         16
       ],
       "color": "FFFFFF"
+    },
+    {
+      "id": 38,
+      "pageId": 2,
+      "name": "Variations",
+      "color": "529DEC",
+      "bounds": [
+        170,
+        16,
+        656,
+        16
+      ]
     }
   ],
   "devices": [
@@ -1345,6 +1374,422 @@
             "parameterNumber": 14,
             "onValue": 127,
             "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "A",
+      "color": "529DEC",
+      "bounds": [
+        170,
+        40,
+        146,
+        56
+      ],
+      "pageId": 2,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 26,
+            "data": [
+              "F0",
+              "41",
+              "10",
+              "00",
+              "00",
+              "00",
+              "6D",
+              "12",
+              "2F",
+              "70",
+              "00",
+              "41",
+              "00",
+              "01",
+              "1F",
+              "F7"
+            ],
+            "parameterNumber": 109,
+            "onValue": 1
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "B",
+      "color": "529DEC",
+      "bounds": [
+        340,
+        40,
+        146,
+        56
+      ],
+      "pageId": 2,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 26,
+            "data": [
+              "F0",
+              "41",
+              "10",
+              "00",
+              "00",
+              "00",
+              "6D",
+              "12",
+              "2F",
+              "70",
+              "00",
+              "41",
+              "00",
+              "02",
+              "1E",
+              "F7"
+            ],
+            "parameterNumber": 110,
+            "onValue": 1
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "C",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        40,
+        146,
+        56
+      ],
+      "pageId": 2,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 26,
+            "data": [
+              "F0",
+              "41",
+              "10",
+              "00",
+              "00",
+              "00",
+              "6D",
+              "12",
+              "2F",
+              "70",
+              "00",
+              "41",
+              "00",
+              "04",
+              "1C",
+              "F7"
+            ],
+            "parameterNumber": 111,
+            "onValue": 1
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "D",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        40,
+        146,
+        56
+      ],
+      "pageId": 2,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 26,
+            "data": [
+              "F0",
+              "41",
+              "10",
+              "00",
+              "00",
+              "00",
+              "6D",
+              "12",
+              "2F",
+              "70",
+              "00",
+              "41",
+              "00",
+              "08",
+              "18",
+              "F7"
+            ],
+            "parameterNumber": 112,
+            "onValue": 1
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "E",
+      "color": "529DEC",
+      "bounds": [
+        170,
+        128,
+        146,
+        56
+      ],
+      "pageId": 2,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 26,
+            "data": [
+              "F0",
+              "41",
+              "10",
+              "00",
+              "00",
+              "00",
+              "6D",
+              "12",
+              "2F",
+              "70",
+              "00",
+              "41",
+              "01",
+              "00",
+              "1F",
+              "F7"
+            ],
+            "parameterNumber": 113,
+            "onValue": 1
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "F",
+      "color": "529DEC",
+      "bounds": [
+        340,
+        128,
+        146,
+        56
+      ],
+      "pageId": 2,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 26,
+            "data": [
+              "F0",
+              "41",
+              "10",
+              "00",
+              "00",
+              "00",
+              "6D",
+              "12",
+              "2F",
+              "70",
+              "00",
+              "41",
+              "02",
+              "00",
+              "1E",
+              "F7"
+            ],
+            "parameterNumber": 114,
+            "onValue": 1
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "G",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        128,
+        146,
+        56
+      ],
+      "pageId": 2,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 26,
+            "data": [
+              "F0",
+              "41",
+              "10",
+              "00",
+              "00",
+              "00",
+              "6D",
+              "12",
+              "2F",
+              "70",
+              "00",
+              "41",
+              "04",
+              "00",
+              "1C",
+              "F7"
+            ],
+            "parameterNumber": 115,
+            "onValue": 1
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "H",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        128,
+        146,
+        56
+      ],
+      "pageId": 2,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "sysex",
+            "deviceId": 26,
+            "data": [
+              "F0",
+              "41",
+              "10",
+              "00",
+              "00",
+              "00",
+              "6D",
+              "12",
+              "2F",
+              "70",
+              "00",
+              "41",
+              "08",
+              "00",
+              "18",
+              "F7"
+            ],
+            "parameterNumber": 116,
+            "onValue": 1
           },
           "defaultValue": "off",
           "id": "value"
