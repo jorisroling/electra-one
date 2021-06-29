@@ -8,12 +8,13 @@ let args
 const Interface = require('../lib/midi/interface')
 
 function preProcess(name, sub, options) {
+
   const interface = new Interface('acid.v2')
   if (options.filename) {
     if (fs.existsSync(options.filename)) {
       const preset = jsonfile.readFileSync(options.filename)
       if (preset) {
-        preset.name = preset.name.replace(' Template','')
+        preset.name = preset.name.replace(' Template', '')
         if (Array.isArray(preset.overlays)) {
           for (let overlay of preset.overlays) {
             if (Array.isArray(overlay.items) && overlay.items.length && overlay.items[0].label) {
@@ -99,6 +100,22 @@ function preProcess(name, sub, options) {
                     }
                   }
                   /*               debug('hi %y %y', lfoTargetMatch,overlay)*/
+                }
+                if (overlayType == 'axyzTarget') {
+                  overlay.items = []
+                  let idx = 0
+                  const list = devices['virus-ti'].flatList
+
+                  for (let ctrl = 0; ctrl < list.length; ctrl++) {
+                    const path = list[ctrl]
+                    if (path) {
+                      overlay.items.push({
+                        index: idx++,
+                        label: path,
+                        value: ctrl,
+                      })
+                    }
+                  }
                 }
               }
             }

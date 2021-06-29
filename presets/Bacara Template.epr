@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "Bacara Template",
-  "projectId": "2XJu2rXEhdQ9SOKrFlLp",
+  "projectId": "6F4mABTJsjFytPL5D9lY",
   "pages": [
     {
       "id": 1,
@@ -38,7 +38,8 @@
         16,
         826,
         16
-      ]
+      ],
+      "id": 37
     },
     {
       "pageId": 2,
@@ -49,7 +50,8 @@
         192,
         826,
         16
-      ]
+      ],
+      "id": 49
     },
     {
       "pageId": 2,
@@ -60,7 +62,8 @@
         368,
         826,
         16
-      ]
+      ],
+      "id": 61
     },
     {
       "pageId": 1,
@@ -71,7 +74,8 @@
         368,
         486,
         16
-      ]
+      ],
+      "id": 25
     },
     {
       "pageId": 1,
@@ -82,7 +86,8 @@
         368,
         486,
         16
-      ]
+      ],
+      "id": 28
     },
     {
       "pageId": 1,
@@ -93,7 +98,8 @@
         192,
         316,
         16
-      ]
+      ],
+      "id": 13
     },
     {
       "pageId": 1,
@@ -104,7 +110,8 @@
         16,
         146,
         16
-      ]
+      ],
+      "id": 6
     },
     {
       "pageId": 1,
@@ -115,7 +122,8 @@
         16,
         656,
         16
-      ]
+      ],
+      "id": 1
     },
     {
       "pageId": 1,
@@ -126,7 +134,8 @@
         656,
         16
       ],
-      "color": "FFFFFF"
+      "color": "FFFFFF",
+      "id": 15
     },
     {
       "pageId": 3,
@@ -137,7 +146,8 @@
         656,
         16
       ],
-      "color": "FFFFFF"
+      "color": "FFFFFF",
+      "id": 74
     },
     {
       "pageId": 3,
@@ -148,7 +158,8 @@
         656,
         16
       ],
-      "color": "FFFFFF"
+      "color": "FFFFFF",
+      "id": 86
     },
     {
       "pageId": 3,
@@ -159,7 +170,8 @@
         656,
         16
       ],
-      "color": "FFFFFF"
+      "color": "FFFFFF",
+      "id": 98
     },
     {
       "pageId": 1,
@@ -170,7 +182,8 @@
         16,
         146,
         16
-      ]
+      ],
+      "id": 5
     },
     {
       "pageId": 7,
@@ -181,7 +194,8 @@
         316,
         16
       ],
-      "color": "F49500"
+      "color": "F49500",
+      "id": 217
     },
     {
       "pageId": 7,
@@ -192,7 +206,8 @@
         316,
         16
       ],
-      "color": "03A598"
+      "color": "03A598",
+      "id": 219
     },
     {
       "pageId": 7,
@@ -203,7 +218,8 @@
         316,
         16
       ],
-      "color": "C44795"
+      "color": "C44795",
+      "id": 221
     },
     {
       "pageId": 7,
@@ -214,7 +230,8 @@
         316,
         16
       ],
-      "color": "C44795"
+      "color": "C44795",
+      "id": 229
     },
     {
       "pageId": 7,
@@ -225,7 +242,8 @@
         316,
         16
       ],
-      "color": "F49500"
+      "color": "F49500",
+      "id": 231
     },
     {
       "pageId": 7,
@@ -236,10 +254,17 @@
         316,
         16
       ],
-      "color": "03A598"
+      "color": "03A598",
+      "id": 233
     }
   ],
   "devices": [
+    {
+      "id": 1,
+      "name": "Generic MIDI",
+      "port": 1,
+      "channel": 1
+    },
     {
       "id": 17,
       "name": "Bacara",
@@ -844,6 +869,16 @@
           "value": 29,
           "label": "ROM Z",
           "index": 29
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "items": [
+        {
+          "value": 0,
+          "label": "[[axyzTarget]]",
+          "index": 0
         }
       ]
     }
@@ -4438,6 +4473,534 @@
           "min": -8192,
           "max": 8191,
           "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 123,
+      "type": "list",
+      "visible": true,
+      "name": "X1 TARGET 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        216,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15362
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 124,
+      "type": "list",
+      "visible": true,
+      "name": "X2 TARGET 1",
+      "color": "03A598",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15618
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 125,
+      "type": "list",
+      "visible": true,
+      "name": "X3 TARGET 1",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        216,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15874
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 126,
+      "type": "list",
+      "visible": true,
+      "name": "X4 TARGET 1",
+      "color": "C44795",
+      "bounds": [
+        850,
+        216,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 16130
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 129,
+      "type": "list",
+      "visible": true,
+      "name": "X1 TARGET 2",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        304,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15363
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 130,
+      "type": "list",
+      "visible": true,
+      "name": "X2 TARGET 2",
+      "color": "03A598",
+      "bounds": [
+        510,
+        304,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15619
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 131,
+      "type": "list",
+      "visible": true,
+      "name": "X3 TARGET 2",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        304,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15875
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 132,
+      "type": "list",
+      "visible": true,
+      "name": "X4 TARGET 2",
+      "color": "C44795",
+      "bounds": [
+        850,
+        304,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 16131
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 135,
+      "type": "list",
+      "visible": true,
+      "name": "Y1 TARGET 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        392,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15490
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 136,
+      "type": "list",
+      "visible": true,
+      "name": "Y2 TARGET 1",
+      "color": "03A598",
+      "bounds": [
+        510,
+        392,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15746
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 137,
+      "type": "list",
+      "visible": true,
+      "name": "Y3 TARGET 1",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        392,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 16002
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 138,
+      "type": "list",
+      "visible": true,
+      "name": "Y4 TARGET 1",
+      "color": "C44795",
+      "bounds": [
+        850,
+        392,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 16258
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 141,
+      "type": "list",
+      "visible": true,
+      "name": "Y1 TARGET 2",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        480,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15491
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 142,
+      "type": "list",
+      "visible": true,
+      "name": "Y2 TARGET 2",
+      "color": "03A598",
+      "bounds": [
+        510,
+        480,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15747
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 143,
+      "type": "list",
+      "visible": true,
+      "name": "Y3 TARGET 2",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        480,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 16003
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 144,
+      "type": "list",
+      "visible": true,
+      "name": "Y4 TARGET 2",
+      "color": "C44795",
+      "bounds": [
+        850,
+        480,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 16259
+          },
+          "overlayId": 16,
           "id": "value"
         }
       ]

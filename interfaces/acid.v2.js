@@ -247,7 +247,7 @@ module.exports = {
         min: 0,
         max: 36,
       },
-/*      external: {
+      /*      external: {
         type: 'cc',
         number: 20,
         min: 0,
@@ -307,7 +307,7 @@ module.exports = {
         min: 0,
         max: 11,
       },
-/*      external: {
+      /*      external: {
         type: 'cc',
         number: 21,
         min: 0,
@@ -349,7 +349,7 @@ module.exports = {
         min: 0,
         max: 127,
       },
-/*      external: {
+      /*      external: {
         type: 'cc',
         number: 22,
         min: 0,
@@ -369,7 +369,7 @@ module.exports = {
         min: 0,
         max: 100,
       },
-/*      external: {
+      /*      external: {
         type: 'cc',
         number: 23,
         min: 0,
@@ -493,7 +493,7 @@ module.exports = {
             min: 0,
             max: 1,
           },
-/*          external: {
+          /*          external: {
             type: 'cc',
             number: 31,
             min: 0,
@@ -546,7 +546,7 @@ module.exports = {
           min: 0,
           max: 5,
         },
-/*        external: {
+        /*        external: {
           type: 'cc',
           number: 25,
           min: 0,
@@ -567,7 +567,7 @@ module.exports = {
           min: 0,
           max: 127,
         },
-/*        external: {
+        /*        external: {
           type: 'cc',
           number: 27,
           min: 0,
@@ -587,7 +587,7 @@ module.exports = {
           min: 0,
           max: 100,
         },
-/*        external: {
+        /*        external: {
           type: 'cc',
           number: 29,
           min: 0,
@@ -608,7 +608,7 @@ module.exports = {
           min: 0,
           max: 100,
         },
-/*        external: {
+        /*        external: {
           type: 'cc',
           number: 26,
           min: 0,
@@ -629,7 +629,7 @@ module.exports = {
           min: 0,
           max: 100,
         },
-/*        external: {
+        /*        external: {
           type: 'cc',
           number: 28,
           min: 0,
@@ -650,7 +650,7 @@ module.exports = {
           min: 0,
           max: 127,
         },
-/*        external: {
+        /*        external: {
           type: 'cc',
           number: 30,
           min: 0,
@@ -1983,8 +1983,8 @@ module.exports = {
     }, ],
     virus: {
       part: {
-        name: "Virus Part",
-        type: "parameter",
+        name: 'Virus Part',
+        type: 'parameter',
         surface: {
           type: 'nrpn',
           number: 14849,
@@ -1997,8 +1997,8 @@ module.exports = {
         default: 1,
       },
       level: {
-        name: "Virus Level",
-        type: "parameter",
+        name: 'Virus Level',
+        type: 'parameter',
         surface: {
           type: 'nrpn',
           number: 14977,
@@ -2011,8 +2011,8 @@ module.exports = {
         default: 100,
       },
       bank: {
-        name: "Virus Bank",
-        type: "parameter",
+        name: 'Virus Bank',
+        type: 'parameter',
         surface: {
           type: 'nrpn',
           number: 15105,
@@ -2025,8 +2025,8 @@ module.exports = {
         default: 0,
       },
       program: {
-        name: "Virus Program",
-        type: "parameter",
+        name: 'Virus Program',
+        type: 'parameter',
         surface: {
           type: 'nrpn',
           number: 15233,
@@ -2038,174 +2038,184 @@ module.exports = {
         max: 127,
         default: 0,
       },
-      x1: {
-        name: "Virus X1",
-        type: "parameter",
-        surface: {
-          type: 'nrpn',
-          number: 15361,
-          lsbFirst: false,
-          min: 0,
-          max: 16383,
+      axyz: {
+        x1: {
+          name: 'Virus X1',
+          type: 'parameter',
+          surface: {
+            type: 'nrpn',
+            number: 15361,
+            lsbFirst: false,
+            min: 0,
+            max: 16383,
+          },
+          external: {
+            type: 'cc',
+            hiRes: true,
+            number: 20,
+            min: 0,
+            max: 16383,
+          },
+          min: -1.0,
+          max: 1.0,
+          precision: 4,
+          default: 0,
         },
-        external: {
-          type: 'cc',
-          hiRes: true,
-          number: 20,
-          min: 0,
-          max: 16383,
+        y1: {
+          name: 'Virus Y1',
+          type: 'parameter',
+          surface: {
+            type: 'nrpn',
+            number: 15489,
+            lsbFirst: false,
+            min: 0,
+            max: 16383,
+          },
+          external: {
+            type: 'cc',
+            hiRes: true,
+            number: 21,
+            min: 0,
+            max: 16383,
+          },
+          min: -1.0,
+          max: 1.0,
+          precision: 4,
+          default: 0,
         },
-        min: -8192,
-        max: 8191,
-        default: 0,
+        x2: {
+          name: 'Virus X2',
+          type: 'parameter',
+          surface: {
+            type: 'nrpn',
+            number: 15617,
+            lsbFirst: false,
+            min: 0,
+            max: 16383,
+          },
+          external: {
+            type: 'cc',
+            hiRes: true,
+            number: 23,
+            min: 0,
+            max: 16383,
+          },
+          min: -1.0,
+          max: 1.0,
+          precision: 4,
+          default: 0,
+        },
+        y2: {
+          name: 'Virus Y2',
+          type: 'parameter',
+          surface: {
+            type: 'nrpn',
+            number: 15745,
+            lsbFirst: false,
+            min: 0,
+            max: 16383,
+          },
+          external: {
+            type: 'cc',
+            hiRes: true,
+            number: 24,
+            min: 0,
+            max: 16383,
+          },
+          min: -1.0,
+          max: 1.0,
+          precision: 4,
+          default: 0,
+        },
+        x3: {
+          name: 'Virus X3',
+          type: 'parameter',
+          surface: {
+            type: 'nrpn',
+            number: 15873,
+            lsbFirst: false,
+            min: 0,
+            max: 16383,
+          },
+          external: {
+            type: 'cc',
+            hiRes: true,
+            number: 26,
+            min: 0,
+            max: 16383,
+          },
+          min: -1.0,
+          max: 1.0,
+          precision: 4,
+          default: 0,
+        },
+        y3: {
+          name: 'Virus Y3',
+          type: 'parameter',
+          surface: {
+            type: 'nrpn',
+            number: 16001,
+            lsbFirst: false,
+            min: 0,
+            max: 16383,
+          },
+          external: {
+            type: 'cc',
+            hiRes: true,
+            number: 27,
+            min: 0,
+            max: 16383,
+          },
+          min: -1.0,
+          max: 1.0,
+          precision: 4,
+          default: 0,
+        },
+        x4: {
+          name: 'Virus X4',
+          type: 'parameter',
+          surface: {
+            type: 'nrpn',
+            number: 16129,
+            lsbFirst: false,
+            min: 0,
+            max: 16383,
+          },
+          external: {
+            type: 'cc',
+            hiRes: true,
+            number: 29,
+            min: 0,
+            max: 16383,
+          },
+          min: -1.0,
+          max: 1.0,
+          precision: 4,
+          default: 0,
+        },
+        y4: {
+          name: 'Virus Y4',
+          type: 'parameter',
+          surface: {
+            type: 'nrpn',
+            number: 16257,
+            lsbFirst: false,
+            min: 0,
+            max: 16383,
+          },
+          external: {
+            type: 'cc',
+            hiRes: true,
+            number: 30,
+            min: 0,
+            max: 16383,
+          },
+          min: -1.0,
+          max: 1.0,
+          precision: 4,
+          default: 0,
+        },
       },
-      y1: {
-        name: "Virus Y1",
-        type: "parameter",
-        surface: {
-          type: 'nrpn',
-          number: 15489,
-          lsbFirst: false,
-          min: 0,
-          max: 16383,
-        },
-        external: {
-          type: 'cc',
-          hiRes: true,
-          number: 21,
-          min: 0,
-          max: 16383,
-        },
-        min: -8192,
-        max: 8191,
-        default: 0,
-      },
-      x2: {
-        name: "Virus X2",
-        type: "parameter",
-        surface: {
-          type: 'nrpn',
-          number: 15617,
-          lsbFirst: false,
-          min: 0,
-          max: 16383,
-        },
-        external: {
-          type: 'cc',
-          hiRes: true,
-          number: 23,
-          min: 0,
-          max: 16383,
-        },
-        min: -8192,
-        max: 8191,
-        default: 0,
-      },
-      y2: {
-        name: "Virus Y2",
-        type: "parameter",
-        surface: {
-          type: 'nrpn',
-          number: 15745,
-          lsbFirst: false,
-          min: 0,
-          max: 16383,
-        },
-        external: {
-          type: 'cc',
-          hiRes: true,
-          number: 24,
-          min: 0,
-          max: 16383,
-        },
-        min: -8192,
-        max: 8191,
-        default: 0,
-      },
-      x3: {
-        name: "Virus X3",
-        type: "parameter",
-        surface: {
-          type: 'nrpn',
-          number: 15873,
-          lsbFirst: false,
-          min: 0,
-          max: 16383,
-        },
-        external: {
-          type: 'cc',
-          hiRes: true,
-          number: 26,
-          min: 0,
-          max: 16383,
-        },
-        min: -8192,
-        max: 8191,
-        default: 0,
-      },
-      y3: {
-        name: "Virus Y3",
-        type: "parameter",
-        surface: {
-          type: 'nrpn',
-          number: 16001,
-          lsbFirst: false,
-          min: 0,
-          max: 16383,
-        },
-        external: {
-          type: 'cc',
-          hiRes: true,
-          number: 27,
-          min: 0,
-          max: 16383,
-        },
-        min: -8192,
-        max: 8191,
-        default: 0,
-      },
-      x4: {
-        name: "Virus X4",
-        type: "parameter",
-        surface: {
-          type: 'nrpn',
-          number: 16129,
-          lsbFirst: false,
-          min: 0,
-          max: 16383,
-        },
-        external: {
-          type: 'cc',
-          hiRes: true,
-          number: 29,
-          min: 0,
-          max: 16383,
-        },
-        min: -8192,
-        max: 8191,
-        default: 0,
-      },
-      y4: {
-        name: "Virus Y4",
-        type: "parameter",
-        surface: {
-          type: 'nrpn',
-          number: 16257,
-          lsbFirst: false,
-          min: 0,
-          max: 16383,
-        },
-        external: {
-          type: 'cc',
-          hiRes: true,
-          number: 30,
-          min: 0,
-          max: 16383,
-        },
-        min: -8192,
-        max: 8191,
-        default: 0,
-      },
-    }
+    },
   },
 }

@@ -454,30 +454,30 @@ class AcidMachine extends Machine {
     }
 
     const virusPart = (elementPath, value, origin) => {
-       debug('Parameter Side Effect virusPart: Hello World! %y = %y (from %y)', elementPath, value, origin)
+      debug('Parameter Side Effect virusPart: Hello World! %y = %y (from %y)', elementPath, value, origin)
     }
 
     const virusLevel = (elementPath, value, origin) => {
       debug('Parameter Side Effect virusLevel: Hello World! %y = %y (from %y)', elementPath, value, origin)
       const portName = 'virus-ti'
-      const part = this.interface.getParameter(`virus.part`, 1)
+      const part = this.interface.getParameter('virus.part', 1)
       const channel = part
-      const bank = this.interface.getParameter(`virus.bank`)
-      const program = this.interface.getParameter(`virus.program`)
+      const bank = this.interface.getParameter('virus.bank')
+      const program = this.interface.getParameter('virus.program')
       debugMidiControlChange('%s %d CC %y = %y', portName, channel, 7, value)
-      Midi.send(portName, 'cc', {channel:channel - 1, controller:7, value}, `levelChange-virus`, 200)
+      Midi.send(portName, 'cc', {channel:channel - 1, controller:7, value}, 'levelChange-virus', 200)
     }
 
     const virusSendBankAndProgram = () => {
       const portName = 'virus-ti'
-      const part = this.interface.getParameter(`virus.part`, 1)
+      const part = this.interface.getParameter('virus.part', 1)
       const channel = part
-      const bank = this.interface.getParameter(`virus.bank`)
-      const program = this.interface.getParameter(`virus.program`)
+      const bank = this.interface.getParameter('virus.bank')
+      const program = this.interface.getParameter('virus.program')
       debugMidiControlChange('%s %d CC %y = %y', portName, channel, 0, bank)
-      Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, `bankChange-virus`, 200)
+      Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, 'bankChange-virus', 200)
       debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
-      Midi.send(portName, 'program', {channel:channel - 1, number: program}, `programChange-virus`, 200)
+      Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
     }
 
     const virusBank = (elementPath, value, origin) => {
@@ -488,6 +488,46 @@ class AcidMachine extends Machine {
     const virusProgram = (elementPath, value, origin) => {
       debug('Parameter Side Effect virusProgram: Hello World! %y = %y (from %y)', elementPath, value, origin)
       virusSendBankAndProgram()
+    }
+
+    const virusAxyz = (axyz) => {
+      return (elementPath, value, origin) => {
+//        debug('Parameter Side Effect virusAxyz(%y): Hello World! %y = %y (from %y)', axyz, elementPath, value, origin)
+        const portName = 'virus-ti'
+        const part = this.interface.getParameter('virus.part', 1)
+        const channel = part
+        const val= Math.round(Interface.remap(value,-1,1,0,127))
+          debug(val)
+        switch (axyz) {
+        case 'x1':
+          Midi.send(portName, 'cc', {channel:channel - 1, controller:17, value:val})
+          Midi.send(portName, 'cc', {channel:channel - 1, controller:18, value:val})
+          break
+        case 'y1':
+          Midi.send(portName, 'cc', {channel:channel - 1, controller:19, value:val})
+          break
+        case 'x2':
+          debug(val)
+          Midi.send(portName, 'cc', {channel:channel - 1, controller:41, value:val})
+          break
+        case 'y2':
+          Midi.send(portName, 'cc', {channel:channel - 1, controller:42, value:val})
+          Midi.send(portName, 'cc', {channel:channel - 1, controller:43, value:val})
+          break
+        case 'x3':
+          Midi.send(portName, 'cc', {channel:channel - 1, controller:60, value:val})
+          break
+        case 'y3':
+          Midi.send(portName, 'cc', {channel:channel - 1, controller:63, value:val})
+          break
+        case 'x4':
+          Midi.send(portName, 'cc', {channel:channel - 1, controller:117, value:val})
+          break
+        case 'y4':
+          Midi.send(portName, 'cc', {channel:channel - 1, controller:118, value:val})
+          break
+        }
+      }
     }
 
     this.parameterSideEffects = {
@@ -683,6 +723,16 @@ class AcidMachine extends Machine {
         level: virusLevel,
         bank: virusBank,
         program: virusProgram,
+        axyz: {
+          x1: virusAxyz('x1'),
+          y1: virusAxyz('y1'),
+          x2: virusAxyz('x2'),
+          y2: virusAxyz('y2'),
+          x3: virusAxyz('x3'),
+          y3: virusAxyz('y3'),
+          x4: virusAxyz('x4'),
+          y4: virusAxyz('y4'),
+        },
       },
     }
 

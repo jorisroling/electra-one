@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "Bacara",
-  "projectId": "2XJu2rXEhdQ9SOKrFlLp",
+  "projectId": "6F4mABTJsjFytPL5D9lY",
   "pages": [
     {
       "id": 1,
@@ -38,7 +38,8 @@
         16,
         826,
         16
-      ]
+      ],
+      "id": 37
     },
     {
       "pageId": 2,
@@ -49,7 +50,8 @@
         192,
         826,
         16
-      ]
+      ],
+      "id": 49
     },
     {
       "pageId": 2,
@@ -60,7 +62,8 @@
         368,
         826,
         16
-      ]
+      ],
+      "id": 61
     },
     {
       "pageId": 1,
@@ -71,7 +74,8 @@
         368,
         486,
         16
-      ]
+      ],
+      "id": 25
     },
     {
       "pageId": 1,
@@ -82,7 +86,8 @@
         368,
         486,
         16
-      ]
+      ],
+      "id": 28
     },
     {
       "pageId": 1,
@@ -93,7 +98,8 @@
         192,
         316,
         16
-      ]
+      ],
+      "id": 13
     },
     {
       "pageId": 1,
@@ -104,7 +110,8 @@
         16,
         146,
         16
-      ]
+      ],
+      "id": 6
     },
     {
       "pageId": 1,
@@ -115,7 +122,8 @@
         16,
         656,
         16
-      ]
+      ],
+      "id": 1
     },
     {
       "pageId": 1,
@@ -126,7 +134,8 @@
         656,
         16
       ],
-      "color": "FFFFFF"
+      "color": "FFFFFF",
+      "id": 15
     },
     {
       "pageId": 3,
@@ -137,7 +146,8 @@
         656,
         16
       ],
-      "color": "FFFFFF"
+      "color": "FFFFFF",
+      "id": 74
     },
     {
       "pageId": 3,
@@ -148,7 +158,8 @@
         656,
         16
       ],
-      "color": "FFFFFF"
+      "color": "FFFFFF",
+      "id": 86
     },
     {
       "pageId": 3,
@@ -159,7 +170,8 @@
         656,
         16
       ],
-      "color": "FFFFFF"
+      "color": "FFFFFF",
+      "id": 98
     },
     {
       "pageId": 1,
@@ -170,7 +182,8 @@
         16,
         146,
         16
-      ]
+      ],
+      "id": 5
     },
     {
       "pageId": 7,
@@ -181,7 +194,8 @@
         316,
         16
       ],
-      "color": "F49500"
+      "color": "F49500",
+      "id": 217
     },
     {
       "pageId": 7,
@@ -192,7 +206,8 @@
         316,
         16
       ],
-      "color": "03A598"
+      "color": "03A598",
+      "id": 219
     },
     {
       "pageId": 7,
@@ -203,7 +218,8 @@
         316,
         16
       ],
-      "color": "C44795"
+      "color": "C44795",
+      "id": 221
     },
     {
       "pageId": 7,
@@ -214,7 +230,8 @@
         316,
         16
       ],
-      "color": "C44795"
+      "color": "C44795",
+      "id": 229
     },
     {
       "pageId": 7,
@@ -225,7 +242,8 @@
         316,
         16
       ],
-      "color": "F49500"
+      "color": "F49500",
+      "id": 231
     },
     {
       "pageId": 7,
@@ -236,10 +254,17 @@
         316,
         16
       ],
-      "color": "03A598"
+      "color": "03A598",
+      "id": 233
     }
   ],
   "devices": [
+    {
+      "id": 1,
+      "name": "Generic MIDI",
+      "port": 1,
+      "channel": 1
+    },
     {
       "id": 17,
       "name": "Bacara",
@@ -3619,6 +3644,651 @@
           "value": 29,
           "label": "ROM Z",
           "index": 29
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "items": [
+        {
+          "index": 0,
+          "label": "osc.1.shape",
+          "value": 0
+        },
+        {
+          "index": 1,
+          "label": "osc.1.pulsewidth",
+          "value": 1
+        },
+        {
+          "index": 2,
+          "label": "osc.1.waveSelect",
+          "value": 2
+        },
+        {
+          "index": 3,
+          "label": "osc.1.semitone",
+          "value": 3
+        },
+        {
+          "index": 4,
+          "label": "osc.1.keyboard.tracking",
+          "value": 4
+        },
+        {
+          "index": 5,
+          "label": "osc.2.shape",
+          "value": 5
+        },
+        {
+          "index": 6,
+          "label": "osc.2.pulsewidth",
+          "value": 6
+        },
+        {
+          "index": 7,
+          "label": "osc.2.waveSelect",
+          "value": 7
+        },
+        {
+          "index": 8,
+          "label": "osc.2.semitone",
+          "value": 8
+        },
+        {
+          "index": 9,
+          "label": "osc.2.detune",
+          "value": 9
+        },
+        {
+          "index": 10,
+          "label": "osc.2.fmAmount",
+          "value": 10
+        },
+        {
+          "index": 11,
+          "label": "osc.2.sync",
+          "value": 11
+        },
+        {
+          "index": 12,
+          "label": "osc.2.filterEnvelope",
+          "value": 12
+        },
+        {
+          "index": 13,
+          "label": "osc.2.keyboard.tracking",
+          "value": 13
+        },
+        {
+          "index": 14,
+          "label": "osc.balance",
+          "value": 14
+        },
+        {
+          "index": 15,
+          "label": "osc.suboscillator.volume",
+          "value": 15
+        },
+        {
+          "index": 16,
+          "label": "osc.suboscillator.shape",
+          "value": 16
+        },
+        {
+          "index": 17,
+          "label": "osc.oscillatorMainVolume",
+          "value": 17
+        },
+        {
+          "index": 18,
+          "label": "osc.noiseVolume",
+          "value": 18
+        },
+        {
+          "index": 19,
+          "label": "osc.ringModulatorVolume",
+          "value": 19
+        },
+        {
+          "index": 20,
+          "label": "osc.noiseColor",
+          "value": 20
+        },
+        {
+          "index": 21,
+          "label": "filter.1.cutoff",
+          "value": 21
+        },
+        {
+          "index": 22,
+          "label": "filter.1.resonance",
+          "value": 22
+        },
+        {
+          "index": 23,
+          "label": "filter.1.envelopeAmount",
+          "value": 23
+        },
+        {
+          "index": 24,
+          "label": "filter.1.keyboard.tracking",
+          "value": 24
+        },
+        {
+          "index": 25,
+          "label": "filter.1.mode",
+          "value": 25
+        },
+        {
+          "index": 26,
+          "label": "filter.2.cutoff",
+          "value": 26
+        },
+        {
+          "index": 27,
+          "label": "filter.2.resonance",
+          "value": 27
+        },
+        {
+          "index": 28,
+          "label": "filter.2.envelopeAmount",
+          "value": 28
+        },
+        {
+          "index": 29,
+          "label": "filter.2.keyboard.tracking",
+          "value": 29
+        },
+        {
+          "index": 30,
+          "label": "filter.2.mode",
+          "value": 30
+        },
+        {
+          "index": 31,
+          "label": "filter.balance",
+          "value": 31
+        },
+        {
+          "index": 32,
+          "label": "filter.routing",
+          "value": 32
+        },
+        {
+          "index": 33,
+          "label": "filter.saturationCurve",
+          "value": 33
+        },
+        {
+          "index": 34,
+          "label": "filter.fmFilterEnvelope",
+          "value": 34
+        },
+        {
+          "index": 35,
+          "label": "filter.envelope.attack",
+          "value": 35
+        },
+        {
+          "index": 36,
+          "label": "filter.envelope.decay",
+          "value": 36
+        },
+        {
+          "index": 37,
+          "label": "filter.envelope.sustain",
+          "value": 37
+        },
+        {
+          "index": 38,
+          "label": "filter.envelope.sustain.time",
+          "value": 38
+        },
+        {
+          "index": 39,
+          "label": "filter.envelope.release",
+          "value": 39
+        },
+        {
+          "index": 40,
+          "label": "amp.envelope.attack",
+          "value": 40
+        },
+        {
+          "index": 41,
+          "label": "amp.envelope.decay",
+          "value": 41
+        },
+        {
+          "index": 42,
+          "label": "amp.envelope.sustain",
+          "value": 42
+        },
+        {
+          "index": 43,
+          "label": "amp.envelope.sustain.time",
+          "value": 43
+        },
+        {
+          "index": 44,
+          "label": "amp.envelope.release",
+          "value": 44
+        },
+        {
+          "index": 45,
+          "label": "voice.portamentoTime",
+          "value": 45
+        },
+        {
+          "index": 46,
+          "label": "voice.transpose",
+          "value": 46
+        },
+        {
+          "index": 47,
+          "label": "voice.keyboardMode",
+          "value": 47
+        },
+        {
+          "index": 48,
+          "label": "voice.unison.mode",
+          "value": 48
+        },
+        {
+          "index": 49,
+          "label": "voice.unison.detune",
+          "value": 49
+        },
+        {
+          "index": 50,
+          "label": "voice.unison.spread",
+          "value": 50
+        },
+        {
+          "index": 51,
+          "label": "voice.unison.lfoPhase",
+          "value": 51
+        },
+        {
+          "index": 52,
+          "label": "mixer.part.volume",
+          "value": 52
+        },
+        {
+          "index": 53,
+          "label": "mixer.part.balance",
+          "value": 53
+        },
+        {
+          "index": 54,
+          "label": "mixer.part.pan",
+          "value": 54
+        },
+        {
+          "index": 55,
+          "label": "mixer.patch.volume",
+          "value": 55
+        },
+        {
+          "index": 56,
+          "label": "mixer.input.mode",
+          "value": 56
+        },
+        {
+          "index": 57,
+          "label": "mixer.input.select",
+          "value": 57
+        },
+        {
+          "index": 58,
+          "label": "lfo.1.rate",
+          "value": 58
+        },
+        {
+          "index": 59,
+          "label": "lfo.1.shape",
+          "value": 59
+        },
+        {
+          "index": 60,
+          "label": "lfo.1.envelopeMode",
+          "value": 60
+        },
+        {
+          "index": 61,
+          "label": "lfo.1.lfoMode",
+          "value": 61
+        },
+        {
+          "index": 62,
+          "label": "lfo.1.symmetry",
+          "value": 62
+        },
+        {
+          "index": 63,
+          "label": "lfo.1.keyboard.tracking",
+          "value": 63
+        },
+        {
+          "index": 64,
+          "label": "lfo.1.keyTrigger",
+          "value": 64
+        },
+        {
+          "index": 65,
+          "label": "lfo.1.routing.osc.1",
+          "value": 65
+        },
+        {
+          "index": 66,
+          "label": "lfo.1.routing.osc.2",
+          "value": 66
+        },
+        {
+          "index": 67,
+          "label": "lfo.1.routing.pulsewidth",
+          "value": 67
+        },
+        {
+          "index": 68,
+          "label": "lfo.1.routing.resonance",
+          "value": 68
+        },
+        {
+          "index": 69,
+          "label": "lfo.1.routing.filterGain",
+          "value": 69
+        },
+        {
+          "index": 70,
+          "label": "lfo.2.rate",
+          "value": 70
+        },
+        {
+          "index": 71,
+          "label": "lfo.2.shape",
+          "value": 71
+        },
+        {
+          "index": 72,
+          "label": "lfo.2.envelopeMode",
+          "value": 72
+        },
+        {
+          "index": 73,
+          "label": "lfo.2.lfoMode",
+          "value": 73
+        },
+        {
+          "index": 74,
+          "label": "lfo.2.symmetry",
+          "value": 74
+        },
+        {
+          "index": 75,
+          "label": "lfo.2.keyboard.tracking",
+          "value": 75
+        },
+        {
+          "index": 76,
+          "label": "lfo.2.keyTrigger",
+          "value": 76
+        },
+        {
+          "index": 77,
+          "label": "lfo.2.routing.oscillatorShape",
+          "value": 77
+        },
+        {
+          "index": 78,
+          "label": "lfo.2.routing.fmAmount",
+          "value": 78
+        },
+        {
+          "index": 79,
+          "label": "lfo.2.routing.filert.1.cutoff",
+          "value": 79
+        },
+        {
+          "index": 80,
+          "label": "lfo.2.routing.filert.2.cutoff",
+          "value": 80
+        },
+        {
+          "index": 81,
+          "label": "lfo.2.routing.pan",
+          "value": 81
+        },
+        {
+          "index": 82,
+          "label": "fx.chorus.mix",
+          "value": 82
+        },
+        {
+          "index": 83,
+          "label": "fx.chorus.rate",
+          "value": 83
+        },
+        {
+          "index": 84,
+          "label": "fx.chorus.depth",
+          "value": 84
+        },
+        {
+          "index": 85,
+          "label": "fx.chorus.delay",
+          "value": 85
+        },
+        {
+          "index": 86,
+          "label": "fx.chorus.feedback",
+          "value": 86
+        },
+        {
+          "index": 87,
+          "label": "fx.chorus.lfoShape",
+          "value": 87
+        },
+        {
+          "index": 88,
+          "label": "fx.delay.time",
+          "value": 88
+        },
+        {
+          "index": 89,
+          "label": "fx.delay.feedback",
+          "value": 89
+        },
+        {
+          "index": 90,
+          "label": "fx.delay.rate",
+          "value": 90
+        },
+        {
+          "index": 91,
+          "label": "fx.delay.depth",
+          "value": 91
+        },
+        {
+          "index": 92,
+          "label": "fx.delay.lfoShape",
+          "value": 92
+        },
+        {
+          "index": 93,
+          "label": "fx.delay.color",
+          "value": 93
+        },
+        {
+          "index": 94,
+          "label": "fx.reverb.decay",
+          "value": 94
+        },
+        {
+          "index": 95,
+          "label": "fx.reverb.size",
+          "value": 95
+        },
+        {
+          "index": 96,
+          "label": "fx.reverb.damping",
+          "value": 96
+        },
+        {
+          "index": 97,
+          "label": "fx.mode",
+          "value": 97
+        },
+        {
+          "index": 98,
+          "label": "fx.send",
+          "value": 98
+        },
+        {
+          "index": 99,
+          "label": "controller.3",
+          "value": 99
+        },
+        {
+          "index": 100,
+          "label": "controller.9",
+          "value": 100
+        },
+        {
+          "index": 101,
+          "label": "controller.12",
+          "value": 101
+        },
+        {
+          "index": 102,
+          "label": "controller.13",
+          "value": 102
+        },
+        {
+          "index": 103,
+          "label": "controller.14",
+          "value": 103
+        },
+        {
+          "index": 104,
+          "label": "controller.15",
+          "value": 104
+        },
+        {
+          "index": 105,
+          "label": "controller.16",
+          "value": 105
+        },
+        {
+          "index": 106,
+          "label": "controller.50",
+          "value": 106
+        },
+        {
+          "index": 107,
+          "label": "controller.92",
+          "value": 107
+        },
+        {
+          "index": 108,
+          "label": "controller.95",
+          "value": 108
+        },
+        {
+          "index": 109,
+          "label": "controller.96",
+          "value": 109
+        },
+        {
+          "index": 110,
+          "label": "controller.103",
+          "value": 110
+        },
+        {
+          "index": 111,
+          "label": "controller.104",
+          "value": 111
+        },
+        {
+          "index": 112,
+          "label": "controller.111",
+          "value": 112
+        },
+        {
+          "index": 113,
+          "label": "controller.120",
+          "value": 113
+        },
+        {
+          "index": 114,
+          "label": "controller.121",
+          "value": 114
+        },
+        {
+          "index": 115,
+          "label": "controller.124",
+          "value": 115
+        },
+        {
+          "index": 116,
+          "label": "controller.125",
+          "value": 116
+        },
+        {
+          "index": 117,
+          "label": "controller.126",
+          "value": 117
+        },
+        {
+          "index": 118,
+          "label": "controller.127",
+          "value": 118
+        },
+        {
+          "index": 119,
+          "label": "controller.breath",
+          "value": 119
+        },
+        {
+          "index": 120,
+          "label": "controller.expression",
+          "value": 120
+        },
+        {
+          "index": 121,
+          "label": "controller.foot",
+          "value": 121
+        },
+        {
+          "index": 122,
+          "label": "controller.holdPedal",
+          "value": 122
+        },
+        {
+          "index": 123,
+          "label": "controller.modulation",
+          "value": 123
+        },
+        {
+          "index": 124,
+          "label": "controller.portamentoPedal",
+          "value": 124
+        },
+        {
+          "index": 125,
+          "label": "controller.sostenutoPedal",
+          "value": 125
+        },
+        {
+          "index": 126,
+          "label": "misc.allNotesOff",
+          "value": 126
+        },
+        {
+          "index": 127,
+          "label": "misc.keyboard",
+          "value": 127
         }
       ]
     }
@@ -7213,6 +7883,534 @@
           "min": -8192,
           "max": 8191,
           "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 123,
+      "type": "list",
+      "visible": true,
+      "name": "X1 TARGET 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        216,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15362
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 124,
+      "type": "list",
+      "visible": true,
+      "name": "X2 TARGET 1",
+      "color": "03A598",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15618
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 125,
+      "type": "list",
+      "visible": true,
+      "name": "X3 TARGET 1",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        216,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15874
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 126,
+      "type": "list",
+      "visible": true,
+      "name": "X4 TARGET 1",
+      "color": "C44795",
+      "bounds": [
+        850,
+        216,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 16130
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 129,
+      "type": "list",
+      "visible": true,
+      "name": "X1 TARGET 2",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        304,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15363
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 130,
+      "type": "list",
+      "visible": true,
+      "name": "X2 TARGET 2",
+      "color": "03A598",
+      "bounds": [
+        510,
+        304,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15619
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 131,
+      "type": "list",
+      "visible": true,
+      "name": "X3 TARGET 2",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        304,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15875
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 132,
+      "type": "list",
+      "visible": true,
+      "name": "X4 TARGET 2",
+      "color": "C44795",
+      "bounds": [
+        850,
+        304,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 16131
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 135,
+      "type": "list",
+      "visible": true,
+      "name": "Y1 TARGET 1",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        392,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15490
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 136,
+      "type": "list",
+      "visible": true,
+      "name": "Y2 TARGET 1",
+      "color": "03A598",
+      "bounds": [
+        510,
+        392,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15746
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 137,
+      "type": "list",
+      "visible": true,
+      "name": "Y3 TARGET 1",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        392,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 16002
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 138,
+      "type": "list",
+      "visible": true,
+      "name": "Y4 TARGET 1",
+      "color": "C44795",
+      "bounds": [
+        850,
+        392,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 16258
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 141,
+      "type": "list",
+      "visible": true,
+      "name": "Y1 TARGET 2",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        480,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15491
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 142,
+      "type": "list",
+      "visible": true,
+      "name": "Y2 TARGET 2",
+      "color": "03A598",
+      "bounds": [
+        510,
+        480,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 15747
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 143,
+      "type": "list",
+      "visible": true,
+      "name": "Y3 TARGET 2",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        480,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 16003
+          },
+          "overlayId": 16,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 144,
+      "type": "list",
+      "visible": true,
+      "name": "Y4 TARGET 2",
+      "color": "C44795",
+      "bounds": [
+        850,
+        480,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": false,
+            "parameterNumber": 16259
+          },
+          "overlayId": 16,
           "id": "value"
         }
       ]
