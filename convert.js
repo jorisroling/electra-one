@@ -38,11 +38,11 @@ for (let ctrl in epr.controls) {
         page='A'
       } else if (pageID=='71') {
         page='B'
-      } else if (pageID=='72') {
-        page='C'
       } else if (pageID=='6E') {
-        page='D'
+        page='C'
       } else if (pageID=='6F') {
+        page='D'
+      } else if (pageID=='72') {
         page='E'
       } else if (pageID=='73') {
         page='F'
@@ -54,6 +54,7 @@ for (let ctrl in epr.controls) {
     }
   }
   const name = control.name
-  debug('ctrl name %y page %y parameter %y min %y max %y displayMin %y displayMax %y defaultValue %y',name,page,parameter,min,max,displayMin,displayMax,defaultValue)
+  let pageOffset = (parameter-((parameter>=256)?1:0)) % 128
+  debug('ctrl name %y page %y offset %y parameter %y min %y max %y displayMin %y displayMax %y defaultValue %y',name,page,pageOffset,parameter,min,max,displayMin,displayMax,defaultValue)
 
 }

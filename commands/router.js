@@ -211,7 +211,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
 
         }
       } else { /* Anything else */
-        debug('Forwarding SysEx to %y', to)
+        debug('Forwarding SysEx from %y to %y',from, to)
         Midi.send(to, 'sysex', msg.bytes)
       }
       break
