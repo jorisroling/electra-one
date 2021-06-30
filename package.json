@@ -103,6 +103,6 @@
   "devDependencies": {
     "eslint": "^7.29.0",
     "eslint-plugin-jest": "^24.3.6",
-    "nodemon": "^2.0.8"
+    "nodemon": "^2.0.9"
   }
 }
