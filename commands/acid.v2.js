@@ -497,7 +497,7 @@ class AcidMachine extends Machine {
         const part = this.interface.getParameter('virus.part', 1)
         const channel = part
         const val= Math.round(Interface.remap(value,-1,1,0,127))
-          debug(val)
+//          debug(val)
         switch (axyz) {
         case 'x1':
           Midi.send(portName, 'cc', {channel:channel - 1, controller:17, value:val})
@@ -507,7 +507,7 @@ class AcidMachine extends Machine {
           Midi.send(portName, 'cc', {channel:channel - 1, controller:19, value:val})
           break
         case 'x2':
-          debug(val)
+  //        debug(val)
           Midi.send(portName, 'cc', {channel:channel - 1, controller:41, value:val})
           break
         case 'y2':

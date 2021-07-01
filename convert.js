@@ -25,11 +25,25 @@ const epr = jsonfile.readFileSync('./presets/Access Virus TI.epr')
 for (let ctrl in epr.controls) {
   const control = epr.controls[ctrl]
   const parameter = control.values[0].message.parameterNumber
-  const min = control.values[0].message.min
-  const max = control.values[0].message.max
-  const displayMin = control.values[0].min
-  const displayMax = control.values[0].max
-  const defaultValue = control.values[0].defaultValue
+  let min = control.values[0].message.min
+  let max = control.values[0].message.max
+  let displayMin = control.values[0].min
+  let displayMax = control.values[0].max
+  let defaultValue = control.values[0].defaultValue
+  if (defaultValue == 'on' || defaultValue == 'off') {
+    min = displayMin = control.values[0].message[`offValue`]
+    max = displayMax = control.values[0].message[`onValue`]
+    defaultValue = control.values[0].message[`${defaultValue}Value`]
+  }
+  if (typeof displayMin == 'undefined') {
+    displayMin = min
+  }
+  if (typeof displayMax == 'undefined') {
+    displayMax = max
+  }
+  if (typeof defaultValue == 'undefined') {
+    defaultValue = displayMin
+  }
   let page = 'A'
   if (control.values[0].message.data) {
     const pageID = control.values[0].message.data[6]

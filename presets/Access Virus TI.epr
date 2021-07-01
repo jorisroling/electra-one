@@ -22119,7 +22119,7 @@
             "onValue": 1,
             "offValue": 0
           },
-          "defaultValue": "on",
+          "defaultValue": "off",
           "id": "value"
         }
       ]
