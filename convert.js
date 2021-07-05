@@ -21,6 +21,7 @@ const epr = jsonfile.readFileSync('./presets/Access Virus TI.epr')
 //const epr = require('./presets/Access Virus TI.epr')
 
 
+const list = []
 
 for (let ctrl in epr.controls) {
   const control = epr.controls[ctrl]
@@ -69,6 +70,10 @@ for (let ctrl in epr.controls) {
   }
   const name = control.name
   let pageOffset = (parameter-((parameter>=256)?1:0)) % 128
-  debug('ctrl name %y page %y offset %y parameter %y min %y max %y displayMin %y displayMax %y defaultValue %y',name,page,pageOffset,parameter,min,max,displayMin,displayMax,defaultValue)
-
+//  debug('ctrl name %y page %y offset %y parameter %y min %y max %y displayMin %y displayMax %y defaultValue %y',name,page,pageOffset,parameter,min,max,displayMin,displayMax,defaultValue)
+  list.push({name,page,pageOffset,parameter,min,max,displayMin,displayMax,defaultValue})
 }
+
+debug('%y',list)
+
+jsonfile.writeFileSync('./virus-ti.json', {list}, { flag: 'w', spaces: 2 })
