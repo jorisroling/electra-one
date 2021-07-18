@@ -53,8 +53,8 @@
             "min": 0,
             "max": 16383
           },
-          "min": -8192,
-          "max": 8191,
+          "min": -8191,
+          "max": 8192,
           "defaultValue": 0,
           "id": "value"
         }
@@ -90,8 +90,8 @@
             "min": 0,
             "max": 16383
           },
-          "min": -8192,
-          "max": 8191,
+          "min": -8191,
+          "max": 8192,
           "defaultValue": 0,
           "id": "value"
         }
@@ -127,8 +127,8 @@
             "min": 0,
             "max": 16383
           },
-          "min": -8192,
-          "max": 8191,
+          "min": -8191,
+          "max": 8192,
           "defaultValue": 0,
           "id": "value"
         }
@@ -164,8 +164,8 @@
             "min": 0,
             "max": 16383
           },
-          "min": -8192,
-          "max": 8191,
+          "min": -8191,
+          "max": 8192,
           "defaultValue": 0,
           "id": "value"
         }
@@ -201,8 +201,8 @@
             "min": 0,
             "max": 16383
           },
-          "min": -8192,
-          "max": 8191,
+          "min": -8191,
+          "max": 8192,
           "defaultValue": 0,
           "id": "value"
         }
@@ -238,8 +238,8 @@
             "min": 0,
             "max": 16383
           },
-          "min": -8192,
-          "max": 8191,
+          "min": -8191,
+          "max": 8192,
           "defaultValue": 0,
           "id": "value"
         }
@@ -275,8 +275,8 @@
             "min": 0,
             "max": 16383
           },
-          "min": -8192,
-          "max": 8191,
+          "min": -8191,
+          "max": 8192,
           "defaultValue": 0,
           "id": "value"
         }
@@ -312,8 +312,8 @@
             "min": 0,
             "max": 16383
           },
-          "min": -8192,
-          "max": 8191,
+          "min": -8191,
+          "max": 8192,
           "defaultValue": 0,
           "id": "value"
         }
