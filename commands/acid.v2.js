@@ -1,4 +1,4 @@
-const debug = require('debug')(require('../package.json').name + ':command:' + require('path').basename(__filename, '.js'))
+const debug = require('yves').debugger(require('../package.json').name + ':lib:midi:' + (require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':'))
 
 const config = require('config')
 const os = require('os')
@@ -27,6 +27,8 @@ const debugMidiNoteOff = yves.debugger(`${pkg.name.replace(/^@/, '')}:midi:note:
 const debugMidiControlChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:midi:control:change`)
 const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:midi:program:change`)
 
+const debugMonome = yves.debugger(`${pkg.name.replace(/^@/, '')}:monome`)
+
 const euclideanRhythms = require('euclidean-rhythms')
 const scaleMappings = require('../extra/scales/scales.json')
 
@@ -51,6 +53,14 @@ const matrixSlotSources = {
 }
 
 const beatCC = 2 // -1 for off
+
+
+const monodeInit = require('monode')
+
+let monome = {
+  led(x,y,s) {
+  }
+}
 
 function radians(degrees) {
   return (degrees % 360) * (Math.PI / 180)
@@ -935,7 +945,7 @@ class AcidMachine extends Machine {
       const noteMidiTransposed = midiNote + this.interface.getParameter('transpose', 'modulated')
 
 
-      /*      debug('JJR: %y %y %y',(state && this.interface.getParameter('split','modulated') && noteMidiTransposed <= this.interface.getParameter('split','modulated')),this.interface.getParameter('split','modulated'),noteMidiTransposed)*/
+      /*      debug('JJ: %y %y %y',(state && this.interface.getParameter('split','modulated') && noteMidiTransposed <= this.interface.getParameter('split','modulated')),this.interface.getParameter('split','modulated'),noteMidiTransposed)*/
       const arr = [
         {hAlign:'center', content:(this.interface.getParameter('split', 'modulated') && noteMidiTransposed <= this.interface.getParameter('split', 'modulated')) ? ((this.interface.getParameter('deviate', 'modulated') >= 50) ? deviceBColor('B') : deviceAColor('A')) : ((this.interface.getParameter('deviate', 'modulated') >= 50) ? deviceAColor('A') : deviceBColor('B')) },
         {hAlign:'center', content:TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })/*+` ${noteMidi}`*/}
@@ -979,7 +989,7 @@ class AcidMachine extends Machine {
   }
 
   sendTrackProgramChange(trk) {
-    /*   console.trace('JJR:'+trk)*/
+    /*   console.trace('JJ:'+trk)*/
     const portName = this.getState(`track.${trk}.portName`)
     const channel = this.getState(`track.${trk}.channel`, 1)
     const bank = this.interface.getParameter(`track.${trk}.bank`)
@@ -993,7 +1003,7 @@ class AcidMachine extends Machine {
 
   lfo(step, stepsPerCycle, shape, phase) {
     let cycleStep = ((step + 0) + (((phase + 0.0) % 1.0) * stepsPerCycle)) % stepsPerCycle
-    //    debug('JJR lfo: step: %y  stepsPerCycle: %y  shape: %y  phase: %y  cycleStep: %y',step, stepsPerCycle, shape, phase, cycleStep)
+    //    debug('JJ lfo: step: %y  stepsPerCycle: %y  shape: %y  phase: %y  cycleStep: %y',step, stepsPerCycle, shape, phase, cycleStep)
     switch (shape) {
     case 'sine':
       cycleStep = ((step + 0) + (((phase + 0.75) % 1.0) * stepsPerCycle)) % stepsPerCycle
@@ -1120,6 +1130,15 @@ class AcidMachine extends Machine {
     const stepIdx = ticks / ticksPerStep
     if (this.getState('playing')) {
 
+//     debug('stepIdx %y X %y y %y',stepIdx,stepIdx&7,stepIdx>>3)
+      for (let x=0;x<2;x++) {
+        for (let y=0;y<8;y++) {
+          monome.led(x,y,0)
+        }
+      }
+
+      monome.led(1-(stepIdx>>3),stepIdx&7,1)
+
       const tickDuration = this.pulseDuration / 20
       let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
       if (shiftedTicks < 0) {
@@ -1226,7 +1245,6 @@ class AcidMachine extends Machine {
       if (this.getState('pattern') && !this.interface.getParameter('mute')) {
         this.getState('pattern').tracks[0].notes.forEach( (note) => {
           if (note.ticks == shiftedTicks) {
-
             if (stepIdx < this.state.sounding.length && this.state.sounding[stepIdx]) {
               let midiNote = note.midi
 
@@ -1341,6 +1359,33 @@ class AcidMachine extends Machine {
 function acidSequencer(name, sub, options) {
 
   Midi.setupVirtualPorts(config.acid.virtual)
+
+  const monode = monodeInit()
+
+  monode.on('device', function(device) {
+    monome=device
+
+    for (let x=0;x<8;x++) {
+      for (let y=0;y<8;y++) {
+        monome.led(x,y,0)
+      }
+    }
+    monome.on('key', function(x, y, s) {
+      debugMonome('X %y Y %y S %y',x,y,s)
+      monome.led(x, y, s)
+      if (s && x>=6 && x<=7) {
+        //JJR
+        debugMonome('P %y',((((x-6)?0:1)*8)+y)+1)
+      }
+    })
+
+     monome.on('rotation', function(value){
+      debugMonome('rotation changed to: %y', value)
+     });
+
+     monome.rotation = 180;
+     debugMonome('rotation %y',monome.rotation)
+  })
 
   const acidMachine = new AcidMachine('acid.v2')
   acidMachine.readState()

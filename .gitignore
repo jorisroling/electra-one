@@ -108,6 +108,8 @@ tmp.*
 tmp
 jj*
 
+old
+
 state/*.json
 state/acid/patterns/*.mid
 

@@ -79,7 +79,7 @@
     "README.md"
   ],
   "dependencies": {
-    "@tonaljs/tonal": "^4.6.0",
+    "@tonaljs/tonal": "^4.6.2",
     "@tonejs/midi": "^2.0.27",
     "args": "^5.0.1",
     "change-case": "^4.1.2",
@@ -95,14 +95,15 @@
     "jsonfile": "^6.1.0",
     "jsonic": "^1.0.1",
     "lodash": "^4.17.21",
+    "monode": "^3.0.1",
     "sleep": "^6.3.0",
     "table": "^6.7.1",
     "untildify": "^4.0.0",
     "yves": "^1.0.80"
   },
   "devDependencies": {
-    "eslint": "^7.30.0",
+    "eslint": "^7.31.0",
     "eslint-plugin-jest": "^24.3.6",
-    "nodemon": "^2.0.9"
+    "nodemon": "^2.0.12"
   }
 }

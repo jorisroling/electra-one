@@ -1,4 +1,4 @@
-const debug = require('debug')(require('../package.json').name + ':command:' + require('path').basename(__filename, '.js'))
+const debug = require('yves').debugger(require('../package.json').name + ':lib:midi:' + (require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':'))
 
 const yves = require('../lib/yves')
 const pkg = require('../package.json')
