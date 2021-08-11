@@ -76,16 +76,26 @@ function handleIncoming(from, to, targetElectraOne, options) {
     //       debug('handleIncoming: %s %y',from,msg)
 
     switch (msg._type) {
-    /*    case 'noteon': // fall-through
+    case 'noteon': // fall-through
     case 'noteoff':
       if (options.channels.indexOf(msg.channel + 1) >= 0) {
-        if (_.get(options,'flags',[]).indexOf('tracker')>=0) {
+        if (_.get(options,'flags',[]).indexOf('keystep-pro-tracker')>=0) {
+          let tracker_to
+          if ((msg.channel+1)<=4) {
+            tracker_to='virus-ti'
+          } else if ((msg.channel+1)==10) {
+            tracker_to='tr-6s'
+          }
+          if (tracker_to) {
+        //    debug('Forwarding Note %s %d (velocity %d) on channel %d to %y', msg._type =='noteon' ? 'On' : 'Off',msg.note, msg.velocity,msg.channel + 1, tracker_to)
+            Midi.send(tracker_to, msg._type, msg)
+          }
         } else {
           debug('Forwarding Note %s %d (velocity %d) on channel %d to %y', msg._type =='noteon' ? 'On' : 'Off',msg.note, msg.velocity,msg.channel + 1, to)
           Midi.send(to, msg._type, msg)
         }
       }
-      break*/
+      break
     case 'program':
       if (options.channels.indexOf(msg.channel + 1) >= 0) {
         if (_.get(options, 'flags', []).indexOf('virus-ti-portmap') >= 0) {
@@ -103,7 +113,18 @@ function handleIncoming(from, to, targetElectraOne, options) {
       break
     case 'cc':
       if (options.channels.indexOf(msg.channel + 1) >= 0) {
-        if (_.get(options, 'flags', []).indexOf('virus-ti-portmap') >= 0) {
+        if (_.get(options,'flags',[]).indexOf('keystep-pro-tracker')>=0) {
+          let tracker_to
+          if ((msg.channel+1)<=4) {
+            tracker_to='virus-ti'
+          } else if ((msg.channel+1)==10) {
+            tracker_to='tr-6s'
+          }
+          if (tracker_to) {
+        //    debug('Forwarding Note %s %d (velocity %d) on channel %d to %y', msg._type =='noteon' ? 'On' : 'Off',msg.note, msg.velocity,msg.channel + 1, tracker_to)
+            Midi.send(tracker_to, 'cc', msg)
+          }
+        } else if (_.get(options, 'flags', []).indexOf('virus-ti-portmap') >= 0) {
           if ((targetElectraOne && msg.channel == getMapping('part:-1')) || (!targetElectraOne && msg.channel == electraOneMidiChannel) ) {
             if (msg.controller == 6 || msg.controller == 38 || msg.controller == 98 || msg.controller == 99) { // NRPN
               //                debug('NRPN %y=%y',msg.controller,msg.value)

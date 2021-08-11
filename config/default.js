@@ -219,14 +219,14 @@ module.exports = {
             channels: [14],
             oneway: true,
           },
-          /*          'keystep-pro': {
+          'keystep-pro': {
             enabled: true,
             port: 2,
             channels: [1,2,3,4,10],
-            flags:['tracker'],
+            flags:['keystep-pro-tracker'],
             oneway: false,
           },
-*/        },
+        },
       },
     },
   },
