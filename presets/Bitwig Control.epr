@@ -5,11 +5,22 @@
   "pages": [
     {
       "id": 1,
-      "name": "Axyz"
+      "name": "Device"
     }
   ],
   "groups": [
-
+    {
+      "id": 14,
+      "pageId": 1,
+      "name": "BITWIG REMOTE CONTROLS",
+      "bounds": [
+        170,
+        192,
+        656,
+        16
+      ],
+      "color": "FFFFFF"
+    }
   ],
   "devices": [
     {
