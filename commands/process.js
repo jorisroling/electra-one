@@ -7,6 +7,8 @@ let args
 
 const Interface = require('../lib/midi/interface')
 
+const { devices } = require('../lib/devices')
+
 function preProcess(name, sub, options) {
 
   const interface = new Interface('acid.v2')

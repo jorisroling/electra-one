@@ -11,17 +11,30 @@ module.exports = {
   debug: Object.prototype.hasOwnProperty.call(process.env, 'DEBUG') ? process.env.DEBUG : `${debugPrefix}*,-${debugPrefix}:midi:*,-${debugPrefix}:part*`,
   midi: {
     ports: {
-      'electra-one-1': {
+      'electra-one-port-1': {
         darwin: 'Electra Controller Electra Port 1',
         linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 8 20:7',
+        windows: 'Electra Controller',
       },
-      'electra-one-2': {
+      'electra-one-port-2': {
         darwin: 'Electra Controller Electra Port 2',
         linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 9 20:8',
+        in: {
+          windows: 'MIDIIN2 (Electra Controller)',
+        },
+        out: {
+          windows: 'MIDIOUT2 (Electra Controller)',
+        },
       },
       'electra-one-ctrl': {
         darwin: 'Electra Controller Electra CTRL',
         linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 12 20:11',
+        in: {
+          windows: 'MIDIIN3 (Electra Controller)',
+        },
+        out: {
+          windows: 'MIDIOUT3 (Electra Controller)',
+        },
       },
       'virus-ti': {
         darwin: 'MRCC Port 1', // 'iConnectMIDI4+ Virus TI',
@@ -86,7 +99,7 @@ module.exports = {
       electraOne: {
         port: 2,
         initialize: {
-          'electra-one-2': [0xF0, 0x7D, 0x20, 'part', 0xF7],
+          'electra-one-port-2': [0xF0, 0x7D, 0x20, 'part', 0xF7],
           'virus-ti': [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, 'part:-1', 0xF7],
         },
       },
@@ -178,6 +191,7 @@ module.exports = {
   router: {
     scenarios: {
       'default': {
+        electra: 'electra-one-port-{port}',
         actors: {
           'virus-ti': {
             enabled: true,
@@ -185,7 +199,7 @@ module.exports = {
             channels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
             flags: ['virus-ti-portmap'],
             initialize: {
-              'electra-one-2': [0xF0, 0x7D, 0x20, 'part', 0xF7],
+              'electra-one-port-2': [0xF0, 0x7D, 0x20, 'part', 0xF7],
               'virus-ti': [0xF0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x30, 0x00, 'part:-1', 0xF7],
             },
           },
@@ -222,7 +236,7 @@ module.exports = {
           'keystep-pro': {
             enabled: true,
             port: 2,
-            channels: [1,2,3,4,10],
+            channels: [1, 2, 3, 4, 10],
             flags:['keystep-pro-tracker'],
             oneway: false,
           },

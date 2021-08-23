@@ -58,7 +58,7 @@ const beatCC = 2 // -1 for off
 const monodeInit = require('monode')
 
 let monome = {
-  led(x,y,s) {
+  led(x, y, s) {
   }
 }
 
@@ -502,12 +502,12 @@ class AcidMachine extends Machine {
 
     const virusAxyz = (axyz) => {
       return (elementPath, value, origin) => {
-//        debug('Parameter Side Effect virusAxyz(%y): Hello World! %y = %y (from %y)', axyz, elementPath, value, origin)
+        //        debug('Parameter Side Effect virusAxyz(%y): Hello World! %y = %y (from %y)', axyz, elementPath, value, origin)
         const portName = 'virus-ti'
         const part = this.interface.getParameter('virus.part', 1)
         const channel = part
-        const val= Math.round(Interface.remap(value,-1,1,0,127))
-//          debug(val)
+        const val = Math.round(Interface.remap(value, -1, 1, 0, 127))
+        //          debug(val)
         switch (axyz) {
         case 'x1':
           Midi.send(portName, 'cc', {channel:channel - 1, controller:17, value:val})
@@ -517,7 +517,7 @@ class AcidMachine extends Machine {
           Midi.send(portName, 'cc', {channel:channel - 1, controller:19, value:val})
           break
         case 'x2':
-  //        debug(val)
+          //        debug(val)
           Midi.send(portName, 'cc', {channel:channel - 1, controller:41, value:val})
           break
         case 'y2':
@@ -1130,14 +1130,14 @@ class AcidMachine extends Machine {
     const stepIdx = ticks / ticksPerStep
     if (this.getState('playing')) {
 
-//     debug('stepIdx %y X %y y %y',stepIdx,stepIdx&7,stepIdx>>3)
-      for (let x=0;x<2;x++) {
-        for (let y=0;y<8;y++) {
-          monome.led(x,y,0)
+      //     debug('stepIdx %y X %y y %y',stepIdx,stepIdx&7,stepIdx>>3)
+      for (let x = 0; x < 2; x++) {
+        for (let y = 0; y < 8; y++) {
+          monome.led(x, y, 0)
         }
       }
 
-      monome.led(1-(stepIdx>>3),stepIdx&7,1)
+      monome.led(1 - (stepIdx >> 3), stepIdx & 7, 1)
 
       const tickDuration = this.pulseDuration / 20
       let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
@@ -1363,28 +1363,28 @@ function acidSequencer(name, sub, options) {
   const monode = monodeInit()
 
   monode.on('device', function(device) {
-    monome=device
+    monome = device
 
-    for (let x=0;x<8;x++) {
-      for (let y=0;y<8;y++) {
-        monome.led(x,y,0)
+    for (let x = 0; x < 8; x++) {
+      for (let y = 0; y < 8; y++) {
+        monome.led(x, y, 0)
       }
     }
     monome.on('key', function(x, y, s) {
-      debugMonome('X %y Y %y S %y',x,y,s)
+      debugMonome('X %y Y %y S %y', x, y, s)
       monome.led(x, y, s)
-      if (s && x>=6 && x<=7) {
+      if (s && x >= 6 && x <= 7) {
         //JJR
-        debugMonome('P %y',((((x-6)?0:1)*8)+y)+1)
+        debugMonome('P %y', ((((x - 6) ? 0 : 1) * 8) + y) + 1)
       }
     })
 
-     monome.on('rotation', function(value){
+    monome.on('rotation', function(value){
       debugMonome('rotation changed to: %y', value)
-     });
+    })
 
-     monome.rotation = 180;
-     debugMonome('rotation %y',monome.rotation)
+    monome.rotation = 180
+    debugMonome('rotation %y', monome.rotation)
   })
 
   const acidMachine = new AcidMachine('acid.v2')
@@ -1392,9 +1392,15 @@ function acidSequencer(name, sub, options) {
   acidMachine.writeState()
 
   acidMachine.connect(options.electra, 'surface')
-  acidMachine.connect(options.general, 'external', Number.isInteger(options.generalChannel) ? parseInt(options.generalChannel) - 1 : 0)
-  acidMachine.connect(options.clock, 'clock', 10 - 1)
-  acidMachine.connect(options.transpose, 'transpose', Number.isInteger(options.transposeChannel) ? parseInt(options.transposeChannel) - 1 : 0)
+  if (options.general) {
+    acidMachine.connect(options.general, 'external', Number.isInteger(options.generalChannel) ? parseInt(options.generalChannel) - 1 : 0)
+  }
+  if (options.clock) {
+    acidMachine.connect(options.clock, 'clock', 10 - 1)
+  }
+  if (options.transpose) {
+    acidMachine.connect(options.transpose, 'transpose', Number.isInteger(options.transposeChannel) ? parseInt(options.transposeChannel) - 1 : 0)
+  }
 
   acidMachine.interface.emitParameters('post-connect')
 

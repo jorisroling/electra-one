@@ -32,8 +32,8 @@ for (let ctrl in epr.controls) {
   let displayMax = control.values[0].max
   let defaultValue = control.values[0].defaultValue
   if (defaultValue == 'on' || defaultValue == 'off') {
-    min = displayMin = control.values[0].message[`offValue`]
-    max = displayMax = control.values[0].message[`onValue`]
+    min = displayMin = control.values[0].message['offValue']
+    max = displayMax = control.values[0].message['onValue']
     defaultValue = control.values[0].message[`${defaultValue}Value`]
   }
   if (typeof displayMin == 'undefined') {
@@ -49,31 +49,31 @@ for (let ctrl in epr.controls) {
   if (control.values[0].message.data) {
     const pageID = control.values[0].message.data[6]
     if (pageID) {
-      if (pageID=='70') {
-        page='A'
-      } else if (pageID=='71') {
-        page='B'
-      } else if (pageID=='6E') {
-        page='C'
-      } else if (pageID=='6F') {
-        page='D'
-      } else if (pageID=='72') {
-        page='E'
-      } else if (pageID=='73') {
-        page='F'
+      if (pageID == '70') {
+        page = 'A'
+      } else if (pageID == '71') {
+        page = 'B'
+      } else if (pageID == '6E') {
+        page = 'C'
+      } else if (pageID == '6F') {
+        page = 'D'
+      } else if (pageID == '72') {
+        page = 'E'
+      } else if (pageID == '73') {
+        page = 'F'
       } else {
-        page='?:'+pageID
+        page = '?:' + pageID
       }
     } else {
-      page='?'
+      page = '?'
     }
   }
   const name = control.name
-  let pageOffset = (parameter-((parameter>=256)?1:0)) % 128
-//  debug('ctrl name %y page %y offset %y parameter %y min %y max %y displayMin %y displayMax %y defaultValue %y',name,page,pageOffset,parameter,min,max,displayMin,displayMax,defaultValue)
-  list.push({name,page,pageOffset,parameter,min,max,displayMin,displayMax,defaultValue})
+  let pageOffset = (parameter - ((parameter >= 256) ? 1 : 0)) % 128
+  //  debug('ctrl name %y page %y offset %y parameter %y min %y max %y displayMin %y displayMax %y defaultValue %y',name,page,pageOffset,parameter,min,max,displayMin,displayMax,defaultValue)
+  list.push({name, page, pageOffset, parameter, min, max, displayMin, displayMax, defaultValue})
 }
 
-debug('%y',list)
+debug('%y', list)
 
 jsonfile.writeFileSync('./virus-ti.json', {list}, { flag: 'w', spaces: 2 })

@@ -79,19 +79,19 @@ function handleIncoming(from, to, targetElectraOne, options) {
     case 'noteon': // fall-through
     case 'noteoff':
       if (options.channels.indexOf(msg.channel + 1) >= 0) {
-        if (_.get(options,'flags',[]).indexOf('keystep-pro-tracker')>=0) {
+        if (_.get(options, 'flags', []).indexOf('keystep-pro-tracker') >= 0) {
           let tracker_to
-          if ((msg.channel+1)<=4) {
-            tracker_to='virus-ti'
-          } else if ((msg.channel+1)==10) {
-            tracker_to='tr-6s'
+          if ((msg.channel + 1) <= 4) {
+            tracker_to = 'virus-ti'
+          } else if ((msg.channel + 1) == 10) {
+            tracker_to = 'tr-6s'
           }
           if (tracker_to) {
-        //    debug('Forwarding Note %s %d (velocity %d) on channel %d to %y', msg._type =='noteon' ? 'On' : 'Off',msg.note, msg.velocity,msg.channel + 1, tracker_to)
+            //    debug('Forwarding Note %s %d (velocity %d) on channel %d to %y', msg._type =='noteon' ? 'On' : 'Off',msg.note, msg.velocity,msg.channel + 1, tracker_to)
             Midi.send(tracker_to, msg._type, msg)
           }
         } else {
-          debug('Forwarding Note %s %d (velocity %d) on channel %d to %y', msg._type =='noteon' ? 'On' : 'Off',msg.note, msg.velocity,msg.channel + 1, to)
+          debug('Forwarding Note %s %d (velocity %d) on channel %d to %y', msg._type == 'noteon' ? 'On' : 'Off', msg.note, msg.velocity, msg.channel + 1, to)
           Midi.send(to, msg._type, msg)
         }
       }
@@ -113,15 +113,15 @@ function handleIncoming(from, to, targetElectraOne, options) {
       break
     case 'cc':
       if (options.channels.indexOf(msg.channel + 1) >= 0) {
-        if (_.get(options,'flags',[]).indexOf('keystep-pro-tracker')>=0) {
+        if (_.get(options, 'flags', []).indexOf('keystep-pro-tracker') >= 0) {
           let tracker_to
-          if ((msg.channel+1)<=4) {
-            tracker_to='virus-ti'
-          } else if ((msg.channel+1)==10) {
-            tracker_to='tr-6s'
+          if ((msg.channel + 1) <= 4) {
+            tracker_to = 'virus-ti'
+          } else if ((msg.channel + 1) == 10) {
+            tracker_to = 'tr-6s'
           }
           if (tracker_to) {
-        //    debug('Forwarding Note %s %d (velocity %d) on channel %d to %y', msg._type =='noteon' ? 'On' : 'Off',msg.note, msg.velocity,msg.channel + 1, tracker_to)
+            //    debug('Forwarding Note %s %d (velocity %d) on channel %d to %y', msg._type =='noteon' ? 'On' : 'Off',msg.note, msg.velocity,msg.channel + 1, tracker_to)
             Midi.send(tracker_to, 'cc', msg)
           }
         } else if (_.get(options, 'flags', []).indexOf('virus-ti-portmap') >= 0) {
@@ -232,7 +232,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
 
         }
       } else { /* Anything else */
-        debug('Forwarding SysEx from %y to %y',from, to)
+        debug('Forwarding SysEx from %y to %y', from, to)
         Midi.send(to, 'sysex', msg.bytes)
       }
       break
@@ -249,7 +249,8 @@ function setupMidi(options) {
     const actors = Object.keys(scenario.actors)
     for (const actor of actors) {
       if (scenario.actors[actor].enabled && scenario.actors[actor].port && scenario.actors[actor].channels && scenario.actors[actor].channels.length) {
-        const electraOnePortName = `electra-one-${scenario.actors[actor].port}`
+        //        const electra = _.get(config, `router.scenarios.${options.scenario}.electra`)
+        const electraOnePortName = scenario.electra.replace('{port}', scenario.actors[actor].port) //`electra-one-port-${scenario.actors[actor].port}`
         const midiInput_electraOne = Midi.input(electraOnePortName, true)
         midiInput_electraOne.on('message', handleIncoming(electraOnePortName, actor, false, {actor, ...scenario.actors[actor]}) )
 

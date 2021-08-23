@@ -15,13 +15,13 @@ args
   .option('scenario', 'Routing Scenario', 'default')
   .option('page', 'Page ID to operate on, this options can be used more than once. Use \'electra-one page list --filename preset.epr\' to show available Page ID\'s')
 
-  .option('electra', 'Electra One MIDI interface name (part)', 'electra-one-2')
+  .option('electra', 'Electra One MIDI interface name (part)', 'electra-one-port-2')
   .option('clock', 'Clock Input MIDI interface name (part)', 'tr-6s')
 
   .option('transpose', 'Transpose Input MIDI interface name (part)', 'komplete-kontrol')
   .option('transposeChannel', 'Transpose Input Channel (1-16)', 1)
 
-  .option('general', 'General Input MIDI interface name (part)', 'lightpad-block')
+  .option('general', 'General Input MIDI interface name (part)' /*, 'lightpad-block'*/)
   .option('generalChannel', 'General Input Channel (1-16)', 1)
 
   .option('bank', 'For upload & remove commands: Specify a bank as <1-6>', 0)
