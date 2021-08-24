@@ -1,4 +1,4 @@
--- midi.sendSysex(PORT_2,{ 0x7D, 0x00, 0x03 })
+print ("Bacara Lua ext initialized: patch.requestAll")
 
--- Issue a patch requests
-patch.requestAll()
+patch.requestAll ()
+
