@@ -252,17 +252,21 @@ function setupMidi(options) {
         //        const electra = _.get(config, `router.scenarios.${options.scenario}.electra`)
         const electraOnePortName = scenario.electra.replace('{port}', scenario.actors[actor].port) //`electra-one-port-${scenario.actors[actor].port}`
         const midiInput_electraOne = Midi.input(electraOnePortName, true)
-        midiInput_electraOne.on('message', handleIncoming(electraOnePortName, actor, false, {actor, ...scenario.actors[actor]}) )
+        if (midiInput_electraOne) {
+          midiInput_electraOne.on('message', handleIncoming(electraOnePortName, actor, false, {actor, ...scenario.actors[actor]}) )
 
-        if (!scenario.actors[actor].oneway) {
-          const midiInput_actor = Midi.input(actor, true)
-          midiInput_actor.on('message', handleIncoming(actor, electraOnePortName, true, {actor, ...scenario.actors[actor]}) )
-        }
-
-        if (scenario.actors[actor].initialize) {
-          for (const init in scenario.actors[actor].initialize) {
-            Midi.send(init, 'sysex', doMapping(scenario.actors[actor].initialize[init]))
+          if (!scenario.actors[actor].oneway) {
+            const midiInput_actor = Midi.input(actor, true)
+            midiInput_actor.on('message', handleIncoming(actor, electraOnePortName, true, {actor, ...scenario.actors[actor]}) )
           }
+
+          if (scenario.actors[actor].initialize) {
+            for (const init in scenario.actors[actor].initialize) {
+              Midi.send(init, 'sysex', doMapping(scenario.actors[actor].initialize[init]))
+            }
+          }
+        } else {
+          console.error(`No connection to "${electraOnePortName}"`)
         }
       }
     }

@@ -81,6 +81,45 @@ class AcidMachine extends Machine {
 
     this.state.sounding = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
+    const virusMixerNext = (part) => (elementPath, origin) => {
+      debug('Parameter Side Effect virusMixerNext(%d): %y (from %y)', part, elementPath, origin)
+      if (part>=1 && part<=16) {
+        const bank = this.interface.getParameter(`virus.mixer.parts.${part-1}.bank`)
+        const program = this.interface.getParameter(`virus.mixer.parts.${part-1}.program`)
+        if (program < 127) {
+          this.interface.setParameter(`virus.mixer.parts.${part-1}.program`,program + 1)
+        } else {
+          if (bank < 29) {
+            this.interface.setParameter(`virus.mixer.parts.${part-1}.bank`,bank + 1)
+          } else {
+            this.interface.setParameter(`virus.mixer.parts.${part-1}.bank`,0)
+          }
+          this.interface.setParameter(`virus.mixer.parts.${part-1}.program`,0)
+        }
+        virusMixerSendBankAndProgram(part)
+      }
+    }
+
+    const virusMixerPrevious = (part) => (elementPath, origin) => {
+      debug('Parameter Side Effect virusMixerPrevious(%d): %y (from %y)', part, elementPath, origin)
+      if (part>=1 && part<=16) {
+        const bank = this.interface.getParameter(`virus.mixer.parts.${part-1}.bank`)
+        const program = this.interface.getParameter(`virus.mixer.parts.${part-1}.program`)
+        if (program > 0) {
+          this.interface.setParameter(`virus.mixer.parts.${part-1}.program`,program - 1)
+        } else {
+          if (bank > 0) {
+            this.interface.setParameter(`virus.mixer.parts.${part-1}.bank`,bank - 1)
+          } else {
+            this.interface.setParameter(`virus.mixer.parts.${part-1}.bank`,29)
+          }
+          this.interface.setParameter(`virus.mixer.parts.${part-1}.program`,127)
+        }
+        virusMixerSendBankAndProgram(part)
+      }
+    }
+
+
     this.actionSideEffects = {
       load: (elementPath, origin) => {
         /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
@@ -218,6 +257,36 @@ class AcidMachine extends Machine {
           this.writeState()
           debug('continue')
         }
+      },
+      virus: {
+        mixer: {
+          parts: [
+            {
+              next: virusMixerNext(1),
+              previous: virusMixerPrevious(1),
+            },
+            {
+              next: virusMixerNext(2),
+              previous: virusMixerPrevious(2),
+            },
+            {
+              next: virusMixerNext(3),
+              previous: virusMixerPrevious(3),
+            },
+            {
+              next: virusMixerNext(4),
+              previous: virusMixerPrevious(4),
+            },
+            {
+              next: virusMixerNext(5),
+              previous: virusMixerPrevious(5),
+            },
+            {
+              next: virusMixerNext(6),
+              previous: virusMixerPrevious(6),
+            },
+          ],
+        },
       },
     }
 
@@ -463,48 +532,48 @@ class AcidMachine extends Machine {
       }
     }
 
-    const virusPart = (elementPath, value, origin) => {
-      debug('Parameter Side Effect virusPart: Hello World! %y = %y (from %y)', elementPath, value, origin)
+    const virusAxyzPart = (elementPath, value, origin) => {
+      debug('Parameter Side Effect virusAxyzPart: Hello World! %y = %y (from %y)', elementPath, value, origin)
     }
 
-    const virusLevel = (elementPath, value, origin) => {
-      debug('Parameter Side Effect virusLevel: Hello World! %y = %y (from %y)', elementPath, value, origin)
+    const virusAxyzLevel = (elementPath, value, origin) => {
+      debug('Parameter Side Effect virusAxyzLevel: Hello World! %y = %y (from %y)', elementPath, value, origin)
       const portName = 'virus-ti'
-      const part = this.interface.getParameter('virus.part', 1)
+      const part = this.interface.getParameter('virus.axyz.part', 1)
       const channel = part
-      const bank = this.interface.getParameter('virus.bank')
-      const program = this.interface.getParameter('virus.program')
+      const bank = this.interface.getParameter('virus.axyz.bank')
+      const program = this.interface.getParameter('virus.axyz.program')
       debugMidiControlChange('%s %d CC %y = %y', portName, channel, 7, value)
       Midi.send(portName, 'cc', {channel:channel - 1, controller:7, value}, 'levelChange-virus', 200)
     }
 
-    const virusSendBankAndProgram = () => {
+    const virusAxyzSendBankAndProgram = () => {
       const portName = 'virus-ti'
-      const part = this.interface.getParameter('virus.part', 1)
+      const part = this.interface.getParameter('virus.axyz.part', 1)
       const channel = part
-      const bank = this.interface.getParameter('virus.bank')
-      const program = this.interface.getParameter('virus.program')
+      const bank = this.interface.getParameter('virus.axyz.bank')
+      const program = this.interface.getParameter('virus.axyz.program')
       debugMidiControlChange('%s %d CC %y = %y', portName, channel, 0, bank)
       Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, 'bankChange-virus', 200)
       debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
       Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
     }
 
-    const virusBank = (elementPath, value, origin) => {
-      debug('Parameter Side Effect virusBank: Hello World! %y = %y (from %y)', elementPath, value, origin)
-      virusSendBankAndProgram()
+    const virusAxyzBank = (elementPath, value, origin) => {
+      debug('Parameter Side Effect virusAxyzBank: Hello World! %y = %y (from %y)', elementPath, value, origin)
+      virusAxyzSendBankAndProgram()
     }
 
-    const virusProgram = (elementPath, value, origin) => {
-      debug('Parameter Side Effect virusProgram: Hello World! %y = %y (from %y)', elementPath, value, origin)
-      virusSendBankAndProgram()
+    const virusAxyzProgram = (elementPath, value, origin) => {
+      debug('Parameter Side Effect virusAxyzProgram: Hello World! %y = %y (from %y)', elementPath, value, origin)
+      virusAxyzSendBankAndProgram()
     }
 
     const virusAxyz = (axyz) => {
       return (elementPath, value, origin) => {
         //        debug('Parameter Side Effect virusAxyz(%y): Hello World! %y = %y (from %y)', axyz, elementPath, value, origin)
         const portName = 'virus-ti'
-        const part = this.interface.getParameter('virus.part', 1)
+        const part = this.interface.getParameter('virus.axyz.part', 1)
         const channel = part
         const val = Math.round(Interface.remap(value, -1, 1, 0, 127))
         //          debug(val)
@@ -537,6 +606,44 @@ class AcidMachine extends Machine {
           Midi.send(portName, 'cc', {channel:channel - 1, controller:118, value:val})
           break
         }
+      }
+    }
+
+    const virusMixerSendBankAndProgram = (part) => {
+      if (part>=1 && part<=16) {
+        const portName = 'virus-ti'
+        const channel = part
+        const bank = this.interface.getParameter(`virus.mixer.parts.${part-1}.bank`)
+        const program = this.interface.getParameter(`virus.mixer.parts.${part-1}.program`)
+        debugMidiControlChange('%s %d CC %y = %y', portName, channel, 0, bank)
+        Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, 'bankChange-virus', 200)
+        debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
+        Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
+      }
+    }
+
+
+    const virusMixerBank = (part) => (elementPath, value, origin) => {
+      debug('Parameter Side Effect virusMixerBank(%d): %y = %y (from %y)', part, elementPath, value, origin)
+      virusMixerSendBankAndProgram(part)
+    }
+
+    const virusMixerProgram = (part) => (elementPath, value, origin) => {
+      debug('Parameter Side Effect virusMixerProgram(%d): %y = %y (from %y)', part, elementPath, value, origin)
+      virusMixerSendBankAndProgram(part)
+    }
+
+    const virusMixerModulation = (part) => (elementPath, value, origin) => {
+      debug('Parameter Side Effect virusMixerModulation(%d): %y = %y (from %y)', part, elementPath, value, origin)
+      if (part>=1 && part<=16) {
+        Midi.send('virus-ti', 'cc', {channel:part - 1, controller:1, value}, 'modulationChange-virus', 200)
+      }
+    }
+
+    const virusMixerLevel = (part) => (elementPath, value, origin) => {
+      debug('Parameter Side Effect virusMixerLevel(%d): %y = %y (from %y)', part, elementPath, value, origin)
+      if (part>=1 && part<=16) {
+        Midi.send('virus-ti', 'cc', {channel:part - 1, controller:7, value}, 'levelChange-virus', 200)
       }
     }
 
@@ -729,11 +836,11 @@ class AcidMachine extends Machine {
         ]
       },
       virus: {
-        part: virusPart,
-        level: virusLevel,
-        bank: virusBank,
-        program: virusProgram,
         axyz: {
+          part: virusAxyzPart,
+          level: virusAxyzLevel,
+          bank: virusAxyzBank,
+          program: virusAxyzProgram,
           x1: virusAxyz('x1'),
           y1: virusAxyz('y1'),
           x2: virusAxyz('x2'),
@@ -742,6 +849,46 @@ class AcidMachine extends Machine {
           y3: virusAxyz('y3'),
           x4: virusAxyz('x4'),
           y4: virusAxyz('y4'),
+        },
+        mixer: {
+          parts: [
+            {
+              bank: virusMixerBank(1),
+              program: virusMixerProgram(1),
+              modulation: virusMixerModulation(1),
+              level: virusMixerLevel(1),
+            },
+            {
+              bank: virusMixerBank(2),
+              program: virusMixerProgram(2),
+              modulation: virusMixerModulation(2),
+              level: virusMixerLevel(2),
+            },
+            {
+              bank: virusMixerBank(3),
+              program: virusMixerProgram(3),
+              modulation: virusMixerModulation(3),
+              level: virusMixerLevel(3),
+            },
+            {
+              bank: virusMixerBank(4),
+              program: virusMixerProgram(4),
+              modulation: virusMixerModulation(4),
+              level: virusMixerLevel(4),
+            },
+            {
+              bank: virusMixerBank(5),
+              program: virusMixerProgram(5),
+              modulation: virusMixerModulation(5),
+              level: virusMixerLevel(5),
+            },
+            {
+              bank: virusMixerBank(6),
+              program: virusMixerProgram(6),
+              modulation: virusMixerModulation(6),
+              level: virusMixerLevel(6),
+            },
+          ],
         },
       },
     }

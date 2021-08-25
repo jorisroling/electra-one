@@ -5805,8 +5805,9 @@
     },
     {
       "id": 253,
-      "type": "fader",
-      "name": "BANK",
+      "type": "pad",
+      "mode": "momentary",
+      "name": "NEXT",
       "color": "FFFFFF",
       "bounds": [
         0,
@@ -5828,18 +5829,20 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14081,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 14337,
+            "onValue": 1,
+            "offValue": 0
           },
+          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 254,
-      "type": "fader",
-      "name": "BANK",
+      "type": "pad",
+      "mode": "momentary",
+      "name": "NEXT",
       "color": "F45C51",
       "bounds": [
         170,
@@ -5861,18 +5864,20 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14082,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 14338,
+            "onValue": 1,
+            "offValue": 0
           },
+          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 255,
-      "type": "fader",
-      "name": "BANK",
+      "type": "pad",
+      "mode": "momentary",
+      "name": "NEXT",
       "color": "F49500",
       "bounds": [
         340,
@@ -5894,18 +5899,20 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14083,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 14339,
+            "onValue": 1,
+            "offValue": 0
           },
+          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 256,
-      "type": "fader",
-      "name": "BANK",
+      "type": "pad",
+      "mode": "momentary",
+      "name": "NEXT",
       "color": "529DEC",
       "bounds": [
         510,
@@ -5927,18 +5934,20 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14084,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 14340,
+            "onValue": 1,
+            "offValue": 0
           },
+          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 257,
-      "type": "fader",
-      "name": "BANK",
+      "type": "pad",
+      "mode": "momentary",
+      "name": "NEXT",
       "color": "03A598",
       "bounds": [
         680,
@@ -5960,18 +5969,20 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14085,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 14341,
+            "onValue": 1,
+            "offValue": 0
           },
+          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 258,
-      "type": "fader",
-      "name": "BANK",
+      "type": "pad",
+      "mode": "momentary",
+      "name": "NEXT",
       "color": "C44795",
       "bounds": [
         850,
@@ -5993,18 +6004,20 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14086,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 14342,
+            "onValue": 1,
+            "offValue": 0
           },
+          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 259,
-      "type": "fader",
-      "name": "PROGRAM",
+      "type": "pad",
+      "mode": "momentary",
+      "name": "PREVIOUS",
       "color": "FFFFFF",
       "bounds": [
         0,
@@ -6026,18 +6039,20 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14209,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 14465,
+            "onValue": 1,
+            "offValue": 0
           },
+          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 260,
-      "type": "fader",
-      "name": "PROGRAM",
+      "type": "pad",
+      "mode": "momentary",
+      "name": "PREVIOUS",
       "color": "F45C51",
       "bounds": [
         170,
@@ -6059,18 +6074,20 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14210,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 14466,
+            "onValue": 1,
+            "offValue": 0
           },
+          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 261,
-      "type": "fader",
-      "name": "PROGRAM",
+      "type": "pad",
+      "mode": "momentary",
+      "name": "PREVIOUS",
       "color": "F49500",
       "bounds": [
         340,
@@ -6092,18 +6109,20 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14211,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 14467,
+            "onValue": 1,
+            "offValue": 0
           },
+          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 262,
-      "type": "fader",
-      "name": "PROGRAM",
+      "type": "pad",
+      "mode": "momentary",
+      "name": "PREVIOUS",
       "color": "529DEC",
       "bounds": [
         510,
@@ -6125,18 +6144,20 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14212,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 14468,
+            "onValue": 1,
+            "offValue": 0
           },
+          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 263,
-      "type": "fader",
-      "name": "PROGRAM",
+      "type": "pad",
+      "mode": "momentary",
+      "name": "PREVIOUS",
       "color": "03A598",
       "bounds": [
         680,
@@ -6158,10 +6179,11 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14213,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 14469,
+            "onValue": 1,
+            "offValue": 0
           },
+          "defaultValue": "off",
           "id": "value"
         }
       ]
@@ -6201,9 +6223,9 @@
     },
     {
       "id": 265,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "NEXT",
+      "type": "fader",
+      "visible": true,
+      "name": "BANK",
       "color": "FFFFFF",
       "bounds": [
         0,
@@ -6221,24 +6243,24 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14337,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 14081,
+            "min": 0,
+            "max": 29
           },
-          "defaultValue": "off",
-          "id": "value"
+          "overlayId": 15
         }
       ]
     },
     {
       "id": 266,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "NEXT",
+      "type": "fader",
+      "visible": true,
+      "name": "BANK",
       "color": "F45C51",
       "bounds": [
         170,
@@ -6256,24 +6278,24 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14338,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 14082,
+            "min": 0,
+            "max": 29
           },
-          "defaultValue": "off",
-          "id": "value"
+          "overlayId": 15
         }
       ]
     },
     {
       "id": 267,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "NEXT",
+      "type": "fader",
+      "visible": true,
+      "name": "BANK",
       "color": "F49500",
       "bounds": [
         340,
@@ -6291,24 +6313,24 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14339,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 14083,
+            "min": 0,
+            "max": 29
           },
-          "defaultValue": "off",
-          "id": "value"
+          "overlayId": 15
         }
       ]
     },
     {
       "id": 268,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "NEXT",
+      "type": "fader",
+      "visible": true,
+      "name": "BANK",
       "color": "529DEC",
       "bounds": [
         510,
@@ -6326,24 +6348,24 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14340,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 14084,
+            "min": 0,
+            "max": 29
           },
-          "defaultValue": "off",
-          "id": "value"
+          "overlayId": 15
         }
       ]
     },
     {
       "id": 269,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "NEXT",
+      "type": "fader",
+      "visible": true,
+      "name": "BANK",
       "color": "03A598",
       "bounds": [
         680,
@@ -6361,24 +6383,24 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14341,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 14085,
+            "min": 0,
+            "max": 29
           },
-          "defaultValue": "off",
-          "id": "value"
+          "overlayId": 15
         }
       ]
     },
     {
       "id": 270,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "NEXT",
+      "type": "fader",
+      "visible": true,
+      "name": "BANK",
       "color": "C44795",
       "bounds": [
         850,
@@ -6396,24 +6418,23 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14342,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 14086,
+            "min": 0,
+            "max": 29
           },
-          "defaultValue": "off",
-          "id": "value"
+          "overlayId": 15
         }
       ]
     },
     {
       "id": 271,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "PREVIOUS",
+      "type": "fader",
+      "name": "PROGRAM",
       "color": "FFFFFF",
       "bounds": [
         0,
@@ -6435,20 +6456,18 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14465,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 14209,
+            "min": 0,
+            "max": 127
           },
-          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 272,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "PREVIOUS",
+      "type": "fader",
+      "name": "PROGRAM",
       "color": "F45C51",
       "bounds": [
         170,
@@ -6470,20 +6489,18 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14466,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 14210,
+            "min": 0,
+            "max": 127
           },
-          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 273,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "PREVIOUS",
+      "type": "fader",
+      "name": "PROGRAM",
       "color": "F49500",
       "bounds": [
         340,
@@ -6505,20 +6522,18 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14467,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 14211,
+            "min": 0,
+            "max": 127
           },
-          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 274,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "PREVIOUS",
+      "type": "fader",
+      "name": "PROGRAM",
       "color": "529DEC",
       "bounds": [
         510,
@@ -6540,20 +6555,18 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14468,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 14212,
+            "min": 0,
+            "max": 127
           },
-          "defaultValue": "off",
           "id": "value"
         }
       ]
     },
     {
       "id": 275,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "PREVIOUS",
+      "type": "fader",
+      "name": "PROGRAM",
       "color": "03A598",
       "bounds": [
         680,
@@ -6575,11 +6588,10 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14469,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 14213,
+            "min": 0,
+            "max": 127
           },
-          "defaultValue": "off",
           "id": "value"
         }
       ]
