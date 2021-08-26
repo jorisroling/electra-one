@@ -189,14 +189,17 @@ function handleIncoming(from, to, targetElectraOne, options) {
             debug('Patch or Bank change, Single Request back')
             Midi.send(from, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
 
-
             if (targetElectraOne) {
               if (msg.bytes[8] == 0x20) {
                 debug('CC0')
-                Midi.send(to, 'cc', {channel:electraOneMidiChannel, controller:0, value:msg.bytes[9]})
+                const bank = msg.bytes[9]
+                Midi.send(to, 'cc', {channel:electraOneMidiChannel, controller:0, value:bank})
+                Bacara.event.emit('change', 'virus-ti', getMapping('part'), 'bank-and-program', {bank}, 'surface', me)
               } else if (msg.bytes[8] == 0x21) {
                 debug('PC')
-                Midi.send(to, 'program', {channel:electraOneMidiChannel, number:msg.bytes[9]})
+                const program = msg.bytes[9]
+                Midi.send(to, 'program', {channel:electraOneMidiChannel, number:program})
+                Bacara.event.emit('change', 'virus-ti', getMapping('part'), 'bank-and-program', {program}, 'surface', me)
               }
             }
             // F0 00 20 33 01 XX 72 01  1D 02 F7
@@ -232,6 +235,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
           debugPart('Part mapping %y applied to Single Dump SysEx to %y', msg.bytes[8] + 1, to)
           debug('Send large sysex to %y (%y bytes)', to, msg.bytes.length)
           Midi.send(to, 'sysex', msg.bytes, 'singleDump', sendSingleDumpTimeoutTime)
+          Bacara.event.emit('sysex', 'virus-ti', getMapping('part'), 'patch', msg.bytes, 'virus-ti', path.basename(__filename, '.js'))
 
         } else if (msg.bytes.length == 11 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x00 && msg.bytes[2] == 0x20 && msg.bytes[3] == 0x33 && msg.bytes[4] == 0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6] == 0x72 && msg.bytes[7] == 0x00 ) {
           // F0 00 20 33 01 XX 72 00  21 32 F7 => preset change

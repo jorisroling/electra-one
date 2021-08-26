@@ -1,4 +1,20 @@
-// LAST USED NRPN 101
+function virusPerformanceControl(part,ctrl) {
+  return {
+    name:`Part #${part} Control #${ctrl}`,
+    type: 'parameter',
+    surface: {
+      type: 'nrpn',
+      number: 128+((part-1)*6)+(ctrl),
+      lsbFirst: false,
+      min: 0,
+      max: 127,
+    },
+    min: 0,
+    max: 127,
+    default: 0,
+  }
+}
+
 
 module.exports = {
 
@@ -2217,7 +2233,7 @@ module.exports = {
         },
       },
       mixer: {
-        parts: [
+        part: [
           {
             bank: {
               name: 'Virus Part 1 Bank',
@@ -2710,6 +2726,16 @@ module.exports = {
               default: 0,
             },
           },
+        ],
+      },
+      performance: {
+        part: [
+          { control: [ virusPerformanceControl(1,1), virusPerformanceControl(1,2), virusPerformanceControl(1,3), virusPerformanceControl(1,4), virusPerformanceControl(1,5), virusPerformanceControl(1,6) ] },
+          { control: [ virusPerformanceControl(2,1), virusPerformanceControl(2,2), virusPerformanceControl(2,3), virusPerformanceControl(2,4), virusPerformanceControl(2,5), virusPerformanceControl(2,6) ] },
+          { control: [ virusPerformanceControl(3,1), virusPerformanceControl(3,2), virusPerformanceControl(3,3), virusPerformanceControl(3,4), virusPerformanceControl(3,5), virusPerformanceControl(3,6) ] },
+          { control: [ virusPerformanceControl(4,1), virusPerformanceControl(4,2), virusPerformanceControl(4,3), virusPerformanceControl(4,4), virusPerformanceControl(4,5), virusPerformanceControl(4,6) ] },
+          { control: [ virusPerformanceControl(5,1), virusPerformanceControl(5,2), virusPerformanceControl(5,3), virusPerformanceControl(5,4), virusPerformanceControl(5,5), virusPerformanceControl(5,6) ] },
+          { control: [ virusPerformanceControl(6,1), virusPerformanceControl(6,2), virusPerformanceControl(6,3), virusPerformanceControl(6,4), virusPerformanceControl(6,5), virusPerformanceControl(6,6) ] },
         ],
       },
     },

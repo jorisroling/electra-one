@@ -86,10 +86,10 @@ class AcidMachine extends Machine {
         //debug('ACID change %y - device: %y  part: %y  name: %y  value: %y  origin: %y command: %y',me,device, part, name, value, origin, command)
         if (name == 'bank-and-program') {
           if (value && value.bank) {
-            this.interface.setParameter(`virus.mixer.parts.${part-1}.bank`,value.bank)
+            this.interface.setParameter(`virus.mixer.part.${part-1}.bank`,value.bank)
           }
           if (value && value.program) {
-            this.interface.setParameter(`virus.mixer.parts.${part-1}.program`,value.program)
+            this.interface.setParameter(`virus.mixer.part.${part-1}.program`,value.program)
           }
           ['A','B'].forEach( dev => {
             const portName = this.getState(`device.${dev}.portName`)
@@ -110,23 +110,51 @@ class AcidMachine extends Machine {
       }
     })
 
+    Bacara.event.on('sysex', (device, part, name, value, origin, command) => {
+      const virusSysexHeader = [0xF0, 0x00, 0x20, 0x33, 0x01]
+      const sysexHeader = value.slice(0, 5)
+      const msgHeader = value.slice(6, 9)
+      if (_.isEqual(sysexHeader, virusSysexHeader)) {
+        if (msgHeader[0]==0x10 && msgHeader[1]==0x00) {
+          const page = [
+            value.slice(9, 9+128),
+            value.slice(9+(128*1), 9+(128*1)+128),
+            value.slice(9+(128*2)+1, 9+(128*2)+1+128),
+            value.slice(9+(128*3)+1, 9+(128*3)+1+128),
+          ]
+
+          const ctrls = [
+            page[0][1],
+            page[0][2],
+            page[0][3],
+            page[0][4],
+            page[0][6],
+            page[0][9],
+          ]
+/*         debug('ACID sysex sysexHeader %y msgHeader %y ctrls %y',sysexHeader,msgHeader, ctrls)*/
+          for (let ctrl=0;ctrl<6;ctrl++) {
+            this.interface.setParameter(`virus.performance.part.${part-1}.control.${ctrl}`,ctrls[ctrl])
+          }
+        }
+      }
+    })
 
     this.state.sounding = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
     const virusMixerNext = (part) => (elementPath, origin) => {
       debug('Parameter Side Effect virusMixerNext(%d): %y (from %y)', part, elementPath, origin)
       if (part>=1 && part<=16) {
-        const bank = this.interface.getParameter(`virus.mixer.parts.${part-1}.bank`)
-        const program = this.interface.getParameter(`virus.mixer.parts.${part-1}.program`)
+        const bank = this.interface.getParameter(`virus.mixer.part.${part-1}.bank`)
+        const program = this.interface.getParameter(`virus.mixer.part.${part-1}.program`)
         if (program < 127) {
-          this.interface.setParameter(`virus.mixer.parts.${part-1}.program`,program + 1)
+          this.interface.setParameter(`virus.mixer.part.${part-1}.program`,program + 1)
         } else {
           if (bank < 29) {
-            this.interface.setParameter(`virus.mixer.parts.${part-1}.bank`,bank + 1)
+            this.interface.setParameter(`virus.mixer.part.${part-1}.bank`,bank + 1)
           } else {
-            this.interface.setParameter(`virus.mixer.parts.${part-1}.bank`,0)
+            this.interface.setParameter(`virus.mixer.part.${part-1}.bank`,0)
           }
-          this.interface.setParameter(`virus.mixer.parts.${part-1}.program`,0)
+          this.interface.setParameter(`virus.mixer.part.${part-1}.program`,0)
         }
         virusMixerSendBankAndProgram(part,origin)
       }
@@ -135,17 +163,17 @@ class AcidMachine extends Machine {
     const virusMixerPrevious = (part) => (elementPath, origin) => {
       debug('Parameter Side Effect virusMixerPrevious(%d): %y (from %y)', part, elementPath, origin)
       if (part>=1 && part<=16) {
-        const bank = this.interface.getParameter(`virus.mixer.parts.${part-1}.bank`)
-        const program = this.interface.getParameter(`virus.mixer.parts.${part-1}.program`)
+        const bank = this.interface.getParameter(`virus.mixer.part.${part-1}.bank`)
+        const program = this.interface.getParameter(`virus.mixer.part.${part-1}.program`)
         if (program > 0) {
-          this.interface.setParameter(`virus.mixer.parts.${part-1}.program`,program - 1)
+          this.interface.setParameter(`virus.mixer.part.${part-1}.program`,program - 1)
         } else {
           if (bank > 0) {
-            this.interface.setParameter(`virus.mixer.parts.${part-1}.bank`,bank - 1)
+            this.interface.setParameter(`virus.mixer.part.${part-1}.bank`,bank - 1)
           } else {
-            this.interface.setParameter(`virus.mixer.parts.${part-1}.bank`,29)
+            this.interface.setParameter(`virus.mixer.part.${part-1}.bank`,29)
           }
-          this.interface.setParameter(`virus.mixer.parts.${part-1}.program`,127)
+          this.interface.setParameter(`virus.mixer.part.${part-1}.program`,127)
         }
         virusMixerSendBankAndProgram(part,origin)
       }
@@ -292,7 +320,7 @@ class AcidMachine extends Machine {
       },
       virus: {
         mixer: {
-          parts: [
+          part: [
             {
               next: virusMixerNext(1),
               previous: virusMixerPrevious(1),
@@ -645,8 +673,8 @@ class AcidMachine extends Machine {
       if (part>=1 && part<=16) {
         const portName = 'virus-ti'
         const channel = part
-        const bank = this.interface.getParameter(`virus.mixer.parts.${part-1}.bank`)
-        const program = this.interface.getParameter(`virus.mixer.parts.${part-1}.program`)
+        const bank = this.interface.getParameter(`virus.mixer.part.${part-1}.bank`)
+        const program = this.interface.getParameter(`virus.mixer.part.${part-1}.program`)
         debugMidiControlChange('%s %d CC %y = %y', portName, channel, 0, bank)
         Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, 'bankChange-virus', 200)
         debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
@@ -679,6 +707,14 @@ class AcidMachine extends Machine {
       if (part>=1 && part<=16) {
         Midi.send('virus-ti', 'cc', {channel:part - 1, controller:7, value}, 'levelChange-virus', 200)
         Bacara.event.emit('change', 'virus-ti', part, 'level', value, origin, path.basename(__filename, '.js'))
+      }
+    }
+
+    const virusPerformanceControl= (part, ctrl) => (elementPath, value, origin) => {
+      if (part>=1 && part<=16) {
+        const controller = ctrl==5?6:(ctrl==6?9:ctrl)
+        Midi.send('virus-ti', 'cc', {channel:part - 1, controller, value}, 'performanceChange-virus', 200)
+        Bacara.event.emit('change', 'virus-ti', part, `performanceControl#${ctrl}`, value, origin, path.basename(__filename, '.js'))
       }
     }
 
@@ -886,7 +922,7 @@ class AcidMachine extends Machine {
           y4: virusAxyz('y4'),
         },
         mixer: {
-          parts: [
+          part: [
             {
               bank: virusMixerBank(1),
               program: virusMixerProgram(1),
@@ -923,6 +959,16 @@ class AcidMachine extends Machine {
               modulation: virusMixerModulation(6),
               level: virusMixerLevel(6),
             },
+          ],
+        },
+        performance: {
+          part: [
+            { control: [ virusPerformanceControl(1,1), virusPerformanceControl(1,2), virusPerformanceControl(1,3), virusPerformanceControl(1,4), virusPerformanceControl(1,5), virusPerformanceControl(1,6) ] },
+            { control: [ virusPerformanceControl(2,1), virusPerformanceControl(2,2), virusPerformanceControl(2,3), virusPerformanceControl(2,4), virusPerformanceControl(2,5), virusPerformanceControl(2,6) ] },
+            { control: [ virusPerformanceControl(3,1), virusPerformanceControl(3,2), virusPerformanceControl(3,3), virusPerformanceControl(3,4), virusPerformanceControl(3,5), virusPerformanceControl(3,6) ] },
+            { control: [ virusPerformanceControl(4,1), virusPerformanceControl(4,2), virusPerformanceControl(4,3), virusPerformanceControl(4,4), virusPerformanceControl(4,5), virusPerformanceControl(4,6) ] },
+            { control: [ virusPerformanceControl(5,1), virusPerformanceControl(5,2), virusPerformanceControl(5,3), virusPerformanceControl(5,4), virusPerformanceControl(5,5), virusPerformanceControl(5,6) ] },
+            { control: [ virusPerformanceControl(6,1), virusPerformanceControl(6,2), virusPerformanceControl(6,3), virusPerformanceControl(6,4), virusPerformanceControl(6,5), virusPerformanceControl(6,6) ] },
           ],
         },
       },
