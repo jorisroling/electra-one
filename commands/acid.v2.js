@@ -47,6 +47,8 @@ const toneJSmidi = require('@tonejs/midi')
 const Table = require('cli-table3')
 const ticksPerStep = 120
 
+const virus = require('../lib/virus')
+
 const matrixSetSlotValueTimout = 10
 const matrixSlotSources = {
   off: 0,
@@ -135,9 +137,28 @@ class AcidMachine extends Machine {
           for (let ctrl=0;ctrl<6;ctrl++) {
             this.interface.setParameter(`virus.performance.part.${part-1}.control.${ctrl}`,ctrls[ctrl])
           }
+
+          for (let s=0;s<6;s++) {
+            const slotSource = page[virus.matrix.slot[s].source.page][virus.matrix.slot[s].source.offset]
+            if (slotSource>0 && slotSource<=18) {
+              let destinations=0
+              for (let d = 0; d<3; d++) {
+                const target = page[virus.matrix.slot[s].destinations[d].target.page][virus.matrix.slot[s].destinations[d].target.offset]
+                const amount = page[virus.matrix.slot[s].destinations[d].amount.page][virus.matrix.slot[s].destinations[d].amount.offset]
+                if (target && amount) {
+                  destinations++
+                }
+              }
+              if (destinations) {
+                const slotSourceType = virus.matrix.source.type[slotSource]
+                debug('mod slot #%d (%s) source %y %s %y',s+1,virus.matrix.slot[s].name,slotSource,slotSourceType.name,slotSourceType.cc)
+              }
+            }
+          }
         }
       }
     })
+
 
     this.state.sounding = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
