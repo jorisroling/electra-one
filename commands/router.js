@@ -8,6 +8,8 @@ const path = require('path')
 const untildify = require('untildify')
 const jsonfile = require('jsonfile')
 
+const Bacara = require('../lib/bacara')
+
 const Midi = require('../lib/midi/midi')
 
 const electraOneMidiChannel = 0
@@ -20,6 +22,8 @@ const debugPart = yves.debugger(`${pkg.name.replace(/^@/, '')}:part`)
 
 const { knownDeviceCCs } = require('../lib/devices')
 const deviceCCs = knownDeviceCCs()
+
+const me = path.basename(__filename, '.js')
 
 let mapping = {
   'part': 1,
@@ -100,10 +104,13 @@ function handleIncoming(from, to, targetElectraOne, options) {
       if (options.channels.indexOf(msg.channel + 1) >= 0) {
         if (_.get(options, 'flags', []).indexOf('virus-ti-portmap') >= 0) {
           if ((targetElectraOne && msg.channel == getMapping('part:-1')) || (!targetElectraOne && msg.channel == electraOneMidiChannel) ) {
-            _.set(midiHistory, `${from}.channel_${getMapping('part:-1')}.program`, msg.number)
-            Midi.send(to, 'program', {channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), number: msg.number}, 'programChange', sendProgramChangeTimeoutTime)
-            debugPart('Part mapping %y applied to PC %d to %y', (targetElectraOne ? (electraOneMidiChannel + 1) : getMapping('part')), msg.number, to)
+            const program = msg.number
+            _.set(midiHistory, `${from}.channel_${getMapping('part:-1')}.program`, program)
+            Midi.send(to, 'program', {channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), number: program}, 'programChange', sendProgramChangeTimeoutTime)
+            debugPart('Part mapping %y applied to PC %d to %y', (targetElectraOne ? (electraOneMidiChannel + 1) : getMapping('part')), program, to)
             Midi.send(to, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
+            const bank = _.get(midiHistory, `${from}.channel_${getMapping('part:-1')}.controller_0`,0)
+            Bacara.event.emit('change', 'virus-ti', getMapping('part'), 'bank-and-program', {bank, program}, 'surface', path.basename(__filename, '.js'))
           }
         } else {
           debug('Forwarding PC %d on channel %d to %y', msg.number, msg.channel + 1, to)
@@ -126,6 +133,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
           }
         } else if (_.get(options, 'flags', []).indexOf('virus-ti-portmap') >= 0) {
           if ((targetElectraOne && msg.channel == getMapping('part:-1')) || (!targetElectraOne && msg.channel == electraOneMidiChannel) ) {
+            _.set(midiHistory, `${from}.channel_${getMapping('part:-1')}.controller_${msg.controller}`, msg.value)
             if (msg.controller == 6 || msg.controller == 38 || msg.controller == 98 || msg.controller == 99) { // NRPN
               //                debug('NRPN %y=%y',msg.controller,msg.value)
               _.set(midiHistory, `${from}.channel_${getMapping('part:-1')}.controller_${msg.controller}`, msg.value)
@@ -139,11 +147,13 @@ function handleIncoming(from, to, targetElectraOne, options) {
               Midi.send(to, 'cc', {channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), controller: msg.controller, value: msg.value})
               debugPart('Part mapping %y applied to CC %d (value %d) to %y', (targetElectraOne ? (electraOneMidiChannel + 1) : getMapping('part')), msg.controller, msg.value, to)
               if (msg.controller == 0 && _.get(midiHistory, `${from}.channel_${getMapping('part:-1')}.program`, -1) >= 0) {
-                debug('Bank: %y to %y', msg.value, to)
-                Midi.send(to, 'program', {channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), number: _.get(midiHistory, `${from}.channel_${getMapping('part:-1')}.program`)}, 'programChange', sendProgramChangeTimeoutTime)
-                debugPart('Part mapping %y applied to PC %d to %y', (targetElectraOne ? (electraOneMidiChannel + 1) : getMapping('part')), _.get(midiHistory, `${from}.channel_${getMapping('part:-1')}.program`), to)
+                const bank = msg.value
+                debug('Bank: %y to %y', bank, to)
+                const program = _.get(midiHistory, `${from}.channel_${getMapping('part:-1')}.program`)
+                Midi.send(to, 'program', {channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), number: program}, 'programChange', sendProgramChangeTimeoutTime)
+                debugPart('Part mapping %y applied to PC %d to %y', (targetElectraOne ? (electraOneMidiChannel + 1) : getMapping('part')), program, to)
                 Midi.send(to, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
-
+                Bacara.event.emit('change', 'virus-ti', getMapping('part'), 'bank-and-program', {bank, program}, 'surface', me)
               }
             }
           }
@@ -268,6 +278,25 @@ function setupMidi(options) {
         } else {
           console.error(`No connection to "${electraOnePortName}"`)
         }
+        Bacara.event.on('change', (device, part, name, value, origin, command) => {
+          if (command != me && device == 'virus-ti' && (part>=1 && part<=16)) {
+            //debug('RTR change - machine: %y  part: %y  name: %y  value: %y  origin: %y  me: %y',device, part, name, value, origin, me)
+            const currentPart = getMapping('part')
+            if (part == currentPart) {
+              if (name == 'bank-and-program') {
+//                debug('Bank & Program change %y', value)
+                Midi.send(electraOnePortName, 'cc', {channel:electraOneMidiChannel, controller:0, value:value.bank})
+                Midi.send(electraOnePortName, 'program', {channel: electraOneMidiChannel, number: value.program }, 'programChange', sendProgramChangeTimeoutTime)
+                Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
+              }
+            } else {
+              debug('Part change (to %y), Single Request back', part)
+              setMapping('part', part)
+              Midi.send(electraOnePortName, 'sysex', [0xF0, 0x7D, 0x20, getMapping('part'), 0xF7])
+              Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
+            }
+          }
+        })
       }
     }
   } else {

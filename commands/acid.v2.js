@@ -4,10 +4,14 @@ const config = require('config')
 const os = require('os')
 const easymidi = require('easymidi')
 const glob = require('glob')
+const path = require('path')
 
 const _ = require('lodash')
 
 const Acid = require('../lib/acid')
+
+const Bacara = require('../lib/bacara')
+const me = path.basename(__filename, '.js')
 
 const Midi = require('../lib/midi/midi')
 
@@ -16,7 +20,6 @@ const { Midi:TonalMidi } = require('@tonaljs/tonal')
 const Machine = require('../lib/midi/machine')
 const Interface = require('../lib/midi/interface')
 const MidiCache = require('../lib/midi/cache')
-const path = require('path')
 const untildify = require('untildify')
 
 const yves = require('../lib/yves')
@@ -78,6 +81,35 @@ class AcidMachine extends Machine {
     this.lfoHistory = [[], [], []]
     this.slewLimiterTimouts = []
 
+    Bacara.event.on('change', (device, part, name, value, origin, command) => {
+      if (/*command != me &&*/ device == 'virus-ti' && (part>=1 && part<=16)) {
+        //debug('ACID change %y - device: %y  part: %y  name: %y  value: %y  origin: %y command: %y',me,device, part, name, value, origin, command)
+        if (name == 'bank-and-program') {
+          if (value && value.bank) {
+            this.interface.setParameter(`virus.mixer.parts.${part-1}.bank`,value.bank)
+          }
+          if (value && value.program) {
+            this.interface.setParameter(`virus.mixer.parts.${part-1}.program`,value.program)
+          }
+          ['A','B'].forEach( dev => {
+            const portName = this.getState(`device.${dev}.portName`)
+            const channel = this.interface.getParameter(`device.${dev}.channel`, 1)
+            const bank = this.interface.getParameter(`device.${dev}.bank`)
+            const program = this.interface.getParameter(`device.${dev}.program`)
+            if (portName == device && channel == part) {
+//              debug('JJR dev %y portname %y',dev,portName)
+              if (value && value.bank) {
+                this.interface.setParameter(`device.${dev}.bank`,value.bank)
+              }
+              if (value && value.program) {
+                this.interface.setParameter(`device.${dev}.program`,value.program)
+              }
+            }
+          })
+        }
+      }
+    })
+
 
     this.state.sounding = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
@@ -96,7 +128,7 @@ class AcidMachine extends Machine {
           }
           this.interface.setParameter(`virus.mixer.parts.${part-1}.program`,0)
         }
-        virusMixerSendBankAndProgram(part)
+        virusMixerSendBankAndProgram(part,origin)
       }
     }
 
@@ -115,7 +147,7 @@ class AcidMachine extends Machine {
           }
           this.interface.setParameter(`virus.mixer.parts.${part-1}.program`,127)
         }
-        virusMixerSendBankAndProgram(part)
+        virusMixerSendBankAndProgram(part,origin)
       }
     }
 
@@ -609,7 +641,7 @@ class AcidMachine extends Machine {
       }
     }
 
-    const virusMixerSendBankAndProgram = (part) => {
+    const virusMixerSendBankAndProgram = (part,origin) => {
       if (part>=1 && part<=16) {
         const portName = 'virus-ti'
         const channel = part
@@ -619,24 +651,26 @@ class AcidMachine extends Machine {
         Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, 'bankChange-virus', 200)
         debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
         Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
+        Bacara.event.emit('change', 'virus-ti', part, 'bank-and-program', {bank, program}, origin, path.basename(__filename, '.js'))
       }
     }
 
 
     const virusMixerBank = (part) => (elementPath, value, origin) => {
       debug('Parameter Side Effect virusMixerBank(%d): %y = %y (from %y)', part, elementPath, value, origin)
-      virusMixerSendBankAndProgram(part)
+      virusMixerSendBankAndProgram(part,origin)
     }
 
     const virusMixerProgram = (part) => (elementPath, value, origin) => {
       debug('Parameter Side Effect virusMixerProgram(%d): %y = %y (from %y)', part, elementPath, value, origin)
-      virusMixerSendBankAndProgram(part)
+      virusMixerSendBankAndProgram(part,origin)
     }
 
     const virusMixerModulation = (part) => (elementPath, value, origin) => {
       debug('Parameter Side Effect virusMixerModulation(%d): %y = %y (from %y)', part, elementPath, value, origin)
       if (part>=1 && part<=16) {
         Midi.send('virus-ti', 'cc', {channel:part - 1, controller:1, value}, 'modulationChange-virus', 200)
+        Bacara.event.emit('change', 'virus-ti', part, 'modulation', value, origin, path.basename(__filename, '.js'))
       }
     }
 
@@ -644,6 +678,7 @@ class AcidMachine extends Machine {
       debug('Parameter Side Effect virusMixerLevel(%d): %y = %y (from %y)', part, elementPath, value, origin)
       if (part>=1 && part<=16) {
         Midi.send('virus-ti', 'cc', {channel:part - 1, controller:7, value}, 'levelChange-virus', 200)
+        Bacara.event.emit('change', 'virus-ti', part, 'level', value, origin, path.basename(__filename, '.js'))
       }
     }
 
@@ -1133,6 +1168,9 @@ class AcidMachine extends Machine {
     Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, `bankChange-${dev}`, 200)
     debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
     Midi.send(portName, 'program', {channel:channel - 1, number: program}, `programChange-${dev}`, 200)
+    if (portName == 'virus-ti') {
+      Bacara.event.emit('change', 'virus-ti', channel, 'bank-and-program', {bank, program}, 'surface', path.basename(__filename, '.js'))
+    }
   }
 
   sendTrackProgramChange(trk) {
@@ -1539,6 +1577,7 @@ function acidSequencer(name, sub, options) {
   acidMachine.writeState()
 
   acidMachine.connect(options.electra, 'surface')
+
   if (options.general) {
     acidMachine.connect(options.general, 'external', Number.isInteger(options.generalChannel) ? parseInt(options.generalChannel) - 1 : 0)
   }
