@@ -162,6 +162,13 @@ class AcidMachine extends Machine {
 
     this.state.sounding = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
+    const virusMixerSelect = (part) => (elementPath, origin) => {
+      debug('Parameter Side Effect virusMixerSelect(%d): %y (from %y)', part, elementPath, origin)
+      if (part>=1 && part<=16) {
+        Bacara.event.emit('change', 'virus-ti', part, 'select', null, origin, path.basename(__filename, '.js'))
+      }
+    }
+
     const virusMixerNext = (part) => (elementPath, origin) => {
       debug('Parameter Side Effect virusMixerNext(%d): %y (from %y)', part, elementPath, origin)
       if (part>=1 && part<=16) {
@@ -343,26 +350,32 @@ class AcidMachine extends Machine {
         mixer: {
           part: [
             {
+              select: virusMixerSelect(1),
               next: virusMixerNext(1),
               previous: virusMixerPrevious(1),
             },
             {
+              select: virusMixerSelect(2),
               next: virusMixerNext(2),
               previous: virusMixerPrevious(2),
             },
             {
+              select: virusMixerSelect(3),
               next: virusMixerNext(3),
               previous: virusMixerPrevious(3),
             },
             {
+              select: virusMixerSelect(4),
               next: virusMixerNext(4),
               previous: virusMixerPrevious(4),
             },
             {
+              select: virusMixerSelect(5),
               next: virusMixerNext(5),
               previous: virusMixerPrevious(5),
             },
             {
+              select: virusMixerSelect(6),
               next: virusMixerNext(6),
               previous: virusMixerPrevious(6),
             },

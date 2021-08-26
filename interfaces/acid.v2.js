@@ -2287,19 +2287,17 @@ module.exports = {
               },
               on: 1,
             },
-            modulation: {
-              name: 'Virus Part 1 Modulation',
-              type: 'parameter',
+            select: {
+              name: 'Virus Part 1 Select',
+              type: 'action',
               surface: {
                 type: 'nrpn',
                 number: 14593,
                 lsbFirst: false,
                 min: 0,
-                max: 127,
+                max: 1,
               },
-              min: 0,
-              max: 127,
-              default: 0,
+              on: 1,
             },
             level: {
               name: 'Virus Part 1 Level',
@@ -2369,19 +2367,17 @@ module.exports = {
               },
               on: 1,
             },
-            modulation: {
-              name: 'Virus Part 2 Modulation',
-              type: 'parameter',
+            select: {
+              name: 'Virus Part 2 Select',
+              type: 'action',
               surface: {
                 type: 'nrpn',
                 number: 14594,
                 lsbFirst: false,
                 min: 0,
-                max: 127,
+                max: 1,
               },
-              min: 0,
-              max: 127,
-              default: 0,
+              on: 1,
             },
             level: {
               name: 'Virus Part 2 Level',
@@ -2451,19 +2447,17 @@ module.exports = {
               },
               on: 1,
             },
-            modulation: {
-              name: 'Virus Part 3 Modulation',
-              type: 'parameter',
+            select: {
+              name: 'Virus Part 3 Select',
+              type: 'action',
               surface: {
                 type: 'nrpn',
                 number: 14595,
                 lsbFirst: false,
                 min: 0,
-                max: 127,
+                max: 1,
               },
-              min: 0,
-              max: 127,
-              default: 0,
+              on: 1,
             },
             level: {
               name: 'Virus Part 3 Level',
@@ -2533,19 +2527,17 @@ module.exports = {
               },
               on: 1,
             },
-            modulation: {
-              name: 'Virus Part 4 Modulation',
-              type: 'parameter',
+            select: {
+              name: 'Virus Part 4 Select',
+              type: 'action',
               surface: {
                 type: 'nrpn',
                 number: 14596,
                 lsbFirst: false,
                 min: 0,
-                max: 127,
+                max: 1,
               },
-              min: 0,
-              max: 127,
-              default: 0,
+              on: 1,
             },
             level: {
               name: 'Virus Part 4 Level',
@@ -2615,19 +2607,17 @@ module.exports = {
               },
               on: 1,
             },
-            modulation: {
-              name: 'Virus Part 5 Modulation',
-              type: 'parameter',
+            select: {
+              name: 'Virus Part 5 Select',
+              type: 'action',
               surface: {
                 type: 'nrpn',
                 number: 14597,
                 lsbFirst: false,
                 min: 0,
-                max: 127,
+                max: 1,
               },
-              min: 0,
-              max: 127,
-              default: 0,
+              on: 1,
             },
             level: {
               name: 'Virus Part 5 Level',
@@ -2697,19 +2687,17 @@ module.exports = {
               },
               on: 1,
             },
-            modulation: {
-              name: 'Virus Part 6 Modulation',
-              type: 'parameter',
+            select: {
+              name: 'Virus Part 6 Select',
+              type: 'action',
               surface: {
                 type: 'nrpn',
                 number: 14598,
                 lsbFirst: false,
                 min: 0,
-                max: 127,
+                max: 1,
               },
-              min: 0,
-              max: 127,
-              default: 0,
+              on: 1,
             },
             level: {
               name: 'Virus Part 6 Level',
