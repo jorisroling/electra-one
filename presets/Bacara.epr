@@ -26,6 +26,10 @@
     {
       "id": 8,
       "name": "Virus Mixer"
+    },
+    {
+      "id": 9,
+      "name": "Virus Performance"
     }
   ],
   "groups": [
@@ -256,6 +260,102 @@
       ],
       "color": "03A598",
       "id": 233
+    },
+    {
+      "id": 289,
+      "pageId": 9,
+      "name": "Part 1",
+      "bounds": [
+        0,
+        16,
+        486,
+        16
+      ],
+      "color": "FFFFFF"
+    },
+    {
+      "id": 292,
+      "pageId": 9,
+      "name": "Part 2",
+      "color": "F45C51",
+      "bounds": [
+        510,
+        16,
+        486,
+        16
+      ]
+    },
+    {
+      "id": 301,
+      "pageId": 9,
+      "name": "Part 3",
+      "color": "F49500",
+      "bounds": [
+        0,
+        192,
+        486,
+        16
+      ]
+    },
+    {
+      "id": 304,
+      "pageId": 9,
+      "name": "Part 4",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        192,
+        486,
+        16
+      ]
+    },
+    {
+      "id": 313,
+      "pageId": 9,
+      "name": "Part 5",
+      "color": "03A598",
+      "bounds": [
+        0,
+        368,
+        486,
+        16
+      ]
+    },
+    {
+      "id": 316,
+      "pageId": 9,
+      "name": "Part 6",
+      "color": "C44795",
+      "bounds": [
+        510,
+        368,
+        486,
+        16
+      ]
+    },
+    {
+      "id": 123,
+      "pageId": 4,
+      "name": "X",
+      "bounds": [
+        340,
+        192,
+        656,
+        16
+      ],
+      "color": "FFFFFF"
+    },
+    {
+      "id": 135,
+      "pageId": 4,
+      "name": "Y",
+      "bounds": [
+        340,
+        368,
+        656,
+        16
+      ],
+      "color": "FFFFFF"
     }
   ],
   "devices": [
@@ -10430,6 +10530,1230 @@
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 14726,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 289,
+      "type": "fader",
+      "visible": true,
+      "name": "MODULATION",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        40,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 129,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 290,
+      "type": "fader",
+      "visible": true,
+      "name": "BREATH",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        40,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 130,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 291,
+      "type": "fader",
+      "visible": true,
+      "name": "CONTROL 3",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        40,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 131,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 292,
+      "type": "fader",
+      "visible": true,
+      "name": "MODULATION",
+      "color": "F45C51",
+      "bounds": [
+        510,
+        40,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 135,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 293,
+      "type": "fader",
+      "visible": true,
+      "name": "BREATH",
+      "color": "F45C51",
+      "bounds": [
+        680,
+        40,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 136,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 294,
+      "type": "fader",
+      "visible": true,
+      "name": "CONTROL 3",
+      "color": "F45C51",
+      "bounds": [
+        850,
+        40,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 137,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 295,
+      "type": "fader",
+      "visible": true,
+      "name": "FOOT PEDAL",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        128,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 132,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 296,
+      "type": "fader",
+      "visible": true,
+      "name": "DATA ENTRY",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        128,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 133,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 297,
+      "type": "fader",
+      "visible": true,
+      "name": "CONTROL 9",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        128,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 134,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 298,
+      "type": "fader",
+      "visible": true,
+      "name": "FOOT PEDAL",
+      "color": "F45C51",
+      "bounds": [
+        510,
+        128,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 138,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 299,
+      "type": "fader",
+      "visible": true,
+      "name": "DATA ENTRY",
+      "color": "F45C51",
+      "bounds": [
+        680,
+        128,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 139,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 300,
+      "type": "fader",
+      "visible": true,
+      "name": "CONTROL 9",
+      "color": "F45C51",
+      "bounds": [
+        850,
+        128,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 140,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 301,
+      "type": "fader",
+      "visible": true,
+      "name": "MODULATION",
+      "color": "F49500",
+      "bounds": [
+        0,
+        216,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 141,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 302,
+      "type": "fader",
+      "visible": true,
+      "name": "BREATH",
+      "color": "F49500",
+      "bounds": [
+        170,
+        216,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 142,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 303,
+      "type": "fader",
+      "visible": true,
+      "name": "CONTROL 3",
+      "color": "F49500",
+      "bounds": [
+        340,
+        216,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 143,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 304,
+      "type": "fader",
+      "visible": true,
+      "name": "MODULATION",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 147,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 305,
+      "type": "fader",
+      "visible": true,
+      "name": "BREATH",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        216,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 148,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 306,
+      "type": "fader",
+      "visible": true,
+      "name": "CONTROL 3",
+      "color": "529DEC",
+      "bounds": [
+        850,
+        216,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 149,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 307,
+      "type": "fader",
+      "visible": true,
+      "name": "FOOT PEDAL",
+      "color": "F49500",
+      "bounds": [
+        0,
+        304,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 144,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 308,
+      "type": "fader",
+      "visible": true,
+      "name": "DATA ENTRY",
+      "color": "F49500",
+      "bounds": [
+        170,
+        304,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 145,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 309,
+      "type": "fader",
+      "visible": true,
+      "name": "CONTROL 9",
+      "color": "F49500",
+      "bounds": [
+        340,
+        304,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 146,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 310,
+      "type": "fader",
+      "visible": true,
+      "name": "FOOT PEDAL",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        304,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 150,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 311,
+      "type": "fader",
+      "visible": true,
+      "name": "DATA ENTRY",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        304,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 151,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 312,
+      "type": "fader",
+      "visible": true,
+      "name": "CONTROL 9",
+      "color": "529DEC",
+      "bounds": [
+        850,
+        304,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 152,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 313,
+      "type": "fader",
+      "visible": true,
+      "name": "MODULATION",
+      "color": "03A598",
+      "bounds": [
+        0,
+        392,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 153,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 314,
+      "type": "fader",
+      "visible": true,
+      "name": "BREATH",
+      "color": "03A598",
+      "bounds": [
+        170,
+        392,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 154,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 315,
+      "type": "fader",
+      "visible": true,
+      "name": "CONTROL 3",
+      "color": "03A598",
+      "bounds": [
+        340,
+        392,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 155,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 316,
+      "type": "fader",
+      "visible": true,
+      "name": "MODULATION",
+      "color": "C44795",
+      "bounds": [
+        510,
+        392,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 159,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 317,
+      "type": "fader",
+      "visible": true,
+      "name": "BREATH",
+      "color": "C44795",
+      "bounds": [
+        680,
+        392,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 160,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 318,
+      "type": "fader",
+      "visible": true,
+      "name": "CONTROL 3",
+      "color": "C44795",
+      "bounds": [
+        850,
+        392,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 161,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 319,
+      "type": "fader",
+      "visible": true,
+      "name": "FOOT PEDAL",
+      "color": "03A598",
+      "bounds": [
+        0,
+        480,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 156,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 320,
+      "type": "fader",
+      "visible": true,
+      "name": "DATA ENTRY",
+      "color": "03A598",
+      "bounds": [
+        170,
+        480,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 157,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 321,
+      "type": "fader",
+      "visible": true,
+      "name": "CONTROL 9",
+      "color": "03A598",
+      "bounds": [
+        340,
+        480,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 158,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 322,
+      "type": "fader",
+      "visible": true,
+      "name": "FOOT PEDAL",
+      "color": "C44795",
+      "bounds": [
+        510,
+        480,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 162,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 323,
+      "type": "fader",
+      "visible": true,
+      "name": "DATA ENTRY",
+      "color": "C44795",
+      "bounds": [
+        680,
+        480,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 163,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 324,
+      "type": "fader",
+      "visible": true,
+      "name": "CONTROL 9",
+      "color": "C44795",
+      "bounds": [
+        850,
+        480,
+        146,
+        56
+      ],
+      "pageId": 9,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 164,
             "min": 0,
             "max": 127
           },
