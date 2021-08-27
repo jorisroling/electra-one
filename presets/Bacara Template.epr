@@ -29,7 +29,7 @@
     },
     {
       "id": 9,
-      "name": "Virus Performance"
+      "name": "Virus Macro's"
     }
   ],
   "groups": [
@@ -1444,7 +1444,7 @@
       "id": 14,
       "type": "pad",
       "mode": "momentary",
-      "name": "PREVIOUS",
+      "name": "NEXT",
       "color": "03A598",
       "bounds": [
         170,
@@ -1466,7 +1466,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 1409,
+            "parameterNumber": 1537,
             "onValue": 1,
             "offValue": 0
           },
@@ -1547,7 +1547,7 @@
       "id": 17,
       "type": "pad",
       "mode": "momentary",
-      "name": "PREVIOUS",
+      "name": "NEXT",
       "color": "FFFFFF",
       "bounds": [
         680,
@@ -1570,7 +1570,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 8833,
+            "parameterNumber": 8961,
             "onValue": 1,
             "offValue": 0
           },
@@ -1652,7 +1652,7 @@
       "id": 20,
       "type": "pad",
       "mode": "momentary",
-      "name": "NEXT",
+      "name": "PREVIOUS",
       "color": "03A598",
       "bounds": [
         170,
@@ -1674,7 +1674,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 1537,
+            "parameterNumber": 1409,
             "onValue": 1,
             "offValue": 0
           },
@@ -1755,7 +1755,7 @@
       "id": 23,
       "type": "pad",
       "mode": "momentary",
-      "name": "NEXT",
+      "name": "PREVIOUS",
       "color": "FFFFFF",
       "bounds": [
         680,
@@ -1778,7 +1778,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 8961,
+            "parameterNumber": 8833,
             "onValue": 1,
             "offValue": 0
           },

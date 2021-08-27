@@ -231,11 +231,13 @@ function handleIncoming(from, to, targetElectraOne, options) {
 
           /* Single Dump Buffer F0 00 20 33 01 XX 10 00 YY */
         } else if (msg.bytes.length == 524 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x00 && msg.bytes[2] == 0x20 && msg.bytes[3] == 0x33 && msg.bytes[4] == 0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6] == 0x10 && msg.bytes[7] == 0x00 /* && msg.bytes[8]==0x00 */ ) {
-          msg.bytes[8] = ( targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'))
-          debugPart('Part mapping %y applied to Single Dump SysEx to %y', msg.bytes[8] + 1, to)
-          debug('Send large sysex to %y (%y bytes)', to, msg.bytes.length)
-          Midi.send(to, 'sysex', msg.bytes, 'singleDump', sendSingleDumpTimeoutTime)
-          Bacara.event.emit('sysex', 'virus-ti', getMapping('part'), 'patch', msg.bytes, 'virus-ti', path.basename(__filename, '.js'))
+          if (msg.bytes[8]==getMapping('part:-1')) {
+            msg.bytes[8] = ( targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'))
+            debugPart('Part mapping %y applied to Single Dump SysEx to %y', msg.bytes[8] + 1, to)
+            debug('Send large sysex to %y (%y bytes)', to, msg.bytes.length)
+            Midi.send(to, 'sysex', msg.bytes, 'singleDump', sendSingleDumpTimeoutTime)
+          }
+//          Bacara.event.emit('sysex', 'virus-ti', getMapping('part'), 'patch', msg.bytes, 'virus-ti', path.basename(__filename, '.js'))
 
         } else if (msg.bytes.length == 11 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x00 && msg.bytes[2] == 0x20 && msg.bytes[3] == 0x33 && msg.bytes[4] == 0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6] == 0x72 && msg.bytes[7] == 0x00 ) {
           // F0 00 20 33 01 XX 72 00  21 32 F7 => preset change

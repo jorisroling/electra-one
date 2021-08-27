@@ -16,6 +16,7 @@
         "portName": "virus-ti"
       }
     },
+    "last_pattern_but": 9,
     "lfo": [
       {
         "shapeName": "triangle"
@@ -49,7 +50,7 @@
       "header": {
         "keySignatures": [],
         "meta": [],
-        "name": "Acid - 2021-05-29 13:18:10",
+        "name": "Acid - 2021-05-29 13:18:13",
         "ppq": 480,
         "tempos": [],
         "timeSignatures": []
@@ -58,55 +59,46 @@
         {
           "channel": 0,
           "controlChanges": {},
-          "endOfTrackTicks": 1860,
+          "pitchBends": [],
           "instrument": {
             "family": "piano",
             "name": "acoustic grand piano",
             "number": 0
           },
-          "name": "Acid - 2021-05-29 13:18:10",
+          "name": "Acid - 2021-05-29 13:18:13",
           "notes": [
             {
               "duration": 0.1875,
               "durationTicks": 180,
-              "midi": 40,
-              "name": "E2",
+              "midi": 31,
+              "name": "G1",
               "ticks": 0,
               "time": 0,
               "velocity": 0.7874015748031497
             },
             {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 26,
-              "name": "D1",
-              "ticks": 120,
-              "time": 0.125,
-              "velocity": 1
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 52,
-              "name": "E3",
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 43,
+              "name": "G2",
               "ticks": 240,
               "time": 0.25,
-              "velocity": 1
+              "velocity": 0.7874015748031497
             },
             {
               "duration": 0.1875,
               "durationTicks": 180,
-              "midi": 40,
-              "name": "E2",
-              "ticks": 360,
-              "time": 0.375,
-              "velocity": 0.7874015748031497
+              "midi": 31,
+              "name": "G1",
+              "ticks": 480,
+              "time": 0.5,
+              "velocity": 1
             },
             {
               "duration": 0.0625,
               "durationTicks": 60,
-              "midi": 28,
-              "name": "E1",
+              "midi": 43,
+              "name": "G2",
               "ticks": 720,
               "time": 0.75,
               "velocity": 0.7874015748031497
@@ -114,26 +106,17 @@
             {
               "duration": 0.1875,
               "durationTicks": 180,
-              "midi": 42,
-              "name": "F#2",
+              "midi": 43,
+              "name": "G2",
               "ticks": 840,
               "time": 0.875,
               "velocity": 1
             },
             {
-              "duration": 0.1875,
-              "durationTicks": 180,
-              "midi": 30,
-              "name": "F#1",
-              "ticks": 960,
-              "time": 1,
-              "velocity": 1
-            },
-            {
-              "duration": 0.1875,
-              "durationTicks": 180,
-              "midi": 54,
-              "name": "F#3",
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 60,
+              "name": "C4",
               "ticks": 1080,
               "time": 1.125,
               "velocity": 1
@@ -141,17 +124,26 @@
             {
               "duration": 0.0625,
               "durationTicks": 60,
-              "midi": 30,
-              "name": "F#1",
-              "ticks": 1320,
-              "time": 1.375,
+              "midi": 36,
+              "name": "C2",
+              "ticks": 1200,
+              "time": 1.25,
               "velocity": 1
             },
             {
               "duration": 0.1875,
               "durationTicks": 180,
-              "midi": 52,
-              "name": "E3",
+              "midi": 36,
+              "name": "C2",
+              "ticks": 1320,
+              "time": 1.375,
+              "velocity": 1
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 39,
+              "name": "D#2",
               "ticks": 1440,
               "time": 1.5,
               "velocity": 1
@@ -159,23 +151,32 @@
             {
               "duration": 0.1875,
               "durationTicks": 180,
-              "midi": 56,
-              "name": "G#3",
+              "midi": 39,
+              "name": "D#2",
               "ticks": 1560,
               "time": 1.625,
-              "velocity": 1
+              "velocity": 0.7874015748031497
             },
             {
-              "duration": 0.0625,
-              "durationTicks": 60,
+              "duration": 0.1875,
+              "durationTicks": 180,
               "midi": 36,
               "name": "C2",
+              "ticks": 1680,
+              "time": 1.75,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.125,
+              "durationTicks": 120,
+              "midi": 41,
+              "name": "F2",
               "ticks": 1800,
               "time": 1.875,
               "velocity": 1
             }
           ],
-          "pitchBends": []
+          "endOfTrackTicks": 1920
         }
       ]
     },
@@ -198,14 +199,7 @@
       1,
       1,
       1
-    ],
-    "virus": {
-      "part": [
-        {
-          "patchName": "FM Bass MS"
-        }
-      ]
-    }
+    ]
   },
   "parameters": {
     "bank": 0,
@@ -227,7 +221,7 @@
         "device": 1,
         "mute": 0,
         "port": 15,
-        "program": 47
+        "program": 59
       }
     },
     "gate": 0.02,
@@ -341,7 +335,7 @@
     "program": 37,
     "scales": 24,
     "shift": 0,
-    "split": 43,
+    "split": 33,
     "temperature": 3.07,
     "track": [
       {
@@ -401,8 +395,8 @@
         "part": [
           {
             "bank": 16,
-            "level": 118,
-            "program": 47
+            "level": 65,
+            "program": 59
           },
           {
             "bank": 12,
@@ -437,7 +431,7 @@
             "control": [
               0,
               16,
-              47,
+              59,
               3,
               0,
               0

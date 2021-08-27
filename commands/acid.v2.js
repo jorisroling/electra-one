@@ -113,87 +113,157 @@ class AcidMachine extends Machine {
       }
     })
 
-    Bacara.event.on('sysex', (device, part, name, value, origin, command) => {
-      const virusSysexHeader = [0xF0, 0x00, 0x20, 0x33, 0x01]
-      const sysexHeader = value.slice(0, 5)
-      const msgHeader = value.slice(6, 9)
-      if (_.isEqual(sysexHeader, virusSysexHeader)) {
-        if (msgHeader[0]==0x10 && msgHeader[1]==0x00) {
-          const page = [
-            value.slice(9, 9+128),
-            value.slice(9+(128*1), 9+(128*1)+128),
-            value.slice(9+(128*2)+1, 9+(128*2)+1+128),
-            value.slice(9+(128*3)+1, 9+(128*3)+1+128),
-          ]
-          const level = page[0][91]
-//          debug('Part %y level %y head %y',part,level,page[0].slice(0,20))
-          this.interface.setParameter(`virus.mixer.part.${part-1}.level`,level)
+    const virusParsePatchDump = (bytes) => {
+      if (Array.isArray(bytes)) {
+        const virusSysexHeader = [0xF0, 0x00, 0x20, 0x33, 0x01]
+        const sysexHeader = bytes.slice(0, 5)
+        const msgHeader = bytes.slice(6, 9)
+        if (_.isEqual(sysexHeader, virusSysexHeader)) {
+          if (msgHeader[0]==0x10 && msgHeader[1]==0x00) {
+            const part = msgHeader[2]+1
+            const page = [
+              bytes.slice(9, 9+128),
+              bytes.slice(9+(128*1), 9+(128*1)+128),
+              bytes.slice(9+(128*2)+1, 9+(128*2)+1+128),
+              bytes.slice(9+(128*3)+1, 9+(128*3)+1+128),
+            ]
+            const level = page[0][91]
+            this.interface.setParameter(`virus.mixer.part.${part-1}.level`,level)
 
-          let patchName=''
-          for (let n=112;n<=121;n++) {
-            patchName += String.fromCharCode(parseInt(page[1][n]))
-          }
-          patchName = patchName.trim()
-          debug('patch Name %y',patchName)
-          _.set(this.state,`virus.part.${part-1}.patchName`,patchName)
-
-          if (electraBacaraPresetLoaded) {
-            if (part>=1 && part<=6) {
-              const selectControls = [253,254,255,256,257,258]
-              const str = JSON.stringify({
-                "name": patchName,
-              })
-
-              const ctrlId = selectControls[part-1]
-              const bytes = [0xF0, 0x00, 0x21, 0x45, 0x14, 0x07, ctrlId & 0x7F, ctrlId >> 7]
-              for (let n = 0, l = str.length; n < l; n++) {
-                bytes.push(Number(str.charCodeAt(n)))
-              }
-              bytes.push(0xF7)
-
-              Midi.send('electra-one-ctrl', 'sysex', bytes)
+            let patchName=''
+            for (let n=112;n<=121;n++) {
+              patchName += String.fromCharCode(parseInt(page[1][n]))
             }
-          }
+            patchName = patchName.trim()
+            debug('patch Name %y',patchName)
+            _.set(this.state,`virus.part.${part-1}.patchName`,patchName)
 
-          const ctrls = [
-            page[0][1],
-            page[0][2],
-            page[0][3],
-            page[0][4],
-            page[0][6],
-            page[0][9],
-          ]
+            if (electraBacaraPresetLoaded) {
+              if (part>=1 && part<=6) {
+                const selectControls = [253,254,255,256,257,258]
+                const str = JSON.stringify({
+                  "name": patchName,
+                })
 
-/*         debug('ACID sysex sysexHeader %y msgHeader %y ctrls %y',sysexHeader,msgHeader, ctrls)*/
-          for (let ctrl=0;ctrl<6;ctrl++) {
-            this.interface.setParameter(`virus.performance.part.${part-1}.control.${ctrl}`,ctrls[ctrl])
-          }
+                const ctrlId = selectControls[part-1]
+                const bytes = [0xF0, 0x00, 0x21, 0x45, 0x14, 0x07, ctrlId & 0x7F, ctrlId >> 7]
+                for (let n = 0, l = str.length; n < l; n++) {
+                  bytes.push(Number(str.charCodeAt(n)))
+                }
+                bytes.push(0xF7)
 
-          for (let s=0;s<6;s++) {
-            const slotSource = page[virus.matrix.slot[s].source.page][virus.matrix.slot[s].source.offset]
-            if (slotSource>0 && slotSource<=18) {
-              let destinations=0
-              for (let d = 0; d<3; d++) {
-                const target = page[virus.matrix.slot[s].destinations[d].target.page][virus.matrix.slot[s].destinations[d].target.offset]
-                const amount = page[virus.matrix.slot[s].destinations[d].amount.page][virus.matrix.slot[s].destinations[d].amount.offset]
-                if (target && amount) {
-                  destinations++
+                Midi.send('electra-one-ctrl', 'sysex', bytes)
+              }
+            }
+
+  /*          const ctrls = [
+              page[0][1],
+              page[0][2],
+              page[0][3],
+              page[0][4],
+              page[0][6],
+              page[0][9],
+            ]
+
+            for (let ctrl=0;ctrl<6;ctrl++) {
+              this.interface.setParameter(`virus.performance.part.${part-1}.control.${ctrl}`,ctrls[ctrl])
+            }
+  */
+            let macros = {}
+
+            for (let s=0;s<6;s++) {
+              const slotSource = page[virus.matrix.slot[s].source.page][virus.matrix.slot[s].source.offset]
+              if (slotSource>0 && slotSource<=18) {
+                let destinations=0
+                for (let d = 0; d<3; d++) {
+                  const target = page[virus.matrix.slot[s].destinations[d].target.page][virus.matrix.slot[s].destinations[d].target.offset]
+                  const amount = page[virus.matrix.slot[s].destinations[d].amount.page][virus.matrix.slot[s].destinations[d].amount.offset]
+                  if (target && amount) {
+                    destinations++
+                  }
+                }
+                if (destinations) {
+                  const slotSourceType = virus.matrix.source.type[slotSource]
+                  debug('mod slot #%d (%s) source %y %s %y',s+1,virus.matrix.slot[s].name,slotSource,slotSourceType.name,slotSourceType.cc)
+                  macros[slotSourceType.name] = slotSourceType
                 }
               }
-              if (destinations) {
-                const slotSourceType = virus.matrix.source.type[slotSource]
-                debug('mod slot #%d (%s) source %y %s %y',s+1,virus.matrix.slot[s].name,slotSource,slotSourceType.name,slotSourceType.cc)
-              }
             }
-          }
+  /*          debug('macros %y',macros)*/
+            macros = Object.values(macros)
+            macros.sort(function(a, b) {
+              if (a.cc && b.cc) {
+                return a.cc - b.cc
+              } else {
+                return a.type.localeCompare(b.type)
+              }
+            });
 
-          this.writeState()
+            _.set(this.state,`virus.part.${part-1}.macros`,macros)
+
+            virusPerformanceMacros(part)
+  /*          debug('macros %y',macros)*/
+
+            this.writeState()
+          }
         }
       }
-    })
+    }
 
+//    Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
+    const midiInput_virusTI = Midi.input('virus-ti', true)
+    if (midiInput_virusTI) {
+      midiInput_virusTI.on('message', (msg) => {
+        switch (msg._type) {
+        case 'sysex':
+          virusParsePatchDump(msg.bytes)
+          break
+        }
+      })
+    }
+
+/*    Bacara.event.on('sysex', (device, part, name, value, origin, command) => {
+      virusParsePatchDump(value)
+    })
+*/
 
     this.state.sounding = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+    const virusPerformanceMacros = (part) => {
+      if (electraBacaraPresetLoaded) {
+        if (part>=1 && part<=6) {
+          const macros = _.get(this.state,`virus.part.${part-1}.macros`,[])
+          for (let i=0;i<6;i++) {
+
+            const selectControls = [253,254,255,256,257,258]
+            const macroControls = [
+              [289,290,291,295,296,297],
+              [292,293,294,298,299,300],
+              [301,302,303,307,308,309],
+              [304,305,306,310,311,312],
+              [313,314,315,319,320,321],
+              [316,317,318,322,323,324],
+            ]
+            let json
+            if (i<macros.length) {
+              json={name:macros[i].name,visible:true}
+            } else {
+              json={visible:false}
+            }
+
+            const ctrlId = macroControls[part-1][i]
+            const bytes = [0xF0, 0x00, 0x21, 0x45, 0x14, 0x07, ctrlId & 0x7F, ctrlId >> 7]
+            const str = JSON.stringify(json)
+            for (let n = 0, l = str.length; n < l; n++) {
+              bytes.push(Number(str.charCodeAt(n)))
+            }
+            bytes.push(0xF7)
+
+            Midi.send('electra-one-ctrl', 'sysex', bytes)
+          }
+        }
+      }
+    }
 
     const virusMixerSelect = (part) => (elementPath, origin) => {
       debug('Parameter Side Effect virusMixerSelect(%d): %y (from %y)', part, elementPath, origin)
@@ -296,6 +366,9 @@ class AcidMachine extends Machine {
               for (let trk = 0; trk < 6; trk++) {
                 this.sendTrackProgramChange(trk)
               }
+              for (let part = 1; part <= 6; part++) {
+                this.sendVirusMixerChannel(part)
+              }
               this.interface.sendValues(origin)
               this.showPattern()
               this.writeState()
@@ -315,6 +388,9 @@ class AcidMachine extends Machine {
               this.sendDeviceProgramChange('B')
               for (let trk = 0; trk < 6; trk++) {
                 this.sendTrackProgramChange(trk)
+              }
+              for (let part = 1; part <= 6; part++) {
+                this.sendVirusMixerChannel(part)
               }
               this.interface.sendValues(origin)
               this.showPattern()
@@ -779,8 +855,21 @@ class AcidMachine extends Machine {
 
     const virusPerformanceControl= (part, ctrl) => (elementPath, value, origin) => {
       if (part>=1 && part<=16) {
-        const controller = ctrl==5?6:(ctrl==6?9:ctrl)
-        Midi.send('virus-ti', 'cc', {channel:part - 1, controller, value}, 'performanceChange-virus', 200)
+        const type = _.get(this.state,`virus.part.${part-1}.macros.${ctrl-1}.type`)
+        switch (type) {
+        case 'cc':
+          const controller = _.get(this.state,`virus.part.${part-1}.macros.${ctrl-1}.cc`)
+          if (controller) {
+            Midi.send('virus-ti', 'cc', {channel:part - 1, controller, value}, 'performanceChange-virus', 200)
+          }
+          break
+        case 'pressure':
+          Midi.send('virus-ti', 'channel aftertouch', {channel:part - 1, pressure:value}, 'performanceChange-virus', 200)
+          break;
+        case 'pitch':
+          Midi.send('virus-ti', 'pitch', {channel:part - 1, value:value * 128}, 'performanceChange-virus', 200)
+          break;
+        }
         Bacara.event.emit('change', 'virus-ti', part, `performanceControl#${ctrl}`, value, origin, path.basename(__filename, '.js'))
       }
     }
@@ -835,6 +924,9 @@ class AcidMachine extends Machine {
               this.sendDeviceProgramChange('B')
               for (let trk = 0; trk < 6; trk++) {
                 this.sendTrackProgramChange(trk)
+              }
+              for (let part = 1; part <= 6; part++) {
+                this.sendVirusMixerChannel(part)
               }
               this.interface.sendValues()
               this.writeState()
@@ -1268,10 +1360,81 @@ class AcidMachine extends Machine {
       table.push(arr)
     })
 
-    /*    console.log(table.toString())*/
     debug(table.toString())
   }
 
+/*  showMonomePattern() {
+
+    for (let x = 0; x < 8; x++) {
+      for (let y = 0; y < 8; y++) {
+        monome.led(x, y, 0)
+      }
+    }
+
+
+    monome.led(1 - (stepIdx >> 3), stepIdx & 7, 1)
+
+
+
+    const pattern = this.getState('pattern')
+    const size = this.getState('size')
+    if (!pattern) {
+      return
+    }
+
+
+    const notes = []
+    pattern.tracks[0].notes.forEach( note => {
+      if (notes.indexOf(note.midi) < 0) {
+        notes.push(note.midi)
+      }
+    })
+    notes.sort()
+    notes.reverse()
+
+    notes.forEach( noteMidi => {
+      let midiNote = noteMidi
+      const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
+      const midiNoteFromBase = (midiNote + this.interface.getParameter('base', 'modulated')) % 12
+      const midiNoteBase =  midiNote - midiNoteFromBase
+      if (scaleMapping && scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
+        //                debug('scale: %s %y => %y',scaleMapping.name, midiNoteFromBase, scaleMapping.mapping[midiNoteFromBase])
+        midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
+      }
+
+      const noteMidiTransposed = midiNote + this.interface.getParameter('transpose', 'modulated')
+
+
+      const arr = [
+        {hAlign:'center', content:(this.interface.getParameter('split', 'modulated') && noteMidiTransposed <= this.interface.getParameter('split', 'modulated')) ? ((this.interface.getParameter('deviate', 'modulated') >= 50) ? deviceBColor('B') : deviceAColor('A')) : ((this.interface.getParameter('deviate', 'modulated') >= 50) ? deviceAColor('A') : deviceBColor('B')) },
+        {hAlign:'center', content:TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })}
+      ]
+      for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
+        let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
+        if (shiftedTicks < 0) {
+          shiftedTicks += 1920
+        }
+        //debug ('ticks %y  shiftedTicks %y',ticks,shiftedTicks)
+        let chNote = '  '
+        pattern.tracks[0].notes.forEach( note => {
+          if (note.midi  == noteMidi && note.ticks == shiftedTicks) {
+            const count = Math.ceil(note.durationTicks / ticksPerStep)
+            const color = this.getState('sounding')[ticks / ticksPerStep] ? (note.velocity == 1 ? accentedColor : normalColor) : disabledColor
+            const rep = count * 2 + ((count - 1) * 3)
+            chNote = {colSpan:count, content:color(' '.repeat(rep >= 0 ? rep : 0))}
+            ticks += (count - 1) * ticksPerStep
+          }
+        })
+        if (chNote) {
+          arr.push(chNote)
+        }
+      }
+      table.push(arr)
+    })
+
+    debug(table.toString())
+  }
+*/
   sendDeviceProgramChange(dev) {
     const portName = this.getState(`device.${dev}.portName`)
     const channel = this.interface.getParameter(`device.${dev}.channel`, 1)
@@ -1287,7 +1450,6 @@ class AcidMachine extends Machine {
   }
 
   sendTrackProgramChange(trk) {
-    /*   console.trace('JJ:'+trk)*/
     const portName = this.getState(`track.${trk}.portName`)
     const channel = this.getState(`track.${trk}.channel`, 1)
     const bank = this.interface.getParameter(`track.${trk}.bank`)
@@ -1298,6 +1460,19 @@ class AcidMachine extends Machine {
     Midi.send(portName, 'program', {channel:channel - 1, number:program}, `programChange-${trk}`, 200)
   }
 
+  sendVirusMixerChannel(part) {
+    const portName = 'virus-ti'
+    const channel = part
+    const bank = this.interface.getParameter(`virus.mixer.part.${part-1}.bank`)
+    const program = this.interface.getParameter(`virus.mixer.part.${part-1}.program`)
+    const level = this.interface.getParameter(`virus.mixer.part.${part-1}.level`)
+    debugMidiControlChange('%s %d CC %y = %y', portName, channel - 1, 0, bank)
+    Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, `bankChange-${part}`, 200)
+    debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
+    Midi.send(portName, 'program', {channel:channel - 1, number:program}, `programChange-${part}`, 200)
+    debugMidiControlChange('%s %d CC %y = %y', portName, channel - 1, 91, level)
+    Midi.send(portName, 'cc', {channel:channel - 1, controller:91, value:level}, `bankChange-${part}`, 200)
+  }
 
   lfo(step, stepsPerCycle, shape, phase) {
     let cycleStep = ((step + 0) + (((phase + 0.0) % 1.0) * stepsPerCycle)) % stepsPerCycle
@@ -1732,6 +1907,7 @@ function acidSequencer(name, sub, options) {
     })
   }
 
+
   acidMachine.connect(options.electra, 'surface')
 
   if (options.general) {
@@ -1753,6 +1929,10 @@ function acidSequencer(name, sub, options) {
   /*  debug('Options %y', options)*/
 
 /*  setupMidi(options)*/
+
+  for (let part=1;part<=6;part++) {
+    Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part-1, 0xF7], `singleRequest-part-${part}`, 200)
+  }
 }
 
 module.exports = {
