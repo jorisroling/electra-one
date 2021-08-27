@@ -6694,9 +6694,9 @@
     },
     {
       "id": 276,
-      "type": "pad",
-      "mode": "momentary",
-      "name": "PREVIOUS",
+      "type": "fader",
+      "visible": true,
+      "name": "PROGRAM",
       "color": "C44795",
       "bounds": [
         850,
@@ -6714,16 +6714,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14470,
-            "onValue": 1,
-            "offValue": 0
-          },
-          "defaultValue": "off",
-          "id": "value"
+            "parameterNumber": 14214,
+            "min": 0,
+            "max": 127
+          }
         }
       ]
     },

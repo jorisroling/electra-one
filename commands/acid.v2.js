@@ -129,6 +129,32 @@ class AcidMachine extends Machine {
 //          debug('Part %y level %y head %y',part,level,page[0].slice(0,20))
           this.interface.setParameter(`virus.mixer.part.${part-1}.level`,level)
 
+          let patchName=''
+          for (let n=112;n<=121;n++) {
+            patchName += String.fromCharCode(parseInt(page[1][n]))
+          }
+          patchName = patchName.trim()
+          debug('patch Name %y',patchName)
+          _.set(this.state,`virus.part.${part-1}.patchName`,patchName)
+
+          if (electraBacaraPresetLoaded) {
+            if (part>=1 && part<=6) {
+              const selectControls = [253,254,255,256,257,258]
+              const str = JSON.stringify({
+                "name": patchName,
+              })
+
+              const ctrlId = selectControls[part-1]
+              const bytes = [0xF0, 0x00, 0x21, 0x45, 0x14, 0x07, ctrlId & 0x7F, ctrlId >> 7]
+              for (let n = 0, l = str.length; n < l; n++) {
+                bytes.push(Number(str.charCodeAt(n)))
+              }
+              bytes.push(0xF7)
+
+              Midi.send('electra-one-ctrl', 'sysex', bytes)
+            }
+          }
+
           const ctrls = [
             page[0][1],
             page[0][2],
@@ -160,6 +186,8 @@ class AcidMachine extends Machine {
               }
             }
           }
+
+          this.writeState()
         }
       }
     })
