@@ -48,6 +48,7 @@ const Table = require('cli-table3')
 const ticksPerStep = 120
 
 const virus = require('../lib/virus')
+let electraBacaraPresetLoaded = false
 
 const matrixSetSlotValueTimout = 10
 const matrixSlotSources = {
@@ -124,6 +125,9 @@ class AcidMachine extends Machine {
             value.slice(9+(128*2)+1, 9+(128*2)+1+128),
             value.slice(9+(128*3)+1, 9+(128*3)+1+128),
           ]
+          const level = page[0][91]
+//          debug('Part %y level %y head %y',part,level,page[0].slice(0,20))
+          this.interface.setParameter(`virus.mixer.part.${part-1}.level`,level)
 
           const ctrls = [
             page[0][1],
@@ -133,6 +137,7 @@ class AcidMachine extends Machine {
             page[0][6],
             page[0][9],
           ]
+
 /*         debug('ACID sysex sysexHeader %y msgHeader %y ctrls %y',sysexHeader,msgHeader, ctrls)*/
           for (let ctrl=0;ctrl<6;ctrl++) {
             this.interface.setParameter(`virus.performance.part.${part-1}.control.${ctrl}`,ctrls[ctrl])
@@ -739,7 +744,7 @@ class AcidMachine extends Machine {
     const virusMixerLevel = (part) => (elementPath, value, origin) => {
       debug('Parameter Side Effect virusMixerLevel(%d): %y = %y (from %y)', part, elementPath, value, origin)
       if (part>=1 && part<=16) {
-        Midi.send('virus-ti', 'cc', {channel:part - 1, controller:7, value}, 'levelChange-virus', 200)
+        Midi.send('virus-ti', 'cc', {channel:part - 1, controller:91, value}, 'levelChange-virus', 200)
         Bacara.event.emit('change', 'virus-ti', part, 'level', value, origin, path.basename(__filename, '.js'))
       }
     }
@@ -1652,9 +1657,52 @@ function acidSequencer(name, sub, options) {
     debugMonome('rotation %y', monome.rotation)
   })
 
+
   const acidMachine = new AcidMachine('acid.v2')
   acidMachine.readState()
   acidMachine.writeState()
+
+  electraBacaraPresetLoaded = false
+
+  Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
+  const midiInput_electraOneCtrl = Midi.input('electra-one-ctrl', true)
+  if (midiInput_electraOneCtrl) {
+    midiInput_electraOneCtrl.on('message', (msg) => {
+      switch (msg._type) {
+      case 'sysex':
+        const electraSysexHeader = [0xF0, 0x00, 0x21, 0x45]
+        const electraSysexCmdPresetSwitch = [0x7E, 0x02]
+        const electraSysexCmdPatchResponse = [0x01, 0x01]
+        const sysexHeader = msg.bytes.slice(0,4)
+        const sysexCmd = msg.bytes.slice(4,6)
+        if (_.isEqual(sysexHeader, electraSysexHeader)) {
+          if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
+            electraBacaraPresetLoaded=false
+            Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
+          }
+          if (_.isEqual(sysexCmd, electraSysexCmdPatchResponse)) {
+            /*
+            let preset
+            try {
+              const data = msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)), '')
+              debug('data %y',data)
+              preset = JSON.parse(data)
+            } catch (e) {
+              console.error(e)
+            }
+            debug('preset %y',preset)
+            */
+
+            const data = msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)), '')
+            const match = data.match(/,"name"\s*:\s*"([^"]*)",/)
+            electraBacaraPresetLoaded = (match && match.length && match[1].trim() === "Bacara")
+            debug('Bacara Preset Loaded: %y',electraBacaraPresetLoaded)
+          }
+        }
+        break
+      }
+    })
+  }
 
   acidMachine.connect(options.electra, 'surface')
 
