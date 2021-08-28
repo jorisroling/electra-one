@@ -146,7 +146,7 @@ class AcidMachine extends Machine {
               patchName += String.fromCharCode(parseInt(page[1][n]))
             }
             patchName = patchName.trim()
-            debug('patch Name %y',patchName)
+/*            debug('patch Name %y',patchName)*/
 
             if (_.get(this.state,`virus.part.${part-1}.patchName`) !== patchName) {
               _.set(this.state,`virus.part.${part-1}.patchName`,patchName)
@@ -241,7 +241,7 @@ class AcidMachine extends Machine {
             _.set(this.state,`virus.part.${part-1}.macros`,macros)
 
             virusPerformanceMacros(part)
-            debug('Part #%y Macros %y',part,macros)
+/*            debug('Part #%y Macros %y',part,macros)*/
 
             this.writeState()
           }
@@ -1338,6 +1338,8 @@ class AcidMachine extends Machine {
     //    const deviceAColor = chalk.hex('#F45C51')
     //    const deviceBColor = chalk.hex('#529DEC')
 
+    const grid = []
+
     let table = new Table(
       {
         head: [
@@ -1358,7 +1360,13 @@ class AcidMachine extends Machine {
     notes.sort()
     notes.reverse()
 
+    let row=0
     notes.forEach( noteMidi => {
+      grid[row]=[]
+      for (let col=0;col<16;col++) {
+        grid[row][col]=false
+      }
+
       let midiNote = noteMidi
       const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
       const midiNoteFromBase = (midiNote + this.interface.getParameter('base', 'modulated')) % 12
@@ -1376,6 +1384,7 @@ class AcidMachine extends Machine {
         {hAlign:'center', content:(this.interface.getParameter('split', 'modulated') && noteMidiTransposed <= this.interface.getParameter('split', 'modulated')) ? ((this.interface.getParameter('deviate', 'modulated') >= 50) ? deviceBColor('B') : deviceAColor('A')) : ((this.interface.getParameter('deviate', 'modulated') >= 50) ? deviceAColor('A') : deviceBColor('B')) },
         {hAlign:'center', content:TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })/*+` ${noteMidi}`*/}
       ]
+      let col=0
       for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
         let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
         if (shiftedTicks < 0) {
@@ -1390,18 +1399,50 @@ class AcidMachine extends Machine {
             const rep = count * 2 + ((count - 1) * 3)
             chNote = {colSpan:count, content:color(' '.repeat(rep >= 0 ? rep : 0))}
             ticks += (count - 1) * ticksPerStep
+            grid[row][col]=this.getState('sounding')[ticks / ticksPerStep] ? true : false
+            if (count>1) {
+              grid[row][col+1]=this.getState('sounding')[ticks / ticksPerStep] ? true : false
+            }
           }
         })
         if (chNote) {
           arr.push(chNote)
         }
+        col++
       }
       table.push(arr)
+      row++
     })
 
     debug(table.toString())
+/*    debug(grid)*/
+    _.set(this.state,'pattern.grid',grid)
   }
 
+  showPatternGrid(stepIdx) {
+//    debug('grid step  %y',stepIdx)
+
+    //     debug('stepIdx %y X %y y %y',stepIdx,stepIdx&7,stepIdx>>3)
+    /*
+    for (let x = 0; x < 2; x++) {
+      for (let y = 0; y < 8; y++) {
+        monome.led(x, y, 0)
+      }
+    }
+
+    monome.led(1 -  (stepIdx >> 3), stepIdx & 7, 1)
+*/
+
+    const offset = ((stepIdx<8)?0:8)
+    for (let row = 0; row < monome.height; row++) {
+      for (let col = 0; col < monome.width; col++) {
+        let on = _.get(this.state,`pattern.grid.${row}.${col+offset}`)
+        if (stepIdx == (col + offset)) on=!on
+        monome.led((monome.height-row)-1, col, on)
+      }
+    }
+
+  }
 /*  showMonomePattern() {
 
     for (let x = 0; x < 8; x++) {
@@ -1642,15 +1683,6 @@ class AcidMachine extends Machine {
     const stepIdx = ticks / ticksPerStep
     if (this.getState('playing')) {
 
-      //     debug('stepIdx %y X %y y %y',stepIdx,stepIdx&7,stepIdx>>3)
-      for (let x = 0; x < 2; x++) {
-        for (let y = 0; y < 8; y++) {
-          monome.led(x, y, 0)
-        }
-      }
-
-      monome.led(1 - (stepIdx >> 3), stepIdx & 7, 1)
-
       const tickDuration = this.pulseDuration / 20
       let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
       if (shiftedTicks < 0) {
@@ -1754,9 +1786,14 @@ class AcidMachine extends Machine {
           debug('LFO Modulation Impact: %y', deltaValues)
         }
       }
+
+      if (Math.floor(stepIdx) === stepIdx) {
+          this.showPatternGrid(stepIdx)
+      }
       if (this.getState('pattern') && !this.interface.getParameter('mute')) {
         this.getState('pattern').tracks[0].notes.forEach( (note) => {
           if (note.ticks == shiftedTicks) {
+//            this.showPatternGrid(stepIdx)
             if (stepIdx < this.state.sounding.length && this.state.sounding[stepIdx]) {
               let midiNote = note.midi
 
@@ -1897,6 +1934,7 @@ function acidSequencer(name, sub, options) {
 
     monome.rotation = 180
     debugMonome('rotation %y', monome.rotation)
+    debug('Monome width %y height %y', monome.width, monome.height)
   })
 
 
