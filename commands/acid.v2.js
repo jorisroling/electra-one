@@ -59,7 +59,7 @@ const matrixSlotSources = {
 }
 
 const beatCC = 2 // -1 for off
-
+const reverseDeviceBrowsOnGrid = false
 
 const monodeInit = require('monode')
 
@@ -1380,11 +1380,13 @@ class AcidMachine extends Machine {
 
 
       /*      debug('JJ: %y %y %y',(state && this.interface.getParameter('split','modulated') && noteMidiTransposed <= this.interface.getParameter('split','modulated')),this.interface.getParameter('split','modulated'),noteMidiTransposed)*/
+      const deviceBrow = (this.interface.getParameter('split', 'modulated') && noteMidiTransposed <= this.interface.getParameter('split', 'modulated')) ? ((this.interface.getParameter('deviate', 'modulated') >= 50) ? true : false) : ((this.interface.getParameter('deviate', 'modulated') >= 50) ? false : true)
       const arr = [
-        {hAlign:'center', content:(this.interface.getParameter('split', 'modulated') && noteMidiTransposed <= this.interface.getParameter('split', 'modulated')) ? ((this.interface.getParameter('deviate', 'modulated') >= 50) ? deviceBColor('B') : deviceAColor('A')) : ((this.interface.getParameter('deviate', 'modulated') >= 50) ? deviceAColor('A') : deviceBColor('B')) },
+       {hAlign:'center', content:deviceBrow ? deviceBColor('B') : deviceAColor('A') },
         {hAlign:'center', content:TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })/*+` ${noteMidi}`*/}
       ]
       let col=0
+
       for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
         let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
         if (shiftedTicks < 0) {
@@ -1409,6 +1411,11 @@ class AcidMachine extends Machine {
           arr.push(chNote)
         }
         col++
+      }
+      if (deviceBrow && reverseDeviceBrowsOnGrid) {
+        for (let col=0;col<grid[row].length;col++) {
+          grid[row][col] = !grid[row][col]
+        }
       }
       table.push(arr)
       row++
