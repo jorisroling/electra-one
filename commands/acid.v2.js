@@ -73,6 +73,14 @@ function radians(degrees) {
 }
 
 
+let bacaraEmitPart
+let bacaraEmitTime
+function bacaraEmit(portName,part,type,value,origin) {
+  bacaraEmitTime = Date.now()
+  bacaraEmitPart = part
+  Bacara.event.emit('change', portName, part, type, value, origin, path.basename(__filename, '.js'))
+}
+
 class AcidMachine extends Machine {
   constructor(name) {
     super(name)
@@ -124,11 +132,14 @@ class AcidMachine extends Machine {
             const page = [
               bytes.slice(9, 9+128),
               bytes.slice(9+(128*1), 9+(128*1)+128),
-              bytes.slice(9+(128*2)+1, 9+(128*2)+1+128),
-              bytes.slice(9+(128*3)+1, 9+(128*3)+1+128),
+              bytes.slice(9+(128*2)+2, 9+(128*2)+2+128),
+              bytes.slice(9+(128*3)+2, 9+(128*3)+2+128),
             ]
-            const level = page[0][91]
-            this.interface.setParameter(`virus.mixer.part.${part-1}.level`,level)
+
+            if (bacaraEmitPart != part || (!bacaraEmitTime || bacaraEmitTime<(Date.now()-200))) {
+              const level = page[0][91]
+              this.interface.setParameter(`virus.mixer.part.${part-1}.level`,level)
+            }
 
             let patchName=''
             for (let n=112;n<=121;n++) {
@@ -136,23 +147,26 @@ class AcidMachine extends Machine {
             }
             patchName = patchName.trim()
             debug('patch Name %y',patchName)
-            _.set(this.state,`virus.part.${part-1}.patchName`,patchName)
 
-            if (electraBacaraPresetLoaded) {
-              if (part>=1 && part<=6) {
-                const selectControls = [253,254,255,256,257,258]
-                const str = JSON.stringify({
-                  "name": patchName,
-                })
+            if (_.get(this.state,`virus.part.${part-1}.patchName`) !== patchName) {
+              _.set(this.state,`virus.part.${part-1}.patchName`,patchName)
 
-                const ctrlId = selectControls[part-1]
-                const bytes = [0xF0, 0x00, 0x21, 0x45, 0x14, 0x07, ctrlId & 0x7F, ctrlId >> 7]
-                for (let n = 0, l = str.length; n < l; n++) {
-                  bytes.push(Number(str.charCodeAt(n)))
+              if (electraBacaraPresetLoaded) {
+                if (part>=1 && part<=6) {
+                  const selectControls = [145,146,147,148,149,150]
+                  const str = JSON.stringify({
+                    "name": patchName,
+                  })
+
+                  const ctrlId = selectControls[part-1]
+                  const bytes = [0xF0, 0x00, 0x21, 0x45, 0x14, 0x07, ctrlId & 0x7F, ctrlId >> 7]
+                  for (let n = 0, l = str.length; n < l; n++) {
+                    bytes.push(Number(str.charCodeAt(n)))
+                  }
+                  bytes.push(0xF7)
+
+                  Midi.send('electra-one-ctrl', 'sysex', bytes)
                 }
-                bytes.push(0xF7)
-
-                Midi.send('electra-one-ctrl', 'sysex', bytes)
               }
             }
 
@@ -183,26 +197,51 @@ class AcidMachine extends Machine {
                   }
                 }
                 if (destinations) {
-                  const slotSourceType = virus.matrix.source.type[slotSource]
-                  debug('mod slot #%d (%s) source %y %s %y',s+1,virus.matrix.slot[s].name,slotSource,slotSourceType.name,slotSourceType.cc)
+                  const slotSourceType = Object.assign({},virus.matrix.source.type[slotSource])
+/*                  debug('mod slot #%d (%s) source %y %s %y',s+1,virus.matrix.slot[s].name,slotSource,slotSourceType.name,slotSourceType.cc)*/
                   macros[slotSourceType.name] = slotSourceType
                 }
               }
             }
   /*          debug('macros %y',macros)*/
             macros = Object.values(macros)
+
+            const names = _.get(virus,'soft.names')
+            for (let macro of macros) {
+              if (macro.softknob) {
+                for (let k=0;k<3;k++) {
+                  const destination = page[_.get(virus,`soft.knob.${k}.destination.page`)][_.get(virus,`soft.knob.${k}.destination.offset`)]
+/*                  debug('knob %d dest %y',k+1,destination)*/
+                  if (destination == macro.softknob) {
+                    macro.name = names[page[_.get(virus,`soft.knob.${k}.name.page`)][_.get(virus,`soft.knob.${k}.name.offset`)]]
+                    macro.index = k+1
+                  }
+                }
+              }
+            }
+
             macros.sort(function(a, b) {
-              if (a.cc && b.cc) {
+              if (a.index || b.index) {
+                return (a.index?a.index:1000) - (b.index?b.index:1000)
+              } else if (a.cc && b.cc) {
                 return a.cc - b.cc
               } else {
                 return a.type.localeCompare(b.type)
               }
-            });
+            })
 
+            for (let ctrl=0;ctrl<6;ctrl++) {
+              const macro = (ctrl<macros.length)?macros[ctrl]:null
+              if (macro) {
+////                if (macro.type=='cc' && macro.cc) {
+//                  this.interface.setParameter(`virus.performance.part.${part-1}.control.${ctrl}`,0/*page[0][macro.cc]*/)
+////                }
+              }
+            }
             _.set(this.state,`virus.part.${part-1}.macros`,macros)
 
             virusPerformanceMacros(part)
-  /*          debug('macros %y',macros)*/
+            debug('Part #%y Macros %y',part,macros)
 
             this.writeState()
           }
@@ -237,12 +276,12 @@ class AcidMachine extends Machine {
 
             const selectControls = [253,254,255,256,257,258]
             const macroControls = [
-              [289,290,291,295,296,297],
-              [292,293,294,298,299,300],
-              [301,302,303,307,308,309],
-              [304,305,306,310,311,312],
-              [313,314,315,319,320,321],
-              [316,317,318,322,323,324],
+              [181,182,183,187,188,189],
+              [184,185,186,190,191,192],
+              [193,194,195,199,200,201],
+              [196,197,198,202,203,204],
+              [205,206,207,211,212,213],
+              [208,209,210,214,215,216],
             ]
             let json
             if (i<macros.length) {
@@ -268,7 +307,7 @@ class AcidMachine extends Machine {
     const virusMixerSelect = (part) => (elementPath, origin) => {
       debug('Parameter Side Effect virusMixerSelect(%d): %y (from %y)', part, elementPath, origin)
       if (part>=1 && part<=16) {
-        Bacara.event.emit('change', 'virus-ti', part, 'select', null, origin, path.basename(__filename, '.js'))
+        bacaraEmit('virus-ti', part, 'select', null, origin)
       }
     }
 
@@ -822,7 +861,7 @@ class AcidMachine extends Machine {
         Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, 'bankChange-virus', 200)
         debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
         Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
-        Bacara.event.emit('change', 'virus-ti', part, 'bank-and-program', {bank, program}, origin, path.basename(__filename, '.js'))
+        bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
       }
     }
 
@@ -841,7 +880,7 @@ class AcidMachine extends Machine {
       debug('Parameter Side Effect virusMixerModulation(%d): %y = %y (from %y)', part, elementPath, value, origin)
       if (part>=1 && part<=16) {
         Midi.send('virus-ti', 'cc', {channel:part - 1, controller:1, value}, 'modulationChange-virus', 200)
-        Bacara.event.emit('change', 'virus-ti', part, 'modulation', value, origin, path.basename(__filename, '.js'))
+        bacaraEmit('virus-ti', part, 'modulation', value, origin)
       }
     }
 
@@ -849,7 +888,7 @@ class AcidMachine extends Machine {
       debug('Parameter Side Effect virusMixerLevel(%d): %y = %y (from %y)', part, elementPath, value, origin)
       if (part>=1 && part<=16) {
         Midi.send('virus-ti', 'cc', {channel:part - 1, controller:91, value}, 'levelChange-virus', 200)
-        Bacara.event.emit('change', 'virus-ti', part, 'level', value, origin, path.basename(__filename, '.js'))
+        bacaraEmit('virus-ti', part, 'level', value, origin)
       }
     }
 
@@ -870,7 +909,7 @@ class AcidMachine extends Machine {
           Midi.send('virus-ti', 'pitch', {channel:part - 1, value:value * 128}, 'performanceChange-virus', 200)
           break;
         }
-        Bacara.event.emit('change', 'virus-ti', part, `performanceControl#${ctrl}`, value, origin, path.basename(__filename, '.js'))
+        bacaraEmit('virus-ti', part, `performanceControl#${ctrl}`, value, origin)
       }
     }
 
@@ -1445,7 +1484,7 @@ class AcidMachine extends Machine {
     debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
     Midi.send(portName, 'program', {channel:channel - 1, number: program}, `programChange-${dev}`, 200)
     if (portName == 'virus-ti') {
-      Bacara.event.emit('change', 'virus-ti', channel, 'bank-and-program', {bank, program}, 'surface', path.basename(__filename, '.js'))
+      bacaraEmit('virus-ti', channel, 'bank-and-program', {bank, program}, 'surface')
     }
   }
 

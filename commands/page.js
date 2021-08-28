@@ -87,11 +87,26 @@ function pageSwap(name, sub, options) {
           const pageB = (parseInt(options.page[0]) < parseInt(options.page[1])) ? parseInt(options.page[1]) : parseInt(options.page[0])
           debug('swap page %y <=> %y', pageA, pageB)
           preset.name += ` - Swapped ${pageA} & ${pageB}`
-          const tmp = preset.pages[pageA - 1]
-          preset.pages[pageA - 1] = preset.pages[pageB - 1]
-          preset.pages[pageB - 1] = tmp
-          preset.pages[pageA - 1].id = pageA
-          preset.pages[pageB - 1].id = pageB
+
+          let pageAidx
+          let pageBidx
+          for (let idx=0;idx<12;idx++) {
+            if (idx<preset.pages.length) {
+              if (preset.pages[idx].id == (pageA - 1)) pageAidx = idx+1
+              if (preset.pages[idx].id == (pageB - 1)) pageBidx = idx+1
+            }
+          }
+
+          if (!pageAidx || !pageBidx) {
+            console.error(`Unknown Page (either ${pageA} or ${pageB})`)
+            process.exit(0)
+          }
+
+          const tmp = preset.pages[pageAidx - 1]
+          preset.pages[pageAidx - 1] = preset.pages[pageBidx - 1]
+          preset.pages[pageBidx - 1] = tmp
+          preset.pages[pageAidx - 1].id = pageA
+          preset.pages[pageBidx - 1].id = pageB
           for (let g in preset.groups) {
             if (preset.groups[g].pageId == pageA) {
               preset.groups[g].pageId = pageB
