@@ -103,6 +103,23 @@ class AcidMachine extends Machine {
           if (value && value.program) {
             this.interface.setParameter(`virus.mixer.part.${part-1}.program`,value.program)
           }
+          if (part == this.interface.getParameter(`virus.axyz.part`)) {
+
+            if (value && value.bank) {
+              this.interface.setParameter(`virus.axyz.bank`,value.bank)
+            }
+            if (value && value.program) {
+              this.interface.setParameter(`virus.axyz.program`,value.program)
+            }
+            this.interface.setParameter(`virus.axyz.x1`,0)
+            this.interface.setParameter(`virus.axyz.y1`,0)
+            this.interface.setParameter(`virus.axyz.x2`,0)
+            this.interface.setParameter(`virus.axyz.y2`,0)
+            this.interface.setParameter(`virus.axyz.x3`,0)
+            this.interface.setParameter(`virus.axyz.y3`,0)
+            this.interface.setParameter(`virus.axyz.x4`,0)
+            this.interface.setParameter(`virus.axyz.y4`,0)
+          }
           ['A','B'].forEach( dev => {
             const portName = this.getState(`device.${dev}.portName`)
             const channel = this.interface.getParameter(`device.${dev}.channel`, 1)
@@ -138,7 +155,7 @@ class AcidMachine extends Machine {
           }
           this.interface.setParameter(`virus.axyz.program`,0)
         }
-        virusAxyzSendBankAndProgram()
+        virusAxyzSendBankAndProgram(elementPath, 1, origin)
       }
     }
 
@@ -159,7 +176,7 @@ class AcidMachine extends Machine {
           }
           this.interface.setParameter(`virus.axyz.program`,127)
         }
-        virusAxyzSendBankAndProgram()
+        virusAxyzSendBankAndProgram(elementPath, 1, origin)
       }
     }
 
@@ -180,7 +197,7 @@ class AcidMachine extends Machine {
               bytes.slice(9+(128*3)+2, 9+(128*3)+2+128),
             ]
 
-            debug('JJ Delta: %y',(Date.now() - virusPartPatchRequestTime[part-1]))
+//            debug('JJ Delta: %y',(Date.now() - virusPartPatchRequestTime[part-1]))
             if (virusPartPatchRequestTime[part-1] && (Date.now() - virusPartPatchRequestTime[part-1]) < 1000) {
               //            if (bacaraEmitPart != part || (!bacaraEmitTime || bacaraEmitTime<(Date.now()-200))) {
               const level = page[0][91]
@@ -216,19 +233,6 @@ class AcidMachine extends Machine {
               }
             }
 
-  /*          const ctrls = [
-              page[0][1],
-              page[0][2],
-              page[0][3],
-              page[0][4],
-              page[0][6],
-              page[0][9],
-            ]
-
-            for (let ctrl=0;ctrl<6;ctrl++) {
-              this.interface.setParameter(`virus.performance.part.${part-1}.control.${ctrl}`,ctrls[ctrl])
-            }
-  */
             let macros = {}
 
             for (let s=0;s<6;s++) {
@@ -824,7 +828,7 @@ class AcidMachine extends Machine {
       Midi.send(portName, 'cc', {channel:channel - 1, controller:91, value}, 'levelChange-virus', 200)
     }
 
-    const virusAxyzSendBankAndProgram = () => {
+    const virusAxyzSendBankAndProgram = (elementPath, value, origin) => {
       const portName = 'virus-ti'
       const part = this.interface.getParameter('virus.axyz.part', 1)
       const channel = part
@@ -834,51 +838,63 @@ class AcidMachine extends Machine {
       Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, 'bankChange-virus', 200)
       debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
       Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
+      bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
+      virusPartPatchRequestTime[part-1] = Date.now()
+      Midi.send('virus-ti','sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part-1, 0xF7], `singleRequest-part-${part}`, 200)
     }
 
     const virusAxyzBank = (elementPath, value, origin) => {
       debug('Parameter Side Effect virusAxyzBank: Hello World! %y = %y (from %y)', elementPath, value, origin)
-      virusAxyzSendBankAndProgram()
+      virusAxyzSendBankAndProgram(elementPath, value, origin)
     }
 
     const virusAxyzProgram = (elementPath, value, origin) => {
       debug('Parameter Side Effect virusAxyzProgram: Hello World! %y = %y (from %y)', elementPath, value, origin)
-      virusAxyzSendBankAndProgram()
+      virusAxyzSendBankAndProgram(elementPath, value, origin)
     }
 
     const virusAxyz = (axyz) => {
       return (elementPath, value, origin) => {
-        const portName = 'virus-ti'
+        const virusPortName = 'virus-ti'
+        const electraPortName = 'electra-one-b-port-2'
         const part = this.interface.getParameter('virus.axyz.part', 1)
         const channel = part
         const val = Math.round(Interface.remap(value, -1, 1, 0, 127))
+
+        function localSend(type,payload) {
+          Midi.send(virusPortName, type, payload)
+          payload.channel = 0
+          Midi.send(electraPortName, type, payload)
+        }
+
         switch (axyz) {
         case 'x1':
-          Midi.send(portName, 'cc', {channel:channel - 1, controller:17, value:val})
-          Midi.send(portName, 'cc', {channel:channel - 1, controller:18, value:val})
+          localSend('cc', {channel:channel - 1, controller:17, value:val})
+          localSend('cc', {channel:channel - 1, controller:18, value:val})
           break
         case 'y1':
-          Midi.send(portName, 'cc', {channel:channel - 1, controller:19, value:val})
+          localSend('cc', {channel:channel - 1, controller:19, value:val})
           break
         case 'x2':
           //        debug(val)
-          Midi.send(portName, 'cc', {channel:channel - 1, controller:41, value:val})
+          localSend('cc', {channel:channel - 1, controller:40, value:val})
+          localSend('cc', {channel:channel - 1, controller:41, value:val})
           break
         case 'y2':
-          Midi.send(portName, 'cc', {channel:channel - 1, controller:42, value:val})
-          Midi.send(portName, 'cc', {channel:channel - 1, controller:43, value:val})
+          localSend('cc', {channel:channel - 1, controller:42, value:val})
+          localSend('cc', {channel:channel - 1, controller:43, value:val})
           break
         case 'x3':
-          Midi.send(portName, 'cc', {channel:channel - 1, controller:60, value:val})
+          localSend('cc', {channel:channel - 1, controller:60, value:val})
           break
         case 'y3':
-          Midi.send(portName, 'cc', {channel:channel - 1, controller:63, value:val})
+          localSend('cc', {channel:channel - 1, controller:63, value:val})
           break
         case 'x4':
-          Midi.send(portName, 'cc', {channel:channel - 1, controller:117, value:val})
+          localSend('cc', {channel:channel - 1, controller:117, value:val})
           break
         case 'y4':
-          Midi.send(portName, 'cc', {channel:channel - 1, controller:118, value:val})
+          localSend('cc', {channel:channel - 1, controller:118, value:val})
           break
         }
       }
