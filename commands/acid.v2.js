@@ -72,6 +72,7 @@ function radians(degrees) {
   return (degrees % 360) * (Math.PI / 180)
 }
 
+let virusPartPatchRequestTime = []
 
 let bacaraEmitPart
 let bacaraEmitTime
@@ -136,7 +137,9 @@ class AcidMachine extends Machine {
               bytes.slice(9+(128*3)+2, 9+(128*3)+2+128),
             ]
 
-            if (bacaraEmitPart != part || (!bacaraEmitTime || bacaraEmitTime<(Date.now()-200))) {
+            debug('JJ Delta: %y',(Date.now() - virusPartPatchRequestTime[part-1]))
+            if (virusPartPatchRequestTime[part-1] && (Date.now() - virusPartPatchRequestTime[part-1]) < 1000) {
+              //            if (bacaraEmitPart != part || (!bacaraEmitTime || bacaraEmitTime<(Date.now()-200))) {
               const level = page[0][91]
               this.interface.setParameter(`virus.mixer.part.${part-1}.level`,level)
             }
@@ -230,12 +233,14 @@ class AcidMachine extends Machine {
               }
             })
 
-            for (let ctrl=0;ctrl<6;ctrl++) {
-              const macro = (ctrl<macros.length)?macros[ctrl]:null
-              if (macro) {
-////                if (macro.type=='cc' && macro.cc) {
-//                  this.interface.setParameter(`virus.performance.part.${part-1}.control.${ctrl}`,0/*page[0][macro.cc]*/)
-////                }
+            if (virusPartPatchRequestTime[part-1] && (Date.now() - virusPartPatchRequestTime[part-1]) < 1000) {
+              for (let ctrl=0;ctrl<6;ctrl++) {
+                const macro = (ctrl<macros.length)?macros[ctrl]:null
+                if (macro) {
+                 if (macro.type=='cc' && macro.cc) {
+                   this.interface.setParameter(`virus.performance.part.${part-1}.control.${ctrl}`,page[0][macro.cc])
+                 }
+                }
               }
             }
             _.set(this.state,`virus.part.${part-1}.macros`,macros)
@@ -249,7 +254,6 @@ class AcidMachine extends Machine {
       }
     }
 
-//    Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
     const midiInput_virusTI = Midi.input('virus-ti', true)
     if (midiInput_virusTI) {
       midiInput_virusTI.on('message', (msg) => {
@@ -862,6 +866,8 @@ class AcidMachine extends Machine {
         debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
         Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
         bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
+        virusPartPatchRequestTime[part-1] = Date.now()
+        Midi.send('virus-ti','sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part-1, 0xF7], `singleRequest-part-${part}`, 200)
       }
     }
 
@@ -1439,89 +1445,22 @@ class AcidMachine extends Machine {
 
     monome.led(1 -  (stepIdx >> 3), stepIdx & 7, 1)
 */
+//    debug (_.get(this.state,`pattern.grid`))
+//    debug ('Monome: %y x %y', monome.width,monome.height)
 
     const offset = ((stepIdx<8)?0:8)
     for (let row = 0; row < monome.height; row++) {
       for (let col = 0; col < monome.width; col++) {
         let on = _.get(this.state,`pattern.grid.${row}.${col+offset}`)
         if (stepIdx == (col + offset)) on=!on
-        monome.led((monome.height-row)-1, col, on)
+        monome.led((monome.height-row)-1, col, on?1:0)
+//          debug ('Monome LED: %y,%y = %y', (monome.height-row)-1, col, on?1:0)
       }
     }
 
   }
-/*  showMonomePattern() {
-
-    for (let x = 0; x < 8; x++) {
-      for (let y = 0; y < 8; y++) {
-        monome.led(x, y, 0)
-      }
-    }
 
 
-    monome.led(1 - (stepIdx >> 3), stepIdx & 7, 1)
-
-
-
-    const pattern = this.getState('pattern')
-    const size = this.getState('size')
-    if (!pattern) {
-      return
-    }
-
-
-    const notes = []
-    pattern.tracks[0].notes.forEach( note => {
-      if (notes.indexOf(note.midi) < 0) {
-        notes.push(note.midi)
-      }
-    })
-    notes.sort()
-    notes.reverse()
-
-    notes.forEach( noteMidi => {
-      let midiNote = noteMidi
-      const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
-      const midiNoteFromBase = (midiNote + this.interface.getParameter('base', 'modulated')) % 12
-      const midiNoteBase =  midiNote - midiNoteFromBase
-      if (scaleMapping && scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
-        //                debug('scale: %s %y => %y',scaleMapping.name, midiNoteFromBase, scaleMapping.mapping[midiNoteFromBase])
-        midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
-      }
-
-      const noteMidiTransposed = midiNote + this.interface.getParameter('transpose', 'modulated')
-
-
-      const arr = [
-        {hAlign:'center', content:(this.interface.getParameter('split', 'modulated') && noteMidiTransposed <= this.interface.getParameter('split', 'modulated')) ? ((this.interface.getParameter('deviate', 'modulated') >= 50) ? deviceBColor('B') : deviceAColor('A')) : ((this.interface.getParameter('deviate', 'modulated') >= 50) ? deviceAColor('A') : deviceBColor('B')) },
-        {hAlign:'center', content:TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })}
-      ]
-      for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
-        let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
-        if (shiftedTicks < 0) {
-          shiftedTicks += 1920
-        }
-        //debug ('ticks %y  shiftedTicks %y',ticks,shiftedTicks)
-        let chNote = '  '
-        pattern.tracks[0].notes.forEach( note => {
-          if (note.midi  == noteMidi && note.ticks == shiftedTicks) {
-            const count = Math.ceil(note.durationTicks / ticksPerStep)
-            const color = this.getState('sounding')[ticks / ticksPerStep] ? (note.velocity == 1 ? accentedColor : normalColor) : disabledColor
-            const rep = count * 2 + ((count - 1) * 3)
-            chNote = {colSpan:count, content:color(' '.repeat(rep >= 0 ? rep : 0))}
-            ticks += (count - 1) * ticksPerStep
-          }
-        })
-        if (chNote) {
-          arr.push(chNote)
-        }
-      }
-      table.push(arr)
-    })
-
-    debug(table.toString())
-  }
-*/
   sendDeviceProgramChange(dev) {
     const portName = this.getState(`device.${dev}.portName`)
     const channel = this.interface.getParameter(`device.${dev}.channel`, 1)
@@ -2015,7 +1954,8 @@ function acidSequencer(name, sub, options) {
 /*  setupMidi(options)*/
 
   for (let part=1;part<=6;part++) {
-    Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part-1, 0xF7], `singleRequest-part-${part}`, 200)
+    virusPartPatchRequestTime[part-1] = Date.now()
+    Midi.send('virus-ti','sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part-1, 0xF7], `singleRequest-part-${part}`, 200)
   }
 }
 
