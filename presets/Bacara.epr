@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "Bacara",
-  "projectId": "l61QKoOd1rc4cNUe2KRs",
+  "projectId": "zDfG7f2eOvd5TzGwNMdN",
   "pages": [
     {
       "id": 1,
@@ -336,7 +336,7 @@
     {
       "id": 123,
       "pageId": 4,
-      "name": "X",
+      "name": "X Targets",
       "bounds": [
         340,
         192,
@@ -348,7 +348,7 @@
     {
       "id": 135,
       "pageId": 4,
-      "name": "Y",
+      "name": "Y Targets",
       "bounds": [
         340,
         368,
@@ -359,12 +359,6 @@
     }
   ],
   "devices": [
-    {
-      "id": 1,
-      "name": "Generic MIDI",
-      "port": 1,
-      "channel": 1
-    },
     {
       "id": 17,
       "name": "Bacara",
@@ -1732,42 +1726,42 @@
         },
         {
           "index": 136,
-          "label": "Virus AXYz X1",
+          "label": "Virus Axyz X1",
           "value": 20
         },
         {
           "index": 137,
-          "label": "Virus AXYz Y1",
+          "label": "Virus Axyz Y1",
           "value": 21
         },
         {
           "index": 138,
-          "label": "Virus AXYz X2",
+          "label": "Virus Axyz X2",
           "value": 23
         },
         {
           "index": 139,
-          "label": "Virus AXYz Y2",
+          "label": "Virus Axyz Y2",
           "value": 24
         },
         {
           "index": 140,
-          "label": "Virus AXYz X3",
+          "label": "Virus Axyz X3",
           "value": 26
         },
         {
           "index": 141,
-          "label": "Virus AXYz Y3",
+          "label": "Virus Axyz Y3",
           "value": 27
         },
         {
           "index": 142,
-          "label": "Virus AXYz X4",
+          "label": "Virus Axyz X4",
           "value": 29
         },
         {
           "index": 143,
-          "label": "Virus AXYz Y4",
+          "label": "Virus Axyz Y4",
           "value": 30
         },
         {
@@ -2537,42 +2531,42 @@
         },
         {
           "index": 136,
-          "label": "Virus AXYz X1",
+          "label": "Virus Axyz X1",
           "value": 20
         },
         {
           "index": 137,
-          "label": "Virus AXYz Y1",
+          "label": "Virus Axyz Y1",
           "value": 21
         },
         {
           "index": 138,
-          "label": "Virus AXYz X2",
+          "label": "Virus Axyz X2",
           "value": 23
         },
         {
           "index": 139,
-          "label": "Virus AXYz Y2",
+          "label": "Virus Axyz Y2",
           "value": 24
         },
         {
           "index": 140,
-          "label": "Virus AXYz X3",
+          "label": "Virus Axyz X3",
           "value": 26
         },
         {
           "index": 141,
-          "label": "Virus AXYz Y3",
+          "label": "Virus Axyz Y3",
           "value": 27
         },
         {
           "index": 142,
-          "label": "Virus AXYz X4",
+          "label": "Virus Axyz X4",
           "value": 29
         },
         {
           "index": 143,
-          "label": "Virus AXYz Y4",
+          "label": "Virus Axyz Y4",
           "value": 30
         },
         {
@@ -3307,42 +3301,42 @@
         },
         {
           "index": 136,
-          "label": "Virus AXYz X1",
+          "label": "Virus Axyz X1",
           "value": 20
         },
         {
           "index": 137,
-          "label": "Virus AXYz Y1",
+          "label": "Virus Axyz Y1",
           "value": 21
         },
         {
           "index": 138,
-          "label": "Virus AXYz X2",
+          "label": "Virus Axyz X2",
           "value": 23
         },
         {
           "index": 139,
-          "label": "Virus AXYz Y2",
+          "label": "Virus Axyz Y2",
           "value": 24
         },
         {
           "index": 140,
-          "label": "Virus AXYz X3",
+          "label": "Virus Axyz X3",
           "value": 26
         },
         {
           "index": 141,
-          "label": "Virus AXYz Y3",
+          "label": "Virus Axyz Y3",
           "value": 27
         },
         {
           "index": 142,
-          "label": "Virus AXYz X4",
+          "label": "Virus Axyz X4",
           "value": 29
         },
         {
           "index": 143,
-          "label": "Virus AXYz Y4",
+          "label": "Virus Axyz Y4",
           "value": 30
         },
         {
@@ -3467,42 +3461,42 @@
         },
         {
           "index": 9,
-          "label": "Virus AXYz X1",
+          "label": "Virus Axyz X1",
           "value": 20
         },
         {
           "index": 10,
-          "label": "Virus AXYz Y1",
+          "label": "Virus Axyz Y1",
           "value": 21
         },
         {
           "index": 11,
-          "label": "Virus AXYz X2",
+          "label": "Virus Axyz X2",
           "value": 23
         },
         {
           "index": 12,
-          "label": "Virus AXYz Y2",
+          "label": "Virus Axyz Y2",
           "value": 24
         },
         {
           "index": 13,
-          "label": "Virus AXYz X3",
+          "label": "Virus Axyz X3",
           "value": 26
         },
         {
           "index": 14,
-          "label": "Virus AXYz Y3",
+          "label": "Virus Axyz Y3",
           "value": 27
         },
         {
           "index": 15,
-          "label": "Virus AXYz X4",
+          "label": "Virus Axyz X4",
           "value": 29
         },
         {
           "index": 16,
-          "label": "Virus AXYz Y4",
+          "label": "Virus Axyz Y4",
           "value": 30
         },
         {
@@ -3752,643 +3746,648 @@
       "items": [
         {
           "index": 0,
-          "label": "osc.1.shape",
+          "label": "Off",
           "value": 0
         },
         {
           "index": 1,
-          "label": "osc.1.pulsewidth",
+          "label": "osc 1 shape",
           "value": 1
         },
         {
           "index": 2,
-          "label": "osc.1.waveSelect",
+          "label": "osc 1 pulsewidth",
           "value": 2
         },
         {
           "index": 3,
-          "label": "osc.1.semitone",
+          "label": "osc 1 waveSelect",
           "value": 3
         },
         {
           "index": 4,
-          "label": "osc.1.keyboard.tracking",
+          "label": "osc 1 semitone",
           "value": 4
         },
         {
           "index": 5,
-          "label": "osc.2.shape",
+          "label": "osc 1 keyboard tracking",
           "value": 5
         },
         {
           "index": 6,
-          "label": "osc.2.pulsewidth",
+          "label": "osc 2 shape",
           "value": 6
         },
         {
           "index": 7,
-          "label": "osc.2.waveSelect",
+          "label": "osc 2 pulsewidth",
           "value": 7
         },
         {
           "index": 8,
-          "label": "osc.2.semitone",
+          "label": "osc 2 waveSelect",
           "value": 8
         },
         {
           "index": 9,
-          "label": "osc.2.detune",
+          "label": "osc 2 semitone",
           "value": 9
         },
         {
           "index": 10,
-          "label": "osc.2.fmAmount",
+          "label": "osc 2 detune",
           "value": 10
         },
         {
           "index": 11,
-          "label": "osc.2.sync",
+          "label": "osc 2 fmAmount",
           "value": 11
         },
         {
           "index": 12,
-          "label": "osc.2.filterEnvelope",
+          "label": "osc 2 sync",
           "value": 12
         },
         {
           "index": 13,
-          "label": "osc.2.keyboard.tracking",
+          "label": "osc 2 filterEnvelope",
           "value": 13
         },
         {
           "index": 14,
-          "label": "osc.balance",
+          "label": "osc 2 keyboard tracking",
           "value": 14
         },
         {
           "index": 15,
-          "label": "osc.suboscillator.volume",
+          "label": "osc balance",
           "value": 15
         },
         {
           "index": 16,
-          "label": "osc.suboscillator.shape",
+          "label": "osc suboscillator volume",
           "value": 16
         },
         {
           "index": 17,
-          "label": "osc.oscillatorMainVolume",
+          "label": "osc suboscillator shape",
           "value": 17
         },
         {
           "index": 18,
-          "label": "osc.noiseVolume",
+          "label": "osc oscillatorMainVolume",
           "value": 18
         },
         {
           "index": 19,
-          "label": "osc.ringModulatorVolume",
+          "label": "osc noiseVolume",
           "value": 19
         },
         {
           "index": 20,
-          "label": "osc.noiseColor",
+          "label": "osc ringModulatorVolume",
           "value": 20
         },
         {
           "index": 21,
-          "label": "filter.1.cutoff",
+          "label": "osc noiseColor",
           "value": 21
         },
         {
           "index": 22,
-          "label": "filter.1.resonance",
+          "label": "filter 1 cutoff",
           "value": 22
         },
         {
           "index": 23,
-          "label": "filter.1.envelopeAmount",
+          "label": "filter 1 resonance",
           "value": 23
         },
         {
           "index": 24,
-          "label": "filter.1.keyboard.tracking",
+          "label": "filter 1 envelopeAmount",
           "value": 24
         },
         {
           "index": 25,
-          "label": "filter.1.mode",
+          "label": "filter 1 keyboard tracking",
           "value": 25
         },
         {
           "index": 26,
-          "label": "filter.2.cutoff",
+          "label": "filter 1 mode",
           "value": 26
         },
         {
           "index": 27,
-          "label": "filter.2.resonance",
+          "label": "filter 2 cutoff",
           "value": 27
         },
         {
           "index": 28,
-          "label": "filter.2.envelopeAmount",
+          "label": "filter 2 resonance",
           "value": 28
         },
         {
           "index": 29,
-          "label": "filter.2.keyboard.tracking",
+          "label": "filter 2 envelopeAmount",
           "value": 29
         },
         {
           "index": 30,
-          "label": "filter.2.mode",
+          "label": "filter 2 keyboard tracking",
           "value": 30
         },
         {
           "index": 31,
-          "label": "filter.balance",
+          "label": "filter 2 mode",
           "value": 31
         },
         {
           "index": 32,
-          "label": "filter.routing",
+          "label": "filter balance",
           "value": 32
         },
         {
           "index": 33,
-          "label": "filter.saturationCurve",
+          "label": "filter routing",
           "value": 33
         },
         {
           "index": 34,
-          "label": "filter.fmFilterEnvelope",
+          "label": "filter saturationCurve",
           "value": 34
         },
         {
           "index": 35,
-          "label": "filter.envelope.attack",
+          "label": "filter fmFilterEnvelope",
           "value": 35
         },
         {
           "index": 36,
-          "label": "filter.envelope.decay",
+          "label": "filter envelope attack",
           "value": 36
         },
         {
           "index": 37,
-          "label": "filter.envelope.sustain",
+          "label": "filter envelope decay",
           "value": 37
         },
         {
           "index": 38,
-          "label": "filter.envelope.sustain.time",
+          "label": "filter envelope sustain",
           "value": 38
         },
         {
           "index": 39,
-          "label": "filter.envelope.release",
+          "label": "filter envelope sustain time",
           "value": 39
         },
         {
           "index": 40,
-          "label": "amp.envelope.attack",
+          "label": "filter envelope release",
           "value": 40
         },
         {
           "index": 41,
-          "label": "amp.envelope.decay",
+          "label": "amp envelope attack",
           "value": 41
         },
         {
           "index": 42,
-          "label": "amp.envelope.sustain",
+          "label": "amp envelope decay",
           "value": 42
         },
         {
           "index": 43,
-          "label": "amp.envelope.sustain.time",
+          "label": "amp envelope sustain",
           "value": 43
         },
         {
           "index": 44,
-          "label": "amp.envelope.release",
+          "label": "amp envelope sustain time",
           "value": 44
         },
         {
           "index": 45,
-          "label": "voice.portamentoTime",
+          "label": "amp envelope release",
           "value": 45
         },
         {
           "index": 46,
-          "label": "voice.transpose",
+          "label": "voice portamentoTime",
           "value": 46
         },
         {
           "index": 47,
-          "label": "voice.keyboardMode",
+          "label": "voice transpose",
           "value": 47
         },
         {
           "index": 48,
-          "label": "voice.unison.mode",
+          "label": "voice keyboardMode",
           "value": 48
         },
         {
           "index": 49,
-          "label": "voice.unison.detune",
+          "label": "voice unison mode",
           "value": 49
         },
         {
           "index": 50,
-          "label": "voice.unison.spread",
+          "label": "voice unison detune",
           "value": 50
         },
         {
           "index": 51,
-          "label": "voice.unison.lfoPhase",
+          "label": "voice unison spread",
           "value": 51
         },
         {
           "index": 52,
-          "label": "mixer.part.volume",
+          "label": "voice unison lfoPhase",
           "value": 52
         },
         {
           "index": 53,
-          "label": "mixer.part.balance",
+          "label": "mixer part volume",
           "value": 53
         },
         {
           "index": 54,
-          "label": "mixer.part.pan",
+          "label": "mixer part balance",
           "value": 54
         },
         {
           "index": 55,
-          "label": "mixer.patch.volume",
+          "label": "mixer part pan",
           "value": 55
         },
         {
           "index": 56,
-          "label": "mixer.input.mode",
+          "label": "mixer patch volume",
           "value": 56
         },
         {
           "index": 57,
-          "label": "mixer.input.select",
+          "label": "mixer input mode",
           "value": 57
         },
         {
           "index": 58,
-          "label": "lfo.1.rate",
+          "label": "mixer input select",
           "value": 58
         },
         {
           "index": 59,
-          "label": "lfo.1.shape",
+          "label": "lfo 1 rate",
           "value": 59
         },
         {
           "index": 60,
-          "label": "lfo.1.envelopeMode",
+          "label": "lfo 1 shape",
           "value": 60
         },
         {
           "index": 61,
-          "label": "lfo.1.lfoMode",
+          "label": "lfo 1 envelopeMode",
           "value": 61
         },
         {
           "index": 62,
-          "label": "lfo.1.symmetry",
+          "label": "lfo 1 lfoMode",
           "value": 62
         },
         {
           "index": 63,
-          "label": "lfo.1.keyboard.tracking",
+          "label": "lfo 1 symmetry",
           "value": 63
         },
         {
           "index": 64,
-          "label": "lfo.1.keyTrigger",
+          "label": "lfo 1 keyboard tracking",
           "value": 64
         },
         {
           "index": 65,
-          "label": "lfo.1.routing.osc.1",
+          "label": "lfo 1 keyTrigger",
           "value": 65
         },
         {
           "index": 66,
-          "label": "lfo.1.routing.osc.2",
+          "label": "lfo 1 routing osc 1",
           "value": 66
         },
         {
           "index": 67,
-          "label": "lfo.1.routing.pulsewidth",
+          "label": "lfo 1 routing osc 2",
           "value": 67
         },
         {
           "index": 68,
-          "label": "lfo.1.routing.resonance",
+          "label": "lfo 1 routing pulsewidth",
           "value": 68
         },
         {
           "index": 69,
-          "label": "lfo.1.routing.filterGain",
+          "label": "lfo 1 routing resonance",
           "value": 69
         },
         {
           "index": 70,
-          "label": "lfo.2.rate",
+          "label": "lfo 1 routing filterGain",
           "value": 70
         },
         {
           "index": 71,
-          "label": "lfo.2.shape",
+          "label": "lfo 2 rate",
           "value": 71
         },
         {
           "index": 72,
-          "label": "lfo.2.envelopeMode",
+          "label": "lfo 2 shape",
           "value": 72
         },
         {
           "index": 73,
-          "label": "lfo.2.lfoMode",
+          "label": "lfo 2 envelopeMode",
           "value": 73
         },
         {
           "index": 74,
-          "label": "lfo.2.symmetry",
+          "label": "lfo 2 lfoMode",
           "value": 74
         },
         {
           "index": 75,
-          "label": "lfo.2.keyboard.tracking",
+          "label": "lfo 2 symmetry",
           "value": 75
         },
         {
           "index": 76,
-          "label": "lfo.2.keyTrigger",
+          "label": "lfo 2 keyboard tracking",
           "value": 76
         },
         {
           "index": 77,
-          "label": "lfo.2.routing.oscillatorShape",
+          "label": "lfo 2 keyTrigger",
           "value": 77
         },
         {
           "index": 78,
-          "label": "lfo.2.routing.fmAmount",
+          "label": "lfo 2 routing oscillatorShape",
           "value": 78
         },
         {
           "index": 79,
-          "label": "lfo.2.routing.filert.1.cutoff",
+          "label": "lfo 2 routing fmAmount",
           "value": 79
         },
         {
           "index": 80,
-          "label": "lfo.2.routing.filert.2.cutoff",
+          "label": "lfo 2 routing filert 1 cutoff",
           "value": 80
         },
         {
           "index": 81,
-          "label": "lfo.2.routing.pan",
+          "label": "lfo 2 routing filert 2 cutoff",
           "value": 81
         },
         {
           "index": 82,
-          "label": "fx.chorus.mix",
+          "label": "lfo 2 routing pan",
           "value": 82
         },
         {
           "index": 83,
-          "label": "fx.chorus.rate",
+          "label": "fx chorus mix",
           "value": 83
         },
         {
           "index": 84,
-          "label": "fx.chorus.depth",
+          "label": "fx chorus rate",
           "value": 84
         },
         {
           "index": 85,
-          "label": "fx.chorus.delay",
+          "label": "fx chorus depth",
           "value": 85
         },
         {
           "index": 86,
-          "label": "fx.chorus.feedback",
+          "label": "fx chorus delay",
           "value": 86
         },
         {
           "index": 87,
-          "label": "fx.chorus.lfoShape",
+          "label": "fx chorus feedback",
           "value": 87
         },
         {
           "index": 88,
-          "label": "fx.delay.time",
+          "label": "fx chorus lfoShape",
           "value": 88
         },
         {
           "index": 89,
-          "label": "fx.delay.feedback",
+          "label": "fx delay time",
           "value": 89
         },
         {
           "index": 90,
-          "label": "fx.delay.rate",
+          "label": "fx delay feedback",
           "value": 90
         },
         {
           "index": 91,
-          "label": "fx.delay.depth",
+          "label": "fx delay rate",
           "value": 91
         },
         {
           "index": 92,
-          "label": "fx.delay.lfoShape",
+          "label": "fx delay depth",
           "value": 92
         },
         {
           "index": 93,
-          "label": "fx.delay.color",
+          "label": "fx delay lfoShape",
           "value": 93
         },
         {
           "index": 94,
-          "label": "fx.reverb.decay",
+          "label": "fx delay color",
           "value": 94
         },
         {
           "index": 95,
-          "label": "fx.reverb.size",
+          "label": "fx reverb decay",
           "value": 95
         },
         {
           "index": 96,
-          "label": "fx.reverb.damping",
+          "label": "fx reverb size",
           "value": 96
         },
         {
           "index": 97,
-          "label": "fx.mode",
+          "label": "fx reverb damping",
           "value": 97
         },
         {
           "index": 98,
-          "label": "fx.send",
+          "label": "fx mode",
           "value": 98
         },
         {
           "index": 99,
-          "label": "controller.3",
+          "label": "fx send",
           "value": 99
         },
         {
           "index": 100,
-          "label": "controller.9",
+          "label": "controller 3",
           "value": 100
         },
         {
           "index": 101,
-          "label": "controller.12",
+          "label": "controller 9",
           "value": 101
         },
         {
           "index": 102,
-          "label": "controller.13",
+          "label": "controller 12",
           "value": 102
         },
         {
           "index": 103,
-          "label": "controller.14",
+          "label": "controller 13",
           "value": 103
         },
         {
           "index": 104,
-          "label": "controller.15",
+          "label": "controller 14",
           "value": 104
         },
         {
           "index": 105,
-          "label": "controller.16",
+          "label": "controller 15",
           "value": 105
         },
         {
           "index": 106,
-          "label": "controller.50",
+          "label": "controller 16",
           "value": 106
         },
         {
           "index": 107,
-          "label": "controller.92",
+          "label": "controller 50",
           "value": 107
         },
         {
           "index": 108,
-          "label": "controller.95",
+          "label": "controller 92",
           "value": 108
         },
         {
           "index": 109,
-          "label": "controller.96",
+          "label": "controller 95",
           "value": 109
         },
         {
           "index": 110,
-          "label": "controller.103",
+          "label": "controller 96",
           "value": 110
         },
         {
           "index": 111,
-          "label": "controller.104",
+          "label": "controller 103",
           "value": 111
         },
         {
           "index": 112,
-          "label": "controller.111",
+          "label": "controller 104",
           "value": 112
         },
         {
           "index": 113,
-          "label": "controller.120",
+          "label": "controller 111",
           "value": 113
         },
         {
           "index": 114,
-          "label": "controller.121",
+          "label": "controller 120",
           "value": 114
         },
         {
           "index": 115,
-          "label": "controller.124",
+          "label": "controller 121",
           "value": 115
         },
         {
           "index": 116,
-          "label": "controller.125",
+          "label": "controller 124",
           "value": 116
         },
         {
           "index": 117,
-          "label": "controller.126",
+          "label": "controller 125",
           "value": 117
         },
         {
           "index": 118,
-          "label": "controller.127",
+          "label": "controller 126",
           "value": 118
         },
         {
           "index": 119,
-          "label": "controller.breath",
+          "label": "controller 127",
           "value": 119
         },
         {
           "index": 120,
-          "label": "controller.expression",
+          "label": "controller breath",
           "value": 120
         },
         {
           "index": 121,
-          "label": "controller.foot",
+          "label": "controller expression",
           "value": 121
         },
         {
           "index": 122,
-          "label": "controller.holdPedal",
+          "label": "controller foot",
           "value": 122
         },
         {
           "index": 123,
-          "label": "controller.modulation",
+          "label": "controller holdPedal",
           "value": 123
         },
         {
           "index": 124,
-          "label": "controller.portamentoPedal",
+          "label": "controller modulation",
           "value": 124
         },
         {
           "index": 125,
-          "label": "controller.sostenutoPedal",
+          "label": "controller portamentoPedal",
           "value": 125
         },
         {
           "index": 126,
-          "label": "misc.allNotesOff",
+          "label": "controller sostenutoPedal",
           "value": 126
         },
         {
           "index": 127,
-          "label": "misc.keyboard",
+          "label": "misc allNotesOff",
           "value": 127
+        },
+        {
+          "index": 128,
+          "label": "misc keyboard",
+          "value": 128
         }
       ]
     }
@@ -7566,8 +7565,9 @@
     {
       "id": 109,
       "type": "fader",
+      "visible": true,
       "name": "PART",
-      "color": "FFFFFF",
+      "color": "F49500",
       "bounds": [
         0,
         40,
@@ -7584,18 +7584,54 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14849,
+            "parameterNumber": 14848,
             "min": 0,
             "max": 15
           },
           "min": 1,
           "max": 16,
-          "defaultValue": 1,
-          "id": "value"
+          "defaultValue": 1
+        }
+      ]
+    },
+    {
+      "id": 110,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "SELECT",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        40,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 14849,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
         }
       ]
     },
@@ -7745,10 +7781,11 @@
     },
     {
       "id": 115,
-      "type": "fader",
+      "type": "pad",
+      "mode": "momentary",
       "visible": true,
-      "name": "LEVEL",
-      "color": "FFFFFF",
+      "name": "RESET",
+      "color": "F49500",
       "bounds": [
         0,
         128,
@@ -7760,6 +7797,41 @@
       "inputs": [
         {
           "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 14855,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ]
+    },
+    {
+      "id": 116,
+      "type": "fader",
+      "visible": true,
+      "name": "LEVEL",
+      "color": "FFFFFF",
+      "bounds": [
+        170,
+        128,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 8,
           "valueId": "value"
         }
       ],
@@ -7922,13 +7994,13 @@
       ]
     },
     {
-      "id": 121,
+      "id": 122,
       "type": "fader",
       "visible": true,
       "name": "BANK",
       "color": "FFFFFF",
       "bounds": [
-        0,
+        170,
         216,
         146,
         56
@@ -7937,7 +8009,7 @@
       "controlSetId": 2,
       "inputs": [
         {
-          "potId": 1,
+          "potId": 2,
           "valueId": "value"
         }
       ],
@@ -7960,7 +8032,7 @@
       "id": 123,
       "type": "list",
       "visible": true,
-      "name": "X1 TARGET 1",
+      "name": "X1 A",
       "color": "F45C51",
       "bounds": [
         340,
@@ -7978,14 +8050,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 15362
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
@@ -7993,7 +8065,7 @@
       "id": 124,
       "type": "list",
       "visible": true,
-      "name": "X2 TARGET 1",
+      "name": "X2 A",
       "color": "03A598",
       "bounds": [
         510,
@@ -8011,14 +8083,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 15618
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
@@ -8026,7 +8098,7 @@
       "id": 125,
       "type": "list",
       "visible": true,
-      "name": "X3 TARGET 1",
+      "name": "X3 A",
       "color": "529DEC",
       "bounds": [
         680,
@@ -8044,14 +8116,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 15874
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
@@ -8059,7 +8131,7 @@
       "id": 126,
       "type": "list",
       "visible": true,
-      "name": "X4 TARGET 1",
+      "name": "X4 A",
       "color": "C44795",
       "bounds": [
         850,
@@ -8077,25 +8149,25 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 16130
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
     {
-      "id": 127,
+      "id": 128,
       "type": "fader",
       "visible": true,
       "name": "PROGRAM",
       "color": "FFFFFF",
       "bounds": [
-        0,
+        170,
         304,
         146,
         56
@@ -8104,7 +8176,7 @@
       "controlSetId": 2,
       "inputs": [
         {
-          "potId": 7,
+          "potId": 8,
           "valueId": "value"
         }
       ],
@@ -8126,7 +8198,7 @@
       "id": 129,
       "type": "list",
       "visible": true,
-      "name": "X1 TARGET 2",
+      "name": "X1 B",
       "color": "F45C51",
       "bounds": [
         340,
@@ -8144,14 +8216,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 15363
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
@@ -8159,7 +8231,7 @@
       "id": 130,
       "type": "list",
       "visible": true,
-      "name": "X2 TARGET 2",
+      "name": "X2 B",
       "color": "03A598",
       "bounds": [
         510,
@@ -8177,14 +8249,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 15619
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
@@ -8192,7 +8264,7 @@
       "id": 131,
       "type": "list",
       "visible": true,
-      "name": "X3 TARGET 2",
+      "name": "X3 B",
       "color": "529DEC",
       "bounds": [
         680,
@@ -8210,14 +8282,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 15875
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
@@ -8225,7 +8297,7 @@
       "id": 132,
       "type": "list",
       "visible": true,
-      "name": "X4 TARGET 2",
+      "name": "X4 B",
       "color": "C44795",
       "bounds": [
         850,
@@ -8243,26 +8315,26 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 16131
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
     {
-      "id": 133,
+      "id": 134,
       "type": "pad",
       "mode": "momentary",
       "visible": true,
       "name": "NEXT",
       "color": "FFFFFF",
       "bounds": [
-        0,
+        170,
         392,
         146,
         56
@@ -8271,7 +8343,7 @@
       "controlSetId": 3,
       "inputs": [
         {
-          "potId": 1,
+          "potId": 2,
           "valueId": "value"
         }
       ],
@@ -8294,7 +8366,7 @@
       "id": 135,
       "type": "list",
       "visible": true,
-      "name": "Y1 TARGET 1",
+      "name": "Y1 A",
       "color": "F45C51",
       "bounds": [
         340,
@@ -8312,14 +8384,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 15490
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
@@ -8327,7 +8399,7 @@
       "id": 136,
       "type": "list",
       "visible": true,
-      "name": "Y2 TARGET 1",
+      "name": "Y2 A",
       "color": "03A598",
       "bounds": [
         510,
@@ -8345,14 +8417,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 15746
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
@@ -8360,7 +8432,7 @@
       "id": 137,
       "type": "list",
       "visible": true,
-      "name": "Y3 TARGET 1",
+      "name": "Y3 A",
       "color": "529DEC",
       "bounds": [
         680,
@@ -8378,14 +8450,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 16002
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
@@ -8393,7 +8465,7 @@
       "id": 138,
       "type": "list",
       "visible": true,
-      "name": "Y4 TARGET 1",
+      "name": "Y4 A",
       "color": "C44795",
       "bounds": [
         850,
@@ -8411,26 +8483,26 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 16258
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
     {
-      "id": 139,
+      "id": 140,
       "type": "pad",
       "mode": "momentary",
       "visible": true,
       "name": "PREVIOUS",
       "color": "FFFFFF",
       "bounds": [
-        0,
+        170,
         480,
         146,
         56
@@ -8439,7 +8511,7 @@
       "controlSetId": 3,
       "inputs": [
         {
-          "potId": 7,
+          "potId": 8,
           "valueId": "value"
         }
       ],
@@ -8462,7 +8534,7 @@
       "id": 141,
       "type": "list",
       "visible": true,
-      "name": "Y1 TARGET 2",
+      "name": "Y1 B",
       "color": "F45C51",
       "bounds": [
         340,
@@ -8480,14 +8552,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 15491
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
@@ -8495,7 +8567,7 @@
       "id": 142,
       "type": "list",
       "visible": true,
-      "name": "Y2 TARGET 2",
+      "name": "Y2 B",
       "color": "03A598",
       "bounds": [
         510,
@@ -8513,14 +8585,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 15747
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
@@ -8528,7 +8600,7 @@
       "id": 143,
       "type": "list",
       "visible": true,
-      "name": "Y3 TARGET 2",
+      "name": "Y3 B",
       "color": "529DEC",
       "bounds": [
         680,
@@ -8546,14 +8618,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 16003
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
@@ -8561,7 +8633,7 @@
       "id": 144,
       "type": "list",
       "visible": true,
-      "name": "Y4 TARGET 2",
+      "name": "Y4 B",
       "color": "C44795",
       "bounds": [
         850,
@@ -8579,14 +8651,14 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 16259
           },
-          "overlayId": 16,
-          "id": "value"
+          "overlayId": 16
         }
       ]
     },
@@ -9856,15 +9928,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 129,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -9890,15 +9962,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 130,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -9924,15 +9996,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 131,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -9958,15 +10030,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 135,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -9992,15 +10064,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 136,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10026,15 +10098,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 137,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10060,15 +10132,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 132,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10094,15 +10166,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 133,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10128,15 +10200,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 134,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10162,15 +10234,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 138,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10196,15 +10268,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 139,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10230,15 +10302,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 140,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10264,15 +10336,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 141,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10298,15 +10370,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 142,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10332,15 +10404,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 143,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10366,15 +10438,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 147,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10400,15 +10472,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 148,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10434,15 +10506,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 149,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10468,15 +10540,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 144,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10502,15 +10574,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 145,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10536,15 +10608,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 146,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10570,15 +10642,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 150,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10604,15 +10676,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 151,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10638,15 +10710,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 152,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10672,15 +10744,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 153,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10706,15 +10778,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 154,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10740,15 +10812,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 155,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10774,15 +10846,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 159,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10808,15 +10880,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 160,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10842,15 +10914,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 161,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10876,15 +10948,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 156,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10910,15 +10982,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 157,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10944,15 +11016,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 158,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -10978,15 +11050,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 162,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -11012,15 +11084,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 163,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },
@@ -11046,15 +11118,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
             "parameterNumber": 164,
             "min": 0,
-            "max": 127
-          },
-          "id": "value"
+            "max": 16383
+          }
         }
       ]
     },

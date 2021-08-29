@@ -294,9 +294,10 @@ function setupMidi(options) {
                 Midi.send(electraOnePortName, 'cc', {channel:electraOneMidiChannel, controller:0, value:value.bank})
                 Midi.send(electraOnePortName, 'program', {channel: electraOneMidiChannel, number: value.program }, 'programChange', sendProgramChangeTimeoutTime)
 //                Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
-              }
-              if (name == 'level') {
+              } else if (name == 'level') {
                 Midi.send(electraOnePortName, 'cc', {channel:electraOneMidiChannel, controller:91, value:value})
+              } else if (name == 'cc') {
+                Midi.send(electraOnePortName, 'cc', {channel:electraOneMidiChannel, controller:value.controller, value:value.value})
               }
             } else {
               debug('Part change (to %y), Single Request back', part)

@@ -36,8 +36,10 @@ const euclideanRhythms = require('euclidean-rhythms')
 const scaleMappings = require('../extra/scales/scales.json')
 
 const chalk = require('chalk')
-const { knownDeviceCCs } = require('../lib/devices')
+const { devices, knownDeviceCCs } = require('../lib/devices')
 const deviceCCs = knownDeviceCCs()
+
+
 
 const phaseDetection = true
 const tableParameters = ['transpose', 'density', 'muteSteps', 'muteShift', 'scales', 'base', 'split', 'deviate', 'shift']
@@ -111,14 +113,7 @@ class AcidMachine extends Machine {
             if (value && value.program) {
               this.interface.setParameter(`virus.axyz.program`,value.program)
             }
-            this.interface.setParameter(`virus.axyz.x1`,0)
-            this.interface.setParameter(`virus.axyz.y1`,0)
-            this.interface.setParameter(`virus.axyz.x2`,0)
-            this.interface.setParameter(`virus.axyz.y2`,0)
-            this.interface.setParameter(`virus.axyz.x3`,0)
-            this.interface.setParameter(`virus.axyz.y3`,0)
-            this.interface.setParameter(`virus.axyz.x4`,0)
-            this.interface.setParameter(`virus.axyz.y4`,0)
+            virusAxyzResetSend()
           }
           ['A','B'].forEach( dev => {
             const portName = this.getState(`device.${dev}.portName`)
@@ -139,8 +134,32 @@ class AcidMachine extends Machine {
       }
     })
 
+    const virusAxyzResetSend = () => {
+      this.interface.setParameter(`virus.axyz.x1.control`,0)
+      this.interface.setParameter(`virus.axyz.y1.control`,0)
+      this.interface.setParameter(`virus.axyz.x2.control`,0)
+      this.interface.setParameter(`virus.axyz.y2.control`,0)
+      this.interface.setParameter(`virus.axyz.x3.control`,0)
+      this.interface.setParameter(`virus.axyz.y3.control`,0)
+      this.interface.setParameter(`virus.axyz.x4.control`,0)
+      this.interface.setParameter(`virus.axyz.y4.control`,0)
+    }
+    virusAxyzResetSend()
+
+    const virusAxyzReset = (elementPath, origin) => {
+      virusAxyzResetSend()
+    }
+
+    const virusAxyzSelect = (elementPath, origin) => {
+      const part = this.interface.getParameter('virus.axyz.part', 1)
+      if (part>=1 && part<=16) {
+        bacaraEmit('virus-ti', part, 'select', null, origin)
+      }
+    }
+
+
+
     const virusAxyzNext = (elementPath, origin) => {
-      debug('Parameter Side Effect virusAxyzNext: %y (from %y)', elementPath, origin)
       const part = this.interface.getParameter('virus.axyz.part', 1)
       if (part>=1 && part<=16) {
         const bank = this.interface.getParameter(`virus.axyz.bank`)
@@ -161,7 +180,6 @@ class AcidMachine extends Machine {
 
 
     const virusAxyzPrevious = (elementPath, origin) => {
-      debug('Parameter Side Effect virusAxyzPrevious: %y (from %y)', elementPath, origin)
       const part = this.interface.getParameter('virus.axyz.part', 1)
       if (part>=1 && part<=16) {
         const bank = this.interface.getParameter(`virus.axyz.bank`)
@@ -285,14 +303,14 @@ class AcidMachine extends Machine {
                 const macro = (ctrl<macros.length)?macros[ctrl]:null
                 if (macro) {
                  if (macro.type=='cc' && macro.cc) {
-                   this.interface.setParameter(`virus.performance.part.${part-1}.control.${ctrl}`,page[0][macro.cc])
+                   this.interface.setParameter(`virus.macros.part.${part-1}.control.${ctrl}`,page[0][macro.cc])
                  }
                 }
               }
             }
             _.set(this.state,`virus.part.${part-1}.macros`,macros)
 
-            virusPerformanceMacros(part)
+            virusMacros(part)
 /*            debug('Part #%y Macros %y',part,macros)*/
 
             this.writeState()
@@ -319,7 +337,7 @@ class AcidMachine extends Machine {
 
     this.state.sounding = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
-    const virusPerformanceMacros = (part) => {
+    const virusMacros = (part) => {
       if (electraBacaraPresetLoaded) {
         if (part>=1 && part<=6) {
           const macros = _.get(this.state,`virus.part.${part-1}.macros`,[])
@@ -356,14 +374,12 @@ class AcidMachine extends Machine {
     }
 
     const virusMixerSelect = (part) => (elementPath, origin) => {
-      debug('Parameter Side Effect virusMixerSelect(%d): %y (from %y)', part, elementPath, origin)
       if (part>=1 && part<=16) {
         bacaraEmit('virus-ti', part, 'select', null, origin)
       }
     }
 
     const virusMixerNext = (part) => (elementPath, origin) => {
-      debug('Parameter Side Effect virusMixerNext(%d): %y (from %y)', part, elementPath, origin)
       if (part>=1 && part<=16) {
         const bank = this.interface.getParameter(`virus.mixer.part.${part-1}.bank`)
         const program = this.interface.getParameter(`virus.mixer.part.${part-1}.program`)
@@ -382,7 +398,6 @@ class AcidMachine extends Machine {
     }
 
     const virusMixerPrevious = (part) => (elementPath, origin) => {
-      debug('Parameter Side Effect virusMixerPrevious(%d): %y (from %y)', part, elementPath, origin)
       if (part>=1 && part<=16) {
         const bank = this.interface.getParameter(`virus.mixer.part.${part-1}.bank`)
         const program = this.interface.getParameter(`virus.mixer.part.${part-1}.program`)
@@ -534,6 +549,8 @@ class AcidMachine extends Machine {
       },
       virus: {
         axyz: {
+          reset: virusAxyzReset,
+          select: virusAxyzSelect,
           next: virusAxyzNext,
           previous: virusAxyzPrevious,
         },
@@ -814,11 +831,10 @@ class AcidMachine extends Machine {
     }
 
     const virusAxyzPart = (elementPath, value, origin) => {
-      debug('Parameter Side Effect virusAxyzPart: Hello World! %y = %y (from %y)', elementPath, value, origin)
+      virusAxyzResetSend()
     }
 
     const virusAxyzLevel = (elementPath, value, origin) => {
-      debug('Parameter Side Effect virusAxyzLevel: Hello World! %y = %y (from %y)', elementPath, value, origin)
       const portName = 'virus-ti'
       const part = this.interface.getParameter('virus.axyz.part', 1)
       const channel = part
@@ -844,16 +860,14 @@ class AcidMachine extends Machine {
     }
 
     const virusAxyzBank = (elementPath, value, origin) => {
-      debug('Parameter Side Effect virusAxyzBank: Hello World! %y = %y (from %y)', elementPath, value, origin)
       virusAxyzSendBankAndProgram(elementPath, value, origin)
     }
 
     const virusAxyzProgram = (elementPath, value, origin) => {
-      debug('Parameter Side Effect virusAxyzProgram: Hello World! %y = %y (from %y)', elementPath, value, origin)
       virusAxyzSendBankAndProgram(elementPath, value, origin)
     }
 
-    const virusAxyz = (axyz) => {
+    const virusAxyzControl = (axyz) => {
       return (elementPath, value, origin) => {
         const virusPortName = 'virus-ti'
         const electraPortName = 'electra-one-b-port-2'
@@ -861,41 +875,31 @@ class AcidMachine extends Machine {
         const channel = part
         const val = Math.round(Interface.remap(value, -1, 1, 0, 127))
 
-        function localSend(type,payload) {
-          Midi.send(virusPortName, type, payload)
-          payload.channel = 0
-          Midi.send(electraPortName, type, payload)
-        }
+        const list = devices['virus-ti'].flatList
+        for (let t=0;t<2;t++) {
+          const trgt = this.interface.getParameter(`virus.axyz.${axyz}.target.${t}`)
+          if (trgt) {
+            const idx = trgt - 1
+  //          debug('Axyz %y Target %y = %y %y %y',axyz,idx,idx,list[idx],_.get(devices['virus-ti'].parameters,list[idx]))
 
-        switch (axyz) {
-        case 'x1':
-          localSend('cc', {channel:channel - 1, controller:17, value:val})
-          localSend('cc', {channel:channel - 1, controller:18, value:val})
-          break
-        case 'y1':
-          localSend('cc', {channel:channel - 1, controller:19, value:val})
-          break
-        case 'x2':
-          //        debug(val)
-          localSend('cc', {channel:channel - 1, controller:40, value:val})
-          localSend('cc', {channel:channel - 1, controller:41, value:val})
-          break
-        case 'y2':
-          localSend('cc', {channel:channel - 1, controller:42, value:val})
-          localSend('cc', {channel:channel - 1, controller:43, value:val})
-          break
-        case 'x3':
-          localSend('cc', {channel:channel - 1, controller:60, value:val})
-          break
-        case 'y3':
-          localSend('cc', {channel:channel - 1, controller:63, value:val})
-          break
-        case 'x4':
-          localSend('cc', {channel:channel - 1, controller:117, value:val})
-          break
-        case 'y4':
-          localSend('cc', {channel:channel - 1, controller:118, value:val})
-          break
+            const parameter = _.get(devices['virus-ti'].parameters,list[idx])
+
+            if (parameter && parameter.cc) {
+//              debug('Axyz %y T %d CC %y',axyz,t,parameter.cc)
+              Midi.send(virusPortName, 'cc', {channel:channel - 1, controller:parameter.cc, value:val})
+              Bacara.event.emit('change', virusPortName, part, 'cc', {controller:parameter.cc, value:val}, origin, path.basename(__filename, '.js'))
+            }
+          }
+        }
+      }
+    }
+
+    const virusAxyzTarget = (axyz,trgt) => {
+      return (elementPath, value, origin) => {
+        if (value) {
+          const idx=value - 1
+          const list = devices['virus-ti'].flatList
+          debug('Axyz %y Target %y = %y %y %y',axyz,trgt,idx,list[idx],_.get(devices['virus-ti'].parameters,list[idx]))
         }
       }
     }
@@ -918,49 +922,41 @@ class AcidMachine extends Machine {
 
 
     const virusMixerBank = (part) => (elementPath, value, origin) => {
-      debug('Parameter Side Effect virusMixerBank(%d): %y = %y (from %y)', part, elementPath, value, origin)
       virusMixerSendBankAndProgram(part,origin)
     }
 
     const virusMixerProgram = (part) => (elementPath, value, origin) => {
-      debug('Parameter Side Effect virusMixerProgram(%d): %y = %y (from %y)', part, elementPath, value, origin)
       virusMixerSendBankAndProgram(part,origin)
     }
 
-    const virusMixerModulation = (part) => (elementPath, value, origin) => {
-      debug('Parameter Side Effect virusMixerModulation(%d): %y = %y (from %y)', part, elementPath, value, origin)
-      if (part>=1 && part<=16) {
-        Midi.send('virus-ti', 'cc', {channel:part - 1, controller:1, value}, 'modulationChange-virus', 200)
-        bacaraEmit('virus-ti', part, 'modulation', value, origin)
-      }
-    }
-
     const virusMixerLevel = (part) => (elementPath, value, origin) => {
-      debug('Parameter Side Effect virusMixerLevel(%d): %y = %y (from %y)', part, elementPath, value, origin)
       if (part>=1 && part<=16) {
         Midi.send('virus-ti', 'cc', {channel:part - 1, controller:91, value}, 'levelChange-virus', 200)
         bacaraEmit('virus-ti', part, 'level', value, origin)
       }
     }
 
-    const virusPerformanceControl= (part, ctrl) => (elementPath, value, origin) => {
+    const virusMacroControl= (part, ctrl) => (elementPath, value, origin) => {
       if (part>=1 && part<=16) {
         const type = _.get(this.state,`virus.part.${part-1}.macros.${ctrl-1}.type`)
+        let val = value
         switch (type) {
         case 'cc':
           const controller = _.get(this.state,`virus.part.${part-1}.macros.${ctrl-1}.cc`)
           if (controller) {
-            Midi.send('virus-ti', 'cc', {channel:part - 1, controller, value}, 'performanceChange-virus', 200)
+            val = Math.round(Interface.remap(value, 0, 16383, 0, 127))
+            Midi.send('virus-ti', 'cc', {channel:part - 1, controller, value:val}, 'macrosChange-virus', 200)
           }
           break
         case 'pressure':
-          Midi.send('virus-ti', 'channel aftertouch', {channel:part - 1, pressure:value}, 'performanceChange-virus', 200)
+          val = Math.round(Interface.remap(value, 0, 16383, 0, 127))
+          Midi.send('virus-ti', 'channel aftertouch', {channel:part - 1, pressure:val}, 'macrosChange-virus', 200)
           break;
         case 'pitch':
-          Midi.send('virus-ti', 'pitch', {channel:part - 1, value:value * 128}, 'performanceChange-virus', 200)
+          Midi.send('virus-ti', 'pitch', {channel:part - 1, value:value}, 'macrosChange-virus', 200)
           break;
         }
-        bacaraEmit('virus-ti', part, `performanceControl#${ctrl}`, value, origin)
+        bacaraEmit('virus-ti', part, `macrosControl#${ctrl}`, val, origin)
       }
     }
 
@@ -1157,63 +1153,57 @@ class AcidMachine extends Machine {
           level: virusAxyzLevel,
           bank: virusAxyzBank,
           program: virusAxyzProgram,
-          x1: virusAxyz('x1'),
-          y1: virusAxyz('y1'),
-          x2: virusAxyz('x2'),
-          y2: virusAxyz('y2'),
-          x3: virusAxyz('x3'),
-          y3: virusAxyz('y3'),
-          x4: virusAxyz('x4'),
-          y4: virusAxyz('y4'),
+          x1: { control:virusAxyzControl('x1'), target: [virusAxyzTarget('x1',1),virusAxyzTarget('x1',2)] },
+          y1: { control:virusAxyzControl('y1'), target: [virusAxyzTarget('y1',1),virusAxyzTarget('y1',2)] },
+          x2: { control:virusAxyzControl('x2'), target: [virusAxyzTarget('x2',1),virusAxyzTarget('x2',2)] },
+          y2: { control:virusAxyzControl('y2'), target: [virusAxyzTarget('y2',1),virusAxyzTarget('y2',2)] },
+          x3: { control:virusAxyzControl('x3'), target: [virusAxyzTarget('x3',1),virusAxyzTarget('x3',2)] },
+          y3: { control:virusAxyzControl('y3'), target: [virusAxyzTarget('y3',1),virusAxyzTarget('y3',2)] },
+          x4: { control:virusAxyzControl('x4'), target: [virusAxyzTarget('x4',1),virusAxyzTarget('x4',2)] },
+          y4: { control:virusAxyzControl('y4'), target: [virusAxyzTarget('y4',1),virusAxyzTarget('y4',2)] },
         },
         mixer: {
           part: [
             {
               bank: virusMixerBank(1),
               program: virusMixerProgram(1),
-              modulation: virusMixerModulation(1),
               level: virusMixerLevel(1),
             },
             {
               bank: virusMixerBank(2),
               program: virusMixerProgram(2),
-              modulation: virusMixerModulation(2),
               level: virusMixerLevel(2),
             },
             {
               bank: virusMixerBank(3),
               program: virusMixerProgram(3),
-              modulation: virusMixerModulation(3),
               level: virusMixerLevel(3),
             },
             {
               bank: virusMixerBank(4),
               program: virusMixerProgram(4),
-              modulation: virusMixerModulation(4),
               level: virusMixerLevel(4),
             },
             {
               bank: virusMixerBank(5),
               program: virusMixerProgram(5),
-              modulation: virusMixerModulation(5),
               level: virusMixerLevel(5),
             },
             {
               bank: virusMixerBank(6),
               program: virusMixerProgram(6),
-              modulation: virusMixerModulation(6),
               level: virusMixerLevel(6),
             },
           ],
         },
-        performance: {
+        macros: {
           part: [
-            { control: [ virusPerformanceControl(1,1), virusPerformanceControl(1,2), virusPerformanceControl(1,3), virusPerformanceControl(1,4), virusPerformanceControl(1,5), virusPerformanceControl(1,6) ] },
-            { control: [ virusPerformanceControl(2,1), virusPerformanceControl(2,2), virusPerformanceControl(2,3), virusPerformanceControl(2,4), virusPerformanceControl(2,5), virusPerformanceControl(2,6) ] },
-            { control: [ virusPerformanceControl(3,1), virusPerformanceControl(3,2), virusPerformanceControl(3,3), virusPerformanceControl(3,4), virusPerformanceControl(3,5), virusPerformanceControl(3,6) ] },
-            { control: [ virusPerformanceControl(4,1), virusPerformanceControl(4,2), virusPerformanceControl(4,3), virusPerformanceControl(4,4), virusPerformanceControl(4,5), virusPerformanceControl(4,6) ] },
-            { control: [ virusPerformanceControl(5,1), virusPerformanceControl(5,2), virusPerformanceControl(5,3), virusPerformanceControl(5,4), virusPerformanceControl(5,5), virusPerformanceControl(5,6) ] },
-            { control: [ virusPerformanceControl(6,1), virusPerformanceControl(6,2), virusPerformanceControl(6,3), virusPerformanceControl(6,4), virusPerformanceControl(6,5), virusPerformanceControl(6,6) ] },
+            { control: [ virusMacroControl(1,1), virusMacroControl(1,2), virusMacroControl(1,3), virusMacroControl(1,4), virusMacroControl(1,5), virusMacroControl(1,6) ] },
+            { control: [ virusMacroControl(2,1), virusMacroControl(2,2), virusMacroControl(2,3), virusMacroControl(2,4), virusMacroControl(2,5), virusMacroControl(2,6) ] },
+            { control: [ virusMacroControl(3,1), virusMacroControl(3,2), virusMacroControl(3,3), virusMacroControl(3,4), virusMacroControl(3,5), virusMacroControl(3,6) ] },
+            { control: [ virusMacroControl(4,1), virusMacroControl(4,2), virusMacroControl(4,3), virusMacroControl(4,4), virusMacroControl(4,5), virusMacroControl(4,6) ] },
+            { control: [ virusMacroControl(5,1), virusMacroControl(5,2), virusMacroControl(5,3), virusMacroControl(5,4), virusMacroControl(5,5), virusMacroControl(5,6) ] },
+            { control: [ virusMacroControl(6,1), virusMacroControl(6,2), virusMacroControl(6,3), virusMacroControl(6,4), virusMacroControl(6,5), virusMacroControl(6,6) ] },
           ],
         },
       },

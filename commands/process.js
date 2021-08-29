@@ -104,17 +104,20 @@ function preProcess(name, sub, options) {
                   /*               debug('hi %y %y', lfoTargetMatch,overlay)*/
                 }
                 if (overlayType == 'axyzTarget') {
-                  overlay.items = []
-                  let idx = 0
+                  overlay.items = [{
+                    index: 0,
+                    label: 'Off',
+                    value: 0,
+                  }]
+                  let idx = 1
                   const list = devices['virus-ti'].flatList
-
                   for (let ctrl = 0; ctrl < list.length; ctrl++) {
                     const path = list[ctrl]
                     if (path) {
                       overlay.items.push({
                         index: idx++,
-                        label: path,
-                        value: ctrl,
+                        label: path.replace(/\./g,' '),
+                        value: ctrl + 1,
                       })
                     }
                   }
