@@ -122,6 +122,49 @@ class AcidMachine extends Machine {
       }
     })
 
+    const virusAxyzNext = (elementPath, origin) => {
+      debug('Parameter Side Effect virusAxyzNext: %y (from %y)', elementPath, origin)
+      const part = this.interface.getParameter('virus.axyz.part', 1)
+      if (part>=1 && part<=16) {
+        const bank = this.interface.getParameter(`virus.axyz.bank`)
+        const program = this.interface.getParameter(`virus.axyz.program`)
+        if (program < 127) {
+          this.interface.setParameter(`virus.axyz.program`,program + 1)
+        } else {
+          if (bank < 29) {
+            this.interface.setParameter(`virus.axyz.bank`,bank + 1)
+          } else {
+            this.interface.setParameter(`virus.axyz.bank`,0)
+          }
+          this.interface.setParameter(`virus.axyz.program`,0)
+        }
+        virusAxyzSendBankAndProgram()
+      }
+    }
+
+
+    const virusAxyzPrevious = (elementPath, origin) => {
+      debug('Parameter Side Effect virusAxyzPrevious: %y (from %y)', elementPath, origin)
+      const part = this.interface.getParameter('virus.axyz.part', 1)
+      if (part>=1 && part<=16) {
+        const bank = this.interface.getParameter(`virus.axyz.bank`)
+        const program = this.interface.getParameter(`virus.axyz.program`)
+        if (program > 0) {
+          this.interface.setParameter(`virus.axyz.program`,program - 1)
+        } else {
+          if (bank > 0) {
+            this.interface.setParameter(`virus.axyz.bank`,bank - 1)
+          } else {
+            this.interface.setParameter(`virus.axyz.bank`,29)
+          }
+          this.interface.setParameter(`virus.axyz.program`,127)
+        }
+        virusAxyzSendBankAndProgram()
+      }
+    }
+
+
+
     const virusParsePatchDump = (bytes) => {
       if (Array.isArray(bytes)) {
         const virusSysexHeader = [0xF0, 0x00, 0x20, 0x33, 0x01]
@@ -356,14 +399,12 @@ class AcidMachine extends Machine {
 
     this.actionSideEffects = {
       load: (elementPath, origin) => {
-        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           this.interface.sendValues(origin)
           debug('load')
         }
       },
       generate: (elementPath, origin) => {
-        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           this.state.pattern = Acid.generate(this.state)
           this.state.last_pattern_but = 0
@@ -373,7 +414,6 @@ class AcidMachine extends Machine {
         }
       },
       previous_pattern: (elementPath, origin) => {
-        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           this.state.last_pattern_but += 1
 
@@ -384,7 +424,6 @@ class AcidMachine extends Machine {
         }
       },
       next_pattern: (elementPath, origin) => {
-        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           this.state.last_pattern_but -= 1
           if (this.state.last_pattern_but < 0) {
@@ -398,7 +437,6 @@ class AcidMachine extends Machine {
         }
       },
       previous_preset: (elementPath, origin) => {
-        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           const program = this.interface.getParameter('program')
           if (program >= 1 && program < 128) {
@@ -421,7 +459,6 @@ class AcidMachine extends Machine {
         }
       },
       next_preset: (elementPath, origin) => {
-        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'surface') {
           const program = this.interface.getParameter('program')
           if (program >= 0 && program < 127) {
@@ -444,21 +481,18 @@ class AcidMachine extends Machine {
         }
       },
       add_preset: (elementPath, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'surface') {
           const filename = this.add_preset()
           debug('add_preset: %y', filename)
         }
       },
       save_preset: (elementPath, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'surface') {
           const filename = this.save_preset()
           debug('save_preset: %y', filename)
         }
       },
       reset_preset: (elementPath, origin) => {
-        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'surface') {
           this.interface.reset()
           this.showPattern()
@@ -466,13 +500,11 @@ class AcidMachine extends Machine {
         }
       },
       clock: (elementPath, origin) => {
-        // debug('Action Side Effect %y: Hello World! (from %y)',elementPath,origin)
         if (origin == 'clock') {
           this.sequencer()
         }
       },
       start: (elementPath, origin) => {
-        //        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)
         if (origin == 'clock') {
           this.setState('playing', true)
           this.pulses = 0
@@ -482,7 +514,6 @@ class AcidMachine extends Machine {
         }
       },
       stop: (elementPath, origin) => {
-        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'clock') {
           this.setState('playing', false)
           this.writeState()
@@ -490,7 +521,6 @@ class AcidMachine extends Machine {
         }
       },
       continue: (elementPath, origin) => {
-        /*        debug('Action Side Effect %y: Hello World! (from %y)', elementPath, origin)*/
         if (origin == 'clock') {
           this.setState('playing', true)
           this.pulseTime = process.hrtime()
@@ -499,6 +529,10 @@ class AcidMachine extends Machine {
         }
       },
       virus: {
+        axyz: {
+          next: virusAxyzNext,
+          previous: virusAxyzPrevious,
+        },
         mixer: {
           part: [
             {
@@ -538,7 +572,6 @@ class AcidMachine extends Machine {
 
     const deviceDeviceChange = (dev) => {
       return (elementPath, value, origin) => {
-        /*        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)*/
         if (value > 0 && config.devices) {
           let idx = 0
           let choosenDeviceKey
@@ -643,7 +676,6 @@ class AcidMachine extends Machine {
 
     const trackDeviceChange = (trk) => {
       return (elementPath, value, origin) => {
-        /*        debug('Parameter Side Effect device.%s.port: Hello World! %y = %y (from %y)', dev, elementPath, value, origin)*/
         if (value > 0 && config.devices) {
           let idx = 0
           let choosenDeviceKey
@@ -773,7 +805,6 @@ class AcidMachine extends Machine {
 
     const matrixRemodulate = (slotIdx, destIdx) => {
       return (elementPath, value, origin) => {
-        //        debug('Parameter Side Effect matrixRemodulate(%d,%d): Hello World! %y = %y (from %y)', slotIdx, destIdx, elementPath, value, origin)
         this.interface.matrixRemodulate(elementPath)
       }
     }
@@ -789,8 +820,8 @@ class AcidMachine extends Machine {
       const channel = part
       const bank = this.interface.getParameter('virus.axyz.bank')
       const program = this.interface.getParameter('virus.axyz.program')
-      debugMidiControlChange('%s %d CC %y = %y', portName, channel, 7, value)
-      Midi.send(portName, 'cc', {channel:channel - 1, controller:7, value}, 'levelChange-virus', 200)
+      debugMidiControlChange('%s %d CC %y = %y', portName, channel, 91, value)
+      Midi.send(portName, 'cc', {channel:channel - 1, controller:91, value}, 'levelChange-virus', 200)
     }
 
     const virusAxyzSendBankAndProgram = () => {
@@ -817,12 +848,10 @@ class AcidMachine extends Machine {
 
     const virusAxyz = (axyz) => {
       return (elementPath, value, origin) => {
-        //        debug('Parameter Side Effect virusAxyz(%y): Hello World! %y = %y (from %y)', axyz, elementPath, value, origin)
         const portName = 'virus-ti'
         const part = this.interface.getParameter('virus.axyz.part', 1)
         const channel = part
         const val = Math.round(Interface.remap(value, -1, 1, 0, 127))
-        //          debug(val)
         switch (axyz) {
         case 'x1':
           Midi.send(portName, 'cc', {channel:channel - 1, controller:17, value:val})
@@ -921,7 +950,6 @@ class AcidMachine extends Machine {
 
     this.parameterSideEffects = {
       octaveChance: (elementPath, value, origin) => {
-        /*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
         if (origin == 'surface' || !this.state.octaves) {
           this.state.octaves = []
           for (let idx = 0; idx < 16; idx++) {
@@ -931,7 +959,6 @@ class AcidMachine extends Machine {
         }
       },
       density: (elementPath, value, origin) => {
-        /*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
         if (origin == 'surface' && value != 100) {
           this.interface.setParameter('muteSteps', 0)
         }
@@ -943,7 +970,6 @@ class AcidMachine extends Machine {
         }
       },
       muteSteps: (elementPath, value, origin) => {
-        /*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
         if (origin == 'surface' && value != 0) {
           this.interface.setParameter('density', 100)
         }
@@ -952,7 +978,6 @@ class AcidMachine extends Machine {
         }
       },
       muteShift: (elementPath, value, origin) => {
-        /*        debug('Parameter Side Effect %y: Hello World! %y (from %y)', elementPath, value, origin)*/
         if (this.interface.getParameter('muteSteps') > 0) {
           if (origin == 'surface' || !this.state.sounding) {
             this.euclidian(this.interface.getParameter('muteSteps'), 16, this.interface.getParameter('muteShift'))

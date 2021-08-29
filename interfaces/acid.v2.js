@@ -2014,11 +2014,11 @@ module.exports = {
           default: 1,
         },
         level: {
-          name: 'Virus Level',
+          name: 'Virus AXYz Level',
           type: 'parameter',
           surface: {
             type: 'nrpn',
-            number: 14977,
+            number: 14850,
             lsbFirst: false,
             min: 0,
             max: 127,
@@ -2028,11 +2028,11 @@ module.exports = {
           default: 100,
         },
         bank: {
-          name: 'Virus Bank',
+          name: 'Virus AXYz Bank',
           type: 'parameter',
           surface: {
             type: 'nrpn',
-            number: 15105,
+            number: 14851,
             lsbFirst: false,
             min: 0,
             max: 29,
@@ -2042,11 +2042,11 @@ module.exports = {
           default: 0,
         },
         program: {
-          name: 'Virus Program',
+          name: 'Virus AXYz Program',
           type: 'parameter',
           surface: {
             type: 'nrpn',
-            number: 15233,
+            number: 14852,
             lsbFirst: false,
             min: 0,
             max: 127,
@@ -2055,8 +2055,32 @@ module.exports = {
           max: 127,
           default: 0,
         },
+        next: {
+          name: 'Virus AXYz Next',
+          type: 'action',
+          surface: {
+            type: 'nrpn',
+            number: 14853,
+            lsbFirst: false,
+            min: 0,
+            max: 1,
+          },
+          on: 1,
+        },
+        previous: {
+          name: 'Virus AXYz Previous',
+          type: 'action',
+          surface: {
+            type: 'nrpn',
+            number: 14854,
+            lsbFirst: false,
+            min: 0,
+            max: 1,
+          },
+          on: 1,
+        },
         x1: {
-          name: 'Virus X1',
+          name: 'Virus AXYz X1',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2078,7 +2102,7 @@ module.exports = {
           default: 0,
         },
         y1: {
-          name: 'Virus Y1',
+          name: 'Virus AXYz Y1',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2100,7 +2124,7 @@ module.exports = {
           default: 0,
         },
         x2: {
-          name: 'Virus X2',
+          name: 'Virus AXYz X2',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2122,7 +2146,7 @@ module.exports = {
           default: 0,
         },
         y2: {
-          name: 'Virus Y2',
+          name: 'Virus AXYz Y2',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2144,7 +2168,7 @@ module.exports = {
           default: 0,
         },
         x3: {
-          name: 'Virus X3',
+          name: 'Virus AXYz X3',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2166,7 +2190,7 @@ module.exports = {
           default: 0,
         },
         y3: {
-          name: 'Virus Y3',
+          name: 'Virus AXYz Y3',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2188,7 +2212,7 @@ module.exports = {
           default: 0,
         },
         x4: {
-          name: 'Virus X4',
+          name: 'Virus AXYz X4',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2210,7 +2234,7 @@ module.exports = {
           default: 0,
         },
         y4: {
-          name: 'Virus Y4',
+          name: 'Virus AXYz Y4',
           type: 'parameter',
           surface: {
             type: 'nrpn',

@@ -1732,42 +1732,42 @@
         },
         {
           "index": 136,
-          "label": "Virus X1",
+          "label": "Virus AXYz X1",
           "value": 20
         },
         {
           "index": 137,
-          "label": "Virus Y1",
+          "label": "Virus AXYz Y1",
           "value": 21
         },
         {
           "index": 138,
-          "label": "Virus X2",
+          "label": "Virus AXYz X2",
           "value": 23
         },
         {
           "index": 139,
-          "label": "Virus Y2",
+          "label": "Virus AXYz Y2",
           "value": 24
         },
         {
           "index": 140,
-          "label": "Virus X3",
+          "label": "Virus AXYz X3",
           "value": 26
         },
         {
           "index": 141,
-          "label": "Virus Y3",
+          "label": "Virus AXYz Y3",
           "value": 27
         },
         {
           "index": 142,
-          "label": "Virus X4",
+          "label": "Virus AXYz X4",
           "value": 29
         },
         {
           "index": 143,
-          "label": "Virus Y4",
+          "label": "Virus AXYz Y4",
           "value": 30
         },
         {
@@ -2537,42 +2537,42 @@
         },
         {
           "index": 136,
-          "label": "Virus X1",
+          "label": "Virus AXYz X1",
           "value": 20
         },
         {
           "index": 137,
-          "label": "Virus Y1",
+          "label": "Virus AXYz Y1",
           "value": 21
         },
         {
           "index": 138,
-          "label": "Virus X2",
+          "label": "Virus AXYz X2",
           "value": 23
         },
         {
           "index": 139,
-          "label": "Virus Y2",
+          "label": "Virus AXYz Y2",
           "value": 24
         },
         {
           "index": 140,
-          "label": "Virus X3",
+          "label": "Virus AXYz X3",
           "value": 26
         },
         {
           "index": 141,
-          "label": "Virus Y3",
+          "label": "Virus AXYz Y3",
           "value": 27
         },
         {
           "index": 142,
-          "label": "Virus X4",
+          "label": "Virus AXYz X4",
           "value": 29
         },
         {
           "index": 143,
-          "label": "Virus Y4",
+          "label": "Virus AXYz Y4",
           "value": 30
         },
         {
@@ -3307,42 +3307,42 @@
         },
         {
           "index": 136,
-          "label": "Virus X1",
+          "label": "Virus AXYz X1",
           "value": 20
         },
         {
           "index": 137,
-          "label": "Virus Y1",
+          "label": "Virus AXYz Y1",
           "value": 21
         },
         {
           "index": 138,
-          "label": "Virus X2",
+          "label": "Virus AXYz X2",
           "value": 23
         },
         {
           "index": 139,
-          "label": "Virus Y2",
+          "label": "Virus AXYz Y2",
           "value": 24
         },
         {
           "index": 140,
-          "label": "Virus X3",
+          "label": "Virus AXYz X3",
           "value": 26
         },
         {
           "index": 141,
-          "label": "Virus Y3",
+          "label": "Virus AXYz Y3",
           "value": 27
         },
         {
           "index": 142,
-          "label": "Virus X4",
+          "label": "Virus AXYz X4",
           "value": 29
         },
         {
           "index": 143,
-          "label": "Virus Y4",
+          "label": "Virus AXYz Y4",
           "value": 30
         },
         {
@@ -3467,42 +3467,42 @@
         },
         {
           "index": 9,
-          "label": "Virus X1",
+          "label": "Virus AXYz X1",
           "value": 20
         },
         {
           "index": 10,
-          "label": "Virus Y1",
+          "label": "Virus AXYz Y1",
           "value": 21
         },
         {
           "index": 11,
-          "label": "Virus X2",
+          "label": "Virus AXYz X2",
           "value": 23
         },
         {
           "index": 12,
-          "label": "Virus Y2",
+          "label": "Virus AXYz Y2",
           "value": 24
         },
         {
           "index": 13,
-          "label": "Virus X3",
+          "label": "Virus AXYz X3",
           "value": 26
         },
         {
           "index": 14,
-          "label": "Virus Y3",
+          "label": "Virus AXYz Y3",
           "value": 27
         },
         {
           "index": 15,
-          "label": "Virus X4",
+          "label": "Virus AXYz X4",
           "value": 29
         },
         {
           "index": 16,
-          "label": "Virus Y4",
+          "label": "Virus AXYz Y4",
           "value": 30
         },
         {
@@ -7600,40 +7600,6 @@
       ]
     },
     {
-      "id": 110,
-      "type": "fader",
-      "name": "BANK",
-      "color": "FFFFFF",
-      "bounds": [
-        170,
-        40,
-        146,
-        56
-      ],
-      "pageId": 4,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 2,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": false,
-            "parameterNumber": 15105,
-            "min": 0,
-            "max": 29
-          },
-          "overlayId": 15
-        }
-      ]
-    },
-    {
       "id": 111,
       "type": "fader",
       "name": "X1",
@@ -7780,6 +7746,7 @@
     {
       "id": 115,
       "type": "fader",
+      "visible": true,
       "name": "LEVEL",
       "color": "FFFFFF",
       "bounds": [
@@ -7798,48 +7765,15 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14977,
+            "parameterNumber": 14850,
             "min": 0,
             "max": 127
-          },
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 116,
-      "type": "fader",
-      "name": "PROGRAM",
-      "color": "FFFFFF",
-      "bounds": [
-        170,
-        128,
-        146,
-        56
-      ],
-      "pageId": 4,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 8,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": false,
-            "parameterNumber": 15233,
-            "min": 0,
-            "max": 127
-          },
-          "id": "value"
+          }
         }
       ]
     },
@@ -7988,6 +7922,41 @@
       ]
     },
     {
+      "id": 121,
+      "type": "fader",
+      "visible": true,
+      "name": "BANK",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        216,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 14851,
+            "min": 0,
+            "max": 29
+          },
+          "overlayId": 15
+        }
+      ]
+    },
+    {
       "id": 123,
       "type": "list",
       "visible": true,
@@ -8116,6 +8085,40 @@
           },
           "overlayId": 16,
           "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 127,
+      "type": "fader",
+      "visible": true,
+      "name": "PROGRAM",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        304,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 14852,
+            "min": 0,
+            "max": 127
+          }
         }
       ]
     },
@@ -8252,6 +8255,42 @@
       ]
     },
     {
+      "id": 133,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "NEXT",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        392,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 14853,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ]
+    },
+    {
       "id": 135,
       "type": "list",
       "visible": true,
@@ -8380,6 +8419,42 @@
           },
           "overlayId": 16,
           "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 139,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "PREVIOUS",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        480,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 14854,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
         }
       ]
     },
