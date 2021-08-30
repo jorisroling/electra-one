@@ -276,6 +276,10 @@ class AcidMachine extends Machine {
               const level = page[0][91]
               this.interface.setParameter(`virus.mixer.part.${part-1}.level`,level)
             }
+            if (part == this.interface.getParameter(`virus.axyz.part`)) {
+              this.interface.setParameter(`virus.axyz.bank`,page[0][2])
+              this.interface.setParameter(`virus.axyz.program`,page[0][3])
+            }
 
             let patchName=''
             for (let n=112;n<=121;n++) {
@@ -284,16 +288,13 @@ class AcidMachine extends Machine {
             patchName = patchName.trim()
 /*            debug('patch Name %y',patchName)*/
 
-            if (_.get(this.state,`virus.part.${part-1}.patchName`) !== patchName) {
-              _.set(this.state,`virus.part.${part-1}.patchName`,patchName)
-
-              if (electraBacaraPresetLoaded) {
-                if (part>=1 && part<=6) {
-                  const selectControls = [145,146,147,148,149,150]
+            if (electraBacaraPresetLoaded) {
+              if (part>=1 && part<=6) {
+                if (_.get(this.state,`virus.part.${part-1}.patchName`) !== patchName) {
                   const str = JSON.stringify({
                     "name": patchName,
                   })
-
+                  const selectControls = [145,146,147,148,149,150]
                   const ctrlId = selectControls[part-1]
                   const bytes = [0xF0, 0x00, 0x21, 0x45, 0x14, 0x07, ctrlId & 0x7F, ctrlId >> 7]
                   for (let n = 0, l = str.length; n < l; n++) {
@@ -302,7 +303,22 @@ class AcidMachine extends Machine {
                   bytes.push(0xF7)
 
                   Midi.send('electra-one-ctrl', 'sysex', bytes)
+                  _.set(this.state,`virus.part.${part-1}.patchName`,patchName)
                 }
+              }
+              if (part == this.interface.getParameter(`virus.axyz.part`) && _.get(this.state,`virus.axyz.patchName`) !== patchName) {
+                const str = JSON.stringify({
+                  "name": patchName,
+                })
+                const ctrlId = 110
+                const bytes = [0xF0, 0x00, 0x21, 0x45, 0x14, 0x07, ctrlId & 0x7F, ctrlId >> 7]
+                for (let n = 0, l = str.length; n < l; n++) {
+                  bytes.push(Number(str.charCodeAt(n)))
+                }
+                bytes.push(0xF7)
+
+                Midi.send('electra-one-ctrl', 'sysex', bytes)
+                _.set(this.state,`virus.axyz.patchName`,patchName)
               }
             }
 
@@ -888,6 +904,7 @@ class AcidMachine extends Machine {
 
     const virusAxyzPart = (elementPath, value, origin) => {
       virusAxyzRecenterSend()
+      bacaraEmit('virus-ti', value, 'select', null, origin)
     }
 
     const virusAxyzLevel = (elementPath, value, origin) => {

@@ -236,6 +236,10 @@ function handleIncoming(from, to, targetElectraOne, options) {
             debugPart('Part mapping %y applied to Single Dump SysEx to %y', msg.bytes[8] + 1, to)
             debug('Send large sysex to %y (%y bytes)', to, msg.bytes.length)
             Midi.send(to, 'sysex', msg.bytes, 'singleDump', sendSingleDumpTimeoutTime)
+            const bank = msg.bytes[11]
+            const program = msg.bytes[12]
+            Midi.send(to, 'cc', {channel:electraOneMidiChannel, controller:0, value:bank})
+            Midi.send(to, 'program', {channel:electraOneMidiChannel, number:program})
           }
 //          Bacara.event.emit('sysex', 'virus-ti', getMapping('part'), 'patch', msg.bytes, 'virus-ti', path.basename(__filename, '.js'))
 
