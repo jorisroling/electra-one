@@ -39,7 +39,8 @@ const chalk = require('chalk')
 const { devices, knownDeviceCCs } = require('../lib/devices')
 const deviceCCs = knownDeviceCCs()
 
-
+const virusAxyzModeRelative = 0
+const virusAxyzModeAbsolute = 1
 
 const phaseDetection = true
 const tableParameters = ['transpose', 'density', 'muteSteps', 'muteShift', 'scales', 'base', 'split', 'deviate', 'shift']
@@ -74,6 +75,7 @@ function radians(degrees) {
   return (degrees % 360) * (Math.PI / 180)
 }
 
+const virusPatchPages = []
 let virusPartPatchRequestTime = []
 
 let bacaraEmitPart
@@ -143,7 +145,38 @@ class AcidMachine extends Machine {
       this.interface.setParameter(`virus.axyz.y3.control`,0)
       this.interface.setParameter(`virus.axyz.x4.control`,0)
       this.interface.setParameter(`virus.axyz.y4.control`,0)
+
+      const virusPortName = 'virus-ti'
+      const part = this.interface.getParameter('virus.axyz.part', 1)
+      const channel = part
+
+      const rstAxyz = (axyz) => {
+        for (let t=0;t<2;t++) {
+          const value = 0
+          const trgt = this.interface.getParameter(`virus.axyz.${axyz}.target.${t}`)
+          if (trgt) {
+            const idx = trgt - 1
+
+            const parameter = _.get(devices['virus-ti'].parameters,list[idx])
+            if (parameter && parameter.cc) {
+              const patchDefault = _.get(virusPatchPages,`${part-1}.0.${parameter.cc}`,-1)
+              if (patchDefault>=0) {
+                 debug('Reset Axyz %y T %d CC %y = patch default %y',axyz,t,parameter.cc,patchDefault)
+                Midi.send(virusPortName, 'cc', {channel:channel - 1, controller:parameter.cc, value:patchDefault})
+                Bacara.event.emit('change', virusPortName, part, 'cc', {controller:parameter.cc, value:patchDefault}, 'surface', path.basename(__filename, '.js'))
+              }
+            }
+          }
+        }
+      }
+
+      const list = devices['virus-ti'].flatList
+      for (let a=1;a<=4;a++) {
+        rstAxyz(`x${a}`)
+        rstAxyz(`y${a}`)
+      }
     }
+
     virusAxyzResetSend()
 
     const virusAxyzReset = (elementPath, origin) => {
@@ -214,6 +247,8 @@ class AcidMachine extends Machine {
               bytes.slice(9+(128*2)+2, 9+(128*2)+2+128),
               bytes.slice(9+(128*3)+2, 9+(128*3)+2+128),
             ]
+
+            virusPatchPages[part-1]=page
 
 //            debug('JJ Delta: %y',(Date.now() - virusPartPatchRequestTime[part-1]))
             if (virusPartPatchRequestTime[part-1] && (Date.now() - virusPartPatchRequestTime[part-1]) < 1000) {
@@ -870,10 +905,10 @@ class AcidMachine extends Machine {
     const virusAxyzControl = (axyz) => {
       return (elementPath, value, origin) => {
         const virusPortName = 'virus-ti'
-        const electraPortName = 'electra-one-b-port-2'
         const part = this.interface.getParameter('virus.axyz.part', 1)
         const channel = part
-        const val = Math.round(Interface.remap(value, -1, 1, 0, 127))
+
+        const mode = this.interface.getParameter('virus.axyz.mode', 0)
 
         const list = devices['virus-ti'].flatList
         for (let t=0;t<2;t++) {
@@ -885,7 +920,18 @@ class AcidMachine extends Machine {
             const parameter = _.get(devices['virus-ti'].parameters,list[idx])
 
             if (parameter && parameter.cc) {
-//              debug('Axyz %y T %d CC %y',axyz,t,parameter.cc)
+              let val
+                const patchDefault = _.get(virusPatchPages,`${part-1}.0.${parameter.cc}`)
+              if (mode == virusAxyzModeRelative) {
+                if (value >= 0.0) {
+                  val = Math.round(patchDefault + ((127 - patchDefault) * value))
+                } else {
+                  val = Math.round(patchDefault - (patchDefault * -value))
+                }
+              } else if (mode == virusAxyzModeAbsolute) {
+                val = Math.round(Interface.remap(value, -1, 1, 0, 127))
+              }
+               debug('Axyz %y T %d CC %y = %y (because %y) (patch default %y)',axyz,t,parameter.cc,val,value,patchDefault)
               Midi.send(virusPortName, 'cc', {channel:channel - 1, controller:parameter.cc, value:val})
               Bacara.event.emit('change', virusPortName, part, 'cc', {controller:parameter.cc, value:val}, origin, path.basename(__filename, '.js'))
             }

@@ -2000,7 +2000,7 @@ module.exports = {
     virus: {
       axyz: {
         part: {
-          name: 'Virus Part',
+          name: 'Virus Axyz Part',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2024,6 +2024,20 @@ module.exports = {
             max: 1,
           },
           on: 1,
+        },
+        mode: {
+          name: 'Virus Axyz Mode',
+          type: 'parameter',
+          surface: {
+            type: 'nrpn',
+            number: 14856,
+            lsbFirst: false,
+            min: 0,
+            max: 1,
+          },
+          min: 0,
+          max: 1,
+          default: 0,
         },
         select: {
           name: 'Virus Axyz Select',
@@ -2128,7 +2142,7 @@ module.exports = {
           },
           target: [
             {
-              name: 'Virus Axyz X1 Target 1',
+              name: 'Virus Axyz X1 Target A',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2142,7 +2156,7 @@ module.exports = {
               default: 1,
             },
             {
-              name: 'Virus Axyz X1 Target 2',
+              name: 'Virus Axyz X1 Target B',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2182,7 +2196,7 @@ module.exports = {
           },
           target: [
             {
-              name: 'Virus Axyz Y1 Target 1',
+              name: 'Virus Axyz Y1 Target A',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2196,7 +2210,7 @@ module.exports = {
               default: 3,
             },
             {
-              name: 'Virus Axyz Y1 Target 2',
+              name: 'Virus Axyz Y1 Target B',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2236,7 +2250,7 @@ module.exports = {
           },
           target: [
             {
-              name: 'Virus Axyz X2 Target 1',
+              name: 'Virus Axyz X2 Target A',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2250,7 +2264,7 @@ module.exports = {
               default: 22,
             },
             {
-              name: 'Virus Axyz X2 Target 2',
+              name: 'Virus Axyz X2 Target B',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2290,7 +2304,7 @@ module.exports = {
           },
           target: [
             {
-              name: 'Virus Axyz Y2 Target 1',
+              name: 'Virus Axyz Y2 Target A',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2304,7 +2318,7 @@ module.exports = {
               default: 23,
             },
             {
-              name: 'Virus Axyz Y2 Target 2',
+              name: 'Virus Axyz Y2 Target B',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2344,7 +2358,7 @@ module.exports = {
           },
           target: [
             {
-              name: 'Virus Axyz X3 Target 1',
+              name: 'Virus Axyz X3 Target A',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2358,7 +2372,7 @@ module.exports = {
               default: 42,
             },
             {
-              name: 'Virus Axyz X3 Target 2',
+              name: 'Virus Axyz X3 Target B',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2398,7 +2412,7 @@ module.exports = {
           },
           target: [
             {
-              name: 'Virus Axyz Y3 Target 1',
+              name: 'Virus Axyz Y3 Target A',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2412,7 +2426,7 @@ module.exports = {
               default: 45,
             },
             {
-              name: 'Virus Axyz Y3 Target 2',
+              name: 'Virus Axyz Y3 Target B',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2452,7 +2466,7 @@ module.exports = {
           },
           target: [
             {
-              name: 'Virus Axyz X4 Target 1',
+              name: 'Virus Axyz X4 Target A',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2466,7 +2480,7 @@ module.exports = {
               default: 118,
             },
             {
-              name: 'Virus Axyz X4 Target 2',
+              name: 'Virus Axyz X4 Target B',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2506,7 +2520,7 @@ module.exports = {
           },
           target: [
             {
-              name: 'Virus Axyz Y4 Target 1',
+              name: 'Virus Axyz Y4 Target A',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2520,7 +2534,7 @@ module.exports = {
               default: 119,
             },
             {
-              name: 'Virus Axyz Y4 Target 2',
+              name: 'Virus Axyz Y4 Target B',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
