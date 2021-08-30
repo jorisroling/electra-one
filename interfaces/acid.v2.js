@@ -2013,8 +2013,8 @@ module.exports = {
           max: 16,
           default: 1,
         },
-        reset: {
-          name: 'Virus Axyz Reset',
+        recenter: {
+          name: 'Virus Axyz Recenter',
           type: 'action',
           surface: {
             type: 'nrpn',
@@ -2038,6 +2038,18 @@ module.exports = {
           min: 0,
           max: 1,
           default: 0,
+        },
+        resetTargets: {
+          name: 'Virus Axyz Reset Targets',
+          type: 'action',
+          surface: {
+            type: 'nrpn',
+            number: 14857,
+            lsbFirst: false,
+            min: 0,
+            max: 1,
+          },
+          on: 1,
         },
         select: {
           name: 'Virus Axyz Select',

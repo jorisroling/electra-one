@@ -7799,7 +7799,7 @@
       "type": "pad",
       "mode": "momentary",
       "visible": true,
-      "name": "RESET",
+      "name": "RECENTER",
       "color": "F49500",
       "bounds": [
         0,
@@ -8371,6 +8371,42 @@
             "parameterNumber": 16131
           },
           "overlayId": 17
+        }
+      ]
+    },
+    {
+      "id": 133,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "RESET TARGETS",
+      "color": "F49500",
+      "bounds": [
+        0,
+        392,
+        146,
+        56
+      ],
+      "pageId": 4,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": false,
+            "parameterNumber": 14857,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
         }
       ]
     },

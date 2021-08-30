@@ -115,7 +115,7 @@ class AcidMachine extends Machine {
             if (value && value.program) {
               this.interface.setParameter(`virus.axyz.program`,value.program)
             }
-            virusAxyzResetSend()
+            virusAxyzRecenterSend()
           }
           ['A','B'].forEach( dev => {
             const portName = this.getState(`device.${dev}.portName`)
@@ -136,7 +136,7 @@ class AcidMachine extends Machine {
       }
     })
 
-    const virusAxyzResetSend = () => {
+    const virusAxyzRecenterSend = () => {
       this.interface.setParameter(`virus.axyz.x1.control`,0)
       this.interface.setParameter(`virus.axyz.y1.control`,0)
       this.interface.setParameter(`virus.axyz.x2.control`,0)
@@ -177,10 +177,27 @@ class AcidMachine extends Machine {
       }
     }
 
-    virusAxyzResetSend()
+    virusAxyzRecenterSend()
 
-    const virusAxyzReset = (elementPath, origin) => {
-      virusAxyzResetSend()
+    const virusAxyzRecenter = (elementPath, origin) => {
+      virusAxyzRecenterSend()
+    }
+
+    const virusAxyzResetTargets = (elementPath, origin) => {
+
+      const rstAxyzTargets = (axyz) => {
+        for (let t=0;t<2;t++) {
+          const elementPath = `virus.axyz.${axyz}.target.${t}`
+          this.interface.setParameter(elementPath,this.interface.getElementAttribute(elementPath, 'default', 0))
+        }
+      }
+
+      const list = devices['virus-ti'].flatList
+      for (let a=1;a<=4;a++) {
+        rstAxyzTargets(`x${a}`)
+        rstAxyzTargets(`y${a}`)
+      }
+
     }
 
     const virusAxyzSelect = (elementPath, origin) => {
@@ -189,8 +206,6 @@ class AcidMachine extends Machine {
         bacaraEmit('virus-ti', part, 'select', null, origin)
       }
     }
-
-
 
     const virusAxyzNext = (elementPath, origin) => {
       const part = this.interface.getParameter('virus.axyz.part', 1)
@@ -584,7 +599,8 @@ class AcidMachine extends Machine {
       },
       virus: {
         axyz: {
-          reset: virusAxyzReset,
+          recenter: virusAxyzRecenter,
+          resetTargets: virusAxyzResetTargets,
           select: virusAxyzSelect,
           next: virusAxyzNext,
           previous: virusAxyzPrevious,
@@ -866,7 +882,7 @@ class AcidMachine extends Machine {
     }
 
     const virusAxyzPart = (elementPath, value, origin) => {
-      virusAxyzResetSend()
+      virusAxyzRecenterSend()
     }
 
     const virusAxyzLevel = (elementPath, value, origin) => {
