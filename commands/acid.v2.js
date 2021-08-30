@@ -136,16 +136,7 @@ class AcidMachine extends Machine {
       }
     })
 
-    const virusAxyzRecenterSend = () => {
-      this.interface.setParameter(`virus.axyz.x1.control`,0)
-      this.interface.setParameter(`virus.axyz.y1.control`,0)
-      this.interface.setParameter(`virus.axyz.x2.control`,0)
-      this.interface.setParameter(`virus.axyz.y2.control`,0)
-      this.interface.setParameter(`virus.axyz.x3.control`,0)
-      this.interface.setParameter(`virus.axyz.y3.control`,0)
-      this.interface.setParameter(`virus.axyz.x4.control`,0)
-      this.interface.setParameter(`virus.axyz.y4.control`,0)
-
+    const virusAxyzRestoreDefaultSend = (axyz) => {
       const virusPortName = 'virus-ti'
       const part = this.interface.getParameter('virus.axyz.part', 1)
       const channel = part
@@ -161,7 +152,7 @@ class AcidMachine extends Machine {
             if (parameter && parameter.cc) {
               const patchDefault = _.get(virusPatchPages,`${part-1}.0.${parameter.cc}`,-1)
               if (patchDefault>=0) {
-                 debug('Reset Axyz %y T %d CC %y = patch default %y',axyz,t,parameter.cc,patchDefault)
+//                 debug('Reset Axyz %y T %d CC %y = patch default %y',axyz,t,parameter.cc,patchDefault)
                 Midi.send(virusPortName, 'cc', {channel:channel - 1, controller:parameter.cc, value:patchDefault})
                 Bacara.event.emit('change', virusPortName, part, 'cc', {controller:parameter.cc, value:patchDefault}, 'surface', path.basename(__filename, '.js'))
               }
@@ -172,9 +163,22 @@ class AcidMachine extends Machine {
 
       const list = devices['virus-ti'].flatList
       for (let a=1;a<=4;a++) {
-        rstAxyz(`x${a}`)
-        rstAxyz(`y${a}`)
+        if (!axyz || axyz == `x${a}`) rstAxyz(`x${a}`)
+        if (!axyz || axyz == `y${a}`) rstAxyz(`y${a}`)
       }
+    }
+
+    const virusAxyzRecenterSend = () => {
+      this.interface.setParameter(`virus.axyz.x1.control`,0)
+      this.interface.setParameter(`virus.axyz.y1.control`,0)
+      this.interface.setParameter(`virus.axyz.x2.control`,0)
+      this.interface.setParameter(`virus.axyz.y2.control`,0)
+      this.interface.setParameter(`virus.axyz.x3.control`,0)
+      this.interface.setParameter(`virus.axyz.y3.control`,0)
+      this.interface.setParameter(`virus.axyz.x4.control`,0)
+      this.interface.setParameter(`virus.axyz.y4.control`,0)
+
+      virusAxyzRestoreDefaultSend()
     }
 
     virusAxyzRecenterSend()
@@ -184,8 +188,9 @@ class AcidMachine extends Machine {
     }
 
     const virusAxyzResetTargets = (elementPath, origin) => {
-
+      virusAxyzRecenterSend()
       const rstAxyzTargets = (axyz) => {
+       virusAxyzRestoreDefaultSend(axyz)
         for (let t=0;t<2;t++) {
           const elementPath = `virus.axyz.${axyz}.target.${t}`
           this.interface.setParameter(elementPath,this.interface.getElementAttribute(elementPath, 'default', 0))
@@ -947,13 +952,17 @@ class AcidMachine extends Machine {
               } else if (mode == virusAxyzModeAbsolute) {
                 val = Math.round(Interface.remap(value, -1, 1, 0, 127))
               }
-               debug('Axyz %y T %d CC %y = %y (because %y) (patch default %y)',axyz,t,parameter.cc,val,value,patchDefault)
+//               debug('Axyz %y T %d CC %y = %y (because %y) (patch default %y)',axyz,t,parameter.cc,val,value,patchDefault)
               Midi.send(virusPortName, 'cc', {channel:channel - 1, controller:parameter.cc, value:val})
               Bacara.event.emit('change', virusPortName, part, 'cc', {controller:parameter.cc, value:val}, origin, path.basename(__filename, '.js'))
             }
           }
         }
       }
+    }
+
+    const virusAxyzRestoreDefault = (axyz,trgt) => (elementPath, value, origin) => {
+      virusAxyzRestoreDefaultSend(axyz)
     }
 
     const virusAxyzTarget = (axyz,trgt) => {
@@ -1020,6 +1029,20 @@ class AcidMachine extends Machine {
         }
         bacaraEmit('virus-ti', part, `macrosControl#${ctrl}`, val, origin)
       }
+    }
+    this.parameterEminentSideEffects = {
+      virus: {
+        axyz: {
+          x1: { target: [virusAxyzRestoreDefault('x1',1),virusAxyzRestoreDefault('x1',2)] },
+          y1: { target: [virusAxyzRestoreDefault('y1',1),virusAxyzRestoreDefault('y1',2)] },
+          x2: { target: [virusAxyzRestoreDefault('x2',1),virusAxyzRestoreDefault('x2',2)] },
+          y2: { target: [virusAxyzRestoreDefault('y2',1),virusAxyzRestoreDefault('y2',2)] },
+          x3: { target: [virusAxyzRestoreDefault('x3',1),virusAxyzRestoreDefault('x3',2)] },
+          y3: { target: [virusAxyzRestoreDefault('y3',1),virusAxyzRestoreDefault('y3',2)] },
+          x4: { target: [virusAxyzRestoreDefault('x4',1),virusAxyzRestoreDefault('x4',2)] },
+          y4: { target: [virusAxyzRestoreDefault('y4',1),virusAxyzRestoreDefault('y4',2)] },
+        },
+      },
     }
 
     this.parameterSideEffects = {
