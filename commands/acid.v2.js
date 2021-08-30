@@ -1522,11 +1522,11 @@ class AcidMachine extends Machine {
             const color = this.getState('sounding')[ticks / ticksPerStep] ? (note.velocity == 1 ? accentedColor : normalColor) : disabledColor
             const rep = count * 2 + ((count - 1) * 3)
             chNote = {colSpan:count, content:color(' '.repeat(rep >= 0 ? rep : 0))}
-            ticks += (count - 1) * ticksPerStep
             grid[row][col]=this.getState('sounding')[ticks / ticksPerStep] ? true : false
             if (count>1) {
-              grid[row][col+1]=this.getState('sounding')[ticks / ticksPerStep] ? true : false
+              grid[row][++col]=this.getState('sounding')[ticks / ticksPerStep] ? true : false
             }
+            ticks += (count - 1) * ticksPerStep
           }
         })
         if (chNote) {
