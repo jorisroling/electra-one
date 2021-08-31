@@ -16,7 +16,6 @@
         "portName": "virus-ti"
       }
     },
-    "last_pattern_but": 0,
     "lfo": [
       {
         "shapeName": "triangle"
@@ -47,6 +46,116 @@
       0
     ],
     "pattern": {
+      "grid": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        [
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
       "header": {
         "keySignatures": [],
         "meta": [],
@@ -59,7 +168,7 @@
         {
           "channel": 0,
           "controlChanges": {},
-          "pitchBends": [],
+          "endOfTrackTicks": 1740,
           "instrument": {
             "family": "bass",
             "name": "synth bass 1",
@@ -176,7 +285,7 @@
               "velocity": 0.7874015748031497
             }
           ],
-          "endOfTrackTicks": 1740
+          "pitchBends": []
         }
       ]
     },
@@ -202,129 +311,16 @@
     ],
     "virus": {
       "axyz": {
-        "patchName": "DuskwoodMS"
+        "patchName": "Handsaw HS"
       },
       "part": [
         {
           "macros": [
             {
-              "cc": 12,
-              "index": 1,
-              "name": "Disolve",
-              "softknob": 9,
-              "type": "cc"
-            },
-            {
-              "cc": 13,
-              "index": 2,
-              "name": "Mutate",
-              "softknob": 10,
-              "type": "cc"
-            },
-            {
               "cc": 1,
-              "index": 3,
-              "name": "SubOsc",
-              "softknob": 1,
-              "type": "cc"
-            }
-          ],
-          "patchName": "Pulsar  MS"
-        },
-        {
-          "macros": [
-            {
-              "cc": 3,
               "index": 1,
-              "name": "Detune",
-              "softknob": 3,
-              "type": "cc"
-            },
-            {
-              "cc": 9,
-              "index": 2,
-              "name": "SubOsc",
-              "softknob": 7,
-              "type": "cc"
-            },
-            {
-              "cc": 12,
-              "index": 3,
-              "name": "Phaser",
-              "softknob": 9,
-              "type": "cc"
-            },
-            {
-              "cc": 1,
-              "name": "Mod Wheel",
-              "softknob": 1,
-              "type": "cc"
-            }
-          ],
-          "patchName": "PL Five"
-        },
-        {
-          "macros": [],
-          "patchName": "- Init -"
-        },
-        {
-          "macros": [
-            {
-              "cc": 12,
-              "index": 1,
-              "name": "SubOsc",
-              "softknob": 9,
-              "type": "cc"
-            },
-            {
-              "cc": 13,
-              "index": 2,
-              "name": "EqMid",
-              "softknob": 10,
-              "type": "cc"
-            },
-            {
-              "cc": 1,
-              "index": 3,
-              "name": "Vibrato",
-              "softknob": 1,
-              "type": "cc"
-            }
-          ],
-          "patchName": "FatMoogyMS"
-        },
-        {
-          "macros": [
-            {
-              "cc": 14,
-              "index": 1,
-              "name": "Glide",
-              "softknob": 11,
-              "type": "cc"
-            },
-            {
-              "cc": 16,
-              "index": 3,
               "name": "Delay",
-              "softknob": 13,
-              "type": "cc"
-            },
-            {
-              "cc": 15,
-              "name": "Control 15",
-              "softknob": 12,
-              "type": "cc"
-            }
-          ],
-          "patchName": "AmrCnBe@uT"
-        },
-        {
-          "macros": [
-            {
-              "cc": 4,
-              "index": 1,
-              "name": "Infect",
-              "softknob": 4,
+              "softknob": 1,
               "type": "cc"
             },
             {
@@ -337,46 +333,12 @@
             {
               "cc": 3,
               "index": 3,
-              "name": "Delay",
+              "name": "Reverb",
               "softknob": 3,
               "type": "cc"
             }
           ],
-          "patchName": "Fatass!  M"
-        },
-        null,
-        null,
-        null,
-        {
-          "macros": [
-            {
-              "cc": 12,
-              "index": 1,
-              "name": "Sharpen",
-              "softknob": 9,
-              "type": "cc"
-            },
-            {
-              "cc": 13,
-              "index": 2,
-              "name": "Morph",
-              "softknob": 10,
-              "type": "cc"
-            },
-            {
-              "cc": 14,
-              "index": 3,
-              "name": "Fuzz",
-              "softknob": 11,
-              "type": "cc"
-            },
-            {
-              "cc": 1,
-              "name": "Mod Wheel",
-              "softknob": 1,
-              "type": "cc"
-            }
-          ]
+          "patchName": "Handsaw HS"
         }
       ]
     }
@@ -385,7 +347,7 @@
     "bank": 0,
     "base": 0,
     "density": 100,
-    "deviate": 17,
+    "deviate": 22,
     "device": {
       "A": {
         "bank": 0,
@@ -396,12 +358,12 @@
         "program": 0
       },
       "B": {
-        "bank": 0,
+        "bank": 6,
         "channel": 1,
         "device": 1,
         "mute": 0,
         "port": 16,
-        "program": 0
+        "program": 42
       }
     },
     "gate": 0.96,
@@ -417,8 +379,7 @@
         "offset": 50,
         "phase": 100,
         "rate": 64,
-        "shape": 0,
-        "show": 0
+        "shape": 0
       },
       {
         "amount": 100,
@@ -431,8 +392,7 @@
         "offset": 50,
         "phase": 100,
         "rate": 64,
-        "shape": 0,
-        "show": 0
+        "shape": 0
       },
       {
         "amount": 100,
@@ -445,8 +405,7 @@
         "offset": 50,
         "phase": 100,
         "rate": 64,
-        "shape": 0,
-        "show": 0
+        "shape": 0
       }
     ],
     "matrix": {
@@ -515,7 +474,7 @@
     "muteSteps": 0,
     "octaveChance": 0,
     "probability": 100,
-    "program": 0,
+    "program": 42,
     "scales": 0,
     "shift": 0,
     "split": 49,
@@ -561,11 +520,11 @@
     "transpose": 0,
     "virus": {
       "axyz": {
-        "bank": 0,
+        "bank": 6,
         "level": 100,
         "mode": 0,
         "part": 1,
-        "program": 0,
+        "program": 42,
         "x1": {
           "control": 0,
           "target": [
@@ -629,7 +588,7 @@
             "control": [
               0,
               0,
-              0,
+              42,
               0,
               0,
               0
@@ -690,9 +649,9 @@
       "mixer": {
         "part": [
           {
-            "bank": 0,
-            "level": 0,
-            "program": 0
+            "bank": 6,
+            "level": 100,
+            "program": 42
           },
           {
             "bank": 0,
