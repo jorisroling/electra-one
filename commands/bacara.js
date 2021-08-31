@@ -8,7 +8,7 @@ const path = require('path')
 
 const _ = require('lodash')
 
-const Acid = require('../lib/acid')
+const Pattern = require('../lib/pattern')
 
 const Bacara = require('../lib/bacara')
 const me = path.basename(__filename, '.js')
@@ -87,7 +87,7 @@ function bacaraEmit(portName,part,type,value,origin) {
   Bacara.event.emit('change', portName, part, type, value, origin, path.basename(__filename, '.js'))
 }
 
-class AcidMachine extends Machine {
+class BacaraMachine extends Machine {
   constructor(name) {
     super(name)
 
@@ -100,7 +100,7 @@ class AcidMachine extends Machine {
 
     Bacara.event.on('change', (device, part, name, value, origin, command) => {
       if (/*command != me &&*/ device == 'virus-ti' && (part>=1 && part<=16)) {
-        //debug('ACID change %y - device: %y  part: %y  name: %y  value: %y  origin: %y command: %y',me,device, part, name, value, origin, command)
+        //debug('BACARA change %y - device: %y  part: %y  name: %y  value: %y  origin: %y command: %y',me,device, part, name, value, origin, command)
         if (name == 'bank-and-program') {
           if (value && value.bank) {
             this.interface.setParameter(`virus.mixer.part.${part-1}.bank`,value.bank)
@@ -275,6 +275,9 @@ class AcidMachine extends Machine {
               //            if (bacaraEmitPart != part || (!bacaraEmitTime || bacaraEmitTime<(Date.now()-200))) {
               const level = page[0][91]
               this.interface.setParameter(`virus.mixer.part.${part-1}.level`,level)
+
+              this.interface.setParameter(`virus.mixer.part.${part-1}.bank`,page[0][2])
+              this.interface.setParameter(`virus.mixer.part.${part-1}.program`,page[0][3])
             }
             if (part == this.interface.getParameter(`virus.axyz.part`)) {
               this.interface.setParameter(`virus.axyz.bank`,page[0][2])
@@ -496,7 +499,7 @@ class AcidMachine extends Machine {
       },
       generate: (elementPath, origin) => {
         if (origin == 'surface') {
-          this.state.pattern = Acid.generate(this.state)
+          this.state.pattern = Pattern.generate(this.state)
           this.state.last_pattern_but = 0
           this.showPattern()
           this.writeState()
@@ -507,7 +510,7 @@ class AcidMachine extends Machine {
         if (origin == 'surface') {
           this.state.last_pattern_but += 1
 
-          this.state.pattern = Acid.load_pattern(this.state)
+          this.state.pattern = Pattern.load_pattern(this.state)
           this.showPattern()
           this.writeState()
           debug('previous_pattern: %y', this.state.last_pattern_but)
@@ -520,7 +523,7 @@ class AcidMachine extends Machine {
             this.state.last_pattern_but = 0
           }
 
-          this.state.pattern = Acid.load_pattern(this.state)
+          this.state.pattern = Pattern.load_pattern(this.state)
           this.showPattern()
           this.writeState()
           debug('next_pattern: %y', this.state.last_pattern_but)
@@ -1100,7 +1103,7 @@ class AcidMachine extends Machine {
       },
       program: (elementPath, value, origin) => {
         if (origin == 'surface') {
-          const presetFilesCount = Acid.presetFiles(this.state, true)
+          const presetFilesCount = Pattern.presetFiles(this.state, true)
           if (value >= 0 && value < presetFilesCount) {
             const filename = this.load_preset(value)
             if (filename) {
@@ -1726,7 +1729,7 @@ class AcidMachine extends Machine {
 
   presetFiles(count = false) {
     const files = glob.sync(path.resolve(
-      ( (process.env.NODE_ENV == 'production') ? path.join(untildify('~/.electra-one'), 'state', 'acid', this.bankName(), 'presets') : path.join(__dirname, '..', 'state', 'acid', this.bankName(), 'presets') ) + '/*.json'), {})
+      ( (process.env.NODE_ENV == 'production') ? path.join(untildify('~/.electra-one'), 'state', 'bacara', this.bankName(), 'presets') : path.join(__dirname, '..', 'state', 'bacara', this.bankName(), 'presets') ) + '/*.json'), {})
     return count ? (Array.isArray(files) ? files.length : 0) : files
   }
 
@@ -1742,7 +1745,7 @@ class AcidMachine extends Machine {
 
   add_preset() {
     const name = `Bacara - ${new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')}`
-    const filePath = path.resolve((process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/acid/${this.bankName()}/presets/${name.replace(/:/g, '.')}.json`) : `${__dirname}/../state/acid/${this.bankName()}/presets/${name.replace(/:/g, '.')}.json`)
+    const filePath = path.resolve((process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/bacara/${this.bankName()}/presets/${name.replace(/:/g, '.')}.json`) : `${__dirname}/../state/bacara/${this.bankName()}/presets/${name.replace(/:/g, '.')}.json`)
     this.writeState(filePath)
     this.interface.setParameter('program', this.presetFiles(true) - 1)
     return filePath
@@ -1842,7 +1845,7 @@ class AcidMachine extends Machine {
 
                     // Can Electra handle many NRPN's?
                     this.interface.setParameter(`lfo.${l}.show`, midiValue)
-                    //sendNRPN(midiOutputName, config.acid.interface.lfo[l + 1].show.nrpn, 1, midiValue, 0, 50)
+                    //sendNRPN(midiOutputName, config.bacara.interface.lfo[l + 1].show.nrpn, 1, midiValue, 0, 50)
                   }
                 }
               })
@@ -1957,7 +1960,7 @@ class AcidMachine extends Machine {
 }
 
 /*function setupMidi(options) {
-  const scenario = _.get(config, `acid.scenarios.${options.scenario}`)
+  const scenario = _.get(config, `bacara.scenarios.${options.scenario}`)
   if (scenario && scenario.actors) {
     const actors = Object.keys(scenario.actors)
     for (const actor of actors) {
@@ -1984,9 +1987,9 @@ class AcidMachine extends Machine {
 }
 */
 
-function acidSequencer(name, sub, options) {
+function bacaraSequencer(name, sub, options) {
 
-  Midi.setupVirtualPorts(config.acid.virtual)
+  Midi.setupVirtualPorts(config.bacara.virtual)
 
   const monode = monodeInit()
 
@@ -2016,9 +2019,9 @@ function acidSequencer(name, sub, options) {
   })
 
 
-  const acidMachine = new AcidMachine('bacara')
-  acidMachine.readState()
-  acidMachine.writeState()
+  const bacaraMachine = new BacaraMachine('bacara')
+  bacaraMachine.readState()
+  bacaraMachine.writeState()
 
   electraBacaraPresetLoaded = false
 
@@ -2063,23 +2066,23 @@ function acidSequencer(name, sub, options) {
   }
 
 
-  acidMachine.connect(options.electra, 'surface')
+  bacaraMachine.connect(options.electra, 'surface')
 
   if (options.general) {
-    acidMachine.connect(options.general, 'external', Number.isInteger(options.generalChannel) ? parseInt(options.generalChannel) - 1 : 0)
+    bacaraMachine.connect(options.general, 'external', Number.isInteger(options.generalChannel) ? parseInt(options.generalChannel) - 1 : 0)
   }
   if (options.clock) {
-    acidMachine.connect(options.clock, 'clock', 10 - 1)
+    bacaraMachine.connect(options.clock, 'clock', 10 - 1)
   }
   if (options.transpose) {
-    acidMachine.connect(options.transpose, 'transpose', Number.isInteger(options.transposeChannel) ? parseInt(options.transposeChannel) - 1 : 0)
+    bacaraMachine.connect(options.transpose, 'transpose', Number.isInteger(options.transposeChannel) ? parseInt(options.transposeChannel) - 1 : 0)
   }
 
-  acidMachine.interface.emitParameters('post-connect')
+  bacaraMachine.interface.emitParameters('post-connect')
 
-  acidMachine.notesReset()
-  acidMachine.interface.sendValues('surface')
-  acidMachine.showPattern()
+  bacaraMachine.notesReset()
+  bacaraMachine.interface.sendValues('surface')
+  bacaraMachine.showPattern()
   //  debug('State %y', machine.getPreset())
   /*  debug('Options %y', options)*/
 
@@ -2097,7 +2100,7 @@ module.exports = {
   examples: [
     {usage:'electra-one bacara', description:'Starts Bacara sequencer'},
   ],
-  handler: acidSequencer,
+  handler: bacaraSequencer,
 }
 
 

@@ -271,7 +271,7 @@
         486,
         16
       ],
-      "color": "FFFFFF"
+      "color": "03A598"
     },
     {
       "id": 184,
@@ -301,7 +301,7 @@
       "id": 196,
       "pageId": 6,
       "name": "Part 4",
-      "color": "529DEC",
+      "color": "C44795",
       "bounds": [
         510,
         192,
@@ -313,7 +313,7 @@
       "id": 205,
       "pageId": 6,
       "name": "Part 5",
-      "color": "03A598",
+      "color": "FFFFFF",
       "bounds": [
         0,
         368,
@@ -325,7 +325,7 @@
       "id": 208,
       "pageId": 6,
       "name": "Part 6",
-      "color": "C44795",
+      "color": "529DEC",
       "bounds": [
         510,
         368,
@@ -8752,7 +8752,7 @@
       "mode": "momentary",
       "visible": true,
       "name": "PART 1",
-      "color": "FFFFFF",
+      "color": "03A598",
       "bounds": [
         0,
         40,
@@ -8860,7 +8860,7 @@
       "mode": "momentary",
       "visible": true,
       "name": "PART 4",
-      "color": "529DEC",
+      "color": "C44795",
       "bounds": [
         510,
         40,
@@ -8896,7 +8896,7 @@
       "mode": "momentary",
       "visible": true,
       "name": "PART 5",
-      "color": "03A598",
+      "color": "FFFFFF",
       "bounds": [
         680,
         40,
@@ -8932,7 +8932,7 @@
       "mode": "momentary",
       "visible": true,
       "name": "PART 6",
-      "color": "C44795",
+      "color": "529DEC",
       "bounds": [
         850,
         40,
@@ -8965,8 +8965,9 @@
     {
       "id": 151,
       "type": "fader",
+      "visible": true,
       "name": "LEVEL",
-      "color": "FFFFFF",
+      "color": "03A598",
       "bounds": [
         0,
         128,
@@ -9064,8 +9065,9 @@
     {
       "id": 154,
       "type": "fader",
+      "visible": true,
       "name": "LEVEL",
-      "color": "529DEC",
+      "color": "C44795",
       "bounds": [
         510,
         128,
@@ -9097,8 +9099,9 @@
     {
       "id": 155,
       "type": "fader",
+      "visible": true,
       "name": "LEVEL",
-      "color": "03A598",
+      "color": "FFFFFF",
       "bounds": [
         680,
         128,
@@ -9130,8 +9133,9 @@
     {
       "id": 156,
       "type": "fader",
+      "visible": true,
       "name": "LEVEL",
-      "color": "C44795",
+      "color": "529DEC",
       "bounds": [
         850,
         128,
@@ -9165,7 +9169,7 @@
       "type": "fader",
       "visible": true,
       "name": "BANK",
-      "color": "FFFFFF",
+      "color": "03A598",
       "bounds": [
         0,
         216,
@@ -9270,7 +9274,7 @@
       "type": "fader",
       "visible": true,
       "name": "BANK",
-      "color": "529DEC",
+      "color": "C44795",
       "bounds": [
         510,
         216,
@@ -9305,7 +9309,7 @@
       "type": "fader",
       "visible": true,
       "name": "BANK",
-      "color": "03A598",
+      "color": "FFFFFF",
       "bounds": [
         680,
         216,
@@ -9340,7 +9344,7 @@
       "type": "fader",
       "visible": true,
       "name": "BANK",
-      "color": "C44795",
+      "color": "529DEC",
       "bounds": [
         850,
         216,
@@ -9373,8 +9377,9 @@
     {
       "id": 163,
       "type": "fader",
+      "visible": true,
       "name": "PROGRAM",
-      "color": "FFFFFF",
+      "color": "03A598",
       "bounds": [
         0,
         304,
@@ -9472,8 +9477,9 @@
     {
       "id": 166,
       "type": "fader",
+      "visible": true,
       "name": "PROGRAM",
-      "color": "529DEC",
+      "color": "C44795",
       "bounds": [
         510,
         304,
@@ -9505,8 +9511,9 @@
     {
       "id": 167,
       "type": "fader",
+      "visible": true,
       "name": "PROGRAM",
-      "color": "03A598",
+      "color": "FFFFFF",
       "bounds": [
         680,
         304,
@@ -9540,7 +9547,7 @@
       "type": "fader",
       "visible": true,
       "name": "PROGRAM",
-      "color": "C44795",
+      "color": "529DEC",
       "bounds": [
         850,
         304,
@@ -9573,8 +9580,9 @@
       "id": 169,
       "type": "pad",
       "mode": "momentary",
+      "visible": true,
       "name": "NEXT",
-      "color": "FFFFFF",
+      "color": "03A598",
       "bounds": [
         0,
         392,
@@ -9678,8 +9686,9 @@
       "id": 172,
       "type": "pad",
       "mode": "momentary",
+      "visible": true,
       "name": "NEXT",
-      "color": "529DEC",
+      "color": "C44795",
       "bounds": [
         510,
         392,
@@ -9713,8 +9722,9 @@
       "id": 173,
       "type": "pad",
       "mode": "momentary",
+      "visible": true,
       "name": "NEXT",
-      "color": "03A598",
+      "color": "FFFFFF",
       "bounds": [
         680,
         392,
@@ -9748,8 +9758,9 @@
       "id": 174,
       "type": "pad",
       "mode": "momentary",
+      "visible": true,
       "name": "NEXT",
-      "color": "C44795",
+      "color": "529DEC",
       "bounds": [
         850,
         392,
@@ -9783,8 +9794,9 @@
       "id": 175,
       "type": "pad",
       "mode": "momentary",
+      "visible": true,
       "name": "PREVIOUS",
-      "color": "FFFFFF",
+      "color": "03A598",
       "bounds": [
         0,
         480,
@@ -9888,8 +9900,9 @@
       "id": 178,
       "type": "pad",
       "mode": "momentary",
+      "visible": true,
       "name": "PREVIOUS",
-      "color": "529DEC",
+      "color": "C44795",
       "bounds": [
         510,
         480,
@@ -9923,8 +9936,9 @@
       "id": 179,
       "type": "pad",
       "mode": "momentary",
+      "visible": true,
       "name": "PREVIOUS",
-      "color": "03A598",
+      "color": "FFFFFF",
       "bounds": [
         680,
         480,
@@ -9960,7 +9974,7 @@
       "mode": "momentary",
       "visible": true,
       "name": "PREVIOUS",
-      "color": "C44795",
+      "color": "529DEC",
       "bounds": [
         850,
         480,
@@ -9995,7 +10009,7 @@
       "type": "fader",
       "visible": true,
       "name": "MODULATION",
-      "color": "FFFFFF",
+      "color": "03A598",
       "bounds": [
         0,
         40,
@@ -10029,7 +10043,7 @@
       "type": "fader",
       "visible": true,
       "name": "BREATH",
-      "color": "FFFFFF",
+      "color": "03A598",
       "bounds": [
         170,
         40,
@@ -10063,7 +10077,7 @@
       "type": "fader",
       "visible": true,
       "name": "CONTROL 3",
-      "color": "FFFFFF",
+      "color": "03A598",
       "bounds": [
         340,
         40,
@@ -10199,7 +10213,7 @@
       "type": "fader",
       "visible": true,
       "name": "FOOT PEDAL",
-      "color": "FFFFFF",
+      "color": "03A598",
       "bounds": [
         0,
         128,
@@ -10233,7 +10247,7 @@
       "type": "fader",
       "visible": true,
       "name": "DATA ENTRY",
-      "color": "FFFFFF",
+      "color": "03A598",
       "bounds": [
         170,
         128,
@@ -10267,7 +10281,7 @@
       "type": "fader",
       "visible": true,
       "name": "CONTROL 9",
-      "color": "FFFFFF",
+      "color": "03A598",
       "bounds": [
         340,
         128,
@@ -10505,7 +10519,7 @@
       "type": "fader",
       "visible": true,
       "name": "MODULATION",
-      "color": "529DEC",
+      "color": "C44795",
       "bounds": [
         510,
         216,
@@ -10539,7 +10553,7 @@
       "type": "fader",
       "visible": true,
       "name": "BREATH",
-      "color": "529DEC",
+      "color": "C44795",
       "bounds": [
         680,
         216,
@@ -10573,7 +10587,7 @@
       "type": "fader",
       "visible": true,
       "name": "CONTROL 3",
-      "color": "529DEC",
+      "color": "C44795",
       "bounds": [
         850,
         216,
@@ -10709,7 +10723,7 @@
       "type": "fader",
       "visible": true,
       "name": "FOOT PEDAL",
-      "color": "529DEC",
+      "color": "C44795",
       "bounds": [
         510,
         304,
@@ -10743,7 +10757,7 @@
       "type": "fader",
       "visible": true,
       "name": "DATA ENTRY",
-      "color": "529DEC",
+      "color": "C44795",
       "bounds": [
         680,
         304,
@@ -10777,7 +10791,7 @@
       "type": "fader",
       "visible": true,
       "name": "CONTROL 9",
-      "color": "529DEC",
+      "color": "C44795",
       "bounds": [
         850,
         304,
@@ -10811,7 +10825,7 @@
       "type": "fader",
       "visible": true,
       "name": "MODULATION",
-      "color": "03A598",
+      "color": "FFFFFF",
       "bounds": [
         0,
         392,
@@ -10845,7 +10859,7 @@
       "type": "fader",
       "visible": true,
       "name": "BREATH",
-      "color": "03A598",
+      "color": "FFFFFF",
       "bounds": [
         170,
         392,
@@ -10879,7 +10893,7 @@
       "type": "fader",
       "visible": true,
       "name": "CONTROL 3",
-      "color": "03A598",
+      "color": "FFFFFF",
       "bounds": [
         340,
         392,
@@ -10913,7 +10927,7 @@
       "type": "fader",
       "visible": true,
       "name": "MODULATION",
-      "color": "C44795",
+      "color": "529DEC",
       "bounds": [
         510,
         392,
@@ -10947,7 +10961,7 @@
       "type": "fader",
       "visible": true,
       "name": "BREATH",
-      "color": "C44795",
+      "color": "529DEC",
       "bounds": [
         680,
         392,
@@ -10981,7 +10995,7 @@
       "type": "fader",
       "visible": true,
       "name": "CONTROL 3",
-      "color": "C44795",
+      "color": "529DEC",
       "bounds": [
         850,
         392,
@@ -11015,7 +11029,7 @@
       "type": "fader",
       "visible": true,
       "name": "FOOT PEDAL",
-      "color": "03A598",
+      "color": "FFFFFF",
       "bounds": [
         0,
         480,
@@ -11049,7 +11063,7 @@
       "type": "fader",
       "visible": true,
       "name": "DATA ENTRY",
-      "color": "03A598",
+      "color": "FFFFFF",
       "bounds": [
         170,
         480,
@@ -11083,7 +11097,7 @@
       "type": "fader",
       "visible": true,
       "name": "CONTROL 9",
-      "color": "03A598",
+      "color": "FFFFFF",
       "bounds": [
         340,
         480,
@@ -11117,7 +11131,7 @@
       "type": "fader",
       "visible": true,
       "name": "FOOT PEDAL",
-      "color": "C44795",
+      "color": "529DEC",
       "bounds": [
         510,
         480,
@@ -11151,7 +11165,7 @@
       "type": "fader",
       "visible": true,
       "name": "DATA ENTRY",
-      "color": "C44795",
+      "color": "529DEC",
       "bounds": [
         680,
         480,
@@ -11185,7 +11199,7 @@
       "type": "fader",
       "visible": true,
       "name": "CONTROL 9",
-      "color": "C44795",
+      "color": "529DEC",
       "bounds": [
         850,
         480,

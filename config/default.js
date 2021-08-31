@@ -2,7 +2,7 @@ const pkg = require('../package.json')
 const debugPrefix = pkg.name
 const path = require('path')
 
-const bacaraAcidVirtualName = 'Bacara'
+const bacaraVirtualName = 'Bacara'
 /*
  iConnectMIDI4+:iConnectMIDI4+ MIDI 3 20:2   ║ Virus TI
 */
@@ -77,8 +77,8 @@ module.exports = {
         //        linux: 'iConnectMIDI4+:iConnectMIDI4+ MIDI 6 20:5',
       },
       'bacara': {
-        darwin: bacaraAcidVirtualName,
-        linux: bacaraAcidVirtualName,
+        darwin: bacaraVirtualName,
+        linux: bacaraVirtualName,
       },
       'komplete-kontrol': {
         //        darwin: 'KOMPLETE KONTROL M32',
@@ -245,12 +245,11 @@ module.exports = {
     },
   },
   list: {
-    virtual: bacaraAcidVirtualName,
+    virtual: bacaraVirtualName,
   },
-  acid: {
-    virtual: bacaraAcidVirtualName,
+  bacara: {
+    virtual: bacaraVirtualName,
     channel: 1,
-    //    interface: require('../interfaces/acid.v1').parameters,
     scenarios: {
       'default': {
         actors: {
