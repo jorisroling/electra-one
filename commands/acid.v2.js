@@ -1,4 +1,4 @@
-const debug = require('yves').debugger(require('../package.json').name + ':lib:midi:' + (require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':'))
+const debug = require('yves').debugger(require('../package.json').name + ':' + (require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':'))
 
 const config = require('config')
 const os = require('os')
@@ -24,11 +24,12 @@ const untildify = require('untildify')
 
 const yves = require('../lib/yves')
 const pkg = require('../package.json')
-const debugMidi = yves.debugger(`${pkg.name.replace(/^@/, '')}:midi`)
-const debugMidiNoteOn = yves.debugger(`${pkg.name.replace(/^@/, '')}:midi:note:on`)
-const debugMidiNoteOff = yves.debugger(`${pkg.name.replace(/^@/, '')}:midi:note:off`)
-const debugMidiControlChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:midi:control:change`)
-const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:midi:program:change`)
+const debugLfo = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:lfo`)
+const debugMidi = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi`)
+const debugMidiNoteOn = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:note:on`)
+const debugMidiNoteOff = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:note:off`)
+const debugMidiControlChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:control:change`)
+const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:program:change`)
 
 const debugMonome = yves.debugger(`${pkg.name.replace(/^@/, '')}:monome`)
 
@@ -1861,7 +1862,7 @@ class AcidMachine extends Machine {
             this.interface.emit('modulationChange', deltaKey, deltaValues[deltaKey], 'lfo')
             //            debug('lfo modulation old: %y = %y', deltaKey, oldValues[deltaKey])
           })
-          debug('LFO Modulation Impact: %y', deltaValues)
+          debugLfo('Modulation Impact: %y', deltaValues)
         }
       }
 

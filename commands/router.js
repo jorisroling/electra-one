@@ -18,7 +18,7 @@ const sendSingleRequestTimeoutTime = 0 // 200
 const sendSingleDumpTimeoutTime = 0 // 600
 
 const pkg = require('../package.json')
-const debugPart = yves.debugger(`${pkg.name.replace(/^@/, '')}:part`)
+const debugPart = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:part`)
 
 const { knownDeviceCCs } = require('../lib/devices')
 const deviceCCs = knownDeviceCCs()
