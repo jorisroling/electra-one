@@ -11,7 +11,7 @@ const { devices } = require('../lib/devices')
 
 function preProcess(name, sub, options) {
 
-  const interface = new Interface('acid.v2')
+  const interface = new Interface('bacara')
   if (options.filename) {
     if (fs.existsSync(options.filename)) {
       const preset = jsonfile.readFileSync(options.filename)

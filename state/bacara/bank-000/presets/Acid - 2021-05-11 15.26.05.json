@@ -1,0 +1,289 @@
+{
+  "playing": true,
+  "pattern": {
+    "header": {
+      "keySignatures": [],
+      "meta": [],
+      "name": "Bacara - 2021-05-11 15:15:03",
+      "ppq": 480,
+      "tempos": [],
+      "timeSignatures": []
+    },
+    "tracks": [
+      {
+        "channel": 0,
+        "controlChanges": {},
+        "pitchBends": [],
+        "instrument": {
+          "family": "piano",
+          "name": "acoustic grand piano",
+          "number": 0
+        },
+        "name": "Bacara - 2021-05-11 15:15:03",
+        "notes": [
+          {
+            "duration": 0.0625,
+            "durationTicks": 60,
+            "midi": 71,
+            "name": "B4",
+            "ticks": 0,
+            "time": 0,
+            "velocity": 0.7874015748031497
+          },
+          {
+            "duration": 0.0625,
+            "durationTicks": 60,
+            "midi": 47,
+            "name": "B2",
+            "ticks": 120,
+            "time": 0.125,
+            "velocity": 0.7874015748031497
+          },
+          {
+            "duration": 0.0625,
+            "durationTicks": 60,
+            "midi": 59,
+            "name": "B3",
+            "ticks": 240,
+            "time": 0.25,
+            "velocity": 0.7874015748031497
+          },
+          {
+            "duration": 0.1875,
+            "durationTicks": 180,
+            "midi": 63,
+            "name": "D#4",
+            "ticks": 360,
+            "time": 0.375,
+            "velocity": 0.7874015748031497
+          },
+          {
+            "duration": 0.0625,
+            "durationTicks": 60,
+            "midi": 65,
+            "name": "F4",
+            "ticks": 480,
+            "time": 0.5,
+            "velocity": 0.7874015748031497
+          },
+          {
+            "duration": 0.0625,
+            "durationTicks": 60,
+            "midi": 47,
+            "name": "B2",
+            "ticks": 600,
+            "time": 0.625,
+            "velocity": 0.7874015748031497
+          },
+          {
+            "duration": 0.0625,
+            "durationTicks": 60,
+            "midi": 59,
+            "name": "B3",
+            "ticks": 720,
+            "time": 0.75,
+            "velocity": 0.7874015748031497
+          },
+          {
+            "duration": 0.1875,
+            "durationTicks": 180,
+            "midi": 63,
+            "name": "D#4",
+            "ticks": 840,
+            "time": 0.875,
+            "velocity": 0.7874015748031497
+          },
+          {
+            "duration": 0.0625,
+            "durationTicks": 60,
+            "midi": 47,
+            "name": "B2",
+            "ticks": 960,
+            "time": 1,
+            "velocity": 0.7874015748031497
+          },
+          {
+            "duration": 0.0625,
+            "durationTicks": 60,
+            "midi": 35,
+            "name": "B1",
+            "ticks": 1080,
+            "time": 1.125,
+            "velocity": 0.7874015748031497
+          },
+          {
+            "duration": 0.1875,
+            "durationTicks": 180,
+            "midi": 59,
+            "name": "B3",
+            "ticks": 1200,
+            "time": 1.25,
+            "velocity": 1
+          },
+          {
+            "duration": 0.0625,
+            "durationTicks": 60,
+            "midi": 26,
+            "name": "D1",
+            "ticks": 1320,
+            "time": 1.375,
+            "velocity": 0.7874015748031497
+          },
+          {
+            "duration": 0.0625,
+            "durationTicks": 60,
+            "midi": 56,
+            "name": "G#3",
+            "ticks": 1440,
+            "time": 1.5,
+            "velocity": 1
+          },
+          {
+            "duration": 0.0625,
+            "durationTicks": 60,
+            "midi": 32,
+            "name": "G#1",
+            "ticks": 1560,
+            "time": 1.625,
+            "velocity": 0.7874015748031497
+          },
+          {
+            "duration": 0.0625,
+            "durationTicks": 60,
+            "midi": 32,
+            "name": "G#1",
+            "ticks": 1680,
+            "time": 1.75,
+            "velocity": 1
+          },
+          {
+            "duration": 0.0625,
+            "durationTicks": 60,
+            "midi": 27,
+            "name": "D#1",
+            "ticks": 1800,
+            "time": 1.875,
+            "velocity": 0.7874015748031497
+          }
+        ],
+        "endOfTrackTicks": 1860
+      }
+    ]
+  },
+  "last_pattern_but": 3,
+  "last_preset_but": 2,
+  "size": 16,
+  "temperature": 4.02,
+  "transpose": 1,
+  "gate": 1,
+  "octaveChance": 0,
+  "octaves": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "density": 100,
+  "probability": 100,
+  "sounding": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "muteSteps": 0,
+  "muteShift": 0,
+  "scales": 0,
+  "base": 0,
+  "shift": 0,
+  "split": 127,
+  "deviate": 21,
+  "lfo": [
+    {
+      "device": {
+        "A": 0,
+        "B": 0
+      },
+      "control": 0,
+      "shape": 0,
+      "shapeName": "sine",
+      "rate": 64,
+      "phase": 0,
+      "amount": 0,
+      "offset": 50,
+      "density": 0
+    },
+    {
+      "device": {
+        "A": 0,
+        "B": 0
+      },
+      "control": 0,
+      "shape": 0,
+      "shapeName": "sine",
+      "rate": 64,
+      "phase": 0,
+      "amount": 0,
+      "offset": 50,
+      "density": 0
+    },
+    {
+      "device": {
+        "A": 0,
+        "B": 0
+      },
+      "control": 0,
+      "shape": 0,
+      "shapeName": "sine",
+      "rate": 64,
+      "phase": 0,
+      "amount": 0,
+      "offset": 50,
+      "density": 0
+    }
+  ],
+  "device": {
+    "A": {
+      "device": 1,
+      "mute": 0,
+      "port": 21,
+      "portName": "virus-ti",
+      "channel": 3,
+      "bank": 0,
+      "program": 0
+    },
+    "B": {
+      "device": 3,
+      "mute": 0,
+      "port": 19,
+      "portName": "iConnectMIDI4+ Typhon",
+      "channel": 15,
+      "bank": 0,
+      "program": 44
+    }
+  }
+}

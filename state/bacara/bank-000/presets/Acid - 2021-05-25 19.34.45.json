@@ -1,0 +1,338 @@
+{
+  "name": "electra-one",
+  "version": "1.1.4",
+  "model": "bacara",
+  "modulation": {},
+  "state": {
+    "device": {
+      "A": {
+        "portName": "virus-ti"
+      },
+      "B": {
+        "portName": "virus-ti"
+      }
+    },
+    "lfo": [
+      {
+        "shapeName": "triangle"
+      },
+      {
+        "shapeName": "sine"
+      },
+      {
+        "shapeName": "sine"
+      }
+    ],
+    "octaves": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "pattern": {
+      "header": {
+        "keySignatures": [],
+        "meta": [],
+        "name": "Bacara - 2021-05-25 19:26:01",
+        "ppq": 480,
+        "tempos": [],
+        "timeSignatures": []
+      },
+      "tracks": [
+        {
+          "channel": 0,
+          "controlChanges": {},
+          "endOfTrackTicks": 1860,
+          "instrument": {
+            "family": "piano",
+            "name": "acoustic grand piano",
+            "number": 0
+          },
+          "name": "Bacara - 2021-05-25 19:26:01",
+          "notes": [
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 35,
+              "name": "B1",
+              "ticks": 120,
+              "time": 0.125,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 57,
+              "name": "A3",
+              "ticks": 240,
+              "time": 0.25,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 64,
+              "name": "E4",
+              "ticks": 360,
+              "time": 0.375,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 55,
+              "name": "G3",
+              "ticks": 480,
+              "time": 0.5,
+              "velocity": 1
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 33,
+              "name": "A1",
+              "ticks": 600,
+              "time": 0.625,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 47,
+              "name": "B2",
+              "ticks": 720,
+              "time": 0.75,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 35,
+              "name": "B1",
+              "ticks": 840,
+              "time": 0.875,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 35,
+              "name": "B1",
+              "ticks": 1200,
+              "time": 1.25,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 37,
+              "name": "C#2",
+              "ticks": 1320,
+              "time": 1.375,
+              "velocity": 1
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 39,
+              "name": "D#2",
+              "ticks": 1440,
+              "time": 1.5,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 35,
+              "name": "B1",
+              "ticks": 1560,
+              "time": 1.625,
+              "velocity": 1
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 35,
+              "name": "B1",
+              "ticks": 1680,
+              "time": 1.75,
+              "velocity": 0.7874015748031497
+            }
+          ],
+          "pitchBends": []
+        }
+      ]
+    },
+    "playing": true,
+    "size": 16,
+    "sounding": [
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1
+    ]
+  },
+  "parameters": {
+    "bank": 0,
+    "base": 1,
+    "density": 100,
+    "deviate": 21,
+    "device": {
+      "A": {
+        "bank": 17,
+        "channel": 1,
+        "device": 1,
+        "mute": 0,
+        "port": 21,
+        "program": 43
+      },
+      "B": {
+        "bank": 7,
+        "channel": 2,
+        "device": 2,
+        "mute": 0,
+        "port": 20,
+        "program": 12
+      }
+    },
+    "gate": 1.1660317460317462,
+    "muteShift": 0,
+    "muteSteps": 5,
+    "lfo": [
+      {
+        "amount": 100,
+        "control": 168,
+        "density": 127,
+        "device": {
+          "A": 1,
+          "B": 0
+        },
+        "offset": 50,
+        "phase": 8,
+        "rate": 13,
+        "shape": 1,
+        "show": 109
+      },
+      {
+        "amount": 100,
+        "control": 0,
+        "density": 127,
+        "device": {
+          "A": 0,
+          "B": 0
+        },
+        "offset": 50,
+        "phase": 100,
+        "rate": 64,
+        "shape": 0
+      },
+      {
+        "amount": 100,
+        "control": 0,
+        "density": 127,
+        "device": {
+          "A": 0,
+          "B": 0
+        },
+        "offset": 50,
+        "phase": 100,
+        "rate": 64,
+        "shape": 0
+      }
+    ],
+    "matrix": {
+      "slot": [
+        {
+          "destination": [
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            }
+          ],
+          "slewLimiter": 0,
+          "source": 0,
+          "value": 0
+        },
+        {
+          "destination": [
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            }
+          ],
+          "slewLimiter": 0,
+          "source": 0,
+          "value": 0
+        },
+        {
+          "destination": [
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            }
+          ],
+          "slewLimiter": 0,
+          "source": 0,
+          "value": 0
+        }
+      ]
+    },
+    "mute": 0,
+    "octaveChance": 0,
+    "probability": 100,
+    "program": 21,
+    "scales": 0,
+    "shift": 0,
+    "split": 50,
+    "temperature": 1.24,
+    "transpose": 0
+  }
+}

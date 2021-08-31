@@ -1,3 +1,4 @@
+const debug = require('yves').debugger(require('../package.json').name + ':' + (require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':'))
 const sleep = require('sleep')
 const yves = require('../lib/yves')
 const _ = require('lodash')

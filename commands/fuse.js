@@ -1,5 +1,5 @@
 function fuse(name, sub, options) {
-  require('./acid.v2').handler('acid.v2', sub, options)
+  require('./bacara').handler('bacara', sub, options)
   require('./router').handler('router', sub, options)
 }
 

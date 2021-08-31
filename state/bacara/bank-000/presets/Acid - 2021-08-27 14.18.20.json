@@ -1,0 +1,517 @@
+{
+  "name": "electra-one",
+  "version": "1.1.6",
+  "model": "bacara",
+  "modulation": {
+    "matrix": {
+      "muteSteps": null
+    }
+  },
+  "state": {
+    "device": {
+      "A": {
+        "portName": "mb33"
+      },
+      "B": {
+        "portName": "virus-ti"
+      }
+    },
+    "lfo": [
+      {
+        "shapeName": "triangle"
+      },
+      {
+        "shapeName": "triangle"
+      },
+      {
+        "shapeName": "sine"
+      }
+    ],
+    "octaves": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "pattern": {
+      "header": {
+        "keySignatures": [],
+        "meta": [],
+        "name": "Bacara - 2021-08-27 11:57:13",
+        "ppq": 480,
+        "tempos": [],
+        "timeSignatures": []
+      },
+      "tracks": [
+        {
+          "channel": 0,
+          "controlChanges": {},
+          "endOfTrackTicks": 1860,
+          "instrument": {
+            "family": "bass",
+            "name": "synth bass 1",
+            "number": 38
+          },
+          "name": "Bacara - 2021-08-27 11:57:13",
+          "notes": [
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 36,
+              "name": "C2",
+              "ticks": 0,
+              "time": 0,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 48,
+              "name": "C3",
+              "ticks": 240,
+              "time": 0.25,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 38,
+              "name": "D2",
+              "ticks": 480,
+              "time": 0.5,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 48,
+              "name": "C3",
+              "ticks": 720,
+              "time": 0.75,
+              "velocity": 1
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 36,
+              "name": "C2",
+              "ticks": 840,
+              "time": 0.875,
+              "velocity": 1
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 24,
+              "name": "C1",
+              "ticks": 960,
+              "time": 1,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 48,
+              "name": "C3",
+              "ticks": 1080,
+              "time": 1.125,
+              "velocity": 1
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 36,
+              "name": "C2",
+              "ticks": 1320,
+              "time": 1.375,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 46,
+              "name": "A#2",
+              "ticks": 1440,
+              "time": 1.5,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 36,
+              "name": "C2",
+              "ticks": 1560,
+              "time": 1.625,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 36,
+              "name": "C2",
+              "ticks": 1680,
+              "time": 1.75,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 36,
+              "name": "C2",
+              "ticks": 1800,
+              "time": 1.875,
+              "velocity": 1
+            }
+          ],
+          "pitchBends": []
+        }
+      ]
+    },
+    "playing": true,
+    "size": 16,
+    "sounding": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "virus": {
+      "part": [
+        {
+          "macros": [
+            {
+              "cc": 1,
+              "name": "Mod Wheel",
+              "type": "cc"
+            },
+            {
+              "cc": 12,
+              "name": "Control 12",
+              "type": "cc"
+            },
+            {
+              "cc": 13,
+              "name": "Control 13",
+              "type": "cc"
+            }
+          ],
+          "patchName": "Pulsar  MS"
+        }
+      ]
+    }
+  },
+  "parameters": {
+    "bank": 0,
+    "base": 1,
+    "density": 100,
+    "deviate": 15,
+    "device": {
+      "A": {
+        "bank": 30,
+        "channel": 16,
+        "device": 34,
+        "mute": 0,
+        "port": 21,
+        "program": 22
+      },
+      "B": {
+        "bank": 16,
+        "channel": 1,
+        "device": 1,
+        "mute": 0,
+        "port": 15,
+        "program": 79
+      }
+    },
+    "gate": 0.789047619047619,
+    "lfo": [
+      {
+        "amount": 79,
+        "control": 132,
+        "density": 127,
+        "device": {
+          "A": 0,
+          "B": 0
+        },
+        "offset": 69,
+        "phase": 0,
+        "rate": 2,
+        "shape": 1
+      },
+      {
+        "amount": 86,
+        "control": 41,
+        "density": 127,
+        "device": {
+          "A": 1,
+          "B": 1
+        },
+        "offset": 76,
+        "phase": 79,
+        "rate": 1,
+        "shape": 1
+      },
+      {
+        "amount": 0,
+        "control": 0,
+        "density": 0,
+        "device": {
+          "A": 0,
+          "B": 0
+        },
+        "offset": 50,
+        "phase": 0,
+        "rate": 64,
+        "shape": 0
+      }
+    ],
+    "matrix": {
+      "slot": [
+        {
+          "destination": [
+            {
+              "amount": -100,
+              "target": 16
+            },
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            }
+          ],
+          "slewLimiter": 0,
+          "source": 0,
+          "value": 17
+        },
+        {
+          "destination": [
+            {
+              "amount": -100,
+              "target": 68
+            },
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            }
+          ],
+          "slewLimiter": 34,
+          "source": 1,
+          "value": 0
+        },
+        {
+          "destination": [
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            }
+          ],
+          "slewLimiter": 0,
+          "source": 0,
+          "value": 0
+        }
+      ]
+    },
+    "mute": 0,
+    "muteShift": 0,
+    "muteSteps": 0,
+    "octaveChance": 7.936507936507937,
+    "probability": 100,
+    "program": 40,
+    "scales": 26,
+    "shift": 0,
+    "split": 48,
+    "temperature": 3.07,
+    "track": [
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      }
+    ],
+    "transpose": 4,
+    "virus": {
+      "axyz": {
+        "bank": 0,
+        "level": 100,
+        "part": 10,
+        "program": 0,
+        "x1": 0.7329996337443536,
+        "x2": 0.36955194725918683,
+        "x3": -0.38310340617751193,
+        "x4": 0.23232816505921128,
+        "y1": 0.15565864973751675,
+        "y2": 0.22939811988768155,
+        "y3": -0.5399829080698327,
+        "y4": 0.8448296911244049
+      },
+      "mixer": {
+        "part": [
+          {
+            "bank": 16,
+            "level": 103,
+            "program": 79
+          },
+          {
+            "bank": 12,
+            "level": 111,
+            "program": 51
+          },
+          {
+            "bank": 22,
+            "level": 127,
+            "program": 54
+          },
+          {
+            "bank": 16,
+            "level": 110,
+            "program": 42
+          },
+          {
+            "bank": 0,
+            "level": 100,
+            "program": 2
+          },
+          {
+            "bank": 8,
+            "level": 100,
+            "program": 26
+          }
+        ]
+      },
+      "performance": {
+        "part": [
+          {
+            "control": [
+              30,
+              86,
+              109,
+              2,
+              0,
+              0
+            ]
+          },
+          {
+            "control": [
+              0,
+              12,
+              51,
+              18,
+              2,
+              0
+            ]
+          },
+          {
+            "control": [
+              0,
+              22,
+              54,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "control": [
+              0,
+              16,
+              42,
+              3,
+              0,
+              0
+            ]
+          },
+          {
+            "control": [
+              0,
+              0,
+              2,
+              3,
+              0,
+              0
+            ]
+          },
+          {
+            "control": [
+              0,
+              8,
+              26,
+              2,
+              3,
+              0
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
