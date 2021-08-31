@@ -1,11 +1,11 @@
-function bacara(name, sub, options) {
+function fuse(name, sub, options) {
   require('./acid.v2').handler('acid.v2', sub, options)
   require('./router').handler('router', sub, options)
 }
 
 module.exports = {
-  name: 'bacara',
+  name: 'fuse',
   description: 'To it all',
-  handler: bacara,
+  handler: fuse,
   aliases:[]
 }
