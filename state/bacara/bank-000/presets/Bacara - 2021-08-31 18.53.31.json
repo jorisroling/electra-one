@@ -1,0 +1,726 @@
+{
+  "name": "electra-one",
+  "version": "1.1.7",
+  "model": "bacara",
+  "modulation": {
+    "matrix": {
+      "muteSteps": null
+    }
+  },
+  "state": {
+    "device": {
+      "A": {
+        "portName": "mb33"
+      },
+      "B": {
+        "portName": "virus-ti"
+      }
+    },
+    "last_pattern_but": 0,
+    "lfo": [
+      {
+        "shapeName": "triangle"
+      },
+      {
+        "shapeName": "triangle"
+      },
+      {
+        "shapeName": "sine"
+      }
+    ],
+    "octaves": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "pattern": {
+      "header": {
+        "keySignatures": [],
+        "meta": [],
+        "name": "Bacara - 2021-08-31 18:52:24",
+        "ppq": 480,
+        "tempos": [],
+        "timeSignatures": []
+      },
+      "tracks": [
+        {
+          "channel": 0,
+          "controlChanges": {},
+          "pitchBends": [],
+          "instrument": {
+            "family": "bass",
+            "name": "synth bass 1",
+            "number": 38
+          },
+          "name": "Bacara - 2021-08-31 18:52:24",
+          "notes": [
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 36,
+              "name": "C2",
+              "ticks": 0,
+              "time": 0,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 48,
+              "name": "C3",
+              "ticks": 240,
+              "time": 0.25,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 36,
+              "name": "C2",
+              "ticks": 360,
+              "time": 0.375,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 36,
+              "name": "C2",
+              "ticks": 480,
+              "time": 0.5,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 36,
+              "name": "C2",
+              "ticks": 600,
+              "time": 0.625,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 36,
+              "name": "C2",
+              "ticks": 720,
+              "time": 0.75,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 36,
+              "name": "C2",
+              "ticks": 960,
+              "time": 1,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 55,
+              "name": "G3",
+              "ticks": 1080,
+              "time": 1.125,
+              "velocity": 1
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 24,
+              "name": "C1",
+              "ticks": 1200,
+              "time": 1.25,
+              "velocity": 1
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 56,
+              "name": "G#3",
+              "ticks": 1320,
+              "time": 1.375,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 44,
+              "name": "G#2",
+              "ticks": 1440,
+              "time": 1.5,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 55,
+              "name": "G3",
+              "ticks": 1560,
+              "time": 1.625,
+              "velocity": 0.7874015748031497
+            }
+          ],
+          "endOfTrackTicks": 1740
+        }
+      ]
+    },
+    "playing": true,
+    "size": 16,
+    "sounding": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "virus": {
+      "axyz": {
+        "patchName": "DuskwoodMS"
+      },
+      "part": [
+        {
+          "macros": [
+            {
+              "cc": 12,
+              "index": 1,
+              "name": "Disolve",
+              "softknob": 9,
+              "type": "cc"
+            },
+            {
+              "cc": 13,
+              "index": 2,
+              "name": "Mutate",
+              "softknob": 10,
+              "type": "cc"
+            },
+            {
+              "cc": 1,
+              "index": 3,
+              "name": "SubOsc",
+              "softknob": 1,
+              "type": "cc"
+            }
+          ],
+          "patchName": "Pulsar  MS"
+        },
+        {
+          "macros": [
+            {
+              "cc": 3,
+              "index": 1,
+              "name": "Detune",
+              "softknob": 3,
+              "type": "cc"
+            },
+            {
+              "cc": 9,
+              "index": 2,
+              "name": "SubOsc",
+              "softknob": 7,
+              "type": "cc"
+            },
+            {
+              "cc": 12,
+              "index": 3,
+              "name": "Phaser",
+              "softknob": 9,
+              "type": "cc"
+            },
+            {
+              "cc": 1,
+              "name": "Mod Wheel",
+              "softknob": 1,
+              "type": "cc"
+            }
+          ],
+          "patchName": "PL Five"
+        },
+        {
+          "macros": [],
+          "patchName": "- Init -"
+        },
+        {
+          "macros": [
+            {
+              "cc": 12,
+              "index": 1,
+              "name": "SubOsc",
+              "softknob": 9,
+              "type": "cc"
+            },
+            {
+              "cc": 13,
+              "index": 2,
+              "name": "EqMid",
+              "softknob": 10,
+              "type": "cc"
+            },
+            {
+              "cc": 1,
+              "index": 3,
+              "name": "Vibrato",
+              "softknob": 1,
+              "type": "cc"
+            }
+          ],
+          "patchName": "FatMoogyMS"
+        },
+        {
+          "macros": [
+            {
+              "cc": 14,
+              "index": 1,
+              "name": "Glide",
+              "softknob": 11,
+              "type": "cc"
+            },
+            {
+              "cc": 16,
+              "index": 3,
+              "name": "Delay",
+              "softknob": 13,
+              "type": "cc"
+            },
+            {
+              "cc": 15,
+              "name": "Control 15",
+              "softknob": 12,
+              "type": "cc"
+            }
+          ],
+          "patchName": "AmrCnBe@uT"
+        },
+        {
+          "macros": [
+            {
+              "cc": 4,
+              "index": 1,
+              "name": "Infect",
+              "softknob": 4,
+              "type": "cc"
+            },
+            {
+              "cc": 6,
+              "index": 2,
+              "name": "Tone",
+              "softknob": 5,
+              "type": "cc"
+            },
+            {
+              "cc": 3,
+              "index": 3,
+              "name": "Delay",
+              "softknob": 3,
+              "type": "cc"
+            }
+          ],
+          "patchName": "Fatass!  M"
+        },
+        null,
+        null,
+        null,
+        {
+          "macros": [
+            {
+              "cc": 12,
+              "index": 1,
+              "name": "Sharpen",
+              "softknob": 9,
+              "type": "cc"
+            },
+            {
+              "cc": 13,
+              "index": 2,
+              "name": "Morph",
+              "softknob": 10,
+              "type": "cc"
+            },
+            {
+              "cc": 14,
+              "index": 3,
+              "name": "Fuzz",
+              "softknob": 11,
+              "type": "cc"
+            },
+            {
+              "cc": 1,
+              "name": "Mod Wheel",
+              "softknob": 1,
+              "type": "cc"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "parameters": {
+    "bank": 0,
+    "base": 0,
+    "density": 100,
+    "deviate": 17,
+    "device": {
+      "A": {
+        "bank": 0,
+        "channel": 16,
+        "device": 34,
+        "mute": 0,
+        "port": 22,
+        "program": 0
+      },
+      "B": {
+        "bank": 0,
+        "channel": 1,
+        "device": 1,
+        "mute": 0,
+        "port": 16,
+        "program": 0
+      }
+    },
+    "gate": 0.96,
+    "lfo": [
+      {
+        "amount": 100,
+        "control": 0,
+        "density": 127,
+        "device": {
+          "A": 0,
+          "B": 0
+        },
+        "offset": 50,
+        "phase": 100,
+        "rate": 64,
+        "shape": 0,
+        "show": 0
+      },
+      {
+        "amount": 100,
+        "control": 0,
+        "density": 127,
+        "device": {
+          "A": 0,
+          "B": 0
+        },
+        "offset": 50,
+        "phase": 100,
+        "rate": 64,
+        "shape": 0,
+        "show": 0
+      },
+      {
+        "amount": 100,
+        "control": 0,
+        "density": 127,
+        "device": {
+          "A": 0,
+          "B": 0
+        },
+        "offset": 50,
+        "phase": 100,
+        "rate": 64,
+        "shape": 0,
+        "show": 0
+      }
+    ],
+    "matrix": {
+      "slot": [
+        {
+          "destination": [
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            }
+          ],
+          "slewLimiter": 0,
+          "source": 0,
+          "value": 0
+        },
+        {
+          "destination": [
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            }
+          ],
+          "slewLimiter": 0,
+          "source": 0,
+          "value": 0
+        },
+        {
+          "destination": [
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            },
+            {
+              "amount": 0,
+              "target": 0
+            }
+          ],
+          "slewLimiter": 0,
+          "source": 0,
+          "value": 0
+        }
+      ]
+    },
+    "mute": 0,
+    "muteShift": 0,
+    "muteSteps": 0,
+    "octaveChance": 0,
+    "probability": 100,
+    "program": 0,
+    "scales": 0,
+    "shift": 0,
+    "split": 49,
+    "temperature": 1,
+    "track": [
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      },
+      {
+        "bank": 0,
+        "device": 0,
+        "mute": 1,
+        "program": 0
+      }
+    ],
+    "transpose": 0,
+    "virus": {
+      "axyz": {
+        "bank": 0,
+        "level": 100,
+        "mode": 0,
+        "part": 1,
+        "program": 0,
+        "x1": {
+          "control": 0,
+          "target": [
+            1,
+            2
+          ]
+        },
+        "x2": {
+          "control": 0,
+          "target": [
+            22,
+            27
+          ]
+        },
+        "x3": {
+          "control": 0,
+          "target": [
+            42,
+            20
+          ]
+        },
+        "x4": {
+          "control": 0,
+          "target": [
+            118,
+            0
+          ]
+        },
+        "y1": {
+          "control": 0,
+          "target": [
+            3,
+            0
+          ]
+        },
+        "y2": {
+          "control": 0,
+          "target": [
+            23,
+            28
+          ]
+        },
+        "y3": {
+          "control": 0,
+          "target": [
+            45,
+            0
+          ]
+        },
+        "y4": {
+          "control": 0,
+          "target": [
+            119,
+            0
+          ]
+        }
+      },
+      "macros": {
+        "part": [
+          {
+            "control": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "control": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "control": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "control": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "control": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "control": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "mixer": {
+        "part": [
+          {
+            "bank": 0,
+            "level": 0,
+            "program": 0
+          },
+          {
+            "bank": 0,
+            "level": 0,
+            "program": 0
+          },
+          {
+            "bank": 0,
+            "level": 0,
+            "program": 0
+          },
+          {
+            "bank": 0,
+            "level": 0,
+            "program": 0
+          },
+          {
+            "bank": 0,
+            "level": 0,
+            "program": 0
+          },
+          {
+            "bank": 0,
+            "level": 0,
+            "program": 0
+          }
+        ]
+      }
+    }
+  }
+}
