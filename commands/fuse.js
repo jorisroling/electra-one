@@ -5,7 +5,7 @@ function fuse(name, sub, options) {
 
 module.exports = {
   name: 'fuse',
-  description: 'To it all',
+  description: 'Combined Bacara & Router',
   handler: fuse,
   aliases:[]
 }
