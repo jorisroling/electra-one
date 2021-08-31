@@ -123,7 +123,6 @@ class AcidMachine extends Machine {
             const bank = this.interface.getParameter(`device.${dev}.bank`)
             const program = this.interface.getParameter(`device.${dev}.program`)
             if (portName == device && channel == part) {
-//              debug('JJR dev %y portname %y',dev,portName)
               if (value && value.bank) {
                 this.interface.setParameter(`device.${dev}.bank`,value.bank)
               }
@@ -2002,7 +2001,6 @@ function acidSequencer(name, sub, options) {
       debugMonome('X %y Y %y S %y', x, y, s)
       monome.led(x, y, s)
       if (s && x >= 6 && x <= 7) {
-        //JJR
         debugMonome('P %y', ((((x - 6) ? 0 : 1) * 8) + y) + 1)
       }
     })
