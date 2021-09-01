@@ -77,7 +77,6 @@ function radians(degrees) {
 }
 
 const virusPatchPages = []
-let virusPartPatchRequestTime = []
 
 let bacaraEmitPart
 let bacaraEmitTime
@@ -270,15 +269,12 @@ class BacaraMachine extends Machine {
 
             virusPatchPages[part-1]=page
 
-//            debug('JJ Delta: %y',(Date.now() - virusPartPatchRequestTime[part-1]))
-            if (virusPartPatchRequestTime[part-1] && (Date.now() - virusPartPatchRequestTime[part-1]) < 1000) {
-              //            if (bacaraEmitPart != part || (!bacaraEmitTime || bacaraEmitTime<(Date.now()-200))) {
-              const level = page[0][91]
-              this.interface.setParameter(`virus.mixer.part.${part-1}.level`,level)
+            const level = page[0][91]
+            this.interface.setParameter(`virus.mixer.part.${part-1}.level`,level)
 
-              this.interface.setParameter(`virus.mixer.part.${part-1}.bank`,page[0][2])
-              this.interface.setParameter(`virus.mixer.part.${part-1}.program`,page[0][3])
-            }
+            this.interface.setParameter(`virus.mixer.part.${part-1}.bank`,page[0][2])
+            this.interface.setParameter(`virus.mixer.part.${part-1}.program`,page[0][3])
+
             if (part == this.interface.getParameter(`virus.axyz.part`)) {
               this.interface.setParameter(`virus.axyz.bank`,page[0][2])
               this.interface.setParameter(`virus.axyz.program`,page[0][3])
@@ -372,14 +368,12 @@ class BacaraMachine extends Machine {
               }
             })
 
-            if (virusPartPatchRequestTime[part-1] && (Date.now() - virusPartPatchRequestTime[part-1]) < 1000) {
-              for (let ctrl=0;ctrl<6;ctrl++) {
-                const macro = (ctrl<macros.length)?macros[ctrl]:null
-                if (macro) {
-                 if (macro.type=='cc' && macro.cc) {
-                   this.interface.setParameter(`virus.macros.part.${part-1}.control.${ctrl}`,page[0][macro.cc])
-                 }
-                }
+            for (let ctrl=0;ctrl<6;ctrl++) {
+              const macro = (ctrl<macros.length)?macros[ctrl]:null
+              if (macro) {
+               if (macro.type=='cc' && macro.cc) {
+                 this.interface.setParameter(`virus.macros.part.${part-1}.control.${ctrl}`,page[0][macro.cc])
+               }
               }
             }
             _.set(this.state,`virus.part.${part-1}.macros`,macros)
@@ -931,7 +925,6 @@ class BacaraMachine extends Machine {
       debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
       Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
       bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
-      virusPartPatchRequestTime[part-1] = Date.now()
       Midi.send('virus-ti','sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part-1, 0xF7], `singleRequest-part-${part}`, 200)
     }
 
@@ -1006,7 +999,6 @@ class BacaraMachine extends Machine {
         debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
         Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
         bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
-        virusPartPatchRequestTime[part-1] = Date.now()
         Midi.send('virus-ti','sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part-1, 0xF7], `singleRequest-part-${part}`, 200)
       }
     }
@@ -2089,7 +2081,6 @@ function bacaraSequencer(name, sub, options) {
 /*  setupMidi(options)*/
 
   for (let part=1;part<=6;part++) {
-    virusPartPatchRequestTime[part-1] = Date.now()
     Midi.send('virus-ti','sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part-1, 0xF7], `singleRequest-part-${part}`, 200)
   }
 }
