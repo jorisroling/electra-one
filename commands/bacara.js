@@ -319,6 +319,8 @@ class BacaraMachine extends Machine {
                 Midi.send('electra-one-ctrl', 'sysex', bytes)
                 _.set(this.state,`virus.axyz.patchName`,patchName)
               }
+            } else {
+              debug('electra Bacara Preset NOT Loaded')
             }
 
             let macros = {}
@@ -2023,6 +2025,7 @@ function bacaraSequencer(name, sub, options) {
     midiInput_electraOneCtrl.on('message', (msg) => {
       switch (msg._type) {
       case 'sysex':
+/*        debug('HI')*/
         const electraSysexHeader = [0xF0, 0x00, 0x21, 0x45]
         const electraSysexCmdPresetSwitch = [0x7E, 0x02]
         const electraSysexCmdPatchResponse = [0x01, 0x01]
@@ -2032,8 +2035,8 @@ function bacaraSequencer(name, sub, options) {
           if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
             electraBacaraPresetLoaded=false
             Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
-          }
-          if (_.isEqual(sysexCmd, electraSysexCmdPatchResponse)) {
+            debug('Bacara Preset Request done')
+          } else if (_.isEqual(sysexCmd, electraSysexCmdPatchResponse)) {
             /*
             let preset
             try {
@@ -2047,9 +2050,12 @@ function bacaraSequencer(name, sub, options) {
             */
 
             const data = msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)), '')
+/*            debug('raw data %y',data)*/
             const match = data.match(/,"name"\s*:\s*"([^"]*)",/)
             electraBacaraPresetLoaded = (match && match.length && match[1].trim() === "Bacara")
             debug('Bacara Preset Loaded: %y',electraBacaraPresetLoaded)
+          } else {
+//            debug('unhandles sysex %y',sysexCmd)
           }
         }
         break
