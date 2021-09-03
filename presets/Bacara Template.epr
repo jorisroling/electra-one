@@ -831,153 +831,8 @@
       "items": [
         {
           "value": 0,
-          "label": "RAM A",
+          "label": "[[virusBank]]",
           "index": 0
-        },
-        {
-          "value": 1,
-          "label": "RAM B",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "RAM C",
-          "index": 2
-        },
-        {
-          "value": 3,
-          "label": "RAM D",
-          "index": 3
-        },
-        {
-          "value": 4,
-          "label": "ROM A",
-          "index": 4
-        },
-        {
-          "value": 5,
-          "label": "ROM B",
-          "index": 5
-        },
-        {
-          "value": 6,
-          "label": "ROM C",
-          "index": 6
-        },
-        {
-          "value": 7,
-          "label": "ROM D",
-          "index": 7
-        },
-        {
-          "value": 8,
-          "label": "ROM E",
-          "index": 8
-        },
-        {
-          "value": 9,
-          "label": "ROM F",
-          "index": 9
-        },
-        {
-          "value": 10,
-          "label": "ROM G",
-          "index": 10
-        },
-        {
-          "value": 11,
-          "label": "ROM H",
-          "index": 11
-        },
-        {
-          "value": 12,
-          "label": "ROM I",
-          "index": 12
-        },
-        {
-          "value": 13,
-          "label": "ROM J",
-          "index": 13
-        },
-        {
-          "value": 14,
-          "label": "ROM K",
-          "index": 14
-        },
-        {
-          "value": 15,
-          "label": "ROM L",
-          "index": 15
-        },
-        {
-          "value": 16,
-          "label": "ROM M",
-          "index": 16
-        },
-        {
-          "value": 17,
-          "label": "ROM N",
-          "index": 17
-        },
-        {
-          "value": 18,
-          "label": "ROM O",
-          "index": 18
-        },
-        {
-          "value": 19,
-          "label": "ROM P",
-          "index": 19
-        },
-        {
-          "value": 20,
-          "label": "ROM Q",
-          "index": 20
-        },
-        {
-          "value": 21,
-          "label": "ROM R",
-          "index": 21
-        },
-        {
-          "value": 22,
-          "label": "ROM S",
-          "index": 22
-        },
-        {
-          "value": 23,
-          "label": "ROM T",
-          "index": 23
-        },
-        {
-          "value": 24,
-          "label": "ROM U",
-          "index": 24
-        },
-        {
-          "value": 25,
-          "label": "ROM V",
-          "index": 25
-        },
-        {
-          "value": 26,
-          "label": "ROM W",
-          "index": 26
-        },
-        {
-          "value": 27,
-          "label": "ROM X",
-          "index": 27
-        },
-        {
-          "value": 28,
-          "label": "ROM Y",
-          "index": 28
-        },
-        {
-          "value": 29,
-          "label": "ROM Z",
-          "index": 29
         }
       ]
     },
@@ -4628,9 +4483,9 @@
     },
     {
       "id": 122,
-      "type": "fader",
+      "type": "list",
       "visible": true,
-      "name": "BANK",
+      "name": "NRPN",
       "color": "FFFFFF",
       "bounds": [
         170,
@@ -4648,16 +4503,14 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14851,
-            "min": 0,
-            "max": 29
+            "parameterNumber": 14851
           },
-          "overlayId": 16
+          "overlayId": 16,
+          "id": "value"
         }
       ]
     },
@@ -5751,9 +5604,9 @@
     },
     {
       "id": 157,
-      "type": "fader",
+      "type": "list",
       "visible": true,
-      "name": "BANK",
+      "name": "NRPN",
       "color": "03A598",
       "bounds": [
         0,
@@ -5771,24 +5624,22 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14081,
-            "min": 0,
-            "max": 29
+            "parameterNumber": 14081
           },
-          "overlayId": 16
+          "overlayId": 16,
+          "id": "value"
         }
       ]
     },
     {
       "id": 158,
-      "type": "fader",
+      "type": "list",
       "visible": true,
-      "name": "BANK",
+      "name": "NRPN",
       "color": "F45C51",
       "bounds": [
         170,
@@ -5806,24 +5657,22 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14082,
-            "min": 0,
-            "max": 29
+            "parameterNumber": 14082
           },
-          "overlayId": 16
+          "overlayId": 16,
+          "id": "value"
         }
       ]
     },
     {
       "id": 159,
-      "type": "fader",
+      "type": "list",
       "visible": true,
-      "name": "BANK",
+      "name": "NRPN",
       "color": "F49500",
       "bounds": [
         340,
@@ -5841,24 +5690,22 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14083,
-            "min": 0,
-            "max": 29
+            "parameterNumber": 14083
           },
-          "overlayId": 16
+          "overlayId": 16,
+          "id": "value"
         }
       ]
     },
     {
       "id": 160,
-      "type": "fader",
+      "type": "list",
       "visible": true,
-      "name": "BANK",
+      "name": "NRPN",
       "color": "C44795",
       "bounds": [
         510,
@@ -5876,24 +5723,22 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14084,
-            "min": 0,
-            "max": 29
+            "parameterNumber": 14084
           },
-          "overlayId": 16
+          "overlayId": 16,
+          "id": "value"
         }
       ]
     },
     {
       "id": 161,
-      "type": "fader",
+      "type": "list",
       "visible": true,
-      "name": "BANK",
+      "name": "NRPN",
       "color": "FFFFFF",
       "bounds": [
         680,
@@ -5911,24 +5756,22 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14085,
-            "min": 0,
-            "max": 29
+            "parameterNumber": 14085
           },
-          "overlayId": 16
+          "overlayId": 16,
+          "id": "value"
         }
       ]
     },
     {
       "id": 162,
-      "type": "fader",
+      "type": "list",
       "visible": true,
-      "name": "BANK",
+      "name": "NRPN",
       "color": "529DEC",
       "bounds": [
         850,
@@ -5946,16 +5789,14 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14086,
-            "min": 0,
-            "max": 29
+            "parameterNumber": 14086
           },
-          "overlayId": 16
+          "overlayId": 16,
+          "id": "value"
         }
       ]
     },

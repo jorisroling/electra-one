@@ -3605,154 +3605,659 @@
       "id": 16,
       "items": [
         {
-          "value": 0,
+          "index": 0,
           "label": "RAM A",
-          "index": 0
+          "value": 0
         },
         {
-          "value": 1,
+          "index": 1,
           "label": "RAM B",
-          "index": 1
+          "value": 1
         },
         {
-          "value": 2,
+          "index": 2,
           "label": "RAM C",
-          "index": 2
+          "value": 2
         },
         {
-          "value": 3,
+          "index": 3,
           "label": "RAM D",
-          "index": 3
+          "value": 3
         },
         {
-          "value": 4,
+          "index": 4,
           "label": "ROM A",
-          "index": 4
+          "value": 4
         },
         {
-          "value": 5,
+          "index": 5,
           "label": "ROM B",
-          "index": 5
+          "value": 5
         },
         {
-          "value": 6,
+          "index": 6,
           "label": "ROM C",
-          "index": 6
+          "value": 6
         },
         {
-          "value": 7,
+          "index": 7,
           "label": "ROM D",
-          "index": 7
+          "value": 7
         },
         {
-          "value": 8,
+          "index": 8,
           "label": "ROM E",
-          "index": 8
+          "value": 8
         },
         {
-          "value": 9,
+          "index": 9,
           "label": "ROM F",
-          "index": 9
+          "value": 9
         },
         {
-          "value": 10,
+          "index": 10,
           "label": "ROM G",
-          "index": 10
+          "value": 10
         },
         {
-          "value": 11,
+          "index": 11,
           "label": "ROM H",
-          "index": 11
+          "value": 11
         },
         {
-          "value": 12,
+          "index": 12,
           "label": "ROM I",
-          "index": 12
+          "value": 12
         },
         {
-          "value": 13,
+          "index": 13,
           "label": "ROM J",
-          "index": 13
+          "value": 13
         },
         {
-          "value": 14,
+          "index": 14,
           "label": "ROM K",
-          "index": 14
+          "value": 14
         },
         {
-          "value": 15,
+          "index": 15,
           "label": "ROM L",
-          "index": 15
+          "value": 15
         },
         {
-          "value": 16,
+          "index": 16,
           "label": "ROM M",
-          "index": 16
+          "value": 16
         },
         {
-          "value": 17,
+          "index": 17,
           "label": "ROM N",
-          "index": 17
+          "value": 17
         },
         {
-          "value": 18,
+          "index": 18,
           "label": "ROM O",
-          "index": 18
+          "value": 18
         },
         {
-          "value": 19,
+          "index": 19,
           "label": "ROM P",
-          "index": 19
+          "value": 19
         },
         {
-          "value": 20,
+          "index": 20,
           "label": "ROM Q",
-          "index": 20
+          "value": 20
         },
         {
-          "value": 21,
+          "index": 21,
           "label": "ROM R",
-          "index": 21
+          "value": 21
         },
         {
-          "value": 22,
+          "index": 22,
           "label": "ROM S",
-          "index": 22
+          "value": 22
         },
         {
-          "value": 23,
+          "index": 23,
           "label": "ROM T",
-          "index": 23
+          "value": 23
         },
         {
-          "value": 24,
+          "index": 24,
           "label": "ROM U",
-          "index": 24
+          "value": 24
         },
         {
-          "value": 25,
+          "index": 25,
           "label": "ROM V",
-          "index": 25
+          "value": 25
         },
         {
-          "value": 26,
+          "index": 26,
           "label": "ROM W",
-          "index": 26
+          "value": 26
         },
         {
-          "value": 27,
+          "index": 27,
           "label": "ROM X",
-          "index": 27
+          "value": 27
         },
         {
-          "value": 28,
+          "index": 28,
           "label": "ROM Y",
-          "index": 28
+          "value": 28
         },
         {
-          "value": 29,
+          "index": 29,
           "label": "ROM Z",
-          "index": 29
+          "value": 29
+        },
+        {
+          "index": 30,
+          "label": "001 Init Multi",
+          "value": 30
+        },
+        {
+          "index": 31,
+          "label": "001 Init Singl",
+          "value": 31
+        },
+        {
+          "index": 32,
+          "label": "AZ.Astral Vo.1",
+          "value": 32
+        },
+        {
+          "index": 33,
+          "label": "AZ.Astral Vo.2",
+          "value": 33
+        },
+        {
+          "index": 34,
+          "label": "AZ.Evolve",
+          "value": 34
+        },
+        {
+          "index": 35,
+          "label": "Alan-M Virus.1",
+          "value": 35
+        },
+        {
+          "index": 36,
+          "label": "AS.Antidote",
+          "value": 36
+        },
+        {
+          "index": 37,
+          "label": "AM.Dreamy Synt",
+          "value": 37
+        },
+        {
+          "index": 38,
+          "label": "BA.Immune.1",
+          "value": 38
+        },
+        {
+          "index": 39,
+          "label": "BC.Elektrovisi",
+          "value": 39
+        },
+        {
+          "index": 40,
+          "label": "BC.Signat.2011",
+          "value": 40
+        },
+        {
+          "index": 41,
+          "label": "CM.Signat.2008",
+          "value": 41
+        },
+        {
+          "index": 42,
+          "label": "D.Contemp.2012",
+          "value": 42
+        },
+        {
+          "index": 43,
+          "label": "E.Signatu.2010",
+          "value": 43
+        },
+        {
+          "index": 44,
+          "label": "E.Signatu.2011",
+          "value": 44
+        },
+        {
+          "index": 45,
+          "label": "FSS.Sunny La.1",
+          "value": 45
+        },
+        {
+          "index": 46,
+          "label": "HS.Allsta.2012",
+          "value": 46
+        },
+        {
+          "index": 47,
+          "label": "HS.Signat.2009",
+          "value": 47
+        },
+        {
+          "index": 48,
+          "label": "HVA.Extras",
+          "value": 48
+        },
+        {
+          "index": 49,
+          "label": "HVB.Bank.F",
+          "value": 49
+        },
+        {
+          "index": 50,
+          "label": "HVB.Extras",
+          "value": 50
+        },
+        {
+          "index": 51,
+          "label": "HVC.Bank.D",
+          "value": 51
+        },
+        {
+          "index": 52,
+          "label": "HVC.Extras",
+          "value": 52
+        },
+        {
+          "index": 53,
+          "label": "JJR",
+          "value": 53
+        },
+        {
+          "index": 54,
+          "label": "MS.Incubatio.3",
+          "value": 54
+        },
+        {
+          "index": 55,
+          "label": "MP.Matman.2009",
+          "value": 55
+        },
+        {
+          "index": 56,
+          "label": "My Patches",
+          "value": 56
+        },
+        {
+          "index": 57,
+          "label": "MI.Access Vi.1",
+          "value": 57
+        },
+        {
+          "index": 58,
+          "label": "NT.Virus TI So",
+          "value": 58
+        },
+        {
+          "index": 59,
+          "label": "RAM Backup 1.A",
+          "value": 59
+        },
+        {
+          "index": 60,
+          "label": "RAM Backup 1.B",
+          "value": 60
+        },
+        {
+          "index": 61,
+          "label": "RAM Backup 1.C",
+          "value": 61
+        },
+        {
+          "index": 62,
+          "label": "RAM Backup 1.D",
+          "value": 62
+        },
+        {
+          "index": 63,
+          "label": "RD.Signat.2007",
+          "value": 63
+        },
+        {
+          "index": 64,
+          "label": "RD.Signat.2011",
+          "value": 64
+        },
+        {
+          "index": 65,
+          "label": "RP.Signature S",
+          "value": 65
+        },
+        {
+          "index": 66,
+          "label": "RJ.Hardstyle U",
+          "value": 66
+        },
+        {
+          "index": 67,
+          "label": "SI.Signature S",
+          "value": 67
+        },
+        {
+          "index": 68,
+          "label": "SS.The Antidot",
+          "value": 68
+        },
+        {
+          "index": 69,
+          "label": "TU.Virus Chiar",
+          "value": 69
+        },
+        {
+          "index": 70,
+          "label": "T.Virus TI Ban",
+          "value": 70
+        },
+        {
+          "index": 71,
+          "label": "UXS.Adam Nic.1",
+          "value": 71
+        },
+        {
+          "index": 72,
+          "label": "UXS.Adam Nic.3",
+          "value": 72
+        },
+        {
+          "index": 73,
+          "label": "UXS.Adam Nic.4",
+          "value": 73
+        },
+        {
+          "index": 74,
+          "label": "UXS.Atmosphe.1",
+          "value": 74
+        },
+        {
+          "index": 75,
+          "label": "UXS.Atmosphe.2",
+          "value": 75
+        },
+        {
+          "index": 76,
+          "label": "UXS.Atmosphe.3",
+          "value": 76
+        },
+        {
+          "index": 77,
+          "label": "UXS.Sound.2014",
+          "value": 77
+        },
+        {
+          "index": 78,
+          "label": "VS.Manuel Sc.1",
+          "value": 78
+        },
+        {
+          "index": 79,
+          "label": "VS.Manuel Sc.2",
+          "value": 79
+        },
+        {
+          "index": 80,
+          "label": "VS.Manuel Sc.3",
+          "value": 80
+        },
+        {
+          "index": 81,
+          "label": "VS.Trance So.X",
+          "value": 81
+        },
+        {
+          "index": 82,
+          "label": "VF.Bank.A",
+          "value": 82
+        },
+        {
+          "index": 83,
+          "label": "VF.Bank.B",
+          "value": 83
+        },
+        {
+          "index": 84,
+          "label": "VF.Bank.C",
+          "value": 84
+        },
+        {
+          "index": 85,
+          "label": "VF.Bank.D",
+          "value": 85
+        },
+        {
+          "index": 86,
+          "label": "VF.Bank.E",
+          "value": 86
+        },
+        {
+          "index": 87,
+          "label": "VF.Bank.F",
+          "value": 87
+        },
+        {
+          "index": 88,
+          "label": "VF.Bank.G",
+          "value": 88
+        },
+        {
+          "index": 89,
+          "label": "VF.Bank.H",
+          "value": 89
+        },
+        {
+          "index": 90,
+          "label": "VO.Atomizer ex",
+          "value": 90
+        },
+        {
+          "index": 91,
+          "label": "VO.My Patche.A",
+          "value": 91
+        },
+        {
+          "index": 92,
+          "label": "VO.My Patche.B",
+          "value": 92
+        },
+        {
+          "index": 93,
+          "label": "VO.My Patche.C",
+          "value": 93
+        },
+        {
+          "index": 94,
+          "label": "VO.My Patche.D",
+          "value": 94
+        },
+        {
+          "index": 95,
+          "label": "VO.My Patches",
+          "value": 95
+        },
+        {
+          "index": 96,
+          "label": "VO.OS2 New Osc",
+          "value": 96
+        },
+        {
+          "index": 97,
+          "label": "VO.OS3 New FX ",
+          "value": 97
+        },
+        {
+          "index": 98,
+          "label": "VO.OS4 New Fea",
+          "value": 98
+        },
+        {
+          "index": 99,
+          "label": "VO.OS45 New Fe",
+          "value": 99
+        },
+        {
+          "index": 100,
+          "label": "VO.OS5 New Fea",
+          "value": 100
+        },
+        {
+          "index": 101,
+          "label": "VO.Patches For",
+          "value": 101
+        },
+        {
+          "index": 102,
+          "label": "VO.Vocoder and",
+          "value": 102
+        },
+        {
+          "index": 103,
+          "label": "VT.Rom.A",
+          "value": 103
+        },
+        {
+          "index": 104,
+          "label": "VT.Rom.B",
+          "value": 104
+        },
+        {
+          "index": 105,
+          "label": "VT.Rom.C",
+          "value": 105
+        },
+        {
+          "index": 106,
+          "label": "VT.Rom.D",
+          "value": 106
+        },
+        {
+          "index": 107,
+          "label": "VT.Rom.E",
+          "value": 107
+        },
+        {
+          "index": 108,
+          "label": "VT.Rom.F",
+          "value": 108
+        },
+        {
+          "index": 109,
+          "label": "VT.Rom.G",
+          "value": 109
+        },
+        {
+          "index": 110,
+          "label": "VT.Rom.H",
+          "value": 110
+        },
+        {
+          "index": 111,
+          "label": "VT.Rom.I",
+          "value": 111
+        },
+        {
+          "index": 112,
+          "label": "VT.Rom.J",
+          "value": 112
+        },
+        {
+          "index": 113,
+          "label": "VT.Rom.K",
+          "value": 113
+        },
+        {
+          "index": 114,
+          "label": "VT.Rom.L",
+          "value": 114
+        },
+        {
+          "index": 115,
+          "label": "VT.Rom.M",
+          "value": 115
+        },
+        {
+          "index": 116,
+          "label": "VT.Rom.N",
+          "value": 116
+        },
+        {
+          "index": 117,
+          "label": "VT.Rom.O",
+          "value": 117
+        },
+        {
+          "index": 118,
+          "label": "VT.Rom.P",
+          "value": 118
+        },
+        {
+          "index": 119,
+          "label": "VT.Rom.Q",
+          "value": 119
+        },
+        {
+          "index": 120,
+          "label": "VT.Rom.R",
+          "value": 120
+        },
+        {
+          "index": 121,
+          "label": "VT.Rom.S",
+          "value": 121
+        },
+        {
+          "index": 122,
+          "label": "VT.Rom.T",
+          "value": 122
+        },
+        {
+          "index": 123,
+          "label": "VT.Rom.U",
+          "value": 123
+        },
+        {
+          "index": 124,
+          "label": "VT.Rom.V",
+          "value": 124
+        },
+        {
+          "index": 125,
+          "label": "VT.Rom.W",
+          "value": 125
+        },
+        {
+          "index": 126,
+          "label": "VT.Rom.X",
+          "value": 126
+        },
+        {
+          "index": 127,
+          "label": "VT.Rom.Y",
+          "value": 127
+        },
+        {
+          "index": 128,
+          "label": "VT.Rom.Z",
+          "value": 128
+        },
+        {
+          "index": 129,
+          "label": "V.Electro.2010",
+          "value": 129
+        },
+        {
+          "index": 130,
+          "label": "ZSC.Shaper E.1",
+          "value": 130
         }
       ]
     },
@@ -8043,9 +8548,9 @@
     },
     {
       "id": 122,
-      "type": "fader",
+      "type": "list",
       "visible": true,
-      "name": "BANK",
+      "name": "NRPN",
       "color": "FFFFFF",
       "bounds": [
         170,
@@ -8063,16 +8568,14 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14851,
-            "min": 0,
-            "max": 29
+            "parameterNumber": 14851
           },
-          "overlayId": 16
+          "overlayId": 16,
+          "id": "value"
         }
       ]
     },
@@ -9166,9 +9669,9 @@
     },
     {
       "id": 157,
-      "type": "fader",
+      "type": "list",
       "visible": true,
-      "name": "BANK",
+      "name": "NRPN",
       "color": "03A598",
       "bounds": [
         0,
@@ -9186,24 +9689,22 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14081,
-            "min": 0,
-            "max": 29
+            "parameterNumber": 14081
           },
-          "overlayId": 16
+          "overlayId": 16,
+          "id": "value"
         }
       ]
     },
     {
       "id": 158,
-      "type": "fader",
+      "type": "list",
       "visible": true,
-      "name": "BANK",
+      "name": "NRPN",
       "color": "F45C51",
       "bounds": [
         170,
@@ -9221,24 +9722,22 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14082,
-            "min": 0,
-            "max": 29
+            "parameterNumber": 14082
           },
-          "overlayId": 16
+          "overlayId": 16,
+          "id": "value"
         }
       ]
     },
     {
       "id": 159,
-      "type": "fader",
+      "type": "list",
       "visible": true,
-      "name": "BANK",
+      "name": "NRPN",
       "color": "F49500",
       "bounds": [
         340,
@@ -9256,24 +9755,22 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14083,
-            "min": 0,
-            "max": 29
+            "parameterNumber": 14083
           },
-          "overlayId": 16
+          "overlayId": 16,
+          "id": "value"
         }
       ]
     },
     {
       "id": 160,
-      "type": "fader",
+      "type": "list",
       "visible": true,
-      "name": "BANK",
+      "name": "NRPN",
       "color": "C44795",
       "bounds": [
         510,
@@ -9291,24 +9788,22 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14084,
-            "min": 0,
-            "max": 29
+            "parameterNumber": 14084
           },
-          "overlayId": 16
+          "overlayId": 16,
+          "id": "value"
         }
       ]
     },
     {
       "id": 161,
-      "type": "fader",
+      "type": "list",
       "visible": true,
-      "name": "BANK",
+      "name": "NRPN",
       "color": "FFFFFF",
       "bounds": [
         680,
@@ -9326,24 +9821,22 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14085,
-            "min": 0,
-            "max": 29
+            "parameterNumber": 14085
           },
-          "overlayId": 16
+          "overlayId": 16,
+          "id": "value"
         }
       ]
     },
     {
       "id": 162,
-      "type": "fader",
+      "type": "list",
       "visible": true,
-      "name": "BANK",
+      "name": "NRPN",
       "color": "529DEC",
       "bounds": [
         850,
@@ -9361,16 +9854,14 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14086,
-            "min": 0,
-            "max": 29
+            "parameterNumber": 14086
           },
-          "overlayId": 16
+          "overlayId": 16,
+          "id": "value"
         }
       ]
     },

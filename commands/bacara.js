@@ -54,6 +54,8 @@ const ticksPerStep = 120
 const virus = require('../lib/virus')
 let electraBacaraPresetLoaded = false
 
+const virusRamRomBanks = 30
+
 const matrixSetSlotValueTimout = 10
 const matrixSlotSources = {
   off: 0,
@@ -326,19 +328,19 @@ class BacaraMachine extends Machine {
             let macros = {}
 
             for (let s=0;s<6;s++) {
-              const slotSource = page[virus.matrix.slot[s].source.page][virus.matrix.slot[s].source.offset]
+              const slotSource = page[config.virus.info.matrix.slot[s].source.page][config.virus.info.matrix.slot[s].source.offset]
               if (slotSource>0 && slotSource<=18) {
                 let destinations=0
                 for (let d = 0; d<3; d++) {
-                  const target = page[virus.matrix.slot[s].destinations[d].target.page][virus.matrix.slot[s].destinations[d].target.offset]
-                  const amount = page[virus.matrix.slot[s].destinations[d].amount.page][virus.matrix.slot[s].destinations[d].amount.offset]
+                  const target = page[config.virus.info.matrix.slot[s].destinations[d].target.page][config.virus.info.matrix.slot[s].destinations[d].target.offset]
+                  const amount = page[config.virus.info.matrix.slot[s].destinations[d].amount.page][config.virus.info.matrix.slot[s].destinations[d].amount.offset]
                   if (target && amount) {
                     destinations++
                   }
                 }
                 if (destinations) {
-                  const slotSourceType = Object.assign({},virus.matrix.source.type[slotSource])
-/*                  debug('mod slot #%d (%s) source %y %s %y',s+1,virus.matrix.slot[s].name,slotSource,slotSourceType.name,slotSourceType.cc)*/
+                  const slotSourceType = Object.assign({},config.virus.info.matrix.source.type[slotSource])
+/*                  debug('mod slot #%d (%s) source %y %s %y',s+1,config.virus.info.matrix.slot[s].name,slotSource,slotSourceType.name,slotSourceType.cc)*/
                   macros[slotSourceType.name] = slotSourceType
                 }
               }
@@ -346,14 +348,14 @@ class BacaraMachine extends Machine {
   /*          debug('macros %y',macros)*/
             macros = Object.values(macros)
 
-            const names = _.get(virus,'soft.names')
+            const names = _.get(config.virus.info,'soft.names')
             for (let macro of macros) {
               if (macro.softknob) {
                 for (let k=0;k<3;k++) {
-                  const destination = page[_.get(virus,`soft.knob.${k}.destination.page`)][_.get(virus,`soft.knob.${k}.destination.offset`)]
+                  const destination = page[_.get(config.virus.info,`soft.knob.${k}.destination.page`)][_.get(config.virus.info,`soft.knob.${k}.destination.offset`)]
 /*                  debug('knob %d dest %y',k+1,destination)*/
                   if (destination == macro.softknob) {
-                    macro.name = names[page[_.get(virus,`soft.knob.${k}.name.page`)][_.get(virus,`soft.knob.${k}.name.offset`)]]
+                    macro.name = names[page[_.get(config.virus.info,`soft.knob.${k}.name.page`)][_.get(config.virus.info,`soft.knob.${k}.name.offset`)]]
                     macro.index = k+1
                   }
                 }
@@ -996,12 +998,28 @@ class BacaraMachine extends Machine {
         const channel = part
         const bank = this.interface.getParameter(`virus.mixer.part.${part-1}.bank`)
         const program = this.interface.getParameter(`virus.mixer.part.${part-1}.program`)
-        debugMidiControlChange('%s %d CC %y = %y', portName, channel, 0, bank)
-        Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, 'bankChange-virus', 200)
-        debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
-        Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
-        bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
-        Midi.send('virus-ti','sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part-1, 0xF7], `singleRequest-part-${part}`, 200)
+        if (bank < virusRamRomBanks) {
+          debugMidiControlChange('%s %d CC %y = %y', portName, channel, 0, bank)
+          Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, 'bankChange-virus', 200)
+          debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
+          Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
+          bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
+          Midi.send('virus-ti','sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part-1, 0xF7], `singleRequest-part-${part}`, 200)
+        } else {
+          const virusPreset = virus.getPreset(bank - virusRamRomBanks,program)
+          if (virusPreset) {
+            debug('virusPreset %y',virusPreset)
+//            const surfaces = this.interface.connections.filter(x => x.kind == 'surface').map( x => x.portName)
+            virus.send('virus-ti',virusPreset)
+            console.log('this %y',this.interface.connections.filter(x => x.kind == 'surface').map( x => x.portName))
+          } else {
+            const virusBank = virus.getBank(bank - virusRamRomBanks)
+            debug('virusBank %y',virusBank)
+            if (virusBank && virusBank.presets) {
+//              this.interface.setParameter(`virus.mixer.part.${part-1}.program`,virusBank.presets-1)
+            }
+          }
+        }
       }
     }
 

@@ -2,6 +2,7 @@ const fs = require('fs-extra')
 const jsonfile = require('jsonfile')
 const _ = require('lodash')
 const config = require('config')
+const virus = require('../lib/virus')
 
 let args
 
@@ -23,6 +24,8 @@ function preProcess(name, sub, options) {
               const match = overlay.items[0].label.match(/\s*\[\s*\[\s*(.*?)\s*\]\s*\]\s*/)
               if (match) {
                 const overlayType = match[1]
+                const lfoTargetMatch = overlayType.match(/lfo([\d])Target/)
+
                 if (overlayType == 'devices') {
                   if (config.devices) {
                     overlay.items = [{
@@ -53,8 +56,7 @@ function preProcess(name, sub, options) {
                       }
                     }
                   }
-                }
-                if (overlayType == 'matrixTarget') {
+                } else if (overlayType == 'matrixTarget') {
                   overlay.items = [{
                     index: 0,
                     label: 'Off',
@@ -72,9 +74,7 @@ function preProcess(name, sub, options) {
                       })
                     }
                   }
-                }
-                const lfoTargetMatch = overlayType.match(/lfo([\d])Target/)
-                if (lfoTargetMatch) {
+                } else if (lfoTargetMatch) {
                   const currentLfo = parseInt(lfoTargetMatch[1])
                   overlay.items = [{
                     index: 0,
@@ -102,8 +102,7 @@ function preProcess(name, sub, options) {
                     }
                   }
                   /*               debug('hi %y %y', lfoTargetMatch,overlay)*/
-                }
-                if (overlayType == 'axyzTarget') {
+                } else if (overlayType == 'axyzTarget') {
                   overlay.items = [{
                     index: 0,
                     label: 'Off',
@@ -121,6 +120,39 @@ function preProcess(name, sub, options) {
                       })
                     }
                   }
+                } else if (overlayType == 'virusBank') {
+                  overlay.items = []
+
+                  let idx = 0
+                  for (let i=0;i<4;i++) {
+                    overlay.items.push({
+                      index: idx,
+                      label: `RAM ${String.fromCharCode("A".charCodeAt(0)+i)}`,
+                      value: idx,
+                    })
+                    idx++
+                  }
+                  for (let i=0;i<26;i++) {
+                    overlay.items.push({
+                      index: idx,
+                      label: `ROM ${String.fromCharCode("A".charCodeAt(0)+i)}`,
+                      value: idx,
+                    })
+                    idx++
+                  }
+
+                  const banks=virus.getBanks()
+//                  console.error(banks)
+                  for (let bank of banks) {
+                    overlay.items.push({
+                      index: idx,
+                      label: bank.short,
+                      value: idx,
+                    })
+                    idx++
+                  }
+                } else {
+                  console.error(`Unknown (and thus unhandled) overlay type "${overlayType}"`)
                 }
               }
             }
