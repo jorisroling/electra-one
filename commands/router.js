@@ -303,6 +303,8 @@ function setupMidi(options) {
                 Midi.send(electraOnePortName, 'cc', {channel:electraOneMidiChannel, controller:91, value:value})
               } else if (name == 'cc') {
                 Midi.send(electraOnePortName, 'cc', {channel:electraOneMidiChannel, controller:value.controller, value:value.value})
+              } else if (name == 'sysex') {
+                Midi.send(electraOnePortName, 'sysex', value)
               }
             } else {
               debug('Part change (to %y), Single Request back', part)

@@ -267,8 +267,8 @@ class BacaraMachine extends Machine {
           if (msgHeader[0] == 0x10 && msgHeader[1] == 0x00) {
             const part = msgHeader[2] + 1
             const page = [
-              bytes.slice(9, 9 + 128),
-              bytes.slice(9 + (128 * 1), 9 + (128 * 1) + 128),
+              bytes.slice(9 + (128 * 0) + 0, 9 + (128 * 0) + 0 + 128),
+              bytes.slice(9 + (128 * 1) + 0, 9 + (128 * 1) + 0 + 128),
               bytes.slice(9 + (128 * 2) + 2, 9 + (128 * 2) + 2 + 128),
               bytes.slice(9 + (128 * 3) + 2, 9 + (128 * 3) + 2 + 128),
             ]
@@ -923,17 +923,11 @@ class BacaraMachine extends Machine {
     }
 
     const virusAxyzSendBankAndProgram = (elementPath, value, origin) => {
-      const portName = 'virus-ti'
       const part = this.interface.getParameter('virus.axyz.part', 1)
-      const channel = part
       const bank = this.interface.getParameter('virus.axyz.bank')
       const program = this.interface.getParameter('virus.axyz.program')
-      debugMidiControlChange('%s %d CC %y = %y', portName, channel, 0, bank)
-      Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, 'bankChange-virus', 200)
-      debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
-      Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
-      bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
-      Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
+
+      virusSendBankAndProgram(part, bank, program, origin)
     }
 
     const virusAxyzBank = (elementPath, value, origin) => {
@@ -995,13 +989,10 @@ class BacaraMachine extends Machine {
         }
       }
     }
-
-    const virusMixerSendBankAndProgram = (part, origin) => {
+    const virusSendBankAndProgram = (part, bank, program, origin) => {
       if (part >= 1 && part <= 16) {
         const portName = 'virus-ti'
         const channel = part
-        const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
-        const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
         if (bank < virusRamRomBanks) {
           debugMidiControlChange('%s %d CC %y = %y', portName, channel, 0, bank)
           Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, 'bankChange-virus', 200)
@@ -1009,13 +1000,19 @@ class BacaraMachine extends Machine {
           Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
           bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
           Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
+          _.unset(this.state,`virus.part.${part-1}.preset`)
         } else {
           const virusPreset = virus.getPreset(bank - virusRamRomBanks, program)
           if (virusPreset) {
-            debug('virusPreset %y', virusPreset)
-            //            const surfaces = this.interface.connections.filter(x => x.kind == 'surface').map( x => x.portName)
-            virus.toSysEx('virus-ti', virusPreset)
-            console.log('this %y', this.interface.connections.filter(x => x.kind == 'surface').map( x => x.portName))
+            const bytes = virus.toSysEx(part, virusPreset,bank,program)
+            if (bytes) {
+              debug('bytes (len %y) %y', bytes.length, bytes.length)
+              Midi.send('virus-ti','sysex',bytes)
+              virusParsePatchDump(bytes)
+              bacaraEmit('virus-ti', part, 'sysex', bytes, origin)
+              bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
+              _.set(this.state,`virus.part.${part-1}.preset`,virusPreset)
+            }
           } else {
             const virusBank = virus.getBank(bank - virusRamRomBanks)
             debug('virusBank %y', virusBank)
@@ -1024,6 +1021,14 @@ class BacaraMachine extends Machine {
             }
           }
         }
+      }
+    }
+
+    const virusMixerSendBankAndProgram = (part, origin) => {
+      if (part >= 1 && part <= 16) {
+        const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
+        const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
+        virusSendBankAndProgram(part, bank, program, origin)
       }
     }
 
