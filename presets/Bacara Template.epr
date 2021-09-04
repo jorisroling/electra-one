@@ -4236,10 +4236,9 @@
     },
     {
       "id": 115,
-      "type": "pad",
-      "mode": "momentary",
+      "type": "list",
       "visible": true,
-      "name": "RECENTER",
+      "name": "MODE",
       "color": "F49500",
       "bounds": [
         0,
@@ -4257,16 +4256,14 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14855,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 14856
           },
-          "defaultValue": "off"
+          "overlayId": 15,
+          "id": "value"
         }
       ]
     },
@@ -4450,9 +4447,10 @@
     },
     {
       "id": 121,
-      "type": "list",
+      "type": "pad",
+      "mode": "momentary",
       "visible": true,
-      "name": "MODE",
+      "name": "RECENTER AX",
       "color": "F49500",
       "bounds": [
         0,
@@ -4470,14 +4468,16 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 14856
+            "parameterNumber": 14855,
+            "onValue": 1,
+            "offValue": 0
           },
-          "overlayId": 15,
-          "id": "value"
+          "defaultValue": "off"
         }
       ]
     },

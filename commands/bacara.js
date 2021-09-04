@@ -2094,7 +2094,11 @@ function bacaraSequencer(name, sub, options) {
 
   electraBacaraPresetLoaded = false
 
-  Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
+//  Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
+
+  Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x7C, 0xF7])  /* Preset Name Request */
+
+
   const midiInput_electraOneCtrl = Midi.input('electra-one-ctrl', true)
   if (midiInput_electraOneCtrl) {
     midiInput_electraOneCtrl.on('message', (msg) => {
@@ -2104,29 +2108,30 @@ function bacaraSequencer(name, sub, options) {
           /*        debug('HI')*/
           const electraSysexHeader = [0xF0, 0x00, 0x21, 0x45]
           const electraSysexCmdPresetSwitch = [0x7E, 0x02]
+          const electraSysexCmdPresetNameResponse = [0x01, 0x7C]
           const electraSysexCmdPatchResponse = [0x01, 0x01]
           const sysexHeader = msg.bytes.slice(0, 4)
           const sysexCmd = msg.bytes.slice(4, 6)
           if (_.isEqual(sysexHeader, electraSysexHeader)) {
-            if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
-              electraBacaraPresetLoaded = false
-              Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
-              debug('Bacara Preset Request done')
-            } else if (_.isEqual(sysexCmd, electraSysexCmdPatchResponse)) {
-              /*
-              let preset
+            if (_.isEqual(sysexCmd, electraSysexCmdPresetNameResponse)) {
+              let json
               try {
                 const data = msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)), '')
-                debug('data %y',data)
-                preset = JSON.parse(data)
+                json = JSON.parse(data)
               } catch (e) {
                 console.error(e)
               }
-              debug('preset %y',preset)
-              */
-
+//              debug('JSON %y',json)
+              electraBacaraPresetLoaded = (json && /*json.app === "ctrlv2" &&*/ json.preset === 'Bacara')
+              debug('Bacara Preset Loaded: %y', electraBacaraPresetLoaded)
+            }
+            if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
+              electraBacaraPresetLoaded = false
+              //Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
+              Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x7C, 0xF7])  /* Preset Name Request */
+              debug('Bacara Preset Name Request done')
+            } else if (_.isEqual(sysexCmd, electraSysexCmdPatchResponse)) {
               const data = msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)), '')
-              /*            debug('raw data %y',data)*/
               const match = data.match(/,"name"\s*:\s*"([^"]*)",/)
               electraBacaraPresetLoaded = (match && match.length && match[1].trim() === 'Bacara')
               debug('Bacara Preset Loaded: %y', electraBacaraPresetLoaded)
