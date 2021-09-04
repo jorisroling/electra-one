@@ -225,10 +225,11 @@ class BacaraMachine extends Machine {
         if (program < 127) {
           this.interface.setParameter('virus.axyz.program', program + 1)
         } else {
-          if (bank < 29) {
+          const banks = virus.getBanks()
+          if (banks && bank<(virusRamRomBanks + banks.length)) {
             this.interface.setParameter('virus.axyz.bank', bank + 1)
           } else {
-            this.interface.setParameter('virus.axyz.bank', 0)
+           this.interface.setParameter('virus.axyz.bank', 0)
           }
           this.interface.setParameter('virus.axyz.program', 0)
         }
@@ -248,7 +249,10 @@ class BacaraMachine extends Machine {
           if (bank > 0) {
             this.interface.setParameter('virus.axyz.bank', bank - 1)
           } else {
-            this.interface.setParameter('virus.axyz.bank', 29)
+            const banks = virus.getBanks()
+            if (banks) {
+              this.interface.setParameter('virus.axyz.bank', (virusRamRomBanks + banks.length)-1)
+            }
           }
           this.interface.setParameter('virus.axyz.program', 127)
         }
@@ -256,6 +260,34 @@ class BacaraMachine extends Machine {
       }
     }
 
+    const virusAxyzNextBank = (elementPath, origin) => {
+      const part = this.interface.getParameter('virus.axyz.part', 1)
+      if (part >= 1 && part <= 16) {
+        const bank = this.interface.getParameter('virus.axyz.bank')
+        const banks = virus.getBanks()
+        if (banks && bank<(virusRamRomBanks + banks.length)) {
+          this.interface.setParameter('virus.axyz.bank', bank + 1)
+          virusAxyzSendBankAndProgram(elementPath, 1, origin)
+        }
+      }
+    }
+
+
+    const virusAxyzPreviousBank = (elementPath, origin) => {
+      const part = this.interface.getParameter('virus.axyz.part', 1)
+      if (part >= 1 && part <= 16) {
+        const bank = this.interface.getParameter('virus.axyz.bank')
+        if (bank > 0) {
+          this.interface.setParameter('virus.axyz.bank', bank - 1)
+          virusAxyzSendBankAndProgram(elementPath, 1, origin)
+        } else {
+          const banks = virus.getBanks()
+          if (banks) {
+            this.interface.setParameter('virus.axyz.bank', (virusRamRomBanks + banks.length)-1)
+          }
+        }
+      }
+    }
 
 
     const virusParsePatchDump = (bytes) => {
@@ -462,10 +494,13 @@ class BacaraMachine extends Machine {
         if (program < 127) {
           this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, program + 1)
         } else {
-          if (bank < 29) {
-            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, bank + 1)
-          } else {
-            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, 0)
+          const banks = virus.getBanks()
+          if (banks) {
+            if (bank < (virusRamRomBanks + banks.length)) {
+              this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, bank + 1)
+            } else {
+              this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, 0)
+            }
           }
           this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, 0)
         }
@@ -483,7 +518,10 @@ class BacaraMachine extends Machine {
           if (bank > 0) {
             this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, bank - 1)
           } else {
-            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, 29)
+            const banks = virus.getBanks()
+            if (banks) {
+              this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, (virusRamRomBanks + banks.length)-1)
+            }
           }
           this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, 127)
         }
@@ -630,6 +668,8 @@ class BacaraMachine extends Machine {
           select: virusAxyzSelect,
           next: virusAxyzNext,
           previous: virusAxyzPrevious,
+          nextBank: virusAxyzNextBank,
+          previousBank: virusAxyzPreviousBank,
         },
         mixer: {
           part: [

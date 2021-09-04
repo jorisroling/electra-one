@@ -2129,6 +2129,30 @@ module.exports = {
           },
           on: 1,
         },
+        nextBank: {
+          name: 'Virus Axyz Next Bank',
+          type: 'action',
+          surface: {
+            type: 'nrpn',
+            number: 14858,
+            lsbFirst: false,
+            min: 0,
+            max: 1,
+          },
+          on: 1,
+        },
+        previousBank: {
+          name: 'Virus Axyz Previous Bank',
+          type: 'action',
+          surface: {
+            type: 'nrpn',
+            number: 14859,
+            lsbFirst: false,
+            min: 0,
+            max: 1,
+          },
+          on: 1,
+        },
         x1: {
           control: {
             name: 'Virus Axyz X1',
