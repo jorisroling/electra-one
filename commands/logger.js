@@ -9,12 +9,12 @@ function setLogger(name, sub, options) {
     0x45,   /* manufacturer ID 3 - 0x45 */
     0x7F,   /* System call */
     0x7D,   /* Logger status change */
-    (sub == 'on' || sub =='true' || sub == 'yes' || sub == '1') ? 0x01 : 0x00, /* state */
+    (sub == 'on' || sub == 'true' || sub == 'yes' || sub == '1') ? 0x01 : 0x00, /* state */
     0x00,   /* reserved */
     0xF7    /* sysex end - 0xf7 */
   ]
 
-//  debug('%y',options)
+  //  debug('%y',options)
   Midi.send(options.electraOneCtrl, 'sysex', bytes)
 }
 

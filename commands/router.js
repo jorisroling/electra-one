@@ -110,7 +110,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
             Midi.send(to, 'program', {channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), number: program}, 'programChange', sendProgramChangeTimeoutTime)
             debugPart('Part mapping %y applied to PC %d to %y', (targetElectraOne ? (electraOneMidiChannel + 1) : getMapping('part')), program, to)
             Midi.send(to, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
-            const bank = _.get(midiHistory, `${from}.channel_${getMapping('part:-1')}.controller_0`,0)
+            const bank = _.get(midiHistory, `${from}.channel_${getMapping('part:-1')}.controller_0`, 0)
             Bacara.event.emit('change', 'virus-ti', getMapping('part'), 'bank-and-program', {bank, program}, 'surface', path.basename(__filename, '.js'))
           }
         } else {
@@ -232,7 +232,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
 
           /* Single Dump Buffer F0 00 20 33 01 XX 10 00 YY */
         } else if (msg.bytes.length == 524 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x00 && msg.bytes[2] == 0x20 && msg.bytes[3] == 0x33 && msg.bytes[4] == 0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6] == 0x10 && msg.bytes[7] == 0x00 /* && msg.bytes[8]==0x00 */ ) {
-          if (msg.bytes[8]==getMapping('part:-1')) {
+          if (msg.bytes[8] == getMapping('part:-1')) {
             msg.bytes[8] = ( targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'))
             debugPart('Part mapping %y applied to Single Dump SysEx to %y', msg.bytes[8] + 1, to)
             debug('Send large sysex to %y (%y bytes)', to, msg.bytes.length)
@@ -242,7 +242,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
             Midi.send(to, 'cc', {channel:electraOneMidiChannel, controller:0, value:bank})
             Midi.send(to, 'program', {channel:electraOneMidiChannel, number:program})
           }
-//          Bacara.event.emit('sysex', 'virus-ti', getMapping('part'), 'patch', msg.bytes, 'virus-ti', path.basename(__filename, '.js'))
+          //          Bacara.event.emit('sysex', 'virus-ti', getMapping('part'), 'patch', msg.bytes, 'virus-ti', path.basename(__filename, '.js'))
 
         } else if (msg.bytes.length == 11 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x00 && msg.bytes[2] == 0x20 && msg.bytes[3] == 0x33 && msg.bytes[4] == 0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6] == 0x72 && msg.bytes[7] == 0x00 ) {
           // F0 00 20 33 01 XX 72 00  21 32 F7 => preset change
@@ -290,15 +290,15 @@ function setupMidi(options) {
           console.error(`No connection to "${electraOnePortName}"`)
         }
         Bacara.event.on('change', (device, part, name, value, origin, command) => {
-          if (command != me && device == 'virus-ti' && (part>=1 && part<=16)) {
+          if (command != me && device == 'virus-ti' && (part >= 1 && part <= 16)) {
             //debug('RTR change - machine: %y  part: %y  name: %y  value: %y  origin: %y  me: %y',device, part, name, value, origin, me)
             const currentPart = getMapping('part')
             if (part == currentPart) {
               if (name == 'bank-and-program') {
-//                debug('Bank & Program change %y', value)
+                //                debug('Bank & Program change %y', value)
                 Midi.send(electraOnePortName, 'cc', {channel:electraOneMidiChannel, controller:0, value:value.bank})
                 Midi.send(electraOnePortName, 'program', {channel: electraOneMidiChannel, number: value.program }, 'programChange', sendProgramChangeTimeoutTime)
-//                Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
+                //                Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
               } else if (name == 'level') {
                 Midi.send(electraOnePortName, 'cc', {channel:electraOneMidiChannel, controller:91, value:value})
               } else if (name == 'cc') {

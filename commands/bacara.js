@@ -82,7 +82,7 @@ const virusPatchPages = []
 
 let bacaraEmitPart
 let bacaraEmitTime
-function bacaraEmit(portName,part,type,value,origin) {
+function bacaraEmit(portName, part, type, value, origin) {
   bacaraEmitTime = Date.now()
   bacaraEmitPart = part
   Bacara.event.emit('change', portName, part, type, value, origin, path.basename(__filename, '.js'))
@@ -100,36 +100,36 @@ class BacaraMachine extends Machine {
     this.slewLimiterTimouts = []
 
     Bacara.event.on('change', (device, part, name, value, origin, command) => {
-      if (/*command != me &&*/ device == 'virus-ti' && (part>=1 && part<=16)) {
+      if (/*command != me &&*/ device == 'virus-ti' && (part >= 1 && part <= 16)) {
         //debug('BACARA change %y - device: %y  part: %y  name: %y  value: %y  origin: %y command: %y',me,device, part, name, value, origin, command)
         if (name == 'bank-and-program') {
           if (value && value.bank) {
-            this.interface.setParameter(`virus.mixer.part.${part-1}.bank`,value.bank)
+            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, value.bank)
           }
           if (value && value.program) {
-            this.interface.setParameter(`virus.mixer.part.${part-1}.program`,value.program)
+            this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, value.program)
           }
-          if (part == this.interface.getParameter(`virus.axyz.part`)) {
+          if (part == this.interface.getParameter('virus.axyz.part')) {
 
             if (value && value.bank) {
-              this.interface.setParameter(`virus.axyz.bank`,value.bank)
+              this.interface.setParameter('virus.axyz.bank', value.bank)
             }
             if (value && value.program) {
-              this.interface.setParameter(`virus.axyz.program`,value.program)
+              this.interface.setParameter('virus.axyz.program', value.program)
             }
             virusAxyzRecenterSend()
           }
-          ['A','B'].forEach( dev => {
+          ['A', 'B'].forEach( dev => {
             const portName = this.getState(`device.${dev}.portName`)
             const channel = this.interface.getParameter(`device.${dev}.channel`, 1)
             const bank = this.interface.getParameter(`device.${dev}.bank`)
             const program = this.interface.getParameter(`device.${dev}.program`)
             if (portName == device && channel == part) {
               if (value && value.bank) {
-                this.interface.setParameter(`device.${dev}.bank`,value.bank)
+                this.interface.setParameter(`device.${dev}.bank`, value.bank)
               }
               if (value && value.program) {
-                this.interface.setParameter(`device.${dev}.program`,value.program)
+                this.interface.setParameter(`device.${dev}.program`, value.program)
               }
             }
           })
@@ -143,17 +143,17 @@ class BacaraMachine extends Machine {
       const channel = part
 
       const rstAxyz = (axyz) => {
-        for (let t=0;t<2;t++) {
+        for (let t = 0; t < 2; t++) {
           const value = 0
           const trgt = this.interface.getParameter(`virus.axyz.${axyz}.target.${t}`)
           if (trgt) {
             const idx = trgt - 1
 
-            const parameter = _.get(devices['virus-ti'].parameters,list[idx])
+            const parameter = _.get(devices['virus-ti'].parameters, list[idx])
             if (parameter && parameter.cc) {
-              const patchDefault = _.get(virusPatchPages,`${part-1}.0.${parameter.cc}`,-1)
-              if (patchDefault>=0) {
-//                 debug('Reset Axyz %y T %d CC %y = patch default %y',axyz,t,parameter.cc,patchDefault)
+              const patchDefault = _.get(virusPatchPages, `${part - 1}.0.${parameter.cc}`, -1)
+              if (patchDefault >= 0) {
+                //                 debug('Reset Axyz %y T %d CC %y = patch default %y',axyz,t,parameter.cc,patchDefault)
                 Midi.send(virusPortName, 'cc', {channel:channel - 1, controller:parameter.cc, value:patchDefault})
                 Bacara.event.emit('change', virusPortName, part, 'cc', {controller:parameter.cc, value:patchDefault}, 'surface', path.basename(__filename, '.js'))
               }
@@ -163,21 +163,25 @@ class BacaraMachine extends Machine {
       }
 
       const list = devices['virus-ti'].flatList
-      for (let a=1;a<=4;a++) {
-        if (!axyz || axyz == `x${a}`) rstAxyz(`x${a}`)
-        if (!axyz || axyz == `y${a}`) rstAxyz(`y${a}`)
+      for (let a = 1; a <= 4; a++) {
+        if (!axyz || axyz == `x${a}`) {
+          rstAxyz(`x${a}`)
+        }
+        if (!axyz || axyz == `y${a}`) {
+          rstAxyz(`y${a}`)
+        }
       }
     }
 
     const virusAxyzRecenterSend = () => {
-      this.interface.setParameter(`virus.axyz.x1.control`,0)
-      this.interface.setParameter(`virus.axyz.y1.control`,0)
-      this.interface.setParameter(`virus.axyz.x2.control`,0)
-      this.interface.setParameter(`virus.axyz.y2.control`,0)
-      this.interface.setParameter(`virus.axyz.x3.control`,0)
-      this.interface.setParameter(`virus.axyz.y3.control`,0)
-      this.interface.setParameter(`virus.axyz.x4.control`,0)
-      this.interface.setParameter(`virus.axyz.y4.control`,0)
+      this.interface.setParameter('virus.axyz.x1.control', 0)
+      this.interface.setParameter('virus.axyz.y1.control', 0)
+      this.interface.setParameter('virus.axyz.x2.control', 0)
+      this.interface.setParameter('virus.axyz.y2.control', 0)
+      this.interface.setParameter('virus.axyz.x3.control', 0)
+      this.interface.setParameter('virus.axyz.y3.control', 0)
+      this.interface.setParameter('virus.axyz.x4.control', 0)
+      this.interface.setParameter('virus.axyz.y4.control', 0)
 
       virusAxyzRestoreDefaultSend()
     }
@@ -191,15 +195,15 @@ class BacaraMachine extends Machine {
     const virusAxyzResetTargets = (elementPath, origin) => {
       virusAxyzRecenterSend()
       const rstAxyzTargets = (axyz) => {
-       virusAxyzRestoreDefaultSend(axyz)
-        for (let t=0;t<2;t++) {
+        virusAxyzRestoreDefaultSend(axyz)
+        for (let t = 0; t < 2; t++) {
           const elementPath = `virus.axyz.${axyz}.target.${t}`
-          this.interface.setParameter(elementPath,this.interface.getElementAttribute(elementPath, 'default', 0))
+          this.interface.setParameter(elementPath, this.interface.getElementAttribute(elementPath, 'default', 0))
         }
       }
 
       const list = devices['virus-ti'].flatList
-      for (let a=1;a<=4;a++) {
+      for (let a = 1; a <= 4; a++) {
         rstAxyzTargets(`x${a}`)
         rstAxyzTargets(`y${a}`)
       }
@@ -208,25 +212,25 @@ class BacaraMachine extends Machine {
 
     const virusAxyzSelect = (elementPath, origin) => {
       const part = this.interface.getParameter('virus.axyz.part', 1)
-      if (part>=1 && part<=16) {
+      if (part >= 1 && part <= 16) {
         bacaraEmit('virus-ti', part, 'select', null, origin)
       }
     }
 
     const virusAxyzNext = (elementPath, origin) => {
       const part = this.interface.getParameter('virus.axyz.part', 1)
-      if (part>=1 && part<=16) {
-        const bank = this.interface.getParameter(`virus.axyz.bank`)
-        const program = this.interface.getParameter(`virus.axyz.program`)
+      if (part >= 1 && part <= 16) {
+        const bank = this.interface.getParameter('virus.axyz.bank')
+        const program = this.interface.getParameter('virus.axyz.program')
         if (program < 127) {
-          this.interface.setParameter(`virus.axyz.program`,program + 1)
+          this.interface.setParameter('virus.axyz.program', program + 1)
         } else {
           if (bank < 29) {
-            this.interface.setParameter(`virus.axyz.bank`,bank + 1)
+            this.interface.setParameter('virus.axyz.bank', bank + 1)
           } else {
-            this.interface.setParameter(`virus.axyz.bank`,0)
+            this.interface.setParameter('virus.axyz.bank', 0)
           }
-          this.interface.setParameter(`virus.axyz.program`,0)
+          this.interface.setParameter('virus.axyz.program', 0)
         }
         virusAxyzSendBankAndProgram(elementPath, 1, origin)
       }
@@ -235,18 +239,18 @@ class BacaraMachine extends Machine {
 
     const virusAxyzPrevious = (elementPath, origin) => {
       const part = this.interface.getParameter('virus.axyz.part', 1)
-      if (part>=1 && part<=16) {
-        const bank = this.interface.getParameter(`virus.axyz.bank`)
-        const program = this.interface.getParameter(`virus.axyz.program`)
+      if (part >= 1 && part <= 16) {
+        const bank = this.interface.getParameter('virus.axyz.bank')
+        const program = this.interface.getParameter('virus.axyz.program')
         if (program > 0) {
-          this.interface.setParameter(`virus.axyz.program`,program - 1)
+          this.interface.setParameter('virus.axyz.program', program - 1)
         } else {
           if (bank > 0) {
-            this.interface.setParameter(`virus.axyz.bank`,bank - 1)
+            this.interface.setParameter('virus.axyz.bank', bank - 1)
           } else {
-            this.interface.setParameter(`virus.axyz.bank`,29)
+            this.interface.setParameter('virus.axyz.bank', 29)
           }
-          this.interface.setParameter(`virus.axyz.program`,127)
+          this.interface.setParameter('virus.axyz.program', 127)
         }
         virusAxyzSendBankAndProgram(elementPath, 1, origin)
       }
@@ -260,43 +264,43 @@ class BacaraMachine extends Machine {
         const sysexHeader = bytes.slice(0, 5)
         const msgHeader = bytes.slice(6, 9)
         if (_.isEqual(sysexHeader, virusSysexHeader)) {
-          if (msgHeader[0]==0x10 && msgHeader[1]==0x00) {
-            const part = msgHeader[2]+1
+          if (msgHeader[0] == 0x10 && msgHeader[1] == 0x00) {
+            const part = msgHeader[2] + 1
             const page = [
-              bytes.slice(9, 9+128),
-              bytes.slice(9+(128*1), 9+(128*1)+128),
-              bytes.slice(9+(128*2)+2, 9+(128*2)+2+128),
-              bytes.slice(9+(128*3)+2, 9+(128*3)+2+128),
+              bytes.slice(9, 9 + 128),
+              bytes.slice(9 + (128 * 1), 9 + (128 * 1) + 128),
+              bytes.slice(9 + (128 * 2) + 2, 9 + (128 * 2) + 2 + 128),
+              bytes.slice(9 + (128 * 3) + 2, 9 + (128 * 3) + 2 + 128),
             ]
 
-            virusPatchPages[part-1]=page
+            virusPatchPages[part - 1] = page
 
             const level = page[0][91]
-            this.interface.setParameter(`virus.mixer.part.${part-1}.level`,level)
+            this.interface.setParameter(`virus.mixer.part.${part - 1}.level`, level)
 
-            this.interface.setParameter(`virus.mixer.part.${part-1}.bank`,page[0][2])
-            this.interface.setParameter(`virus.mixer.part.${part-1}.program`,page[0][3])
+            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, page[0][2])
+            this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, page[0][3])
 
-            if (part == this.interface.getParameter(`virus.axyz.part`)) {
-              this.interface.setParameter(`virus.axyz.bank`,page[0][2])
-              this.interface.setParameter(`virus.axyz.program`,page[0][3])
+            if (part == this.interface.getParameter('virus.axyz.part')) {
+              this.interface.setParameter('virus.axyz.bank', page[0][2])
+              this.interface.setParameter('virus.axyz.program', page[0][3])
             }
 
-            let patchName=''
-            for (let n=112;n<=121;n++) {
+            let patchName = ''
+            for (let n = 112; n <= 121; n++) {
               patchName += String.fromCharCode(parseInt(page[1][n]))
             }
             patchName = patchName.trim()
-/*            debug('patch Name %y',patchName)*/
+            /*            debug('patch Name %y',patchName)*/
 
             if (electraBacaraPresetLoaded) {
-              if (part>=1 && part<=6) {
-                if (_.get(this.state,`virus.part.${part-1}.patchName`) !== patchName) {
+              if (part >= 1 && part <= 6) {
+                if (_.get(this.state, `virus.part.${part - 1}.patchName`) !== patchName) {
                   const str = JSON.stringify({
-                    "name": patchName,
+                    'name': patchName,
                   })
-                  const selectControls = [145,146,147,148,149,150]
-                  const ctrlId = selectControls[part-1]
+                  const selectControls = [145, 146, 147, 148, 149, 150]
+                  const ctrlId = selectControls[part - 1]
                   const bytes = [0xF0, 0x00, 0x21, 0x45, 0x14, 0x07, ctrlId & 0x7F, ctrlId >> 7]
                   for (let n = 0, l = str.length; n < l; n++) {
                     bytes.push(Number(str.charCodeAt(n)))
@@ -304,12 +308,12 @@ class BacaraMachine extends Machine {
                   bytes.push(0xF7)
 
                   Midi.send('electra-one-ctrl', 'sysex', bytes)
-                  _.set(this.state,`virus.part.${part-1}.patchName`,patchName)
+                  _.set(this.state, `virus.part.${part - 1}.patchName`, patchName)
                 }
               }
-              if (part == this.interface.getParameter(`virus.axyz.part`) && _.get(this.state,`virus.axyz.patchName`) !== patchName) {
+              if (part == this.interface.getParameter('virus.axyz.part') && _.get(this.state, 'virus.axyz.patchName') !== patchName) {
                 const str = JSON.stringify({
-                  "name": patchName,
+                  'name': patchName,
                 })
                 const ctrlId = 110
                 const bytes = [0xF0, 0x00, 0x21, 0x45, 0x14, 0x07, ctrlId & 0x7F, ctrlId >> 7]
@@ -319,7 +323,7 @@ class BacaraMachine extends Machine {
                 bytes.push(0xF7)
 
                 Midi.send('electra-one-ctrl', 'sysex', bytes)
-                _.set(this.state,`virus.axyz.patchName`,patchName)
+                _.set(this.state, 'virus.axyz.patchName', patchName)
               }
             } else {
               debug('electra Bacara Preset NOT Loaded')
@@ -327,11 +331,11 @@ class BacaraMachine extends Machine {
 
             let macros = {}
 
-            for (let s=0;s<6;s++) {
+            for (let s = 0; s < 6; s++) {
               const slotSource = page[config.virus.info.matrix.slot[s].source.page][config.virus.info.matrix.slot[s].source.offset]
-              if (slotSource>0 && slotSource<=18) {
-                let destinations=0
-                for (let d = 0; d<3; d++) {
+              if (slotSource > 0 && slotSource <= 18) {
+                let destinations = 0
+                for (let d = 0; d < 3; d++) {
                   const target = page[config.virus.info.matrix.slot[s].destinations[d].target.page][config.virus.info.matrix.slot[s].destinations[d].target.offset]
                   const amount = page[config.virus.info.matrix.slot[s].destinations[d].amount.page][config.virus.info.matrix.slot[s].destinations[d].amount.offset]
                   if (target && amount) {
@@ -339,24 +343,24 @@ class BacaraMachine extends Machine {
                   }
                 }
                 if (destinations) {
-                  const slotSourceType = Object.assign({},config.virus.info.matrix.source.type[slotSource])
-/*                  debug('mod slot #%d (%s) source %y %s %y',s+1,config.virus.info.matrix.slot[s].name,slotSource,slotSourceType.name,slotSourceType.cc)*/
+                  const slotSourceType = Object.assign({}, config.virus.info.matrix.source.type[slotSource])
+                  /*                  debug('mod slot #%d (%s) source %y %s %y',s+1,config.virus.info.matrix.slot[s].name,slotSource,slotSourceType.name,slotSourceType.cc)*/
                   macros[slotSourceType.name] = slotSourceType
                 }
               }
             }
-  /*          debug('macros %y',macros)*/
+            /*          debug('macros %y',macros)*/
             macros = Object.values(macros)
 
-            const names = _.get(config.virus.info,'soft.names')
+            const names = _.get(config.virus.info, 'soft.names')
             for (let macro of macros) {
               if (macro.softknob) {
-                for (let k=0;k<3;k++) {
-                  const destination = page[_.get(config.virus.info,`soft.knob.${k}.destination.page`)][_.get(config.virus.info,`soft.knob.${k}.destination.offset`)]
-/*                  debug('knob %d dest %y',k+1,destination)*/
+                for (let k = 0; k < 3; k++) {
+                  const destination = page[_.get(config.virus.info, `soft.knob.${k}.destination.page`)][_.get(config.virus.info, `soft.knob.${k}.destination.offset`)]
+                  /*                  debug('knob %d dest %y',k+1,destination)*/
                   if (destination == macro.softknob) {
-                    macro.name = names[page[_.get(config.virus.info,`soft.knob.${k}.name.page`)][_.get(config.virus.info,`soft.knob.${k}.name.offset`)]]
-                    macro.index = k+1
+                    macro.name = names[page[_.get(config.virus.info, `soft.knob.${k}.name.page`)][_.get(config.virus.info, `soft.knob.${k}.name.offset`)]]
+                    macro.index = k + 1
                   }
                 }
               }
@@ -364,7 +368,7 @@ class BacaraMachine extends Machine {
 
             macros.sort(function(a, b) {
               if (a.index || b.index) {
-                return (a.index?a.index:1000) - (b.index?b.index:1000)
+                return (a.index ? a.index : 1000) - (b.index ? b.index : 1000)
               } else if (a.cc && b.cc) {
                 return a.cc - b.cc
               } else {
@@ -372,18 +376,18 @@ class BacaraMachine extends Machine {
               }
             })
 
-            for (let ctrl=0;ctrl<6;ctrl++) {
-              const macro = (ctrl<macros.length)?macros[ctrl]:null
+            for (let ctrl = 0; ctrl < 6; ctrl++) {
+              const macro = (ctrl < macros.length) ? macros[ctrl] : null
               if (macro) {
-               if (macro.type=='cc' && macro.cc) {
-                 this.interface.setParameter(`virus.macros.part.${part-1}.control.${ctrl}`,page[0][macro.cc])
-               }
+                if (macro.type == 'cc' && macro.cc) {
+                  this.interface.setParameter(`virus.macros.part.${part - 1}.control.${ctrl}`, page[0][macro.cc])
+                }
               }
             }
-            _.set(this.state,`virus.part.${part-1}.macros`,macros)
+            _.set(this.state, `virus.part.${part - 1}.macros`, macros)
 
             virusMacros(part)
-/*            debug('Part #%y Macros %y',part,macros)*/
+            /*            debug('Part #%y Macros %y',part,macros)*/
 
             this.writeState()
           }
@@ -402,7 +406,7 @@ class BacaraMachine extends Machine {
       })
     }
 
-/*    Bacara.event.on('sysex', (device, part, name, value, origin, command) => {
+    /*    Bacara.event.on('sysex', (device, part, name, value, origin, command) => {
       virusParsePatchDump(value)
     })
 */
@@ -411,27 +415,27 @@ class BacaraMachine extends Machine {
 
     const virusMacros = (part) => {
       if (electraBacaraPresetLoaded) {
-        if (part>=1 && part<=6) {
-          const macros = _.get(this.state,`virus.part.${part-1}.macros`,[])
-          for (let i=0;i<6;i++) {
+        if (part >= 1 && part <= 6) {
+          const macros = _.get(this.state, `virus.part.${part - 1}.macros`, [])
+          for (let i = 0; i < 6; i++) {
 
-            const selectControls = [253,254,255,256,257,258]
+            const selectControls = [253, 254, 255, 256, 257, 258]
             const macroControls = [
-              [181,182,183,187,188,189],
-              [184,185,186,190,191,192],
-              [193,194,195,199,200,201],
-              [196,197,198,202,203,204],
-              [205,206,207,211,212,213],
-              [208,209,210,214,215,216],
+              [181, 182, 183, 187, 188, 189],
+              [184, 185, 186, 190, 191, 192],
+              [193, 194, 195, 199, 200, 201],
+              [196, 197, 198, 202, 203, 204],
+              [205, 206, 207, 211, 212, 213],
+              [208, 209, 210, 214, 215, 216],
             ]
             let json
-            if (i<macros.length) {
-              json={name:macros[i].name,visible:true}
+            if (i < macros.length) {
+              json = {name:macros[i].name, visible:true}
             } else {
-              json={visible:false}
+              json = {visible:false}
             }
 
-            const ctrlId = macroControls[part-1][i]
+            const ctrlId = macroControls[part - 1][i]
             const bytes = [0xF0, 0x00, 0x21, 0x45, 0x14, 0x07, ctrlId & 0x7F, ctrlId >> 7]
             const str = JSON.stringify(json)
             for (let n = 0, l = str.length; n < l; n++) {
@@ -446,44 +450,44 @@ class BacaraMachine extends Machine {
     }
 
     const virusMixerSelect = (part) => (elementPath, origin) => {
-      if (part>=1 && part<=16) {
+      if (part >= 1 && part <= 16) {
         bacaraEmit('virus-ti', part, 'select', null, origin)
       }
     }
 
     const virusMixerNext = (part) => (elementPath, origin) => {
-      if (part>=1 && part<=16) {
-        const bank = this.interface.getParameter(`virus.mixer.part.${part-1}.bank`)
-        const program = this.interface.getParameter(`virus.mixer.part.${part-1}.program`)
+      if (part >= 1 && part <= 16) {
+        const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
+        const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
         if (program < 127) {
-          this.interface.setParameter(`virus.mixer.part.${part-1}.program`,program + 1)
+          this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, program + 1)
         } else {
           if (bank < 29) {
-            this.interface.setParameter(`virus.mixer.part.${part-1}.bank`,bank + 1)
+            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, bank + 1)
           } else {
-            this.interface.setParameter(`virus.mixer.part.${part-1}.bank`,0)
+            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, 0)
           }
-          this.interface.setParameter(`virus.mixer.part.${part-1}.program`,0)
+          this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, 0)
         }
-        virusMixerSendBankAndProgram(part,origin)
+        virusMixerSendBankAndProgram(part, origin)
       }
     }
 
     const virusMixerPrevious = (part) => (elementPath, origin) => {
-      if (part>=1 && part<=16) {
-        const bank = this.interface.getParameter(`virus.mixer.part.${part-1}.bank`)
-        const program = this.interface.getParameter(`virus.mixer.part.${part-1}.program`)
+      if (part >= 1 && part <= 16) {
+        const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
+        const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
         if (program > 0) {
-          this.interface.setParameter(`virus.mixer.part.${part-1}.program`,program - 1)
+          this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, program - 1)
         } else {
           if (bank > 0) {
-            this.interface.setParameter(`virus.mixer.part.${part-1}.bank`,bank - 1)
+            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, bank - 1)
           } else {
-            this.interface.setParameter(`virus.mixer.part.${part-1}.bank`,29)
+            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, 29)
           }
-          this.interface.setParameter(`virus.mixer.part.${part-1}.program`,127)
+          this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, 127)
         }
-        virusMixerSendBankAndProgram(part,origin)
+        virusMixerSendBankAndProgram(part, origin)
       }
     }
 
@@ -929,7 +933,7 @@ class BacaraMachine extends Machine {
       debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
       Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
       bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
-      Midi.send('virus-ti','sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part-1, 0xF7], `singleRequest-part-${part}`, 200)
+      Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
     }
 
     const virusAxyzBank = (elementPath, value, origin) => {
@@ -949,17 +953,17 @@ class BacaraMachine extends Machine {
         const mode = this.interface.getParameter('virus.axyz.mode', 0)
 
         const list = devices['virus-ti'].flatList
-        for (let t=0;t<2;t++) {
+        for (let t = 0; t < 2; t++) {
           const trgt = this.interface.getParameter(`virus.axyz.${axyz}.target.${t}`)
           if (trgt) {
             const idx = trgt - 1
-  //          debug('Axyz %y Target %y = %y %y %y',axyz,idx,idx,list[idx],_.get(devices['virus-ti'].parameters,list[idx]))
+            //          debug('Axyz %y Target %y = %y %y %y',axyz,idx,idx,list[idx],_.get(devices['virus-ti'].parameters,list[idx]))
 
-            const parameter = _.get(devices['virus-ti'].parameters,list[idx])
+            const parameter = _.get(devices['virus-ti'].parameters, list[idx])
 
             if (parameter && parameter.cc) {
               let val
-                const patchDefault = _.get(virusPatchPages,`${part-1}.0.${parameter.cc}`)
+              const patchDefault = _.get(virusPatchPages, `${part - 1}.0.${parameter.cc}`)
               if (mode == virusAxyzModeRelative) {
                 if (value >= 0.0) {
                   val = Math.round(patchDefault + ((127 - patchDefault) * value))
@@ -969,7 +973,7 @@ class BacaraMachine extends Machine {
               } else if (mode == virusAxyzModeAbsolute) {
                 val = Math.round(Interface.remap(value, -1, 1, 0, 127))
               }
-//               debug('Axyz %y T %d CC %y = %y (because %y) (patch default %y)',axyz,t,parameter.cc,val,value,patchDefault)
+              //               debug('Axyz %y T %d CC %y = %y (because %y) (patch default %y)',axyz,t,parameter.cc,val,value,patchDefault)
               Midi.send(virusPortName, 'cc', {channel:channel - 1, controller:parameter.cc, value:val})
               Bacara.event.emit('change', virusPortName, part, 'cc', {controller:parameter.cc, value:val}, origin, path.basename(__filename, '.js'))
             }
@@ -978,45 +982,45 @@ class BacaraMachine extends Machine {
       }
     }
 
-    const virusAxyzRestoreDefault = (axyz,trgt) => (elementPath, value, origin) => {
+    const virusAxyzRestoreDefault = (axyz, trgt) => (elementPath, value, origin) => {
       virusAxyzRestoreDefaultSend(axyz)
     }
 
-    const virusAxyzTarget = (axyz,trgt) => {
+    const virusAxyzTarget = (axyz, trgt) => {
       return (elementPath, value, origin) => {
         if (value) {
-          const idx=value - 1
+          const idx = value - 1
           const list = devices['virus-ti'].flatList
-          debug('Axyz %y Target %y = %y %y %y',axyz,trgt,idx,list[idx],_.get(devices['virus-ti'].parameters,list[idx]))
+          debug('Axyz %y Target %y = %y %y %y', axyz, trgt, idx, list[idx], _.get(devices['virus-ti'].parameters, list[idx]))
         }
       }
     }
 
-    const virusMixerSendBankAndProgram = (part,origin) => {
-      if (part>=1 && part<=16) {
+    const virusMixerSendBankAndProgram = (part, origin) => {
+      if (part >= 1 && part <= 16) {
         const portName = 'virus-ti'
         const channel = part
-        const bank = this.interface.getParameter(`virus.mixer.part.${part-1}.bank`)
-        const program = this.interface.getParameter(`virus.mixer.part.${part-1}.program`)
+        const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
+        const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
         if (bank < virusRamRomBanks) {
           debugMidiControlChange('%s %d CC %y = %y', portName, channel, 0, bank)
           Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, 'bankChange-virus', 200)
           debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
           Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
           bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
-          Midi.send('virus-ti','sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part-1, 0xF7], `singleRequest-part-${part}`, 200)
+          Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
         } else {
-          const virusPreset = virus.getPreset(bank - virusRamRomBanks,program)
+          const virusPreset = virus.getPreset(bank - virusRamRomBanks, program)
           if (virusPreset) {
-            debug('virusPreset %y',virusPreset)
-//            const surfaces = this.interface.connections.filter(x => x.kind == 'surface').map( x => x.portName)
-            virus.toSysEx('virus-ti',virusPreset)
-            console.log('this %y',this.interface.connections.filter(x => x.kind == 'surface').map( x => x.portName))
+            debug('virusPreset %y', virusPreset)
+            //            const surfaces = this.interface.connections.filter(x => x.kind == 'surface').map( x => x.portName)
+            virus.toSysEx('virus-ti', virusPreset)
+            console.log('this %y', this.interface.connections.filter(x => x.kind == 'surface').map( x => x.portName))
           } else {
             const virusBank = virus.getBank(bank - virusRamRomBanks)
-            debug('virusBank %y',virusBank)
+            debug('virusBank %y', virusBank)
             if (virusBank && virusBank.presets) {
-//              this.interface.setParameter(`virus.mixer.part.${part-1}.program`,virusBank.presets-1)
+              //              this.interface.setParameter(`virus.mixer.part.${part-1}.program`,virusBank.presets-1)
             }
           }
         }
@@ -1025,39 +1029,41 @@ class BacaraMachine extends Machine {
 
 
     const virusMixerBank = (part) => (elementPath, value, origin) => {
-      virusMixerSendBankAndProgram(part,origin)
+      virusMixerSendBankAndProgram(part, origin)
     }
 
     const virusMixerProgram = (part) => (elementPath, value, origin) => {
-      virusMixerSendBankAndProgram(part,origin)
+      virusMixerSendBankAndProgram(part, origin)
     }
 
     const virusMixerLevel = (part) => (elementPath, value, origin) => {
-      if (part>=1 && part<=16) {
+      if (part >= 1 && part <= 16) {
         Midi.send('virus-ti', 'cc', {channel:part - 1, controller:91, value}, 'levelChange-virus', 200)
         bacaraEmit('virus-ti', part, 'level', value, origin)
       }
     }
 
-    const virusMacroControl= (part, ctrl) => (elementPath, value, origin) => {
-      if (part>=1 && part<=16) {
-        const type = _.get(this.state,`virus.part.${part-1}.macros.${ctrl-1}.type`)
+    const virusMacroControl = (part, ctrl) => (elementPath, value, origin) => {
+      if (part >= 1 && part <= 16) {
+        const type = _.get(this.state, `virus.part.${part - 1}.macros.${ctrl - 1}.type`)
         let val = value
         switch (type) {
         case 'cc':
-          const controller = _.get(this.state,`virus.part.${part-1}.macros.${ctrl-1}.cc`)
-          if (controller) {
-            val = Math.round(Interface.remap(value, 0, 16383, 0, 127))
-            Midi.send('virus-ti', 'cc', {channel:part - 1, controller, value:val}, 'macrosChange-virus', 200)
+          {
+            const controller = _.get(this.state, `virus.part.${part - 1}.macros.${ctrl - 1}.cc`)
+            if (controller) {
+              val = Math.round(Interface.remap(value, 0, 16383, 0, 127))
+              Midi.send('virus-ti', 'cc', {channel:part - 1, controller, value:val}, 'macrosChange-virus', 200)
+            }
           }
           break
         case 'pressure':
           val = Math.round(Interface.remap(value, 0, 16383, 0, 127))
           Midi.send('virus-ti', 'channel aftertouch', {channel:part - 1, pressure:val}, 'macrosChange-virus', 200)
-          break;
+          break
         case 'pitch':
           Midi.send('virus-ti', 'pitch', {channel:part - 1, value:value}, 'macrosChange-virus', 200)
-          break;
+          break
         }
         bacaraEmit('virus-ti', part, `macrosControl#${ctrl}`, val, origin)
       }
@@ -1065,14 +1071,14 @@ class BacaraMachine extends Machine {
     this.parameterEminentSideEffects = {
       virus: {
         axyz: {
-          x1: { target: [virusAxyzRestoreDefault('x1',1),virusAxyzRestoreDefault('x1',2)] },
-          y1: { target: [virusAxyzRestoreDefault('y1',1),virusAxyzRestoreDefault('y1',2)] },
-          x2: { target: [virusAxyzRestoreDefault('x2',1),virusAxyzRestoreDefault('x2',2)] },
-          y2: { target: [virusAxyzRestoreDefault('y2',1),virusAxyzRestoreDefault('y2',2)] },
-          x3: { target: [virusAxyzRestoreDefault('x3',1),virusAxyzRestoreDefault('x3',2)] },
-          y3: { target: [virusAxyzRestoreDefault('y3',1),virusAxyzRestoreDefault('y3',2)] },
-          x4: { target: [virusAxyzRestoreDefault('x4',1),virusAxyzRestoreDefault('x4',2)] },
-          y4: { target: [virusAxyzRestoreDefault('y4',1),virusAxyzRestoreDefault('y4',2)] },
+          x1: { target: [virusAxyzRestoreDefault('x1', 1), virusAxyzRestoreDefault('x1', 2)] },
+          y1: { target: [virusAxyzRestoreDefault('y1', 1), virusAxyzRestoreDefault('y1', 2)] },
+          x2: { target: [virusAxyzRestoreDefault('x2', 1), virusAxyzRestoreDefault('x2', 2)] },
+          y2: { target: [virusAxyzRestoreDefault('y2', 1), virusAxyzRestoreDefault('y2', 2)] },
+          x3: { target: [virusAxyzRestoreDefault('x3', 1), virusAxyzRestoreDefault('x3', 2)] },
+          y3: { target: [virusAxyzRestoreDefault('y3', 1), virusAxyzRestoreDefault('y3', 2)] },
+          x4: { target: [virusAxyzRestoreDefault('x4', 1), virusAxyzRestoreDefault('x4', 2)] },
+          y4: { target: [virusAxyzRestoreDefault('y4', 1), virusAxyzRestoreDefault('y4', 2)] },
         },
       },
     }
@@ -1270,14 +1276,14 @@ class BacaraMachine extends Machine {
           level: virusAxyzLevel,
           bank: virusAxyzBank,
           program: virusAxyzProgram,
-          x1: { control:virusAxyzControl('x1'), target: [virusAxyzTarget('x1',1),virusAxyzTarget('x1',2)] },
-          y1: { control:virusAxyzControl('y1'), target: [virusAxyzTarget('y1',1),virusAxyzTarget('y1',2)] },
-          x2: { control:virusAxyzControl('x2'), target: [virusAxyzTarget('x2',1),virusAxyzTarget('x2',2)] },
-          y2: { control:virusAxyzControl('y2'), target: [virusAxyzTarget('y2',1),virusAxyzTarget('y2',2)] },
-          x3: { control:virusAxyzControl('x3'), target: [virusAxyzTarget('x3',1),virusAxyzTarget('x3',2)] },
-          y3: { control:virusAxyzControl('y3'), target: [virusAxyzTarget('y3',1),virusAxyzTarget('y3',2)] },
-          x4: { control:virusAxyzControl('x4'), target: [virusAxyzTarget('x4',1),virusAxyzTarget('x4',2)] },
-          y4: { control:virusAxyzControl('y4'), target: [virusAxyzTarget('y4',1),virusAxyzTarget('y4',2)] },
+          x1: { control:virusAxyzControl('x1'), target: [virusAxyzTarget('x1', 1), virusAxyzTarget('x1', 2)] },
+          y1: { control:virusAxyzControl('y1'), target: [virusAxyzTarget('y1', 1), virusAxyzTarget('y1', 2)] },
+          x2: { control:virusAxyzControl('x2'), target: [virusAxyzTarget('x2', 1), virusAxyzTarget('x2', 2)] },
+          y2: { control:virusAxyzControl('y2'), target: [virusAxyzTarget('y2', 1), virusAxyzTarget('y2', 2)] },
+          x3: { control:virusAxyzControl('x3'), target: [virusAxyzTarget('x3', 1), virusAxyzTarget('x3', 2)] },
+          y3: { control:virusAxyzControl('y3'), target: [virusAxyzTarget('y3', 1), virusAxyzTarget('y3', 2)] },
+          x4: { control:virusAxyzControl('x4'), target: [virusAxyzTarget('x4', 1), virusAxyzTarget('x4', 2)] },
+          y4: { control:virusAxyzControl('y4'), target: [virusAxyzTarget('y4', 1), virusAxyzTarget('y4', 2)] },
         },
         mixer: {
           part: [
@@ -1315,12 +1321,12 @@ class BacaraMachine extends Machine {
         },
         macros: {
           part: [
-            { control: [ virusMacroControl(1,1), virusMacroControl(1,2), virusMacroControl(1,3), virusMacroControl(1,4), virusMacroControl(1,5), virusMacroControl(1,6) ] },
-            { control: [ virusMacroControl(2,1), virusMacroControl(2,2), virusMacroControl(2,3), virusMacroControl(2,4), virusMacroControl(2,5), virusMacroControl(2,6) ] },
-            { control: [ virusMacroControl(3,1), virusMacroControl(3,2), virusMacroControl(3,3), virusMacroControl(3,4), virusMacroControl(3,5), virusMacroControl(3,6) ] },
-            { control: [ virusMacroControl(4,1), virusMacroControl(4,2), virusMacroControl(4,3), virusMacroControl(4,4), virusMacroControl(4,5), virusMacroControl(4,6) ] },
-            { control: [ virusMacroControl(5,1), virusMacroControl(5,2), virusMacroControl(5,3), virusMacroControl(5,4), virusMacroControl(5,5), virusMacroControl(5,6) ] },
-            { control: [ virusMacroControl(6,1), virusMacroControl(6,2), virusMacroControl(6,3), virusMacroControl(6,4), virusMacroControl(6,5), virusMacroControl(6,6) ] },
+            { control: [ virusMacroControl(1, 1), virusMacroControl(1, 2), virusMacroControl(1, 3), virusMacroControl(1, 4), virusMacroControl(1, 5), virusMacroControl(1, 6) ] },
+            { control: [ virusMacroControl(2, 1), virusMacroControl(2, 2), virusMacroControl(2, 3), virusMacroControl(2, 4), virusMacroControl(2, 5), virusMacroControl(2, 6) ] },
+            { control: [ virusMacroControl(3, 1), virusMacroControl(3, 2), virusMacroControl(3, 3), virusMacroControl(3, 4), virusMacroControl(3, 5), virusMacroControl(3, 6) ] },
+            { control: [ virusMacroControl(4, 1), virusMacroControl(4, 2), virusMacroControl(4, 3), virusMacroControl(4, 4), virusMacroControl(4, 5), virusMacroControl(4, 6) ] },
+            { control: [ virusMacroControl(5, 1), virusMacroControl(5, 2), virusMacroControl(5, 3), virusMacroControl(5, 4), virusMacroControl(5, 5), virusMacroControl(5, 6) ] },
+            { control: [ virusMacroControl(6, 1), virusMacroControl(6, 2), virusMacroControl(6, 3), virusMacroControl(6, 4), virusMacroControl(6, 5), virusMacroControl(6, 6) ] },
           ],
         },
       },
@@ -1514,11 +1520,11 @@ class BacaraMachine extends Machine {
     notes.sort()
     notes.reverse()
 
-    let row=0
+    let row = 0
     notes.forEach( noteMidi => {
-      grid[row]=[]
-      for (let col=0;col<16;col++) {
-        grid[row][col]=false
+      grid[row] = []
+      for (let col = 0; col < 16; col++) {
+        grid[row][col] = false
       }
 
       let midiNote = noteMidi
@@ -1536,10 +1542,10 @@ class BacaraMachine extends Machine {
       /*      debug('JJ: %y %y %y',(state && this.interface.getParameter('split','modulated') && noteMidiTransposed <= this.interface.getParameter('split','modulated')),this.interface.getParameter('split','modulated'),noteMidiTransposed)*/
       const deviceBrow = (this.interface.getParameter('split', 'modulated') && noteMidiTransposed <= this.interface.getParameter('split', 'modulated')) ? ((this.interface.getParameter('deviate', 'modulated') >= 50) ? true : false) : ((this.interface.getParameter('deviate', 'modulated') >= 50) ? false : true)
       const arr = [
-       {hAlign:'center', content:deviceBrow ? deviceBColor('B') : deviceAColor('A') },
+        {hAlign:'center', content:deviceBrow ? deviceBColor('B') : deviceAColor('A') },
         {hAlign:'center', content:TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })/*+` ${noteMidi}`*/}
       ]
-      let col=0
+      let col = 0
 
       for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
         let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
@@ -1554,9 +1560,9 @@ class BacaraMachine extends Machine {
             const color = this.getState('sounding')[ticks / ticksPerStep] ? (note.velocity == 1 ? accentedColor : normalColor) : disabledColor
             const rep = count * 2 + ((count - 1) * 3)
             chNote = {colSpan:count, content:color(' '.repeat(rep >= 0 ? rep : 0))}
-            grid[row][col]=this.getState('sounding')[ticks / ticksPerStep] ? true : false
-            if (count>1) {
-              grid[row][++col]=this.getState('sounding')[ticks / ticksPerStep] ? true : false
+            grid[row][col] = this.getState('sounding')[ticks / ticksPerStep] ? true : false
+            if (count > 1) {
+              grid[row][++col] = this.getState('sounding')[ticks / ticksPerStep] ? true : false
             }
             ticks += (count - 1) * ticksPerStep
           }
@@ -1567,7 +1573,7 @@ class BacaraMachine extends Machine {
         col++
       }
       if (deviceBrow && reverseDeviceBrowsOnGrid) {
-        for (let col=0;col<grid[row].length;col++) {
+        for (let col = 0; col < grid[row].length; col++) {
           grid[row][col] = !grid[row][col]
         }
       }
@@ -1576,12 +1582,12 @@ class BacaraMachine extends Machine {
     })
 
     debug(table.toString())
-/*    debug(grid)*/
-    _.set(this.state,'pattern.grid',grid)
+    /*    debug(grid)*/
+    _.set(this.state, 'pattern.grid', grid)
   }
 
   showPatternGrid(stepIdx) {
-//    debug('grid step  %y',stepIdx)
+    //    debug('grid step  %y',stepIdx)
 
     //     debug('stepIdx %y X %y y %y',stepIdx,stepIdx&7,stepIdx>>3)
     /*
@@ -1593,16 +1599,18 @@ class BacaraMachine extends Machine {
 
     monome.led(1 -  (stepIdx >> 3), stepIdx & 7, 1)
 */
-//    debug (_.get(this.state,`pattern.grid`))
-//    debug ('Monome: %y x %y', monome.width,monome.height)
+    //    debug (_.get(this.state,`pattern.grid`))
+    //    debug ('Monome: %y x %y', monome.width,monome.height)
 
-    const offset = ((stepIdx<8)?0:8)
+    const offset = ((stepIdx < 8) ? 0 : 8)
     for (let row = 0; row < monome.height; row++) {
       for (let col = 0; col < monome.width; col++) {
-        let on = _.get(this.state,`pattern.grid.${row}.${col+offset}`)
-        if (stepIdx == (col + offset)) on=!on
-        monome.led((monome.height-row)-1, col, on?1:0)
-//          debug ('Monome LED: %y,%y = %y', (monome.height-row)-1, col, on?1:0)
+        let on = _.get(this.state, `pattern.grid.${row}.${col + offset}`)
+        if (stepIdx == (col + offset)) {
+          on = !on
+        }
+        monome.led((monome.height - row) - 1, col, on ? 1 : 0)
+        //          debug ('Monome LED: %y,%y = %y', (monome.height-row)-1, col, on?1:0)
       }
     }
 
@@ -1637,9 +1645,9 @@ class BacaraMachine extends Machine {
   sendVirusMixerChannel(part) {
     const portName = 'virus-ti'
     const channel = part
-    const bank = this.interface.getParameter(`virus.mixer.part.${part-1}.bank`)
-    const program = this.interface.getParameter(`virus.mixer.part.${part-1}.program`)
-    const level = this.interface.getParameter(`virus.mixer.part.${part-1}.level`)
+    const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
+    const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
+    const level = this.interface.getParameter(`virus.mixer.part.${part - 1}.level`)
     debugMidiControlChange('%s %d CC %y = %y', portName, channel - 1, 0, bank)
     Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, `bankChange-${part}`, 200)
     debugMidiProgramChange('%s %d %y', portName, channel - 1, program)
@@ -1882,12 +1890,12 @@ class BacaraMachine extends Machine {
       }
 
       if (Math.floor(stepIdx) === stepIdx) {
-          this.showPatternGrid(stepIdx)
+        this.showPatternGrid(stepIdx)
       }
       if (this.getState('pattern') && !this.interface.getParameter('mute')) {
         this.getState('pattern').tracks[0].notes.forEach( (note) => {
           if (note.ticks == shiftedTicks) {
-//            this.showPatternGrid(stepIdx)
+            //            this.showPatternGrid(stepIdx)
             if (stepIdx < this.state.sounding.length && this.state.sounding[stepIdx]) {
               let midiNote = note.midi
 
@@ -2043,37 +2051,39 @@ function bacaraSequencer(name, sub, options) {
     midiInput_electraOneCtrl.on('message', (msg) => {
       switch (msg._type) {
       case 'sysex':
-/*        debug('HI')*/
-        const electraSysexHeader = [0xF0, 0x00, 0x21, 0x45]
-        const electraSysexCmdPresetSwitch = [0x7E, 0x02]
-        const electraSysexCmdPatchResponse = [0x01, 0x01]
-        const sysexHeader = msg.bytes.slice(0,4)
-        const sysexCmd = msg.bytes.slice(4,6)
-        if (_.isEqual(sysexHeader, electraSysexHeader)) {
-          if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
-            electraBacaraPresetLoaded=false
-            Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
-            debug('Bacara Preset Request done')
-          } else if (_.isEqual(sysexCmd, electraSysexCmdPatchResponse)) {
-            /*
-            let preset
-            try {
-              const data = msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)), '')
-              debug('data %y',data)
-              preset = JSON.parse(data)
-            } catch (e) {
-              console.error(e)
-            }
-            debug('preset %y',preset)
-            */
+        {
+          /*        debug('HI')*/
+          const electraSysexHeader = [0xF0, 0x00, 0x21, 0x45]
+          const electraSysexCmdPresetSwitch = [0x7E, 0x02]
+          const electraSysexCmdPatchResponse = [0x01, 0x01]
+          const sysexHeader = msg.bytes.slice(0, 4)
+          const sysexCmd = msg.bytes.slice(4, 6)
+          if (_.isEqual(sysexHeader, electraSysexHeader)) {
+            if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
+              electraBacaraPresetLoaded = false
+              Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
+              debug('Bacara Preset Request done')
+            } else if (_.isEqual(sysexCmd, electraSysexCmdPatchResponse)) {
+              /*
+              let preset
+              try {
+                const data = msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)), '')
+                debug('data %y',data)
+                preset = JSON.parse(data)
+              } catch (e) {
+                console.error(e)
+              }
+              debug('preset %y',preset)
+              */
 
-            const data = msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)), '')
-/*            debug('raw data %y',data)*/
-            const match = data.match(/,"name"\s*:\s*"([^"]*)",/)
-            electraBacaraPresetLoaded = (match && match.length && match[1].trim() === "Bacara")
-            debug('Bacara Preset Loaded: %y',electraBacaraPresetLoaded)
-          } else {
-//            debug('unhandles sysex %y',sysexCmd)
+              const data = msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)), '')
+              /*            debug('raw data %y',data)*/
+              const match = data.match(/,"name"\s*:\s*"([^"]*)",/)
+              electraBacaraPresetLoaded = (match && match.length && match[1].trim() === 'Bacara')
+              debug('Bacara Preset Loaded: %y', electraBacaraPresetLoaded)
+            } else {
+              //            debug('unhandles sysex %y',sysexCmd)
+            }
           }
         }
         break
@@ -2102,10 +2112,10 @@ function bacaraSequencer(name, sub, options) {
   //  debug('State %y', machine.getPreset())
   /*  debug('Options %y', options)*/
 
-/*  setupMidi(options)*/
+  /*  setupMidi(options)*/
 
-  for (let part=1;part<=6;part++) {
-    Midi.send('virus-ti','sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part-1, 0xF7], `singleRequest-part-${part}`, 200)
+  for (let part = 1; part <= 6; part++) {
+    Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
   }
 }
 

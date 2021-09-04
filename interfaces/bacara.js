@@ -1,10 +1,10 @@
-function virusMacroControl(part,ctrl) {
+function virusMacroControl(part, ctrl) {
   return {
     name:`Part #${part} Control #${ctrl}`,
     type: 'parameter',
     surface: {
       type: 'nrpn',
-      number: 128+((part-1)*6)+(ctrl),
+      number: 128 + ((part - 1) * 6) + (ctrl),
       lsbFirst: false,
       min: 0,
       max: 16383,
@@ -3048,12 +3048,12 @@ module.exports = {
       },
       macros: {
         part: [
-          { control: [ virusMacroControl(1,1), virusMacroControl(1,2), virusMacroControl(1,3), virusMacroControl(1,4), virusMacroControl(1,5), virusMacroControl(1,6) ] },
-          { control: [ virusMacroControl(2,1), virusMacroControl(2,2), virusMacroControl(2,3), virusMacroControl(2,4), virusMacroControl(2,5), virusMacroControl(2,6) ] },
-          { control: [ virusMacroControl(3,1), virusMacroControl(3,2), virusMacroControl(3,3), virusMacroControl(3,4), virusMacroControl(3,5), virusMacroControl(3,6) ] },
-          { control: [ virusMacroControl(4,1), virusMacroControl(4,2), virusMacroControl(4,3), virusMacroControl(4,4), virusMacroControl(4,5), virusMacroControl(4,6) ] },
-          { control: [ virusMacroControl(5,1), virusMacroControl(5,2), virusMacroControl(5,3), virusMacroControl(5,4), virusMacroControl(5,5), virusMacroControl(5,6) ] },
-          { control: [ virusMacroControl(6,1), virusMacroControl(6,2), virusMacroControl(6,3), virusMacroControl(6,4), virusMacroControl(6,5), virusMacroControl(6,6) ] },
+          { control: [ virusMacroControl(1, 1), virusMacroControl(1, 2), virusMacroControl(1, 3), virusMacroControl(1, 4), virusMacroControl(1, 5), virusMacroControl(1, 6) ] },
+          { control: [ virusMacroControl(2, 1), virusMacroControl(2, 2), virusMacroControl(2, 3), virusMacroControl(2, 4), virusMacroControl(2, 5), virusMacroControl(2, 6) ] },
+          { control: [ virusMacroControl(3, 1), virusMacroControl(3, 2), virusMacroControl(3, 3), virusMacroControl(3, 4), virusMacroControl(3, 5), virusMacroControl(3, 6) ] },
+          { control: [ virusMacroControl(4, 1), virusMacroControl(4, 2), virusMacroControl(4, 3), virusMacroControl(4, 4), virusMacroControl(4, 5), virusMacroControl(4, 6) ] },
+          { control: [ virusMacroControl(5, 1), virusMacroControl(5, 2), virusMacroControl(5, 3), virusMacroControl(5, 4), virusMacroControl(5, 5), virusMacroControl(5, 6) ] },
+          { control: [ virusMacroControl(6, 1), virusMacroControl(6, 2), virusMacroControl(6, 3), virusMacroControl(6, 4), virusMacroControl(6, 5), virusMacroControl(6, 6) ] },
         ],
       },
     },

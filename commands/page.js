@@ -90,10 +90,14 @@ function pageSwap(name, sub, options) {
 
           let pageAidx
           let pageBidx
-          for (let idx=0;idx<12;idx++) {
-            if (idx<preset.pages.length) {
-              if (preset.pages[idx].id == (pageA - 1)) pageAidx = idx+1
-              if (preset.pages[idx].id == (pageB - 1)) pageBidx = idx+1
+          for (let idx = 0; idx < 12; idx++) {
+            if (idx < preset.pages.length) {
+              if (preset.pages[idx].id == (pageA - 1)) {
+                pageAidx = idx + 1
+              }
+              if (preset.pages[idx].id == (pageB - 1)) {
+                pageBidx = idx + 1
+              }
             }
           }
 

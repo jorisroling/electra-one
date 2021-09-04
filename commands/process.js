@@ -115,7 +115,7 @@ function preProcess(name, sub, options) {
                     if (path) {
                       overlay.items.push({
                         index: idx++,
-                        label: path.replace(/\./g,' '),
+                        label: path.replace(/\./g, ' '),
                         value: ctrl + 1,
                       })
                     }
@@ -124,25 +124,25 @@ function preProcess(name, sub, options) {
                   overlay.items = []
 
                   let idx = 0
-                  for (let i=0;i<4;i++) {
+                  for (let i = 0; i < 4; i++) {
                     overlay.items.push({
                       index: idx,
-                      label: `RAM ${String.fromCharCode("A".charCodeAt(0)+i)}`,
+                      label: `RAM ${String.fromCharCode('A'.charCodeAt(0) + i)}`,
                       value: idx,
                     })
                     idx++
                   }
-                  for (let i=0;i<26;i++) {
+                  for (let i = 0; i < 26; i++) {
                     overlay.items.push({
                       index: idx,
-                      label: `ROM ${String.fromCharCode("A".charCodeAt(0)+i)}`,
+                      label: `ROM ${String.fromCharCode('A'.charCodeAt(0) + i)}`,
                       value: idx,
                     })
                     idx++
                   }
 
-                  const banks=virus.getBanks()
-//                  console.error(banks)
+                  const banks = virus.getBanks()
+                  //                  console.error(banks)
                   for (let bank of banks) {
                     overlay.items.push({
                       index: idx,
