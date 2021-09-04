@@ -11,7 +11,6 @@ const pkg = require('./package.json')
 
 args
   .option('electra-one-ctrl', 'Electra One MIDI CTRL interface name', 'electra-one-ctrl')
-  .option('filename', 'Filename to process')
   .option('scenario', 'Routing Scenario', 'default')
   .option('page', 'Page ID to operate on, this options can be used more than once. Use \'electra-one page list --filename preset.epr\' to show available Page ID\'s')
 
@@ -28,6 +27,9 @@ args
   .option('slot', 'For upload & remove commands: Specify a slot as <1-12>', 0)
 
   .option('lua', 'LUA command for direct execution')
+
+  .option('template', 'Process Template Preset File path')
+  .option('filename', 'Process Output Filename')
 
   .option('id', 'Control Update ID', 0)
   .option('name', 'Control Update Name', '')

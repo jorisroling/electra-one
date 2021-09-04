@@ -15,7 +15,7 @@
     "remove": "node index remove",
     "bacara": "nodemon --verbose -L --ignore state index bacara",
     "fuse": "nodemon --verbose -L --ignore state index fuse",
-    "process": "electra-one process --filename \"presets/Bacara Template.epr\" > \"presets/Bacara.epr\"",
+    "process": "node index process --template \"presets/Bacara Template.epr\" --filename \"presets/Bacara.epr\"",
     "start": "npm run fuse",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"

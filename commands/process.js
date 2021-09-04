@@ -10,12 +10,14 @@ const Interface = require('../lib/midi/interface')
 
 const { devices } = require('../lib/devices')
 
+let virusBankFilesInitialized = false
+
 function preProcess(name, sub, options) {
 
   const interface = new Interface('bacara')
-  if (options.filename) {
-    if (fs.existsSync(options.filename)) {
-      const preset = jsonfile.readFileSync(options.filename)
+  if (options.template && options.filename) {
+    if (fs.existsSync(options.template)) {
+      const preset = jsonfile.readFileSync(options.template)
       if (preset) {
         preset.name = preset.name.replace(' Template', '')
         if (Array.isArray(preset.overlays)) {
@@ -121,6 +123,12 @@ function preProcess(name, sub, options) {
                     }
                   }
                 } else if (overlayType == 'virusBank') {
+
+                  if (!virusBankFilesInitialized) {
+                    virus.scanBanks()
+                    virusBankFilesInitialized = true
+                  }
+
                   overlay.items = []
 
                   let idx = 0
@@ -159,9 +167,11 @@ function preProcess(name, sub, options) {
           }
         }
       }
-      process.stdout.write(JSON.stringify(preset, null, 2))
+//      process.stdout.write(JSON.stringify(preset, null, 2))
+      jsonfile.writeFileSync(options.filename, preset, { flag: 'w', spaces: 2 })
+
     } else {
-      console.error(`The file "${options.filename}" does not exist`)
+      console.error(`The file "${options.template}" does not exist`)
     }
   } else {
     args.showHelp()
