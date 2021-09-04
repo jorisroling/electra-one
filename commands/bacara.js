@@ -310,12 +310,16 @@ class BacaraMachine extends Machine {
             const level = page[0][91]
             this.interface.setParameter(`virus.mixer.part.${part - 1}.level`, level)
 
-            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, page[0][2])
-            this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, page[0][3])
+            if (this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)<virusRamRomBanks) {
+              this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, page[0][2])
+              this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, page[0][3])
+            }
 
             if (part == this.interface.getParameter('virus.axyz.part')) {
-              this.interface.setParameter('virus.axyz.bank', page[0][2])
-              this.interface.setParameter('virus.axyz.program', page[0][3])
+              if (this.interface.getParameter('virus.axyz.bank')<virusRamRomBanks) {
+                this.interface.setParameter('virus.axyz.bank', page[0][2])
+                this.interface.setParameter('virus.axyz.program', page[0][3])
+              }
             }
 
             let patchName = ''
