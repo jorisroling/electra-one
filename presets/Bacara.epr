@@ -8550,7 +8550,7 @@
       "id": 122,
       "type": "list",
       "visible": true,
-      "name": "NRPN",
+      "name": "BANK",
       "color": "FFFFFF",
       "bounds": [
         170,
@@ -9671,7 +9671,7 @@
       "id": 157,
       "type": "list",
       "visible": true,
-      "name": "NRPN",
+      "name": "BANK",
       "color": "03A598",
       "bounds": [
         0,
@@ -9704,7 +9704,7 @@
       "id": 158,
       "type": "list",
       "visible": true,
-      "name": "NRPN",
+      "name": "BANK",
       "color": "F45C51",
       "bounds": [
         170,
@@ -9737,7 +9737,7 @@
       "id": 159,
       "type": "list",
       "visible": true,
-      "name": "NRPN",
+      "name": "BANK",
       "color": "F49500",
       "bounds": [
         340,
@@ -9770,7 +9770,7 @@
       "id": 160,
       "type": "list",
       "visible": true,
-      "name": "NRPN",
+      "name": "BANK",
       "color": "C44795",
       "bounds": [
         510,
@@ -9803,7 +9803,7 @@
       "id": 161,
       "type": "list",
       "visible": true,
-      "name": "NRPN",
+      "name": "BANK",
       "color": "FFFFFF",
       "bounds": [
         680,
@@ -9836,7 +9836,7 @@
       "id": 162,
       "type": "list",
       "visible": true,
-      "name": "NRPN",
+      "name": "BANK",
       "color": "529DEC",
       "bounds": [
         850,

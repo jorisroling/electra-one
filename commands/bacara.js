@@ -1010,7 +1010,7 @@ class BacaraMachine extends Machine {
           if (virusPreset) {
             debug('virusPreset %y',virusPreset)
 //            const surfaces = this.interface.connections.filter(x => x.kind == 'surface').map( x => x.portName)
-            virus.send('virus-ti',virusPreset)
+            virus.toSysEx('virus-ti',virusPreset)
             console.log('this %y',this.interface.connections.filter(x => x.kind == 'surface').map( x => x.portName))
           } else {
             const virusBank = virus.getBank(bank - virusRamRomBanks)
