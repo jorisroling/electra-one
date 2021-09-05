@@ -4450,7 +4450,7 @@
       "type": "pad",
       "mode": "momentary",
       "visible": true,
-      "name": "RECENTER AX",
+      "name": "RECENTER",
       "color": "F49500",
       "bounds": [
         0,
