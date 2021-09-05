@@ -6,10 +6,10 @@
   "state": {
     "device": {
       "A": {
-        "portName": "mb33"
+        "portName": "bacara"
       },
       "B": {
-        "portName": "virus-ti"
+        "portName": "bacara"
       }
     },
     "last_pattern_but": 26,
@@ -351,22 +351,22 @@
     "bank": 0,
     "base": 4,
     "density": 100,
-    "deviate": 0,
+    "deviate": 31,
     "device": {
       "A": {
         "bank": 0,
-        "channel": 16,
-        "device": 34,
+        "channel": 1,
+        "device": 44,
         "mute": 0,
-        "port": 22,
+        "port": 34,
         "program": 0
       },
       "B": {
         "bank": 52,
-        "channel": 1,
-        "device": 1,
+        "channel": 2,
+        "device": 45,
         "mute": 0,
-        "port": 16,
+        "port": 34,
         "program": 7
       }
     },
@@ -478,10 +478,10 @@
     "muteSteps": 0,
     "octaveChance": 33.333333333333314,
     "probability": 100,
-    "program": 46,
+    "program": 47,
     "scales": 5,
     "shift": 0,
-    "split": 83,
+    "split": 49,
     "temperature": 1,
     "track": [
       {
@@ -521,7 +521,7 @@
         "program": 0
       }
     ],
-    "transpose": 0,
+    "transpose": 9,
     "virus": {
       "axyz": {
         "bank": 52,
