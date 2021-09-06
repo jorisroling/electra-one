@@ -294,16 +294,11 @@ class BacaraMachine extends Machine {
       midiInput_virusTI.on('message', (msg) => {
         switch (msg._type) {
         case 'sysex':
-          this.virusParsePatchDump(msg.bytes)
+          this.virusParseSysEx(msg.bytes)
           break
         }
       })
     }
-
-    /*    Bacara.event.on('sysex', (device, part, name, value, origin, command) => {
-      this.virusParsePatchDump(value)
-    })
-*/
 
     this.state.sounding = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
@@ -1458,7 +1453,25 @@ class BacaraMachine extends Machine {
     const bank = this.interface.getParameter(`device.${dev}.bank`)
     const program = this.interface.getParameter(`device.${dev}.program`)
     if (portName == 'virus-ti') {
-      this.virusSendBankAndProgram(channel, bank, program, 'internal')
+      let fromStore = false
+      if (bank >= virusRamRomBanks) {
+        const part = channel
+        const virusPreset = _.get(this.state, `virus.part.${part - 1}.preset`)
+//        debug('JJR %y  %y  %y',`virus.part.${part - 1}.preset`,virusPreset,this.state)
+        if (virusPreset) {
+          const bytes = virus.toSysEx(part, virusPreset, bank, program)
+          if (bytes) {
+            fromStore = true
+            Midi.send('virus-ti', 'sysex', bytes)
+            this.virusParseSysEx(bytes)
+            bacaraEmit('virus-ti', part, 'sysex', bytes, 'internal')
+            bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, 'internal')
+          }
+        }
+      }
+      if (!fromStore) {
+        this.virusSendBankAndProgram(channel, bank, program, 'internal')
+      }
     } else {
       debugMidiControlChange('port %s  channel %d  CC %y = %y', portName, channel, 0, bank)
       Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, `bankChange-${dev}`, 200)
@@ -1820,7 +1833,7 @@ class BacaraMachine extends Machine {
         const bytes = virus.toSysEx(part, virusPreset, bank, program)
         if (bytes) {
           Midi.send('virus-ti', 'sysex', bytes)
-          this.virusParsePatchDump(bytes)
+          this.virusParseSysEx(bytes)
           bacaraEmit('virus-ti', part, 'sysex', bytes, 'internal')
           bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, 'internal')
         }
@@ -1829,13 +1842,14 @@ class BacaraMachine extends Machine {
   }
 
 
-  virusParsePatchDump(bytes) {
+  virusParseSysEx(bytes) {
     if (Array.isArray(bytes)) {
       const virusSysexHeader = [0xF0, 0x00, 0x20, 0x33, 0x01]
       const sysexHeader = bytes.slice(0, 5)
-      const msgHeader = bytes.slice(6, 9)
       if (_.isEqual(sysexHeader, virusSysexHeader)) {
-        if (msgHeader[0] == 0x10 && msgHeader[1] == 0x00) {
+        const virusSysexMessageSingleDump = [0x10, 0x00]
+        const msgHeader = bytes.slice(6, 9)
+        if (_.isEqual(msgHeader, virusSysexMessageSingleDump)) {
           const part = msgHeader[2] + 1
           const page = [
             bytes.slice(9 + (128 * 0) + 0, 9 + (128 * 0) + 0 + 128),
@@ -1999,6 +2013,22 @@ class BacaraMachine extends Machine {
           /*            debug('Part #%y Macros %y',part,macros)*/
 
           this.writeState()
+        } else if (msgHeader[0] >= 0x6E && msgHeader[0] <= 0x73 && msgHeader[1] >= 0 && msgHeader[1]<16 ) {
+          const page = ((msgHeader[0] + (msgHeader[0] < 0x70 ? 4 : (msgHeader[0] > 0x71 ? 2 : 0)) ) - 0x70 )
+          const part = msgHeader[1]+1
+          const offset = bytes[8]
+          const value = bytes[9]
+          debug('Parameter Change part %y  page %y  offset %y  value %y',part,page,offset,value)
+          const preset = _.get(this.state, `virus.part.${part - 1}.preset`)
+          if (preset) {
+            if (virus.getPresetPageParameter(preset,page,offset) != value) {
+              if (virus.setPresetPageParameter(preset,page,offset,value)) {
+                preset.modified = true
+                _.set(this.state, `virus.part.${part - 1}.preset`,preset)
+                this.writeState()
+              }
+            }
+          }
         }
       }
     }
@@ -2068,14 +2098,13 @@ class BacaraMachine extends Machine {
         Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
         _.unset(this.state, `virus.part.${part - 1}.preset`)
       } else {
-        //          debug('Origin %y',origin)
         if (origin != 'post-connect') {
           const virusPreset = virus.getPreset(bank - virusRamRomBanks, program)
           if (virusPreset) {
             const bytes = virus.toSysEx(part, virusPreset, bank, program)
             if (bytes) {
               Midi.send('virus-ti', 'sysex', bytes)
-              this.virusParsePatchDump(bytes)
+              this.virusParseSysEx(bytes)
               bacaraEmit('virus-ti', part, 'sysex', bytes, origin)
               bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
               _.set(this.state, `virus.part.${part - 1}.preset`, virusPreset)
