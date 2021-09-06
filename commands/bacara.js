@@ -79,8 +79,6 @@ function radians(degrees) {
   return (degrees % 360) * (Math.PI / 180)
 }
 
-const virusPatchPages = []
-
 let bacaraEmitPart
 let bacaraEmitTime
 function bacaraEmit(portName, part, type, value, origin) {
@@ -153,7 +151,7 @@ class BacaraMachine extends Machine {
 
             const parameter = _.get(devices['virus-ti'].parameters, list[idx])
             if (parameter && parameter.cc) {
-              const patchDefault = _.get(virusPatchPages, `${part - 1}.0.${parameter.cc}`, -1)
+              const patchDefault = virus.getPresetPageParameter(_.get(this.state, `virus.part.${part - 1}.preset`), 0, parameter.cc)
               if (patchDefault >= 0) {
                 //                 debug('Reset Axyz %y T %d CC %y = patch default %y',axyz,t,parameter.cc,patchDefault)
                 Midi.send(virusPortName, 'cc', {channel:channel - 1, controller:parameter.cc, value:patchDefault})
@@ -823,7 +821,7 @@ class BacaraMachine extends Machine {
 
             if (parameter && parameter.cc) {
               let val
-              const patchDefault = _.get(virusPatchPages, `${part - 1}.0.${parameter.cc}`)
+              const patchDefault = virus.getPresetPageParameter(_.get(this.state, `virus.part.${part - 1}.preset`), 0, parameter.cc)
               if (mode == virusAxyzModeRelative) {
                 if (value >= 0.0) {
                   val = Math.round(patchDefault + ((127 - patchDefault) * value))
@@ -1880,8 +1878,6 @@ class BacaraMachine extends Machine {
             _.set(this.state, `virus.part.${part - 1}.preset`, {part:part, bank:page[0][2], program:page[0][3], page: hexPage})
           }
 
-
-          virusPatchPages[part - 1] = page
 
           const level = page[0][91]
           this.interface.setParameter(`virus.mixer.part.${part - 1}.level`, level)
