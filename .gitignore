@@ -112,6 +112,4 @@ old
 
 .DS_Store
 
-state/*.json
-state/acid/patterns/*.mid
 
