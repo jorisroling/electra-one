@@ -167,7 +167,6 @@ function preProcess(name, sub, options) {
           }
         }
       }
-//      process.stdout.write(JSON.stringify(preset, null, 2))
       jsonfile.writeFileSync(options.filename, preset, { flag: 'w', spaces: 2 })
 
     } else {
