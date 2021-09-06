@@ -20,6 +20,7 @@ const sendSingleDumpTimeoutTime = 0 // 600
 
 const pkg = require('../package.json')
 const debugPart = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:part`)
+const debugMidiSysEx = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:sysex`)
 
 const { knownDeviceCCs } = require('../lib/devices')
 const deviceCCs = knownDeviceCCs()
@@ -235,7 +236,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
           if (msg.bytes[8] == getMapping('part:-1')) {
             msg.bytes[8] = ( targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'))
             debugPart('Part mapping %y applied to Single Dump SysEx to %y', msg.bytes[8] + 1, to)
-            debug('Send large sysex to %y (%y bytes)', to, msg.bytes.length)
+            debugMidiSysEx('Send large sysex to %y (%y bytes)', to, msg.bytes.length)
             Midi.send(to, 'sysex', msg.bytes, 'singleDump', sendSingleDumpTimeoutTime)
             const bank = msg.bytes[11]
             const program = msg.bytes[12]
