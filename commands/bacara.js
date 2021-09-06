@@ -1819,7 +1819,6 @@ class BacaraMachine extends Machine {
       if (virusPreset) {
         const bytes = virus.toSysEx(part, virusPreset, bank, program)
         if (bytes) {
-          debug('bytes (len %y) %y', bytes.length, bytes.length)
           Midi.send('virus-ti', 'sysex', bytes)
           this.virusParsePatchDump(bytes)
           bacaraEmit('virus-ti', part, 'sysex', bytes, 'internal')
@@ -2075,7 +2074,6 @@ class BacaraMachine extends Machine {
           if (virusPreset) {
             const bytes = virus.toSysEx(part, virusPreset, bank, program)
             if (bytes) {
-              debug('bytes (len %y) %y', bytes.length, bytes.length)
               Midi.send('virus-ti', 'sysex', bytes)
               this.virusParsePatchDump(bytes)
               bacaraEmit('virus-ti', part, 'sysex', bytes, origin)
