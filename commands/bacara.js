@@ -1892,7 +1892,7 @@ class BacaraMachine extends Machine {
               patchName += String.fromCharCode(parseInt(page[1][n]))
             }
             patchName = patchName.trim()
-            debug('patchName %y',patchName)
+            debug('patchName part %y %y',part,patchName)
 
             storedPreset = {part:part, name:patchName, bank:page[0][2], program:page[0][3], page: hexPage}
             _.set(this.state, `virus.part.${part - 1}.preset`, storedPreset)

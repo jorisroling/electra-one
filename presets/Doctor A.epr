@@ -1,0 +1,605 @@
+{
+  "version": 2,
+  "name": "Doctor A",
+  "projectId": "2UAvy8711Z3scFxZ7Utg",
+  "pages": [
+    {
+      "id": 1,
+      "name": "Doctor A"
+    }
+  ],
+  "groups": [
+    {
+      "id": 2,
+      "pageId": 1,
+      "name": "Delay",
+      "color": "03A598",
+      "bounds": [
+        170,
+        16,
+        826,
+        16
+      ]
+    },
+    {
+      "id": 11,
+      "pageId": 1,
+      "name": "Reverb",
+      "color": "F45C51",
+      "bounds": [
+        680,
+        104,
+        316,
+        16
+      ]
+    },
+    {
+      "id": 14,
+      "pageId": 1,
+      "name": "Reverb",
+      "color": "F45C51",
+      "bounds": [
+        170,
+        192,
+        826,
+        16
+      ]
+    },
+    {
+      "id": 8,
+      "pageId": 1,
+      "name": "Delay",
+      "color": "03A598",
+      "bounds": [
+        170,
+        104,
+        316,
+        16
+      ]
+    }
+  ],
+  "devices": [
+    {
+      "id": 16,
+      "name": "Generic MIDI",
+      "port": 1,
+      "channel": 16
+    }
+  ],
+  "overlays": [
+
+  ],
+  "controls": [
+    {
+      "id": 2,
+      "type": "fader",
+      "visible": true,
+      "name": "TIME",
+      "color": "03A598",
+      "bounds": [
+        170,
+        40,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 16,
+            "parameterNumber": 12,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "fader",
+      "visible": true,
+      "name": "FEEDBACK",
+      "color": "03A598",
+      "bounds": [
+        340,
+        40,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 13,
+            "deviceId": 16
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "fader",
+      "visible": true,
+      "name": "MODULATION",
+      "color": "03A598",
+      "bounds": [
+        510,
+        40,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 14,
+            "deviceId": 16
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "fader",
+      "visible": true,
+      "name": "LEVEL",
+      "color": "03A598",
+      "bounds": [
+        680,
+        40,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 15,
+            "deviceId": 16
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "pad",
+      "mode": "toggle",
+      "visible": true,
+      "name": "ACTIVE",
+      "color": "03A598",
+      "bounds": [
+        850,
+        40,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 16,
+            "parameterNumber": 102,
+            "onValue": 127,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "type": "fader",
+      "visible": true,
+      "name": "HPF",
+      "color": "03A598",
+      "bounds": [
+        170,
+        128,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 16,
+            "deviceId": 16
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "type": "fader",
+      "visible": true,
+      "name": "LPF",
+      "color": "03A598",
+      "bounds": [
+        340,
+        128,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 9,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 17,
+            "deviceId": 16
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "type": "fader",
+      "visible": true,
+      "name": "DELAY > REVERB",
+      "color": "F49500",
+      "bounds": [
+        510,
+        128,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 16,
+            "parameterNumber": 18,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "type": "fader",
+      "visible": true,
+      "name": "HPF",
+      "color": "F45C51",
+      "bounds": [
+        680,
+        128,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 16,
+            "parameterNumber": 19,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "type": "fader",
+      "visible": true,
+      "name": "LPF",
+      "color": "F45C51",
+      "bounds": [
+        850,
+        128,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 16,
+            "parameterNumber": 20,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "type": "fader",
+      "visible": true,
+      "name": "PRE DELAY",
+      "color": "F45C51",
+      "bounds": [
+        170,
+        216,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 21,
+            "deviceId": 16
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "type": "fader",
+      "visible": true,
+      "name": "DECAY",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        216,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 16,
+            "parameterNumber": 22,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "type": "fader",
+      "visible": true,
+      "name": "MODULATION",
+      "color": "F45C51",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 16,
+            "parameterNumber": 23,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "type": "fader",
+      "visible": true,
+      "name": "LEVEL",
+      "color": "F45C51",
+      "bounds": [
+        680,
+        216,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 16,
+            "parameterNumber": 24,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "type": "pad",
+      "mode": "toggle",
+      "visible": true,
+      "name": "ACTIVE",
+      "color": "F45C51",
+      "bounds": [
+        850,
+        216,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 16,
+            "parameterNumber": 103,
+            "onValue": 127,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "type": "fader",
+      "visible": true,
+      "name": "PROGRAM",
+      "color": "FFFFFF",
+      "bounds": [
+        510,
+        304,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "program",
+            "deviceId": 16,
+            "min": 0,
+            "max": 63
+          },
+          "id": "value"
+        }
+      ]
+    }
+  ]
+}
