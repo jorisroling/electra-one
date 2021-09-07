@@ -53,7 +53,7 @@ const Table = require('cli-table3')
 const ticksPerStep = 120
 
 const virus = require('../lib/virus')
-let electraBacaraPresetLoaded = false
+const electra = require('../lib/electra')
 
 const virusRamRomBanks = 30
 
@@ -1457,7 +1457,6 @@ class BacaraMachine extends Machine {
       if (bank >= virusRamRomBanks) {
         const part = channel
         const virusPreset = _.get(this.state, `virus.part.${part - 1}.preset`)
-//        debug('JJR %y  %y  %y',`virus.part.${part - 1}.preset`,virusPreset,this.state)
         if (virusPreset) {
           const bytes = virus.toSysEx(part, virusPreset, bank, program)
           if (bytes) {
@@ -1848,9 +1847,9 @@ class BacaraMachine extends Machine {
       const sysexHeader = bytes.slice(0, 5)
       if (_.isEqual(sysexHeader, virusSysexHeader)) {
         const virusSysexMessageSingleDump = [0x10, 0x00]
-        const msgHeader = bytes.slice(6, 9)
+        const msgHeader = bytes.slice(6, 8)
         if (_.isEqual(msgHeader, virusSysexMessageSingleDump)) {
-          const part = msgHeader[2] + 1
+          const part = bytes[8] + 1
           const page = [
             bytes.slice(9 + (128 * 0) + 0, 9 + (128 * 0) + 0 + 128),
             bytes.slice(9 + (128 * 1) + 0, 9 + (128 * 1) + 0 + 128),
@@ -1867,7 +1866,7 @@ class BacaraMachine extends Machine {
             hexPage[p] = toHexString(page[p])
           }
 
-          const storedPreset = _.get(this.state, `virus.part.${part - 1}.preset`)
+          let storedPreset = _.get(this.state, `virus.part.${part - 1}.preset`)
           if (storedPreset) {
             //              debug('Current stored preset %y',storedPreset)
 
@@ -1888,131 +1887,18 @@ class BacaraMachine extends Machine {
               _.set(this.state, `virus.part.${part - 1}.preset`, storedPreset)
             }
           } else {
-            _.set(this.state, `virus.part.${part - 1}.preset`, {part:part, bank:page[0][2], program:page[0][3], page: hexPage})
-          }
-
-
-          const level = page[0][91]
-          this.interface.setParameter(`virus.mixer.part.${part - 1}.level`, level)
-
-          if (this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`) < virusRamRomBanks) {
-            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, page[0][2])
-            this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, page[0][3])
-          }
-
-          if (part == this.interface.getParameter('virus.axyz.part')) {
-            if (this.interface.getParameter('virus.axyz.bank') < virusRamRomBanks) {
-              this.interface.setParameter('virus.axyz.bank', page[0][2])
-              this.interface.setParameter('virus.axyz.program', page[0][3])
+            let patchName = ''
+            for (let n = 112; n <= 121; n++) {
+              patchName += String.fromCharCode(parseInt(page[1][n]))
             }
+            patchName = patchName.trim()
+            debug('patchName %y',patchName)
+
+            storedPreset = {part:part, name:patchName, bank:page[0][2], program:page[0][3], page: hexPage}
+            _.set(this.state, `virus.part.${part - 1}.preset`, storedPreset)
           }
 
-          let patchName = ''
-          for (let n = 112; n <= 121; n++) {
-            patchName += String.fromCharCode(parseInt(page[1][n]))
-          }
-          patchName = patchName.trim()
-          /*            debug('patch Name %y',patchName)*/
-
-          if (electraBacaraPresetLoaded) {
-            if (part >= 1 && part <= 6) {
-              if (_.get(this.state, `virus.part.${part - 1}.patchName`) !== patchName) {
-                //              console.trace('JJR matrix part '+part+ ' name '+patchName)
-                const str = JSON.stringify({
-                  'name': patchName,
-                })
-                const selectControls = [145, 146, 147, 148, 149, 150]
-                const ctrlId = selectControls[part - 1]
-                const bytes = [0xF0, 0x00, 0x21, 0x45, 0x14, 0x07, ctrlId & 0x7F, ctrlId >> 7]
-                for (let n = 0, l = str.length; n < l; n++) {
-                  bytes.push(Number(str.charCodeAt(n)))
-                }
-                bytes.push(0xF7)
-
-                Midi.send('electra-one-ctrl', 'sysex', bytes)
-                _.set(this.state, `virus.part.${part - 1}.patchName`, patchName)
-              }
-            }
-            if (part == this.interface.getParameter('virus.axyz.part') && _.get(this.state, 'virus.axyz.patchName') !== patchName) {
-              //              console.trace('JJR axyz part '+part+ ' name '+patchName)
-              const str = JSON.stringify({
-                'name': patchName,
-              })
-              const ctrlId = 110
-              const bytes = [0xF0, 0x00, 0x21, 0x45, 0x14, 0x07, ctrlId & 0x7F, ctrlId >> 7]
-              for (let n = 0, l = str.length; n < l; n++) {
-                bytes.push(Number(str.charCodeAt(n)))
-              }
-              bytes.push(0xF7)
-
-              Midi.send('electra-one-ctrl', 'sysex', bytes)
-              _.set(this.state, 'virus.axyz.patchName', patchName)
-            }
-          } else {
-            debug('electra Bacara Preset NOT Loaded')
-          }
-
-          let macros = {}
-
-          for (let s = 0; s < 6; s++) {
-            const slotSource = page[config.virus.info.matrix.slot[s].source.page][config.virus.info.matrix.slot[s].source.offset]
-            if (slotSource > 0 && slotSource <= 18) {
-              let destinations = 0
-              for (let d = 0; d < 3; d++) {
-                const target = page[config.virus.info.matrix.slot[s].destinations[d].target.page][config.virus.info.matrix.slot[s].destinations[d].target.offset]
-                const amount = page[config.virus.info.matrix.slot[s].destinations[d].amount.page][config.virus.info.matrix.slot[s].destinations[d].amount.offset]
-                if (target && amount) {
-                  destinations++
-                }
-              }
-              if (destinations) {
-                const slotSourceType = Object.assign({}, config.virus.info.matrix.source.type[slotSource])
-                /*                  debug('mod slot #%d (%s) source %y %s %y',s+1,config.virus.info.matrix.slot[s].name,slotSource,slotSourceType.name,slotSourceType.cc)*/
-                macros[slotSourceType.name] = slotSourceType
-              }
-            }
-          }
-          /*          debug('macros %y',macros)*/
-          macros = Object.values(macros)
-
-          const names = _.get(config.virus.info, 'soft.names')
-          for (let macro of macros) {
-            if (macro.softknob) {
-              for (let k = 0; k < 3; k++) {
-                const destination = page[_.get(config.virus.info, `soft.knob.${k}.destination.page`)][_.get(config.virus.info, `soft.knob.${k}.destination.offset`)]
-                /*                  debug('knob %d dest %y',k+1,destination)*/
-                if (destination == macro.softknob) {
-                  macro.name = names[page[_.get(config.virus.info, `soft.knob.${k}.name.page`)][_.get(config.virus.info, `soft.knob.${k}.name.offset`)]]
-                  macro.index = k + 1
-                }
-              }
-            }
-          }
-
-          macros.sort(function(a, b) {
-            if (a.index || b.index) {
-              return (a.index ? a.index : 1000) - (b.index ? b.index : 1000)
-            } else if (a.cc && b.cc) {
-              return a.cc - b.cc
-            } else {
-              return a.type.localeCompare(b.type)
-            }
-          })
-
-          for (let ctrl = 0; ctrl < 6; ctrl++) {
-            const macro = (ctrl < macros.length) ? macros[ctrl] : null
-            if (macro) {
-              if (macro.type == 'cc' && macro.cc) {
-                this.interface.setParameter(`virus.macros.part.${part - 1}.control.${ctrl}`, page[0][macro.cc])
-              }
-            }
-          }
-          _.set(this.state, `virus.part.${part - 1}.macros`, macros)
-
-          this.virusMacros(part)
-          /*            debug('Part #%y Macros %y',part,macros)*/
-
-          this.writeState()
+          this.virusReflectPreset(part,storedPreset)
         } else if (msgHeader[0] >= 0x6E && msgHeader[0] <= 0x73 && msgHeader[1] >= 0 && msgHeader[1]<16 ) {
           const page = ((msgHeader[0] + (msgHeader[0] < 0x70 ? 4 : (msgHeader[0] > 0x71 ? 2 : 0)) ) - 0x70 )
           const part = msgHeader[1]+1
@@ -2035,7 +1921,7 @@ class BacaraMachine extends Machine {
   }
 
   virusMacros(part) {
-    if (electraBacaraPresetLoaded) {
+    if (electra.presetEquals('electra-one-ctrl','Bacara')) {
       if (part >= 1 && part <= 6) {
         const macros = _.get(this.state, `virus.part.${part - 1}.macros`, [])
         for (let i = 0; i < 6; i++) {
@@ -2057,14 +1943,7 @@ class BacaraMachine extends Machine {
           }
 
           const ctrlId = macroControls[part - 1][i]
-          const bytes = [0xF0, 0x00, 0x21, 0x45, 0x14, 0x07, ctrlId & 0x7F, ctrlId >> 7]
-          const str = JSON.stringify(json)
-          for (let n = 0, l = str.length; n < l; n++) {
-            bytes.push(Number(str.charCodeAt(n)))
-          }
-          bytes.push(0xF7)
-
-          Midi.send('electra-one-ctrl', 'sysex', bytes)
+          electra.controlReflect('electra-one-ctrl',ctrlId,json)
         }
       }
     }
@@ -2077,10 +1956,9 @@ class BacaraMachine extends Machine {
         const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
         const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
         this.virusSendPreset(part, bank, program, virusPreset)
+        this.virusReflectPreset(part, virusPreset)
       } else {
-        if (part < 6) {
-          Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
-        }
+        Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
       }
     }
   }
@@ -2095,19 +1973,19 @@ class BacaraMachine extends Machine {
         debugMidiProgramChange('port %s  channel %d  PC %y', portName, channel - 1, program)
         Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
         bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
-        Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
         _.unset(this.state, `virus.part.${part - 1}.preset`)
+        Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
       } else {
         if (origin != 'post-connect') {
           const virusPreset = virus.getPreset(bank - virusRamRomBanks, program)
           if (virusPreset) {
             const bytes = virus.toSysEx(part, virusPreset, bank, program)
             if (bytes) {
+              _.set(this.state, `virus.part.${part - 1}.preset`, virusPreset)
               Midi.send('virus-ti', 'sysex', bytes)
               this.virusParseSysEx(bytes)
               bacaraEmit('virus-ti', part, 'sysex', bytes, origin)
               bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
-              _.set(this.state, `virus.part.${part - 1}.preset`, virusPreset)
             }
           } else {
             const virusBank = virus.getBank(bank - virusRamRomBanks)
@@ -2122,6 +2000,112 @@ class BacaraMachine extends Machine {
   }
 
 
+  virusReflectParts() {
+    if (electra.presetEquals('electra-one-ctrl','Bacara')) {
+      for (let part = 1; part <= 16; part++) {
+        const virusPreset = _.get(this.state, `virus.part.${part - 1}.preset`)
+        if (virusPreset) {
+          this.virusReflectPreset(part, virusPreset)
+        }
+      }
+    }
+  }
+
+  virusReflectPreset(part,virusPreset) {
+
+    if (part>=1 && part<=6 && virusPreset && virusPreset.page) {
+      const level = virus.getPresetPageParameter(virusPreset,0,91)
+      this.interface.setParameter(`virus.mixer.part.${part - 1}.level`, level)
+
+      if (this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`) < virusRamRomBanks) {
+        this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, virus.getPresetPageParameter(virusPreset,0,2))
+        this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, virus.getPresetPageParameter(virusPreset,0,3))
+      }
+
+      if (part == this.interface.getParameter('virus.axyz.part')) {
+        if (this.interface.getParameter('virus.axyz.bank') < virusRamRomBanks) {
+          this.interface.setParameter('virus.axyz.bank', virus.getPresetPageParameter(virusPreset,0,2))
+          this.interface.setParameter('virus.axyz.program', virus.getPresetPageParameter(virusPreset,0,3))
+        }
+      }
+
+      if (electra.presetEquals('electra-one-ctrl','Bacara')) {
+        if (part >= 1 && part <= 6) {
+          const selectControls = [145, 146, 147, 148, 149, 150]
+          const ctrlId = selectControls[part - 1]
+          electra.controlReflect('electra-one-ctrl',ctrlId,{'name': virusPreset.name})
+        }
+        if (part == this.interface.getParameter('virus.axyz.part')) {
+          const ctrlId = 110
+          electra.controlReflect('electra-one-ctrl',ctrlId,{'name': virusPreset.name})
+        }
+      } else {
+        debug('electra Bacara Preset NOT Loaded')
+      }
+
+      let macros = {}
+
+      for (let s = 0; s < 6; s++) {
+        const slotSource = virus.getPresetPageParameter(virusPreset,config.virus.info.matrix.slot[s].source.page,config.virus.info.matrix.slot[s].source.offset)
+        if (slotSource > 0 && slotSource <= 18) {
+          let destinations = 0
+          for (let d = 0; d < 3; d++) {
+            const target = virus.getPresetPageParameter(virusPreset,config.virus.info.matrix.slot[s].destinations[d].target.page,config.virus.info.matrix.slot[s].destinations[d].target.offset)
+            const amount = virus.getPresetPageParameter(virusPreset,config.virus.info.matrix.slot[s].destinations[d].amount.page,config.virus.info.matrix.slot[s].destinations[d].amount.offset)
+            if (target && amount) {
+              destinations++
+            }
+          }
+          if (destinations) {
+            const slotSourceType = Object.assign({}, config.virus.info.matrix.source.type[slotSource])
+            /*                  debug('mod slot #%d (%s) source %y %s %y',s+1,config.virus.info.matrix.slot[s].name,slotSource,slotSourceType.name,slotSourceType.cc)*/
+            macros[slotSourceType.name] = slotSourceType
+          }
+        }
+      }
+      /*          debug('macros %y',macros)*/
+      macros = Object.values(macros)
+
+      const names = _.get(config.virus.info, 'soft.names')
+      for (let macro of macros) {
+        if (macro.softknob) {
+          for (let k = 0; k < 3; k++) {
+            const destination = virus.getPresetPageParameter(virusPreset,_.get(config.virus.info, `soft.knob.${k}.destination.page`),_.get(config.virus.info, `soft.knob.${k}.destination.offset`))
+            /*                  debug('knob %d dest %y',k+1,destination)*/
+            if (destination == macro.softknob) {
+              macro.name = names[virus.getPresetPageParameter(virusPreset,_.get(config.virus.info, `soft.knob.${k}.name.page`),_.get(config.virus.info, `soft.knob.${k}.name.offset`))]
+              macro.index = k + 1
+            }
+          }
+        }
+      }
+
+      macros.sort(function(a, b) {
+        if (a.index || b.index) {
+          return (a.index ? a.index : 1000) - (b.index ? b.index : 1000)
+        } else if (a.cc && b.cc) {
+          return a.cc - b.cc
+        } else {
+          return a.type.localeCompare(b.type)
+        }
+      })
+
+      for (let ctrl = 0; ctrl < 6; ctrl++) {
+        const macro = (ctrl < macros.length) ? macros[ctrl] : null
+        if (macro) {
+          if (macro.type == 'cc' && macro.cc) {
+            this.interface.setParameter(`virus.macros.part.${part - 1}.control.${ctrl}`, virus.getPresetPageParameter(virusPreset,0,macro.cc))
+          }
+        }
+      }
+      _.set(this.state, `virus.part.${part - 1}.macros`, macros)
+
+      this.virusMacros(part)
+      /*            debug('Part #%y Macros %y',part,macros)*/
+
+      this.writeState()
+    }
+  }
 }
 
 /*function setupMidi(options) {
@@ -2188,10 +2172,7 @@ function bacaraSequencer(name, sub, options) {
   bacaraMachine.readState()
   bacaraMachine.writeState()
 
-  electraBacaraPresetLoaded = false
-
   //  Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
-
   Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x7C, 0xF7])  /* Preset Name Request */
 
 
@@ -2210,27 +2191,15 @@ function bacaraSequencer(name, sub, options) {
           const sysexCmd = msg.bytes.slice(4, 6)
           if (_.isEqual(sysexHeader, electraSysexHeader)) {
             if (_.isEqual(sysexCmd, electraSysexCmdPresetNameResponse)) {
-              let json
-              try {
-                const data = msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)), '')
-                json = JSON.parse(data)
-              } catch (e) {
-                console.error(e)
-              }
-              //              debug('JSON %y',json)
-              electraBacaraPresetLoaded = (json && /*json.app === "ctrlv2" &&*/ json.preset === 'Bacara')
-              debug('Bacara Preset Loaded: %y', electraBacaraPresetLoaded)
-            }
-            if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
-              electraBacaraPresetLoaded = false
+              electra.parseSysexCmdPresetNameResponse('electra-one-ctrl',msg.bytes)
+              bacaraMachine.virusReflectParts()
+            } else if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
               //Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
               Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x7C, 0xF7])  /* Preset Name Request */
               debug('Bacara Preset Name Request done')
             } else if (_.isEqual(sysexCmd, electraSysexCmdPatchResponse)) {
-              const data = msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)), '')
-              const match = data.match(/,"name"\s*:\s*"([^"]*)",/)
-              electraBacaraPresetLoaded = (match && match.length && match[1].trim() === 'Bacara')
-              debug('Bacara Preset Loaded: %y', electraBacaraPresetLoaded)
+              electra.parseSysexCmdPatchResponseResponse('electra-one-ctrl',msg.bytes)
+              bacaraMachine.virusReflectParts()
             } else {
               //            debug('unhandles sysex %y',sysexCmd)
             }
