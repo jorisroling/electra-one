@@ -363,7 +363,6 @@ class BacaraMachine extends Machine {
       },
       generate: (elementPath, origin) => {
         if (origin == 'surface') {
-//          this.setState('patternSteps',32)
           this.state.pattern = Pattern.generate(this.state,this.interface.getParameter('steps'))
           this.state.last_pattern_but = 0
           this.showPattern()
@@ -376,6 +375,7 @@ class BacaraMachine extends Machine {
           this.state.last_pattern_but += 1
 
           this.state.pattern = Pattern.load_pattern(this.state)
+          this.interface.setParameter('steps',this.getState('patternSteps',patternStepsDefault))
           this.showPattern()
           this.writeState()
           debug('previous_pattern: %y', this.state.last_pattern_but)
@@ -389,6 +389,7 @@ class BacaraMachine extends Machine {
           }
 
           this.state.pattern = Pattern.load_pattern(this.state)
+          this.interface.setParameter('steps',this.getState('patternSteps',patternStepsDefault))
           this.showPattern()
           this.writeState()
           debug('next_pattern: %y', this.state.last_pattern_but)
@@ -1614,19 +1615,20 @@ class BacaraMachine extends Machine {
     this.pulseTime = process.hrtime()
 
 //    const ticks = (this.pulses % (24 * 4)) * 20
-    const ticks = (this.pulses % ((24 * 4)* (this.getState('patternSteps',patternStepsDefault)/16))) * 20
+
+    const ticks = (this.pulses % ((24 * 4)* (this.interface.getParameter('steps')/16))) * 20
     this.pulseDuration = (deltaTime[0] * 1000) + (deltaTime[1] / 1000000)
 
-    this.stepIdx = (ticks  * (this.getState('patternSteps',patternStepsDefault)/16) ) / ticksPerStep
+    this.stepIdx = (ticks  * (this.interface.getParameter('steps')/16) ) / ticksPerStep
     this.stepIdx = (ticks  * 1 ) / ticksPerStep
-//    debug('JJR stepIdx %y ticks %y patternSteps %y',this.stepIdx,ticks,this.getState('patternSteps',patternStepsDefault))
-//            debug('this.stepIdx %y %y steps:%y',this.stepIdx,shiftedTicks,this.getState('patternSteps',patternStepsDefault))
+//    debug('JJR stepIdx %y ticks %y patternSteps %y',this.stepIdx,ticks,this.interface.getParameter('steps'))
+//            debug('this.stepIdx %y %y steps:%y',this.stepIdx,shiftedTicks,this.interface.getParameter('steps'))
     if (this.getState('playing')) {
 
       const tickDuration = this.pulseDuration / 20
-      let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.getState('patternSteps',patternStepsDefault))
+      let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.interface.getParameter('steps'))
       if (shiftedTicks < 0) {
-        shiftedTicks += ticksPerStep * this.getState('patternSteps',patternStepsDefault)
+        shiftedTicks += ticksPerStep * this.interface.getParameter('steps')
       }
 
       if (!this.interface.getParameter('mute')) {
@@ -1737,7 +1739,7 @@ class BacaraMachine extends Machine {
 
 /*            debug('step %y of %y %y',this.stepIdx,this.state.sounding.length,this.state.sounding)*/
 
-            if (this.stepIdx < this.getState('patternSteps',patternStepsDefault) && this.sounding(this.stepIdx)/*this.state.sounding[this.stepIdx]*/) {
+            if (this.stepIdx < this.interface.getParameter('steps') && this.sounding(this.stepIdx)/*this.state.sounding[this.stepIdx]*/) {
               let midiNote = note.midi
 
               const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
@@ -1756,7 +1758,7 @@ class BacaraMachine extends Machine {
                 const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
                 debugMidiNoteOn('%s %d %y', this.getState(`device.${dev}.portName`), channel + 1, midiNote)
 
-  //          debug('this.stepIdx %y %y steps:%y',this.stepIdx,shiftedTicks,this.getState('patternSteps',patternStepsDefault))
+  //          debug('this.stepIdx %y %y steps:%y',this.stepIdx,shiftedTicks,this.interface.getParameter('steps'))
                 if (this.midiCache.getValue(this.getState(`device.${dev}.portName`), channel, 'note', midiNote)) {
                   Midi.send(this.getState(`device.${dev}.portName`), 'noteoff', {
                     note: midiNote,
