@@ -80,6 +80,21 @@ module.exports = {
       precision: 3,
       unit: '°',
     },
+    steps: {
+      name: 'Steps',
+      type: 'parameter',
+      surface: {
+        type: 'nrpn',
+        number: 16260,
+        lsbFirst: true,
+        min: 1,
+        max: 128,
+      },
+      min: 1,
+      max: 128,
+      default: 16,
+      unit: 'steps',
+    },
     previous_pattern: {
       name: 'Previous Pattern',
       type: 'action',
