@@ -56,6 +56,7 @@ const virus = require('../lib/virus')
 const electra = require('../lib/electra')
 
 const virusRamRomBanks = 30
+const patternStepsDefault = 16
 
 const matrixSetSlotValueTimout = 10
 const matrixSlotSources = {
@@ -93,11 +94,12 @@ class BacaraMachine extends Machine {
 
     this.pulseTime = [0, 0]
     this.pulses = 0
+    this.stepIdx = -1
+    this.showPatternGrid(this.stepIdx)
     this.pulseDuration = 0
     this.midiCache = new MidiCache()
     this.lfoHistory = [[], [], []]
     this.slewLimiterTimouts = []
-
     Bacara.event.on('change', (device, part, name, value, origin, command) => {
       if (/*command != me &&*/ device == 'virus-ti' && (part >= 1 && part <= 16)) {
         //debug('BACARA change %y - device: %y  part: %y  name: %y  value: %y  origin: %y command: %y',me,device, part, name, value, origin, command)
@@ -300,7 +302,7 @@ class BacaraMachine extends Machine {
       })
     }
 
-    this.state.sounding = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    this.state.sounding = new Array(this.getState('patternSteps',patternStepsDefault)).fill(1)
 
 
     const virusMixerSelect = (part) => (elementPath, origin) => {
@@ -361,7 +363,8 @@ class BacaraMachine extends Machine {
       },
       generate: (elementPath, origin) => {
         if (origin == 'surface') {
-          this.state.pattern = Pattern.generate(this.state)
+//          this.setState('patternSteps',32)
+          this.state.pattern = Pattern.generate(this.state,this.getState('patternSteps',patternStepsDefault))
           this.state.last_pattern_but = 0
           this.showPattern()
           this.writeState()
@@ -459,6 +462,8 @@ class BacaraMachine extends Machine {
         if (origin == 'clock') {
           this.setState('playing', true)
           this.pulses = 0
+          this.stepIdx = 0
+          this.showPatternGrid(this.stepIdx)
           this.pulseTime = process.hrtime()
           this.writeState()
           debug('start')
@@ -467,6 +472,8 @@ class BacaraMachine extends Machine {
       stop: (elementPath, origin) => {
         if (origin == 'clock') {
           this.setState('playing', false)
+          this.showPatternGrid(this.stepIdx,false)
+          this.stepIdx = -1
           this.writeState()
           debug('stop')
         }
@@ -918,7 +925,7 @@ class BacaraMachine extends Machine {
       octaveChance: (elementPath, value, origin) => {
         if (origin == 'surface' || !this.state.octaves) {
           this.state.octaves = []
-          for (let idx = 0; idx < 16; idx++) {
+          for (let idx = 0; idx < this.getState('patternSteps',patternStepsDefault); idx++) {
             const octave = (Math.abs(value) > Machine.getRandomInt(100))
             this.state.octaves[idx] = (octave ? (value > 0 ? 1 : -1) : 0)
           }
@@ -930,7 +937,7 @@ class BacaraMachine extends Machine {
         }
         if (origin == 'surface' || !this.state.sounding) {
           this.state.sounding = []
-          for (let idx = 0; idx < 16; idx++) {
+          for (let idx = 0; idx < this.getState('patternSteps',patternStepsDefault); idx++) {
             this.state.sounding[idx] = (value && (value >= Machine.getRandomInt(100))) ? 1 : 0
           }
         }
@@ -940,13 +947,13 @@ class BacaraMachine extends Machine {
           this.interface.setParameter('density', 100)
         }
         if (origin == 'surface' || !this.state.sounding && value > 0) {
-          this.euclidian(this.interface.getParameter('muteSteps'), 16, this.interface.getParameter('muteShift'))
+          this.euclidian(this.interface.getParameter('muteSteps'), this.getState('patternSteps',patternStepsDefault), this.interface.getParameter('muteShift'))
         }
       },
       muteShift: (elementPath, value, origin) => {
         if (this.interface.getParameter('muteSteps') > 0) {
           if (origin == 'surface' || !this.state.sounding) {
-            this.euclidian(this.interface.getParameter('muteSteps'), 16, this.interface.getParameter('muteShift'))
+            this.euclidian(this.interface.getParameter('muteSteps'), this.getState('patternSteps',patternStepsDefault), this.interface.getParameter('muteShift'))
           }
         }
       },
@@ -1204,14 +1211,12 @@ class BacaraMachine extends Machine {
 
     this.interface.on('parameterChange', (path, value, origin) => {
       if (origin == 'surface' && tableParameters.indexOf(path) >= 0) {
-        /*        debug('parameterChange pattern because of %y',path)*/
         this.showPattern()
       }
     })
 
     this.interface.on('modulationChange', (path, value, reason) => {
       if (tableParameters.indexOf(path) >= 0) {
-        /*        debug('modulationChange pattern because of %y',path)*/
         this.showPattern()
       }
     })
@@ -1315,7 +1320,7 @@ class BacaraMachine extends Machine {
   showPattern() {
 
     const pattern = this.getState('pattern')
-    const size = this.getState('size')
+    const size = this.getState('patternSteps',16)
     if (!pattern) {
       return
     }
@@ -1342,7 +1347,8 @@ class BacaraMachine extends Machine {
     )
 
     const notes = []
-    pattern.tracks[0].notes.forEach( note => {
+
+    _.get(pattern,'tracks.0.notes',[]).forEach( note => {
       if (notes.indexOf(note.midi) < 0) {
         notes.push(note.midi)
       }
@@ -1353,7 +1359,7 @@ class BacaraMachine extends Machine {
     let row = 0
     notes.forEach( noteMidi => {
       grid[row] = []
-      for (let col = 0; col < 16; col++) {
+      for (let col = 0; col < this.getState('patternSteps',patternStepsDefault); col++) {
         grid[row][col] = false
       }
 
@@ -1375,32 +1381,27 @@ class BacaraMachine extends Machine {
         {hAlign:'center', content:deviceBrow ? deviceBColor('B') : deviceAColor('A') },
         {hAlign:'center', content:TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })/*+` ${noteMidi}`*/}
       ]
-      let col = 0
-
       for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
-        let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
+        let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.getState('patternSteps',patternStepsDefault)) // JJR ? steps?
         if (shiftedTicks < 0) {
-          shiftedTicks += 1920
+          shiftedTicks +=  ticksPerStep * this.getState('patternSteps',patternStepsDefault)
         }
         //debug ('ticks %y  shiftedTicks %y',ticks,shiftedTicks)
         let chNote = '  '
-        pattern.tracks[0].notes.forEach( note => {
+        _.get(pattern,'tracks.0.notes',[]).forEach( note => {
           if (note.midi  == noteMidi && note.ticks == shiftedTicks) {
             const count = Math.ceil(note.durationTicks / ticksPerStep)
-            const color = this.getState('sounding')[ticks / ticksPerStep] ? (note.velocity == 1 ? accentedColor : normalColor) : disabledColor
+/*            const color = this.getState('sounding')[ticks / ticksPerStep] ? (note.velocity == 1 ? accentedColor : normalColor) : disabledColor*/
+            const color = this.sounding(ticks / ticksPerStep) ? (note.velocity == 1 ? accentedColor : normalColor) : disabledColor
             const rep = count * 2 + ((count - 1) * 3)
             chNote = {colSpan:count, content:color(' '.repeat(rep >= 0 ? rep : 0))}
-            grid[row][col] = this.getState('sounding')[ticks / ticksPerStep] ? true : false
-            if (count > 1) {
-              grid[row][++col] = this.getState('sounding')[ticks / ticksPerStep] ? true : false
-            }
+            grid[row][Math.floor(ticks/ticksPerStep)] = this.sounding(ticks / ticksPerStep) ? true : false
             ticks += (count - 1) * ticksPerStep
           }
         })
         if (chNote) {
           arr.push(chNote)
         }
-        col++
       }
       if (deviceBrow && reverseDeviceBrowsOnGrid) {
         for (let col = 0; col < grid[row].length; col++) {
@@ -1414,36 +1415,21 @@ class BacaraMachine extends Machine {
     debug(table.toString())
     /*    debug(grid)*/
     _.set(this.state, 'pattern.grid', grid)
+    this.showPatternGrid(this.stepIdx)
   }
 
-  showPatternGrid(stepIdx) {
-    //    debug('grid step  %y',stepIdx)
+  showPatternGrid(step,showCursor = true) {
+    const offset =  Math.floor((step<0?0:step)/monome.width) * monome.width
 
-    //     debug('stepIdx %y X %y y %y',stepIdx,stepIdx&7,stepIdx>>3)
-    /*
-    for (let x = 0; x < 2; x++) {
-      for (let y = 0; y < 8; y++) {
-        monome.led(x, y, 0)
-      }
-    }
-
-    monome.led(1 -  (stepIdx >> 3), stepIdx & 7, 1)
-*/
-    //    debug (_.get(this.state,`pattern.grid`))
-    //    debug ('Monome: %y x %y', monome.width,monome.height)
-
-    const offset = ((stepIdx < 8) ? 0 : 8)
     for (let row = 0; row < monome.height; row++) {
       for (let col = 0; col < monome.width; col++) {
         let on = _.get(this.state, `pattern.grid.${row}.${col + offset}`)
-        if (stepIdx == (col + offset)) {
+        if (showCursor && step>=0 && step == (col + offset)) {
           on = !on
         }
         monome.led((monome.height - row) - 1, col, on ? 1 : 0)
-        //          debug ('Monome LED: %y,%y = %y', (monome.height-row)-1, col, on?1:0)
       }
     }
-
   }
 
 
@@ -1627,16 +1613,20 @@ class BacaraMachine extends Machine {
     const deltaTime = process.hrtime(this.pulseTime)
     this.pulseTime = process.hrtime()
 
-    const ticks = (this.pulses % (24 * 4)) * 20
+//    const ticks = (this.pulses % (24 * 4)) * 20
+    const ticks = (this.pulses % ((24 * 4)* (this.getState('patternSteps',patternStepsDefault)/16))) * 20
     this.pulseDuration = (deltaTime[0] * 1000) + (deltaTime[1] / 1000000)
 
-    const stepIdx = ticks / ticksPerStep
+    this.stepIdx = (ticks  * (this.getState('patternSteps',patternStepsDefault)/16) ) / ticksPerStep
+    this.stepIdx = (ticks  * 1 ) / ticksPerStep
+//    debug('JJR stepIdx %y ticks %y patternSteps %y',this.stepIdx,ticks,this.getState('patternSteps',patternStepsDefault))
+//            debug('this.stepIdx %y %y steps:%y',this.stepIdx,shiftedTicks,this.getState('patternSteps',patternStepsDefault))
     if (this.getState('playing')) {
 
       const tickDuration = this.pulseDuration / 20
-      let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * 16)
+      let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.getState('patternSteps',patternStepsDefault))
       if (shiftedTicks < 0) {
-        shiftedTicks += 1920
+        shiftedTicks += ticksPerStep * this.getState('patternSteps',patternStepsDefault)
       }
 
       if (!this.interface.getParameter('mute')) {
@@ -1737,14 +1727,17 @@ class BacaraMachine extends Machine {
         }
       }
 
-      if (Math.floor(stepIdx) === stepIdx) {
-        this.showPatternGrid(stepIdx)
+      if (Math.floor(this.stepIdx) === this.stepIdx) {
+        this.showPatternGrid(this.stepIdx)
       }
       if (this.getState('pattern') && !this.interface.getParameter('mute')) {
-        this.getState('pattern').tracks[0].notes.forEach( (note) => {
+//        this.getState('pattern').tracks[0].notes.forEach( (note) => {
+        _.get(this.getState('pattern'),'tracks.0.notes',[]).forEach( note => {
           if (note.ticks == shiftedTicks) {
-            //            this.showPatternGrid(stepIdx)
-            if (stepIdx < this.state.sounding.length && this.state.sounding[stepIdx]) {
+
+/*            debug('step %y of %y %y',this.stepIdx,this.state.sounding.length,this.state.sounding)*/
+
+            if (this.stepIdx < this.getState('patternSteps',patternStepsDefault) && this.sounding(this.stepIdx)/*this.state.sounding[this.stepIdx]*/) {
               let midiNote = note.midi
 
               const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
@@ -1754,7 +1747,7 @@ class BacaraMachine extends Machine {
                 midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
               }
 
-              midiNote += this.interface.getParameter('transpose', 'modulated') + ((stepIdx < this.state.octaves.length && this.state.octaves[stepIdx]) ? (this.state.octaves[stepIdx] * 12) : 0)
+              midiNote += this.interface.getParameter('transpose', 'modulated') + ((this.stepIdx < this.state.octaves.length && this.state.octaves[this.stepIdx]) ? (this.state.octaves[this.stepIdx] * 12) : 0)
 
               const switchSide = (this.interface.getParameter('deviate', 'modulated') && this.interface.getParameter('deviate', 'modulated') >= Machine.getRandomInt(100))
               const dev =  (midiNote <= this.interface.getParameter('split', 'modulated')) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
@@ -1763,6 +1756,7 @@ class BacaraMachine extends Machine {
                 const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
                 debugMidiNoteOn('%s %d %y', this.getState(`device.${dev}.portName`), channel + 1, midiNote)
 
+  //          debug('this.stepIdx %y %y steps:%y',this.stepIdx,shiftedTicks,this.getState('patternSteps',patternStepsDefault))
                 if (this.midiCache.getValue(this.getState(`device.${dev}.portName`), channel, 'note', midiNote)) {
                   Midi.send(this.getState(`device.${dev}.portName`), 'noteoff', {
                     note: midiNote,
@@ -2104,6 +2098,13 @@ class BacaraMachine extends Machine {
       /*            debug('Part #%y Macros %y',part,macros)*/
 
       this.writeState()
+    }
+  }
+
+  sounding(step) {
+    const arr = this.getState('sounding')
+    if (Array.isArray(arr) && step>=0) {
+      return (step<arr.length) ? arr[step] : 1
     }
   }
 }
