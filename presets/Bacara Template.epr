@@ -364,12 +364,6 @@
   ],
   "devices": [
     {
-      "id": 1,
-      "name": "Generic MIDI",
-      "port": 1,
-      "channel": 1
-    },
-    {
       "id": 17,
       "name": "Bacara",
       "port": 2,
@@ -1383,9 +1377,11 @@
         {
           "message": {
             "type": "nrpn",
-            "parameterNumber": 16260,
-            "deviceId": 1
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16260
           },
+          "defaultValue": 16,
           "overlayId": 8,
           "id": "value"
         }

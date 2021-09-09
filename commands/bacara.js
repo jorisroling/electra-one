@@ -364,7 +364,7 @@ class BacaraMachine extends Machine {
       generate: (elementPath, origin) => {
         if (origin == 'surface') {
 //          this.setState('patternSteps',32)
-          this.state.pattern = Pattern.generate(this.state,this.getState('patternSteps',patternStepsDefault))
+          this.state.pattern = Pattern.generate(this.state,this.interface.getParameter('steps'))
           this.state.last_pattern_but = 0
           this.showPattern()
           this.writeState()
