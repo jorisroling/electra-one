@@ -541,7 +541,7 @@
       "hash": "a4e6f5efd4672ee63fe79d76f3565276ff05320d0cf6fe427d161a04fe839c90"
     },
     {
-      "index": 128,
+      "index": 127,
       "filename": "Freshly Squeezed Samples - Sunny Lax Virus TI Essentials vol.1.mid",
       "name": "Freshly Squeezed Samples - Sunny Lax Virus TI Essentials vol.1",
       "short": "FSS.Sunny La.1",
@@ -561,7 +561,7 @@
       "hash": "3a4a1bf12a51f8ae2a0a3db1f31ed4dd6697f087dddfe2eed9605561edb75320"
     },
     {
-      "index": 129,
+      "index": 128,
       "filename": "Howard Scarr - Allstars Set 2012.mid",
       "name": "Howard Scarr - Allstars Set 2012",
       "short": "HS.Allsta.2012",
@@ -581,7 +581,7 @@
       "hash": "be6b52bd7e5a73ff5bdf730e343d5116926e458bd08a5388236bde853af1d517"
     },
     {
-      "index": 130,
+      "index": 129,
       "filename": "Howard Scarr - Signature Patches 2009.mid",
       "name": "Howard Scarr - Signature Patches 2009",
       "short": "HS.Signat.2009",
@@ -751,26 +751,6 @@
       "hash": "1024966701963a8a84f7d7d616194cf6b0740c40ccc628a06eda01bdf6e069a8"
     },
     {
-      "index": 132,
-      "filename": "Mystery Islands - Access Virus Revealed Vol 1.mid",
-      "name": "Mystery Islands - Access Virus Revealed Vol 1",
-      "short": "MI.Access Vi.1",
-      "size": 34190,
-      "presets": 64,
-      "residu": 462,
-      "hash": "226180adb23372996290037703c90ba71182908ef0b29c482e882f31f29f96a3"
-    },
-    {
-      "index": 73,
-      "filename": "Extra/Mystery Islands - Revealed Vol.1.mid",
-      "name": "Mystery Islands - Revealed Vol.1",
-      "short": "MI.Revealed.1",
-      "size": 67482,
-      "presets": 128,
-      "residu": 26,
-      "hash": "dc2fd870d171ae662cfb6e032c4ed7cc0ba6e52bd8efcb0dcf2329125b6c7a29"
-    },
-    {
       "index": 70,
       "filename": "Extra/Middle Thinkr & Erol Hardstyle.mid",
       "name": "Middle Thinkr & Erol Hardstyle",
@@ -781,7 +761,7 @@
       "hash": "bab4baea75837ea3449c42b88e89bc8b00302436eb2d9f618eb087aaf6d31993"
     },
     {
-      "index": 131,
+      "index": 130,
       "filename": "Matt Picone - Matman Sound Set 2009.mid",
       "name": "Matt Picone - Matman Sound Set 2009",
       "short": "MP.Matman.2009",
@@ -791,7 +771,7 @@
       "hash": "6d60a690a7e374e3deb461189c431b94c7f2de02c791949256045a64679fad84"
     },
     {
-      "index": 74,
+      "index": 73,
       "filename": "Extra/Numb - 0714 Sound Set.mid",
       "name": "Numb - 0714 Sound Set",
       "short": "N.0714 Sound S",
@@ -801,7 +781,7 @@
       "hash": "60adcd3bf049c03d329535c2a92148d2098e828d483f725245b56e095d6c6ffc"
     },
     {
-      "index": 133,
+      "index": 131,
       "filename": "Nutt Traxx - Virus TI SoundBank.mid",
       "name": "Nutt Traxx - Virus TI SoundBank",
       "short": "NT.Virus TI So",
@@ -811,7 +791,7 @@
       "hash": "d38e785da31e325232924009c1f9c2e5a7ef79c80d5c20a3f4598baf3b3a64c5"
     },
     {
-      "index": 86,
+      "index": 85,
       "filename": "Extra/Psyload - Psytrance & Progressive Access Virus TI Bank.mid",
       "name": "Psyload - Psytrance & Progressive Access Virus TI Bank",
       "short": "P.Psytrance &",
@@ -821,7 +801,7 @@
       "hash": "031399ef129dea962ce1dd3191e68e5e8f10ccbc7c22b3086a41d2a261543869"
     },
     {
-      "index": 78,
+      "index": 77,
       "filename": "Extra/PatchBanks & Sound - Audigy Series Bass.mid",
       "name": "PatchBanks & Sound - Audigy Series Bass",
       "short": "P&S.Audigy Ser",
@@ -831,7 +811,7 @@
       "hash": "007fa6fbe2270efca3a6d04b71d0c56ab665740c20cc3f92d7d9a6ca3a53bc53"
     },
     {
-      "index": 79,
+      "index": 78,
       "filename": "Extra/PatchBanks & Sound - Audigy Series Leads.mid",
       "name": "PatchBanks & Sound - Audigy Series Leads",
       "short": "P&S.Audigy Ser",
@@ -841,7 +821,7 @@
       "hash": "dbe6bcead8a08c76f796fedf222f32d61fcd4156cfb476e1dc675cbd0bc86047"
     },
     {
-      "index": 80,
+      "index": 79,
       "filename": "Extra/PatchBanks & Sound - Audigy Series Plucks.mid",
       "name": "PatchBanks & Sound - Audigy Series Plucks",
       "short": "P&S.Audigy Ser",
@@ -851,7 +831,7 @@
       "hash": "47981ac945e490e8a3626bdb05de381e043d4bffde5ac27e0ea78dfb29d423b0"
     },
     {
-      "index": 81,
+      "index": 80,
       "filename": "Extra/PatchBanks & Sound - Audigy Series Strings.mid",
       "name": "PatchBanks & Sound - Audigy Series Strings",
       "short": "P&S.Audigy Ser",
@@ -861,7 +841,7 @@
       "hash": "d4d5f86cd8205808a777027d5c68530b56845d36635530f8fbb63fa295586f4c"
     },
     {
-      "index": 75,
+      "index": 74,
       "filename": "Extra/P5 Audio - Access Virus TI Club Patches Vol 1.mid",
       "name": "P5 Audio - Access Virus TI Club Patches Vol 1",
       "short": "PA.Access Vi.1",
@@ -871,7 +851,7 @@
       "hash": "06f444d08ae238d5b3d52c905e1479fc09e625de90caf807789ea1fce65c6316"
     },
     {
-      "index": 82,
+      "index": 81,
       "filename": "Extra/Plasma Audio - Virus Ti2 Bass Soundset Vol.1.mid",
       "name": "Plasma Audio - Virus Ti2 Bass Soundset Vol.1",
       "short": "PA.Virus Ti2.1",
@@ -881,7 +861,7 @@
       "hash": "40def386e1b98e1b7a54ec2baed40e511744ea5042d95532bbdd20425a5f635e"
     },
     {
-      "index": 76,
+      "index": 75,
       "filename": "Extra/PADS X HEAVEN Vol.1 PART 1.mid",
       "name": "PADS X HEAVEN Vol.1 PART 1",
       "short": "PADS X HEAVE.1",
@@ -891,7 +871,7 @@
       "hash": "0e8cdf8a2824e52ac4e4789f71cb60183a389b993c1a9c079717af8ca6554e4a"
     },
     {
-      "index": 77,
+      "index": 76,
       "filename": "Extra/PADS X HEAVEN Vol.1 PART 2.mid",
       "name": "PADS X HEAVEN Vol.1 PART 2",
       "short": "PADS X HEAVE.2",
@@ -901,7 +881,7 @@
       "hash": "17109d4d634274db1807ac8db349f204ce9d4bab3036e559e08160e3bf0ad452"
     },
     {
-      "index": 83,
+      "index": 82,
       "filename": "Extra/Plughugger Sound Design - Blue - Virus TI.mid",
       "name": "Plughugger Sound Design - Blue - Virus TI",
       "short": "PSD.Blue",
@@ -911,7 +891,7 @@
       "hash": "439924156c659e57b5862cdf2067d72e4886c93ed1b8172495f878ec0dc4dc45"
     },
     {
-      "index": 84,
+      "index": 83,
       "filename": "Extra/Plughugger Sound Design - Partly Red - Virus TI.mid",
       "name": "Plughugger Sound Design - Partly Red - Virus TI",
       "short": "PSD.Partly Red",
@@ -921,7 +901,7 @@
       "hash": "78be2fdaf79ac5eb546a7f0a7904716199915c3ba4c267a7e9bb3f6db9c3f512"
     },
     {
-      "index": 85,
+      "index": 84,
       "filename": "Extra/Plughugger Sound Design - Red - Virus TI.mid",
       "name": "Plughugger Sound Design - Red - Virus TI",
       "short": "PSD.Red",
@@ -931,7 +911,7 @@
       "hash": "6a336c0fb7c30c9b9832cbfcb456aefa0e5be8392f325bb28594525e42d71b6c"
     },
     {
-      "index": 87,
+      "index": 86,
       "filename": "Extra/Qui Robinez – Solar Soundset 2007.mid",
       "name": "Qui Robinez – Solar Soundset 2007",
       "short": "Qui Robin.2007",
@@ -941,7 +921,7 @@
       "hash": "fff5a35e64f6956d4aeb148ab691b66324a0ada41c303aa54d2742d49eca8226"
     },
     {
-      "index": 134,
+      "index": 132,
       "filename": "Richard Device - Signature Set 2007.mid",
       "name": "Richard Device - Signature Set 2007",
       "short": "RD.Signat.2007",
@@ -951,7 +931,7 @@
       "hash": "6133c2c7bbc9e0c5fd5465582ff44c8251ea1bb87bee1c21e20eb65f03c74371"
     },
     {
-      "index": 135,
+      "index": 133,
       "filename": "Richard Devine - Signature Set 2011.mid",
       "name": "Richard Devine - Signature Set 2011",
       "short": "RD.Signat.2011",
@@ -961,7 +941,7 @@
       "hash": "8ce929a0f2c3e98b0a0f338e49c2b096ef9fd5606028ee634c3016cb30fd5da4"
     },
     {
-      "index": 89,
+      "index": 88,
       "filename": "Extra/Richard Devine - Signature Patches_x.mid",
       "name": "Richard Devine - Signature Patches_x",
       "short": "RD.Signature P",
@@ -971,7 +951,7 @@
       "hash": "cd6c17dccb3f8a08b989d962f7b520a66766b2a73ad9ee8225836333ec6ffb08"
     },
     {
-      "index": 136,
+      "index": 134,
       "filename": "Rocket Jump - Hardstyle Universe.mid",
       "name": "Rocket Jump - Hardstyle Universe",
       "short": "RJ.Hardstyle U",
@@ -981,7 +961,7 @@
       "hash": "b775b59c139f7047971b9a005cb9d8eeb0ca088de6514867b71f6301f44e9ec4"
     },
     {
-      "index": 88,
+      "index": 87,
       "filename": "Extra/Radian Sound Lab - Patches for Virus TI.mid",
       "name": "Radian Sound Lab - Patches for Virus TI",
       "short": "RSL.Patches fo",
@@ -991,7 +971,7 @@
       "hash": "2a8f64df7743ed7a38999beebf7dbc38a41704bd254d6fe78228f4e9ac9a90ec"
     },
     {
-      "index": 90,
+      "index": 89,
       "filename": "Extra/Rui Peixoto AquaTIc.mid",
       "name": "Rui Peixoto AquaTIc",
       "short": "Rui Peixoto Aq",
@@ -1001,7 +981,7 @@
       "hash": "d8bce061d7ccd8167e5540d39b034331a08424d11eabaf7e32eb1437e52da661"
     },
     {
-      "index": 91,
+      "index": 90,
       "filename": "Extra/Rui Peixoto Soundbank 2.mid",
       "name": "Rui Peixoto Soundbank 2",
       "short": "Rui Peixoto.2",
@@ -1011,7 +991,7 @@
       "hash": "5152b568a2d03ea9711c9b11cf33ddc4e97f42c340bddaae59f0091dd3503875"
     },
     {
-      "index": 137,
+      "index": 135,
       "filename": "Sasha Involver - Signature Set.mid",
       "name": "Sasha Involver - Signature Set",
       "short": "SI.Signature S",
@@ -1021,7 +1001,7 @@
       "hash": "77236eb754b8fdf65550bffe544d744a503a14c466d70d69cf6dbf9a8d205065"
     },
     {
-      "index": 92,
+      "index": 91,
       "filename": "Extra/Sonic Sirius Soundbank Vol.1.mid",
       "name": "Sonic Sirius Soundbank Vol.1",
       "short": "Sonic Sirius.1",
@@ -1031,7 +1011,7 @@
       "hash": "40f3ce982dbe5c12a04fd397ae43f4f4471c5bb3be33acbaf1c783cc9f1e0b48"
     },
     {
-      "index": 93,
+      "index": 92,
       "filename": "Extra/Sonic Sirius Soundbank Vol.2.mid",
       "name": "Sonic Sirius Soundbank Vol.2",
       "short": "Sonic Sirius.2",
@@ -1041,7 +1021,7 @@
       "hash": "31aadc7a1e0d436d40ee9456dc9a72b90cafba0cc0aa76802639dd792a2eed47"
     },
     {
-      "index": 94,
+      "index": 93,
       "filename": "Extra/Sonic Sirius Soundbank Vol.3.mid",
       "name": "Sonic Sirius Soundbank Vol.3",
       "short": "Sonic Sirius.3",
@@ -1051,7 +1031,7 @@
       "hash": "9591f71ff786df41cad001f14a03c9ee5569acd481a4c777ba1281b81207726f"
     },
     {
-      "index": 95,
+      "index": 94,
       "filename": "Extra/Sonic Sirius Soundbank Vol.4.mid",
       "name": "Sonic Sirius Soundbank Vol.4",
       "short": "Sonic Sirius.4",
@@ -1061,7 +1041,7 @@
       "hash": "9a5109c3103c47d05d99aa8abf1f4e608ef39d33cd84ea21bb3cb8b8844b89de"
     },
     {
-      "index": 96,
+      "index": 95,
       "filename": "Extra/SOUNDS-OF-REVOLUTION-com.mid",
       "name": "SOUNDS-OF-REVOLUTION-com",
       "short": "SOUNDS-OF-REVO",
@@ -1071,7 +1051,7 @@
       "hash": "b508db4bf854ae57120720ba88d165a343fb14a6a2d4aacd27700bdfa35478c1"
     },
     {
-      "index": 138,
+      "index": 136,
       "filename": "Specific Sound - The Antidote.mid",
       "name": "Specific Sound - The Antidote",
       "short": "SS.The Antidot",
@@ -1081,7 +1061,7 @@
       "hash": "3f7307092eaf902a4673ad49ae3e82f14594dd4d17fd223be8e432bc4b6b5e47"
     },
     {
-      "index": 97,
+      "index": 96,
       "filename": "Extra/SSO Virus Ti PresetBank.mid",
       "name": "SSO Virus Ti PresetBank",
       "short": "SSO Virus Ti P",
@@ -1091,7 +1071,7 @@
       "hash": "b7c48f1faab8d5db239499c4b24e4fff2c0f381ad34eac6b366ef271da96b82d"
     },
     {
-      "index": 98,
+      "index": 97,
       "filename": "Extra/Standalone'n Music.mid",
       "name": "Standalone'n Music",
       "short": "Standalone'n M",
@@ -1101,7 +1081,7 @@
       "hash": "c211cf321e609a86944043bae38a28b734e0efe96d2bb5a8752a4a6320548d83"
     },
     {
-      "index": 99,
+      "index": 98,
       "filename": "Extra/Starburst Lite.mid",
       "name": "Starburst Lite",
       "short": "Starburst Lite",
@@ -1111,7 +1091,7 @@
       "hash": "a4d7cc1e967b50a340c16556dfa37502f344a348effd197e571f935d1c0cf500"
     },
     {
-      "index": 100,
+      "index": 99,
       "filename": "Extra/Synthetic Solutions Virus Ti Soundset.mid",
       "name": "Synthetic Solutions Virus Ti Soundset",
       "short": "Synthetic Solu",
@@ -1121,7 +1101,7 @@
       "hash": "411b539053336cad832bce1e824acf1f9bc703e6bcf8f73c27e56b1914609384"
     },
     {
-      "index": 140,
+      "index": 138,
       "filename": "TranceAddicts - Virus TI Bank.mid",
       "name": "TranceAddicts - Virus TI Bank",
       "short": "T.Virus TI Ban",
@@ -1131,7 +1111,7 @@
       "hash": "1aeb108c16d16aeced9d446bf9e82eaf8368ebf70be292ef86202fe8d741b503"
     },
     {
-      "index": 101,
+      "index": 100,
       "filename": "Extra/Tarekith's Elemental.mid",
       "name": "Tarekith's Elemental",
       "short": "Tarekith's Ele",
@@ -1141,7 +1121,7 @@
       "hash": "c934b1ea0e510ea809a19fb7e45441a3d465bdf2649db19828b188612e672bbe"
     },
     {
-      "index": 102,
+      "index": 101,
       "filename": "Extra/The Girl Next Door - EFFECTS 1.mid",
       "name": "The Girl Next Door - EFFECTS 1",
       "short": "TGND.EFFECTS.1",
@@ -1151,7 +1131,7 @@
       "hash": "8e6bcb7d30ca4e9c03360910989ae61d86a8857a65425266090ddaaa075ea76f"
     },
     {
-      "index": 103,
+      "index": 102,
       "filename": "Extra/The Girl Next Door - EFFECTS 2.mid",
       "name": "The Girl Next Door - EFFECTS 2",
       "short": "TGND.EFFECTS.2",
@@ -1161,7 +1141,7 @@
       "hash": "a3876d5fc573d6f45237cab04ad63ce16446df38883cea13a47e4fcefc082273"
     },
     {
-      "index": 104,
+      "index": 103,
       "filename": "Extra/The Girl Next Door - EFFECTS 3.mid",
       "name": "The Girl Next Door - EFFECTS 3",
       "short": "TGND.EFFECTS.3",
@@ -1171,7 +1151,7 @@
       "hash": "1ab037a3cbb77788b67328a7c8d6b641b7aace88d39bf3ede6655d6f52396fc7"
     },
     {
-      "index": 105,
+      "index": 104,
       "filename": "Extra/The Girl Next Door - EFFECTS 4.mid",
       "name": "The Girl Next Door - EFFECTS 4",
       "short": "TGND.EFFECTS.4",
@@ -1181,7 +1161,7 @@
       "hash": "9377d62cf556404567689866eb21bceaa1d113b36d3faad252f68c52f01fcfff"
     },
     {
-      "index": 106,
+      "index": 105,
       "filename": "Extra/The Girl Next Door - Electro House 2007.mid",
       "name": "The Girl Next Door - Electro House 2007",
       "short": "TGND.Elec.2007",
@@ -1191,7 +1171,7 @@
       "hash": "35abe360265da56c7f94dd9b93f7ef299e4401ad145975e0bfeffb9c8970937c"
     },
     {
-      "index": 107,
+      "index": 106,
       "filename": "Extra/The Girl Next Door - Essential Basslines 1.mid",
       "name": "The Girl Next Door - Essential Basslines 1",
       "short": "TGND.Essenti.1",
@@ -1201,7 +1181,7 @@
       "hash": "9be20dd95946e321269b922079f9c8e5f3f38aca76700878a2d245703c1336c2"
     },
     {
-      "index": 108,
+      "index": 107,
       "filename": "Extra/The Girl Next Door - Essential Basslines 2.mid",
       "name": "The Girl Next Door - Essential Basslines 2",
       "short": "TGND.Essenti.2",
@@ -1211,7 +1191,7 @@
       "hash": "929f32620541565a3f057dad59db3d44be2bbc33ce5ca864bb4db57de226d6aa"
     },
     {
-      "index": 109,
+      "index": 108,
       "filename": "Extra/The Girl Next Door - Sound Set 1.mid",
       "name": "The Girl Next Door - Sound Set 1",
       "short": "TGND.Sound S.1",
@@ -1221,7 +1201,7 @@
       "hash": "494e6fca0151ff8c05a33c59813207adf6542fb9293495e7dc7f5069fdcdbd70"
     },
     {
-      "index": 110,
+      "index": 109,
       "filename": "Extra/The Girl Next Door - Sound Set 3.mid",
       "name": "The Girl Next Door - Sound Set 3",
       "short": "TGND.Sound S.3",
@@ -1231,7 +1211,7 @@
       "hash": "171485449e97d0cf3f0fcb35a23583a5a46204d0549c7ecc75b76ddd0eeb0789"
     },
     {
-      "index": 111,
+      "index": 110,
       "filename": "Extra/The Girl Next Door - Sound Set 5.mid",
       "name": "The Girl Next Door - Sound Set 5",
       "short": "TGND.Sound S.5",
@@ -1241,7 +1221,7 @@
       "hash": "bc422facddcc5e85ba71d62f42d6d24808a39a24d31cffd7c35990aadae49281"
     },
     {
-      "index": 112,
+      "index": 111,
       "filename": "Extra/TONY LONG - Creative Distortion.mid",
       "name": "TONY LONG - Creative Distortion",
       "short": "TL.Creative Di",
@@ -1251,7 +1231,7 @@
       "hash": "d99391f246e8da93964379edebde79ea5cb88a35777cac4c5b2fbbaf0eda0b9e"
     },
     {
-      "index": 113,
+      "index": 112,
       "filename": "Extra/TONY LONG - Euphoria.mid",
       "name": "TONY LONG - Euphoria",
       "short": "TL.Euphoria",
@@ -1261,7 +1241,7 @@
       "hash": "fee2f500ba046c7f79ad86ab8a8ac1415a5f6c2658f78d357b27c7f85ccae9e4"
     },
     {
-      "index": 114,
+      "index": 113,
       "filename": "Extra/TONY LONG - Fortune & Glory.mid",
       "name": "TONY LONG - Fortune & Glory",
       "short": "TL.Fortune & G",
@@ -1271,7 +1251,7 @@
       "hash": "773ad4759ebf7be5b549784ea46452c90d9d9b14ece21fc6d2d557fb33e3ecf6"
     },
     {
-      "index": 115,
+      "index": 114,
       "filename": "Extra/Trance Midi Samples - Gallery Of Sound Vol.1.mid",
       "name": "Trance Midi Samples - Gallery Of Sound Vol.1",
       "short": "TMS.Gallery.1",
@@ -1281,7 +1261,7 @@
       "hash": "cdef61e66f89b1825d3110983c661c9457a4ef6e1d72fbe3d5ed7f618848fb5a"
     },
     {
-      "index": 116,
+      "index": 115,
       "filename": "Extra/Trance Midi Samples - Trance Behind The Brain Vol.1.mid",
       "name": "Trance Midi Samples - Trance Behind The Brain Vol.1",
       "short": "TMS.Trance B.1",
@@ -1291,7 +1271,7 @@
       "hash": "18bf9f37c47e5fd9d59a45be5c4d667b216b6e9081ad370a38634b87edbeaa20"
     },
     {
-      "index": 117,
+      "index": 116,
       "filename": "Extra/Trance Midi Samples - Trance Behind The Brain Vol.2.mid",
       "name": "Trance Midi Samples - Trance Behind The Brain Vol.2",
       "short": "TMS.Trance B.2",
@@ -1301,7 +1281,7 @@
       "hash": "40d89ff235a412a3d7c2cb3c90396800521a668aa3b98c00dad0f7b5a4fbb2fc"
     },
     {
-      "index": 118,
+      "index": 117,
       "filename": "Extra/Trance Midi Samples - Trance Behind The Brain Vol.3.mid",
       "name": "Trance Midi Samples - Trance Behind The Brain Vol.3",
       "short": "TMS.Trance B.3",
@@ -1311,7 +1291,7 @@
       "hash": "7ff6829d91286d1c7fafbad3e9ed7322b9184fbfa83feb2b6ad690d3c5860ff4"
     },
     {
-      "index": 139,
+      "index": 137,
       "filename": "The Unfinished - Virus Chiaroscuro.mid",
       "name": "The Unfinished - Virus Chiaroscuro",
       "short": "TU.Virus Chiar",
@@ -1321,7 +1301,7 @@
       "hash": "74c3e1bb7d46d36c0f214a3c50978fbd8fe6a0c2b27e61a566a73ea5202547c6"
     },
     {
-      "index": 119,
+      "index": 118,
       "filename": "Extra/Ultimate X BASS Vol.1.mid",
       "name": "Ultimate X BASS Vol.1",
       "short": "Ultimate X B.1",
@@ -1331,7 +1311,7 @@
       "hash": "f1d0a510ea5d33f7afcb1796a32e497cf1ac27d18533b342506f85aabf876c3d"
     },
     {
-      "index": 120,
+      "index": 119,
       "filename": "Extra/Ultimate X BASS Vol.2.mid",
       "name": "Ultimate X BASS Vol.2",
       "short": "Ultimate X B.2",
@@ -1341,7 +1321,7 @@
       "hash": "0abd7417c4b06f7b9b7472b46e561e0a76608be924db886a19fababe3d3a1913"
     },
     {
-      "index": 121,
+      "index": 120,
       "filename": "Extra/Ultimate X MASS Vol.1.mid",
       "name": "Ultimate X MASS Vol.1",
       "short": "Ultimate X M.1",
@@ -1351,7 +1331,7 @@
       "hash": "80858a99a4fc0c36b64c78eed09d1f2a7c7f2d2874286058fefe457d335e8202"
     },
     {
-      "index": 122,
+      "index": 121,
       "filename": "Extra/Ummet Ozcan - Virus TI Sound Set.mid",
       "name": "Ummet Ozcan - Virus TI Sound Set",
       "short": "UO.Virus TI So",
@@ -1361,7 +1341,7 @@
       "hash": "9461d1adac342e199ed634d565f83533b9b3d7b09ad0ed582e88f15ae389ba31"
     },
     {
-      "index": 141,
+      "index": 139,
       "filename": "Ultimate X Sounds - Adam Nickey Club X Sounds vol.1.mid",
       "name": "Ultimate X Sounds - Adam Nickey Club X Sounds vol.1",
       "short": "UXS.Adam Nic.1",
@@ -1371,7 +1351,7 @@
       "hash": "75b8567ee83f560a3aa356acc5756f2ffe6d83b863c3d9221095e68014d9cab0"
     },
     {
-      "index": 142,
+      "index": 140,
       "filename": "Ultimate X Sounds - Adam Nickey Club X Sounds vol.4.mid",
       "name": "Ultimate X Sounds - Adam Nickey Club X Sounds vol.4",
       "short": "UXS.Adam Nic.4",
@@ -1381,7 +1361,7 @@
       "hash": "9b465806fc937cf7665514e4887449f74d929b07a7225aa7e8934ec60b0f9332"
     },
     {
-      "index": 143,
+      "index": 141,
       "filename": "Ultimate X Sounds - Atmosphere X Sounds vol.1.mid",
       "name": "Ultimate X Sounds - Atmosphere X Sounds vol.1",
       "short": "UXS.Atmosphe.1",
@@ -1391,7 +1371,7 @@
       "hash": "e8b973031577197089a6cb56bf6ac3ca2ea29fb92da266ed0c026be9b919474a"
     },
     {
-      "index": 144,
+      "index": 142,
       "filename": "Ultimate X Sounds - Atmosphere X Sounds vol.2.mid",
       "name": "Ultimate X Sounds - Atmosphere X Sounds vol.2",
       "short": "UXS.Atmosphe.2",
@@ -1401,7 +1381,7 @@
       "hash": "acae38c4aa5e1e713830fc03799d6bf2f391f1cabd3395a9be5b1dc33bdc3d69"
     },
     {
-      "index": 145,
+      "index": 143,
       "filename": "Ultimate X Sounds - Atmosphere X Sounds vol.3.mid",
       "name": "Ultimate X Sounds - Atmosphere X Sounds vol.3",
       "short": "UXS.Atmosphe.3",
@@ -1411,7 +1391,7 @@
       "hash": "c0b838a39905e91c4ab8fa3b3b8b97e45953ef5fbd2a4cf00b123bfa45b134f0"
     },
     {
-      "index": 146,
+      "index": 144,
       "filename": "Ultimate X Sounds - Soundset 2014.mid",
       "name": "Ultimate X Sounds - Soundset 2014",
       "short": "UXS.Sound.2014",
@@ -1421,7 +1401,7 @@
       "hash": "3e55630408ae90d7b23b48e6ff6ea0748a8160b241f54660068d5622cdd7e954"
     },
     {
-      "index": 184,
+      "index": 182,
       "filename": "VTG - Electro Patch Set 2010.mid",
       "name": "VTG - Electro Patch Set 2010",
       "short": "V.Electro.2010",
@@ -1431,7 +1411,7 @@
       "hash": "3bd629268abd81f78d993d1ae2baba72f7a19816c11abf6f2cd308f1b286f033"
     },
     {
-      "index": 123,
+      "index": 122,
       "filename": "Extra/V.I.P Expansion Vol.1 PART 1.mid",
       "name": "V.I.P Expansion Vol.1 PART 1",
       "short": "V.I.P Expans.1",
@@ -1441,7 +1421,7 @@
       "hash": "20f5b3bf7c6c7987c6f7ef496947c92cd0f17aa862f56273525a7d2e4869063a"
     },
     {
-      "index": 124,
+      "index": 123,
       "filename": "Extra/V.I.P Expansion Vol.1 PART 2.mid",
       "name": "V.I.P Expansion Vol.1 PART 2",
       "short": "V.I.P Expans.2",
@@ -1451,7 +1431,7 @@
       "hash": "8078aa3f16027fc93bcd94c08a00b9626d48d0cbeae55ebab807003b5efd10d7"
     },
     {
-      "index": 125,
+      "index": 124,
       "filename": "Extra/Vengeance - Incubation Vol.5.mid",
       "name": "Vengeance - Incubation Vol.5",
       "short": "V.Incubation.5",
@@ -1461,7 +1441,7 @@
       "hash": "48e866bd94f31050461bbf4f56b1422fef5dc9caccc1055035d245ab970e5c90"
     },
     {
-      "index": 126,
+      "index": 125,
       "filename": "Extra/VTI - Kris Menace Signature Patches.mid",
       "name": "VTI - Kris Menace Signature Patches",
       "short": "V.Kris Menace",
@@ -1471,7 +1451,7 @@
       "hash": "7837c85b9e34f5690ed342227af51339fa79937ae6565a78d94388237429c394"
     },
     {
-      "index": 147,
+      "index": 145,
       "filename": "Virus Other/Virus Other - Atomizer examples.mid",
       "name": "Virus Other - Atomizer examples",
       "short": "VO.Atomizer ex",
@@ -1481,7 +1461,7 @@
       "hash": "a45fd77f899ee80e905b8464b320c4dc72072a22943c320029ea23b76e2592f0"
     },
     {
-      "index": 148,
+      "index": 146,
       "filename": "Virus Other/Virus Other - My Patches RAM A.mid",
       "name": "Virus Other - My Patches RAM A",
       "short": "VO.My Patche.A",
@@ -1491,7 +1471,7 @@
       "hash": "7a89caa3cbb3ecc4ae16176970ba65c9448559c68ac85f6e8cf25ea5cc2d2ff7"
     },
     {
-      "index": 149,
+      "index": 147,
       "filename": "Virus Other/Virus Other - My Patches RAM B.mid",
       "name": "Virus Other - My Patches RAM B",
       "short": "VO.My Patche.B",
@@ -1501,7 +1481,7 @@
       "hash": "84a2c973f76100a8847a3f1c392e69af4a74847b468170eb201a64bea7e790a3"
     },
     {
-      "index": 150,
+      "index": 148,
       "filename": "Virus Other/Virus Other - My Patches RAM C.mid",
       "name": "Virus Other - My Patches RAM C",
       "short": "VO.My Patche.C",
@@ -1511,7 +1491,7 @@
       "hash": "55c982deae7c2d9c085fe29714c2a38c8226d5fb0d78ca36187df210b326ea67"
     },
     {
-      "index": 151,
+      "index": 149,
       "filename": "Virus Other/Virus Other - My Patches RAM D.mid",
       "name": "Virus Other - My Patches RAM D",
       "short": "VO.My Patche.D",
@@ -1521,7 +1501,7 @@
       "hash": "8366eb35733a767c42ec157ac1e51de7b0d72265e6eadaee53cf3ba8f23a8ece"
     },
     {
-      "index": 152,
+      "index": 150,
       "filename": "Virus Other/Virus Other - OS2 New Oscillator Patches.mid",
       "name": "Virus Other - OS2 New Oscillator Patches",
       "short": "VO.OS2 New Osc",
@@ -1531,7 +1511,7 @@
       "hash": "d382b41c7fdfeb933340147a22f34c52028a1fb612c30f73f9094512fe1dee04"
     },
     {
-      "index": 153,
+      "index": 151,
       "filename": "Virus Other/Virus Other - OS3 New FX example patches.mid",
       "name": "Virus Other - OS3 New FX example patches",
       "short": "VO.OS3 New FX",
@@ -1541,7 +1521,7 @@
       "hash": "dc9c24cebd55e0b37385dfe27a624571de3a41a6feb61cb8421368a548d6ca98"
     },
     {
-      "index": 154,
+      "index": 152,
       "filename": "Virus Other/Virus Other - OS4 New Features patches.mid",
       "name": "Virus Other - OS4 New Features patches",
       "short": "VO.OS4 New Fea",
@@ -1551,7 +1531,7 @@
       "hash": "a0bbbc48943ef62b4410e2b8030a92f52e1e8a2217b5210053b4a97a1a67b629"
     },
     {
-      "index": 155,
+      "index": 153,
       "filename": "Virus Other/Virus Other - OS45 New Features patches.mid",
       "name": "Virus Other - OS45 New Features patches",
       "short": "VO.OS45 New Fe",
@@ -1561,7 +1541,7 @@
       "hash": "660c6a35add41a1036dde147b0162f8924c5d05c46d141f2d92573830ec0aaae"
     },
     {
-      "index": 156,
+      "index": 154,
       "filename": "Virus Other/Virus Other - OS5 New Features patches.mid",
       "name": "Virus Other - OS5 New Features patches",
       "short": "VO.OS5 New Fea",
@@ -1571,7 +1551,7 @@
       "hash": "3247a30bd8bfb736e99c0b5edeb312374836d3ede3c5d0361d6ba8b38671e246"
     },
     {
-      "index": 157,
+      "index": 155,
       "filename": "Virus Other/Virus Other - Vocoder and input patches.mid",
       "name": "Virus Other - Vocoder and input patches",
       "short": "VO.Vocoder and",
@@ -1581,7 +1561,7 @@
       "hash": "f2ccfcdf4b81de70144b47942effc36292d3de2ff5c74e5aa550ffb8f0c67bad"
     },
     {
-      "index": 158,
+      "index": 156,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom A.mid",
       "name": "Virus TI2 - Rom A",
       "short": "VT.Rom.A",
@@ -1591,7 +1571,7 @@
       "hash": "0eeeb86ea026065c4c541398a61fb462ebb9c33873803972de2870e2a9f3cc6d"
     },
     {
-      "index": 159,
+      "index": 157,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom B.mid",
       "name": "Virus TI2 - Rom B",
       "short": "VT.Rom.B",
@@ -1601,7 +1581,7 @@
       "hash": "125e3c6d7bcc50633839326ae185718244130e74689570f036f3904dbc73c607"
     },
     {
-      "index": 160,
+      "index": 158,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom C.mid",
       "name": "Virus TI2 - Rom C",
       "short": "VT.Rom.C",
@@ -1611,7 +1591,7 @@
       "hash": "c76f04966d6cc46a3afa06e92df8bba6b5e6654d2433c5491f8b1c400d620c5a"
     },
     {
-      "index": 161,
+      "index": 159,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom D.mid",
       "name": "Virus TI2 - Rom D",
       "short": "VT.Rom.D",
@@ -1621,7 +1601,7 @@
       "hash": "87001abe8ac4c65b732b5745493be74d7535135219f899872c9193a4ccb8b70e"
     },
     {
-      "index": 162,
+      "index": 160,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom E.mid",
       "name": "Virus TI2 - Rom E",
       "short": "VT.Rom.E",
@@ -1631,7 +1611,7 @@
       "hash": "9b93dd24a58106cc7722d59056ec0818dfe0e0163a70965b416d68b2dffed4b9"
     },
     {
-      "index": 163,
+      "index": 161,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom F.mid",
       "name": "Virus TI2 - Rom F",
       "short": "VT.Rom.F",
@@ -1641,7 +1621,7 @@
       "hash": "5e7e3acce4a813298cfeb7627ac262b902f63e1ca4f9e395c5d11adcf7e889a7"
     },
     {
-      "index": 164,
+      "index": 162,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom G.mid",
       "name": "Virus TI2 - Rom G",
       "short": "VT.Rom.G",
@@ -1651,7 +1631,7 @@
       "hash": "74c0fd6c77200688100ed3a243770df7706fb1394b2bcf9592d83d490280df49"
     },
     {
-      "index": 165,
+      "index": 163,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom H.mid",
       "name": "Virus TI2 - Rom H",
       "short": "VT.Rom.H",
@@ -1661,7 +1641,7 @@
       "hash": "b4bf9e1d32d6510272be9546045a3501c2b64a230c6d76dbffac65b1367e1b64"
     },
     {
-      "index": 166,
+      "index": 164,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom I.mid",
       "name": "Virus TI2 - Rom I",
       "short": "VT.Rom.I",
@@ -1671,7 +1651,7 @@
       "hash": "09f798b995253ef4e95e86528df3c2af1bcb67b0f05afebd741ed9b66d7bb119"
     },
     {
-      "index": 167,
+      "index": 165,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom J.mid",
       "name": "Virus TI2 - Rom J",
       "short": "VT.Rom.J",
@@ -1681,7 +1661,7 @@
       "hash": "07b3958e1b2d0cba06407a2230f2dc770f830bc216f76abf3b20312e3e848ce6"
     },
     {
-      "index": 168,
+      "index": 166,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom K.mid",
       "name": "Virus TI2 - Rom K",
       "short": "VT.Rom.K",
@@ -1691,7 +1671,7 @@
       "hash": "d2f877be97ea06cec483561e2e003571f71eb90b8cefaf7f04da60d2a46e8794"
     },
     {
-      "index": 169,
+      "index": 167,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom L.mid",
       "name": "Virus TI2 - Rom L",
       "short": "VT.Rom.L",
@@ -1701,7 +1681,7 @@
       "hash": "a9c59520a0a91c23fe3dea7129df4accbc0523e488fbc518808afbdd2e398403"
     },
     {
-      "index": 170,
+      "index": 168,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom M.mid",
       "name": "Virus TI2 - Rom M",
       "short": "VT.Rom.M",
@@ -1711,7 +1691,7 @@
       "hash": "472b2a871636cc24c5a36639b7b2b789fb95423ce16fe28ce77127e5724fda7a"
     },
     {
-      "index": 171,
+      "index": 169,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom N.mid",
       "name": "Virus TI2 - Rom N",
       "short": "VT.Rom.N",
@@ -1721,7 +1701,7 @@
       "hash": "6407046626ab3d1c35867c54e7fc2d307a343e2ccc571c76a87182a261cd802e"
     },
     {
-      "index": 172,
+      "index": 170,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom O.mid",
       "name": "Virus TI2 - Rom O",
       "short": "VT.Rom.O",
@@ -1731,7 +1711,7 @@
       "hash": "6be8a874e77d6d6f4bf3e4a60d425bc834f12203e0c262c8d1e127a6e2a4efe3"
     },
     {
-      "index": 173,
+      "index": 171,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom P.mid",
       "name": "Virus TI2 - Rom P",
       "short": "VT.Rom.P",
@@ -1741,7 +1721,7 @@
       "hash": "023516d43d331bba9f990f803edd3164f703c95521d90b650a5c2dc7f308db20"
     },
     {
-      "index": 174,
+      "index": 172,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom Q.mid",
       "name": "Virus TI2 - Rom Q",
       "short": "VT.Rom.Q",
@@ -1751,7 +1731,7 @@
       "hash": "344034568b46d0e11c338053bad8ca617886f2decf1833e345898374d6543ba4"
     },
     {
-      "index": 175,
+      "index": 173,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom R.mid",
       "name": "Virus TI2 - Rom R",
       "short": "VT.Rom.R",
@@ -1761,7 +1741,7 @@
       "hash": "6fe6205689ebde86933802b4d01fdfadb6c79d94e8daa95bdfe62a49358edf2f"
     },
     {
-      "index": 176,
+      "index": 174,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom S.mid",
       "name": "Virus TI2 - Rom S",
       "short": "VT.Rom.S",
@@ -1771,7 +1751,7 @@
       "hash": "108d504b3466d65f5226c4e18747eeb5bae0859b0753a0d0d9b227d6f4e66b68"
     },
     {
-      "index": 177,
+      "index": 175,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom T.mid",
       "name": "Virus TI2 - Rom T",
       "short": "VT.Rom.T",
@@ -1781,7 +1761,7 @@
       "hash": "1d35f298452078d454ed4be36e9236c53da19dc533a9f1d076e68603cf9e105b"
     },
     {
-      "index": 178,
+      "index": 176,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom U.mid",
       "name": "Virus TI2 - Rom U",
       "short": "VT.Rom.U",
@@ -1791,7 +1771,7 @@
       "hash": "580572e9cca52391c53be42fa50ac6e82e396153807ad2d1a239f815fd40a17e"
     },
     {
-      "index": 179,
+      "index": 177,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom V.mid",
       "name": "Virus TI2 - Rom V",
       "short": "VT.Rom.V",
@@ -1801,7 +1781,7 @@
       "hash": "2ee6b63383b8f9b5a78bc751c8b3499bcd23bd6dbe5052926cc60b918f8de845"
     },
     {
-      "index": 180,
+      "index": 178,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom W.mid",
       "name": "Virus TI2 - Rom W",
       "short": "VT.Rom.W",
@@ -1811,7 +1791,7 @@
       "hash": "2ee6b63383b8f9b5a78bc751c8b3499bcd23bd6dbe5052926cc60b918f8de845"
     },
     {
-      "index": 181,
+      "index": 179,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom X.mid",
       "name": "Virus TI2 - Rom X",
       "short": "VT.Rom.X",
@@ -1821,7 +1801,7 @@
       "hash": "2ee6b63383b8f9b5a78bc751c8b3499bcd23bd6dbe5052926cc60b918f8de845"
     },
     {
-      "index": 182,
+      "index": 180,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom Y.mid",
       "name": "Virus TI2 - Rom Y",
       "short": "VT.Rom.Y",
@@ -1831,7 +1811,7 @@
       "hash": "2ee6b63383b8f9b5a78bc751c8b3499bcd23bd6dbe5052926cc60b918f8de845"
     },
     {
-      "index": 183,
+      "index": 181,
       "filename": "Virus TI2 Factory/Virus TI2 - Rom Z.mid",
       "name": "Virus TI2 - Rom Z",
       "short": "VT.Rom.Z",
@@ -1841,7 +1821,7 @@
       "hash": "2ee6b63383b8f9b5a78bc751c8b3499bcd23bd6dbe5052926cc60b918f8de845"
     },
     {
-      "index": 127,
+      "index": 126,
       "filename": "Extra/Zeno SubMission 2009.mid",
       "name": "Zeno SubMission 2009",
       "short": "Zeno SubM.2009",
@@ -1851,7 +1831,7 @@
       "hash": "95285cdac2b4e0e4c9f7a9b64393d8637ef4a3b512ecf57c1c60353557591009"
     },
     {
-      "index": 185,
+      "index": 183,
       "filename": "Zbandut Sound Consortium - Shaper EDM vol.1.mid",
       "name": "Zbandut Sound Consortium - Shaper EDM vol.1",
       "short": "ZSC.Shaper E.1",
