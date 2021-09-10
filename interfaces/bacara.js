@@ -1180,6 +1180,21 @@ module.exports = {
           max: 127,
           default: 0,
         },
+        transpose: {
+          name: 'Device A Transpose',
+          type: 'parameter',
+          surface: {
+            type: 'nrpn',
+            number: 6146,
+            lsbFirst: true,
+            min: 0,
+            max: 127,
+          },
+          min: -64,
+          max: 63,
+          default: 0,
+          unit: 'notes',
+        },
       },
       B: {
         device: {
@@ -1264,6 +1279,21 @@ module.exports = {
           min: 0,
           max: 127,
           default: 0,
+        },
+        transpose: {
+          name: 'Device B Transpose',
+          type: 'parameter',
+          surface: {
+            type: 'nrpn',
+            number: 6147,
+            lsbFirst: true,
+            min: 0,
+            max: 127,
+          },
+          min: -64,
+          max: 63,
+          default: 0,
+          unit: 'notes',
         },
       },
     },

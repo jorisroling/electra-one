@@ -321,19 +321,7 @@
       "bounds": [
         0,
         16,
-        486,
-        16
-      ]
-    },
-    {
-      "id": 256,
-      "pageId": 8,
-      "name": "Device B",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        16,
-        486,
+        996,
         16
       ]
     },
@@ -358,6 +346,18 @@
         340,
         192,
         656,
+        16
+      ]
+    },
+    {
+      "id": 265,
+      "pageId": 8,
+      "name": "Device B",
+      "color": "529DEC",
+      "bounds": [
+        0,
+        192,
+        996,
         16
       ]
     }
@@ -8306,42 +8306,11 @@
       ]
     },
     {
-      "id": 256,
-      "type": "list",
-      "name": "DEVICE",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        40,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 4,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 8321
-          },
-          "overlayId": 18
-        }
-      ]
-    },
-    {
       "id": 257,
       "type": "fader",
-      "name": "PORT",
-      "color": "529DEC",
+      "visible": true,
+      "name": "TRANSPOSE",
+      "color": "F45C51",
       "bounds": [
         680,
         40,
@@ -8363,43 +8332,13 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6785,
-            "min": 0,
-            "max": 63
-          }
-        }
-      ]
-    },
-    {
-      "id": 258,
-      "type": "fader",
-      "name": "BANK",
-      "color": "529DEC",
-      "bounds": [
-        850,
-        40,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 6,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 6273,
+            "parameterNumber": 6146,
             "min": 0,
             "max": 127
           },
-          "id": "value"
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0
         }
       ]
     },
@@ -8506,22 +8445,157 @@
       ]
     },
     {
-      "id": 262,
+      "id": 265,
+      "type": "list",
+      "name": "DEVICE",
+      "color": "529DEC",
+      "bounds": [
+        0,
+        216,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 8321
+          },
+          "overlayId": 18
+        }
+      ]
+    },
+    {
+      "id": 266,
+      "type": "fader",
+      "name": "PORT",
+      "color": "529DEC",
+      "bounds": [
+        170,
+        216,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6785,
+            "min": 0,
+            "max": 63
+          }
+        }
+      ]
+    },
+    {
+      "id": 267,
+      "type": "fader",
+      "name": "BANK",
+      "color": "529DEC",
+      "bounds": [
+        340,
+        216,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6273,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 269,
+      "type": "fader",
+      "visible": true,
+      "name": "TRANSPOSE",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        216,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6147,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0
+        }
+      ]
+    },
+    {
+      "id": 271,
       "type": "pad",
       "mode": "toggle",
       "name": "MUTE",
       "color": "529DEC",
       "bounds": [
-        510,
-        128,
+        0,
+        304,
         146,
         56
       ],
       "pageId": 8,
-      "controlSetId": 1,
+      "controlSetId": 2,
       "inputs": [
         {
-          "potId": 10,
+          "potId": 7,
           "valueId": "value"
         }
       ],
@@ -8541,21 +8615,21 @@
       ]
     },
     {
-      "id": 263,
+      "id": 272,
       "type": "fader",
       "name": "CHANNEL",
       "color": "529DEC",
       "bounds": [
-        680,
-        128,
+        170,
+        304,
         146,
         56
       ],
       "pageId": 8,
-      "controlSetId": 1,
+      "controlSetId": 2,
       "inputs": [
         {
-          "potId": 11,
+          "potId": 8,
           "valueId": "value"
         }
       ],
@@ -8575,21 +8649,21 @@
       ]
     },
     {
-      "id": 264,
+      "id": 273,
       "type": "fader",
       "name": "PROGRAM",
       "color": "529DEC",
       "bounds": [
-        850,
-        128,
+        340,
+        304,
         146,
         56
       ],
       "pageId": 8,
-      "controlSetId": 1,
+      "controlSetId": 2,
       "inputs": [
         {
-          "potId": 12,
+          "potId": 9,
           "valueId": "value"
         }
       ],

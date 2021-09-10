@@ -1621,15 +1621,12 @@ class BacaraMachine extends Machine {
     const deltaTime = process.hrtime(this.pulseTime)
     this.pulseTime = process.hrtime()
 
-    //    const ticks = (this.pulses % (24 * 4)) * 20
-
     const ticks = (this.pulses % ((24 * 4) * (this.interface.getParameter('steps') / 16))) * 20
     this.pulseDuration = (deltaTime[0] * 1000) + (deltaTime[1] / 1000000)
 
     this.stepIdx = (ticks  * (this.interface.getParameter('steps') / 16) ) / ticksPerStep
     this.stepIdx = (ticks  * 1 ) / ticksPerStep
-    //    debug('JJR stepIdx %y ticks %y patternSteps %y',this.stepIdx,ticks,this.interface.getParameter('steps'))
-    //            debug('this.stepIdx %y %y steps:%y',this.stepIdx,shiftedTicks,this.interface.getParameter('steps'))
+
     if (this.getState('playing')) {
 
       const tickDuration = this.pulseDuration / 20
@@ -1660,15 +1657,12 @@ class BacaraMachine extends Machine {
             if (control < 128) {
               const path = this.interface.getMapPath('external', 'cc', control)
               if (path) {
-                //debug('int control %d %y = %y %d', l, control, path, midiValue)
 
                 if (!this.lfoHistory[l].length || this.lfoHistory[l][0] != midiValue) {
                   if (this.lfoHistory[l].unshift(midiValue) > 2) {
                     this.lfoHistory[l].splice(2)
                   }
                 }
-
-                //this.interface.setParameter(path, midiValue, 'external')
 
                 let lfoControlCount = 0
                 for (let j = 0; j < 3; j++) {
@@ -1712,7 +1706,6 @@ class BacaraMachine extends Machine {
 
                     // Can Electra handle many NRPN's?
                     this.interface.setParameter(`lfo.${l}.show`, midiValue)
-                    //sendNRPN(midiOutputName, config.bacara.interface.lfo[l + 1].show.nrpn, 1, midiValue, 0, 50)
                   }
                 }
               })
@@ -1723,14 +1716,11 @@ class BacaraMachine extends Machine {
         performancePaths.forEach( perfPath => newValues[perfPath] = this.interface.getParameter(perfPath, 'modulated') )
         const deltaValues = Interface.difference(newValues, oldValues)
 
-        //      debug('modulation impact: old %y new %y delta %y ', oldValues, newValues, deltaValues)
-
         const deltaKeys = Object.keys(deltaValues)
 
         if (deltaKeys.length) {
           deltaKeys.forEach( deltaKey => {
             this.interface.emit('modulationChange', deltaKey, deltaValues[deltaKey], 'lfo')
-            //            debug('lfo modulation old: %y = %y', deltaKey, oldValues[deltaKey])
           })
           debugLfo('Modulation Impact: %y', deltaValues)
         }
@@ -1740,13 +1730,10 @@ class BacaraMachine extends Machine {
         this.showPatternGrid(this.stepIdx)
       }
       if (this.getState('pattern') && !this.interface.getParameter('mute')) {
-        //        this.getState('pattern').tracks[0].notes.forEach( (note) => {
         _.get(this.getState('pattern'), 'tracks.0.notes', []).forEach( note => {
           if (note.ticks == shiftedTicks) {
 
-            /*            debug('step %y of %y %y',this.stepIdx,this.state.sounding.length,this.state.sounding)*/
-
-            if (this.stepIdx < this.interface.getParameter('steps') && this.sounding(this.stepIdx)/*this.state.sounding[this.stepIdx]*/) {
+          if (this.stepIdx < this.interface.getParameter('steps') && this.sounding(this.stepIdx)/*this.state.sounding[this.stepIdx]*/) {
               let midiNote = note.midi
 
               const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
@@ -1756,16 +1743,14 @@ class BacaraMachine extends Machine {
                 midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
               }
 
-              midiNote += this.interface.getParameter('transpose', 'modulated') + ((this.stepIdx < this.state.octaves.length && this.state.octaves[this.stepIdx]) ? (this.state.octaves[this.stepIdx] * 12) : 0)
-
               const switchSide = (this.interface.getParameter('deviate', 'modulated') && this.interface.getParameter('deviate', 'modulated') >= Machine.getRandomInt(100))
               const dev =  (midiNote <= this.interface.getParameter('split', 'modulated')) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
-              //              debug('hi')
+              midiNote += this.interface.getParameter('transpose', 'modulated') + this.interface.getParameter(`device.${dev}.transpose`, 'modulated') + this.octave(this.stepIdx)
+
               if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability', 'modulated') >= Machine.getRandomInt(100)) {
                 const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
                 debugMidiNoteOn('%s %d %y', this.getState(`device.${dev}.portName`), channel + 1, midiNote)
 
-                //          debug('this.stepIdx %y %y steps:%y',this.stepIdx,shiftedTicks,this.interface.getParameter('steps'))
                 if (this.midiCache.getValue(this.getState(`device.${dev}.portName`), channel, 'note', midiNote)) {
                   Midi.send(this.getState(`device.${dev}.portName`), 'noteoff', {
                     note: midiNote,
@@ -2026,35 +2011,11 @@ class BacaraMachine extends Machine {
       return (step < arr.length) ? arr[step] : 1
     }
   }
-}
 
-/*function setupMidi(options) {
-  const scenario = _.get(config, `bacara.scenarios.${options.scenario}`)
-  if (scenario && scenario.actors) {
-    const actors = Object.keys(scenario.actors)
-    for (const actor of actors) {
-      if (scenario.actors[actor].enabled && scenario.actors[actor].port && scenario.actors[actor].channels && scenario.actors[actor].channels.length) {
-        const electraOnePortName = `electra-one-${scenario.actors[actor].port}`
-        const midiInput_electraOne = Midi.input(electraOnePortName, true)
-        midiInput_electraOne.on('message', handleIncoming(electraOnePortName, actor, false, {actor, ...scenario.actors[actor]}) )
-
-        if (!scenario.actors[actor].oneway) {
-          const midiInput_actor = Midi.input(actor, true)
-          midiInput_actor.on('message', handleIncoming(actor, electraOnePortName, true, {actor, ...scenario.actors[actor]}) )
-        }
-
-        if (scenario.actors[actor].initialize) {
-          for (const init in scenario.actors[actor].initialize) {
-            Midi.send(init, 'sysex', doMapping(scenario.actors[actor].initialize[init]))
-          }
-        }
-      }
-    }
-  } else {
-    console.error(`Unknown scenario "${options.scenario}"`)
+  octave(stepIdx) {
+    return ((stepIdx < this.state.octaves.length && this.state.octaves[stepIdx]) ? (this.state.octaves[stepIdx] * 12) : 0)
   }
 }
-*/
 
 function bacaraSequencer(name, sub, options) {
 
