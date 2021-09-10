@@ -88,9 +88,9 @@ function bacaraEmit(portName, part, type, value, origin) {
 }
 
 class BacaraMachine extends Machine {
-  constructor(name) {
+  constructor(name,options) {
     super(name)
-
+    this.options = options
     this.pulseTime = [0, 0]
     this.pulses = 0
     this.stepIdx = -1
@@ -101,6 +101,7 @@ class BacaraMachine extends Machine {
     this.slewLimiterTimouts = []
 
     this.virus = new Virus('virus-ti')
+    this.remote = {}
 
     Bacara.event.on('change', (device, part, name, value, origin, command) => {
       if (/*command != me &&*/ device == 'virus-ti' && (part >= 1 && part <= 16)) {
@@ -216,6 +217,7 @@ class BacaraMachine extends Machine {
 
     const virusAxyzSelect = (elementPath, origin) => {
       const part = this.interface.getParameter('virus.axyz.part', 1)
+      this.setRemote(origin,`virus.mixer.part.${part - 1}.next`,`virus.mixer.part.${part - 1}.previous`)
       if (part >= 1 && part <= 16) {
         bacaraEmit('virus-ti', part, 'select', null, origin)
       }
@@ -305,11 +307,37 @@ class BacaraMachine extends Machine {
       })
     }
 
+   debug('options %y',options)
+    if (options.remote) {
+      const midiInput_remote = Midi.input(options.remote)
+      if (midiInput_remote) {
+        midiInput_remote.on('message', (msg) => {
+          switch (msg._type) {
+          case 'cc':
+            if (msg.channel == (this.options.remoteChannel - 1)) {
+//              debug('Remote %y %y',msg,this.state.remote)
+              let actionPath
+              if (msg.controller==89 && msg.value==127) actionPath=this.getState('remote.next')
+              if (msg.controller==88 && msg.value==127) actionPath=this.getState('remote.previous')
+              if (actionPath) {
+                const actionSideEffect = _.get(this.actionSideEffects, actionPath)
+                if (typeof actionSideEffect == 'function') {
+                  actionSideEffect(path, 'remote')
+                }
+              }
+            }
+            break
+          }
+        })
+      }
+    }
+
     this.state.sounding = new Array(this.getState('patternSteps', patternStepsDefault)).fill(1)
 
 
     const virusMixerSelect = (part) => (elementPath, origin) => {
       if (part >= 1 && part <= 16) {
+        this.setRemote(origin,`virus.mixer.part.${part - 1}.next`,`virus.mixer.part.${part - 1}.previous`)
         bacaraEmit('virus-ti', part, 'select', null, origin)
       }
     }
@@ -788,6 +816,7 @@ class BacaraMachine extends Machine {
       const channel = part
       const bank = this.interface.getParameter('virus.axyz.bank')
       const program = this.interface.getParameter('virus.axyz.program')
+      this.setRemote(origin,`virus.axyz.next`,`virus.axyz.previous`)
       debugMidiControlChange('port %s  channel %d  CC %y = %y', portName, channel, 91, value)
       Midi.send(portName, 'cc', {channel:channel - 1, controller:91, value}, 'levelChange-virus', 200)
     }
@@ -797,6 +826,7 @@ class BacaraMachine extends Machine {
       const bank = this.interface.getParameter('virus.axyz.bank')
       const program = this.interface.getParameter('virus.axyz.program')
 
+      this.setRemote(origin,`virus.axyz.next`,`virus.axyz.previous`)
       this.virusSendBankAndProgram(part, bank, program, origin)
     }
 
@@ -863,6 +893,7 @@ class BacaraMachine extends Machine {
 
     const virusMixerSendBankAndProgram = (part, origin) => {
       if (part >= 1 && part <= 16) {
+        this.setRemote(origin,`virus.mixer.part.${part - 1}.next`,`virus.mixer.part.${part - 1}.previous`)
         const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
         const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
         this.virusSendBankAndProgram(part, bank, program, origin)
@@ -1846,7 +1877,7 @@ class BacaraMachine extends Machine {
   }
 
   virusSetupParts() {
-    for (let part = 1; part <= 16; part++) {
+    for (let part = 16; part > 0; part--) {
       const virusPreset = _.get(this.state, `virus.part.${part - 1}.preset`)
       if (virusPreset) {
         const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
@@ -1900,7 +1931,7 @@ class BacaraMachine extends Machine {
 
   virusReflectParts() {
     if (electra.presetEquals('electra-one-ctrl', 'Bacara')) {
-      for (let part = 1; part <= 16; part++) {
+      for (let part = 16; part >=1; part--) {
         const virusPreset = _.get(this.state, `virus.part.${part - 1}.preset`)
         if (virusPreset) {
           this.virusReflectPreset(part, virusPreset)
@@ -2015,6 +2046,14 @@ class BacaraMachine extends Machine {
   octave(stepIdx) {
     return ((stepIdx < this.state.octaves.length && this.state.octaves[stepIdx]) ? (this.state.octaves[stepIdx] * 12) : 0)
   }
+
+  setRemote(origin,next,previous) {
+    if (origin!='post-connect') {
+      this.setState('remote.next', next)
+      this.setState('remote.previous', previous)
+    }
+  }
+
 }
 
 function bacaraSequencer(name, sub, options) {
@@ -2049,7 +2088,7 @@ function bacaraSequencer(name, sub, options) {
   })
 
 
-  const bacaraMachine = new BacaraMachine('bacara')
+  const bacaraMachine = new BacaraMachine('bacara',options)
   bacaraMachine.readState()
   bacaraMachine.writeState()
 

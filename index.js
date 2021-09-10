@@ -23,6 +23,9 @@ args
   .option('general', 'General Input MIDI interface name (part)', 'lightpad-block')
   .option('generalChannel', 'General Input Channel (1-16)', 1)
 
+  .option('remote', 'Remote Input MIDI interface name (part)', 'thouch-block')
+  .option('remoteChannel', 'Remote Input Channel (1-16)', 1)
+
   .option('bank', 'For upload & remove commands: Specify a bank as <1-6>', 0)
   .option('slot', 'For upload & remove commands: Specify a slot as <1-12>', 0)
 

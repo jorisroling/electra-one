@@ -46,7 +46,6 @@ function pageSwap(name, sub, options) {
           debug('copy page %y => %y', sourcePage, targetPage)
           preset.name += ` - Copied ${sourcePage} to ${targetPage}`
 
-          // JJR
           const tmp = preset.pages[pageA - 1]
           preset.pages[pageA - 1] = preset.pages[pageB - 1]
           preset.pages[pageB - 1] = tmp

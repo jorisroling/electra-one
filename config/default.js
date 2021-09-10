@@ -87,6 +87,9 @@ module.exports = {
       'lightpad-block': {
         darwin: 'Lightpad BLOCK ', // Pfff, a trailing space, really?
       },
+      'thouch-block': {
+        darwin: 'Touch Block Bluetooth',
+      },
     },
   },
   devices: {
