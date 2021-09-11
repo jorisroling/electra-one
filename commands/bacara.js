@@ -217,7 +217,7 @@ class BacaraMachine extends Machine {
 
     const virusAxyzSelect = (elementPath, origin) => {
       const part = this.interface.getParameter('virus.axyz.part', 1)
-      this.setRemote(origin,`virus.mixer.part.${part - 1}.next`,`virus.mixer.part.${part - 1}.previous`)
+      this.setRemote(origin,{next:`virus.axyz.next`,previous:`virus.axyz.previous`,nextBank:`virus.axyz.nextBank`,previousBank:`virus.axyz.previousBank`})
       if (part >= 1 && part <= 16) {
         bacaraEmit('virus-ti', part, 'select', null, origin)
       }
@@ -289,6 +289,7 @@ class BacaraMachine extends Machine {
           const banks = Virus.getBanks()
           if (banks) {
             this.interface.setParameter('virus.axyz.bank', (virusRamRomBanks + banks.length) - 1)
+            virusAxyzSendBankAndProgram(elementPath, 1, origin)
           }
         }
       }
@@ -312,14 +313,18 @@ class BacaraMachine extends Machine {
       const midiInput_remote = Midi.input(options.remote)
       if (midiInput_remote) {
         midiInput_remote.on('message', (msg) => {
+
+/*          debug('msg %y',msg)*/
           switch (msg._type) {
           case 'cc':
             if (msg.channel == (this.options.remoteChannel - 1)) {
-//              debug('Remote %y %y',msg,this.state.remote)
               let actionPath
               if (msg.controller==89 && msg.value==127) actionPath=this.getState('remote.next')
               if (msg.controller==88 && msg.value==127) actionPath=this.getState('remote.previous')
+              if (msg.controller==84 && msg.value==127) actionPath=this.getState('remote.nextBank')
+              if (msg.controller==83 && msg.value==127) actionPath=this.getState('remote.previousBank')
               if (actionPath) {
+                debug('Remote %y',actionPath)
                 const actionSideEffect = _.get(this.actionSideEffects, actionPath)
                 if (typeof actionSideEffect == 'function') {
                   actionSideEffect(path, 'remote')
@@ -337,7 +342,7 @@ class BacaraMachine extends Machine {
 
     const virusMixerSelect = (part) => (elementPath, origin) => {
       if (part >= 1 && part <= 16) {
-        this.setRemote(origin,`virus.mixer.part.${part - 1}.next`,`virus.mixer.part.${part - 1}.previous`)
+        this.setRemote(origin,{next:`virus.mixer.part.${part - 1}.next`,previous:`virus.mixer.part.${part - 1}.previous`,nextBank:`virus.mixer.part.${part - 1}.nextBank`,previousBank:`virus.mixer.part.${part - 1}.previousBank`})
         bacaraEmit('virus-ti', part, 'select', null, origin)
       }
     }
@@ -381,6 +386,33 @@ class BacaraMachine extends Machine {
           this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, 127)
         }
         virusMixerSendBankAndProgram(part, origin)
+      }
+    }
+
+    const virusMixerNextBank = (part) => (elementPath, origin) => {
+      if (part >= 1 && part <= 16) {
+        const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
+        const banks = Virus.getBanks()
+        if (banks && bank < (virusRamRomBanks + banks.length)) {
+          this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, bank + 1)
+          virusMixerSendBankAndProgram(part, origin)
+        }
+      }
+    }
+
+    const virusMixerPreviousBank = (part) => (elementPath, origin) => {
+      if (part >= 1 && part <= 16) {
+        const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
+        if (bank > 0) {
+          this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, bank - 1)
+          virusMixerSendBankAndProgram(part, origin)
+        } else {
+          const banks = Virus.getBanks()
+          if (banks) {
+            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, (virusRamRomBanks + banks.length) - 1)
+            virusMixerSendBankAndProgram(part, origin)
+          }
+        }
       }
     }
 
@@ -534,31 +566,43 @@ class BacaraMachine extends Machine {
               select: virusMixerSelect(1),
               next: virusMixerNext(1),
               previous: virusMixerPrevious(1),
+              nextBank: virusMixerNextBank(1),
+              previousBank: virusMixerPreviousBank(1),
             },
             {
               select: virusMixerSelect(2),
               next: virusMixerNext(2),
               previous: virusMixerPrevious(2),
+              nextBank: virusMixerNextBank(2),
+              previousBank: virusMixerPreviousBank(2),
             },
             {
               select: virusMixerSelect(3),
               next: virusMixerNext(3),
               previous: virusMixerPrevious(3),
+              nextBank: virusMixerNextBank(3),
+              previousBank: virusMixerPreviousBank(3),
             },
             {
               select: virusMixerSelect(4),
               next: virusMixerNext(4),
               previous: virusMixerPrevious(4),
+              nextBank: virusMixerNextBank(4),
+              previousBank: virusMixerPreviousBank(4),
             },
             {
               select: virusMixerSelect(5),
               next: virusMixerNext(5),
               previous: virusMixerPrevious(5),
+              nextBank: virusMixerNextBank(5),
+              previousBank: virusMixerPreviousBank(5),
             },
             {
               select: virusMixerSelect(6),
               next: virusMixerNext(6),
               previous: virusMixerPrevious(6),
+              nextBank: virusMixerNextBank(6),
+              previousBank: virusMixerPreviousBank(6),
             },
           ],
         },
@@ -816,7 +860,7 @@ class BacaraMachine extends Machine {
       const channel = part
       const bank = this.interface.getParameter('virus.axyz.bank')
       const program = this.interface.getParameter('virus.axyz.program')
-      this.setRemote(origin,`virus.axyz.next`,`virus.axyz.previous`)
+      this.setRemote(origin,{next:`virus.axyz.next`,previous:`virus.axyz.previous`,nextBank:`virus.axyz.nextBank`,previousBank:`virus.axyz.previousBank`})
       debugMidiControlChange('port %s  channel %d  CC %y = %y', portName, channel, 91, value)
       Midi.send(portName, 'cc', {channel:channel - 1, controller:91, value}, 'levelChange-virus', 200)
     }
@@ -826,7 +870,7 @@ class BacaraMachine extends Machine {
       const bank = this.interface.getParameter('virus.axyz.bank')
       const program = this.interface.getParameter('virus.axyz.program')
 
-      this.setRemote(origin,`virus.axyz.next`,`virus.axyz.previous`)
+      this.setRemote(origin,{next:`virus.axyz.next`,previous:`virus.axyz.previous`,nextBank:`virus.axyz.nextBank`,previousBank:`virus.axyz.previousBank`})
       this.virusSendBankAndProgram(part, bank, program, origin)
     }
 
@@ -893,7 +937,7 @@ class BacaraMachine extends Machine {
 
     const virusMixerSendBankAndProgram = (part, origin) => {
       if (part >= 1 && part <= 16) {
-        this.setRemote(origin,`virus.mixer.part.${part - 1}.next`,`virus.mixer.part.${part - 1}.previous`)
+        this.setRemote(origin,{next:`virus.mixer.part.${part - 1}.next`,previous:`virus.mixer.part.${part - 1}.previous`,nextBank:`virus.mixer.part.${part - 1}.nextBank`,previousBank:`virus.mixer.part.${part - 1}.previousBank`})
         const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
         const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
         this.virusSendBankAndProgram(part, bank, program, origin)
@@ -2047,10 +2091,11 @@ class BacaraMachine extends Machine {
     return ((stepIdx < this.state.octaves.length && this.state.octaves[stepIdx]) ? (this.state.octaves[stepIdx] * 12) : 0)
   }
 
-  setRemote(origin,next,previous) {
+  setRemote(origin,options) {
     if (origin!='post-connect') {
-      this.setState('remote.next', next)
-      this.setState('remote.previous', previous)
+      for (let key in options) {
+        this.setState(`remote.${key}`, options[key])
+      }
     }
   }
 
