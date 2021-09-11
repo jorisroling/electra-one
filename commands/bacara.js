@@ -140,6 +140,7 @@ class BacaraMachine extends Machine {
           this.writeState()
         } else if (name == 'select') {
           this.interface.setParameter('virus.axyz.part',part)
+          virusAxyzRecenterSend()
         }
       }
     })
@@ -219,7 +220,7 @@ class BacaraMachine extends Machine {
 
     const virusAxyzSelect = (elementPath, origin) => {
       const part = this.interface.getParameter('virus.axyz.part', 1)
-      this.setRemote(origin, {next:'virus.axyz.next', previous:'virus.axyz.previous', random:'virus.axyz.random', nextBank:'virus.axyz.nextBank', previousBank:'virus.axyz.previousBank'})
+      this.setRemote(origin, {next:'virus.axyz.next', previous:'virus.axyz.previous', random:'virus.axyz.random', nextBank:'virus.axyz.nextBank', previousBank:'virus.axyz.previousBank', recenter:'virus.axyz.recenter'})
       if (part >= 1 && part <= 16) {
         bacaraEmit('virus-ti', part, 'select', null, origin)
       }
@@ -340,6 +341,9 @@ class BacaraMachine extends Machine {
               }
               if (msg.controller == 87 && msg.value == 127) {
                 actionPath = this.getState('remote.random')
+              }
+              if (msg.controller == 85 && msg.value == 127) {
+                actionPath = this.getState('remote.recenter')
               }
               if (msg.controller == 84 && msg.value == 127) {
                 actionPath = this.getState('remote.nextBank')
@@ -1121,6 +1125,7 @@ class BacaraMachine extends Machine {
     this.parameterEminentSideEffects = {
       virus: {
         axyz: {
+//          part: virusAxyzRecenter,
           x1: { target: [virusAxyzRestoreDefault('x1', 1), virusAxyzRestoreDefault('x1', 2)] },
           y1: { target: [virusAxyzRestoreDefault('y1', 1), virusAxyzRestoreDefault('y1', 2)] },
           x2: { target: [virusAxyzRestoreDefault('x2', 1), virusAxyzRestoreDefault('x2', 2)] },
