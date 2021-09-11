@@ -417,6 +417,40 @@ class BacaraMachine extends Machine {
     }
 
 
+    const virusSearchSelect = (part) => (elementPath, origin) => {
+      if (part >= 1 && part <= 16) {
+        this.setRemote(origin,{next:`virus.search.part.${part - 1}.next`,previous:`virus.search.part.${part - 1}.previous`,nextBank:`virus.search.part.${part - 1}.nextBank`,previousBank:`virus.search.part.${part - 1}.previousBank`})
+        bacaraEmit('virus-ti', part, 'select', null, origin)
+      }
+    }
+
+    const virusSearch = (part,direction,elementPath, origin) => {
+      if (part >= 1 && part <= 16) {
+        const category = this.interface.getParameter(`virus.search.part.${part - 1}.category`)
+        const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
+        const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
+        Virus.searchCategory(category,direction,bank >= virusRamRomBanks ? bank - virusRamRomBanks : -1,bank >= virusRamRomBanks ? program : -1,(bank,program) => {
+          if (bank>=0) {
+            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`,bank + virusRamRomBanks)
+          }
+          if (program>=0) {
+            this.interface.setParameter(`virus.mixer.part.${part - 1}.program`,program)
+          }
+          virusMixerSendBankAndProgram(part, origin)
+          this.setRemote(origin,{next:`virus.search.part.${part - 1}.next`,previous:`virus.search.part.${part - 1}.previous`,nextBank:`virus.search.part.${part - 1}.nextBank`,previousBank:`virus.search.part.${part - 1}.previousBank`})
+        })
+      }
+    }
+
+    const virusSearchNext = (part) => (elementPath, origin) => {
+      virusSearch(part,1,elementPath, origin)
+    }
+
+    const virusSearchPrevious = (part) => (elementPath, origin) => {
+      virusSearch(part,-1,elementPath, origin)
+    }
+
+
     this.actionSideEffects = {
       load: (elementPath, origin) => {
         if (origin == 'surface') {
@@ -603,6 +637,40 @@ class BacaraMachine extends Machine {
               previous: virusMixerPrevious(6),
               nextBank: virusMixerNextBank(6),
               previousBank: virusMixerPreviousBank(6),
+            },
+          ],
+        },
+        search: {
+          part: [
+            {
+              select: virusSearchSelect(1),
+              next: virusSearchNext(1),
+              previous: virusSearchPrevious(1),
+            },
+            {
+              select: virusSearchSelect(2),
+              next: virusSearchNext(2),
+              previous: virusSearchPrevious(2),
+            },
+            {
+              select: virusSearchSelect(3),
+              next: virusSearchNext(3),
+              previous: virusSearchPrevious(3),
+            },
+            {
+              select: virusSearchSelect(4),
+              next: virusSearchNext(4),
+              previous: virusSearchPrevious(4),
+            },
+            {
+              select: virusSearchSelect(5),
+              next: virusSearchNext(5),
+              previous: virusSearchPrevious(5),
+            },
+            {
+              select: virusSearchSelect(6),
+              next: virusSearchNext(6),
+              previous: virusSearchPrevious(6),
             },
           ],
         },
@@ -986,6 +1054,11 @@ class BacaraMachine extends Machine {
       }
     }
 
+    const virusSearchCategory = (part) => (elementPath, value, origin) => {
+      debug('Category part %y %y',part,value)
+    }
+
+
 
     this.parameterEminentSideEffects = {
       virus: {
@@ -1244,6 +1317,28 @@ class BacaraMachine extends Machine {
             { control: [ virusMacroControl(4, 1), virusMacroControl(4, 2), virusMacroControl(4, 3), virusMacroControl(4, 4), virusMacroControl(4, 5), virusMacroControl(4, 6) ] },
             { control: [ virusMacroControl(5, 1), virusMacroControl(5, 2), virusMacroControl(5, 3), virusMacroControl(5, 4), virusMacroControl(5, 5), virusMacroControl(5, 6) ] },
             { control: [ virusMacroControl(6, 1), virusMacroControl(6, 2), virusMacroControl(6, 3), virusMacroControl(6, 4), virusMacroControl(6, 5), virusMacroControl(6, 6) ] },
+          ],
+        },
+        search: {
+          part: [
+            {
+              category: virusSearchCategory(1),
+            },
+            {
+              category: virusSearchCategory(2),
+            },
+            {
+              category: virusSearchCategory(3),
+            },
+            {
+              category: virusSearchCategory(4),
+            },
+            {
+              category: virusSearchCategory(5),
+            },
+            {
+              category: virusSearchCategory(6),
+            },
           ],
         },
       },
@@ -1948,25 +2043,26 @@ class BacaraMachine extends Machine {
         Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
       } else {
         if (origin != 'post-connect') {
-          const virusPreset = Virus.getPreset(bank - virusRamRomBanks, program)
-          if (virusPreset) {
-            const bytes = Virus.presetToSysEx(part, virusPreset, bank, program)
-            if (bytes) {
-              _.set(this.state, `virus.part.${part - 1}.preset`, virusPreset)
-              Midi.send('virus-ti', 'sysex', bytes)
-              Virus.parseSysEx(bytes, (part, storedPreset) => {
-                this.virusReflectPreset(part, storedPreset)
-              })
-              bacaraEmit('virus-ti', part, 'sysex', bytes, origin)
-              bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
+          Virus.getPreset(bank - virusRamRomBanks, program, (virusPreset) => {
+            if (virusPreset) {
+              const bytes = Virus.presetToSysEx(part, virusPreset, bank, program)
+              if (bytes) {
+                _.set(this.state, `virus.part.${part - 1}.preset`, virusPreset)
+                Midi.send('virus-ti', 'sysex', bytes)
+                Virus.parseSysEx(bytes, (part, storedPreset) => {
+                  this.virusReflectPreset(part, storedPreset)
+                })
+                bacaraEmit('virus-ti', part, 'sysex', bytes, origin)
+                bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
+              }
+            } else {
+              const virusBank = Virus.getBank(bank - virusRamRomBanks)
+              debug('virusBank %y', virusBank)
+              if (virusBank && virusBank.presets) {
+                //              this.interface.setParameter(`virus.mixer.part.${part-1}.program`,virusBank.presets-1)
+              }
             }
-          } else {
-            const virusBank = Virus.getBank(bank - virusRamRomBanks)
-            debug('virusBank %y', virusBank)
-            if (virusBank && virusBank.presets) {
-              //              this.interface.setParameter(`virus.mixer.part.${part-1}.program`,virusBank.presets-1)
-            }
-          }
+          })
         }
       }
     }
@@ -2004,9 +2100,10 @@ class BacaraMachine extends Machine {
 
       if (electra.presetEquals('electra-one-ctrl', 'Bacara')) {
         if (part >= 1 && part <= 6) {
-          const selectControls = [145, 146, 147, 148, 149, 150]
-          const ctrlId = selectControls[part - 1]
-          electra.controlReflect('electra-one-ctrl', ctrlId, {'name': virusPreset.name})
+          const matrixSelectControls = [145, 146, 147, 148, 149, 150]
+          const searchSelectControls = [325, 326, 327, 328, 329, 330]
+          electra.controlReflect('electra-one-ctrl', matrixSelectControls[part - 1], {'name': virusPreset.name})
+          electra.controlReflect('electra-one-ctrl', searchSelectControls[part - 1], {'name': virusPreset.name})
         }
         if (part == this.interface.getParameter('virus.axyz.part')) {
           const ctrlId = 110

@@ -2635,7 +2635,7 @@ module.exports = {
         part: [
           {
             bank: {
-              name: 'Virus Part 1 Bank',
+              name: 'Virus Mixer Part 1 Bank',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2649,7 +2649,7 @@ module.exports = {
               default: 0,
             },
             program: {
-              name: 'Virus Part 1 Program',
+              name: 'Virus Mixer Part 1 Program',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2663,7 +2663,7 @@ module.exports = {
               default: 0,
             },
             next: {
-              name: 'Virus Part 1 Next',
+              name: 'Virus Mixer Part 1 Next',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2675,7 +2675,7 @@ module.exports = {
               on: 1,
             },
             previous: {
-              name: 'Virus Part 1 Previous',
+              name: 'Virus Mixer Part 1 Previous',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2687,7 +2687,7 @@ module.exports = {
               on: 1,
             },
             select: {
-              name: 'Virus Part 1 Select',
+              name: 'Virus Mixer Part 1 Select',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2699,7 +2699,7 @@ module.exports = {
               on: 1,
             },
             level: {
-              name: 'Virus Part 1 Level',
+              name: 'Virus Mixer Part 1 Level',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2715,7 +2715,7 @@ module.exports = {
           },
           {
             bank: {
-              name: 'Virus Part 2 Bank',
+              name: 'Virus Mixer Part 2 Bank',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2729,7 +2729,7 @@ module.exports = {
               default: 0,
             },
             program: {
-              name: 'Virus Part 2 Program',
+              name: 'Virus Mixer Part 2 Program',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2743,7 +2743,7 @@ module.exports = {
               default: 0,
             },
             next: {
-              name: 'Virus Part 2 Next',
+              name: 'Virus Mixer Part 2 Next',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2755,7 +2755,7 @@ module.exports = {
               on: 1,
             },
             previous: {
-              name: 'Virus Part 2 Previous',
+              name: 'Virus Mixer Part 2 Previous',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2767,7 +2767,7 @@ module.exports = {
               on: 1,
             },
             select: {
-              name: 'Virus Part 2 Select',
+              name: 'Virus Mixer Part 2 Select',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2779,7 +2779,7 @@ module.exports = {
               on: 1,
             },
             level: {
-              name: 'Virus Part 2 Level',
+              name: 'Virus Mixer Part 2 Level',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2795,7 +2795,7 @@ module.exports = {
           },
           {
             bank: {
-              name: 'Virus Part 3 Bank',
+              name: 'Virus Mixer Part 3 Bank',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2809,7 +2809,7 @@ module.exports = {
               default: 0,
             },
             program: {
-              name: 'Virus Part 3 Program',
+              name: 'Virus Mixer Part 3 Program',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2823,7 +2823,7 @@ module.exports = {
               default: 0,
             },
             next: {
-              name: 'Virus Part 3 Next',
+              name: 'Virus Mixer Part 3 Next',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2835,7 +2835,7 @@ module.exports = {
               on: 1,
             },
             previous: {
-              name: 'Virus Part 3 Previous',
+              name: 'Virus Mixer Part 3 Previous',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2847,7 +2847,7 @@ module.exports = {
               on: 1,
             },
             select: {
-              name: 'Virus Part 3 Select',
+              name: 'Virus Mixer Part 3 Select',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2859,7 +2859,7 @@ module.exports = {
               on: 1,
             },
             level: {
-              name: 'Virus Part 3 Level',
+              name: 'Virus Mixer Part 3 Level',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2875,7 +2875,7 @@ module.exports = {
           },
           {
             bank: {
-              name: 'Virus Part 4 Bank',
+              name: 'Virus Mixer Part 4 Bank',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2889,7 +2889,7 @@ module.exports = {
               default: 0,
             },
             program: {
-              name: 'Virus Part 4 Program',
+              name: 'Virus Mixer Part 4 Program',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2903,7 +2903,7 @@ module.exports = {
               default: 0,
             },
             next: {
-              name: 'Virus Part 4 Next',
+              name: 'Virus Mixer Part 4 Next',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2915,7 +2915,7 @@ module.exports = {
               on: 1,
             },
             previous: {
-              name: 'Virus Part 4 Previous',
+              name: 'Virus Mixer Part 4 Previous',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2927,7 +2927,7 @@ module.exports = {
               on: 1,
             },
             select: {
-              name: 'Virus Part 4 Select',
+              name: 'Virus Mixer Part 4 Select',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2939,7 +2939,7 @@ module.exports = {
               on: 1,
             },
             level: {
-              name: 'Virus Part 4 Level',
+              name: 'Virus Mixer Part 4 Level',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2955,7 +2955,7 @@ module.exports = {
           },
           {
             bank: {
-              name: 'Virus Part 5 Bank',
+              name: 'Virus Mixer Part 5 Bank',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2969,7 +2969,7 @@ module.exports = {
               default: 0,
             },
             program: {
-              name: 'Virus Part 5 Program',
+              name: 'Virus Mixer Part 5 Program',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2983,7 +2983,7 @@ module.exports = {
               default: 0,
             },
             next: {
-              name: 'Virus Part 5 Next',
+              name: 'Virus Mixer Part 5 Next',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2995,7 +2995,7 @@ module.exports = {
               on: 1,
             },
             previous: {
-              name: 'Virus Part 5 Previous',
+              name: 'Virus Mixer Part 5 Previous',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -3007,7 +3007,7 @@ module.exports = {
               on: 1,
             },
             select: {
-              name: 'Virus Part 5 Select',
+              name: 'Virus Mixer Part 5 Select',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -3019,7 +3019,7 @@ module.exports = {
               on: 1,
             },
             level: {
-              name: 'Virus Part 5 Level',
+              name: 'Virus Mixer Part 5 Level',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3035,7 +3035,7 @@ module.exports = {
           },
           {
             bank: {
-              name: 'Virus Part 6 Bank',
+              name: 'Virus Mixer Part 6 Bank',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3049,7 +3049,7 @@ module.exports = {
               default: 0,
             },
             program: {
-              name: 'Virus Part 6 Program',
+              name: 'Virus Mixer Part 6 Program',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3063,7 +3063,7 @@ module.exports = {
               default: 0,
             },
             next: {
-              name: 'Virus Part 6 Next',
+              name: 'Virus Mixer Part 6 Next',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -3075,7 +3075,7 @@ module.exports = {
               on: 1,
             },
             previous: {
-              name: 'Virus Part 6 Previous',
+              name: 'Virus Mixer Part 6 Previous',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -3087,7 +3087,7 @@ module.exports = {
               on: 1,
             },
             select: {
-              name: 'Virus Part 6 Select',
+              name: 'Virus Mixer Part 6 Select',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -3099,7 +3099,7 @@ module.exports = {
               on: 1,
             },
             level: {
-              name: 'Virus Part 6 Level',
+              name: 'Virus Mixer Part 6 Level',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3123,6 +3123,322 @@ module.exports = {
           { control: [ virusMacroControl(4, 1), virusMacroControl(4, 2), virusMacroControl(4, 3), virusMacroControl(4, 4), virusMacroControl(4, 5), virusMacroControl(4, 6) ] },
           { control: [ virusMacroControl(5, 1), virusMacroControl(5, 2), virusMacroControl(5, 3), virusMacroControl(5, 4), virusMacroControl(5, 5), virusMacroControl(5, 6) ] },
           { control: [ virusMacroControl(6, 1), virusMacroControl(6, 2), virusMacroControl(6, 3), virusMacroControl(6, 4), virusMacroControl(6, 5), virusMacroControl(6, 6) ] },
+        ],
+      },
+      search: {
+        part: [
+          {
+            select: {
+              name: 'Virus Search Part 1 Select',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16261,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+            category: {
+              name: 'Virus Search Part 1 Category',
+              type: 'parameter',
+              surface: {
+                type: 'nrpn',
+                number: 16262,
+                lsbFirst: false,
+                min: 0,
+                max: 22,
+              },
+              min: 0,
+              max: 22,
+              default: 0,
+            },
+            next: {
+              name: 'Virus Search Part 1 Next',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16263,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+            previous: {
+              name: 'Virus Search Part 1 Previous',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16264,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+          },
+          {
+            select: {
+              name: 'Virus Search Part 2 Select',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16265,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+            category: {
+              name: 'Virus Search Part 2 Category',
+              type: 'parameter',
+              surface: {
+                type: 'nrpn',
+                number: 16266,
+                lsbFirst: false,
+                min: 0,
+                max: 22,
+              },
+              min: 0,
+              max: 22,
+              default: 0,
+            },
+            next: {
+              name: 'Virus Search Part 2 Next',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16267,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+            previous: {
+              name: 'Virus Search Part 2 Previous',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16268,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+          },
+          {
+            select: {
+              name: 'Virus Search Part 3 Select',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16269,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+            category: {
+              name: 'Virus Search Part 3 Category',
+              type: 'parameter',
+              surface: {
+                type: 'nrpn',
+                number: 16270,
+                lsbFirst: false,
+                min: 0,
+                max: 22,
+              },
+              min: 0,
+              max: 22,
+              default: 0,
+            },
+            next: {
+              name: 'Virus Search Part 3 Next',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16271,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+            previous: {
+              name: 'Virus Search Part 3 Previous',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16272,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+          },
+          {
+            select: {
+              name: 'Virus Search Part 4 Select',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16273,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+            category: {
+              name: 'Virus Search Part 4 Category',
+              type: 'parameter',
+              surface: {
+                type: 'nrpn',
+                number: 16274,
+                lsbFirst: false,
+                min: 0,
+                max: 22,
+              },
+              min: 0,
+              max: 22,
+              default: 0,
+            },
+            next: {
+              name: 'Virus Search Part 4 Next',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16275,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+            previous: {
+              name: 'Virus Search Part 4 Previous',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16276,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+          },
+          {
+            select: {
+              name: 'Virus Search Part 5 Select',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16277,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+            category: {
+              name: 'Virus Search Part 5 Category',
+              type: 'parameter',
+              surface: {
+                type: 'nrpn',
+                number: 16278,
+                lsbFirst: false,
+                min: 0,
+                max: 22,
+              },
+              min: 0,
+              max: 22,
+              default: 0,
+            },
+            next: {
+              name: 'Virus Search Part 5 Next',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16279,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+            previous: {
+              name: 'Virus Search Part 5 Previous',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16280,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+          },
+          {
+            select: {
+              name: 'Virus Search Part 6 Select',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16281,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+            category: {
+              name: 'Virus Search Part 6 Category',
+              type: 'parameter',
+              surface: {
+                type: 'nrpn',
+                number: 16282,
+                lsbFirst: false,
+                min: 0,
+                max: 22,
+              },
+              min: 0,
+              max: 22,
+              default: 0,
+            },
+            next: {
+              name: 'Virus Search Part 6 Next',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16283,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+            previous: {
+              name: 'Virus Search Part 6 Previous',
+              type: 'action',
+              surface: {
+                type: 'nrpn',
+                number: 16284,
+                lsbFirst: false,
+                min: 0,
+                max: 1,
+              },
+              on: 1,
+            },
+          },
         ],
       },
     },
