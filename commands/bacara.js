@@ -1056,6 +1056,7 @@ class BacaraMachine extends Machine {
 
     const virusSearchCategory = (part) => (elementPath, value, origin) => {
       debug('Category part %y %y',part,value)
+      this.setRemote(origin,{next:`virus.search.part.${part - 1}.next`,previous:`virus.search.part.${part - 1}.previous`,nextBank:`virus.search.part.${part - 1}.nextBank`,previousBank:`virus.search.part.${part - 1}.previousBank`})
     }
 
 
