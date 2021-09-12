@@ -493,7 +493,8 @@ class BacaraMachine extends Machine {
     const virusSearchRandom = (part) => (elementPath, origin) => {
       if (part >= 1 && part <= 16) {
         Virus.randomBankAndProgram((bank, program) => {
-          virusSearch(part, 1, bank, program, origin)
+          debug('Random bank %y program %y',bank,program)
+          virusSearch(part, 0, bank + virusRamRomBanks, program, origin)
         })
       }
     }
