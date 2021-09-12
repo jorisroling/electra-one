@@ -4533,38 +4533,13 @@
         },
         {
           "index": 207,
-          "label": "VT.Rom.V",
+          "label": "Zeno SubM.2009",
           "value": 207
         },
         {
           "index": 208,
-          "label": "VT.Rom.W",
-          "value": 208
-        },
-        {
-          "index": 209,
-          "label": "VT.Rom.X",
-          "value": 209
-        },
-        {
-          "index": 210,
-          "label": "VT.Rom.Y",
-          "value": 210
-        },
-        {
-          "index": 211,
-          "label": "VT.Rom.Z",
-          "value": 211
-        },
-        {
-          "index": 212,
-          "label": "Zeno SubM.2009",
-          "value": 212
-        },
-        {
-          "index": 213,
           "label": "ZSC.Shaper E.1",
-          "value": 213
+          "value": 208
         }
       ]
     },

@@ -7,7 +7,7 @@
         "name": "Arp - 42 Patches",
         "short": "A.42 Patches",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "6c127fad2fd10187f5c9fae46cdf853d71ab981a836c3b7e0eddf1300993dcda"
       },
@@ -17,7 +17,7 @@
         "name": "AXM - Aldo Perrone 2013",
         "short": "A.Aldo Pe.2013",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "47bb8a3848fac4c147b1526564a208b2bfe4e27a6386f176021fb56f1e325336"
       },
@@ -27,7 +27,7 @@
         "name": "Alan-M - Trance",
         "short": "A.Trance",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "7ca3969dec6b9e8c9914a9a4f60393823a9cfef42051127251e891dc55317917"
       },
@@ -37,7 +37,7 @@
         "name": "Avenger-Sound - Trance Behind The Brain 4",
         "short": "A.Trance Beh.4",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "1ecb7a2729a3dd095310385ee42cf52cb87d70e1a678061e3602813c26a33858"
       },
@@ -47,7 +47,7 @@
         "name": "Avenger-Sound - Trance Behind The Brain 5",
         "short": "A.Trance Beh.5",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "4add9722ad84d72742a16cb461217f0699f787637ea3123d04d322eb057c23ae"
       },
@@ -57,7 +57,7 @@
         "name": "Avenger-Sound - Trance Behind The Brain 6",
         "short": "A.Trance Beh.6",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "af7d1ad14ea3ed301778c9bbc6cc8e482ef92a51235daf4534b97fbdac8f16cd"
       },
@@ -67,7 +67,7 @@
         "name": "Alba Ecstasy - Dynamic Life Sound - Vol.1 - 2013 B",
         "short": "AE.Dynamic Lif",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "0e251acd0f6977f1795fd67420b45039ee0349ccbbf508979b637e2b3663108d"
       },
@@ -77,7 +77,7 @@
         "name": "Alba Ecstasy - EDM Sounds",
         "short": "AE.EDM Sounds",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "d8e9301965d9566058ce7b08f07af329ef09dd1399312152aa5fc50ace99720d"
       },
@@ -87,7 +87,7 @@
         "name": "Alba Ecstasy - Inspiring Sounds - Vol.1 2013 A",
         "short": "AE.Inspiring S",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "8879e267b5d99975508fa1082b4944328f1e12eb63dc470526a711eed2872a6f"
       },
@@ -97,7 +97,7 @@
         "name": "Alan-M Virus TI Patches vol.1",
         "short": "Alan-M Virus.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "33df2a6e17043a642a4ab1da8fa3806c2c3025e634e27e6e47ad0d9146fc7bb3"
       },
@@ -107,7 +107,7 @@
         "name": "Audio Masters - Dreamy Synthwave",
         "short": "AM.Dreamy Synt",
         "size": 59050,
-        "presets": 112,
+        "presetCount": 112,
         "residu": 26,
         "hash": "ea85c4f47f200444f1ffb5b9b6c98d17e2b8656071dc80ee77325a9e099fb981"
       },
@@ -117,7 +117,7 @@
         "name": "Adam Nickey - Press Club X Sounds Vol.2",
         "short": "AN.Press Clu.2",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "4ddcd89dc678334f1ecb26218c47d36b4ab603f47ac7f62f0e1bbcffbde76e77"
       },
@@ -127,7 +127,7 @@
         "name": "Adam Nickey - Press Club X Sounds Vol.4",
         "short": "AN.Press Clu.4",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "f634c0ae60511807f02006625df8168fd4b6d3b75af92b2724222411c89e66ba"
       },
@@ -137,7 +137,7 @@
         "name": "Adam Nickey - Press Club X Sounds Vol.5",
         "short": "AN.Press Clu.5",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "2e39a0231054b303cfd03227619f0202ff0e2f8a051e32bbe186371b7ac11c0c"
       },
@@ -147,7 +147,7 @@
         "name": "Adam Nickey - Virus TI Vol.1",
         "short": "AN.Virus TI.1",
         "size": 43767,
-        "presets": 83,
+        "presetCount": 83,
         "residu": 26,
         "hash": "3ebacbe814ba2d5e995d2b8b2d5421d4986303acb1f99784ff57cc5ac5422af2"
       },
@@ -157,7 +157,7 @@
         "name": "Aura Qualic - Illestial Trance",
         "short": "AQ.Illestial T",
         "size": 17417,
-        "presets": 33,
+        "presetCount": 33,
         "residu": 26,
         "hash": "6e6a2c4eb460a8f67c7a87043729762da72b2d60b64f741f1bf5f8e564633a54"
       },
@@ -167,7 +167,7 @@
         "name": "Andy Robert - Arps & Goodies Vol.1",
         "short": "AR.Arps & Go.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "faad424b2fd1abbf18994c857bad7b1bdd3711aaab6e5e332dc6d1a34a77787c"
       },
@@ -177,7 +177,7 @@
         "name": "Andy Robert - Arps & Goodies Vol.2",
         "short": "AR.Arps & Go.2",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "fc06e328e5c3a9b70f6221ef6e139334ca7d8efb562d6d67622c363e127bf7ff"
       },
@@ -187,7 +187,7 @@
         "name": "Andy Robert - Arps & Goodies Vol.3",
         "short": "AR.Arps & Go.3",
         "size": 37970,
-        "presets": 72,
+        "presetCount": 72,
         "residu": 26,
         "hash": "213900e788626e6cf8b9e10b25e67e9dfbad68e0b970384a42397e71464fa221"
       },
@@ -197,7 +197,7 @@
         "name": "Andy Robert - Creative Solutions",
         "short": "AR.Creative So",
         "size": 56942,
-        "presets": 108,
+        "presetCount": 108,
         "residu": 26,
         "hash": "0048d8739a27de33f30a8eee8386b2cb6e4959d57b9e920a942eb8154f302e5c"
       },
@@ -207,7 +207,7 @@
         "name": "ASL Soundlab - Antidote",
         "short": "AS.Antidote",
         "size": 59577,
-        "presets": 113,
+        "presetCount": 113,
         "residu": 26,
         "hash": "ba0d19469cc3f206e64852c34f4bfb05c13f083d9d6455969736ded670c7bdf4"
       },
@@ -217,7 +217,7 @@
         "name": "ASL SoundLab - Rob Jevons 2012",
         "short": "AS.Rob Je.2012",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "8a42588466b623f90f5814537644a1bec04c9db0c272efec77bc16550a0fbb30"
       },
@@ -227,7 +227,7 @@
         "name": "Amareta Sound - XTreme Bass 01",
         "short": "AS.XTreme B.01",
         "size": 29011,
-        "presets": 55,
+        "presetCount": 55,
         "residu": 26,
         "hash": "39f0ac5631f13a999b1a39016efe5e0676ea72f3247536081ad0e7947f63ab91"
       },
@@ -237,7 +237,7 @@
         "name": "Andi Vax - Flat Fat",
         "short": "AV.Flat Fat",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "fe662a55449b21b22cf4fbc94b698cd66fdca46a45f87c173f45c0e94f11217a"
       },
@@ -247,7 +247,7 @@
         "name": "Andi Vax - Synsun",
         "short": "AV.Synsun",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "e4a9f6674162e5a20ac1e3830bd706314c006c7df72b3f8c9d5dc57483b3fc1a"
       },
@@ -257,8 +257,8 @@
         "name": "Aiyn Zahev - Astral Voyage vol.1",
         "short": "AZ.Astral Vo.1",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 107,
+        "residu": 11093,
         "hash": "40d1b76695d4617d09a98dfef546f6fb1cd28d0c681fcb67875bf5362c2aa84b"
       },
       {
@@ -267,8 +267,8 @@
         "name": "Aiyn Zahev - Astral Voyage vol.2",
         "short": "AZ.Astral Vo.2",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 73,
+        "residu": 29011,
         "hash": "551d15e859bef363de7735fe47d33ef73a66cc6a19040d7b452a3c1300ac6274"
       },
       {
@@ -277,7 +277,7 @@
         "name": "Aiyn Zahev - Dream State vol.1",
         "short": "AZ.Dream Sta.1",
         "size": 33754,
-        "presets": 64,
+        "presetCount": 64,
         "residu": 26,
         "hash": "d29d14e0118af423f9c4263ca2ceba087b2686416bc953c05cc13f864952a569"
       },
@@ -287,8 +287,8 @@
         "name": "Aiyn Zahev - Evolve",
         "short": "AZ.Evolve",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 72,
+        "residu": 29538,
         "hash": "542cf4986f73e6f23a3aeafc5598674c006eabf42aa750ec33720b64c1eb9605"
       },
       {
@@ -297,7 +297,7 @@
         "name": "Beatlab Audio - Immune vol.1",
         "short": "BA.Immune.1",
         "size": 44294,
-        "presets": 84,
+        "presetCount": 84,
         "residu": 26,
         "hash": "6807bcef86f858bd647187daec45083543f00da82aec8e6ab29ebcd1e1a9b551"
       },
@@ -307,7 +307,7 @@
         "name": "Bastiaan Barth - Orion",
         "short": "BB.Orion",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "625589c8e06d4c7a807593bf55dbe409a54010c6aa1ef014eba2075d37ed596f"
       },
@@ -317,7 +317,7 @@
         "name": "Ben Crosland - Signature Set 2011",
         "short": "BC.Signat.2011",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "0acdde624e25cb8d1ea9ab96db902160ece00b89012c7584fb3fcd1e39bc0251"
       },
@@ -327,7 +327,7 @@
         "name": "Ballasina Emanuele - 26 Patches from Italy",
         "short": "BE.26 Patches",
         "size": 13728,
-        "presets": 26,
+        "presetCount": 26,
         "residu": 26,
         "hash": "fdc7208e1f8cb41fd7de92ab92fd7ba3de7f908e884c8f09cba78c6f30f221bb"
       },
@@ -337,8 +337,8 @@
         "name": "Boombox United - Weapon X",
         "short": "BU.Weapon.X",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 23,
+        "residu": 55361,
         "hash": "fa4ce4230c95152471985d2253aab3ac4a7ac54823cfe966b135fcc23224e626"
       },
       {
@@ -347,7 +347,7 @@
         "name": "CFA-Sound - Thrillogy Vol.1",
         "short": "C.Thrillogy.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "52db7c04a5ee2ed323bd5db6b18d6d256eb6c76602ee947d0138851dbc1e6b3e"
       },
@@ -357,7 +357,7 @@
         "name": "CFA-Sound - V-Bass",
         "short": "C.V-Bass",
         "size": 43767,
-        "presets": 83,
+        "presetCount": 83,
         "residu": 26,
         "hash": "db77cf7cabe1691705cd56b381e76e5f10703c5a1e45fa87a14126be8873a774"
       },
@@ -367,7 +367,7 @@
         "name": "Classic Live Patches",
         "short": "Classic Live P",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "0d849685c90d4c16b62ccdba4a600f59210d164f1d3b7a7096b98042b749af81"
       },
@@ -377,7 +377,7 @@
         "name": "Dan Wray Sound Vol.1",
         "short": "Dan Wray Sou.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "b0bc7c2a17387110f3c618e6a0a760dbe0acabba633d85145942853a1bd833c5"
       },
@@ -387,7 +387,7 @@
         "name": "Dan Wray Sound Vol.2",
         "short": "Dan Wray Sou.2",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "d7102b4300ccea709d2df42916a751c191942bed5fb433d06e374ca4a4cf91b1"
       },
@@ -397,7 +397,7 @@
         "name": "Dan Wray Sound Vol.3",
         "short": "Dan Wray Sou.3",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "9bbaa37b3076f0098f9e77cd477861e712514f00afdceb52bc6f56d4c687b7b8"
       },
@@ -407,7 +407,7 @@
         "name": "Dan Wray Sound Vol.4",
         "short": "Dan Wray Sou.4",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "432813e66d589fd872cc337d04640ed27ec5814da22145a92e47cacb2438643c"
       },
@@ -417,7 +417,7 @@
         "name": "Dan Wray Sound Vol.5",
         "short": "Dan Wray Sou.5",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "dcfe405c3abf3b6bcdc3718a47deca91725bcd882ddfb3961cd24528a2a93c0c"
       },
@@ -427,7 +427,7 @@
         "name": "Depeche Mode 2006",
         "short": "Depeche M.2006",
         "size": 8985,
-        "presets": 17,
+        "presetCount": 17,
         "residu": 26,
         "hash": "59aec4835ea6991dd2b7d4fd3274ec2fa7fb288b84f634ef16d534c1c83b501f"
       },
@@ -437,7 +437,7 @@
         "name": "Dominik Felsmann - Kamui Soundset 2",
         "short": "DF.Kamui Sou.2",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "0c621d03f27ada2197bc0f2fc860745fae03af62c07151b4699a3354545e3cc6"
       },
@@ -447,7 +447,7 @@
         "name": "DejaVu Sounds - Contemporary Electronics 2012",
         "short": "DS.Contem.2012",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "bfc76aa88b43e8416300e63978ee30f2f4166f26fa72bd51a1b77f8784f00f01"
       },
@@ -457,7 +457,7 @@
         "name": "Egostereo - Signature Set 2010",
         "short": "E.Signatu.2010",
         "size": 52726,
-        "presets": 100,
+        "presetCount": 100,
         "residu": 26,
         "hash": "1e4cf419b1f1d5d64d544da7b2ae72765a2b03188ab1961f9e9e513c642eac86"
       },
@@ -467,7 +467,7 @@
         "name": "Ephilion - Signature Set 2011",
         "short": "E.Signatu.2011",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "74e5fb4527e35755bdfb6ac4ff1dffc719634ef9d5fa5448e597f6b9a0f4b0e0"
       },
@@ -477,7 +477,7 @@
         "name": "EDM Soundbank 1",
         "short": "EDM Soundban.1",
         "size": 66955,
-        "presets": 127,
+        "presetCount": 127,
         "residu": 26,
         "hash": "8092c4b3e560ed16b41941fe47e277b90976113cd04a13a92af230ae05033984"
       },
@@ -487,7 +487,7 @@
         "name": "Ernesto vs Bastian Killer Tones Virus TI",
         "short": "Ernesto vs Bas",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "332fa8f7640c3b0a9dbf63643472602cbaed7ca42f0b573674a4c99b74ca8ae0"
       },
@@ -497,7 +497,7 @@
         "name": "EDM Soundbank 2015 - Virus TI 1",
         "short": "ES2.Virus TI.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "1a0897577b8a41bee1b59feecce6694cf8da8f18885a738e076c5434f4bedbf7"
       },
@@ -507,7 +507,7 @@
         "name": "EDM Soundbank 2015 - Virus TI 2",
         "short": "ES2.Virus TI.2",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "350de0ff6132babfcc68e1bf63820db38ccb455d0de254b1d574905493911052"
       },
@@ -517,7 +517,7 @@
         "name": "Essential X Sounds Vol.1 Virus TI",
         "short": "Essential X So",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "8b74365408ab321ab51f3f353a71a6f7700badc15eba70b95379bb8decbc0a55"
       },
@@ -527,7 +527,7 @@
         "name": "Essential X Sounds Vol.2 Virus TI-TI2",
         "short": "Essential X.2",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "98a492cda59204e84de877e00180df8e1febed1780ad3a028682ff7448899938"
       },
@@ -537,7 +537,7 @@
         "name": "Function Loops - Punchpack by Noizebusters",
         "short": "FL.Punchpack b",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "a4e6f5efd4672ee63fe79d76f3565276ff05320d0cf6fe427d161a04fe839c90"
       },
@@ -547,7 +547,7 @@
         "name": "Freshly Squeezed Samples - Sunny Lax Virus TI Essentials vol.1",
         "short": "FSS.Sunny La.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "374b971060abd2e03f1598720d8da35042710f4155e03fadc369402d8a410745"
       },
@@ -557,8 +557,8 @@
         "name": "Fat Zound - Clubzonatic 2007",
         "short": "FZ.Clubzo.2007",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 126,
+        "residu": 1080,
         "hash": "3a4a1bf12a51f8ae2a0a3db1f31ed4dd6697f087dddfe2eed9605561edb75320"
       },
       {
@@ -567,7 +567,7 @@
         "name": "Howard Scarr - Allstars Set 2012",
         "short": "HS.Allsta.2012",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "e851ed1ba416fee2f18d7cb375fa5a06145917b238ba4ffc59b15734e3aca4e4"
       },
@@ -577,7 +577,7 @@
         "name": "HG Sounds - Astronomy",
         "short": "HS.Astronomy",
         "size": 35862,
-        "presets": 68,
+        "presetCount": 68,
         "residu": 26,
         "hash": "be6b52bd7e5a73ff5bdf730e343d5116926e458bd08a5388236bde853af1d517"
       },
@@ -587,7 +587,7 @@
         "name": "Howard Scarr - Signature Patches 2009",
         "short": "HS.Signat.2009",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "7d9101d57722e2f0f494e6e8afad671f2b3a21c90c390210af222effc97861a0"
       },
@@ -597,7 +597,7 @@
         "name": "HG Sounds - Starburst",
         "short": "HS.Starburst",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "89b031f082e73c84fce908ef753cf2b48a85bd38cc76dc17d30654de815e0951"
       },
@@ -607,7 +607,7 @@
         "name": "HG Sounds - Starburst Dry",
         "short": "HS.Starburst D",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "61e75b580b1903592e0f434c22760b7125545d6ffcc1b6ec001b8bd4f1347956"
       },
@@ -617,8 +617,8 @@
         "name": "Humanoid Sound Systems - Astral Voyage 1",
         "short": "HSS.Astral V.1",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 107,
+        "residu": 11093,
         "hash": "d7ead3c1eb028eefbcb148202b3583e7d43ec887d1dbfd9840ebfe79bc28137f"
       },
       {
@@ -627,8 +627,8 @@
         "name": "Humanoid Sound Systems - Phenomenon",
         "short": "HSS.Phenomenon",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 71,
+        "residu": 30065,
         "hash": "23bcedc1fcfb9cd20b63c5446f24c50ba16caf1c4ec89bc8ee0b716fa40a8f46"
       },
       {
@@ -637,7 +637,7 @@
         "name": "Impulse Factory - Hardstyle",
         "short": "IF.Hardstyle",
         "size": 43767,
-        "presets": 83,
+        "presetCount": 83,
         "residu": 26,
         "hash": "ee8924ed88fda98b0f07401d9cb3dc48bc0e19f4d185e69ed2b0acf1b184a520"
       },
@@ -647,7 +647,7 @@
         "name": "Impulse Factory - Virus Infection",
         "short": "IF.Virus Infec",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "31efee64fb3a3bb3e24193257ea006dd36ad3ad44f12c59eea4e9f5d92d2a643"
       },
@@ -657,7 +657,7 @@
         "name": "Icon Of Coil Virus - Signature Bank 2011",
         "short": "IOCV.Sign.2011",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "722b2d3214e9e4eb6f5e8baa0f17496c4e24efc9800c9d5bfb48f1acb2ccfd2a"
       },
@@ -667,7 +667,7 @@
         "name": "Ice Planet Music - Virus Trance Elements - Vol 1",
         "short": "IPM.Virus Tran",
         "size": 35862,
-        "presets": 68,
+        "presetCount": 68,
         "residu": 26,
         "hash": "026407fec25444026fe25c0cd275dfbbd303f527b1d40b56f25c5f424eea3748"
       },
@@ -677,8 +677,8 @@
         "name": "Ladislav Brezovnik - Future Trance",
         "short": "LB.Future Tran",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 19,
+        "residu": 57469,
         "hash": "ea52c7416c20310a45744ec9b2d643c87c7c2b83cfdb7615789cc1336ae54894"
       },
       {
@@ -687,7 +687,7 @@
         "name": "Lucid Samples - Airmax Pads_",
         "short": "LS.Airmax Pads",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "4919f7cecd5d47aeb97aaa0d56bfb84f096a94b4d4486f05625d34e88d681b33"
       },
@@ -697,7 +697,7 @@
         "name": "Lucid Samples - Airmax Pads",
         "short": "LS.Airmax Pads",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "c739309c09a8a666dfc158ed3a6f4d1485ea487904e6aacee765c5801c95e30c"
       },
@@ -707,7 +707,7 @@
         "name": "Melovirus - Access Virus Patches",
         "short": "M.Access Virus",
         "size": 23214,
-        "presets": 44,
+        "presetCount": 44,
         "residu": 26,
         "hash": "0bd108e52f6ba9f87c9c9b91af1f151d5c0b209897e77672ba98b793588ddc5e"
       },
@@ -717,7 +717,7 @@
         "name": "Mechanimal - Psy-Trance Vol.1",
         "short": "M.Psy-Trance.1",
         "size": 56942,
-        "presets": 108,
+        "presetCount": 108,
         "residu": 26,
         "hash": "5551efc0b88af0b2b4ab5d9ac7c91e9d50f02e150fe8836f29335febcd55cc4a"
       },
@@ -727,7 +727,7 @@
         "name": "Mechanimal - Psy-Trance Vol.2",
         "short": "M.Psy-Trance.2",
         "size": 56942,
-        "presets": 108,
+        "presetCount": 108,
         "residu": 26,
         "hash": "f45218dcc71ab70fc5ae781220a4569ca3610501e732782bd06a80d8caf6413e"
       },
@@ -737,7 +737,7 @@
         "name": "Miksamusic.com - Trance Soundset for Access Virus Ti",
         "short": "M.Trance Sound",
         "size": 39551,
-        "presets": 75,
+        "presetCount": 75,
         "residu": 26,
         "hash": "8a32eb3021e47ff2f9bad064f64685a06978d26bf7a11210b75538d2299fe70a"
       },
@@ -747,7 +747,7 @@
         "name": "Mikael Hansson - Dual Integration",
         "short": "MH.Dual Integr",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "1024966701963a8a84f7d7d616194cf6b0740c40ccc628a06eda01bdf6e069a8"
       },
@@ -757,7 +757,7 @@
         "name": "Middle Thinkr & Erol Hardstyle",
         "short": "Middle Thinkr",
         "size": 42186,
-        "presets": 80,
+        "presetCount": 80,
         "residu": 26,
         "hash": "bab4baea75837ea3449c42b88e89bc8b00302436eb2d9f618eb087aaf6d31993"
       },
@@ -767,7 +767,7 @@
         "name": "Matt Picone - Matman Sound Set 2009",
         "short": "MP.Matman.2009",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "6d60a690a7e374e3deb461189c431b94c7f2de02c791949256045a64679fad84"
       },
@@ -777,7 +777,7 @@
         "name": "Numb - 0714 Sound Set",
         "short": "N.0714 Sound S",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "60adcd3bf049c03d329535c2a92148d2098e828d483f725245b56e095d6c6ffc"
       },
@@ -787,7 +787,7 @@
         "name": "Nutt Traxx - Virus TI SoundBank",
         "short": "NT.Virus TI So",
         "size": 58523,
-        "presets": 111,
+        "presetCount": 111,
         "residu": 26,
         "hash": "d38e785da31e325232924009c1f9c2e5a7ef79c80d5c20a3f4598baf3b3a64c5"
       },
@@ -797,8 +797,8 @@
         "name": "Psyload - Psytrance & Progressive Access Virus TI Bank",
         "short": "P.Psytrance &",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 108,
+        "residu": 10566,
         "hash": "031399ef129dea962ce1dd3191e68e5e8f10ccbc7c22b3086a41d2a261543869"
       },
       {
@@ -807,7 +807,7 @@
         "name": "PatchBanks & Sound - Audigy Series Bass",
         "short": "P&S.Audigy Ser",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "007fa6fbe2270efca3a6d04b71d0c56ab665740c20cc3f92d7d9a6ca3a53bc53"
       },
@@ -817,7 +817,7 @@
         "name": "PatchBanks & Sound - Audigy Series Leads",
         "short": "P&S.Audigy Ser",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "dbe6bcead8a08c76f796fedf222f32d61fcd4156cfb476e1dc675cbd0bc86047"
       },
@@ -827,7 +827,7 @@
         "name": "PatchBanks & Sound - Audigy Series Plucks",
         "short": "P&S.Audigy Ser",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "47981ac945e490e8a3626bdb05de381e043d4bffde5ac27e0ea78dfb29d423b0"
       },
@@ -837,7 +837,7 @@
         "name": "PatchBanks & Sound - Audigy Series Strings",
         "short": "P&S.Audigy Ser",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "d4d5f86cd8205808a777027d5c68530b56845d36635530f8fbb63fa295586f4c"
       },
@@ -847,7 +847,7 @@
         "name": "P5 Audio - Access Virus TI Club Patches Vol 1",
         "short": "PA.Access Vi.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "06f444d08ae238d5b3d52c905e1479fc09e625de90caf807789ea1fce65c6316"
       },
@@ -857,7 +857,7 @@
         "name": "Plasma Audio - Virus Ti2 Bass Soundset Vol.1",
         "short": "PA.Virus Ti2.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "40def386e1b98e1b7a54ec2baed40e511744ea5042d95532bbdd20425a5f635e"
       },
@@ -867,7 +867,7 @@
         "name": "PADS X HEAVEN Vol.1 PART 1",
         "short": "PADS X HEAVE.1",
         "size": 53253,
-        "presets": 101,
+        "presetCount": 101,
         "residu": 26,
         "hash": "0e8cdf8a2824e52ac4e4789f71cb60183a389b993c1a9c079717af8ca6554e4a"
       },
@@ -877,7 +877,7 @@
         "name": "PADS X HEAVEN Vol.1 PART 2",
         "short": "PADS X HEAVE.2",
         "size": 54834,
-        "presets": 104,
+        "presetCount": 104,
         "residu": 26,
         "hash": "17109d4d634274db1807ac8db349f204ce9d4bab3036e559e08160e3bf0ad452"
       },
@@ -887,7 +887,7 @@
         "name": "Plughugger Sound Design - Blue - Virus TI",
         "short": "PSD.Blue",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "439924156c659e57b5862cdf2067d72e4886c93ed1b8172495f878ec0dc4dc45"
       },
@@ -897,7 +897,7 @@
         "name": "Plughugger Sound Design - Partly Red - Virus TI",
         "short": "PSD.Partly Red",
         "size": 11093,
-        "presets": 21,
+        "presetCount": 21,
         "residu": 26,
         "hash": "78be2fdaf79ac5eb546a7f0a7904716199915c3ba4c267a7e9bb3f6db9c3f512"
       },
@@ -907,7 +907,7 @@
         "name": "Plughugger Sound Design - Red - Virus TI",
         "short": "PSD.Red",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "6a336c0fb7c30c9b9832cbfcb456aefa0e5be8392f325bb28594525e42d71b6c"
       },
@@ -917,7 +917,7 @@
         "name": "Qui Robinez – Solar Soundset 2007",
         "short": "Qui Robin.2007",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "fff5a35e64f6956d4aeb148ab691b66324a0ada41c303aa54d2742d49eca8226"
       },
@@ -927,7 +927,7 @@
         "name": "Richard Device - Signature Set 2007",
         "short": "RD.Signat.2007",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "6133c2c7bbc9e0c5fd5465582ff44c8251ea1bb87bee1c21e20eb65f03c74371"
       },
@@ -937,7 +937,7 @@
         "name": "Richard Devine - Signature Set 2011",
         "short": "RD.Signat.2011",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "8ce929a0f2c3e98b0a0f338e49c2b096ef9fd5606028ee634c3016cb30fd5da4"
       },
@@ -947,7 +947,7 @@
         "name": "Richard Devine - Signature Patches_x",
         "short": "RD.Signature P",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "cd6c17dccb3f8a08b989d962f7b520a66766b2a73ad9ee8225836333ec6ffb08"
       },
@@ -957,7 +957,7 @@
         "name": "Rocket Jump - Hardstyle Universe",
         "short": "RJ.Hardstyle U",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "b775b59c139f7047971b9a005cb9d8eeb0ca088de6514867b71f6301f44e9ec4"
       },
@@ -967,7 +967,7 @@
         "name": "Radian Sound Lab - Patches for Virus TI",
         "short": "RSL.Patches fo",
         "size": 14782,
-        "presets": 28,
+        "presetCount": 28,
         "residu": 26,
         "hash": "2a8f64df7743ed7a38999beebf7dbc38a41704bd254d6fe78228f4e9ac9a90ec"
       },
@@ -977,7 +977,7 @@
         "name": "Rui Peixoto AquaTIc",
         "short": "Rui Peixoto Aq",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "d8bce061d7ccd8167e5540d39b034331a08424d11eabaf7e32eb1437e52da661"
       },
@@ -987,7 +987,7 @@
         "name": "Rui Peixoto Soundbank 2",
         "short": "Rui Peixoto.2",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "5152b568a2d03ea9711c9b11cf33ddc4e97f42c340bddaae59f0091dd3503875"
       },
@@ -997,7 +997,7 @@
         "name": "Sasha Involver - Signature Set",
         "short": "SI.Signature S",
         "size": 33227,
-        "presets": 63,
+        "presetCount": 63,
         "residu": 26,
         "hash": "77236eb754b8fdf65550bffe544d744a503a14c466d70d69cf6dbf9a8d205065"
       },
@@ -1007,7 +1007,7 @@
         "name": "Sonic Sirius Soundbank Vol.1",
         "short": "Sonic Sirius.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "40f3ce982dbe5c12a04fd397ae43f4f4471c5bb3be33acbaf1c783cc9f1e0b48"
       },
@@ -1017,7 +1017,7 @@
         "name": "Sonic Sirius Soundbank Vol.2",
         "short": "Sonic Sirius.2",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "31aadc7a1e0d436d40ee9456dc9a72b90cafba0cc0aa76802639dd792a2eed47"
       },
@@ -1027,7 +1027,7 @@
         "name": "Sonic Sirius Soundbank Vol.3",
         "short": "Sonic Sirius.3",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "9591f71ff786df41cad001f14a03c9ee5569acd481a4c777ba1281b81207726f"
       },
@@ -1037,7 +1037,7 @@
         "name": "Sonic Sirius Soundbank Vol.4",
         "short": "Sonic Sirius.4",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "9a5109c3103c47d05d99aa8abf1f4e608ef39d33cd84ea21bb3cb8b8844b89de"
       },
@@ -1047,7 +1047,7 @@
         "name": "SOUNDS-OF-REVOLUTION-com",
         "short": "SOUNDS-OF-REVO",
         "size": 2996,
-        "presets": 5,
+        "presetCount": 5,
         "residu": 361,
         "hash": "b508db4bf854ae57120720ba88d165a343fb14a6a2d4aacd27700bdfa35478c1"
       },
@@ -1057,7 +1057,7 @@
         "name": "Specific Sound - The Antidote",
         "short": "SS.The Antidot",
         "size": 42186,
-        "presets": 80,
+        "presetCount": 80,
         "residu": 26,
         "hash": "3f7307092eaf902a4673ad49ae3e82f14594dd4d17fd223be8e432bc4b6b5e47"
       },
@@ -1067,7 +1067,7 @@
         "name": "SSO Virus Ti PresetBank",
         "short": "SSO Virus Ti P",
         "size": 53253,
-        "presets": 101,
+        "presetCount": 101,
         "residu": 26,
         "hash": "b7c48f1faab8d5db239499c4b24e4fff2c0f381ad34eac6b366ef271da96b82d"
       },
@@ -1077,7 +1077,7 @@
         "name": "Standalone'n Music",
         "short": "Standalone'n M",
         "size": 34586,
-        "presets": 65,
+        "presetCount": 65,
         "residu": 331,
         "hash": "c211cf321e609a86944043bae38a28b734e0efe96d2bb5a8752a4a6320548d83"
       },
@@ -1087,7 +1087,7 @@
         "name": "Starburst Lite",
         "short": "Starburst Lite",
         "size": 15836,
-        "presets": 30,
+        "presetCount": 30,
         "residu": 26,
         "hash": "a4d7cc1e967b50a340c16556dfa37502f344a348effd197e571f935d1c0cf500"
       },
@@ -1097,7 +1097,7 @@
         "name": "Synthetic Solutions Virus Ti Soundset",
         "short": "Synthetic Solu",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "411b539053336cad832bce1e824acf1f9bc703e6bcf8f73c27e56b1914609384"
       },
@@ -1107,7 +1107,7 @@
         "name": "TranceAddicts - Virus TI Bank",
         "short": "T.Virus TI Ban",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "1aeb108c16d16aeced9d446bf9e82eaf8368ebf70be292ef86202fe8d741b503"
       },
@@ -1117,7 +1117,7 @@
         "name": "Tarekith's Elemental",
         "short": "Tarekith's Ele",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "c934b1ea0e510ea809a19fb7e45441a3d465bdf2649db19828b188612e672bbe"
       },
@@ -1127,7 +1127,7 @@
         "name": "The Girl Next Door - EFFECTS 1",
         "short": "TGND.EFFECTS.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "8e6bcb7d30ca4e9c03360910989ae61d86a8857a65425266090ddaaa075ea76f"
       },
@@ -1137,7 +1137,7 @@
         "name": "The Girl Next Door - EFFECTS 2",
         "short": "TGND.EFFECTS.2",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "a3876d5fc573d6f45237cab04ad63ce16446df38883cea13a47e4fcefc082273"
       },
@@ -1147,7 +1147,7 @@
         "name": "The Girl Next Door - EFFECTS 3",
         "short": "TGND.EFFECTS.3",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "1ab037a3cbb77788b67328a7c8d6b641b7aace88d39bf3ede6655d6f52396fc7"
       },
@@ -1157,7 +1157,7 @@
         "name": "The Girl Next Door - EFFECTS 4",
         "short": "TGND.EFFECTS.4",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "9377d62cf556404567689866eb21bceaa1d113b36d3faad252f68c52f01fcfff"
       },
@@ -1167,7 +1167,7 @@
         "name": "The Girl Next Door - Electro House 2007",
         "short": "TGND.Elec.2007",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "35abe360265da56c7f94dd9b93f7ef299e4401ad145975e0bfeffb9c8970937c"
       },
@@ -1177,7 +1177,7 @@
         "name": "The Girl Next Door - Essential Basslines 1",
         "short": "TGND.Essenti.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "9be20dd95946e321269b922079f9c8e5f3f38aca76700878a2d245703c1336c2"
       },
@@ -1187,7 +1187,7 @@
         "name": "The Girl Next Door - Essential Basslines 2",
         "short": "TGND.Essenti.2",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "929f32620541565a3f057dad59db3d44be2bbc33ce5ca864bb4db57de226d6aa"
       },
@@ -1197,7 +1197,7 @@
         "name": "The Girl Next Door - Sound Set 1",
         "short": "TGND.Sound S.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "494e6fca0151ff8c05a33c59813207adf6542fb9293495e7dc7f5069fdcdbd70"
       },
@@ -1207,7 +1207,7 @@
         "name": "The Girl Next Door - Sound Set 3",
         "short": "TGND.Sound S.3",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "171485449e97d0cf3f0fcb35a23583a5a46204d0549c7ecc75b76ddd0eeb0789"
       },
@@ -1217,7 +1217,7 @@
         "name": "The Girl Next Door - Sound Set 5",
         "short": "TGND.Sound S.5",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "bc422facddcc5e85ba71d62f42d6d24808a39a24d31cffd7c35990aadae49281"
       },
@@ -1227,7 +1227,7 @@
         "name": "TONY LONG - Creative Distortion",
         "short": "TL.Creative Di",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "d99391f246e8da93964379edebde79ea5cb88a35777cac4c5b2fbbaf0eda0b9e"
       },
@@ -1237,7 +1237,7 @@
         "name": "TONY LONG - Euphoria",
         "short": "TL.Euphoria",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "fee2f500ba046c7f79ad86ab8a8ac1415a5f6c2658f78d357b27c7f85ccae9e4"
       },
@@ -1247,7 +1247,7 @@
         "name": "TONY LONG - Fortune & Glory",
         "short": "TL.Fortune & G",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "773ad4759ebf7be5b549784ea46452c90d9d9b14ece21fc6d2d557fb33e3ecf6"
       },
@@ -1257,7 +1257,7 @@
         "name": "Trance Midi Samples - Gallery Of Sound Vol.1",
         "short": "TMS.Gallery.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "cdef61e66f89b1825d3110983c661c9457a4ef6e1d72fbe3d5ed7f618848fb5a"
       },
@@ -1267,7 +1267,7 @@
         "name": "Trance Midi Samples - Trance Behind The Brain Vol.1",
         "short": "TMS.Trance B.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "18bf9f37c47e5fd9d59a45be5c4d667b216b6e9081ad370a38634b87edbeaa20"
       },
@@ -1277,7 +1277,7 @@
         "name": "Trance Midi Samples - Trance Behind The Brain Vol.2",
         "short": "TMS.Trance B.2",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "40d89ff235a412a3d7c2cb3c90396800521a668aa3b98c00dad0f7b5a4fbb2fc"
       },
@@ -1287,7 +1287,7 @@
         "name": "Trance Midi Samples - Trance Behind The Brain Vol.3",
         "short": "TMS.Trance B.3",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "7ff6829d91286d1c7fafbad3e9ed7322b9184fbfa83feb2b6ad690d3c5860ff4"
       },
@@ -1297,7 +1297,7 @@
         "name": "The Unfinished - Virus Chiaroscuro",
         "short": "TU.Virus Chiar",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "74c3e1bb7d46d36c0f214a3c50978fbd8fe6a0c2b27e61a566a73ea5202547c6"
       },
@@ -1307,7 +1307,7 @@
         "name": "Ultimate X BASS Vol.1",
         "short": "Ultimate X B.1",
         "size": 49037,
-        "presets": 93,
+        "presetCount": 93,
         "residu": 26,
         "hash": "f1d0a510ea5d33f7afcb1796a32e497cf1ac27d18533b342506f85aabf876c3d"
       },
@@ -1317,7 +1317,7 @@
         "name": "Ultimate X BASS Vol.2",
         "short": "Ultimate X B.2",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "0abd7417c4b06f7b9b7472b46e561e0a76608be924db886a19fababe3d3a1913"
       },
@@ -1327,7 +1327,7 @@
         "name": "Ultimate X MASS Vol.1",
         "short": "Ultimate X M.1",
         "size": 13728,
-        "presets": 26,
+        "presetCount": 26,
         "residu": 26,
         "hash": "80858a99a4fc0c36b64c78eed09d1f2a7c7f2d2874286058fefe457d335e8202"
       },
@@ -1337,7 +1337,7 @@
         "name": "Ummet Ozcan - Virus TI Sound Set",
         "short": "UO.Virus TI So",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "9461d1adac342e199ed634d565f83533b9b3d7b09ad0ed582e88f15ae389ba31"
       },
@@ -1347,7 +1347,7 @@
         "name": "Ultimate X Sounds - Adam Nickey Club X Sounds vol.1",
         "short": "UXS.Adam Nic.1",
         "size": 44294,
-        "presets": 84,
+        "presetCount": 84,
         "residu": 26,
         "hash": "75b8567ee83f560a3aa356acc5756f2ffe6d83b863c3d9221095e68014d9cab0"
       },
@@ -1357,7 +1357,7 @@
         "name": "Ultimate X Sounds - Adam Nickey Club X Sounds vol.4",
         "short": "UXS.Adam Nic.4",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "9b465806fc937cf7665514e4887449f74d929b07a7225aa7e8934ec60b0f9332"
       },
@@ -1367,7 +1367,7 @@
         "name": "Ultimate X Sounds - Atmosphere X Sounds vol.1",
         "short": "UXS.Atmosphe.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "e8b973031577197089a6cb56bf6ac3ca2ea29fb92da266ed0c026be9b919474a"
       },
@@ -1377,7 +1377,7 @@
         "name": "Ultimate X Sounds - Atmosphere X Sounds vol.2",
         "short": "UXS.Atmosphe.2",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "acae38c4aa5e1e713830fc03799d6bf2f391f1cabd3395a9be5b1dc33bdc3d69"
       },
@@ -1387,7 +1387,7 @@
         "name": "Ultimate X Sounds - Atmosphere X Sounds vol.3",
         "short": "UXS.Atmosphe.3",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "c0b838a39905e91c4ab8fa3b3b8b97e45953ef5fbd2a4cf00b123bfa45b134f0"
       },
@@ -1397,17 +1397,17 @@
         "name": "Ultimate X Sounds - Soundset 2014",
         "short": "UXS.Sound.2014",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "3e55630408ae90d7b23b48e6ff6ea0748a8160b241f54660068d5622cdd7e954"
       },
       {
-        "index": 182,
+        "index": 177,
         "filename": "VTG - Electro Patch Set 2010.mid",
         "name": "VTG - Electro Patch Set 2010",
         "short": "V.Electro.2010",
         "size": 62212,
-        "presets": 118,
+        "presetCount": 118,
         "residu": 26,
         "hash": "3bd629268abd81f78d993d1ae2baba72f7a19816c11abf6f2cd308f1b286f033"
       },
@@ -1417,7 +1417,7 @@
         "name": "V.I.P Expansion Vol.1 PART 1",
         "short": "V.I.P Expans.1",
         "size": 62212,
-        "presets": 118,
+        "presetCount": 118,
         "residu": 26,
         "hash": "20f5b3bf7c6c7987c6f7ef496947c92cd0f17aa862f56273525a7d2e4869063a"
       },
@@ -1427,7 +1427,7 @@
         "name": "V.I.P Expansion Vol.1 PART 2",
         "short": "V.I.P Expans.2",
         "size": 55888,
-        "presets": 106,
+        "presetCount": 106,
         "residu": 26,
         "hash": "8078aa3f16027fc93bcd94c08a00b9626d48d0cbeae55ebab807003b5efd10d7"
       },
@@ -1437,7 +1437,7 @@
         "name": "Vengeance - Incubation Vol.5",
         "short": "V.Incubation.5",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "48e866bd94f31050461bbf4f56b1422fef5dc9caccc1055035d245ab970e5c90"
       },
@@ -1447,7 +1447,7 @@
         "name": "VTI - Kris Menace Signature Patches",
         "short": "V.Kris Menace",
         "size": 25322,
-        "presets": 48,
+        "presetCount": 48,
         "residu": 26,
         "hash": "7837c85b9e34f5690ed342227af51339fa79937ae6565a78d94388237429c394"
       },
@@ -1457,7 +1457,7 @@
         "name": "Virus Other - Atomizer examples",
         "short": "VO.Atomizer ex",
         "size": 6877,
-        "presets": 13,
+        "presetCount": 13,
         "residu": 26,
         "hash": "a45fd77f899ee80e905b8464b320c4dc72072a22943c320029ea23b76e2592f0"
       },
@@ -1467,7 +1467,7 @@
         "name": "Virus Other - My Patches RAM A",
         "short": "VO.My Patche.A",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "7a89caa3cbb3ecc4ae16176970ba65c9448559c68ac85f6e8cf25ea5cc2d2ff7"
       },
@@ -1477,8 +1477,8 @@
         "name": "Virus Other - My Patches RAM B",
         "short": "VO.My Patche.B",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 127,
+        "residu": 553,
         "hash": "84a2c973f76100a8847a3f1c392e69af4a74847b468170eb201a64bea7e790a3"
       },
       {
@@ -1487,8 +1487,8 @@
         "name": "Virus Other - My Patches RAM C",
         "short": "VO.My Patche.C",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 124,
+        "residu": 2134,
         "hash": "55c982deae7c2d9c085fe29714c2a38c8226d5fb0d78ca36187df210b326ea67"
       },
       {
@@ -1497,8 +1497,8 @@
         "name": "Virus Other - My Patches RAM D",
         "short": "VO.My Patche.D",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 121,
+        "residu": 3715,
         "hash": "8366eb35733a767c42ec157ac1e51de7b0d72265e6eadaee53cf3ba8f23a8ece"
       },
       {
@@ -1507,7 +1507,7 @@
         "name": "Virus Other - OS2 New Oscillator Patches",
         "short": "VO.OS2 New Osc",
         "size": 16890,
-        "presets": 32,
+        "presetCount": 32,
         "residu": 26,
         "hash": "d382b41c7fdfeb933340147a22f34c52028a1fb612c30f73f9094512fe1dee04"
       },
@@ -1517,7 +1517,7 @@
         "name": "Virus Other - OS3 New FX example patches",
         "short": "VO.OS3 New FX",
         "size": 19525,
-        "presets": 37,
+        "presetCount": 37,
         "residu": 26,
         "hash": "dc9c24cebd55e0b37385dfe27a624571de3a41a6feb61cb8421368a548d6ca98"
       },
@@ -1527,7 +1527,7 @@
         "name": "Virus Other - OS4 New Features patches",
         "short": "VO.OS4 New Fea",
         "size": 44821,
-        "presets": 85,
+        "presetCount": 85,
         "residu": 26,
         "hash": "a0bbbc48943ef62b4410e2b8030a92f52e1e8a2217b5210053b4a97a1a67b629"
       },
@@ -1537,7 +1537,7 @@
         "name": "Virus Other - OS45 New Features patches",
         "short": "VO.OS45 New Fe",
         "size": 30065,
-        "presets": 57,
+        "presetCount": 57,
         "residu": 26,
         "hash": "660c6a35add41a1036dde147b0162f8924c5d05c46d141f2d92573830ec0aaae"
       },
@@ -1547,8 +1547,8 @@
         "name": "Virus Other - OS5 New Features patches",
         "short": "VO.OS5 New Fea",
         "size": 32700,
-        "presets": 62,
-        "residu": 26,
+        "presetCount": 61,
+        "residu": 553,
         "hash": "3247a30bd8bfb736e99c0b5edeb312374836d3ede3c5d0361d6ba8b38671e246"
       },
       {
@@ -1557,7 +1557,7 @@
         "name": "Virus Other - Vocoder and input patches",
         "short": "VO.Vocoder and",
         "size": 15836,
-        "presets": 30,
+        "presetCount": 30,
         "residu": 26,
         "hash": "f2ccfcdf4b81de70144b47942effc36292d3de2ff5c74e5aa550ffb8f0c67bad"
       },
@@ -1567,7 +1567,7 @@
         "name": "Virus TI2 - Rom A",
         "short": "VT.Rom.A",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "0eeeb86ea026065c4c541398a61fb462ebb9c33873803972de2870e2a9f3cc6d"
       },
@@ -1577,8 +1577,8 @@
         "name": "Virus TI2 - Rom B",
         "short": "VT.Rom.B",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 127,
+        "residu": 553,
         "hash": "125e3c6d7bcc50633839326ae185718244130e74689570f036f3904dbc73c607"
       },
       {
@@ -1587,8 +1587,8 @@
         "name": "Virus TI2 - Rom C",
         "short": "VT.Rom.C",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 127,
+        "residu": 553,
         "hash": "c76f04966d6cc46a3afa06e92df8bba6b5e6654d2433c5491f8b1c400d620c5a"
       },
       {
@@ -1597,8 +1597,8 @@
         "name": "Virus TI2 - Rom D",
         "short": "VT.Rom.D",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 127,
+        "residu": 553,
         "hash": "87001abe8ac4c65b732b5745493be74d7535135219f899872c9193a4ccb8b70e"
       },
       {
@@ -1607,7 +1607,7 @@
         "name": "Virus TI2 - Rom E",
         "short": "VT.Rom.E",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "9b93dd24a58106cc7722d59056ec0818dfe0e0163a70965b416d68b2dffed4b9"
       },
@@ -1617,8 +1617,8 @@
         "name": "Virus TI2 - Rom F",
         "short": "VT.Rom.F",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 127,
+        "residu": 553,
         "hash": "5e7e3acce4a813298cfeb7627ac262b902f63e1ca4f9e395c5d11adcf7e889a7"
       },
       {
@@ -1627,8 +1627,8 @@
         "name": "Virus TI2 - Rom G",
         "short": "VT.Rom.G",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 127,
+        "residu": 553,
         "hash": "74c0fd6c77200688100ed3a243770df7706fb1394b2bcf9592d83d490280df49"
       },
       {
@@ -1637,8 +1637,8 @@
         "name": "Virus TI2 - Rom H",
         "short": "VT.Rom.H",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 127,
+        "residu": 553,
         "hash": "b4bf9e1d32d6510272be9546045a3501c2b64a230c6d76dbffac65b1367e1b64"
       },
       {
@@ -1647,8 +1647,8 @@
         "name": "Virus TI2 - Rom I",
         "short": "VT.Rom.I",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 127,
+        "residu": 553,
         "hash": "09f798b995253ef4e95e86528df3c2af1bcb67b0f05afebd741ed9b66d7bb119"
       },
       {
@@ -1657,7 +1657,7 @@
         "name": "Virus TI2 - Rom J",
         "short": "VT.Rom.J",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "07b3958e1b2d0cba06407a2230f2dc770f830bc216f76abf3b20312e3e848ce6"
       },
@@ -1667,7 +1667,7 @@
         "name": "Virus TI2 - Rom K",
         "short": "VT.Rom.K",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "d2f877be97ea06cec483561e2e003571f71eb90b8cefaf7f04da60d2a46e8794"
       },
@@ -1677,7 +1677,7 @@
         "name": "Virus TI2 - Rom L",
         "short": "VT.Rom.L",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "a9c59520a0a91c23fe3dea7129df4accbc0523e488fbc518808afbdd2e398403"
       },
@@ -1687,7 +1687,7 @@
         "name": "Virus TI2 - Rom M",
         "short": "VT.Rom.M",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "472b2a871636cc24c5a36639b7b2b789fb95423ce16fe28ce77127e5724fda7a"
       },
@@ -1697,7 +1697,7 @@
         "name": "Virus TI2 - Rom N",
         "short": "VT.Rom.N",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "6407046626ab3d1c35867c54e7fc2d307a343e2ccc571c76a87182a261cd802e"
       },
@@ -1707,7 +1707,7 @@
         "name": "Virus TI2 - Rom O",
         "short": "VT.Rom.O",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "6be8a874e77d6d6f4bf3e4a60d425bc834f12203e0c262c8d1e127a6e2a4efe3"
       },
@@ -1717,7 +1717,7 @@
         "name": "Virus TI2 - Rom P",
         "short": "VT.Rom.P",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "023516d43d331bba9f990f803edd3164f703c95521d90b650a5c2dc7f308db20"
       },
@@ -1727,7 +1727,7 @@
         "name": "Virus TI2 - Rom Q",
         "short": "VT.Rom.Q",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "344034568b46d0e11c338053bad8ca617886f2decf1833e345898374d6543ba4"
       },
@@ -1737,7 +1737,7 @@
         "name": "Virus TI2 - Rom R",
         "short": "VT.Rom.R",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "6fe6205689ebde86933802b4d01fdfadb6c79d94e8daa95bdfe62a49358edf2f"
       },
@@ -1747,7 +1747,7 @@
         "name": "Virus TI2 - Rom S",
         "short": "VT.Rom.S",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "108d504b3466d65f5226c4e18747eeb5bae0859b0753a0d0d9b227d6f4e66b68"
       },
@@ -1757,8 +1757,8 @@
         "name": "Virus TI2 - Rom T",
         "short": "VT.Rom.T",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 127,
+        "residu": 553,
         "hash": "1d35f298452078d454ed4be36e9236c53da19dc533a9f1d076e68603cf9e105b"
       },
       {
@@ -1767,59 +1767,9 @@
         "name": "Virus TI2 - Rom U",
         "short": "VT.Rom.U",
         "size": 67482,
-        "presets": 128,
-        "residu": 26,
+        "presetCount": 127,
+        "residu": 553,
         "hash": "580572e9cca52391c53be42fa50ac6e82e396153807ad2d1a239f815fd40a17e"
-      },
-      {
-        "index": 177,
-        "filename": "Virus TI2 Factory/Virus TI2 - Rom V.mid",
-        "name": "Virus TI2 - Rom V",
-        "short": "VT.Rom.V",
-        "size": 67482,
-        "presets": 128,
-        "residu": 26,
-        "hash": "2ee6b63383b8f9b5a78bc751c8b3499bcd23bd6dbe5052926cc60b918f8de845"
-      },
-      {
-        "index": 178,
-        "filename": "Virus TI2 Factory/Virus TI2 - Rom W.mid",
-        "name": "Virus TI2 - Rom W",
-        "short": "VT.Rom.W",
-        "size": 67482,
-        "presets": 128,
-        "residu": 26,
-        "hash": "2ee6b63383b8f9b5a78bc751c8b3499bcd23bd6dbe5052926cc60b918f8de845"
-      },
-      {
-        "index": 179,
-        "filename": "Virus TI2 Factory/Virus TI2 - Rom X.mid",
-        "name": "Virus TI2 - Rom X",
-        "short": "VT.Rom.X",
-        "size": 67482,
-        "presets": 128,
-        "residu": 26,
-        "hash": "2ee6b63383b8f9b5a78bc751c8b3499bcd23bd6dbe5052926cc60b918f8de845"
-      },
-      {
-        "index": 180,
-        "filename": "Virus TI2 Factory/Virus TI2 - Rom Y.mid",
-        "name": "Virus TI2 - Rom Y",
-        "short": "VT.Rom.Y",
-        "size": 67482,
-        "presets": 128,
-        "residu": 26,
-        "hash": "2ee6b63383b8f9b5a78bc751c8b3499bcd23bd6dbe5052926cc60b918f8de845"
-      },
-      {
-        "index": 181,
-        "filename": "Virus TI2 Factory/Virus TI2 - Rom Z.mid",
-        "name": "Virus TI2 - Rom Z",
-        "short": "VT.Rom.Z",
-        "size": 67482,
-        "presets": 128,
-        "residu": 26,
-        "hash": "2ee6b63383b8f9b5a78bc751c8b3499bcd23bd6dbe5052926cc60b918f8de845"
       },
       {
         "index": 126,
@@ -1827,21 +1777,21 @@
         "name": "Zeno SubMission 2009",
         "short": "Zeno SubM.2009",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "95285cdac2b4e0e4c9f7a9b64393d8637ef4a3b512ecf57c1c60353557591009"
       },
       {
-        "index": 183,
+        "index": 178,
         "filename": "Zbandut Sound Consortium - Shaper EDM vol.1.mid",
         "name": "Zbandut Sound Consortium - Shaper EDM vol.1",
         "short": "ZSC.Shaper E.1",
         "size": 67482,
-        "presets": 128,
+        "presetCount": 128,
         "residu": 26,
         "hash": "1a37079b90dddc148f1681940c6162ec4d4736442b2d2f96f86599320ce12e49"
       }
     ],
-    "presets": 20865
+    "presetCount": 19757
   }
 }

@@ -139,7 +139,7 @@ class BacaraMachine extends Machine {
           })
           this.writeState()
         } else if (name == 'select') {
-          this.interface.setParameter('virus.axyz.part',part)
+          this.interface.setParameter('virus.axyz.part', part)
           virusAxyzRecenterSend()
         }
       }
@@ -493,7 +493,7 @@ class BacaraMachine extends Machine {
     const virusSearchRandom = (part) => (elementPath, origin) => {
       if (part >= 1 && part <= 16) {
         Virus.randomBankAndProgram((bank, program) => {
-          debug('Random bank %y program %y',bank,program)
+          debug('Random bank %y program %y', bank, program)
           virusSearch(part, 0, bank + virusRamRomBanks, program, origin)
         })
       }
@@ -1126,7 +1126,7 @@ class BacaraMachine extends Machine {
     this.parameterEminentSideEffects = {
       virus: {
         axyz: {
-//          part: virusAxyzRecenter,
+          //          part: virusAxyzRecenter,
           x1: { target: [virusAxyzRestoreDefault('x1', 1), virusAxyzRestoreDefault('x1', 2)] },
           y1: { target: [virusAxyzRestoreDefault('y1', 1), virusAxyzRestoreDefault('y1', 2)] },
           x2: { target: [virusAxyzRestoreDefault('x2', 1), virusAxyzRestoreDefault('x2', 2)] },
