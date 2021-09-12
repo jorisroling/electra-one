@@ -1792,6 +1792,31 @@
         "hash": "1a37079b90dddc148f1681940c6162ec4d4736442b2d2f96f86599320ce12e49"
       }
     ],
-    "presetCount": 19757
+    "presetCount": 19757,
+    "categories": {
+      "Off": 16661,
+      "Acid": 483,
+      "Arpeggiator": 2436,
+      "Atomizer": 27,
+      "Bass": 4002,
+      "Classic": 989,
+      "Decay": 824,
+      "Digital": 756,
+      "Drums": 392,
+      "EFX": 2307,
+      "FM": 235,
+      "Input": 36,
+      "Lead": 3670,
+      "Organ": 238,
+      "Pad": 3426,
+      "Percussion": 315,
+      "Piano": 303,
+      "Pluck": 1468,
+      "String": 441,
+      "Vocoder": 54,
+      "Favorites 1": 363,
+      "Favorites 2": 9,
+      "Favorites 3": 8
+    }
   }
 }
