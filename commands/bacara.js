@@ -333,22 +333,22 @@ class BacaraMachine extends Machine {
           case 'cc':
             if (msg.channel == (this.options.remoteChannel - 1)) {
               let actionPath
-              if (msg.controller == 89 && msg.value == 127) {
+              if (msg.controller == _.get(config,'touchBlock.button.9.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.next')
               }
-              if (msg.controller == 88 && msg.value == 127) {
+              if (msg.controller == _.get(config,'touchBlock.button.8.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.previous')
               }
-              if (msg.controller == 87 && msg.value == 127) {
+              if (msg.controller == _.get(config,'touchBlock.button.7.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.random')
               }
-              if (msg.controller == 85 && msg.value == 127) {
+              if (msg.controller == _.get(config,'touchBlock.button.5.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.recenter')
               }
-              if (msg.controller == 84 && msg.value == 127) {
+              if (msg.controller == _.get(config,'touchBlock.button.4.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.nextBank')
               }
-              if (msg.controller == 83 && msg.value == 127) {
+              if (msg.controller == _.get(config,'touchBlock.button.3.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.previousBank')
               }
               if (actionPath) {

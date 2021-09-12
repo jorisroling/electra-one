@@ -191,6 +191,40 @@ module.exports = {
       },
     },
   },
+  touchBlock: {
+    button:[
+      {
+        cc: 80,
+      },
+      {
+        cc: 81,
+      },
+      {
+        cc: 82,
+      },
+      {
+        cc: 83,
+      },
+      {
+        cc: 84,
+      },
+      {
+        cc: 85,
+      },
+      {
+        cc: 86,
+      },
+      {
+        cc: 87,
+      },
+      {
+        cc: 88,
+      },
+      {
+        cc: 89,
+      },
+    ],
+  },
   router: {
     scenarios: {
       'default': {
