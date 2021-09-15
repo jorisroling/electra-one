@@ -499,8 +499,73 @@ class BacaraMachine extends Machine {
       }
     }
 
+    const devicePreviousBank = (dev) => (elementPath, origin) => {
+      debug('devicePreviousBank %y',dev)
+      const bank = this.interface.getParameter(`device.${dev}.bank`)
+      if (bank > 0) {
+        this.interface.setParameter(`device.${dev}.bank`,bank-1)
+        this.sendDeviceProgramChange(dev)
+      }
+    }
+    const deviceNextBank = (dev) => (elementPath, origin) => {
+      debug('deviceNextBank %y',dev)
+      const bank = this.interface.getParameter(`device.${dev}.bank`)
+      if (bank < 127) {
+        this.interface.setParameter(`device.${dev}.bank`,bank+1)
+        this.sendDeviceProgramChange(dev)
+      }
+    }
+    const devicePrevious = (dev) => (elementPath, origin) => {
+      debug('devicePrevious %y',dev)
+      const program = this.interface.getParameter(`device.${dev}.program`)
+      if (program > 0) {
+        this.interface.setParameter(`device.${dev}.program`,program-1)
+        this.sendDeviceProgramChange(dev)
+      }
+    }
+    const deviceNext = (dev) => (elementPath, origin) => {
+      debug('deviceNext %y',dev)
+      const program = this.interface.getParameter(`device.${dev}.program`)
+      if (program < 127) {
+        this.interface.setParameter(`device.${dev}.program`,program+1)
+        this.sendDeviceProgramChange(dev)
+      }
+    }
 
     this.actionSideEffects = {
+      clock: (elementPath, origin) => {
+        if (origin == 'clock') {
+          this.sequencer()
+        }
+      },
+      start: (elementPath, origin) => {
+        if (origin == 'clock') {
+          this.setState('playing', true)
+          this.pulses = 0
+          this.stepIdx = 0
+          this.showPatternGrid(this.stepIdx)
+          this.pulseTime = process.hrtime()
+          this.writeState()
+          debug('start')
+        }
+      },
+      stop: (elementPath, origin) => {
+        if (origin == 'clock') {
+          this.setState('playing', false)
+          this.showPatternGrid(this.stepIdx, false)
+          this.stepIdx = -1
+          this.writeState()
+          debug('stop')
+        }
+      },
+      continue: (elementPath, origin) => {
+        if (origin == 'clock') {
+          this.setState('playing', true)
+          this.pulseTime = process.hrtime()
+          this.writeState()
+          debug('continue')
+        }
+      },
       load: (elementPath, origin) => {
         if (origin == 'surface') {
           this.interface.sendValues(origin)
@@ -600,38 +665,19 @@ class BacaraMachine extends Machine {
           this.writeState()
         }
       },
-      clock: (elementPath, origin) => {
-        if (origin == 'clock') {
-          this.sequencer()
-        }
-      },
-      start: (elementPath, origin) => {
-        if (origin == 'clock') {
-          this.setState('playing', true)
-          this.pulses = 0
-          this.stepIdx = 0
-          this.showPatternGrid(this.stepIdx)
-          this.pulseTime = process.hrtime()
-          this.writeState()
-          debug('start')
-        }
-      },
-      stop: (elementPath, origin) => {
-        if (origin == 'clock') {
-          this.setState('playing', false)
-          this.showPatternGrid(this.stepIdx, false)
-          this.stepIdx = -1
-          this.writeState()
-          debug('stop')
-        }
-      },
-      continue: (elementPath, origin) => {
-        if (origin == 'clock') {
-          this.setState('playing', true)
-          this.pulseTime = process.hrtime()
-          this.writeState()
-          debug('continue')
-        }
+      device: {
+        A: {
+          previousBank: devicePreviousBank('A'),
+          nextBank: deviceNextBank('A'),
+          previous: devicePrevious('A'),
+          next: deviceNext('A'),
+        },
+        B: {
+          previousBank: devicePreviousBank('B'),
+          nextBank: deviceNextBank('B'),
+          previous: devicePrevious('B'),
+          next: deviceNext('B'),
+        },
       },
       virus: {
         axyz: {

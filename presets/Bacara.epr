@@ -13024,10 +13024,47 @@
       ]
     },
     {
-      "id": 257,
-      "type": "fader",
+      "id": 256,
+      "type": "pad",
+      "mode": "momentary",
       "visible": true,
-      "name": "TRANSPOSE",
+      "name": "PREVIOUS BANK",
+      "color": "F45C51",
+      "bounds": [
+        510,
+        40,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6018,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 257,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "NEXT BANK",
       "color": "F45C51",
       "bounds": [
         680,
@@ -13040,6 +13077,41 @@
       "inputs": [
         {
           "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6019,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 258,
+      "type": "fader",
+      "visible": true,
+      "name": "TRANSPOSE",
+      "color": "F45C51",
+      "bounds": [
+        850,
+        40,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 6,
           "valueId": "value"
         }
       ],
@@ -13163,6 +13235,78 @@
       ]
     },
     {
+      "id": 262,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "PREVIOUS",
+      "color": "F45C51",
+      "bounds": [
+        510,
+        128,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6148,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 263,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "NEXT",
+      "color": "F45C51",
+      "bounds": [
+        680,
+        128,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6149,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
       "id": 265,
       "type": "list",
       "name": "DEVICE",
@@ -13261,10 +13405,47 @@
       ]
     },
     {
-      "id": 269,
-      "type": "fader",
+      "id": 268,
+      "type": "pad",
+      "mode": "momentary",
       "visible": true,
-      "name": "TRANSPOSE",
+      "name": "PREVIOUS BANK",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6274,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 269,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "NEXT BANK",
       "color": "529DEC",
       "bounds": [
         680,
@@ -13277,6 +13458,41 @@
       "inputs": [
         {
           "potId": 5,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6275,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 270,
+      "type": "fader",
+      "visible": true,
+      "name": "TRANSPOSE",
+      "color": "529DEC",
+      "bounds": [
+        850,
+        216,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 6,
           "valueId": "value"
         }
       ],
@@ -13395,6 +13611,78 @@
             "min": 0,
             "max": 127
           },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 274,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "PREVIOUS",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        304,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 10,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6402,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 275,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "NEXT",
+      "color": "529DEC",
+      "bounds": [
+        680,
+        304,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6403,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
           "id": "value"
         }
       ]
