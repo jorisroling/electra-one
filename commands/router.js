@@ -279,7 +279,11 @@ function setupMidi(options) {
 
           if (!scenario.actors[actor].oneway) {
             const midiInput_actor = Midi.input(actor, true)
-            midiInput_actor.on('message', handleIncoming(actor, electraOnePortName, true, {actor, ...scenario.actors[actor]}) )
+            if (midiInput_actor) {
+              midiInput_actor.on('message', handleIncoming(actor, electraOnePortName, true, {actor, ...scenario.actors[actor]}) )
+            } else {
+              debug('Unavailable actor %y',actor)
+            }
           }
 
           if (scenario.actors[actor].initialize) {

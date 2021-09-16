@@ -302,6 +302,7 @@ module.exports = {
     },
   },
   virus: {
+    enabled: false,
     bankPath: '~/Documents/Presets/Access Virus',
     info: {
       matrix: {
