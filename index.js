@@ -17,7 +17,7 @@ args
   .option('electra', 'Electra One MIDI interface name (part)', 'electra-one-port-2')
   .option('clock', 'Clock Input MIDI interface name (part)', 'bacara')
 
-  .option('transpose', 'Transpose Input MIDI interface name (part)', 'komplete-kontrol')
+  .option('transpose', 'Transpose Input MIDI interface name (part)', 'seaboard-block')
   .option('transposeChannel', 'Transpose Input Channel (1-16)', 1)
 
   .option('general', 'General Input MIDI interface name (part)', 'lightpad-block')

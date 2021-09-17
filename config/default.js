@@ -84,8 +84,12 @@ module.exports = {
         //        darwin: 'KOMPLETE KONTROL M32',
         darwin: 'MRCC Port 12',
       },
+      'seaboard-block': {
+        darwin : 'Seaboard Block Bluetooth',
+      },
       'lightpad-block': {
-        darwin: 'Lightpad BLOCK ', // Pfff, a trailing space, really?
+//        darwin: 'Lightpad BLOCK ', // Pfff, a trailing space, really?
+        darwin: 'Lightpad BLOCK Bluetooth',
       },
       'thouch-block': {
         darwin: 'Touch Block Bluetooth',
