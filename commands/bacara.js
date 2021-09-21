@@ -1525,15 +1525,16 @@ class BacaraMachine extends Machine {
             if (notes && notes.length > 0) {
               notes.sort()
               this.interface.setParameter('transpose', notes[0] + 4, 'external')
+              this.showPattern()
             }
           }
           if (msg._type == 'noteon') {
             const notes = this.interface.connection(origin).midiCache.playingNotes(channel ? channel : 0)
-            /*            debug('hi %y, %y',channel,notes)*/
             if (notes && notes.length > 0) {
               this.interface.setParameter('mute', 0)
               notes.sort()
               this.interface.setParameter('transpose', notes[0] + 4, 'external')
+              this.showPattern()
             }
             modSlotSource = matrixSlotSources.velocity
             modSlotValue = msg.velocity
