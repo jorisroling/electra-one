@@ -315,6 +315,10 @@ class BacaraMachine extends Machine {
         switch (msg._type) {
         case 'sysex':
           Virus.parseSysEx(msg.bytes, (part, storedPreset) => {
+            if (part >= 1 && part <= 16 && storedPreset) {
+              _.set(this.state, `virus.part.${part - 1}.preset`, storedPreset)
+              this.writeState()
+            }
             this.virusReflectPreset(part, storedPreset)
           })
           break
@@ -333,22 +337,22 @@ class BacaraMachine extends Machine {
           case 'cc':
             if (msg.channel == (this.options.remoteChannel - 1)) {
               let actionPath
-              if (msg.controller == _.get(config,'touchBlock.button.9.cc') && msg.value == 127) {
+              if (msg.controller == _.get(config, 'touchBlock.button.9.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.next')
               }
-              if (msg.controller == _.get(config,'touchBlock.button.8.cc') && msg.value == 127) {
+              if (msg.controller == _.get(config, 'touchBlock.button.8.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.previous')
               }
-              if (msg.controller == _.get(config,'touchBlock.button.7.cc') && msg.value == 127) {
+              if (msg.controller == _.get(config, 'touchBlock.button.7.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.random')
               }
-              if (msg.controller == _.get(config,'touchBlock.button.5.cc') && msg.value == 127) {
+              if (msg.controller == _.get(config, 'touchBlock.button.5.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.recenter')
               }
-              if (msg.controller == _.get(config,'touchBlock.button.4.cc') && msg.value == 127) {
+              if (msg.controller == _.get(config, 'touchBlock.button.4.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.nextBank')
               }
-              if (msg.controller == _.get(config,'touchBlock.button.3.cc') && msg.value == 127) {
+              if (msg.controller == _.get(config, 'touchBlock.button.3.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.previousBank')
               }
               if (actionPath) {
@@ -500,34 +504,34 @@ class BacaraMachine extends Machine {
     }
 
     const devicePreviousBank = (dev) => (elementPath, origin) => {
-      debug('devicePreviousBank %y',dev)
+      debug('devicePreviousBank %y', dev)
       const bank = this.interface.getParameter(`device.${dev}.bank`)
       if (bank > 0) {
-        this.interface.setParameter(`device.${dev}.bank`,bank-1)
+        this.interface.setParameter(`device.${dev}.bank`, bank - 1)
         this.sendDeviceProgramChange(dev)
       }
     }
     const deviceNextBank = (dev) => (elementPath, origin) => {
-      debug('deviceNextBank %y',dev)
+      debug('deviceNextBank %y', dev)
       const bank = this.interface.getParameter(`device.${dev}.bank`)
       if (bank < 127) {
-        this.interface.setParameter(`device.${dev}.bank`,bank+1)
+        this.interface.setParameter(`device.${dev}.bank`, bank + 1)
         this.sendDeviceProgramChange(dev)
       }
     }
     const devicePrevious = (dev) => (elementPath, origin) => {
-      debug('devicePrevious %y',dev)
+      debug('devicePrevious %y', dev)
       const program = this.interface.getParameter(`device.${dev}.program`)
       if (program > 0) {
-        this.interface.setParameter(`device.${dev}.program`,program-1)
+        this.interface.setParameter(`device.${dev}.program`, program - 1)
         this.sendDeviceProgramChange(dev)
       }
     }
     const deviceNext = (dev) => (elementPath, origin) => {
-      debug('deviceNext %y',dev)
+      debug('deviceNext %y', dev)
       const program = this.interface.getParameter(`device.${dev}.program`)
       if (program < 127) {
-        this.interface.setParameter(`device.${dev}.program`,program+1)
+        this.interface.setParameter(`device.${dev}.program`, program + 1)
         this.sendDeviceProgramChange(dev)
       }
     }
@@ -1736,6 +1740,10 @@ class BacaraMachine extends Machine {
             fromStore = true
             Midi.send('virus-ti', 'sysex', bytes)
             Virus.parseSysEx(bytes, (part, storedPreset) => {
+              if (part >= 1 && part <= 16 && storedPreset) {
+                _.set(this.state, `virus.part.${part - 1}.preset`, storedPreset)
+                this.writeState()
+              }
               this.virusReflectPreset(part, storedPreset)
             })
             bacaraEmit('virus-ti', part, 'sysex', bytes, 'internal')
@@ -2161,6 +2169,10 @@ class BacaraMachine extends Machine {
                 _.set(this.state, `virus.part.${part - 1}.preset`, virusPreset)
                 Midi.send('virus-ti', 'sysex', bytes)
                 Virus.parseSysEx(bytes, (part, storedPreset) => {
+                  if (part >= 1 && part <= 16 && storedPreset) {
+                    _.set(this.state, `virus.part.${part - 1}.preset`, storedPreset)
+                    this.writeState()
+                  }
                   this.virusReflectPreset(part, storedPreset)
                 })
                 bacaraEmit('virus-ti', part, 'sysex', bytes, origin)

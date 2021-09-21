@@ -9,6 +9,22 @@ const bacaraVirtualName = 'Bacara'
 module.exports = {
   debugPrefix,
   debug: Object.prototype.hasOwnProperty.call(process.env, 'DEBUG') ? process.env.DEBUG : `${debugPrefix}*,-${debugPrefix}:bacara:midi:*,-${debugPrefix}:*:part*,-${debugPrefix}:*:lfo*,-${debugPrefix}:lib:midi:interface,-${debugPrefix}:router:midi:sysex,-${debugPrefix}:bacara:virus:preset`,
+  options: {
+    //    electraOneCtrl: 'electra-one-ctrl',
+    scenario: 'default',
+    electra: 'electra-one-port-2',
+    clock: 'tr-6s',
+    transpose: 'komplete-kontrol',
+    transposeChannel: 1,
+    general: 'lightpad-block',
+    generalChannel: 1,
+    remote: 'thouch-block',
+    remoteChannel: 1,
+    bank: 0,
+    slot: 0,
+    id: 0,
+    name: '',
+  },
   midi: {
     ports: {
       'electra-one-port-1': {
