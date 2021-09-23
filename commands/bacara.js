@@ -42,6 +42,7 @@ const deviceCCs = knownDeviceCCs()
 
 const virusAxyzModeRelative = 0
 const virusAxyzModeAbsolute = 1
+const matchPresetByPatchRequest = false
 
 const phaseDetection = true
 const tableParameters = ['transpose', 'density', 'muteSteps', 'muteShift', 'scales', 'base', 'split', 'deviate', 'shift']
@@ -326,7 +327,7 @@ class BacaraMachine extends Machine {
       })
     }
 
-    debug('options %y', options)
+//    debug('options %y', options)
     if (options.remote) {
       const midiInput_remote = Midi.input(options.remote)
       if (midiInput_remote) {
@@ -2106,7 +2107,7 @@ class BacaraMachine extends Machine {
 
 
   virusMacros(part) {
-    if (electra.presetEquals('electra-one-ctrl', 'Bacara')) {
+    if (electra.presetEquals(this.options.electraOneCtrl, 'Bacara')) {
       if (part >= 1 && part <= 6) {
         const macros = _.get(this.state, `virus.part.${part - 1}.macros`, [])
         for (let i = 0; i < 6; i++) {
@@ -2128,7 +2129,7 @@ class BacaraMachine extends Machine {
           }
 
           const ctrlId = macroControls[part - 1][i]
-          electra.controlReflect('electra-one-ctrl', ctrlId, json)
+          electra.controlReflect(this.options.electraOneCtrl, ctrlId, json)
         }
       }
     }
@@ -2193,7 +2194,7 @@ class BacaraMachine extends Machine {
 
 
   virusReflectParts() {
-    if (electra.presetEquals('electra-one-ctrl', 'Bacara')) {
+    if (electra.presetEquals(this.options.electraOneCtrl, 'Bacara')) {
       for (let part = 16; part >= 1; part--) {
         const virusPreset = _.get(this.state, `virus.part.${part - 1}.preset`)
         if (virusPreset) {
@@ -2221,16 +2222,16 @@ class BacaraMachine extends Machine {
         }
       }
 
-      if (electra.presetEquals('electra-one-ctrl', 'Bacara')) {
+      if (electra.presetEquals(this.options.electraOneCtrl, 'Bacara')) {
         if (part >= 1 && part <= 6) {
           const matrixSelectControls = [145, 146, 147, 148, 149, 150]
           const searchSelectControls = [325, 326, 327, 328, 329, 330]
-          electra.controlReflect('electra-one-ctrl', matrixSelectControls[part - 1], {'name': virusPreset.name})
-          electra.controlReflect('electra-one-ctrl', searchSelectControls[part - 1], {'name': virusPreset.name})
+          electra.controlReflect(this.options.electraOneCtrl, matrixSelectControls[part - 1], {'name': virusPreset.name})
+          electra.controlReflect(this.options.electraOneCtrl, searchSelectControls[part - 1], {'name': virusPreset.name})
         }
         if (part == this.interface.getParameter('virus.axyz.part')) {
           const ctrlId = 110
-          electra.controlReflect('electra-one-ctrl', ctrlId, {'name': virusPreset.name})
+          electra.controlReflect(this.options.electraOneCtrl, ctrlId, {'name': virusPreset.name})
         }
       } else {
         debug('electra Bacara Preset NOT Loaded')
@@ -2357,17 +2358,19 @@ function bacaraSequencer(name, sub, options) {
   bacaraMachine.readState()
   bacaraMachine.writeState()
 
-  //  Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
-  Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x7C, 0xF7])  /* Preset Name Request */
+  if (matchPresetByPatchRequest) {
+    Midi.send(options.electraOneCtrl, 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
+  } else {
+    Midi.send(options.electraOneCtrl, 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x7C, 0xF7])  /* Preset Name Request */
+  }
 
 
-  const midiInput_electraOneCtrl = Midi.input('electra-one-ctrl', true)
+  const midiInput_electraOneCtrl = Midi.input(options.electraOneCtrl, true)
   if (midiInput_electraOneCtrl) {
     midiInput_electraOneCtrl.on('message', (msg) => {
       switch (msg._type) {
       case 'sysex':
         {
-          /*        debug('HI')*/
           const electraSysexHeader = [0xF0, 0x00, 0x21, 0x45]
           const electraSysexCmdPresetSwitch = [0x7E, 0x02]
           const electraSysexCmdPresetNameResponse = [0x01, 0x7C]
@@ -2376,17 +2379,20 @@ function bacaraSequencer(name, sub, options) {
           const sysexCmd = msg.bytes.slice(4, 6)
           if (_.isEqual(sysexHeader, electraSysexHeader)) {
             if (_.isEqual(sysexCmd, electraSysexCmdPresetNameResponse)) {
-              electra.parseSysexCmdPresetNameResponse('electra-one-ctrl', msg.bytes)
+              electra.parseSysexCmdPresetNameResponse(options.electraOneCtrl, msg.bytes)
               bacaraMachine.virusReflectParts()
             } else if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
-              //Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
-              Midi.send('electra-one-ctrl', 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x7C, 0xF7])  /* Preset Name Request */
+              if (matchPresetByPatchRequest) {
+                Midi.send(options.electraOneCtrl, 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
+              } else {
+                Midi.send(options.electraOneCtrl, 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x7C, 0xF7])  /* Preset Name Request */
+              }
               debug('Bacara Preset Name Request done')
             } else if (_.isEqual(sysexCmd, electraSysexCmdPatchResponse)) {
-              electra.parseSysexCmdPatchResponseResponse('electra-one-ctrl', msg.bytes)
+              electra.parseSysexCmdPatchResponseResponse(options.electraOneCtrl, msg.bytes)
               bacaraMachine.virusReflectParts()
             } else {
-              //            debug('unhandles sysex %y',sysexCmd)
+//                         debug('unhandles sysex %y',sysexCmd)
             }
           }
         }

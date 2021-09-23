@@ -3,6 +3,12 @@ const fs = require('fs')
 
 let args
 
+const COLOR_WHITE = 'FFFFFF'
+const COLOR_RED = 'F45C51'
+const COLOR_YELLOW = 'F49500'
+const COLOR_BLUE = '529DEC'
+const COLOR_GREEN = '03A598'
+const COLOR_MAGENTA = 'C44795'
 
 function controlUpdate(name, sub, options) {
 
@@ -21,22 +27,22 @@ function controlUpdate(name, sub, options) {
 
   function colorTrans(color) {
     if (color == 'white') {
-      return 'FFFFFF'
+      return COLOR_WHITE
     }
     if (color == 'red') {
-      return 'F45C51'
+      return COLOR_RED
     }
-    if (color == 'orange') {
-      return 'F49500'
+    if (color == 'yellow') {
+      return COLOR_YELLOW
     }
     if (color == 'blue') {
-      return '529DEC'
+      return COLOR_BLUE
     }
     if (color == 'green') {
-      return '03A598'
+      return COLOR_GREEN
     }
     if (color == 'magenta') {
-      return 'C44795'
+      return COLOR_MAGENTA
     }
     return color
   }

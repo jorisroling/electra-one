@@ -10,7 +10,7 @@ module.exports = {
   debugPrefix,
   debug: Object.prototype.hasOwnProperty.call(process.env, 'DEBUG') ? process.env.DEBUG : `${debugPrefix}*,-${debugPrefix}:bacara:midi:*,-${debugPrefix}:*:part*,-${debugPrefix}:*:lfo*,-${debugPrefix}:lib:midi:interface,-${debugPrefix}:router:midi:sysex,-${debugPrefix}:bacara:virus:preset`,
   options: {
-    //    electraOneCtrl: 'electra-one-ctrl',
+    electraOneCtrl: 'electra-one-ctrl',
     scenario: 'default',
     electra: 'electra-one-port-2',
     clock: 'tr-6s',
