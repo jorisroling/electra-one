@@ -16,7 +16,6 @@
         "portName": "virus-ti"
       }
     },
-    "last_pattern_but": 0,
     "lfo": [
       {
         "shapeName": "triangle"
@@ -47,6 +46,188 @@
       0
     ],
     "pattern": {
+      "grid": [
+        [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
       "header": {
         "keySignatures": [],
         "meta": [],
@@ -59,7 +240,7 @@
         {
           "channel": 0,
           "controlChanges": {},
-          "pitchBends": [],
+          "endOfTrackTicks": 1860,
           "instrument": {
             "family": "bass",
             "name": "synth bass 1",
@@ -194,7 +375,7 @@
               "velocity": 1
             }
           ],
-          "endOfTrackTicks": 1860
+          "pitchBends": []
         }
       ]
     },
@@ -258,10 +439,10 @@
           ],
           "patchName": "Hyper",
           "preset": {
-            "bank": 1,
+            "bank": 127,
             "name": "B-Kewl  SV",
             "page": [
-              "090001040300007F0000407F0000000000000041406000000042003501404060002E4100400000401340000063634040400000000000002E00407F0B6800401000000030010100400000404040404030010000400000404040404064014000000002307F40000100010045107F4001000F604032100C01310000000100000000",
+              "09007F040300007F0000407F0000000000000041406000000042003501404060002E4100400000401340000063634040400000000000002E00407F0B6800401000000030010100400000404040404030010000400000404040404064014000000002307F40000100010045107F4001000F604032100C01310000000100000000",
               "000230010071003001000001000000004804000000007F000001423E00000101012400004000000000004040282B5540404040400C415E40404000404040010C1B037603142700400F497F0040004000400040000300247030407F0040473340402820000000000E1C31030040030040422D4B65776C20205356400800000000",
               "013A023438311C0000000003040200000000007F40407F7F0000000D000200000000000000000000004000000000000000000000000000000000000000400000000000000000007F00000000000000000000000000000000000000000000401D31223A0000000000000000000000000000000000000000000000030000000040",
               "640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640000000000000000000000000000000000000000000000000000000000000000003B"
@@ -551,7 +732,7 @@
   },
   "parameters": {
     "bank": 0,
-    "base": 4,
+    "base": 3,
     "density": 100,
     "deviate": 11,
     "device": {
@@ -574,7 +755,68 @@
         "transpose": 0
       }
     },
-    "gate": 0.33666666666666667,
+    "drums": {
+      "instrument": [
+        {
+          "device": 35,
+          "mute": 0,
+          "note": 36
+        },
+        {
+          "device": 35,
+          "mute": 0,
+          "note": 37
+        },
+        {
+          "device": 35,
+          "mute": 0,
+          "note": 38
+        },
+        {
+          "device": 35,
+          "mute": 0,
+          "note": 39
+        },
+        {
+          "device": 35,
+          "mute": 0,
+          "note": 40
+        },
+        {
+          "device": 35,
+          "mute": 0,
+          "note": 41
+        },
+        {
+          "device": 35,
+          "mute": 0,
+          "note": 42
+        },
+        {
+          "device": 35,
+          "mute": 0,
+          "note": 43
+        },
+        {
+          "device": 35,
+          "mute": 0,
+          "note": 44
+        },
+        {
+          "device": 35,
+          "mute": 0,
+          "note": 45
+        },
+        {
+          "device": 35,
+          "mute": 0,
+          "note": 46
+        }
+      ],
+      "steps": 16,
+      "style": 0
+    },
+    "gate": 1.166031746031746,
     "lfo": [
       {
         "amount": 79,
@@ -682,8 +924,8 @@
     "muteSteps": 0,
     "octaveChance": 14.285714285714278,
     "probability": 100,
-    "program": 60,
-    "scales": 24,
+    "program": 61,
+    "scales": 19,
     "shift": 0,
     "split": 41,
     "steps": 16,
@@ -729,7 +971,7 @@
     "transpose": 0,
     "virus": {
       "axyz": {
-        "bank": 196,
+        "bank": 127,
         "level": 100,
         "mode": 0,
         "part": 1,
@@ -858,7 +1100,7 @@
       "mixer": {
         "part": [
           {
-            "bank": 196,
+            "bank": 127,
             "level": 100,
             "program": 4
           },
