@@ -45,7 +45,7 @@ function preProcess(name, sub, options) {
                           if (Array.isArray(config.devices[deviceKey].instances) && config.devices[deviceKey].instances.length > c) {
                             instance = config.devices[deviceKey].instances[c]
                           }
-                          const label = config.devices[deviceKey].channels.length > 1 ? `${model} ${instance}` : model
+                          const label = config.devices[deviceKey].channels.length > 1 ? `${model} ${instance}`.trim() : model
                           const rLabel = label.replace('#', config.devices[deviceKey].instance ? (parseInt(c) + 1) : config.devices[deviceKey].channels[c])
 
                           overlay.items.push({
