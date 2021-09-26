@@ -9,6 +9,7 @@ const path = require('path')
 const _ = require('lodash')
 
 const Pattern = require('../lib/pattern')
+const Drums = require('../lib/drums')
 
 const Bacara = require('../lib/bacara')
 const me = path.basename(__filename, '.js')
@@ -537,6 +538,17 @@ class BacaraMachine extends Machine {
       }
     }
 
+    const drumsRedrumActions = (trck) => {
+      return {
+        generate: (elementPath, origin) => {
+          debug('JJR1 %y %y',elementPath, origin)
+        },
+        preview: (elementPath, origin) => {
+          debug('JJR2 %y %y',elementPath, origin)
+        },
+      }
+    }
+
     this.actionSideEffects = {
       clock: (elementPath, origin) => {
         if (origin == 'clock') {
@@ -683,6 +695,24 @@ class BacaraMachine extends Machine {
           previous: devicePrevious('B'),
           next: deviceNext('B'),
         },
+      },
+      drums: {
+        generate: (elementPath, origin) => {
+          if (origin == 'surface') {
+            _.set(this.state,'drums.pattern',Drums.generate(this.interface.getParameter('drums.steps')))
+//            this.showPattern()
+            this.writeState()
+            debug('generated drums')
+          }
+        },
+        redrum: [
+          drumsRedrumActions(0),
+          drumsRedrumActions(1),
+          drumsRedrumActions(2),
+          drumsRedrumActions(3),
+          drumsRedrumActions(4),
+          drumsRedrumActions(5),
+        ],
       },
       virus: {
         axyz: {
@@ -1172,7 +1202,58 @@ class BacaraMachine extends Machine {
       this.setRemote(origin, {next:`virus.search.part.${part - 1}.next`, previous:`virus.search.part.${part - 1}.previous`, random:`virus.search.part.${part - 1}.random`, nextBank:`virus.search.part.${part - 1}.nextBank`, previousBank:`virus.search.part.${part - 1}.previousBank`})
     }
 
+    const drumRedrum = (trck) => {
+      return {
+        device: (elementPath, value, origin) => {
+          if (value > 0 && config.devices) {
+            let idx = 0
+            let choosenDeviceKey
+            let choosenChannel
+            for (let deviceKey in config.devices) {
+              if (Array.isArray(config.devices[deviceKey].channels)) {
+                for (let c in config.devices[deviceKey].channels) {
+                  idx++
+                  if (idx == value) {
+                    choosenDeviceKey = deviceKey
+                    choosenChannel = config.devices[deviceKey].channels[c]
+                  }
+                }
+              }
+            }
 
+            if (choosenDeviceKey && Number.isInteger(choosenChannel)) {
+              const port = _.get(config, `devices.${choosenDeviceKey}.port`)
+              if (port) {
+                const portName = _.get(config, `midi.ports.${port}.${os.platform()}`)
+                if (portName) {
+                  const midiNames = easymidi.getOutputs()
+                  if (midiNames) {
+                    const idx = midiNames.indexOf(portName)
+                    if (idx >= 0) {
+                      const midiNames = easymidi.getOutputs()
+                      if (midiNames) {
+                        if (idx < midiNames.length) {
+                          let name = midiNames[idx]
+                          const ports = Object.keys(config.midi.ports).filter( p => config.midi.ports[p][os.platform()] == name )
+                          if (ports && ports.length == 1) {
+                            name = ports[0]
+                          }
+                          this.setState(`drums.redrum.${trck}.portName`, name)
+                        }
+                      } else {
+                        this.clearState(`drums.redrum.${trck}.portName`)
+                        this.clearState(`drums.redrum.${trck}.channel`)
+                      }
+                      this.setState(`drums.redrum.${trck}.channel`, choosenChannel)
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+      }
+    }
 
     this.parameterEminentSideEffects = {
       virus: {
@@ -1374,6 +1455,16 @@ class BacaraMachine extends Machine {
             ],
           },
         ]
+      },
+      drums: {
+        redrum: [
+          drumRedrum(0),
+          drumRedrum(1),
+          drumRedrum(2),
+          drumRedrum(3),
+          drumRedrum(4),
+          drumRedrum(5),
+        ],
       },
       virus: {
         axyz: {
