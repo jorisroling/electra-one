@@ -1363,7 +1363,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 35,
+          default: 53,
         },
         note: {
           name: 'Bass Drum Note',
@@ -1403,7 +1403,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 35,
+          default: 53,
         },
         note: {
           name: 'Snare Drum Note',
@@ -1443,7 +1443,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 35,
+          default: 53,
         },
         note: {
           name: 'Low Tom Note',
@@ -1455,7 +1455,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 38,
+          default: 53,
         },
         mute: {
           name: 'Low Tom Mute',
@@ -1483,7 +1483,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 35,
+          default: 53,
         },
         note: {
           name: 'Mid Tom Note',
@@ -1495,7 +1495,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 39,
+          default: 54,
         },
         mute: {
           name: 'Mid Tom Mute',
@@ -1523,7 +1523,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 35,
+          default: 53,
         },
         note: {
           name: 'High Tom Note',
@@ -1535,7 +1535,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 40,
+          default: 54,
         },
         mute: {
           name: 'High Tom Mute',
@@ -1563,7 +1563,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 35,
+          default: 53,
         },
         note: {
           name: 'Rim Shot Note',
@@ -1575,7 +1575,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 41,
+          default: 52,
         },
         mute: {
           name: 'Rim Shot Mute',
@@ -1603,7 +1603,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 35,
+          default: 53,
         },
         note: {
           name: 'Hand Clap Note',
@@ -1615,7 +1615,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 42,
+          default: 45,
         },
         mute: {
           name: 'Hand Clap Mute',
@@ -1643,7 +1643,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 35,
+          default: 53,
         },
         note: {
           name: 'Cow Bell Note',
@@ -1655,7 +1655,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 43,
+          default: 46,
         },
         mute: {
           name: 'Cow Bell Mute',
@@ -1683,7 +1683,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 35,
+          default: 53,
         },
         note: {
           name: 'Cymbal Note',
@@ -1695,7 +1695,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 44,
+          default: 47,
         },
         mute: {
           name: 'Cymbal Mute',
@@ -1723,7 +1723,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 35,
+          default: 53,
         },
         note: {
           name: 'Open Hat Note',
@@ -1735,7 +1735,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 45,
+          default: 39,
         },
         mute: {
           name: 'Open Hat Mute',
@@ -1763,7 +1763,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 35,
+          default: 53,
         },
         note: {
           name: 'Closed Hat Note',
@@ -1775,7 +1775,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 46,
+          default: 38,
         },
         mute: {
           name: 'Closed Hat Mute',

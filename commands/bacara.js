@@ -699,7 +699,7 @@ class BacaraMachine extends Machine {
       drums: {
         generate: (elementPath, origin) => {
           if (origin == 'surface') {
-            _.set(this.state,'drums.pattern',Drums.generate(this.interface.getParameter('drums.steps')))
+            _.set(this.state,'drums.pattern',Drums.generate(this.interface.getParameter('drums.steps'),this.interface.getParameter('drums.style')))
 //            this.showPattern()
             this.writeState()
             debug('generated drums')
@@ -1202,7 +1202,7 @@ class BacaraMachine extends Machine {
       this.setRemote(origin, {next:`virus.search.part.${part - 1}.next`, previous:`virus.search.part.${part - 1}.previous`, random:`virus.search.part.${part - 1}.random`, nextBank:`virus.search.part.${part - 1}.nextBank`, previousBank:`virus.search.part.${part - 1}.previousBank`})
     }
 
-    const drumRedrum = (trck) => {
+    const drumDevice = (trck,type) => {
       return {
         device: (elementPath, value, origin) => {
           if (value > 0 && config.devices) {
@@ -1238,13 +1238,13 @@ class BacaraMachine extends Machine {
                           if (ports && ports.length == 1) {
                             name = ports[0]
                           }
-                          this.setState(`drums.redrum.${trck}.portName`, name)
+                          this.setState(`drums.${type}.${trck}.portName`, name)
                         }
                       } else {
-                        this.clearState(`drums.redrum.${trck}.portName`)
-                        this.clearState(`drums.redrum.${trck}.channel`)
+                        this.clearState(`drums.${type}.${trck}.portName`)
+                        this.clearState(`drums.${type}.${trck}.channel`)
                       }
-                      this.setState(`drums.redrum.${trck}.channel`, choosenChannel)
+                      this.setState(`drums.${type}.${trck}.channel`, choosenChannel)
                     }
                   }
                 }
@@ -1254,6 +1254,7 @@ class BacaraMachine extends Machine {
         },
       }
     }
+
 
     this.parameterEminentSideEffects = {
       virus: {
@@ -1457,13 +1458,26 @@ class BacaraMachine extends Machine {
         ]
       },
       drums: {
+        instrument: [
+          drumDevice(0,'instrument'),
+          drumDevice(1,'instrument'),
+          drumDevice(2,'instrument'),
+          drumDevice(3,'instrument'),
+          drumDevice(4,'instrument'),
+          drumDevice(5,'instrument'),
+          drumDevice(6,'instrument'),
+          drumDevice(7,'instrument'),
+          drumDevice(8,'instrument'),
+          drumDevice(9,'instrument'),
+          drumDevice(10,'instrument'),
+        ],
         redrum: [
-          drumRedrum(0),
-          drumRedrum(1),
-          drumRedrum(2),
-          drumRedrum(3),
-          drumRedrum(4),
-          drumRedrum(5),
+          drumDevice(0,'redrum'),
+          drumDevice(1,'redrum'),
+          drumDevice(2,'redrum'),
+          drumDevice(3,'redrum'),
+          drumDevice(4,'redrum'),
+          drumDevice(5,'redrum'),
         ],
       },
       virus: {
@@ -2005,8 +2019,8 @@ class BacaraMachine extends Machine {
     const ticks = (this.pulses % ((24 * 4) * (this.interface.getParameter('steps') / 16))) * 20
     this.pulseDuration = (deltaTime[0] * 1000) + (deltaTime[1] / 1000000)
 
-    this.stepIdx = (ticks  * (this.interface.getParameter('steps') / 16) ) / ticksPerStep
-    this.stepIdx = (ticks  * 1 ) / ticksPerStep
+//    this.stepIdx = (ticks  * (this.interface.getParameter('steps') / 16) ) / ticksPerStep
+    this.stepIdx = ticks / ticksPerStep
 
     if (this.getState('playing')) {
 
@@ -2067,13 +2081,14 @@ class BacaraMachine extends Machine {
 
               devs.forEach( dev => {
                 if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`)) {
+                  const portName = this.getState(`device.${dev}.portName`)
                   const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
-                  const pth = `port_${this.getState(`device.${dev}.portName`)}.channel_${_.padStart(channel + 1, 2, '0')}.controller_${_.padStart(this.interface.getParameter(`lfo.${l}.control`), 3, '0')}`
+                  const pth = `port_${portName}.channel_${_.padStart(channel + 1, 2, '0')}.controller_${_.padStart(this.interface.getParameter(`lfo.${l}.control`), 3, '0')}`
 
-                  const cacheValue = this.midiCache.getValue(this.getState(`device.${dev}.portName`), channel, 'cc', this.interface.getParameter(`lfo.${l}.control`) )
+                  const cacheValue = this.midiCache.getValue(portName, channel, 'cc', this.interface.getParameter(`lfo.${l}.control`) )
                   if (cacheValue != midiValue) {
 
-                    debugMidiControlChange('port %s  channel %d  CC %y = %y', this.getState(`device.${dev}.portName`), channel + 1, this.interface.getParameter(`lfo.${l}.control`), midiValue)
+                    debugMidiControlChange('port %s  channel %d  CC %y = %y', portName, channel + 1, this.interface.getParameter(`lfo.${l}.control`), midiValue)
                     //                    debug('cc control %d %y = %d', l, control, midiValue)
 
                     if (!this.lfoHistory[l].length || this.lfoHistory[l][0] != midiValue) {
@@ -2082,8 +2097,8 @@ class BacaraMachine extends Machine {
                       }
                     }
 
-                    Midi.send(this.getState(`device.${dev}.portName`), 'cc', {channel, controller:control, value:midiValue})
-                    this.midiCache.setValue(this.getState(`device.${dev}.portName`), channel, 'cc', control, midiValue)
+                    Midi.send(portName, 'cc', {channel, controller:control, value:midiValue})
+                    this.midiCache.setValue(portName, channel, 'cc', control, midiValue)
 
                     // Can Electra handle many NRPN's?
                     this.interface.setParameter(`lfo.${l}.show`, midiValue)
@@ -2129,39 +2144,129 @@ class BacaraMachine extends Machine {
               midiNote += this.interface.getParameter('transpose', 'modulated') + this.interface.getParameter(`device.${dev}.transpose`, 'modulated') + this.octave(this.stepIdx)
 
               if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability', 'modulated') >= Machine.getRandomInt(100)) {
+                const portName = this.getState(`device.${dev}.portName`)
                 const channel = this.interface.getParameter(`device.${dev}.channel`) - 1
-                debugMidiNoteOn('%s %d %y', this.getState(`device.${dev}.portName`), channel + 1, midiNote)
+                debugMidiNoteOn('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
 
-                if (this.midiCache.getValue(this.getState(`device.${dev}.portName`), channel, 'note', midiNote)) {
-                  Midi.send(this.getState(`device.${dev}.portName`), 'noteoff', {
-                    note: midiNote,
-                    velocity: 127,
-                    channel: channel,
-                  })
-                }
-                Midi.send(this.getState(`device.${dev}.portName`), 'noteon', {
-                  note: midiNote,
-                  velocity: 127 * note.velocity,
-                  channel: channel,
-                })
-                this.midiCache.setValue(this.getState(`device.${dev}.portName`), channel, 'note', midiNote, true)
-
-                const b = Math.floor(note.durationTicks / ticksPerStep) * ticksPerStep
-                const r = (note.durationTicks % ticksPerStep) * this.interface.getParameter('gate', 'modulated')
-                setTimeout((portName, midiNote, channel) => {
-                  debugMidiNoteOff('port %s  channel %d  note %y', portName, channel + 1, midiNote)
+                if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
                   Midi.send(portName, 'noteoff', {
                     note: midiNote,
                     velocity: 127,
                     channel: channel,
+                    sendShadowNotesToBacaraPort: true,
+                    shadowChannel: dev == 'A' ? 0 : 1,
                   })
-                  this.midiCache.clearValue(this.getState(`device.${dev}.portName`), channel, 'note', midiNote)
-                }, b + r, this.getState(`device.${dev}.portName`), midiNote, channel)
+                }
+                Midi.send(portName, 'noteon', {
+                  note: midiNote,
+                  velocity: 127 * note.velocity,
+                  channel: channel,
+                  sendShadowNotesToBacaraPort: true,
+                  shadowChannel: dev == 'A' ? 0 : 1,
+                })
+                this.midiCache.setValue(portName, channel, 'note', midiNote, true)
+
+                const b = Math.floor(note.durationTicks / ticksPerStep) * ticksPerStep
+                const r = (note.durationTicks % ticksPerStep) * this.interface.getParameter('gate', 'modulated')
+                setTimeout((portName, midiNote, channel, shadowChannel) => {
+                  debugMidiNoteOff('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
+                  Midi.send(portName, 'noteoff', {
+                    note: midiNote,
+                    velocity: 127,
+                    channel,
+                    sendShadowNotesToBacaraPort: true,
+                    shadowChannel,
+                  })
+                  this.midiCache.clearValue(portName, channel, 'note', midiNote)
+                }, b + r, portName, midiNote, channel, dev == 'A' ? 0 : 1)
               }
             }
           }
         })
       }
+
+
+      if (this.getState('drums.pattern') /*&& !this.interface.getParameter('mute')*/) {
+        _.get(this.getState('drums.pattern'), 'tracks.0.notes', []).forEach( note => {
+          if (note.ticks == shiftedTicks) {
+
+            if (this.stepIdx < this.interface.getParameter('drums.steps') /*&& this.sounding(this.stepIdx)*/) {
+              const instrument = note.midi - 36
+              if (instrument>=0 && instrument < 12) {
+                if (!this.interface.getParameter(`drums.instrument.${instrument}.mute`)) {
+                  const portName = this.getState(`drums.instrument.${instrument}.portName`)
+                  const channel = this.getState(`drums.instrument.${instrument}.channel`) - 1
+                  const midiNote = this.interface.getParameter(`drums.instrument.${instrument}.note`)
+                  debugMidiNoteOn('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
+
+                  if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
+                    Midi.send(portName, 'noteoff', {
+                      note: midiNote,
+                      velocity: 127,
+                      channel: channel,
+                    })
+                  }
+                  Midi.send(portName, 'noteon', {
+                    note: midiNote,
+                    velocity: 127 * note.velocity,
+                    channel: channel,
+                  })
+                  this.midiCache.setValue(portName, channel, 'note', midiNote, true)
+
+                  const b = Math.floor(note.durationTicks / ticksPerStep) * ticksPerStep
+                  const r = (note.durationTicks % ticksPerStep) * 1.0 //this.interface.getParameter('gate', 'modulated')
+                  setTimeout((portName, midiNote, channel) => {
+                    debugMidiNoteOff('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
+                    Midi.send(portName, 'noteoff', {
+                      note: midiNote,
+                      velocity: 127,
+                      channel: channel,
+                    })
+                    this.midiCache.clearValue(portName, channel, 'note', midiNote)
+                  }, b + r, portName, midiNote, channel)
+                }
+                for (let trck=0;trck<6;trck++) {
+                  if (this.interface.getParameter(`drums.redrum.${trck}.instrument`) == instrument) {
+                    if (!this.interface.getParameter(`drums.redrum.${trck}.mute`) && this.getState(`drums.redrum.${trck}.portName`) /*&& this.interface.getParameter('probability', 'modulated') >= Machine.getRandomInt(100)*/) {
+                      const portName = this.getState(`drums.redrum.${trck}.portName`)
+                      const channel = this.getState(`drums.redrum.${trck}.channel`) - 1
+                      const midiNote = this.interface.getParameter(`drums.redrum.${trck}.note`)
+                      debugMidiNoteOn('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
+
+                      if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
+                        Midi.send(portName, 'noteoff', {
+                          note: midiNote,
+                          velocity: 127,
+                          channel: channel,
+                        })
+                      }
+                      Midi.send(portName, 'noteon', {
+                        note: midiNote,
+                        velocity: 127 * note.velocity,
+                        channel: channel,
+                      })
+                      this.midiCache.setValue(portName, channel, 'note', midiNote, true)
+
+                      const b = Math.floor(note.durationTicks / ticksPerStep) * ticksPerStep
+                      const r = (note.durationTicks % ticksPerStep) * 1.0 //this.interface.getParameter('gate', 'modulated')
+                      setTimeout((portName, midiNote, channel) => {
+                        debugMidiNoteOff('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
+                        Midi.send(portName, 'noteoff', {
+                          note: midiNote,
+                          velocity: 127,
+                          channel: channel,
+                        })
+                        this.midiCache.clearValue(portName, channel, 'note', midiNote)
+                      }, b + r, portName, midiNote, channel)
+                    }
+                  }
+                }
+              }
+            }
+          }
+        })
+      }
+
     }
     this.pulses++
   }
