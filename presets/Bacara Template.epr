@@ -892,6 +892,18 @@
         486,
         16
       ]
+    },
+    {
+      "id": 25,
+      "pageId": 1,
+      "name": "Drum Pattern",
+      "color": "F45C51",
+      "bounds": [
+        0,
+        368,
+        316,
+        16
+      ]
     }
   ],
   "devices": [
@@ -2514,6 +2526,42 @@
       ]
     },
     {
+      "id": 26,
+      "type": "fader",
+      "visible": true,
+      "name": "DENSITY",
+      "color": "F45C51",
+      "bounds": [
+        170,
+        392,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16293,
+            "min": 0,
+            "max": 100
+          },
+          "defaultValue": 100,
+          "overlayId": 1
+        }
+      ]
+    },
+    {
       "id": 28,
       "type": "pad",
       "mode": "momentary",
@@ -2613,6 +2661,79 @@
             "offValue": 0
           },
           "defaultValue": "off"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "type": "fader",
+      "visible": true,
+      "name": "VELOCITY",
+      "color": "F45C51",
+      "bounds": [
+        0,
+        480,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16292,
+            "min": 0,
+            "max": 200
+          },
+          "min": -100,
+          "max": 100,
+          "defaultValue": 0
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "type": "fader",
+      "visible": true,
+      "name": "PROBABILITY",
+      "color": "F45C51",
+      "bounds": [
+        170,
+        480,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16291,
+            "min": 0,
+            "max": 100
+          },
+          "defaultValue": 100,
+          "overlayId": 5
         }
       ]
     },
