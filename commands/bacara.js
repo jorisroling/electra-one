@@ -546,7 +546,7 @@ class BacaraMachine extends Machine {
             const instrument = this.interface.getParameter(`drums.redrum.${trck}.instrument`)
             this.setState('drums.patterns',Drums.generate(this.interface.getParameter('drums.steps'),this.interface.getParameter('drums.style'),instrument,this.getState('drums.patterns')))
             this.setState('drums.midi',Drums.midiFromPatterns(this.interface.getParameter('drums.steps'),this.getState('drums.patterns')))
-//            this.showPattern()
+            this.showDrumsPattern()
             this.writeState()
             debug('re-generated drums for track %y instrument %y',trck,instrument)
           }
@@ -709,7 +709,7 @@ class BacaraMachine extends Machine {
           if (origin == 'surface') {
             this.setState('drums.patterns',Drums.generate(this.interface.getParameter('drums.steps'),this.interface.getParameter('drums.style'),-1,this.getState('drums.patterns')))
             this.setState('drums.midi',Drums.midiFromPatterns(this.interface.getParameter('drums.steps'),this.getState('drums.patterns')))
-//            this.showPattern()
+            this.showDrumsPattern()
             this.writeState()
             debug('generated drums')
           }
@@ -1722,9 +1722,82 @@ class BacaraMachine extends Machine {
     }
   }
 
+  showDrumsPattern() {
+    const pattern = this.getState('drums.midi')
+    const size = this.getState('drums.steps', 16)
+    if (!pattern) {
+      return
+    }
+    const accentedColor = chalk.bgHex('#FF8800')
+    const normalColor = chalk.bgHex('#00BB00')
+    const disabledColor = chalk.bgHex('#666666')
+
+    const deviceDColor = chalk.hex('#FF00FF')
+    const deviceRColor = chalk.hex('#FF0000')
+    //    const deviceAColor = chalk.hex('#F45C51')
+    //    const deviceBColor = chalk.hex('#529DEC')
+
+    let table = new Table(
+      {
+        head: [
+          deviceDColor('Drums'),
+          {colSpan:size, content:pattern.header.name + `              normal ${normalColor('  ')}   accented ${accentedColor('  ')}   disabled ${disabledColor('  ')}`}
+        ]
+        /*,style:{head:[],border:[]}*/
+      }
+    )
+
+    const notes = []
+    _.get(pattern, 'tracks.0.notes', []).forEach( note => {
+      if (notes.indexOf(note.midi) < 0) {
+        notes.push(note.midi)
+      }
+    })
+    notes.sort()
+    notes.reverse()
+
+    let row = 0
+    notes.forEach( noteMidi => {
+
+      let midiNote = noteMidi
+
+      let deviceColor = deviceDColor
+      for (let trck=0;trck<6;trck++) {
+/*        debug('dc %y %y %y',trck,this.interface.getParameter(`drums.redrum.${trck}.instrument`),(midiNote-Drums.baseNote()))*/
+        if (this.interface.getParameter(`drums.redrum.${trck}.instrument`) == (midiNote-Drums.baseNote()) ) {
+          deviceColor = deviceRColor
+        }
+      }
+
+      const arr = [
+        {hAlign:'center', content:deviceColor(Drums.instrumentName(midiNote-Drums.baseNote()).toUpperCase()) },
+      ]
+      for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
+        let chNote = '  '
+        _.get(pattern, 'tracks.0.notes', []).forEach( note => {
+          if (note.midi  == noteMidi && note.ticks == ticks) {
+            const count = 1//Math.ceil(note.durationTicks / ticksPerStep)
+
+            const relVelocity = (note.velocity)//*(maxVelocity/minVelocity)
+            const noteColor = chalk.bgHex(`#00${Math.floor(relVelocity * 0xFF).toString(16).padStart(2, '0')}00`)
+            const color = true ? (note.velocity == 1 ? accentedColor : noteColor) : disabledColor
+            const rep = count * 2 + ((count - 1) * 3)
+            chNote = {colSpan:count, content:color(' '.repeat(rep >= 0 ? rep : 0))}
+            ticks += (count - 1) * ticksPerStep
+          }
+        })
+        if (chNote) {
+          arr.push(chNote)
+        }
+      }
+      table.push(arr)
+      row++
+    })
+
+    debug(table.toString())
+  }
 
   showPattern() {
-
     const pattern = this.getState('pattern')
     const size = this.getState('patternSteps', 16)
     if (!pattern) {
@@ -2200,7 +2273,7 @@ class BacaraMachine extends Machine {
           if (note.ticks == shiftedTicks) {
 
             if (this.stepIdx < this.interface.getParameter('drums.steps') /*&& this.sounding(this.stepIdx)*/) {
-              const instrument = note.midi - 36
+              const instrument = note.midi - Drums.baseNote()
               if (instrument>=0 && instrument < 12) {
                 if (!this.interface.getParameter(`drums.instrument.${instrument}.mute`)) {
                   const portName = this.getState(`drums.instrument.${instrument}.portName`)
@@ -2624,6 +2697,7 @@ function bacaraSequencer(name, sub, options) {
   bacaraMachine.notesReset()
   bacaraMachine.interface.sendValues('surface')
   bacaraMachine.showPattern()
+  bacaraMachine.showDrumsPattern()
   bacaraMachine.virusSetupParts()
 }
 
