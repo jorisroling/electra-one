@@ -5834,83 +5834,88 @@
         },
         {
           "index": 44,
-          "label": "Bacara ch.1",
+          "label": "KeyStep Pro t.5",
           "value": 44
         },
         {
           "index": 45,
-          "label": "Bacara ch.2",
+          "label": "Bacara ch.1",
           "value": 45
         },
         {
           "index": 46,
-          "label": "Bacara ch.3",
+          "label": "Bacara ch.2",
           "value": 46
         },
         {
           "index": 47,
-          "label": "Bacara ch.4",
+          "label": "Bacara ch.3",
           "value": 47
         },
         {
           "index": 48,
-          "label": "Bacara ch.5",
+          "label": "Bacara ch.4",
           "value": 48
         },
         {
           "index": 49,
-          "label": "Bacara ch.6",
+          "label": "Bacara ch.5",
           "value": 49
         },
         {
           "index": 50,
-          "label": "Bacara ch.7",
+          "label": "Bacara ch.6",
           "value": 50
         },
         {
           "index": 51,
-          "label": "Bacara ch.8",
+          "label": "Bacara ch.7",
           "value": 51
         },
         {
           "index": 52,
-          "label": "Bacara ch.9",
+          "label": "Bacara ch.8",
           "value": 52
         },
         {
           "index": 53,
-          "label": "Bacara ch.10",
+          "label": "Bacara ch.9",
           "value": 53
         },
         {
           "index": 54,
-          "label": "Bacara ch.11",
+          "label": "Bacara ch.10",
           "value": 54
         },
         {
           "index": 55,
-          "label": "Bacara ch.12",
+          "label": "Bacara ch.11",
           "value": 55
         },
         {
           "index": 56,
-          "label": "Bacara ch.13",
+          "label": "Bacara ch.12",
           "value": 56
         },
         {
           "index": 57,
-          "label": "Bacara ch.14",
+          "label": "Bacara ch.13",
           "value": 57
         },
         {
           "index": 58,
-          "label": "Bacara ch.15",
+          "label": "Bacara ch.14",
           "value": 58
         },
         {
           "index": 59,
-          "label": "Bacara ch.16",
+          "label": "Bacara ch.15",
           "value": 59
+        },
+        {
+          "index": 60,
+          "label": "Bacara ch.16",
+          "value": 60
         }
       ]
     },

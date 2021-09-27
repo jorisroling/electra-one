@@ -191,7 +191,7 @@ module.exports = {
       model: 'KeyStep Pro',
       manufacturer: 'Arturia',
       instance: 't.#',
-      channels: [1, 2, 3, 4],
+      channels: [1, 2, 3, 4, 10],
       port: 'keystep-pro',
       electraOne: {
         port: 1,
