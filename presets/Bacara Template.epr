@@ -2101,7 +2101,7 @@
       "type": "pad",
       "mode": "toggle",
       "visible": true,
-      "name": "CONTINUE",
+      "name": "MUTE",
       "color": "F45C51",
       "bounds": [
         170,
@@ -2124,7 +2124,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16289,
+            "parameterNumber": 16290,
             "onValue": 1,
             "offValue": 0
           },
@@ -2159,6 +2159,42 @@
             "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 1281,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "type": "pad",
+      "mode": "toggle",
+      "visible": true,
+      "name": "MUTE",
+      "color": "03A598",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 12929,
             "onValue": 1,
             "offValue": 0
           },
@@ -2442,13 +2478,14 @@
       ]
     },
     {
-      "id": 27,
+      "id": 25,
       "type": "pad",
       "mode": "toggle",
-      "name": "MUTE",
-      "color": "FFFFFF",
+      "visible": true,
+      "name": "CONTINUE",
+      "color": "F45C51",
       "bounds": [
-        340,
+        0,
         392,
         146,
         56
@@ -2457,22 +2494,22 @@
       "controlSetId": 3,
       "inputs": [
         {
-          "potId": 3,
+          "potId": 1,
           "valueId": "value"
         }
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 12929,
+            "parameterNumber": 16289,
             "onValue": 1,
             "offValue": 0
           },
-          "defaultValue": "off",
-          "id": "value"
+          "defaultValue": "off"
         }
       ]
     },

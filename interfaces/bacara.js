@@ -1313,7 +1313,7 @@ module.exports = {
     },
     drums: {
       generate: {
-        name: 'Drum Generate',
+        name: 'Drums Generate',
         type: 'action',
         surface: {
           type: 'nrpn',
@@ -1324,8 +1324,21 @@ module.exports = {
         },
         on: 1,
       },
+      mute: {
+        name: 'Drums Mute',
+        type: 'parameter',
+        surface: {
+          type: 'nrpn',
+          number: 16290,
+          lsbFirst: true,
+          min: 0,
+          max: 1,
+        },
+        on: 1,
+        default: 0,
+      },
       style: {
-        name: 'Drum Style',
+        name: 'Drums Style',
         type: 'parameter',
         surface: {
           type: 'nrpn',
@@ -1336,7 +1349,7 @@ module.exports = {
         },
       },
       steps: {
-        name: 'Drum Steps',
+        name: 'Drums Steps',
         type: 'parameter',
         surface: {
           type: 'nrpn',
@@ -1349,6 +1362,19 @@ module.exports = {
         max: 128,
         default: 16,
         unit: 'steps',
+      },
+      continue: {
+        name: 'Drums Continue',
+        type: 'parameter',
+        surface: {
+          type: 'nrpn',
+          number: 16289,
+          lsbFirst: true,
+          min: 0,
+          max: 1,
+        },
+        on: 1,
+        default: 0,
       },
       instrument: [{
         device: {

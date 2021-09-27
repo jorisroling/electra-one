@@ -2195,7 +2195,7 @@ class BacaraMachine extends Machine {
       }
 
 
-      if (this.getState('drums.midi') /*&& !this.interface.getParameter('mute')*/) {
+      if (this.getState('drums.midi') && !this.interface.getParameter('drums.mute')) {
         _.get(this.getState('drums.midi'), 'tracks.0.notes', []).forEach( note => {
           if (note.ticks == shiftedTicks) {
 
