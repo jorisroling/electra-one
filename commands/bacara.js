@@ -161,7 +161,7 @@ class BacaraMachine extends Machine {
 
             const parameter = _.get(devices['virus-ti'].parameters, list[idx])
             if (parameter && parameter.cc) {
-              const patchDefault = Virus.getPresetPageParameter(_.get(this.state, `virus.part.${part - 1}.preset`), 0, parameter.cc)
+              const patchDefault = Virus.getPresetPageParameter(this.getState(`virus.part.${part - 1}.preset`), 0, parameter.cc)
               if (patchDefault >= 0) {
                 //                 debug('Reset Axyz %y T %d CC %y = patch default %y',axyz,t,parameter.cc,patchDefault)
                 Midi.send(virusPortName, 'cc', {channel:channel - 1, controller:parameter.cc, value:patchDefault})
@@ -318,7 +318,7 @@ class BacaraMachine extends Machine {
         case 'sysex':
           Virus.parseSysEx(msg.bytes, (part, storedPreset) => {
             if (part >= 1 && part <= 16 && storedPreset) {
-              _.set(this.state, `virus.part.${part - 1}.preset`, storedPreset)
+              this.setState(`virus.part.${part - 1}.preset`, storedPreset)
               this.writeState()
             }
             this.virusReflectPreset(part, storedPreset)
@@ -541,7 +541,15 @@ class BacaraMachine extends Machine {
     const drumsRedrumActions = (trck) => {
       return {
         generate: (elementPath, origin) => {
-          debug('JJR1 %y %y',elementPath, origin)
+/*          debug('JJR1 %y %y',elementPath, origin)*/
+          if (origin == 'surface') {
+            const instrument = this.interface.getParameter(`drums.redrum.${trck}.instrument`)
+            this.setState('drums.patterns',Drums.generate(this.interface.getParameter('drums.steps'),this.interface.getParameter('drums.style'),instrument,this.getState('drums.patterns')))
+            this.setState('drums.midi',Drums.midiFromPatterns(this.interface.getParameter('drums.steps'),this.getState('drums.patterns')))
+//            this.showPattern()
+            this.writeState()
+            debug('re-generated drums for track %y instrument %y',trck,instrument)
+          }
         },
         preview: (elementPath, origin) => {
           debug('JJR2 %y %y',elementPath, origin)
@@ -699,7 +707,8 @@ class BacaraMachine extends Machine {
       drums: {
         generate: (elementPath, origin) => {
           if (origin == 'surface') {
-            _.set(this.state,'drums.pattern',Drums.generate(this.interface.getParameter('drums.steps'),this.interface.getParameter('drums.style')))
+            this.setState('drums.patterns',Drums.generate(this.interface.getParameter('drums.steps'),this.interface.getParameter('drums.style'),-1,this.getState('drums.patterns')))
+            this.setState('drums.midi',Drums.midiFromPatterns(this.interface.getParameter('drums.steps'),this.getState('drums.patterns')))
 //            this.showPattern()
             this.writeState()
             debug('generated drums')
@@ -1112,7 +1121,7 @@ class BacaraMachine extends Machine {
 
             if (parameter && parameter.cc) {
               let val
-              const patchDefault = Virus.getPresetPageParameter(_.get(this.state, `virus.part.${part - 1}.preset`), 0, parameter.cc)
+              const patchDefault = Virus.getPresetPageParameter(this.getState(`virus.part.${part - 1}.preset`), 0, parameter.cc)
               if (mode == virusAxyzModeRelative) {
                 if (value >= 0.0) {
                   val = Math.round(patchDefault + ((127 - patchDefault) * value))
@@ -1173,12 +1182,12 @@ class BacaraMachine extends Machine {
 
     const virusMacroControl = (part, ctrl) => (elementPath, value, origin) => {
       if (part >= 1 && part <= 16) {
-        const type = _.get(this.state, `virus.part.${part - 1}.macros.${ctrl - 1}.type`)
+        const type = this.getState(`virus.part.${part - 1}.macros.${ctrl - 1}.type`)
         let val = value
         switch (type) {
         case 'cc':
           {
-            const controller = _.get(this.state, `virus.part.${part - 1}.macros.${ctrl - 1}.cc`)
+            const controller = this.getState(`virus.part.${part - 1}.macros.${ctrl - 1}.cc`)
             if (controller) {
               val = Math.round(Interface.remap(value, 0, 16383, 0, 127))
               Midi.send('virus-ti', 'cc', {channel:part - 1, controller, value:val}, 'macrosChange-virus', 200)
@@ -1811,7 +1820,7 @@ class BacaraMachine extends Machine {
 
     debug(table.toString())
     /*    debug(grid)*/
-    _.set(this.state, 'pattern.grid', grid)
+    this.setState('pattern.grid', grid)
     this.showPatternGrid(this.stepIdx)
   }
 
@@ -1820,7 +1829,7 @@ class BacaraMachine extends Machine {
 
     for (let row = 0; row < monome.height; row++) {
       for (let col = 0; col < monome.width; col++) {
-        let on = _.get(this.state, `pattern.grid.${row}.${col + offset}`)
+        let on = this.getState(`pattern.grid.${row}.${col + offset}`)
         if (showCursor && step >= 0 && step == (col + offset)) {
           on = !on
         }
@@ -1839,7 +1848,7 @@ class BacaraMachine extends Machine {
       let fromStore = false
       if (bank >= virusRamRomBanks) {
         const part = channel
-        const virusPreset = _.get(this.state, `virus.part.${part - 1}.preset`)
+        const virusPreset = this.getState(`virus.part.${part - 1}.preset`)
         if (virusPreset) {
           const bytes = Virus.presetToSysEx(part, virusPreset, bank, program)
           if (bytes) {
@@ -1847,7 +1856,7 @@ class BacaraMachine extends Machine {
             Midi.send('virus-ti', 'sysex', bytes)
             Virus.parseSysEx(bytes, (part, storedPreset) => {
               if (part >= 1 && part <= 16 && storedPreset) {
-                _.set(this.state, `virus.part.${part - 1}.preset`, storedPreset)
+                this.setState(`virus.part.${part - 1}.preset`, storedPreset)
                 this.writeState()
               }
               this.virusReflectPreset(part, storedPreset)
@@ -2186,8 +2195,8 @@ class BacaraMachine extends Machine {
       }
 
 
-      if (this.getState('drums.pattern') /*&& !this.interface.getParameter('mute')*/) {
-        _.get(this.getState('drums.pattern'), 'tracks.0.notes', []).forEach( note => {
+      if (this.getState('drums.midi') /*&& !this.interface.getParameter('mute')*/) {
+        _.get(this.getState('drums.midi'), 'tracks.0.notes', []).forEach( note => {
           if (note.ticks == shiftedTicks) {
 
             if (this.stepIdx < this.interface.getParameter('drums.steps') /*&& this.sounding(this.stepIdx)*/) {
@@ -2305,7 +2314,7 @@ class BacaraMachine extends Machine {
   virusMacros(part) {
     if (electra.presetEquals(this.options.electraOneCtrl, 'Bacara')) {
       if (part >= 1 && part <= 6) {
-        const macros = _.get(this.state, `virus.part.${part - 1}.macros`, [])
+        const macros = this.getState(`virus.part.${part - 1}.macros`, [])
         for (let i = 0; i < 6; i++) {
 
           const selectControls = [253, 254, 255, 256, 257, 258]
@@ -2333,7 +2342,7 @@ class BacaraMachine extends Machine {
 
   virusSetupParts() {
     for (let part = 16; part > 0; part--) {
-      const virusPreset = _.get(this.state, `virus.part.${part - 1}.preset`)
+      const virusPreset = this.getState(`virus.part.${part - 1}.preset`)
       if (virusPreset) {
         const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
         const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
@@ -2363,11 +2372,11 @@ class BacaraMachine extends Machine {
             if (virusPreset) {
               const bytes = Virus.presetToSysEx(part, virusPreset, bank, program)
               if (bytes) {
-                _.set(this.state, `virus.part.${part - 1}.preset`, virusPreset)
+                this.setState(`virus.part.${part - 1}.preset`, virusPreset)
                 Midi.send('virus-ti', 'sysex', bytes)
                 Virus.parseSysEx(bytes, (part, storedPreset) => {
                   if (part >= 1 && part <= 16 && storedPreset) {
-                    _.set(this.state, `virus.part.${part - 1}.preset`, storedPreset)
+                    this.setState(`virus.part.${part - 1}.preset`, storedPreset)
                     this.writeState()
                   }
                   this.virusReflectPreset(part, storedPreset)
@@ -2392,7 +2401,7 @@ class BacaraMachine extends Machine {
   virusReflectParts() {
     if (electra.presetEquals(this.options.electraOneCtrl, 'Bacara')) {
       for (let part = 16; part >= 1; part--) {
-        const virusPreset = _.get(this.state, `virus.part.${part - 1}.preset`)
+        const virusPreset = this.getState(`virus.part.${part - 1}.preset`)
         if (virusPreset) {
           this.virusReflectPreset(part, virusPreset)
         }
@@ -2488,7 +2497,7 @@ class BacaraMachine extends Machine {
           }
         }
       }
-      _.set(this.state, `virus.part.${part - 1}.macros`, macros)
+      this.setState(`virus.part.${part - 1}.macros`, macros)
 
       this.virusMacros(part)
       /*            debug('Part #%y Macros %y',part,macros)*/
