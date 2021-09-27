@@ -1347,6 +1347,7 @@ module.exports = {
           min: 0,
           max: 2,
         },
+        default: 1,
       },
       steps: {
         name: 'Drums Steps',

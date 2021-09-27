@@ -47,7 +47,7 @@ const matchPresetByPatchRequest = false
 
 const phaseDetection = true
 const showPatternParameters = ['transpose', 'density', 'muteSteps', 'muteShift', 'scales', 'base', 'split', 'deviate', 'shift']
-const showDrumPatternParameters = ['drums.density']
+const showDrumPatternParameters = ['drums.density','drums.velocity']
 
 const toneJSmidi = require('@tonejs/midi')
 
@@ -372,7 +372,7 @@ class BacaraMachine extends Machine {
       }
     }
 
-    this.state.sounding = new Array(this.getState('patternSteps', patternStepsDefault)).fill(1)
+    this.state.sounding = new Array(this.interface.getParameter('steps', patternStepsDefault)).fill(1)
 
 
     const virusMixerSelect = (part) => (elementPath, origin) => {
@@ -549,7 +549,7 @@ class BacaraMachine extends Machine {
             this.setState('drums.midi',Drums.midiFromPatterns(this.interface.getParameter('drums.steps'),this.getState('drums.patterns')))
             this.showDrumsPattern()
             this.writeState()
-            debug('re-generated drums for track %y instrument %y',trck,instrument)
+            debug('re-generated drums for track %y instrument %y',trck,Drums.instrumentName(instrument).toUpperCase())
           }
         },
         preview: (elementPath, origin) => {
@@ -612,7 +612,7 @@ class BacaraMachine extends Machine {
           this.state.last_pattern_but += 1
 
           this.state.pattern = Pattern.load_pattern(this.state)
-          this.interface.setParameter('steps', this.getState('patternSteps', patternStepsDefault))
+          this.interface.setParameter('steps', this.interface.getParameter('steps', patternStepsDefault))
           this.showPattern()
           this.writeState()
           debug('previous_pattern: %y', this.state.last_pattern_but)
@@ -626,7 +626,7 @@ class BacaraMachine extends Machine {
           }
 
           this.state.pattern = Pattern.load_pattern(this.state)
-          this.interface.setParameter('steps', this.getState('patternSteps', patternStepsDefault))
+          this.interface.setParameter('steps', this.interface.getParameter('steps', patternStepsDefault))
           this.showPattern()
           this.writeState()
           debug('next_pattern: %y', this.state.last_pattern_but)
@@ -1286,7 +1286,7 @@ class BacaraMachine extends Machine {
       octaveChance: (elementPath, value, origin) => {
         if (origin == 'surface' || !this.state.octaves) {
           this.state.octaves = []
-          for (let idx = 0; idx < this.getState('patternSteps', patternStepsDefault); idx++) {
+          for (let idx = 0; idx < this.interface.getParameter('steps', patternStepsDefault); idx++) {
             const octave = (Math.abs(value) > Machine.getRandomInt(100))
             this.state.octaves[idx] = (octave ? (value > 0 ? 1 : -1) : 0)
           }
@@ -1298,7 +1298,7 @@ class BacaraMachine extends Machine {
         }
         if (origin == 'surface' || !this.state.sounding) {
           this.state.sounding = []
-          for (let idx = 0; idx < this.getState('patternSteps', patternStepsDefault); idx++) {
+          for (let idx = 0; idx < this.interface.getParameter('steps', patternStepsDefault); idx++) {
             this.state.sounding[idx] = (value && (value >= Machine.getRandomInt(100))) ? 1 : 0
           }
         }
@@ -1308,13 +1308,13 @@ class BacaraMachine extends Machine {
           this.interface.setParameter('density', 100)
         }
         if (origin == 'surface' || !this.state.sounding && value > 0) {
-          this.euclidian(this.interface.getParameter('muteSteps'), this.getState('patternSteps', patternStepsDefault), this.interface.getParameter('muteShift'))
+          this.euclidian(this.interface.getParameter('muteSteps'), this.interface.getParameter('steps', patternStepsDefault), this.interface.getParameter('muteShift'))
         }
       },
       muteShift: (elementPath, value, origin) => {
         if (this.interface.getParameter('muteSteps') > 0) {
           if (origin == 'surface' || !this.state.sounding) {
-            this.euclidian(this.interface.getParameter('muteSteps'), this.getState('patternSteps', patternStepsDefault), this.interface.getParameter('muteShift'))
+            this.euclidian(this.interface.getParameter('muteSteps'), this.interface.getParameter('steps', patternStepsDefault), this.interface.getParameter('muteShift'))
           }
         }
       },
@@ -1751,16 +1751,16 @@ class BacaraMachine extends Machine {
     const normalColor = chalk.bgHex('#00BB00')
     const disabledColor = chalk.bgHex('#666666')
 
-    const deviceDColor = chalk.hex('#FF00FF')
-    const deviceRColor = chalk.hex('#FF0000')
+    const deviceDColor = chalk.hex('#333')
+    const deviceRColor = chalk.hex('#FFFFFF')
     //    const deviceAColor = chalk.hex('#F45C51')
     //    const deviceBColor = chalk.hex('#529DEC')
 
     let table = new Table(
       {
         head: [
-          deviceDColor('Drums'),
-          {colSpan:size, content:pattern.header.name + `              normal ${normalColor('  ')}   accented ${accentedColor('  ')}   disabled ${disabledColor('  ')}`}
+          'Drum',
+          {colSpan:size, content:pattern.header.name + `      normal ${normalColor('  ')}   accented ${accentedColor('  ')}   disabled ${disabledColor('  ')}`}
         ]
         /*,style:{head:[],border:[]}*/
       }
@@ -1797,10 +1797,13 @@ class BacaraMachine extends Machine {
           if (note.midi  == noteMidi && note.ticks == ticks) {
             const count = 1//Math.ceil(note.durationTicks / ticksPerStep)
 
-            const relVelocity = (note.velocity)//*(maxVelocity/minVelocity)
-            const noteColor = chalk.bgHex(`#00${Math.floor(relVelocity * 0xFF).toString(16).padStart(2, '0')}00`)
-            const color = this.sounding(ticks / ticksPerStep,'drums.sounding',instrument) ? (note.velocity == 1 ? accentedColor : noteColor) : disabledColor
-            const rep = count * 2 + ((count - 1) * 3)
+            let velFactor = this.interface.getParameter('drums.velocity')
+            if (Math.abs(velFactor) < Machine.getRandomInt(100)) {
+              velFactor = 0
+            }
+            const relVelocity = ((note.velocity + (velFactor>=0 ? ((1.0 - note.velocity) * (velFactor/100)) : ((note.velocity) * (velFactor/100)) ) ) )
+            const color = this.sounding(ticks / ticksPerStep,'drums.sounding',instrument) ? (note.velocity == 1 ? chalk.bgHex(`#${Math.floor(relVelocity * 0xFF).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x88).toString(16).padStart(2, '0')}00`) : chalk.bgHex(`#00${Math.floor(relVelocity * 0xFF).toString(16).padStart(2, '0')}00`)) : chalk.bgHex(`#${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}`)
+            const rep = 2;//count * 2 + ((count - 1) * 3)
             chNote = {colSpan:count, content:color(' '.repeat(rep >= 0 ? rep : 0))}
             ticks += (count - 1) * ticksPerStep
           }
@@ -1818,7 +1821,7 @@ class BacaraMachine extends Machine {
 
   showPattern() {
     const pattern = this.getState('pattern')
-    const size = this.getState('patternSteps', 16)
+    const size = this.interface.getParameter('steps', 16)
     if (!pattern) {
       return
     }
@@ -1837,8 +1840,8 @@ class BacaraMachine extends Machine {
       {
         head: [
           'Device',
-          'Notes',
-          {colSpan:size, content:pattern.header.name + `              normal ${normalColor('  ')}   accented ${accentedColor('  ')}   disabled ${disabledColor('  ')}`}
+          'Note',
+          {colSpan:size, content:pattern.header.name + `            normal ${normalColor('  ')}   accented ${accentedColor('  ')}   disabled ${disabledColor('  ')}`}
         ]
         /*,style:{head:[],border:[]}*/
       }
@@ -1857,7 +1860,7 @@ class BacaraMachine extends Machine {
     let row = 0
     notes.forEach( noteMidi => {
       grid[row] = []
-      for (let col = 0; col < this.getState('patternSteps', patternStepsDefault); col++) {
+      for (let col = 0; col < this.interface.getParameter('steps', patternStepsDefault); col++) {
         grid[row][col] = false
       }
 
@@ -1873,16 +1876,16 @@ class BacaraMachine extends Machine {
       const noteMidiTransposed = midiNote + this.interface.getParameter('transpose', 'modulated')
 
 
-      /*      debug('JJ: %y %y %y',(state && this.interface.getParameter('split','modulated') && noteMidiTransposed <= this.interface.getParameter('split','modulated')),this.interface.getParameter('split','modulated'),noteMidiTransposed)*/
-      const deviceBrow = (this.interface.getParameter('split', 'modulated') && noteMidiTransposed <= this.interface.getParameter('split', 'modulated')) ? ((this.interface.getParameter('deviate', 'modulated') >= 50) ? true : false) : ((this.interface.getParameter('deviate', 'modulated') >= 50) ? false : true)
+      const split = this.interface.getParameter('split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
+      const deviceBrow = (split && noteMidiTransposed <= split) ? ((this.interface.getParameter('deviate', 'modulated') >= 50) ? true : false) : ((this.interface.getParameter('deviate', 'modulated') >= 50) ? false : true)
       const arr = [
         {hAlign:'center', content:deviceBrow ? deviceBColor('B') : deviceAColor('A') },
         {hAlign:'center', content:TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })/*+` ${noteMidi}`*/}
       ]
       for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
-        let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.getState('patternSteps', patternStepsDefault)) // JJR ? steps?
+        let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.interface.getParameter('steps', patternStepsDefault)) // JJR ? steps?
         if (shiftedTicks < 0) {
-          shiftedTicks +=  ticksPerStep * this.getState('patternSteps', patternStepsDefault)
+          shiftedTicks +=  ticksPerStep * this.interface.getParameter('steps', patternStepsDefault)
         }
         //debug ('ticks %y  shiftedTicks %y',ticks,shiftedTicks)
         let chNote = '  '
@@ -2241,7 +2244,8 @@ class BacaraMachine extends Machine {
               }
 
               const switchSide = (this.interface.getParameter('deviate', 'modulated') && this.interface.getParameter('deviate', 'modulated') >= Machine.getRandomInt(100))
-              const dev =  (midiNote <= this.interface.getParameter('split', 'modulated')) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
+              const split = this.interface.getParameter('split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
+              const dev =  (midiNote <= split) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
               midiNote += this.interface.getParameter('transpose', 'modulated') + this.interface.getParameter(`device.${dev}.transpose`, 'modulated') + this.octave(this.stepIdx)
 
               if (!this.interface.getParameter(`device.${dev}.mute`) && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability', 'modulated') >= Machine.getRandomInt(100)) {
@@ -2306,10 +2310,16 @@ class BacaraMachine extends Machine {
                       channel: channel,
                     })
                   }
+                  let velFactor = this.interface.getParameter('drums.velocity')
+                  if (Math.abs(velFactor) < Machine.getRandomInt(100)) {
+                    velFactor = 0
+                  }
+                  const velocity = (127 * (note.velocity + (velFactor>=0 ? ((1.0 - note.velocity) * (velFactor/100)) : ((note.velocity) * (velFactor/100)) ) ) )
+/*                  debug('velocity %y %y %y',note.velocity,velFactor,velocity)*/
                   Midi.send(portName, 'noteon', {
                     note: midiNote,
-                    velocity: 127 * note.velocity,
-                    channel: channel,
+                    velocity,
+                    channel,
                   })
                   this.midiCache.setValue(portName, channel, 'note', midiNote, true)
 
@@ -2340,9 +2350,15 @@ class BacaraMachine extends Machine {
                           channel: channel,
                         })
                       }
+                      let velFactor = this.interface.getParameter('drums.velocity')
+                      if (Math.abs(velFactor) < Machine.getRandomInt(100)) {
+                        velFactor = 0
+                      }
+                      const velocity = (127 * (note.velocity + (velFactor>=0 ? ((1.0 - note.velocity) * (velFactor/100)) : ((note.velocity) * (velFactor/100)) ) ) )
+/*                      debug('velocity %y %y %y',note.velocity,velFactor,velocity)*/
                       Midi.send(portName, 'noteon', {
                         note: midiNote,
-                        velocity: 127 * note.velocity,
+                        velocity: velocity,
                         channel: channel,
                       })
                       this.midiCache.setValue(portName, channel, 'note', midiNote, true)
