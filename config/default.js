@@ -8,7 +8,7 @@ const bacaraVirtualName = 'Bacara'
 */
 module.exports = {
   debugPrefix,
-  debug: Object.prototype.hasOwnProperty.call(process.env, 'DEBUG') ? process.env.DEBUG : `${debugPrefix}*,-${debugPrefix}:bacara:midi:*,-${debugPrefix}:*:part*,-${debugPrefix}:*:lfo*,-${debugPrefix}:lib:midi:interface,-${debugPrefix}:router:midi:sysex,-${debugPrefix}:bacara:virus:preset`,
+  debug: Object.prototype.hasOwnProperty.call(process.env, 'DEBUG') ? process.env.DEBUG : `${debugPrefix}*,-${debugPrefix}:bacara:midi:*,-${debugPrefix}:*:part*,-${debugPrefix}:*:lfo*,-${debugPrefix}:lib:midi:interface,-${debugPrefix}:midi:*,-${debugPrefix}:router:midi:sysex,-${debugPrefix}:bacara:virus:preset`,
   options: {
     electraOneCtrl: 'electra-one-ctrl',
     scenario: 'default',

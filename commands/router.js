@@ -279,7 +279,9 @@ function setupMidi(options) {
 
           if (!scenario.actors[actor].oneway) {
             const midiInput_actor = Midi.input(actor, true)
-            midiInput_actor.on('message', handleIncoming(actor, electraOnePortName, true, {actor, ...scenario.actors[actor]}) )
+            if (midiInput_actor) {
+              midiInput_actor.on('message', handleIncoming(actor, electraOnePortName, true, {actor, ...scenario.actors[actor]}) )
+            }
           }
 
           if (scenario.actors[actor].initialize) {
@@ -288,7 +290,7 @@ function setupMidi(options) {
             }
           }
         } else {
-          console.error(`No connection to "${electraOnePortName}"`)
+          debug('No connection to %y', electraOnePortName)
         }
         Bacara.event.on('change', (device, part, name, value, origin, command) => {
           if (command != me && device == 'virus-ti' && (part >= 1 && part <= 16)) {

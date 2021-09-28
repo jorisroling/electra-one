@@ -1155,7 +1155,7 @@ class BacaraMachine extends Machine {
         if (value) {
           const idx = value - 1
           const list = devices['virus-ti'].flatList
-          debug('Axyz %y Target %y = %y %y %y', axyz, trgt, idx, list[idx], _.get(devices['virus-ti'].parameters, list[idx]))
+          //debug('Axyz %y Target %y = %y %y %y', axyz, trgt, idx, list[idx], _.get(devices['virus-ti'].parameters, list[idx]))
         }
       }
     }
@@ -1212,7 +1212,7 @@ class BacaraMachine extends Machine {
     }
 
     const virusSearchCategory = (part) => (elementPath, value, origin) => {
-      debug('Category part %y %y', part, value)
+      //debug('Category part %y %y', part, value)
       this.setRemote(origin, {next:`virus.search.part.${part - 1}.next`, previous:`virus.search.part.${part - 1}.previous`, random:`virus.search.part.${part - 1}.random`, nextBank:`virus.search.part.${part - 1}.nextBank`, previousBank:`virus.search.part.${part - 1}.previousBank`})
     }
 
