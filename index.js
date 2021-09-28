@@ -13,7 +13,7 @@ const config = require('config')
 const _ = require('lodash')
 
 args
-  .option('electraOneCtrl', 'Electra One MIDI CTRL interface name', _.get(config,'options.electraOneCtrl','electra-one-ctrl'))
+  .option('electraOneCtrl', 'Electra One MIDI CTRL interface name', _.get(config, 'options.electraOneCtrl', 'electra-one-ctrl'))
   .option('scenario', 'Routing Scenario', _.get(config, 'options.scenario', 'default'))
   .option('page', 'Page ID to operate on, this options can be used more than once. Use \'electra-one page list --filename preset.epr\' to show available Page ID\'s')
 
