@@ -25,6 +25,9 @@ module.exports = {
     id: 0,
     name: '',
   },
+  electra: {
+    checkPresetVia: 'patch',
+  },
   midi: {
     ports: {
       'electra-one-port-1': {

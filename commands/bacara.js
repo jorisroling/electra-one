@@ -47,7 +47,8 @@ const deviceCCs = knownDeviceCCs()
 
 const virusAxyzModeRelative = 0
 const virusAxyzModeAbsolute = 1
-const matchPresetByPatchRequest = false
+const matchPresetByPatchRequest = (config.electra.checkPresetVia == 'patch')
+
 
 const phaseDetection = true
 const showPatternParameters = ['transpose', 'density', 'muteSteps', 'muteShift', 'scales', 'base', 'split', 'deviate', 'shift']
@@ -2697,8 +2698,10 @@ function bacaraSequencer(name, sub, options) {
   bacaraMachine.writeState()
 
   if (matchPresetByPatchRequest) {
+    debug('Send Patch Request to %y', options.electraOneCtrl)
     Midi.send(options.electraOneCtrl, 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
   } else {
+    debug('Send Preset Name Request to %y', options.electraOneCtrl)
     Midi.send(options.electraOneCtrl, 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x7C, 0xF7])  /* Preset Name Request */
   }
 
@@ -2721,13 +2724,15 @@ function bacaraSequencer(name, sub, options) {
               bacaraMachine.virusReflectParts()
             } else if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
               if (matchPresetByPatchRequest) {
+                debug('Send Patch Request to %y', options.electraOneCtrl)
                 Midi.send(options.electraOneCtrl, 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
               } else {
+                debug('Send Preset Name Request to %y', options.electraOneCtrl)
                 Midi.send(options.electraOneCtrl, 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x7C, 0xF7])  /* Preset Name Request */
               }
               debug('Bacara Preset Name Request done')
             } else if (_.isEqual(sysexCmd, electraSysexCmdPatchResponse)) {
-              electra.parseSysexCmdPatchResponseResponse(options.electraOneCtrl, msg.bytes)
+              electra.parseSysexCmdPatchRequestResponse(options.electraOneCtrl, msg.bytes)
               bacaraMachine.virusReflectParts()
             } else {
               //                         debug('unhandles sysex %y',sysexCmd)
