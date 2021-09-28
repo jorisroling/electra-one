@@ -1044,7 +1044,7 @@ module.exports = {
             max: 1,
           },
           on: 1,
-          default: 1,
+          default: 0,
         },
         port: {
           name: 'Device A Port',
@@ -1196,7 +1196,7 @@ module.exports = {
             max: 1,
           },
           on: 1,
-          default: 1,
+          default: 0,
         },
         port: {
           name: 'Device B Port',
@@ -1446,7 +1446,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 53,
+          default: 54,
         },
         note: {
           name: 'Bass Drum Note',
@@ -1486,7 +1486,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 53,
+          default: 54,
         },
         note: {
           name: 'Snare Drum Note',
@@ -1526,7 +1526,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 53,
+          default: 54,
         },
         note: {
           name: 'Low Tom Note',
@@ -1566,7 +1566,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 53,
+          default: 54,
         },
         note: {
           name: 'Mid Tom Note',
@@ -1606,7 +1606,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 53,
+          default: 54,
         },
         note: {
           name: 'High Tom Note',
@@ -1646,7 +1646,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 53,
+          default: 54,
         },
         note: {
           name: 'Rim Shot Note',
@@ -1686,7 +1686,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 53,
+          default: 54,
         },
         note: {
           name: 'Hand Clap Note',
@@ -1726,7 +1726,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 53,
+          default: 54,
         },
         note: {
           name: 'Cow Bell Note',
@@ -1766,7 +1766,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 53,
+          default: 54,
         },
         note: {
           name: 'Cymbal Note',
@@ -1806,7 +1806,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 53,
+          default: 54,
         },
         note: {
           name: 'Open Hat Note',
@@ -1846,7 +1846,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 53,
+          default: 54,
         },
         note: {
           name: 'Closed Hat Note',
