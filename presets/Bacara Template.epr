@@ -103,7 +103,7 @@
     },
     {
       "pageId": 1,
-      "name": "Notes",
+      "name": "Melodic Notes",
       "color": "F49500",
       "bounds": [
         0,
@@ -1331,6 +1331,26 @@
       "items": [
         {
           "value": 0,
+          "label": "None",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "Melodic",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Drums",
+          "index": 2
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "items": [
+        {
+          "value": 0,
           "label": "Sine",
           "index": 0
         },
@@ -1362,7 +1382,7 @@
       ]
     },
     {
-      "id": 11,
+      "id": 12,
       "items": [
         {
           "index": 0,
@@ -1372,7 +1392,7 @@
       ]
     },
     {
-      "id": 12,
+      "id": 13,
       "items": [
         {
           "index": 0,
@@ -1382,7 +1402,7 @@
       ]
     },
     {
-      "id": 13,
+      "id": 14,
       "items": [
         {
           "index": 0,
@@ -1392,7 +1412,7 @@
       ]
     },
     {
-      "id": 14,
+      "id": 15,
       "items": [
         {
           "value": 0,
@@ -1417,7 +1437,7 @@
       ]
     },
     {
-      "id": 15,
+      "id": 16,
       "items": [
         {
           "index": 0,
@@ -1427,7 +1447,7 @@
       ]
     },
     {
-      "id": 16,
+      "id": 17,
       "items": [
         {
           "value": 0,
@@ -1442,7 +1462,7 @@
       ]
     },
     {
-      "id": 17,
+      "id": 18,
       "items": [
         {
           "value": 0,
@@ -1452,7 +1472,7 @@
       ]
     },
     {
-      "id": 18,
+      "id": 19,
       "items": [
         {
           "value": 0,
@@ -1462,7 +1482,7 @@
       ]
     },
     {
-      "id": 19,
+      "id": 20,
       "items": [
         {
           "value": 0,
@@ -1472,7 +1492,7 @@
       ]
     },
     {
-      "id": 20,
+      "id": 21,
       "items": [
         {
           "value": 0,
@@ -1587,7 +1607,7 @@
       ]
     },
     {
-      "id": 21,
+      "id": 22,
       "items": [
         {
           "value": 0,
@@ -2562,6 +2582,39 @@
       ]
     },
     {
+      "id": 27,
+      "type": "list",
+      "visible": true,
+      "name": "GRID MODE",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        392,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16294
+          },
+          "overlayId": 10,
+          "id": "value"
+        }
+      ]
+    },
+    {
       "id": 28,
       "type": "pad",
       "mode": "momentary",
@@ -2904,7 +2957,7 @@
             "min": 0,
             "max": 5
           },
-          "overlayId": 10,
+          "overlayId": 11,
           "id": "value"
         }
       ]
@@ -3042,7 +3095,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 11
+          "overlayId": 12
         }
       ]
     },
@@ -3245,7 +3298,7 @@
             "min": 0,
             "max": 5
           },
-          "overlayId": 10,
+          "overlayId": 11,
           "id": "value"
         }
       ]
@@ -3383,7 +3436,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 12
+          "overlayId": 13
         }
       ]
     },
@@ -3586,7 +3639,7 @@
             "min": 0,
             "max": 5
           },
-          "overlayId": 10,
+          "overlayId": 11,
           "id": "value"
         }
       ]
@@ -3724,7 +3777,7 @@
             "min": 0,
             "max": 127
           },
-          "overlayId": 13
+          "overlayId": 14
         }
       ]
     },
@@ -3960,7 +4013,7 @@
             "lsbFirst": true,
             "parameterNumber": 9473
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -3992,7 +4045,7 @@
             "lsbFirst": true,
             "parameterNumber": 9601
           },
-          "overlayId": 15
+          "overlayId": 16
         }
       ]
     },
@@ -4024,7 +4077,7 @@
             "lsbFirst": true,
             "parameterNumber": 9729
           },
-          "overlayId": 15
+          "overlayId": 16
         }
       ]
     },
@@ -4056,7 +4109,7 @@
             "lsbFirst": true,
             "parameterNumber": 9857
           },
-          "overlayId": 15
+          "overlayId": 16
         }
       ]
     },
@@ -4263,7 +4316,7 @@
             "lsbFirst": true,
             "parameterNumber": 10369
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -4295,7 +4348,7 @@
             "lsbFirst": true,
             "parameterNumber": 10497
           },
-          "overlayId": 15
+          "overlayId": 16
         }
       ]
     },
@@ -4327,7 +4380,7 @@
             "lsbFirst": true,
             "parameterNumber": 10625
           },
-          "overlayId": 15
+          "overlayId": 16
         }
       ]
     },
@@ -4359,7 +4412,7 @@
             "lsbFirst": true,
             "parameterNumber": 10753
           },
-          "overlayId": 15
+          "overlayId": 16
         }
       ]
     },
@@ -4566,7 +4619,7 @@
             "lsbFirst": true,
             "parameterNumber": 11265
           },
-          "overlayId": 14
+          "overlayId": 15
         }
       ]
     },
@@ -4598,7 +4651,7 @@
             "lsbFirst": true,
             "parameterNumber": 11393
           },
-          "overlayId": 15
+          "overlayId": 16
         }
       ]
     },
@@ -4630,7 +4683,7 @@
             "lsbFirst": true,
             "parameterNumber": 11521
           },
-          "overlayId": 15
+          "overlayId": 16
         }
       ]
     },
@@ -4662,7 +4715,7 @@
             "lsbFirst": true,
             "parameterNumber": 11649
           },
-          "overlayId": 15
+          "overlayId": 16
         }
       ]
     },
@@ -5052,7 +5105,7 @@
             "lsbFirst": false,
             "parameterNumber": 14856
           },
-          "overlayId": 16,
+          "overlayId": 17,
           "id": "value"
         }
       ]
@@ -5299,7 +5352,7 @@
             "lsbFirst": false,
             "parameterNumber": 14851
           },
-          "overlayId": 17,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -5333,7 +5386,7 @@
             "lsbFirst": false,
             "parameterNumber": 15362
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -5366,7 +5419,7 @@
             "lsbFirst": false,
             "parameterNumber": 15618
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -5399,7 +5452,7 @@
             "lsbFirst": false,
             "parameterNumber": 15874
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -5432,7 +5485,7 @@
             "lsbFirst": false,
             "parameterNumber": 16130
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -5535,7 +5588,7 @@
             "lsbFirst": false,
             "parameterNumber": 15363
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -5568,7 +5621,7 @@
             "lsbFirst": false,
             "parameterNumber": 15619
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -5601,7 +5654,7 @@
             "lsbFirst": false,
             "parameterNumber": 15875
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -5634,7 +5687,7 @@
             "lsbFirst": false,
             "parameterNumber": 16131
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -5739,7 +5792,7 @@
             "lsbFirst": false,
             "parameterNumber": 15490
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -5772,7 +5825,7 @@
             "lsbFirst": false,
             "parameterNumber": 15746
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -5805,7 +5858,7 @@
             "lsbFirst": false,
             "parameterNumber": 16002
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -5838,7 +5891,7 @@
             "lsbFirst": false,
             "parameterNumber": 16258
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -5943,7 +5996,7 @@
             "lsbFirst": false,
             "parameterNumber": 15491
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -5976,7 +6029,7 @@
             "lsbFirst": false,
             "parameterNumber": 15747
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -6009,7 +6062,7 @@
             "lsbFirst": false,
             "parameterNumber": 16003
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -6042,7 +6095,7 @@
             "lsbFirst": false,
             "parameterNumber": 16259
           },
-          "overlayId": 18
+          "overlayId": 19
         }
       ]
     },
@@ -6492,7 +6545,7 @@
             "lsbFirst": false,
             "parameterNumber": 14081
           },
-          "overlayId": 17,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -6525,7 +6578,7 @@
             "lsbFirst": false,
             "parameterNumber": 14082
           },
-          "overlayId": 17,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -6558,7 +6611,7 @@
             "lsbFirst": false,
             "parameterNumber": 14083
           },
-          "overlayId": 17,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -6591,7 +6644,7 @@
             "lsbFirst": false,
             "parameterNumber": 14084
           },
-          "overlayId": 17,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -6624,7 +6677,7 @@
             "lsbFirst": false,
             "parameterNumber": 14085
           },
-          "overlayId": 17,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -6657,7 +6710,7 @@
             "lsbFirst": false,
             "parameterNumber": 14086
           },
-          "overlayId": 17,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -8544,7 +8597,7 @@
             "lsbFirst": false,
             "parameterNumber": 13185
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -8609,7 +8662,7 @@
             "lsbFirst": false,
             "parameterNumber": 13186
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -8674,7 +8727,7 @@
             "lsbFirst": false,
             "parameterNumber": 13187
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -8943,7 +8996,7 @@
             "lsbFirst": false,
             "parameterNumber": 13188
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -9008,7 +9061,7 @@
             "lsbFirst": false,
             "parameterNumber": 13189
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -9073,7 +9126,7 @@
             "lsbFirst": false,
             "parameterNumber": 13190
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -9342,7 +9395,7 @@
             "lsbFirst": true,
             "parameterNumber": 8193
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -9723,7 +9776,7 @@
             "lsbFirst": true,
             "parameterNumber": 8321
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -10105,7 +10158,7 @@
             "lsbFirst": true,
             "parameterNumber": 16296
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -10208,7 +10261,7 @@
             "lsbFirst": true,
             "parameterNumber": 16299
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -10311,7 +10364,7 @@
             "lsbFirst": true,
             "parameterNumber": 16302
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -10414,7 +10467,7 @@
             "lsbFirst": true,
             "parameterNumber": 16305
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -10517,7 +10570,7 @@
             "lsbFirst": true,
             "parameterNumber": 16308
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -10620,7 +10673,7 @@
             "lsbFirst": true,
             "parameterNumber": 16311
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -10723,7 +10776,7 @@
             "lsbFirst": true,
             "parameterNumber": 16314
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -10826,7 +10879,7 @@
             "lsbFirst": true,
             "parameterNumber": 16317
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -10929,7 +10982,7 @@
             "lsbFirst": true,
             "parameterNumber": 16320
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -11032,7 +11085,7 @@
             "lsbFirst": true,
             "parameterNumber": 16323
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -11135,7 +11188,7 @@
             "lsbFirst": true,
             "parameterNumber": 16326
           },
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -11453,7 +11506,7 @@
             "lsbFirst": false,
             "parameterNumber": 16262
           },
-          "overlayId": 20,
+          "overlayId": 21,
           "id": "value"
         }
       ]
@@ -11486,7 +11539,7 @@
             "lsbFirst": false,
             "parameterNumber": 16266
           },
-          "overlayId": 20,
+          "overlayId": 21,
           "id": "value"
         }
       ]
@@ -11519,7 +11572,7 @@
             "lsbFirst": false,
             "parameterNumber": 16270
           },
-          "overlayId": 20,
+          "overlayId": 21,
           "id": "value"
         }
       ]
@@ -11552,7 +11605,7 @@
             "lsbFirst": false,
             "parameterNumber": 16274
           },
-          "overlayId": 20,
+          "overlayId": 21,
           "id": "value"
         }
       ]
@@ -11585,7 +11638,7 @@
             "lsbFirst": false,
             "parameterNumber": 16278
           },
-          "overlayId": 20,
+          "overlayId": 21,
           "id": "value"
         }
       ]
@@ -11618,7 +11671,7 @@
             "lsbFirst": false,
             "parameterNumber": 16282
           },
-          "overlayId": 20,
+          "overlayId": 21,
           "id": "value"
         }
       ]
@@ -11651,7 +11704,7 @@
             "lsbFirst": false,
             "parameterNumber": 14081
           },
-          "overlayId": 17,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -11684,7 +11737,7 @@
             "lsbFirst": false,
             "parameterNumber": 14082
           },
-          "overlayId": 17,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -11717,7 +11770,7 @@
             "lsbFirst": false,
             "parameterNumber": 14083
           },
-          "overlayId": 17,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -11750,7 +11803,7 @@
             "lsbFirst": false,
             "parameterNumber": 14084
           },
-          "overlayId": 17,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -11783,7 +11836,7 @@
             "lsbFirst": false,
             "parameterNumber": 14085
           },
-          "overlayId": 17,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -11816,7 +11869,7 @@
             "lsbFirst": false,
             "parameterNumber": 14086
           },
-          "overlayId": 17,
+          "overlayId": 18,
           "id": "value"
         }
       ]
@@ -13704,7 +13757,7 @@
             "parameterNumber": 16329
           },
           "defaultValue": 0,
-          "overlayId": 21,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -13810,7 +13863,7 @@
             "parameterNumber": 16335
           },
           "defaultValue": 1,
-          "overlayId": 21,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -13917,7 +13970,7 @@
             "parameterNumber": 16332
           },
           "defaultValue": 35,
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -14022,7 +14075,7 @@
             "parameterNumber": 16338
           },
           "defaultValue": 35,
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -14126,7 +14179,7 @@
             "parameterNumber": 16341
           },
           "defaultValue": 2,
-          "overlayId": 21,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -14232,7 +14285,7 @@
             "parameterNumber": 16347
           },
           "defaultValue": 6,
-          "overlayId": 21,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -14339,7 +14392,7 @@
             "parameterNumber": 16344
           },
           "defaultValue": 35,
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -14444,7 +14497,7 @@
             "parameterNumber": 16350
           },
           "defaultValue": 35,
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -14548,7 +14601,7 @@
             "parameterNumber": 16353
           },
           "defaultValue": 10,
-          "overlayId": 21,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -14654,7 +14707,7 @@
             "parameterNumber": 16359
           },
           "defaultValue": 9,
-          "overlayId": 21,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -14761,7 +14814,7 @@
             "parameterNumber": 16356
           },
           "defaultValue": 35,
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },
@@ -14866,7 +14919,7 @@
             "parameterNumber": 16362
           },
           "defaultValue": 35,
-          "overlayId": 19
+          "overlayId": 20
         }
       ]
     },

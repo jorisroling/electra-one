@@ -375,6 +375,18 @@ module.exports = {
       },
       on: 1,
     },
+    grid: {
+      name: 'Grid',
+      type: 'parameter',
+      surface: {
+        type: 'nrpn',
+        number: 16294,
+        lsbFirst: true,
+        min: 0,
+        max: 2,
+      },
+      default: 0,
+    },
     previous_preset: {
       name: 'Previous Preset',
       type: 'action',

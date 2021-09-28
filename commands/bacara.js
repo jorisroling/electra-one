@@ -34,6 +34,10 @@ const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(r
 
 const debugMonome = yves.debugger(`${pkg.name.replace(/^@/, '')}:monome`)
 
+const GRID_MODE_NONE = 0
+const GRID_MODE_MELODIC = 2
+const GRID_MODE_DRUMS = 2
+
 const euclideanRhythms = require('euclidean-rhythms')
 const scaleMappings = require('../extra/scales/scales.json')
 
@@ -1756,6 +1760,8 @@ class BacaraMachine extends Machine {
     //    const deviceAColor = chalk.hex('#F45C51')
     //    const deviceBColor = chalk.hex('#529DEC')
 
+    const grid = []
+
     let table = new Table(
       {
         head: [
@@ -1777,16 +1783,22 @@ class BacaraMachine extends Machine {
 
     let row = 0
     notes.forEach( noteMidi => {
-
       let midiNote = noteMidi
       const instrument = midiNote-Drums.baseNote()
-      let deviceColor = deviceDColor
+      let redrum = false
       for (let trck=0;trck<6;trck++) {
-/*        debug('dc %y %y %y',trck,this.interface.getParameter(`drums.redrum.${trck}.instrument`),instrument)*/
         if (this.interface.getParameter(`drums.redrum.${trck}.instrument`) == instrument ) {
-          deviceColor = deviceRColor
+          redrum = true
         }
       }
+      if (redrum) {
+        grid[row] = []
+        for (let col = 0; col < this.interface.getParameter('drums.steps', patternStepsDefault); col++) {
+          grid[row][col] = false
+        }
+      }
+
+      const deviceColor = redrum ? deviceRColor : deviceDColor
 
       const arr = [
         {hAlign:'center', content:deviceColor(Drums.instrumentName(instrument).toUpperCase()) },
@@ -1805,6 +1817,9 @@ class BacaraMachine extends Machine {
             const color = this.sounding(ticks / ticksPerStep,'drums.sounding',instrument) ? (note.velocity == 1 ? chalk.bgHex(`#${Math.floor(relVelocity * 0xFF).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x88).toString(16).padStart(2, '0')}00`) : chalk.bgHex(`#00${Math.floor(relVelocity * 0xFF).toString(16).padStart(2, '0')}00`)) : chalk.bgHex(`#${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}`)
             const rep = 2;//count * 2 + ((count - 1) * 3)
             chNote = {colSpan:count, content:color(' '.repeat(rep >= 0 ? rep : 0))}
+            if (redrum) {
+              grid[row][Math.floor(ticks / ticksPerStep)] = relVelocity && this.sounding(ticks / ticksPerStep,'drums.sounding',instrument) ? true : false
+            }
             ticks += (count - 1) * ticksPerStep
           }
         })
@@ -1813,10 +1828,15 @@ class BacaraMachine extends Machine {
         }
       }
       table.push(arr)
-      row++
+      if (redrum) {
+        row++
+      }
     })
 
     debug(table.toString())
+    /*    debug(grid)*/
+    this.setState('drums.grid', grid)
+    this.showPatternGrid(this.stepIdx)
   }
 
   showPattern() {
@@ -1920,12 +1940,14 @@ class BacaraMachine extends Machine {
   }
 
   showPatternGrid(step, showCursor = true) {
+    const mode = this.interface.getParameter('grid')
+    const prefix = mode == GRID_MODE_DRUMS ? 'drums.grid' : 'pattern.grid'
     const offset =  Math.floor((step < 0 ? 0 : step) / monome.width) * monome.width
 
     for (let row = 0; row < monome.height; row++) {
       for (let col = 0; col < monome.width; col++) {
-        let on = this.getState(`pattern.grid.${row}.${col + offset}`)
-        if (showCursor && step >= 0 && step == (col + offset)) {
+        let on = mode ? this.getState(`${prefix}.${row}.${col + offset}`) : false
+        if (mode && showCursor && step >= 0 && step == (col + offset) /*&& Array.isArray(this.getState(`pattern.grid.${row}`)) && col<this.getState(`pattern.grid.${row}`).length*/ && row == monome.height-1) {
           on = !on
         }
         monome.led((monome.height - row) - 1, col, on ? 1 : 0)
