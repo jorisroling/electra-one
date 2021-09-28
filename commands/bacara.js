@@ -73,7 +73,7 @@ const matrixSlotSources = {
 }
 
 const beatCC = 2 // -1 for off
-const reverseDeviceBrowsOnGrid = false
+const reverseDeviceBrowsOnGrid = true
 
 const monodeInit = require('monode')
 
