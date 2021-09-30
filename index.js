@@ -56,8 +56,14 @@ Object.keys(commands).forEach( command => {
   args.command(commands[command].name, commands[command].description, commands[command].handler, commands[command].aliases)
 })
 
-if (process.argv.length == 2) {
-  process.argv.push('help')
-}
-args.parse(process.argv, {name:pkg.name, args})
+let command = process.argv[2]
 
+if (process.argv.length <= 2 || !command || !commands[command]) {
+  process.argv[2] = 'help'
+}
+
+if (command && command != 'help' && !commands[command]) {
+  debug('Unknown command %y',command)
+} else {
+  args.parse(process.argv, {name:pkg.name, args})
+}
