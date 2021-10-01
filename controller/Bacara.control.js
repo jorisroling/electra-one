@@ -1,8 +1,8 @@
 loadAPI(10);
 
-const CONTROLLER_SCRIPT_VERSION = '1.00'
+const CONTROLLER_SCRIPT_VERSION = '1.01'
 const CONTROLLER_BASE_NAME = `Bacara`
-const CONTROLLER_SCRIPT_NAME = `${CONTROLLER_BASE_NAME}` //  v${CONTROLLER_SCRIPT_VERSION}
+const CONTROLLER_SCRIPT_NAME = `${CONTROLLER_BASE_NAME} Control` //  v${CONTROLLER_SCRIPT_VERSION}
 host.setShouldFailOnDeprecatedUse(true);
 host.defineController('Bonboa', CONTROLLER_SCRIPT_NAME, CONTROLLER_SCRIPT_VERSION, '7f4b4851-911b-4dbf-a6a7-ee7801296ce3', 'Joris Röling');
 
@@ -124,11 +124,9 @@ function showSend(index,name,color = COLOR_YELLOW) {
   }
 //  println('showSend('+index+','+name+') json '+JSON.stringify(json))
   if (index>=0 && index<=sendControlIDs.length && (sendCache[index].name !== json.name || sendCache[index].visible !== json.visible || sendCache[index].color !== json.color)) {
-    for (let pg=0;pg<2;pg++) {
-      const ctrlId = sendControlIDs[index] + (pg? 36 : 0)
-      const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`;
-      host.getMidiOutPort(1).sendSysex(data)
-    }
+    const ctrlId = sendControlIDs[index]
+    const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`;
+    host.getMidiOutPort(1).sendSysex(data)
     sendCache[index].name = json.name
     sendCache[index].visible = json.visible
     sendCache[index].color = json.color
@@ -154,13 +152,9 @@ function showPages(value) {
     }
 //  println('remoteCache('+i+')  name '+remoteCache[i].name+ '  visible '+remoteCache[i].visible+  '  json '+JSON.stringify(json))
     if (remoteCache[i].name !== json.name || remoteCache[i].visible !== json.visible) {
-      for (let pg=0;pg<2;pg++) {
-        if (pg==0 || (pg==1 && i<12)) {
-          const ctrlId = E1_PAGE_CTRL_ID + i + (pg ? 72 : 0)
-          const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`;
-          host.getMidiOutPort(1).sendSysex(data)
-        }
-      }
+      const ctrlId = E1_PAGE_CTRL_ID + i
+      const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`;
+      host.getMidiOutPort(1).sendSysex(data)
       remoteCache[i].name = json.name
       remoteCache[i].visible = json.visible
 /*    } else {*/
@@ -173,11 +167,9 @@ function showPages(value) {
       name: name.substr(0,E1_MAX_LABEL_LENGTH),
       visible: (!!(name && name.trim().length)) ? true : false
     }
-    for (let pg=0;pg<2;pg++) {
-      const ctrlId = E1_PAGE_NAME_CTRL_ID + (pg ? 72 : 0)
-      const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`;
-      host.getMidiOutPort(1).sendSysex(data)
-    }
+    const ctrlId = E1_PAGE_NAME_CTRL_ID
+    const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`;
+    host.getMidiOutPort(1).sendSysex(data)
   }
 }
 
@@ -300,11 +292,9 @@ function init() {
           visible: (!!(name && name.trim().length)) ? true : false
         }
 //        println(`name [${json.name}] visible [${json.visible}] ${JSON.stringify(json)} ${str2hex(JSON.stringify(json))}`)
-        for (let pg=0;pg<2;pg++) {
-          const ctrlId = remoteControlIDs[i]+(pg?72:0)
-          const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`;
-          host.getMidiOutPort(1).sendSysex(data)
-        }
+        const ctrlId = remoteControlIDs[i]
+        const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`;
+        host.getMidiOutPort(1).sendSysex(data)
       }
     })
   }
@@ -410,11 +400,9 @@ function handleSysExMidi(data) {
             name: name.substr(0,E1_MAX_LABEL_LENGTH),
             visible: (!!(name && name.trim().length)) ? true : false
           }
-          for (let pg=0;pg<2;pg++) {
-            const ctrlId = remoteControlIDs[i]+(pg?72:0)
-            const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`;
-            host.getMidiOutPort(1).sendSysex(data)
-          }
+          const ctrlId = remoteControlIDs[i]
+          const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`;
+          host.getMidiOutPort(1).sendSysex(data)
         }
         showPages( remoteControlsBank.selectedPageIndex().get() )
       }
