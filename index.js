@@ -12,6 +12,8 @@ const pkg = require('./package.json')
 const config = require('config')
 const _ = require('lodash')
 
+const debugError = yves.debugger(`${pkg.name.replace(/^@/, '')}:error`)
+
 args
   .option('electraOneCtrl', 'Electra One MIDI CTRL interface name', _.get(config, 'options.electraOneCtrl', 'electra-one-ctrl'))
   .option('scenario', 'Routing Scenario', _.get(config, 'options.scenario', 'default'))
@@ -41,6 +43,8 @@ args
   .option('name', 'Control Update Name', _.get(config, 'options.name', ''))
   .option('color', 'Control Update Color')
   .option('visible', 'Control Update Visible')
+  .option('verbose', 'Verbose output')
+  .option('config', 'External configuration JSON filename')
 
 const commands = require('./lib/commands')
 

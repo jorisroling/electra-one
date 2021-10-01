@@ -1,24 +1,27 @@
 const pkg = require('../package.json')
 const debugPrefix = pkg.name
 const path = require('path')
+const fs = require('fs-extra')
 
 const bacaraVirtualName = 'Bacara'
 /*
  iConnectMIDI4+:iConnectMIDI4+ MIDI 3 20:2   ║ Virus TI
 */
-module.exports = {
+let configObj = {
+  local:false,
+  custom: false,
   debugPrefix,
   debug: Object.prototype.hasOwnProperty.call(process.env, 'DEBUG') ? process.env.DEBUG : `${debugPrefix}*,-${debugPrefix}:bacara:midi:*,-${debugPrefix}:*:part*,-${debugPrefix}:*:lfo*,-${debugPrefix}:lib:midi:interface,-${debugPrefix}:midi:*,-${debugPrefix}:router:midi:sysex,-${debugPrefix}:bacara:virus:preset`,
   options: {
+    electra: 'electra-one-port-2',
     electraOneCtrl: 'electra-one-ctrl',
     scenario: 'default',
-    electra: 'electra-one-port-2',
-    clock: 'tr-6s',
-    transpose: 'komplete-kontrol',
-    transposeChannel: 1,
-    general: 'lightpad-block',
+    clock: 'bacara',
+    transpose: 'bacara',
+    transposeChannel: 16,
+    general: null,
     generalChannel: 1,
-    remote: 'thouch-block',
+    remote: null,
     remoteChannel: 1,
     bank: 0,
     slot: 0,
@@ -799,3 +802,16 @@ module.exports = {
     },
   },
 }
+
+let configFilename
+for (let a in process.argv) {
+  if (process.argv[a] == '--config' && (parseInt(a)+1)<process.argv.length) {
+    configFilename = process.argv[parseInt(a)+1]
+  }
+}
+
+if (configFilename && fs.existsSync(configFilename)) {
+  configObj = Object.assign({},configObj,JSON.parse(fs.readFileSync(configFilename)))
+}
+
+module.exports = configObj

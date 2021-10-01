@@ -25,6 +25,7 @@ const untildify = require('untildify')
 
 const yves = require('../lib/yves')
 const pkg = require('../package.json')
+const debugError = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:error`)
 const debugLfo = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:lfo`)
 const debugMidi = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi`)
 const debugMidiNoteOn = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:note:on`)
@@ -2662,6 +2663,10 @@ class BacaraMachine extends Machine {
 }
 
 function bacaraSequencer(name, sub, options) {
+  if (options.verbose) {
+    debugError('options %y',_.fromPairs(_.toPairs(options).filter(a => a[0].length>1 )) )
+    debugError('config %y',config.util.toObject(config))
+  }
 
   Midi.setupVirtualPorts(config.bacara.virtual)
 
