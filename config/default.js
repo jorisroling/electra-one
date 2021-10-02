@@ -1,13 +1,13 @@
 const pkg = require('../package.json')
 const debugPrefix = pkg.name
 const path = require('path')
-const fs = require('fs-extra')
 
 const bacaraVirtualName = 'Bacara'
-/*
- iConnectMIDI4+:iConnectMIDI4+ MIDI 3 20:2   ║ Virus TI
-*/
-let configObj = {
+
+
+const configWrapper = require('../lib/config')
+
+module.exports = configWrapper({
   local:false,
   custom: false,
   debugPrefix,
@@ -29,7 +29,7 @@ let configObj = {
     name: '',
   },
   electra: {
-    checkPresetVia: 'patch',
+    checkPresetVia: 'patch',  // patch, preset or none
   },
   midi: {
     ports: {
@@ -801,17 +801,5 @@ let configObj = {
       },
     },
   },
-}
+})
 
-let configFilename
-for (let a in process.argv) {
-  if (process.argv[a] == '--config' && (parseInt(a)+1)<process.argv.length) {
-    configFilename = process.argv[parseInt(a)+1]
-  }
-}
-
-if (configFilename && fs.existsSync(configFilename)) {
-  configObj = Object.assign({},configObj,JSON.parse(fs.readFileSync(configFilename)))
-}
-
-module.exports = configObj

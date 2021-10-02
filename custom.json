@@ -1,3 +1,6 @@
 {
-  "custom": true
+  "custom": true,
+  "electra": {
+    "checkPresetVia": "none"
+  }
 }

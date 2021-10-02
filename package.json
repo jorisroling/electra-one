@@ -1,7 +1,7 @@
 {
   "name": "electra-one",
-  "version": "1.1.9",
-  "description": "Router & Instrument Files for Electra One",
+  "version": "1.2.0",
+  "description": "Sequencer, Router & Instrument Files for Electra One",
   "main": "index.js",
   "bin": {
     "electra-one": "./index.js"
@@ -39,6 +39,7 @@
     "interfaces/bacara.js",
     "lib/bacara.js",
     "lib/commands.js",
+    "lib/config.js",
     "lib/devices.js",
     "lib/drums.js",
     "lib/electra.js",
