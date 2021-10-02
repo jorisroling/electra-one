@@ -607,7 +607,8 @@ class BacaraMachine extends Machine {
       generate: (elementPath, origin) => {
         if (origin == 'surface') {
           this.state.pattern = Pattern.generate(this.state, this.interface.getParameter('steps'))
-          this.state.last_pattern_but = 0
+          this.interface.setParameter('pattern', Pattern.patternFiles(this.state,true) - 1)
+
           this.showPattern()
           this.writeState()
           debug('generated')
@@ -615,27 +616,23 @@ class BacaraMachine extends Machine {
       },
       previous_pattern: (elementPath, origin) => {
         if (origin == 'surface') {
-          this.state.last_pattern_but += 1
-
-          this.state.pattern = Pattern.load_pattern(this.state)
+          this.interface.setParameter('pattern', this.interface.getParameter('pattern',0)-1)
+          this.state.pattern = Pattern.load_pattern(this.state,this.interface.getParameter('pattern',0))
           this.interface.setParameter('steps', this.interface.getParameter('steps', patternStepsDefault))
           this.showPattern()
           this.writeState()
-          debug('previous_pattern: %y', this.state.last_pattern_but)
+          debug('previous_pattern: %y', this.interface.getParameter('pattern'))
         }
       },
       next_pattern: (elementPath, origin) => {
         if (origin == 'surface') {
-          this.state.last_pattern_but -= 1
-          if (this.state.last_pattern_but < 0) {
-            this.state.last_pattern_but = 0
-          }
+          this.interface.setParameter('pattern', this.interface.getParameter('pattern',0)+1)
 
-          this.state.pattern = Pattern.load_pattern(this.state)
+          this.state.pattern = Pattern.load_pattern(this.state,this.interface.getParameter('pattern',0))
           this.interface.setParameter('steps', this.interface.getParameter('steps', patternStepsDefault))
           this.showPattern()
           this.writeState()
-          debug('next_pattern: %y', this.state.last_pattern_but)
+          debug('next_pattern: %y', this.interface.getParameter('pattern'))
         }
       },
       previous_preset: (elementPath, origin) => {
@@ -1323,6 +1320,13 @@ class BacaraMachine extends Machine {
             this.euclidian(this.interface.getParameter('muteSteps'), this.interface.getParameter('steps', patternStepsDefault), this.interface.getParameter('muteShift'))
           }
         }
+      },
+      pattern: (elementPath, value, origin) => {
+        this.state.pattern = Pattern.load_pattern(this.state,value)
+        this.interface.setParameter('steps', this.interface.getParameter('steps', patternStepsDefault))
+        this.showPattern()
+        this.writeState()
+        debug('pattern: %y', value)
       },
       program: (elementPath, value, origin) => {
         if (origin == 'surface') {
@@ -2332,6 +2336,8 @@ class BacaraMachine extends Machine {
                       note: midiNote,
                       velocity: 127,
                       channel: channel,
+                      sendShadowNotesToBacaraPort: true,
+                      shadowChannel: 9,
                     })
                   }
                   let velFactor = this.interface.getParameter('drums.velocity')
@@ -2355,6 +2361,8 @@ class BacaraMachine extends Machine {
                       note: midiNote,
                       velocity: 127,
                       channel: channel,
+                      sendShadowNotesToBacaraPort: true,
+                      shadowChannel: 9,
                     })
                     this.midiCache.clearValue(portName, channel, 'note', midiNote)
                   }, b + r, portName, midiNote, channel)
@@ -2372,6 +2380,8 @@ class BacaraMachine extends Machine {
                           note: midiNote,
                           velocity: 127,
                           channel: channel,
+                          sendShadowNotesToBacaraPort: true,
+                          shadowChannel: 9,
                         })
                       }
                       let velFactor = this.interface.getParameter('drums.velocity')
@@ -2384,6 +2394,8 @@ class BacaraMachine extends Machine {
                         note: midiNote,
                         velocity: velocity,
                         channel: channel,
+                        sendShadowNotesToBacaraPort: true,
+                        shadowChannel: 9,
                       })
                       this.midiCache.setValue(portName, channel, 'note', midiNote, true)
 
@@ -2395,6 +2407,8 @@ class BacaraMachine extends Machine {
                           note: midiNote,
                           velocity: 127,
                           channel: channel,
+                          sendShadowNotesToBacaraPort: true,
+                          shadowChannel: 9,
                         })
                         this.midiCache.clearValue(portName, channel, 'note', midiNote)
                       }, b + r, portName, midiNote, channel)
@@ -2576,19 +2590,19 @@ class BacaraMachine extends Machine {
       let macros = {}
 
       for (let s = 0; s < 6; s++) {
-        const slotSource = Virus.getPresetPageParameter(virusPreset, config.virus.info.matrix.slot[s].source.page, config.virus.info.matrix.slot[s].source.offset)
+        const slotSource = Virus.getPresetPageParameter(virusPreset, _.get(config,`virus.info.matrix.slot.${s}.source.page`), _.get(config,`virus.info.matrix.slot.${s}.source.offset`))
         if (slotSource > 0 && slotSource <= 18) {
           let destinations = 0
           for (let d = 0; d < 3; d++) {
-            const target = Virus.getPresetPageParameter(virusPreset, config.virus.info.matrix.slot[s].destinations[d].target.page, config.virus.info.matrix.slot[s].destinations[d].target.offset)
-            const amount = Virus.getPresetPageParameter(virusPreset, config.virus.info.matrix.slot[s].destinations[d].amount.page, config.virus.info.matrix.slot[s].destinations[d].amount.offset)
+            const target = Virus.getPresetPageParameter(virusPreset, _.get(config,`virus.info.matrix.slot.${s}.destinations.${d}.target.page`), _.get(config,`virus.info.matrix.slot.${s}.destinations.${d}.target.offset`))
+            const amount = Virus.getPresetPageParameter(virusPreset, _.get(config,`virus.info.matrix.slot.${s}.destinations.${d}.amount.page`), _.get(config,`virus.info.matrix.slot.${s}.destinations.${d}.amount.offset`))
             if (target && amount) {
               destinations++
             }
           }
           if (destinations) {
-            const slotSourceType = Object.assign({}, config.virus.info.matrix.source.type[slotSource])
-            /*                  debug('mod slot #%d (%s) source %y %s %y',s+1,config.virus.info.matrix.slot[s].name,slotSource,slotSourceType.name,slotSourceType.cc)*/
+            const slotSourceType = Object.assign({}, _.get(config,`virus.info.matrix.source.type.${slotSource}`))
+            /*                  debug('mod slot #%d (%s) source %y %s %y',s+1,_.get(config,`virus.info.matrix.slot.${s}.name`),slotSource,slotSourceType.name,slotSourceType.cc)*/
             macros[slotSourceType.name] = slotSourceType
           }
         }
@@ -2596,14 +2610,14 @@ class BacaraMachine extends Machine {
       /*          debug('macros %y',macros)*/
       macros = Object.values(macros)
 
-      const names = _.get(config.virus.info, 'soft.names')
+      const names = _.get(config, 'virus.info.soft.names')
       for (let macro of macros) {
         if (macro.softknob) {
           for (let k = 0; k < 3; k++) {
-            const destination = Virus.getPresetPageParameter(virusPreset, _.get(config.virus.info, `soft.knob.${k}.destination.page`), _.get(config.virus.info, `soft.knob.${k}.destination.offset`))
+            const destination = Virus.getPresetPageParameter(virusPreset, _.get(config, `virus.info.soft.knob.${k}.destination.page`), _.get(config, `virus.info.soft.knob.${k}.destination.offset`))
             /*                  debug('knob %d dest %y',k+1,destination)*/
             if (destination == macro.softknob) {
-              macro.name = names[Virus.getPresetPageParameter(virusPreset, _.get(config.virus.info, `soft.knob.${k}.name.page`), _.get(config.virus.info, `soft.knob.${k}.name.offset`))]
+              macro.name = names[Virus.getPresetPageParameter(virusPreset, _.get(config, `virus.info.soft.knob.${k}.name.page`), _.get(config, `virus.info.soft.knob.${k}.name.offset`))]
               macro.index = k + 1
             }
           }

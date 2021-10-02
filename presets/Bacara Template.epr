@@ -2170,46 +2170,11 @@
       ]
     },
     {
-      "id": 16,
+      "id": 17,
       "type": "pad",
       "mode": "toggle",
       "visible": true,
       "name": "MUTE",
-      "color": "03A598",
-      "bounds": [
-        510,
-        216,
-        146,
-        56
-      ],
-      "pageId": 1,
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 4,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 12929,
-            "onValue": 1,
-            "offValue": 0
-          },
-          "defaultValue": "off",
-          "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 17,
-      "type": "fader",
-      "visible": true,
-      "name": "BANK",
       "color": "03A598",
       "bounds": [
         680,
@@ -2227,15 +2192,16 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 1538,
-            "min": 0,
-            "max": 127
-          }
+            "parameterNumber": 12929,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
         }
       ]
     },
@@ -2414,7 +2380,7 @@
       "id": 23,
       "type": "fader",
       "visible": true,
-      "name": "PROGRAM",
+      "name": "PATTERN",
       "color": "03A598",
       "bounds": [
         680,
@@ -14346,7 +14312,6 @@
             "lsbFirst": true,
             "parameterNumber": 16332
           },
-          "defaultValue": 35,
           "overlayId": 20
         }
       ]
@@ -14451,7 +14416,6 @@
             "lsbFirst": true,
             "parameterNumber": 16338
           },
-          "defaultValue": 35,
           "overlayId": 20
         }
       ]
@@ -14768,7 +14732,6 @@
             "lsbFirst": true,
             "parameterNumber": 16344
           },
-          "defaultValue": 35,
           "overlayId": 20
         }
       ]
@@ -14873,7 +14836,6 @@
             "lsbFirst": true,
             "parameterNumber": 16350
           },
-          "defaultValue": 35,
           "overlayId": 20
         }
       ]
@@ -15190,7 +15152,6 @@
             "lsbFirst": true,
             "parameterNumber": 16356
           },
-          "defaultValue": 35,
           "overlayId": 20
         }
       ]
@@ -15295,7 +15256,6 @@
             "lsbFirst": true,
             "parameterNumber": 16362
           },
-          "defaultValue": 35,
           "overlayId": 20
         }
       ]

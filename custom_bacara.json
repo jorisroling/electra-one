@@ -1,0 +1,32 @@
+{
+  "custom": true,
+  "options": {
+    "electra": "electra-one-a-port-2",
+    "electraOneCtrl": "electra-one-a-ctrl"
+  },
+  "electra": {
+    "checkPresetVia": "none"
+  },
+  "midi": {
+    "ports": {
+      "electra-one-a-port-1": {
+        "darwin": "Electra Controller A Electra Port 1"
+      },
+      "electra-one-a-port-2": {
+        "darwin": "Electra Controller A Electra Port 2"
+      },
+      "electra-one-a-ctrl": {
+        "darwin": "Electra Controller A Electra CTRL"
+      },
+      "electra-one-b-port-1": {
+        "darwin": "Electra Controller B Electra Port 1"
+      },
+      "electra-one-b-port-2": {
+        "darwin": "Electra Controller B Electra Port 2"
+      },
+      "electra-one-b-ctrl": {
+        "darwin": "Electra Controller B Electra CTRL"
+      }
+    }
+  }
+}
