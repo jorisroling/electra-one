@@ -6,7 +6,7 @@
     "scenario": "default",
     "clock": "tr-6s",
     "transpose": "komplete-kontrol",
-    "transposeChannel": 1,
+    "transposeChannel": 15,
     "general": "lightpad-block",
     "generalChannel": 1,
     "remote": "thouch-block",
@@ -107,7 +107,7 @@
       "electraOne": {
         "port": 2,
         "initialize": {
-          "electra-one-port-2": [
+          "electra-one-b-port-2": [
             240,
             125,
             32,
@@ -246,7 +246,7 @@
   "router": {
     "scenarios": {
       "default": {
-        "electra": "electra-one-port-{port}",
+        "electra": "electra-one-b-port-{port}",
         "actors": {
           "virus-ti": {
             "enabled": true,
@@ -273,7 +273,7 @@
               "virus-ti-portmap"
             ],
             "initialize": {
-              "electra-one-port-2": [
+              "electra-one-b-port-2": [
                 240,
                 125,
                 32,

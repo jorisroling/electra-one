@@ -44,7 +44,7 @@ args
   .option('color', 'Control Update Color')
   .option('visible', 'Control Update Visible')
   .option('verbose', 'Verbose output')
-  .option('config', 'External configuration JSON filename')
+  .option('custom', 'External custom configuration JSON filename', _.get(config, 'options.custom', 0))
 
 const commands = require('./lib/commands')
 

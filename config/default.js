@@ -5,9 +5,9 @@ const path = require('path')
 const bacaraVirtualName = 'Bacara'
 
 
-const configWrapper = require('../lib/config')
+const customWrapper = require('../lib/custom')
 
-module.exports = configWrapper({
+module.exports = customWrapper({
   local:false,
   custom: false,
   debugPrefix,
@@ -112,7 +112,7 @@ module.exports = configWrapper({
   router: {
     scenarios: {
       'default': {
-        electra: 'electra-one-port-{port}',
+        electra: 'electra-one-b-port-{port}',
         actors: {},
       },
     },
