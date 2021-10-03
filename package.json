@@ -108,6 +108,8 @@
     "yves": "^1.0.80"
   },
   "devDependencies": {
+    "electron": "^15.0.0",
+    "electron-rebuild": "^3.2.3",
     "eslint": "^7.32.0",
     "eslint-plugin-jest": "^24.5.0",
     "nodemon": "^2.0.13"
