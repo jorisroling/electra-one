@@ -38,7 +38,7 @@
     "interfaces/bacara.js",
     "lib/bacara.js",
     "lib/commands.js",
-    "lib/config.js",
+    "lib/custom.js",
     "lib/devices.js",
     "lib/drums.js",
     "lib/electra.js",
