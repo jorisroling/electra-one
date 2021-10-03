@@ -35,7 +35,6 @@
     "index.js",
     "config/default.js",
     "config/production.js",
-    "config/develop.js",
     "interfaces/bacara.js",
     "lib/bacara.js",
     "lib/commands.js",
