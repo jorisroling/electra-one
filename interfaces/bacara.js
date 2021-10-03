@@ -21,7 +21,10 @@ function virusMacroControl(part, ctrl) {
 function deviceToIndex(portName, channel) {
   if (config.devices) {
     let idx = 1
-    for (let deviceKey in config.devices) {
+    const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
+    deviceKeys.unshift('bacara')
+
+    for (let deviceKey of deviceKeys) {
       if (Array.isArray(config.devices[deviceKey].channels)) {
         for (let c in config.devices[deviceKey].channels) {
           if (Midi.normalisePortName(portName) == Midi.normalisePortName(deviceKey) && channel == config.devices[deviceKey].channels[c]) {

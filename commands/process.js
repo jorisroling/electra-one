@@ -36,7 +36,11 @@ function preProcess(name, sub, options) {
                       value: 0,
                     }]
                     let idx = 1
-                    for (let deviceKey in config.devices) {
+
+                    const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
+                    deviceKeys.unshift('bacara')
+
+                    for (let deviceKey of deviceKeys) {
                       let instance = config.devices[deviceKey].instance ? config.devices[deviceKey].instance : 'ch.#'
                       const model = config.devices[deviceKey].model
 

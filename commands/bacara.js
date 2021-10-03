@@ -618,7 +618,7 @@ class BacaraMachine extends Machine {
         if (origin == 'surface') {
           this.interface.setParameter('pattern', this.interface.getParameter('pattern',0)-1)
           this.state.pattern = Pattern.load_pattern(this.state,this.interface.getParameter('pattern',0))
-          this.interface.setParameter('steps', this.interface.getParameter('steps', patternStepsDefault))
+          this.interface.setParameter('steps', this.getState('patternSteps'))
           this.showPattern()
           this.writeState()
           debug('previous_pattern: %y', this.interface.getParameter('pattern'))
@@ -629,7 +629,7 @@ class BacaraMachine extends Machine {
           this.interface.setParameter('pattern', this.interface.getParameter('pattern',0)+1)
 
           this.state.pattern = Pattern.load_pattern(this.state,this.interface.getParameter('pattern',0))
-          this.interface.setParameter('steps', this.interface.getParameter('steps', patternStepsDefault))
+          this.interface.setParameter('steps',this.getState('patternSteps'))
           this.showPattern()
           this.writeState()
           debug('next_pattern: %y', this.interface.getParameter('pattern'))
@@ -839,7 +839,11 @@ class BacaraMachine extends Machine {
           let idx = 0
           let choosenDeviceKey
           let choosenChannel
-          for (let deviceKey in config.devices) {
+          
+          const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
+          deviceKeys.unshift('bacara')
+
+          for (let deviceKey of deviceKeys) {
             if (Array.isArray(config.devices[deviceKey].channels)) {
               for (let c in config.devices[deviceKey].channels) {
                 idx++
@@ -943,7 +947,10 @@ class BacaraMachine extends Machine {
           let idx = 0
           let choosenDeviceKey
           let choosenChannel
-          for (let deviceKey in config.devices) {
+          const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
+          deviceKeys.unshift('bacara')
+
+          for (let deviceKey of deviceKeys) {
             if (Array.isArray(config.devices[deviceKey].channels)) {
               for (let c in config.devices[deviceKey].channels) {
                 idx++
@@ -1222,7 +1229,10 @@ class BacaraMachine extends Machine {
             let idx = 0
             let choosenDeviceKey
             let choosenChannel
-            for (let deviceKey in config.devices) {
+            const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
+            deviceKeys.unshift('bacara')
+
+            for (let deviceKey of deviceKeys) {
               if (Array.isArray(config.devices[deviceKey].channels)) {
                 for (let c in config.devices[deviceKey].channels) {
                   idx++
@@ -1323,7 +1333,7 @@ class BacaraMachine extends Machine {
       },
       pattern: (elementPath, value, origin) => {
         this.state.pattern = Pattern.load_pattern(this.state,value)
-        this.interface.setParameter('steps', this.interface.getParameter('steps', patternStepsDefault))
+        this.interface.setParameter('steps', this.getState('patternSteps'))
         this.showPattern()
         this.writeState()
         debug('pattern: %y', value)
@@ -2432,7 +2442,10 @@ class BacaraMachine extends Machine {
         port: null,
         channel: -1,
       }]
-      for (let deviceKey in config.devices) {
+      const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
+      deviceKeys.unshift('bacara')
+
+      for (let deviceKey of deviceKeys) {
         let instance = config.devices[deviceKey].instance ? config.devices[deviceKey].instance : 'ch.#'
         const model = config.devices[deviceKey].model
         if (Array.isArray(config.devices[deviceKey].channels)) {
