@@ -230,6 +230,9 @@
       "model": "KeyStep Pro",
       "manufacturer": "Arturia",
       "instance": "t.#",
+      "special": {
+        "10": "drm"
+      },
       "channels": [
         1,
         2,

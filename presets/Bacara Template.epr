@@ -17,15 +17,15 @@
     },
     {
       "id": 4,
-      "name": "Virus Axyz"
+      "name": "Virus Axyz [[device=virus-ti]]"
     },
     {
       "id": 5,
-      "name": "Virus Mixer"
+      "name": "Virus Mixer [[device=virus-ti]]"
     },
     {
       "id": 6,
-      "name": "Virus Macros"
+      "name": "Virus Macros [[device=virus-ti]]"
     },
     {
       "id": 7,
@@ -41,15 +41,15 @@
     },
     {
       "id": 10,
-      "name": "Virus Search"
+      "name": "Virus Search [[device=virus-ti]]"
     },
     {
       "id": 11,
-      "name": "TR-6S"
+      "name": "TR-6S [[device=tr-6s]]"
     },
     {
       "id": 12,
-      "name": "ReDrum"
+      "name": "ReDrum [[device=tr-6s]]"
     }
   ],
   "groups": [

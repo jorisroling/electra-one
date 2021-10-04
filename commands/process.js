@@ -19,7 +19,49 @@ function preProcess(name, sub, options) {
     if (fs.existsSync(options.template)) {
       const preset = jsonfile.readFileSync(options.template)
       if (preset) {
-        preset.name = preset.name.replace(' Template', '')
+        preset.name = preset.name.replace('Template', '').trim()
+        const blacklistPages = []
+        if (Array.isArray(preset.pages)) {
+          for (let page of preset.pages) {
+            const match = page.name.match(/\s*\[\s*\[\s*(.*?)\s*\]\s*\]\s*/)
+            if (match) {
+              const pageCondition = match[1].split('=').map( part => part.trim() )
+              if (pageCondition) {
+/*                debug('pageCondition %y',pageCondition)*/
+                if (pageCondition[0] == 'device') {
+                  if (!_.get(config,`midi.ports.${pageCondition[1]}`)) {
+                    blacklistPages.push(page.id)
+                  }
+                }
+              }
+              if (blacklistPages.indexOf(page.id)>=0) {
+                debug('ditch page %y as is condition %y = %y is not met.',page.name.replace(/\s*\[\s*\[\s*(.*?)\s*\]\s*\]\s*/,''),pageCondition[0],pageCondition[1])
+                page.name = 'Page '+page.id
+              } else {
+                page.name = page.name.replace(/\s*\[\s*\[\s*(.*?)\s*\]\s*\]\s*/,'')
+              }
+            }
+          }
+        }
+/*        debug('blacklistPages %y',blacklistPages)*/
+        if (Array.isArray(preset.groups)) {
+          for (let g=preset.groups.length-1;g>=0;g--) {
+            if (blacklistPages.indexOf(preset.groups[g].pageId)>=0) {
+/*              debug('ditch group %y',preset.groups[g].name)*/
+              preset.groups.splice(g,1)
+            }
+          }
+        }
+
+        if (Array.isArray(preset.controls)) {
+          for (let c=preset.controls.length-1;c>=0;c--) {
+            if (blacklistPages.indexOf(preset.controls[c].pageId)>=0) {
+/*              debug('ditch control %y',preset.controls[c].name)*/
+              preset.controls.splice(c,1)
+            }
+          }
+        }
+
         if (Array.isArray(preset.overlays)) {
           for (let overlay of preset.overlays) {
             if (Array.isArray(overlay.items) && overlay.items.length && overlay.items[0].label) {
