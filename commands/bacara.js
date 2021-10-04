@@ -839,7 +839,7 @@ class BacaraMachine extends Machine {
           let idx = 0
           let choosenDeviceKey
           let choosenChannel
-          
+
           const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
           deviceKeys.unshift('bacara')
 
@@ -2239,7 +2239,13 @@ class BacaraMachine extends Machine {
                       }
                     }
 
-                    Midi.send(portName, 'cc', {channel, controller:control, value:midiValue})
+                    Midi.send(portName, 'cc', {
+                      channel,
+                      controller:control,
+                      value:midiValue,
+                      sendShadowMidiToBacaraPort: true,
+                      shadowChannel: dev == 'A' ? 0 : 1,
+                    })
                     this.midiCache.setValue(portName, channel, 'cc', control, midiValue)
 
                     // Can Electra handle many NRPN's?
@@ -2296,7 +2302,7 @@ class BacaraMachine extends Machine {
                     note: midiNote,
                     velocity: 127,
                     channel: channel,
-                    sendShadowNotesToBacaraPort: true,
+                    sendShadowMidiToBacaraPort: true,
                     shadowChannel: dev == 'A' ? 0 : 1,
                   })
                 }
@@ -2304,7 +2310,7 @@ class BacaraMachine extends Machine {
                   note: midiNote,
                   velocity: 127 * note.velocity,
                   channel: channel,
-                  sendShadowNotesToBacaraPort: true,
+                  sendShadowMidiToBacaraPort: true,
                   shadowChannel: dev == 'A' ? 0 : 1,
                 })
                 this.midiCache.setValue(portName, channel, 'note', midiNote, true)
@@ -2317,7 +2323,7 @@ class BacaraMachine extends Machine {
                     note: midiNote,
                     velocity: 127,
                     channel,
-                    sendShadowNotesToBacaraPort: true,
+                    sendShadowMidiToBacaraPort: true,
                     shadowChannel,
                   })
                   this.midiCache.clearValue(portName, channel, 'note', midiNote)
@@ -2346,7 +2352,7 @@ class BacaraMachine extends Machine {
                       note: midiNote,
                       velocity: 127,
                       channel: channel,
-                      sendShadowNotesToBacaraPort: true,
+                      sendShadowMidiToBacaraPort: true,
                       shadowChannel: 9,
                     })
                   }
@@ -2371,7 +2377,7 @@ class BacaraMachine extends Machine {
                       note: midiNote,
                       velocity: 127,
                       channel: channel,
-                      sendShadowNotesToBacaraPort: true,
+                      sendShadowMidiToBacaraPort: true,
                       shadowChannel: 9,
                     })
                     this.midiCache.clearValue(portName, channel, 'note', midiNote)
@@ -2390,7 +2396,7 @@ class BacaraMachine extends Machine {
                           note: midiNote,
                           velocity: 127,
                           channel: channel,
-                          sendShadowNotesToBacaraPort: true,
+                          sendShadowMidiToBacaraPort: true,
                           shadowChannel: 9,
                         })
                       }
@@ -2404,7 +2410,7 @@ class BacaraMachine extends Machine {
                         note: midiNote,
                         velocity: velocity,
                         channel: channel,
-                        sendShadowNotesToBacaraPort: true,
+                        sendShadowMidiToBacaraPort: true,
                         shadowChannel: 9,
                       })
                       this.midiCache.setValue(portName, channel, 'note', midiNote, true)
@@ -2417,7 +2423,7 @@ class BacaraMachine extends Machine {
                           note: midiNote,
                           velocity: 127,
                           channel: channel,
-                          sendShadowNotesToBacaraPort: true,
+                          sendShadowMidiToBacaraPort: true,
                           shadowChannel: 9,
                         })
                         this.midiCache.clearValue(portName, channel, 'note', midiNote)
