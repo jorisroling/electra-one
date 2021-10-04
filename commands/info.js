@@ -12,7 +12,7 @@ function queryInfo(name, sub, options) {
   }
 
   midiInputCtrlPort.on('message', (msg) => {
-    if (msg._type == 'sysex' && msg.bytes && msg.bytes.length >= 7 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x00 && msg.bytes[2] == 0x21 && msg.bytes[3] == 0x45 && msg.bytes[4] == 0x01 && (msg.bytes[5] == 0x7F || msg.bytes[5] == 0x7E)/*&& msg.bytes[msg.bytes.length-1]==0xF7*/) {
+    if (msg._type == 'sysex' && msg.bytes && msg.bytes.length >= 7 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x00 && msg.bytes[2] == 0x21 && msg.bytes[3] == 0x45 && msg.bytes[4] == 0x01 && (msg.bytes[5] == 0x7F || msg.bytes[5] == 0x7E || msg.bytes[5] == 0x7C)/*&& msg.bytes[msg.bytes.length-1]==0xF7*/) {
       const info = JSON.parse(msg.bytes.slice(6, msg.bytes.length - 1).reduce((a, c) => a + String.fromCharCode(parseInt(c)), ''))
       /*      debug('info: %y',info)*/
 
@@ -54,6 +54,18 @@ function queryInfo(name, sub, options) {
   ]
 
   Midi.send(options.electraOneCtrl, 'sysex', bytes2)
+
+  let bytes3 = [
+    0xF0,   /* sysex start - 0xf0 */
+    0x00,   /* manufacturer ID 1 - 0x00 */
+    0x21,   /* manufacturer ID 2 - 0x21 */
+    0x45,   /* manufacturer ID 3 - 0x45 */
+    0x02,   /* Query data */
+    0x7C,   /* Preset Name Request */
+    0xF7    /* sysex end - 0xf7 */
+  ]
+
+  Midi.send(options.electraOneCtrl, 'sysex', bytes3)
 
   setTimeout( close, 2500)
 
