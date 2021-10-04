@@ -67,7 +67,7 @@ if (process.argv.length <= 2 || !command || !commands[command]) {
 }
 
 if (command && command != 'help' && !commands[command]) {
-  debug('Unknown command %y',command)
+  debug('Unknown command %y', command)
 } else {
   args.parse(process.argv, {name:pkg.name, args})
 }

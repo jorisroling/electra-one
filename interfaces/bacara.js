@@ -28,7 +28,7 @@ function deviceToIndex(portName, channel) {
       if (Array.isArray(config.devices[deviceKey].channels)) {
         for (let c in config.devices[deviceKey].channels) {
           if (Midi.normalisePortName(portName) == Midi.normalisePortName(deviceKey) && channel == config.devices[deviceKey].channels[c]) {
-/*            debug('deviceToIndex %y %y => %y',portName, channel, idx)*/
+            /*            debug('deviceToIndex %y %y => %y',portName, channel, idx)*/
             return idx
           }
           idx++
@@ -36,7 +36,7 @@ function deviceToIndex(portName, channel) {
       }
     }
   }
-  debug('deviceToIndex %y %y => NOT FOUND',portName, channel)
+  debug('deviceToIndex %y %y => NOT FOUND', portName, channel)
 }
 
 module.exports = {
@@ -1483,7 +1483,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('bacara',10),
+          default: deviceToIndex('bacara', 10),
         },
         note: {
           name: 'Bass Drum Note',
@@ -1523,7 +1523,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('bacara',10),
+          default: deviceToIndex('bacara', 10),
         },
         note: {
           name: 'Snare Drum Note',
@@ -1563,7 +1563,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('bacara',10),
+          default: deviceToIndex('bacara', 10),
         },
         note: {
           name: 'Low Tom Note',
@@ -1603,7 +1603,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('bacara',10),
+          default: deviceToIndex('bacara', 10),
         },
         note: {
           name: 'Mid Tom Note',
@@ -1643,7 +1643,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('bacara',10),
+          default: deviceToIndex('bacara', 10),
         },
         note: {
           name: 'High Tom Note',
@@ -1683,7 +1683,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('bacara',10),
+          default: deviceToIndex('bacara', 10),
         },
         note: {
           name: 'Rim Shot Note',
@@ -1723,7 +1723,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('bacara',10),
+          default: deviceToIndex('bacara', 10),
         },
         note: {
           name: 'Hand Clap Note',
@@ -1763,7 +1763,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('bacara',10),
+          default: deviceToIndex('bacara', 10),
         },
         note: {
           name: 'Cow Bell Note',
@@ -1803,7 +1803,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('bacara',10),
+          default: deviceToIndex('bacara', 10),
         },
         note: {
           name: 'Cymbal Note',
@@ -1843,7 +1843,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('bacara',10),
+          default: deviceToIndex('bacara', 10),
         },
         note: {
           name: 'Open Hat Note',
@@ -1883,7 +1883,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('bacara',10),
+          default: deviceToIndex('bacara', 10),
         },
         note: {
           name: 'Closed Hat Note',
@@ -1964,7 +1964,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('tr-6s',10),
+          default: deviceToIndex('tr-6s', 10),
         },
         note: {
           name: 'Bass Drum Note',
@@ -2044,7 +2044,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('tr-6s',10),
+          default: deviceToIndex('tr-6s', 10),
         },
         note: {
           name: 'Snare Drum Note',
@@ -2124,7 +2124,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('tr-6s',10),
+          default: deviceToIndex('tr-6s', 10),
         },
         note: {
           name: 'Low Tom Note',
@@ -2204,7 +2204,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('tr-6s',10),
+          default: deviceToIndex('tr-6s', 10),
         },
         note: {
           name: 'Hand Clap Note',
@@ -2284,7 +2284,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('tr-6s',10),
+          default: deviceToIndex('tr-6s', 10),
         },
         note: {
           name: 'Closed Hat Note',
@@ -2364,7 +2364,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('tr-6s',10),
+          default: deviceToIndex('tr-6s', 10),
         },
         note: {
           name: 'Open Hat Note',

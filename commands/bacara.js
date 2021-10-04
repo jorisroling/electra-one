@@ -607,7 +607,7 @@ class BacaraMachine extends Machine {
       generate: (elementPath, origin) => {
         if (origin == 'surface') {
           this.state.pattern = Pattern.generate(this.state, this.interface.getParameter('steps'))
-          this.interface.setParameter('pattern', Pattern.patternFiles(this.state,true) - 1)
+          this.interface.setParameter('pattern', Pattern.patternFiles(this.state, true) - 1)
 
           this.showPattern()
           this.writeState()
@@ -616,8 +616,8 @@ class BacaraMachine extends Machine {
       },
       previous_pattern: (elementPath, origin) => {
         if (origin == 'surface') {
-          this.interface.setParameter('pattern', this.interface.getParameter('pattern',0)-1)
-          this.state.pattern = Pattern.load_pattern(this.state,this.interface.getParameter('pattern',0))
+          this.interface.setParameter('pattern', this.interface.getParameter('pattern', 0) - 1)
+          this.state.pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
           this.interface.setParameter('steps', this.getState('patternSteps'))
           this.showPattern()
           this.writeState()
@@ -626,10 +626,10 @@ class BacaraMachine extends Machine {
       },
       next_pattern: (elementPath, origin) => {
         if (origin == 'surface') {
-          this.interface.setParameter('pattern', this.interface.getParameter('pattern',0)+1)
+          this.interface.setParameter('pattern', this.interface.getParameter('pattern', 0) + 1)
 
-          this.state.pattern = Pattern.load_pattern(this.state,this.interface.getParameter('pattern',0))
-          this.interface.setParameter('steps',this.getState('patternSteps'))
+          this.state.pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
+          this.interface.setParameter('steps', this.getState('patternSteps'))
           this.showPattern()
           this.writeState()
           debug('next_pattern: %y', this.interface.getParameter('pattern'))
@@ -1332,7 +1332,7 @@ class BacaraMachine extends Machine {
         }
       },
       pattern: (elementPath, value, origin) => {
-        this.state.pattern = Pattern.load_pattern(this.state,value)
+        this.state.pattern = Pattern.load_pattern(this.state, value)
         this.interface.setParameter('steps', this.getState('patternSteps'))
         this.showPattern()
         this.writeState()
@@ -2603,24 +2603,24 @@ class BacaraMachine extends Machine {
           electra.controlReflect(this.options.electraOneCtrl, ctrlId, {'name': virusPreset.name})
         }
       } else {
-        debug('Electra One %y preset NOT Loaded',bacaraPresetName)
+        debug('Electra One %y preset NOT Loaded', bacaraPresetName)
       }
 
       let macros = {}
 
       for (let s = 0; s < 6; s++) {
-        const slotSource = Virus.getPresetPageParameter(virusPreset, _.get(config,`virus.info.matrix.slot.${s}.source.page`), _.get(config,`virus.info.matrix.slot.${s}.source.offset`))
+        const slotSource = Virus.getPresetPageParameter(virusPreset, _.get(config, `virus.info.matrix.slot.${s}.source.page`), _.get(config, `virus.info.matrix.slot.${s}.source.offset`))
         if (slotSource > 0 && slotSource <= 18) {
           let destinations = 0
           for (let d = 0; d < 3; d++) {
-            const target = Virus.getPresetPageParameter(virusPreset, _.get(config,`virus.info.matrix.slot.${s}.destinations.${d}.target.page`), _.get(config,`virus.info.matrix.slot.${s}.destinations.${d}.target.offset`))
-            const amount = Virus.getPresetPageParameter(virusPreset, _.get(config,`virus.info.matrix.slot.${s}.destinations.${d}.amount.page`), _.get(config,`virus.info.matrix.slot.${s}.destinations.${d}.amount.offset`))
+            const target = Virus.getPresetPageParameter(virusPreset, _.get(config, `virus.info.matrix.slot.${s}.destinations.${d}.target.page`), _.get(config, `virus.info.matrix.slot.${s}.destinations.${d}.target.offset`))
+            const amount = Virus.getPresetPageParameter(virusPreset, _.get(config, `virus.info.matrix.slot.${s}.destinations.${d}.amount.page`), _.get(config, `virus.info.matrix.slot.${s}.destinations.${d}.amount.offset`))
             if (target && amount) {
               destinations++
             }
           }
           if (destinations) {
-            const slotSourceType = Object.assign({}, _.get(config,`virus.info.matrix.source.type.${slotSource}`))
+            const slotSourceType = Object.assign({}, _.get(config, `virus.info.matrix.source.type.${slotSource}`))
             /*                  debug('mod slot #%d (%s) source %y %s %y',s+1,_.get(config,`virus.info.matrix.slot.${s}.name`),slotSource,slotSourceType.name,slotSourceType.cc)*/
             macros[slotSourceType.name] = slotSourceType
           }
@@ -2697,8 +2697,8 @@ class BacaraMachine extends Machine {
 
 function bacaraSequencer(name, sub, options) {
   if (options.verbose) {
-    debugError('options %y',_.fromPairs(_.toPairs(options).filter(a => a[0].length>1 )) )
-    debugError('config %y',config.util.toObject(config))
+    debugError('options %y', _.fromPairs(_.toPairs(options).filter(a => a[0].length > 1 )) )
+    debugError('config %y', config.util.toObject(config))
   }
 
   Midi.setupVirtualPorts(config.bacara.virtual)
@@ -2761,7 +2761,7 @@ function bacaraSequencer(name, sub, options) {
             if (_.isEqual(sysexCmd, electraSysexCmdPresetNameResponse)) {
               const presetName = electra.parseSysexCmdPresetNameResponse(options.electraOneCtrl, msg.bytes)
               if (presetName == bacaraPresetName) {
-                debug('Electra One %y preset IS Loaded',bacaraPresetName)
+                debug('Electra One %y preset IS Loaded', bacaraPresetName)
                 bacaraMachine.virusReflectParts()
               }
             } else if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
@@ -2775,9 +2775,9 @@ function bacaraSequencer(name, sub, options) {
               }
               debug('Bacara Preset Name Request done')
             } else if (_.isEqual(sysexCmd, electraSysexCmdPatchResponse)) {
-              const presetName = electra.parseSysexCmdPatchRequestResponse(options.electraOneCtrl, msg.bytes);
+              const presetName = electra.parseSysexCmdPatchRequestResponse(options.electraOneCtrl, msg.bytes)
               if (presetName == bacaraPresetName) {
-                debug('Electra One %y preset IS Loaded',bacaraPresetName)
+                debug('Electra One %y preset IS Loaded', bacaraPresetName)
                 bacaraMachine.virusReflectParts()
               }
             } else {

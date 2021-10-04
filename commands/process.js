@@ -27,37 +27,37 @@ function preProcess(name, sub, options) {
             if (match) {
               const pageCondition = match[1].split('=').map( part => part.trim() )
               if (pageCondition) {
-/*                debug('pageCondition %y',pageCondition)*/
+                /*                debug('pageCondition %y',pageCondition)*/
                 if (pageCondition[0] == 'device') {
-                  if (!_.get(config,`midi.ports.${pageCondition[1]}`)) {
+                  if (!_.get(config, `midi.ports.${pageCondition[1]}`)) {
                     blacklistPages.push(page.id)
                   }
                 }
               }
-              if (blacklistPages.indexOf(page.id)>=0) {
-                debug('ditch page %y as its condition %y = %y is not met.',page.name.replace(/\s*\[\s*\[\s*(.*?)\s*\]\s*\]\s*/,''),pageCondition[0],pageCondition[1])
-                page.name = 'Page '+page.id
+              if (blacklistPages.indexOf(page.id) >= 0) {
+                debug('ditch page %y as its condition %y = %y is not met.', page.name.replace(/\s*\[\s*\[\s*(.*?)\s*\]\s*\]\s*/, ''), pageCondition[0], pageCondition[1])
+                page.name = 'Page ' + page.id
               } else {
-                page.name = page.name.replace(/\s*\[\s*\[\s*(.*?)\s*\]\s*\]\s*/,'')
+                page.name = page.name.replace(/\s*\[\s*\[\s*(.*?)\s*\]\s*\]\s*/, '')
               }
             }
           }
         }
-/*        debug('blacklistPages %y',blacklistPages)*/
+        /*        debug('blacklistPages %y',blacklistPages)*/
         if (Array.isArray(preset.groups)) {
-          for (let g=preset.groups.length-1;g>=0;g--) {
-            if (blacklistPages.indexOf(preset.groups[g].pageId)>=0) {
-/*              debug('ditch group %y',preset.groups[g].name)*/
-              preset.groups.splice(g,1)
+          for (let g = preset.groups.length - 1; g >= 0; g--) {
+            if (blacklistPages.indexOf(preset.groups[g].pageId) >= 0) {
+              /*              debug('ditch group %y',preset.groups[g].name)*/
+              preset.groups.splice(g, 1)
             }
           }
         }
 
         if (Array.isArray(preset.controls)) {
-          for (let c=preset.controls.length-1;c>=0;c--) {
-            if (blacklistPages.indexOf(preset.controls[c].pageId)>=0) {
-/*              debug('ditch control %y',preset.controls[c].name)*/
-              preset.controls.splice(c,1)
+          for (let c = preset.controls.length - 1; c >= 0; c--) {
+            if (blacklistPages.indexOf(preset.controls[c].pageId) >= 0) {
+              /*              debug('ditch control %y',preset.controls[c].name)*/
+              preset.controls.splice(c, 1)
             }
           }
         }
@@ -91,7 +91,7 @@ function preProcess(name, sub, options) {
                           if (Array.isArray(config.devices[deviceKey].instances) && config.devices[deviceKey].instances.length > c) {
                             instance = config.devices[deviceKey].instances[c]
                           }
-                          if (typeof config.devices[deviceKey].special === "object" && config.devices[deviceKey].special[config.devices[deviceKey].channels[c]]) {
+                          if (typeof config.devices[deviceKey].special === 'object' && config.devices[deviceKey].special[config.devices[deviceKey].channels[c]]) {
                             instance = config.devices[deviceKey].special[config.devices[deviceKey].channels[c]]
                           }
                           const label = config.devices[deviceKey].channels.length > 1 ? `${model} ${instance}`.trim() : model
@@ -99,7 +99,7 @@ function preProcess(name, sub, options) {
 
                           overlay.items.push({
                             index: idx,
-                            label: rLabel.substr(0,15),
+                            label: rLabel.substr(0, 15),
                             value: idx,
                           })
                           idx++
