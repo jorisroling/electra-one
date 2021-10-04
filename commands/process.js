@@ -35,7 +35,7 @@ function preProcess(name, sub, options) {
                 }
               }
               if (blacklistPages.indexOf(page.id)>=0) {
-                debug('ditch page %y as is condition %y = %y is not met.',page.name.replace(/\s*\[\s*\[\s*(.*?)\s*\]\s*\]\s*/,''),pageCondition[0],pageCondition[1])
+                debug('ditch page %y as its condition %y = %y is not met.',page.name.replace(/\s*\[\s*\[\s*(.*?)\s*\]\s*\]\s*/,''),pageCondition[0],pageCondition[1])
                 page.name = 'Page '+page.id
               } else {
                 page.name = page.name.replace(/\s*\[\s*\[\s*(.*?)\s*\]\s*\]\s*/,'')

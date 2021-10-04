@@ -2,7 +2,19 @@
   "custom": true,
   "options": {
     "electra": "electra-one-a-port-2",
-    "electraOneCtrl": "electra-one-a-ctrl"
+    "electraOneCtrl": "electra-one-a-ctrl",
+    "scenario": "default",
+    "clock": "bacara",
+    "transpose": "bacara",
+    "transposeChannel": 15,
+    "general": null,
+    "generalChannel": 1,
+    "remote": null,
+    "remoteChannel": 1,
+    "bank": 0,
+    "slot": 0,
+    "id": 0,
+    "name": ""
   },
   "electra": {
     "checkPresetVia": "none"
