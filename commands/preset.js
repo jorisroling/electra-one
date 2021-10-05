@@ -5,6 +5,9 @@ const config = require('config')
 const virus = require('../lib/virus')
 
 const Bacara = require('../lib/bacara')
+const yves = require('../lib/yves')
+const pkg = require('../package.json')
+const debugError = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:error`)
 
 let args
 
@@ -16,6 +19,14 @@ const { devices } = require('../lib/devices')
 function generatePreset(name, sub, options) {
 
   Midi.setupVirtualPorts(config.list.virtual)
+
+  if (options.verbose) {
+    debugError('options %y', _.fromPairs(_.toPairs(options).filter(a => a[0].length > 1 )) )
+    debugError('config %y', config.util.toObject(config))
+  }
+  if (options.custom) {
+    Bacara.setPresetStateFilename(options.custom)
+  }
 
   Bacara.scanMidiPorts()
   virus.scanBanks()
@@ -234,6 +245,7 @@ function generatePreset(name, sub, options) {
       }
       if (options.filename) {
         jsonfile.writeFileSync(options.filename, preset, { flag: 'w', spaces: 2 })
+        process.exit(0)
       } else {
         process.stdout.once('drain', () => process.exit(0) )
         process.stdout.write(JSON.stringify(preset,null,2)+"\n")

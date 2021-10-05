@@ -19,9 +19,9 @@ module.exports = customWrapper({
     clock: 'bacara',
     transpose: 'bacara',
     transposeChannel: 16,
-    general: null,
+    general: '',
     generalChannel: 1,
-    remote: null,
+    remote: '',
     remoteChannel: 1,
     bank: 0,
     slot: 0,
@@ -29,9 +29,11 @@ module.exports = customWrapper({
     name: '',
     template: path.resolve(__dirname+'/../presets/Bacara Template.epr'),
     presetName: 'Bacara',
+    custom: '',
   },
   electra: {
     checkPresetVia: 'patch',  // patch, preset or none
+    presetName: "Bacara Joris",
   },
   midi: {
     ports: {

@@ -18,7 +18,7 @@ const Midi = require('../lib/midi/midi')
 
 const { Midi:TonalMidi } = require('@tonaljs/tonal')
 
-const bacaraPresetName = 'Bacara'
+const bacaraPresetName = config.electra.presetName //'Bacara'
 const Machine = require('../lib/midi/machine')
 const Interface = require('../lib/midi/interface')
 const MidiCache = require('../lib/midi/cache')
@@ -2563,6 +2563,9 @@ class BacaraMachine extends Machine {
       }
 
       if (config.electra.checkPresetVia == 'none' || electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
+        if (electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
+          debug('Electra One %y preset IS Loaded', bacaraPresetName)
+        }
         if (part >= 1 && part <= 6) {
           const matrixSelectControls = [145, 146, 147, 148, 149, 150]
           const searchSelectControls = [325, 326, 327, 328, 329, 330]
@@ -2672,6 +2675,9 @@ function bacaraSequencer(name, sub, options) {
     debugError('config %y', config.util.toObject(config))
   }
 
+  if (options.custom) {
+    Bacara.setPresetStateFilename(options.custom)
+  }
   Midi.setupVirtualPorts(config.bacara.virtual)
 
   const monode = monodeInit()
