@@ -13,21 +13,22 @@ const Midi = require('../lib/midi/midi')
 
 const { devices } = require('../lib/devices')
 
-function preProcess(name, sub, options) {
+function generatePreset(name, sub, options) {
 
   Midi.setupVirtualPorts(config.list.virtual)
 
   Bacara.scanMidiPorts()
   virus.scanBanks()
-/*  console.trace('JJR')*/
-// process.exit()
 
+  if (!options.filname && options.presetName) {
+    options.filname = options.presetName
+  }
   const interface = new Interface('bacara')
   if (options.template && options.filename) {
     if (fs.existsSync(options.template)) {
       const preset = jsonfile.readFileSync(options.template)
       if (preset) {
-        preset.name = preset.name.replace('Template', '').trim()
+        preset.name = options.presetName ? options.presetName : preset.name.replace('Template', '').trim()
         const blacklistPages = []
         if (Array.isArray(preset.pages)) {
           for (let page of preset.pages) {
@@ -248,11 +249,11 @@ module.exports = {
   setup(a) {
     args = a
   },
-  name: 'process',
-  description: 'Pre Process Preset Files',
-  handler: preProcess,
+  name: 'preset',
+  description: 'Generate Preset File (.epr)',
+  handler: generatePreset,
   examples: [
-    {usage:'electra-one process --filename <preset-file>', description:'Pre-Process Preset File (.epr) and outputs to stdout'},
+    {usage:'electra-one preset --filename <preset-file>', description:'Generates Preset File (.epr) and outputs to filename'},
   ],
   aliases:[]
 }

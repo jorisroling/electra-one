@@ -36,8 +36,9 @@ args
 
   .option('lua', 'LUA command for direct execution')
 
-  .option('template', 'Process Template Preset File path')
+  .option('template', 'Process Template Preset File path',_.get(config, 'options.template'))
   .option('filename', 'Process Output Filename')
+  .option('presetName', 'Process Template Preset Name',_.get(config, 'options.presetName','Bacara'))
 
   .option('id', 'Control Update ID', _.get(config, 'options.id', 0))
   .option('name', 'Control Update Name', _.get(config, 'options.name', ''))

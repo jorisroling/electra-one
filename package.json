@@ -15,9 +15,9 @@
     "remove": "node index remove",
     "bacara": "nodemon --verbose -L --ignore state index bacara",
     "fuse": "nodemon --verbose -L --ignore state index fuse",
-    "process": "node index process --template \"presets/Bacara Template.epr\" --filename \"presets/Bacara.epr\" --custom custom_bacara.json",
-    "process_joris": "node index process --template \"presets/Bacara Template.epr\" --filename \"presets/Bacara Joris.epr\"",
-    "build": "npm run process;npm run process_joris",
+    "preset": "node index preset --filename \"presets/Bacara.epr\" --presetName \"Bacara\" --custom custom_bacara.json",
+    "preset_joris": "node index preset --filename \"presets/Bacara Joris.epr\" --presetName \"Bacara Joris\"",
+    "build": "npm run preset;npm run preset_joris",
     "start": "npm run fuse",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
