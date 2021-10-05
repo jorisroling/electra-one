@@ -235,9 +235,9 @@ function generatePreset(name, sub, options) {
       if (options.filename) {
         jsonfile.writeFileSync(options.filename, preset, { flag: 'w', spaces: 2 })
       } else {
+        process.stdout.once('drain', () => process.exit(0) )
         process.stdout.write(JSON.stringify(preset,null,2)+"\n")
       }
-
     } else {
       console.error(`The file "${options.template}" does not exist`)
     }
