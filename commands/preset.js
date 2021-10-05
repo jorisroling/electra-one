@@ -20,11 +20,8 @@ function generatePreset(name, sub, options) {
   Bacara.scanMidiPorts()
   virus.scanBanks()
 
-  if (!options.filname && options.presetName) {
-    options.filname = options.presetName
-  }
   const interface = new Interface('bacara')
-  if (options.template && options.filename) {
+  if (options.template /*&& options.filename*/) {
     if (fs.existsSync(options.template)) {
       const preset = jsonfile.readFileSync(options.template)
       if (preset) {
@@ -235,7 +232,11 @@ function generatePreset(name, sub, options) {
           }
         }
       }
-      jsonfile.writeFileSync(options.filename, preset, { flag: 'w', spaces: 2 })
+      if (options.filename) {
+        jsonfile.writeFileSync(options.filename, preset, { flag: 'w', spaces: 2 })
+      } else {
+        process.stdout.write(JSON.stringify(preset,null,2)+"\n")
+      }
 
     } else {
       console.error(`The file "${options.template}" does not exist`)
@@ -254,6 +255,7 @@ module.exports = {
   handler: generatePreset,
   examples: [
     {usage:'electra-one preset --filename <preset-file>', description:'Generates Preset File (.epr) and outputs to filename'},
+    {usage:'electra-one preset', description:'Generates Preset File (.epr) and outputs to stdout'},
   ],
   aliases:[]
 }
