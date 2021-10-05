@@ -68,6 +68,7 @@
     "commands/upload.js",
     "training/pattern.js",
     "training/drum.js",
+    "presets/Bacara Template.epr",
     "extra/scales/scales.json",
     "devices/bacara.js",
     "devices/bcr2000.js",
