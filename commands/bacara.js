@@ -93,7 +93,7 @@ let bacaraEmitTime
 function bacaraEmit(portName, part, type, value, origin) {
   bacaraEmitTime = Date.now()
   bacaraEmitPart = part
-  Bacara.event.emit('change', portName, part, type, value, origin, path.basename(__filename, '.js'))
+  Bacara.event().emit('change', portName, part, type, value, origin, path.basename(__filename, '.js'))
 }
 
 class BacaraMachine extends Machine {
@@ -112,7 +112,7 @@ class BacaraMachine extends Machine {
     this.virus = new Virus('virus-ti')
     this.remote = {}
 
-    Bacara.event.on('change', (device, part, name, value, origin, command) => {
+    Bacara.event().on('change', (device, part, name, value, origin, command) => {
       if (/*command != me &&*/ device == 'virus-ti' && (part >= 1 && part <= 16)) {
         //debug('BACARA change %y - device: %y  part: %y  name: %y  value: %y  origin: %y command: %y',me,device, part, name, value, origin, command)
         if (name == 'bank-and-program') {
@@ -172,7 +172,7 @@ class BacaraMachine extends Machine {
               if (patchDefault >= 0) {
                 //                 debug('Reset Axyz %y T %d CC %y = patch default %y',axyz,t,parameter.cc,patchDefault)
                 Midi.send(virusPortName, 'cc', {channel:channel - 1, controller:parameter.cc, value:patchDefault})
-                Bacara.event.emit('change', virusPortName, part, 'cc', {controller:parameter.cc, value:patchDefault}, 'surface', path.basename(__filename, '.js'))
+                Bacara.event().emit('change', virusPortName, part, 'cc', {controller:parameter.cc, value:patchDefault}, 'surface', path.basename(__filename, '.js'))
               }
             }
           }
@@ -860,25 +860,20 @@ class BacaraMachine extends Machine {
             const port = _.get(config, `devices.${choosenDeviceKey}.port`)
             if (port) {
               const portName = _.get(config, `midi.ports.${port}.${os.platform()}`)
+
               if (portName) {
                 const midiNames = easymidi.getOutputs()
                 if (midiNames) {
                   const idx = midiNames.indexOf(portName)
                   if (idx >= 0) {
                     this.interface.setParameter(`device.${dev}.port`, idx)
-                    const midiNames = easymidi.getOutputs()
-                    if (midiNames) {
-                      if (idx < midiNames.length) {
-                        let name = midiNames[idx]
-                        const ports = Object.keys(config.midi.ports).filter( p => config.midi.ports[p][os.platform()] == name )
-                        if (ports && ports.length == 1) {
-                          name = ports[0]
-                        }
-                        this.setState(`device.${dev}.portName`, name)
-                      }
-                    } else {
-                      this.clearState(`device.${dev}.portName`)
+                    let name = midiNames[idx]
+
+                    const ports = Object.keys(config.midi.ports).filter( p => _.get(config, `midi.ports.${p}.out.${os.platform()}`, _.get(config, `midi.ports.${p}.${os.platform()}`)) == name )
+                    if (ports && ports.length == 1) {
+                      name = ports[0]
                     }
+                    this.setState(`device.${dev}.portName`, name)
                     this.interface.setParameter(`device.${dev}.channel`, choosenChannel)
                   }
                 }
@@ -890,14 +885,8 @@ class BacaraMachine extends Machine {
     }
 
     const devicePortOrChannelChanged = (dev) => {
-      let portName
-      const midiNames = easymidi.getOutputs()
-      if (midiNames) {
-        const port = this.interface.getParameter(`device.${dev}.port`)
-        if (port < midiNames.length) {
-          portName = Midi.normalisePortName(midiNames[port])
-        }
-      }
+      const port = this.interface.getParameter(`device.${dev}.port`)
+      const portName = Midi.normalisePortName(Bacara.getPresetState(`midi.ports.output.${port}.name`),false,true)
       if (portName) {
         const deviceMenu = this.deviceMenu()
         if (deviceMenu) {
@@ -974,21 +963,12 @@ class BacaraMachine extends Machine {
                 if (midiNames) {
                   const idx = midiNames.indexOf(portName)
                   if (idx >= 0) {
-                    //                    this.interface.setParameter(`device.${dev}.port`, idx)
-                    const midiNames = easymidi.getOutputs()
-                    if (midiNames) {
-                      if (idx < midiNames.length) {
-                        let name = midiNames[idx]
-                        const ports = Object.keys(config.midi.ports).filter( p => config.midi.ports[p][os.platform()] == name )
-                        if (ports && ports.length == 1) {
-                          name = ports[0]
-                        }
-                        this.setState(`track.${trk}.portName`, name)
-                      }
-                    } else {
-                      this.clearState(`track.${trk}.portName`)
+                    let name = midiNames[idx]
+                    const ports = Object.keys(config.midi.ports).filter( p => config.midi.ports[p][os.platform()] == name )
+                    if (ports && ports.length == 1) {
+                      name = ports[0]
                     }
-                    /*                    this.interface.setParameter(`device.${dev}.channel`, choosenChannel)*/
+                    this.setState(`track.${trk}.portName`, name)
                   }
                 }
               }
@@ -1144,7 +1124,7 @@ class BacaraMachine extends Machine {
               }
               //               debug('Axyz %y T %d CC %y = %y (because %y) (patch default %y)',axyz,t,parameter.cc,val,value,patchDefault)
               Midi.send(virusPortName, 'cc', {channel:channel - 1, controller:parameter.cc, value:val})
-              Bacara.event.emit('change', virusPortName, part, 'cc', {controller:parameter.cc, value:val}, origin, path.basename(__filename, '.js'))
+              Bacara.event().emit('change', virusPortName, part, 'cc', {controller:parameter.cc, value:val}, origin, path.basename(__filename, '.js'))
             }
           }
         }
@@ -1253,21 +1233,12 @@ class BacaraMachine extends Machine {
                   if (midiNames) {
                     const idx = midiNames.indexOf(portName)
                     if (idx >= 0) {
-                      const midiNames = easymidi.getOutputs()
-                      if (midiNames) {
-                        if (idx < midiNames.length) {
-                          let name = midiNames[idx]
-                          const ports = Object.keys(config.midi.ports).filter( p => config.midi.ports[p][os.platform()] == name )
-                          if (ports && ports.length == 1) {
-                            name = ports[0]
-                          }
-                          this.setState(`drums.${type}.${trck}.portName`, name)
-                        }
-                      } else {
-                        this.clearState(`drums.${type}.${trck}.portName`)
-                        this.clearState(`drums.${type}.${trck}.channel`)
+                      let name = midiNames[idx]
+                      const ports = Object.keys(config.midi.ports).filter( p => config.midi.ports[p][os.platform()] == name )
+                      if (ports && ports.length == 1) {
+                        name = ports[0]
                       }
-                      this.setState(`drums.${type}.${trck}.channel`, choosenChannel)
+                      this.setState(`drums.${type}.${trck}.portName`, name)
                     }
                   }
                 }

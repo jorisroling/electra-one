@@ -112,7 +112,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
             debugPart('Part mapping %y applied to PC %d to %y', (targetElectraOne ? (electraOneMidiChannel + 1) : getMapping('part')), program, to)
             Midi.send(to, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
             const bank = _.get(midiHistory, `${from}.channel_${getMapping('part:-1')}.controller_0`, 0)
-            Bacara.event.emit('change', 'virus-ti', getMapping('part'), 'bank-and-program', {bank, program}, 'surface', path.basename(__filename, '.js'))
+            Bacara.event().emit('change', 'virus-ti', getMapping('part'), 'bank-and-program', {bank, program}, 'surface', path.basename(__filename, '.js'))
           }
         } else {
           debug('Forwarding PC %d on channel %d to %y', msg.number, msg.channel + 1, to)
@@ -155,7 +155,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
                 Midi.send(to, 'program', {channel: targetElectraOne ? electraOneMidiChannel : getMapping('part:-1'), number: program}, 'programChange', sendProgramChangeTimeoutTime)
                 debugPart('Part mapping %y applied to PC %d to %y', (targetElectraOne ? (electraOneMidiChannel + 1) : getMapping('part')), program, to)
                 Midi.send(to, 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
-                Bacara.event.emit('change', 'virus-ti', getMapping('part'), 'bank-and-program', {bank, program}, 'surface', me)
+                Bacara.event().emit('change', 'virus-ti', getMapping('part'), 'bank-and-program', {bank, program}, 'surface', me)
               }
             }
           }
@@ -196,12 +196,12 @@ function handleIncoming(from, to, targetElectraOne, options) {
                 debug('CC0')
                 const bank = msg.bytes[9]
                 Midi.send(to, 'cc', {channel:electraOneMidiChannel, controller:0, value:bank})
-                Bacara.event.emit('change', 'virus-ti', getMapping('part'), 'bank-and-program', {bank}, 'surface', me)
+                Bacara.event().emit('change', 'virus-ti', getMapping('part'), 'bank-and-program', {bank}, 'surface', me)
               } else if (msg.bytes[8] == 0x21) {
                 debug('PC')
                 const program = msg.bytes[9]
                 Midi.send(to, 'program', {channel:electraOneMidiChannel, number:program})
-                Bacara.event.emit('change', 'virus-ti', getMapping('part'), 'bank-and-program', {program}, 'surface', me)
+                Bacara.event().emit('change', 'virus-ti', getMapping('part'), 'bank-and-program', {program}, 'surface', me)
               }
             }
             // F0 00 20 33 01 XX 72 01  1D 02 F7
@@ -243,7 +243,7 @@ function handleIncoming(from, to, targetElectraOne, options) {
             Midi.send(to, 'cc', {channel:electraOneMidiChannel, controller:0, value:bank})
             Midi.send(to, 'program', {channel:electraOneMidiChannel, number:program})
           }
-          //          Bacara.event.emit('sysex', 'virus-ti', getMapping('part'), 'patch', msg.bytes, 'virus-ti', path.basename(__filename, '.js'))
+          //          Bacara.event().emit('sysex', 'virus-ti', getMapping('part'), 'patch', msg.bytes, 'virus-ti', path.basename(__filename, '.js'))
 
         } else if (msg.bytes.length == 11 && msg.bytes[0] == 0xF0 && msg.bytes[1] == 0x00 && msg.bytes[2] == 0x20 && msg.bytes[3] == 0x33 && msg.bytes[4] == 0x01 /* &&  msg.bytes[5]==0x00 */ && msg.bytes[6] == 0x72 && msg.bytes[7] == 0x00 ) {
           // F0 00 20 33 01 XX 72 00  21 32 F7 => preset change
@@ -292,7 +292,7 @@ function setupMidi(options) {
         } else {
           debug('No connection to %y', electraOnePortName)
         }
-        Bacara.event.on('change', (device, part, name, value, origin, command) => {
+        Bacara.event().on('change', (device, part, name, value, origin, command) => {
           if (command != me && device == 'virus-ti' && (part >= 1 && part <= 16)) {
             //debug('RTR change - machine: %y  part: %y  name: %y  value: %y  origin: %y  me: %y',device, part, name, value, origin, me)
             const currentPart = getMapping('part')

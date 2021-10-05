@@ -1466,6 +1466,16 @@
       "items": [
         {
           "value": 0,
+          "label": "[[ports]]",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "items": [
+        {
+          "value": 0,
           "label": "Off",
           "index": 0
         },
@@ -1577,7 +1587,7 @@
       ]
     },
     {
-      "id": 22,
+      "id": 23,
       "items": [
         {
           "value": 0,
@@ -9744,7 +9754,8 @@
     },
     {
       "id": 254,
-      "type": "fader",
+      "type": "list",
+      "visible": true,
       "name": "PORT",
       "color": "F45C51",
       "bounds": [
@@ -9763,15 +9774,14 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6529,
-            "min": 0,
-            "max": 63
-          }
+            "parameterNumber": 6529
+          },
+          "overlayId": 21,
+          "id": "value"
         }
       ]
     },
@@ -10125,7 +10135,8 @@
     },
     {
       "id": 266,
-      "type": "fader",
+      "type": "list",
+      "visible": true,
       "name": "PORT",
       "color": "529DEC",
       "bounds": [
@@ -10144,15 +10155,14 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6785,
-            "min": 0,
-            "max": 63
-          }
+            "parameterNumber": 6785
+          },
+          "overlayId": 21,
+          "id": "value"
         }
       ]
     },
@@ -10469,6 +10479,72 @@
           },
           "defaultValue": "off",
           "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 283,
+      "type": "fader",
+      "name": "PORT",
+      "color": "529DEC",
+      "bounds": [
+        0,
+        480,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6785,
+            "min": 0,
+            "max": 63
+          }
+        }
+      ]
+    },
+    {
+      "id": 284,
+      "type": "fader",
+      "name": "PORT",
+      "color": "F45C51",
+      "bounds": [
+        170,
+        480,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 8,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6529,
+            "min": 0,
+            "max": 63
+          }
         }
       ]
     },
@@ -11849,7 +11925,7 @@
             "lsbFirst": false,
             "parameterNumber": 16262
           },
-          "overlayId": 21,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -11882,7 +11958,7 @@
             "lsbFirst": false,
             "parameterNumber": 16266
           },
-          "overlayId": 21,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -11915,7 +11991,7 @@
             "lsbFirst": false,
             "parameterNumber": 16270
           },
-          "overlayId": 21,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -11948,7 +12024,7 @@
             "lsbFirst": false,
             "parameterNumber": 16274
           },
-          "overlayId": 21,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -11981,7 +12057,7 @@
             "lsbFirst": false,
             "parameterNumber": 16278
           },
-          "overlayId": 21,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -12014,7 +12090,7 @@
             "lsbFirst": false,
             "parameterNumber": 16282
           },
-          "overlayId": 21,
+          "overlayId": 22,
           "id": "value"
         }
       ]
@@ -14100,7 +14176,7 @@
             "parameterNumber": 16329
           },
           "defaultValue": 0,
-          "overlayId": 22,
+          "overlayId": 23,
           "id": "value"
         }
       ]
@@ -14206,7 +14282,7 @@
             "parameterNumber": 16335
           },
           "defaultValue": 1,
-          "overlayId": 22,
+          "overlayId": 23,
           "id": "value"
         }
       ]
@@ -14520,7 +14596,7 @@
             "parameterNumber": 16341
           },
           "defaultValue": 2,
-          "overlayId": 22,
+          "overlayId": 23,
           "id": "value"
         }
       ]
@@ -14626,7 +14702,7 @@
             "parameterNumber": 16347
           },
           "defaultValue": 6,
-          "overlayId": 22,
+          "overlayId": 23,
           "id": "value"
         }
       ]
@@ -14940,7 +15016,7 @@
             "parameterNumber": 16353
           },
           "defaultValue": 10,
-          "overlayId": 22,
+          "overlayId": 23,
           "id": "value"
         }
       ]
@@ -15046,7 +15122,7 @@
             "parameterNumber": 16359
           },
           "defaultValue": 9,
-          "overlayId": 22,
+          "overlayId": 23,
           "id": "value"
         }
       ]

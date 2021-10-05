@@ -4,15 +4,23 @@ const _ = require('lodash')
 const config = require('config')
 const virus = require('../lib/virus')
 
+const Bacara = require('../lib/bacara')
+
 let args
 
 const Interface = require('../lib/midi/interface')
+const Midi = require('../lib/midi/midi')
 
 const { devices } = require('../lib/devices')
 
-let virusBankFilesInitialized = false
-
 function preProcess(name, sub, options) {
+
+  Midi.setupVirtualPorts(config.list.virtual)
+
+  Bacara.scanMidiPorts()
+  virus.scanBanks()
+/*  console.trace('JJR')*/
+// process.exit()
 
   const interface = new Interface('bacara')
   if (options.template && options.filename) {
@@ -107,6 +115,20 @@ function preProcess(name, sub, options) {
                       }
                     }
                   }
+                } else if (overlayType == 'ports') {
+                  if (config.devices) {
+                    overlay.items = []
+                    let idx = 0
+
+                    for (let port of Bacara.getPresetState('midi.ports.output',[])) {
+                      overlay.items.push({
+                        index: idx,
+                        label: port.short.substr(0, 15),
+                        value: idx,
+                      })
+                      idx++
+                    }
+                  }
                 } else if (overlayType == 'matrixTarget') {
                   overlay.items = [{
                     index: 0,
@@ -173,11 +195,6 @@ function preProcess(name, sub, options) {
                   }
                 } else if (overlayType == 'virusBank') {
 
-                  if (!virusBankFilesInitialized) {
-                    virus.scanBanks()
-                    virusBankFilesInitialized = true
-                  }
-
                   overlay.items = []
 
                   let idx = 0
@@ -199,14 +216,15 @@ function preProcess(name, sub, options) {
                   }
 
                   const banks = virus.getBanks()
-                  //                  console.error(banks)
-                  for (let bank of banks) {
-                    overlay.items.push({
-                      index: idx,
-                      label: bank.short,
-                      value: idx,
-                    })
-                    idx++
+                  if (banks) {
+                    for (let bank of banks) {
+                      overlay.items.push({
+                        index: idx,
+                        label: bank.short,
+                        value: idx,
+                      })
+                      idx++
+                    }
                   }
                 } else {
                   console.error(`Unknown (and thus unhandled) overlay type "${overlayType}"`)
