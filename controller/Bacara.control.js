@@ -1,11 +1,15 @@
 loadAPI(10)
 
-const CONTROLLER_SCRIPT_VERSION = '1.03'
+const CONTROLLER_SCRIPT_VERSION = '1.04'
 const CONTROLLER_BASE_NAME = 'Bacara'
 const CONTROLLER_SCRIPT_NAME = `${CONTROLLER_BASE_NAME} Control` //  v${CONTROLLER_SCRIPT_VERSION}
 host.setShouldFailOnDeprecatedUse(true)
 host.defineController('Bonboa', CONTROLLER_SCRIPT_NAME, CONTROLLER_SCRIPT_VERSION, '7f4b4851-911b-4dbf-a6a7-ee7801296ce3', 'Joris Röling')
+const E1_PAGE_INDEX  = 7
+const E1_PRESET_NAME = 'Bacara'
 
+
+/* --------------------------------------*/
 host.defineMidiPorts(2, 2)
 
 if (host.platformIsWindows()) {
@@ -32,14 +36,14 @@ const COLOR_GREEN = '03A598'
 const COLOR_MAGENTA = 'C44795'
 
 
-let E1_PRESET_NAME = 'Bacara'
 let E1_CC_MSB = [3, 9, 14, 15, 16, 17, 18, 19]
 let E1_CC_LSB = []
 
-const E1_PAGE_NAME_CTRL_ID = 217
-const E1_PAGE_CTRL_ID = 229
-const remoteControlIDs = [218, 219, 220, 221, 224, 225, 226, 227]
-const sendControlIDs = [241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252]
+const E1_CONTROL_OFFSET  = ((E1_PAGE_INDEX - 1) * 36)
+const E1_PAGE_NAME_CTRL_ID = 1
+const E1_PAGE_CTRL_ID = 13
+const remoteControlIDs = [2, 3, 4, 5, 8, 9, 10, 11]
+const sendControlIDs = [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
 
 const E1_MAX_LABEL_LENGTH = 14
 const E1_PAGE_CC = 100
@@ -135,7 +139,7 @@ function showSend(index, name, color = COLOR_YELLOW, force = false) {
   //  println('showSend('+index+','+name+') json '+JSON.stringify(json))
   if (index >= 0 && index < sendControlIDs.length && (force || (sendCache[index].name !== json.name || sendCache[index].visible !== json.visible || sendCache[index].color !== json.color))) {
     if (presetActive) {
-      const ctrlId = sendControlIDs[index]
+      const ctrlId = sendControlIDs[index] + E1_CONTROL_OFFSET
       const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
       host.getMidiOutPort(1).sendSysex(data)
     }
@@ -145,16 +149,16 @@ function showSend(index, name, color = COLOR_YELLOW, force = false) {
   }
 }
 
-function showRemoteControl(index, name) {
+function showRemoteControl(index, name, force = false) {
   remoteControlNames[index] = name
   const json = {
     name: name ? name.substr(0, E1_MAX_LABEL_LENGTH) : `Parameter #${index + 1}`,
     visible: (name && name.trim().length) ? true : false
   }
-  if (index >= 0 && index < remoteControlIDs.length && (remoteControlCache[index].name !== json.name || remoteControlCache[index].visible !== json.visible)) {
+  if (index >= 0 && index < remoteControlIDs.length && (force || (remoteControlCache[index].name !== json.name || remoteControlCache[index].visible !== json.visible))) {
     //        println(`name [${json.name}] visible [${json.visible}] ${JSON.stringify(json)} ${str2hex(JSON.stringify(json))}`)
     if (presetActive) {
-      const ctrlId = remoteControlIDs[index]
+      const ctrlId = remoteControlIDs[index] + E1_CONTROL_OFFSET
       const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
       host.getMidiOutPort(1).sendSysex(data)
     }
@@ -163,7 +167,7 @@ function showRemoteControl(index, name) {
   }
 }
 
-function showPages(value) {
+function showPages(value, force) {
 //  println('showPages '+value+  ' pageCount '+pageCount)
   const remoteControlNames = remoteControlsBank.pageNames().get()
 
@@ -181,9 +185,9 @@ function showPages(value) {
       visible: ((i < pageCount) && name && name.trim().length) ? true : false
     }
     //  println('remotePageCache('+i+')  name '+remotePageCache[i].name+ '  visible '+remotePageCache[i].visible+  '  json '+JSON.stringify(json))
-    if (remotePageCache[i].name !== json.name || remotePageCache[i].visible !== json.visible) {
+    if (force || (remotePageCache[i].name !== json.name || remotePageCache[i].visible !== json.visible)) {
       if (presetActive) {
-        const ctrlId = E1_PAGE_CTRL_ID + i
+        const ctrlId = E1_PAGE_CTRL_ID + E1_CONTROL_OFFSET + i
         const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
         host.getMidiOutPort(1).sendSysex(data)
       }
@@ -200,7 +204,7 @@ function showPages(value) {
         name: name.substr(0, E1_MAX_LABEL_LENGTH),
         visible: (name && name.trim().length) ? true : false
       }
-      const ctrlId = E1_PAGE_NAME_CTRL_ID
+      const ctrlId = E1_PAGE_NAME_CTRL_ID + E1_CONTROL_OFFSET
       const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
       host.getMidiOutPort(1).sendSysex(data)
     }
@@ -257,7 +261,7 @@ function init() {
       sendValues[s] = value
     })
     cursorTrack.getSend(s).name().addValueObserver((name) => {
-      println('send '+s+' '+name)
+//      println('send '+s+' '+name)
       showSend(s, name, sendCache[s].color)
     })
     cursorTrack.getSend(s).isPreFader().addValueObserver((preFader) => {
@@ -396,9 +400,9 @@ function handleSysExMidi(data) {
             sendMidi(0xB0, E1_CC_LSB[idx], ((value * 16383) >> 0) & 0x7F)
           }
 
-          showRemoteControl(i,name)
+          showRemoteControl(i,name,true)
         }
-        showPages( remoteControlsBank.selectedPageIndex().get() )
+        showPages( remoteControlsBank.selectedPageIndex().get(), true)
       }
     }
   } else if (data && data.substr(0, 4) === 'f07d') {  // Non-commercial SysEx: Ours!
