@@ -1,6 +1,6 @@
 loadAPI(10)
 
-const CONTROLLER_SCRIPT_VERSION = '1.02'
+const CONTROLLER_SCRIPT_VERSION = '1.03'
 const CONTROLLER_BASE_NAME = 'Bacara'
 const CONTROLLER_SCRIPT_NAME = `${CONTROLLER_BASE_NAME} Control` //  v${CONTROLLER_SCRIPT_VERSION}
 host.setShouldFailOnDeprecatedUse(true)
@@ -16,7 +16,7 @@ if (host.platformIsWindows()) {
   host.addDeviceNameBasedDiscoveryPair(['Electra Controller Electra Port 1', 'Electra Controller Electra CTRL'], ['Electra Controller Electra Port 1', 'Electra Controller Electra CTRL'])
 }
 
-let active = false
+let presetActive = false
 const highRes = true
 const layoutColumns = true
 
@@ -35,11 +35,6 @@ const COLOR_MAGENTA = 'C44795'
 let E1_PRESET_NAME = 'Bacara'
 let E1_CC_MSB = [3, 9, 14, 15, 16, 17, 18, 19]
 let E1_CC_LSB = []
-const E1_PLAY_CC = 64
-const E1_STOP_CC = 65
-const E1_RECORD_CC = 66
-
-let transport
 
 const E1_PAGE_NAME_CTRL_ID = 217
 const E1_PAGE_CTRL_ID = 229
@@ -49,6 +44,7 @@ const sendControlIDs = [241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 2
 const E1_MAX_LABEL_LENGTH = 14
 const E1_PAGE_CC = 100
 const E1_MAX_PAGE_COUNT = 12
+const E1_MAX_CONTROL_COUNT = 8
 const E1_PAGE_COUNT = 12
 let pageCount = E1_PAGE_COUNT
 let presetName = E1_PRESET_NAME
@@ -68,23 +64,31 @@ const LAYOUT_COLUMNS_MAP = [0, 4, 1, 5, 2, 6, 3, 7]
 const REVERSE_LAYOUT_COLUMNS_MAP = [0, 2, 4, 6, 1, 3, 5, 7]
 
 
-const remoteValues = []
-const remoteNames = []
+const remoteControlValues = []
+const remoteControlNames = []
 
-const remoteCache = []
-function clearRemoteCache() {
-  for (let i = 0; i < E1_MAX_PAGE_COUNT; i++) {
-    remoteCache[i] = {name:'', visible:false, state:-1}
+const remoteControlCache = []
+function clearRemoteControlCache() {
+  for (let i = 0; i < E1_MAX_CONTROL_COUNT; i++) {
+    remoteControlCache[i] = {name:'', visible:false, state:-1}
   }
 }
-clearRemoteCache()
+clearRemoteControlCache()
+
+const remotePageCache = []
+function clearRemotePageCache() {
+  for (let i = 0; i < E1_MAX_PAGE_COUNT; i++) {
+    remotePageCache[i] = {name:'', visible:false, state:-1}
+  }
+}
+clearRemotePageCache()
 
 
 const sendValues = []
 const sendCache = []
 function clearSendCache() {
   for (let i = 0; i < E1_MAX_SEND_COUNT; i++) {
-    if (active) {
+    if (presetActive) {
       sendCache[i] = {name:'', visible:true, state:-1}
       showSend(i, '')
     }
@@ -122,77 +126,89 @@ function str2hex(str) {
   return arr1.join(' ')
 }
 
-function showSend(index, name, color = COLOR_YELLOW) {
+function showSend(index, name, color = COLOR_YELLOW, force = false) {
   const json = {
     name: name.substr(0, E1_MAX_LABEL_LENGTH),
     visible: (name && name.trim().length) ? true : false,
     color: color,
   }
   //  println('showSend('+index+','+name+') json '+JSON.stringify(json))
-  if (index >= 0 && index <= sendControlIDs.length && (sendCache[index].name !== json.name || sendCache[index].visible !== json.visible || sendCache[index].color !== json.color)) {
-    const ctrlId = sendControlIDs[index]
-    const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
-    host.getMidiOutPort(1).sendSysex(data)
+  if (index >= 0 && index < sendControlIDs.length && (force || (sendCache[index].name !== json.name || sendCache[index].visible !== json.visible || sendCache[index].color !== json.color))) {
+    if (presetActive) {
+      const ctrlId = sendControlIDs[index]
+      const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
+      host.getMidiOutPort(1).sendSysex(data)
+    }
     sendCache[index].name = json.name
     sendCache[index].visible = json.visible
     sendCache[index].color = json.color
   }
 }
 
+function showRemoteControl(index, name) {
+  remoteControlNames[index] = name
+  const json = {
+    name: name ? name.substr(0, E1_MAX_LABEL_LENGTH) : `Parameter #${index + 1}`,
+    visible: (name && name.trim().length) ? true : false
+  }
+  if (index >= 0 && index < remoteControlIDs.length && (remoteControlCache[index].name !== json.name || remoteControlCache[index].visible !== json.visible)) {
+    //        println(`name [${json.name}] visible [${json.visible}] ${JSON.stringify(json)} ${str2hex(JSON.stringify(json))}`)
+    if (presetActive) {
+      const ctrlId = remoteControlIDs[index]
+      const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
+      host.getMidiOutPort(1).sendSysex(data)
+    }
+    remoteControlCache[index].name = json.name
+    remoteControlCache[index].visible = json.visible
+  }
+}
+
 function showPages(value) {
 //  println('showPages '+value+  ' pageCount '+pageCount)
-  const remoteNames = remoteControlsBank.pageNames().get()
+  const remoteControlNames = remoteControlsBank.pageNames().get()
 
   for (let i = 0; i < E1_MAX_PAGE_COUNT; i++) {
     const state = i < pageCount ? ((i == value) ? 127 : 0) : 0
     //  println('state('+i+')  '+state)
-    //  println('remoteCache('+i+')  '+remoteCache[i].state)
-    if (remoteCache[i].state !== state ) {
+    //  println('remotePageCache('+i+')  '+remotePageCache[i].state)
+    if (remotePageCache[i].state !== state ) {
       sendMidi(0xB0, E1_PAGE_CC + i, state )
-      remoteCache[i].state = state
+      remotePageCache[i].state = state
     }
-    const name = (remoteNames && i < remoteNames.length) ? remoteNames[i] : ''
+    const name = (remoteControlNames && i < remoteControlNames.length) ? remoteControlNames[i] : ''
     const json = {
       name: name.substr(0, E1_MAX_LABEL_LENGTH),
       visible: ((i < pageCount) && name && name.trim().length) ? true : false
     }
-    //  println('remoteCache('+i+')  name '+remoteCache[i].name+ '  visible '+remoteCache[i].visible+  '  json '+JSON.stringify(json))
-    if (remoteCache[i].name !== json.name || remoteCache[i].visible !== json.visible) {
-      const ctrlId = E1_PAGE_CTRL_ID + i
-      const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
-      host.getMidiOutPort(1).sendSysex(data)
-      remoteCache[i].name = json.name
-      remoteCache[i].visible = json.visible
+    //  println('remotePageCache('+i+')  name '+remotePageCache[i].name+ '  visible '+remotePageCache[i].visible+  '  json '+JSON.stringify(json))
+    if (remotePageCache[i].name !== json.name || remotePageCache[i].visible !== json.visible) {
+      if (presetActive) {
+        const ctrlId = E1_PAGE_CTRL_ID + i
+        const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
+        host.getMidiOutPort(1).sendSysex(data)
+      }
+      remotePageCache[i].name = json.name
+      remotePageCache[i].visible = json.visible
       /*    } else {*/
-      /*      println(`remoteCache hit ${i}`)*/
+      /*      println(`remotePageCache hit ${i}`)*/
     }
   }
   if (value >= 0) {
-    const name = (remoteNames && value < remoteNames.length) ? remoteNames[value] : ''
-    const json = {
-      name: name.substr(0, E1_MAX_LABEL_LENGTH),
-      visible: (name && name.trim().length) ? true : false
+    if (presetActive) {
+      const name = (remoteControlNames && value < remoteControlNames.length) ? remoteControlNames[value] : ''
+      const json = {
+        name: name.substr(0, E1_MAX_LABEL_LENGTH),
+        visible: (name && name.trim().length) ? true : false
+      }
+      const ctrlId = E1_PAGE_NAME_CTRL_ID
+      const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
+      host.getMidiOutPort(1).sendSysex(data)
     }
-    const ctrlId = E1_PAGE_NAME_CTRL_ID
-    const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
-    host.getMidiOutPort(1).sendSysex(data)
   }
 }
 
 
 function init() {
-  transport = host.createTransport()
-
-  transport.isPlaying().addValueObserver( value => {
-    //println('TRSNP play '+value)
-    sendMidi(0xB0, E1_PLAY_CC, value ? 1 : 0)
-  })
-
-  transport.isArrangerRecordEnabled().addValueObserver( value => {
-    //println('TRSNP record '+value)
-    sendMidi(0xB0, E1_RECORD_CC, value ? 1 : 0)
-  })
-
   let controls = []
   for (let c = 0; c < 128; c++) {
     controls.push(c + '')
@@ -203,7 +219,7 @@ function init() {
   preferences.getNumberSetting(`Quick Access`, 'Remote Control Pages', 0, E1_MAX_PAGE_COUNT, 1, 'buttons', E1_PAGE_COUNT).addValueObserver(function(value) {
     pageCount = Math.round(value * E1_MAX_PAGE_COUNT);
 
-    if (active) {
+    if (presetActive) {
       showPages( remoteControlsBank.selectedPageIndex().get() )
     }
   });
@@ -211,7 +227,7 @@ function init() {
   preferences.getStringSetting(`Preset Name`, 'Electra One Preset', 20, E1_PRESET_NAME).addValueObserver(function(value) {
     presetName = value;
 
-    active = false
+    presetActive = false
     // Patch Request
     host.getMidiOutPort(1).sendSysex(`F0 00 21 45 02 01 F7`)
 
@@ -232,26 +248,19 @@ function init() {
 
   for (let s = 0; s < E1_MAX_SEND_COUNT; s++) {
     cursorTrack.getSend(s).value().addValueObserver((value) => {
-      //println('Send '+s+' value '+value)
-
-      if (active) {
-        if (sendValues[s] != (value * 16383)) {
-          //println('Send MIDI '+s+' value '+value)
-          sendMidi(0xB0, E1_SEND_CC + s, ((value * 16383) >> 7) & 0x7F)
-          if (highRes) {
-            sendMidi(0xB0, E1_SEND_CC + s + 32, ((value * 16383) >> 0) & 0x7F)
-          }
+      if (sendValues[s] != (value * 16383)) {
+        sendMidi(0xB0, E1_SEND_CC + s, ((value * 16383) >> 7) & 0x7F)
+        if (highRes) {
+          sendMidi(0xB0, E1_SEND_CC + s + 32, ((value * 16383) >> 0) & 0x7F)
         }
       }
       sendValues[s] = value
     })
     cursorTrack.getSend(s).name().addValueObserver((name) => {
-      //      println('Send '+s+' name '+name)
-
+      println('send '+s+' '+name)
       showSend(s, name, sendCache[s].color)
     })
     cursorTrack.getSend(s).isPreFader().addValueObserver((preFader) => {
-      //      println('Send '+s+' preFader '+preFader)
       showSend(s, sendCache[s].name, preFader ? COLOR_BLUE : COLOR_YELLOW)
     })
   }
@@ -264,13 +273,13 @@ function init() {
 
   //remoteControlsBank.pageNames().markInterested();
   remoteControlsBank.pageNames().addValueObserver(function(value) {
-    if (active) {
+    if (presetActive) {
       showPages( remoteControlsBank.selectedPageIndex().get() )
     }
   })
 
   remoteControlsBank.selectedPageIndex().addValueObserver(function(value) {
-    if (active) {
+    if (presetActive) {
       if (value >= 0 && !remoteControlsBank.pageNames().isEmpty()) {
         showPages(value)
       }
@@ -284,30 +293,19 @@ function init() {
 
     parameter.value().addValueObserver(function(value) {
       const idx = (layoutColumns ? REVERSE_LAYOUT_COLUMNS_MAP[i] : i)
-      if (active) {
-        if (remoteValues[idx] != (value * 16383)) {
+      if (presetActive) {
+        if (remoteControlValues[idx] != (value * 16383)) {
           sendMidi(0xB0, E1_CC_MSB[idx], ((value * 16383) >> 7) & 0x7F)
           if (highRes) {
             sendMidi(0xB0, E1_CC_LSB[idx], ((value * 16383) >> 0) & 0x7F)
           }
         }
       }
-      remoteValues[idx] = value
+      remoteControlValues[idx] = value
     })
 
     parameter.name().addValueObserver(function(name) {
-      const idx = (layoutColumns ? REVERSE_LAYOUT_COLUMNS_MAP[i] : i)
-      remoteNames[i] = name
-      if (active) {
-        const json = {
-          name: name ? name.substr(0, E1_MAX_LABEL_LENGTH) : `Parameter #${i + 1}`,
-          visible: (name && name.trim().length) ? true : false
-        }
-        //        println(`name [${json.name}] visible [${json.visible}] ${JSON.stringify(json)} ${str2hex(JSON.stringify(json))}`)
-        const ctrlId = remoteControlIDs[i]
-        const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
-        host.getMidiOutPort(1).sendSysex(data)
-      }
+      showRemoteControl(i, name)
     })
   }
 
@@ -325,18 +323,18 @@ function init() {
 }
 
 function handleMidi(status, data1, data2) {
-  if (active) {
+  if (presetActive) {
     if (isChannelController(status)) {
       if (E1_CC_MSB.indexOf(data1) >= 0) {
         let idx = E1_CC_MSB.indexOf(data1)
-        remoteValues[idx] = (remoteValues[idx] & (0x7F << 0)) | (data2 << 7)
+        remoteControlValues[idx] = (remoteControlValues[idx] & (0x7F << 0)) | (data2 << 7)
         if (!highRes) {
-          remoteControlsBank.getParameter(layoutColumns ? LAYOUT_COLUMNS_MAP[idx] : idx).set(remoteValues[idx], 16384)
+          remoteControlsBank.getParameter(layoutColumns ? LAYOUT_COLUMNS_MAP[idx] : idx).set(remoteControlValues[idx], 16384)
         }
       } else if (highRes && E1_CC_LSB.indexOf(data1) >= 0) {
         let idx = E1_CC_LSB.indexOf(data1)
-        remoteValues[idx] = (remoteValues[idx] & (0x7F << 7)) | (data2 << 0)
-        remoteControlsBank.getParameter(layoutColumns ? LAYOUT_COLUMNS_MAP[idx] : idx).set(remoteValues[idx], 16384)
+        remoteControlValues[idx] = (remoteControlValues[idx] & (0x7F << 7)) | (data2 << 0)
+        remoteControlsBank.getParameter(layoutColumns ? LAYOUT_COLUMNS_MAP[idx] : idx).set(remoteControlValues[idx], 16384)
       } else if (data1 >= E1_SEND_CC && data1 <= (E1_SEND_CC + E1_MAX_SEND_COUNT)) {
         let idx = data1 - E1_SEND_CC
         sendValues[idx] = (sendValues[idx] & (0x7F << 0)) | (data2 << 7)
@@ -353,21 +351,6 @@ function handleMidi(status, data1, data2) {
         remoteControlsBank.selectNextPage(true)
       } else if (data1 >= E1_PAGE_CC && data1 < (E1_PAGE_CC + pageCount)) {
         remoteControlsBank.selectedPageIndex().set(data1 - E1_PAGE_CC)
-      } else if (data1 == E1_PLAY_CC) {
-        if (data2) {
-          transport.play()
-        } else {
-          transport.stop()
-        }
-      } else if (data1 == E1_STOP_CC && data2) {
-        transport.stop()
-        transport.rewind()
-      } else if (data1 == E1_RECORD_CC) {
-        if (data2) {
-          transport.record()
-        } else {
-          transport.stop()
-        }
       }
     }
   }
@@ -378,7 +361,7 @@ function handleSysExMidi(data) {
   if (data && data.substr(0, 8) === 'f0002145') {  // Electra One
     if (data.substr(8, 4) === '7e02') { //f00021457e02####f7 = Preset Switch
       //      println('Preset Switch')
-      active = false
+      presetActive = false
       host.getMidiOutPort(1).sendSysex('F0 00 21 45 02 01 F7')  /* Patch Request */
     }
 
@@ -392,42 +375,37 @@ function handleSysExMidi(data) {
       }
 
       const match = head.match(/,"name"\s*:\s*"([^"]*)",/)
-      active = (match && match.length && match[1].trim() === presetName.trim())
-      //      println('match '+(match && match[1]))
-      //     println('active '+active)
+           //println('match '+(match && match[1]))
+      presetActive = (match && match.length && /*match[1].trim() === presetName.trim()*/match[1].includes(presetName))
+      println(`Control changing ${presetActive?'IS':'is NOT'} active (the active preset name "${match[1]}" ${presetActive?'includes':'does NOT include'} the phrase "${presetName}")`)
+      //     println('presetActive '+presetActive)
+      if (presetActive) {
+        for (let s=0;s<E1_MAX_SEND_COUNT;s++) {
+          showSend(s, sendCache[s].name, sendCache[s].color,true)
+        }
+  //      clearRemotePageCache()
+  //      clearSendCache()
 
-      clearRemoteCache()
-      clearSendCache()
-
-      if (active) {
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < E1_MAX_CONTROL_COUNT; i++) {
           const idx = (layoutColumns ? REVERSE_LAYOUT_COLUMNS_MAP[i] : i)
-          const value = remoteValues[idx]
-          const name = remoteNames[idx] || ''
+          const value = remoteControlValues[idx]
+          const name = remoteControlNames[idx] || ''
 
           sendMidi(0xB0, E1_CC_MSB[idx], ((value * 16383) >> 7) & 0x7F)
           if (highRes) {
             sendMidi(0xB0, E1_CC_LSB[idx], ((value * 16383) >> 0) & 0x7F)
           }
 
-          const json = {
-            name: name.substr(0, E1_MAX_LABEL_LENGTH),
-            visible: (name && name.trim().length) ? true : false
-          }
-          const ctrlId = remoteControlIDs[i]
-          const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
-          host.getMidiOutPort(1).sendSysex(data)
+          showRemoteControl(i,name)
         }
         showPages( remoteControlsBank.selectedPageIndex().get() )
       }
-
-
     }
   } else if (data && data.substr(0, 4) === 'f07d') {  // Non-commercial SysEx: Ours!
     if (data.substr(4, 4) === '0004') {
       //      println('reload')
-      clearRemoteCache()
-      if (active) {
+      clearRemotePageCache()
+      if (presetActive) {
         showPages( remoteControlsBank.selectedPageIndex().get() )
       }
       clearSendCache()

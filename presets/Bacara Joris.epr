@@ -5131,88 +5131,103 @@
         },
         {
           "index": 20,
-          "label": "MRCC Port.1",
+          "label": "Electra Cont B.",
           "value": 20
         },
         {
           "index": 21,
-          "label": "MRCC Port.2",
+          "label": "Electra Cont B.",
           "value": 21
         },
         {
           "index": 22,
-          "label": "MRCC Port.3",
+          "label": "Electra Contro ",
           "value": 22
         },
         {
           "index": 23,
-          "label": "MRCC Port.4",
+          "label": "MRCC Port.1",
           "value": 23
         },
         {
           "index": 24,
-          "label": "MRCC Port.5",
+          "label": "MRCC Port.2",
           "value": 24
         },
         {
           "index": 25,
-          "label": "MRCC Port.6",
+          "label": "MRCC Port.3",
           "value": 25
         },
         {
           "index": 26,
-          "label": "MRCC Port.7",
+          "label": "MRCC Port.4",
           "value": 26
         },
         {
           "index": 27,
-          "label": "MRCC Port.8",
+          "label": "MRCC Port.5",
           "value": 27
         },
         {
           "index": 28,
-          "label": "MRCC Port.9",
+          "label": "MRCC Port.6",
           "value": 28
         },
         {
           "index": 29,
-          "label": "MRCC Port.10",
+          "label": "MRCC Port.7",
           "value": 29
         },
         {
           "index": 30,
-          "label": "MRCC Port.11",
+          "label": "MRCC Port.8",
           "value": 30
         },
         {
           "index": 31,
-          "label": "MRCC Port.12",
+          "label": "MRCC Port.9",
           "value": 31
         },
         {
           "index": 32,
-          "label": "MRCC Port.13",
+          "label": "MRCC Port.10",
           "value": 32
         },
         {
           "index": 33,
-          "label": "MRCC Port.14",
+          "label": "MRCC Port.11",
           "value": 33
         },
         {
           "index": 34,
-          "label": "MRCC Port.15",
+          "label": "MRCC Port.12",
           "value": 34
         },
         {
           "index": 35,
-          "label": "MRCC Port.16",
+          "label": "MRCC Port.13",
           "value": 35
         },
         {
           "index": 36,
-          "label": "Bacara",
+          "label": "MRCC Port.14",
           "value": 36
+        },
+        {
+          "index": 37,
+          "label": "MRCC Port.15",
+          "value": 37
+        },
+        {
+          "index": 38,
+          "label": "MRCC Port.16",
+          "value": 38
+        },
+        {
+          "index": 39,
+          "label": "Bacara",
+          "value": 39
         }
       ]
     },
@@ -14224,72 +14239,6 @@
           },
           "defaultValue": "off",
           "id": "value"
-        }
-      ]
-    },
-    {
-      "id": 283,
-      "type": "fader",
-      "name": "PORT",
-      "color": "529DEC",
-      "bounds": [
-        0,
-        480,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 7,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 6785,
-            "min": 0,
-            "max": 63
-          }
-        }
-      ]
-    },
-    {
-      "id": 284,
-      "type": "fader",
-      "name": "PORT",
-      "color": "F45C51",
-      "bounds": [
-        170,
-        480,
-        146,
-        56
-      ],
-      "pageId": 8,
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 8,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "id": "value",
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 6529,
-            "min": 0,
-            "max": 63
-          }
         }
       ]
     },

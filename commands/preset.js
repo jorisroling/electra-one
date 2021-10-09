@@ -129,7 +129,7 @@ function generatePreset(name, sub, options) {
                     overlay.items = []
                     let idx = 0
 
-                    for (let port of Bacara.getPresetState('midi.ports.output',[])) {
+                    for (let port of Bacara.getPresetState('midi.ports.output', [])) {
                       overlay.items.push({
                         index: idx,
                         label: port.short.substr(0, 15),
@@ -248,7 +248,7 @@ function generatePreset(name, sub, options) {
         process.exit(0)
       } else {
         process.stdout.once('drain', () => process.exit(0) )
-        process.stdout.write(JSON.stringify(preset,null,2)+"\n")
+        process.stdout.write(JSON.stringify(preset, null, 2) + '\n')
       }
     } else {
       console.error(`The file "${options.template}" does not exist`)

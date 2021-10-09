@@ -886,7 +886,7 @@ class BacaraMachine extends Machine {
 
     const devicePortOrChannelChanged = (dev) => {
       const port = this.interface.getParameter(`device.${dev}.port`)
-      const portName = Midi.normalisePortName(Bacara.getPresetState(`midi.ports.output.${port}.name`),false,true)
+      const portName = Midi.normalisePortName(Bacara.getPresetState(`midi.ports.output.${port}.name`), false, true)
       if (portName) {
         const deviceMenu = this.deviceMenu()
         if (deviceMenu) {

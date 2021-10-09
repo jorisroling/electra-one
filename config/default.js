@@ -27,13 +27,13 @@ module.exports = customWrapper({
     slot: 0,
     id: 0,
     name: '',
-    template: path.resolve(__dirname+'/../presets/Bacara Template.epr'),
+    template: path.resolve(__dirname + '/../presets/Bacara Template.epr'),
     presetName: 'Bacara',
     custom: '',
   },
   electra: {
     checkPresetVia: 'patch',  // patch, preset or none
-    presetName: "Bacara Joris",
+    presetName: 'Bacara Joris',
   },
   midi: {
     ports: {
