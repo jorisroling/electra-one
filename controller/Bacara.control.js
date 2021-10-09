@@ -184,7 +184,6 @@ function showPages(value, force) {
       name: cleanupLabel(name),
       visible: ((i < pageCount) && cleanupLabel(name).length) ? true : false
     }
-    println(JSON.stringify(json))
     if (force || (remotePageCache[i].name !== json.name || remotePageCache[i].visible !== json.visible)) {
       if (presetActive) {
         const ctrlId = E1_PAGE_CTRL_ID + E1_CONTROL_OFFSET + i
