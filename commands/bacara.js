@@ -618,29 +618,30 @@ class BacaraMachine extends Machine {
       },
       previous_pattern: (elementPath, origin) => {
         if (origin == 'surface') {
+          this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern'})
           this.interface.setParameter('pattern', this.interface.getParameter('pattern', 0) - 1)
           this.state.pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
           this.interface.setParameter('steps', this.getState('patternSteps'))
           this.showPattern()
-          this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern'})
           this.writeState()
           debug('previous_pattern: %y', this.interface.getParameter('pattern'))
         }
       },
       next_pattern: (elementPath, origin) => {
         if (origin == 'surface') {
+          this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern'})
           this.interface.setParameter('pattern', this.interface.getParameter('pattern', 0) + 1)
 
           this.state.pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
           this.interface.setParameter('steps', this.getState('patternSteps'))
           this.showPattern()
-          this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern'})
           this.writeState()
           debug('next_pattern: %y', this.interface.getParameter('pattern'))
         }
       },
       previous_preset: (elementPath, origin) => {
         if (origin == 'surface') {
+          this.setRemote(origin, {next:'next_preset', previous:'previous_preset'})
           const program = this.interface.getParameter('program')
           if (program >= 1 && program < 128) {
             const filename = this.load_preset(program - 1)
@@ -654,7 +655,6 @@ class BacaraMachine extends Machine {
               this.virusSetupParts()
               this.interface.sendValues(origin)
               this.showPattern()
-              this.setRemote(origin, {next:'next_preset', previous:'previous_preset'})
               this.writeState()
               debug('previous_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
             }
@@ -663,6 +663,7 @@ class BacaraMachine extends Machine {
       },
       next_preset: (elementPath, origin) => {
         if (origin == 'surface') {
+          this.setRemote(origin, {next:'next_preset', previous:'previous_preset'})
           const program = this.interface.getParameter('program')
           if (program >= 0 && program < 127) {
             const filename = this.load_preset(program + 1)
@@ -675,7 +676,6 @@ class BacaraMachine extends Machine {
               this.virusSetupParts()
               this.interface.sendValues(origin)
               this.showPattern()
-              this.setRemote(origin, {next:'next_preset', previous:'previous_preset'})
               this.writeState()
               debug('next_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
             }
@@ -1332,6 +1332,7 @@ class BacaraMachine extends Machine {
       },
       program: (elementPath, value, origin) => {
         if (origin == 'surface') {
+          this.setRemote(origin, {next:'next_preset', previous:'previous_preset'})
           const presetFilesCount = Pattern.presetFiles(this.state, true)
           if (value >= 0 && value < presetFilesCount) {
             const filename = this.load_preset(value)
@@ -1343,7 +1344,6 @@ class BacaraMachine extends Machine {
               }
               this.virusSetupParts()
               this.interface.sendValues()
-              this.setRemote(origin, {next:'next_preset', previous:'previous_preset'})
               this.writeState()
               debug('program: %y %y', value, path.basename(filename))
             }
@@ -2152,10 +2152,12 @@ class BacaraMachine extends Machine {
     if (filename) {
       const bank = this.interface.getParameter('bank', 0)
       const playing = this.state.playing
+      const remote = this.state.remote
       this.readState(filename)
       this.interface.setParameter('bank', bank)
       this.interface.setParameter('program', program)
       this.state.playing = playing
+      this.state.remote = remote
       this.ensureDevicePortName('A')
       this.ensureDevicePortName('B')
       return filename
