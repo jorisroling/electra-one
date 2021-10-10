@@ -4063,6 +4063,901 @@
           "index": 29,
           "label": "ROM Z",
           "value": 29
+        },
+        {
+          "index": 30,
+          "label": "A.42 Patches",
+          "value": 30
+        },
+        {
+          "index": 31,
+          "label": "A.Aldo Pe.2013",
+          "value": 31
+        },
+        {
+          "index": 32,
+          "label": "A.Trance",
+          "value": 32
+        },
+        {
+          "index": 33,
+          "label": "A.Trance Beh.4",
+          "value": 33
+        },
+        {
+          "index": 34,
+          "label": "A.Trance Beh.5",
+          "value": 34
+        },
+        {
+          "index": 35,
+          "label": "A.Trance Beh.6",
+          "value": 35
+        },
+        {
+          "index": 36,
+          "label": "AE.Dynamic Lif",
+          "value": 36
+        },
+        {
+          "index": 37,
+          "label": "AE.EDM Sounds",
+          "value": 37
+        },
+        {
+          "index": 38,
+          "label": "AE.Inspiring S",
+          "value": 38
+        },
+        {
+          "index": 39,
+          "label": "Alan-M Virus.1",
+          "value": 39
+        },
+        {
+          "index": 40,
+          "label": "AM.Dreamy Synt",
+          "value": 40
+        },
+        {
+          "index": 41,
+          "label": "AN.Press Clu.2",
+          "value": 41
+        },
+        {
+          "index": 42,
+          "label": "AN.Press Clu.4",
+          "value": 42
+        },
+        {
+          "index": 43,
+          "label": "AN.Press Clu.5",
+          "value": 43
+        },
+        {
+          "index": 44,
+          "label": "AN.Virus TI.1",
+          "value": 44
+        },
+        {
+          "index": 45,
+          "label": "AQ.Illestial T",
+          "value": 45
+        },
+        {
+          "index": 46,
+          "label": "AR.Arps & Go.1",
+          "value": 46
+        },
+        {
+          "index": 47,
+          "label": "AR.Arps & Go.2",
+          "value": 47
+        },
+        {
+          "index": 48,
+          "label": "AR.Arps & Go.3",
+          "value": 48
+        },
+        {
+          "index": 49,
+          "label": "AR.Creative So",
+          "value": 49
+        },
+        {
+          "index": 50,
+          "label": "AS.Antidote",
+          "value": 50
+        },
+        {
+          "index": 51,
+          "label": "AS.Rob Je.2012",
+          "value": 51
+        },
+        {
+          "index": 52,
+          "label": "AS.XTreme B.01",
+          "value": 52
+        },
+        {
+          "index": 53,
+          "label": "AV.Flat Fat",
+          "value": 53
+        },
+        {
+          "index": 54,
+          "label": "AV.Synsun",
+          "value": 54
+        },
+        {
+          "index": 55,
+          "label": "AZ.Astral Vo.1",
+          "value": 55
+        },
+        {
+          "index": 56,
+          "label": "AZ.Astral Vo.2",
+          "value": 56
+        },
+        {
+          "index": 57,
+          "label": "AZ.Dream Sta.1",
+          "value": 57
+        },
+        {
+          "index": 58,
+          "label": "AZ.Evolve",
+          "value": 58
+        },
+        {
+          "index": 59,
+          "label": "BA.Immune.1",
+          "value": 59
+        },
+        {
+          "index": 60,
+          "label": "BB.Orion",
+          "value": 60
+        },
+        {
+          "index": 61,
+          "label": "BC.Signat.2011",
+          "value": 61
+        },
+        {
+          "index": 62,
+          "label": "BE.26 Patches",
+          "value": 62
+        },
+        {
+          "index": 63,
+          "label": "BU.Weapon.X",
+          "value": 63
+        },
+        {
+          "index": 64,
+          "label": "C.Thrillogy.1",
+          "value": 64
+        },
+        {
+          "index": 65,
+          "label": "C.V-Bass",
+          "value": 65
+        },
+        {
+          "index": 66,
+          "label": "Classic Live P",
+          "value": 66
+        },
+        {
+          "index": 67,
+          "label": "Dan Wray Sou.1",
+          "value": 67
+        },
+        {
+          "index": 68,
+          "label": "Dan Wray Sou.2",
+          "value": 68
+        },
+        {
+          "index": 69,
+          "label": "Dan Wray Sou.3",
+          "value": 69
+        },
+        {
+          "index": 70,
+          "label": "Dan Wray Sou.4",
+          "value": 70
+        },
+        {
+          "index": 71,
+          "label": "Dan Wray Sou.5",
+          "value": 71
+        },
+        {
+          "index": 72,
+          "label": "Depeche M.2006",
+          "value": 72
+        },
+        {
+          "index": 73,
+          "label": "DF.Kamui Sou.2",
+          "value": 73
+        },
+        {
+          "index": 74,
+          "label": "DS.Contem.2012",
+          "value": 74
+        },
+        {
+          "index": 75,
+          "label": "E.Signatu.2010",
+          "value": 75
+        },
+        {
+          "index": 76,
+          "label": "E.Signatu.2011",
+          "value": 76
+        },
+        {
+          "index": 77,
+          "label": "EDM Soundban.1",
+          "value": 77
+        },
+        {
+          "index": 78,
+          "label": "Ernesto vs Bas",
+          "value": 78
+        },
+        {
+          "index": 79,
+          "label": "ES2.Virus TI.1",
+          "value": 79
+        },
+        {
+          "index": 80,
+          "label": "ES2.Virus TI.2",
+          "value": 80
+        },
+        {
+          "index": 81,
+          "label": "Essential X So",
+          "value": 81
+        },
+        {
+          "index": 82,
+          "label": "Essential X.2",
+          "value": 82
+        },
+        {
+          "index": 83,
+          "label": "FL.Punchpack b",
+          "value": 83
+        },
+        {
+          "index": 84,
+          "label": "FSS.Sunny La.1",
+          "value": 84
+        },
+        {
+          "index": 85,
+          "label": "FZ.Clubzo.2007",
+          "value": 85
+        },
+        {
+          "index": 86,
+          "label": "HS.Allsta.2012",
+          "value": 86
+        },
+        {
+          "index": 87,
+          "label": "HS.Astronomy",
+          "value": 87
+        },
+        {
+          "index": 88,
+          "label": "HS.Signat.2009",
+          "value": 88
+        },
+        {
+          "index": 89,
+          "label": "HS.Starburst",
+          "value": 89
+        },
+        {
+          "index": 90,
+          "label": "HS.Starburst D",
+          "value": 90
+        },
+        {
+          "index": 91,
+          "label": "HSS.Astral V.1",
+          "value": 91
+        },
+        {
+          "index": 92,
+          "label": "HSS.Phenomenon",
+          "value": 92
+        },
+        {
+          "index": 93,
+          "label": "IF.Hardstyle",
+          "value": 93
+        },
+        {
+          "index": 94,
+          "label": "IF.Virus Infec",
+          "value": 94
+        },
+        {
+          "index": 95,
+          "label": "IOCV.Sign.2011",
+          "value": 95
+        },
+        {
+          "index": 96,
+          "label": "IPM.Virus Tran",
+          "value": 96
+        },
+        {
+          "index": 97,
+          "label": "LB.Future Tran",
+          "value": 97
+        },
+        {
+          "index": 98,
+          "label": "LS.Airmax Pads",
+          "value": 98
+        },
+        {
+          "index": 99,
+          "label": "LS.Airmax Pads",
+          "value": 99
+        },
+        {
+          "index": 100,
+          "label": "M.Access Virus",
+          "value": 100
+        },
+        {
+          "index": 101,
+          "label": "M.Psy-Trance.1",
+          "value": 101
+        },
+        {
+          "index": 102,
+          "label": "M.Psy-Trance.2",
+          "value": 102
+        },
+        {
+          "index": 103,
+          "label": "M.Trance Sound",
+          "value": 103
+        },
+        {
+          "index": 104,
+          "label": "MH.Dual Integr",
+          "value": 104
+        },
+        {
+          "index": 105,
+          "label": "Middle Thinkr",
+          "value": 105
+        },
+        {
+          "index": 106,
+          "label": "MP.Matman.2009",
+          "value": 106
+        },
+        {
+          "index": 107,
+          "label": "N.0714 Sound S",
+          "value": 107
+        },
+        {
+          "index": 108,
+          "label": "NT.Virus TI So",
+          "value": 108
+        },
+        {
+          "index": 109,
+          "label": "P.Psytrance &",
+          "value": 109
+        },
+        {
+          "index": 110,
+          "label": "P&S.Audigy Ser",
+          "value": 110
+        },
+        {
+          "index": 111,
+          "label": "P&S.Audigy Ser",
+          "value": 111
+        },
+        {
+          "index": 112,
+          "label": "P&S.Audigy Ser",
+          "value": 112
+        },
+        {
+          "index": 113,
+          "label": "P&S.Audigy Ser",
+          "value": 113
+        },
+        {
+          "index": 114,
+          "label": "PA.Access Vi.1",
+          "value": 114
+        },
+        {
+          "index": 115,
+          "label": "PA.Virus Ti2.1",
+          "value": 115
+        },
+        {
+          "index": 116,
+          "label": "PADS X HEAVE.1",
+          "value": 116
+        },
+        {
+          "index": 117,
+          "label": "PADS X HEAVE.2",
+          "value": 117
+        },
+        {
+          "index": 118,
+          "label": "PSD.Blue",
+          "value": 118
+        },
+        {
+          "index": 119,
+          "label": "PSD.Partly Red",
+          "value": 119
+        },
+        {
+          "index": 120,
+          "label": "PSD.Red",
+          "value": 120
+        },
+        {
+          "index": 121,
+          "label": "Qui Robin.2007",
+          "value": 121
+        },
+        {
+          "index": 122,
+          "label": "RD.Signat.2007",
+          "value": 122
+        },
+        {
+          "index": 123,
+          "label": "RD.Signat.2011",
+          "value": 123
+        },
+        {
+          "index": 124,
+          "label": "RD.Signature P",
+          "value": 124
+        },
+        {
+          "index": 125,
+          "label": "RJ.Hardstyle U",
+          "value": 125
+        },
+        {
+          "index": 126,
+          "label": "RSL.Patches fo",
+          "value": 126
+        },
+        {
+          "index": 127,
+          "label": "Rui Peixoto Aq",
+          "value": 127
+        },
+        {
+          "index": 128,
+          "label": "Rui Peixoto.2",
+          "value": 128
+        },
+        {
+          "index": 129,
+          "label": "SI.Signature S",
+          "value": 129
+        },
+        {
+          "index": 130,
+          "label": "Sonic Sirius.1",
+          "value": 130
+        },
+        {
+          "index": 131,
+          "label": "Sonic Sirius.2",
+          "value": 131
+        },
+        {
+          "index": 132,
+          "label": "Sonic Sirius.3",
+          "value": 132
+        },
+        {
+          "index": 133,
+          "label": "Sonic Sirius.4",
+          "value": 133
+        },
+        {
+          "index": 134,
+          "label": "SOUNDS-OF-REVO",
+          "value": 134
+        },
+        {
+          "index": 135,
+          "label": "SS.The Antidot",
+          "value": 135
+        },
+        {
+          "index": 136,
+          "label": "SSO Virus Ti P",
+          "value": 136
+        },
+        {
+          "index": 137,
+          "label": "Standalone'n M",
+          "value": 137
+        },
+        {
+          "index": 138,
+          "label": "Starburst Lite",
+          "value": 138
+        },
+        {
+          "index": 139,
+          "label": "Synthetic Solu",
+          "value": 139
+        },
+        {
+          "index": 140,
+          "label": "T.Virus TI Ban",
+          "value": 140
+        },
+        {
+          "index": 141,
+          "label": "Tarekith's Ele",
+          "value": 141
+        },
+        {
+          "index": 142,
+          "label": "TGND.EFFECTS.1",
+          "value": 142
+        },
+        {
+          "index": 143,
+          "label": "TGND.EFFECTS.2",
+          "value": 143
+        },
+        {
+          "index": 144,
+          "label": "TGND.EFFECTS.3",
+          "value": 144
+        },
+        {
+          "index": 145,
+          "label": "TGND.EFFECTS.4",
+          "value": 145
+        },
+        {
+          "index": 146,
+          "label": "TGND.Elec.2007",
+          "value": 146
+        },
+        {
+          "index": 147,
+          "label": "TGND.Essenti.1",
+          "value": 147
+        },
+        {
+          "index": 148,
+          "label": "TGND.Essenti.2",
+          "value": 148
+        },
+        {
+          "index": 149,
+          "label": "TGND.Sound S.1",
+          "value": 149
+        },
+        {
+          "index": 150,
+          "label": "TGND.Sound S.3",
+          "value": 150
+        },
+        {
+          "index": 151,
+          "label": "TGND.Sound S.5",
+          "value": 151
+        },
+        {
+          "index": 152,
+          "label": "TL.Creative Di",
+          "value": 152
+        },
+        {
+          "index": 153,
+          "label": "TL.Euphoria",
+          "value": 153
+        },
+        {
+          "index": 154,
+          "label": "TL.Fortune & G",
+          "value": 154
+        },
+        {
+          "index": 155,
+          "label": "TMS.Gallery.1",
+          "value": 155
+        },
+        {
+          "index": 156,
+          "label": "TMS.Trance B.1",
+          "value": 156
+        },
+        {
+          "index": 157,
+          "label": "TMS.Trance B.2",
+          "value": 157
+        },
+        {
+          "index": 158,
+          "label": "TMS.Trance B.3",
+          "value": 158
+        },
+        {
+          "index": 159,
+          "label": "TU.Virus Chiar",
+          "value": 159
+        },
+        {
+          "index": 160,
+          "label": "Ultimate X B.1",
+          "value": 160
+        },
+        {
+          "index": 161,
+          "label": "Ultimate X B.2",
+          "value": 161
+        },
+        {
+          "index": 162,
+          "label": "Ultimate X M.1",
+          "value": 162
+        },
+        {
+          "index": 163,
+          "label": "UO.Virus TI So",
+          "value": 163
+        },
+        {
+          "index": 164,
+          "label": "UXS.Adam Nic.1",
+          "value": 164
+        },
+        {
+          "index": 165,
+          "label": "UXS.Adam Nic.4",
+          "value": 165
+        },
+        {
+          "index": 166,
+          "label": "UXS.Atmosphe.1",
+          "value": 166
+        },
+        {
+          "index": 167,
+          "label": "UXS.Atmosphe.2",
+          "value": 167
+        },
+        {
+          "index": 168,
+          "label": "UXS.Atmosphe.3",
+          "value": 168
+        },
+        {
+          "index": 169,
+          "label": "UXS.Sound.2014",
+          "value": 169
+        },
+        {
+          "index": 170,
+          "label": "V.Electro.2010",
+          "value": 170
+        },
+        {
+          "index": 171,
+          "label": "V.I.P Expans.1",
+          "value": 171
+        },
+        {
+          "index": 172,
+          "label": "V.I.P Expans.2",
+          "value": 172
+        },
+        {
+          "index": 173,
+          "label": "V.Incubation.5",
+          "value": 173
+        },
+        {
+          "index": 174,
+          "label": "V.Kris Menace",
+          "value": 174
+        },
+        {
+          "index": 175,
+          "label": "VO.Atomizer ex",
+          "value": 175
+        },
+        {
+          "index": 176,
+          "label": "VO.My Patche.A",
+          "value": 176
+        },
+        {
+          "index": 177,
+          "label": "VO.My Patche.B",
+          "value": 177
+        },
+        {
+          "index": 178,
+          "label": "VO.My Patche.C",
+          "value": 178
+        },
+        {
+          "index": 179,
+          "label": "VO.My Patche.D",
+          "value": 179
+        },
+        {
+          "index": 180,
+          "label": "VO.OS2 New Osc",
+          "value": 180
+        },
+        {
+          "index": 181,
+          "label": "VO.OS3 New FX",
+          "value": 181
+        },
+        {
+          "index": 182,
+          "label": "VO.OS4 New Fea",
+          "value": 182
+        },
+        {
+          "index": 183,
+          "label": "VO.OS45 New Fe",
+          "value": 183
+        },
+        {
+          "index": 184,
+          "label": "VO.OS5 New Fea",
+          "value": 184
+        },
+        {
+          "index": 185,
+          "label": "VO.Vocoder and",
+          "value": 185
+        },
+        {
+          "index": 186,
+          "label": "VT.Rom.A",
+          "value": 186
+        },
+        {
+          "index": 187,
+          "label": "VT.Rom.B",
+          "value": 187
+        },
+        {
+          "index": 188,
+          "label": "VT.Rom.C",
+          "value": 188
+        },
+        {
+          "index": 189,
+          "label": "VT.Rom.D",
+          "value": 189
+        },
+        {
+          "index": 190,
+          "label": "VT.Rom.E",
+          "value": 190
+        },
+        {
+          "index": 191,
+          "label": "VT.Rom.F",
+          "value": 191
+        },
+        {
+          "index": 192,
+          "label": "VT.Rom.G",
+          "value": 192
+        },
+        {
+          "index": 193,
+          "label": "VT.Rom.H",
+          "value": 193
+        },
+        {
+          "index": 194,
+          "label": "VT.Rom.I",
+          "value": 194
+        },
+        {
+          "index": 195,
+          "label": "VT.Rom.J",
+          "value": 195
+        },
+        {
+          "index": 196,
+          "label": "VT.Rom.K",
+          "value": 196
+        },
+        {
+          "index": 197,
+          "label": "VT.Rom.L",
+          "value": 197
+        },
+        {
+          "index": 198,
+          "label": "VT.Rom.M",
+          "value": 198
+        },
+        {
+          "index": 199,
+          "label": "VT.Rom.N",
+          "value": 199
+        },
+        {
+          "index": 200,
+          "label": "VT.Rom.O",
+          "value": 200
+        },
+        {
+          "index": 201,
+          "label": "VT.Rom.P",
+          "value": 201
+        },
+        {
+          "index": 202,
+          "label": "VT.Rom.Q",
+          "value": 202
+        },
+        {
+          "index": 203,
+          "label": "VT.Rom.R",
+          "value": 203
+        },
+        {
+          "index": 204,
+          "label": "VT.Rom.S",
+          "value": 204
+        },
+        {
+          "index": 205,
+          "label": "VT.Rom.T",
+          "value": 205
+        },
+        {
+          "index": 206,
+          "label": "VT.Rom.U",
+          "value": 206
+        },
+        {
+          "index": 207,
+          "label": "Zeno SubM.2009",
+          "value": 207
+        },
+        {
+          "index": 208,
+          "label": "ZSC.Shaper E.1",
+          "value": 208
         }
       ]
     },

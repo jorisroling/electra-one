@@ -40,6 +40,8 @@ const GRID_MODE_NONE = 0
 const GRID_MODE_MELODIC = 2
 const GRID_MODE_DRUMS = 2
 
+const VIRUS_MAX_PART = 6
+
 const euclideanRhythms = require('euclidean-rhythms')
 const scaleMappings = require('../extra/scales/scales.json')
 
@@ -2545,7 +2547,7 @@ class BacaraMachine extends Machine {
   }
 
   virusSetupParts() {
-    for (let part = 1; part <= 16; part++) {
+    for (let part = 1; part <= VIRUS_MAX_PART; part++) {
       const virusPreset = this.getState(`virus.part.${part - 1}.preset`)
       if (virusPreset) {
         const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
