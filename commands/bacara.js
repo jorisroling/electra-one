@@ -348,9 +348,11 @@ class BacaraMachine extends Machine {
               let actionPath
               if (msg.controller == _.get(config, 'touchBlock.button.9.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.next')
+//                debug('remote action %y',actionPath)
               }
               if (msg.controller == _.get(config, 'touchBlock.button.8.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.previous')
+//                debug('remote action %y',actionPath)
               }
               if (msg.controller == _.get(config, 'touchBlock.button.7.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.random')
@@ -365,10 +367,10 @@ class BacaraMachine extends Machine {
                 actionPath = this.getState('remote.previousBank')
               }
               if (actionPath) {
-                debug('Remote %y', actionPath)
                 const actionSideEffect = _.get(this.actionSideEffects, actionPath)
                 if (typeof actionSideEffect == 'function') {
-                  actionSideEffect(path, 'remote')
+                  debug('Remote %y', actionPath)
+                  actionSideEffect(path, 'surface')
                 }
               }
             }
@@ -620,6 +622,7 @@ class BacaraMachine extends Machine {
           this.state.pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
           this.interface.setParameter('steps', this.getState('patternSteps'))
           this.showPattern()
+          this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern'})
           this.writeState()
           debug('previous_pattern: %y', this.interface.getParameter('pattern'))
         }
@@ -631,6 +634,7 @@ class BacaraMachine extends Machine {
           this.state.pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
           this.interface.setParameter('steps', this.getState('patternSteps'))
           this.showPattern()
+          this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern'})
           this.writeState()
           debug('next_pattern: %y', this.interface.getParameter('pattern'))
         }
@@ -650,6 +654,7 @@ class BacaraMachine extends Machine {
               this.virusSetupParts()
               this.interface.sendValues(origin)
               this.showPattern()
+              this.setRemote(origin, {next:'next_preset', previous:'previous_preset'})
               this.writeState()
               debug('previous_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
             }
@@ -670,6 +675,7 @@ class BacaraMachine extends Machine {
               this.virusSetupParts()
               this.interface.sendValues(origin)
               this.showPattern()
+              this.setRemote(origin, {next:'next_preset', previous:'previous_preset'})
               this.writeState()
               debug('next_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
             }
@@ -1320,6 +1326,7 @@ class BacaraMachine extends Machine {
         this.state.pattern = Pattern.load_pattern(this.state, value)
         this.interface.setParameter('steps', this.getState('patternSteps'))
         this.showPattern()
+        this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern'})
         this.writeState()
         debug('pattern: %y', value)
       },
@@ -1336,6 +1343,7 @@ class BacaraMachine extends Machine {
               }
               this.virusSetupParts()
               this.interface.sendValues()
+              this.setRemote(origin, {next:'next_preset', previous:'previous_preset'})
               this.writeState()
               debug('program: %y %y', value, path.basename(filename))
             }
@@ -2089,7 +2097,7 @@ class BacaraMachine extends Machine {
 
   ensureDevicePortName(dev) {
     const name = this.getState(`device.${dev}.portName`)
-    debug('ensureDevicePortName %y (%y)',dev,name)
+/*    debug('ensureDevicePortName %y (%y)',dev,name)*/
     const channel = this.interface.getParameter(`device.${dev}.channel`)
 
     const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
@@ -2102,7 +2110,7 @@ class BacaraMachine extends Machine {
           idx++
 //            debug(`device.${dev}.device %y %y %y`, idx, name, channel)
           if (deviceKey == name && config.devices[deviceKey].channels[c] == channel) {
-            debug(`device.${dev}.device %y (%y)`, idx,name)
+/*            debug(`device.${dev}.device %y (%y)`, idx,name)*/
             this.interface.setParameter(`device.${dev}.device`,idx)
 
             if (deviceKey && Number.isInteger(channel)) {
@@ -2720,11 +2728,11 @@ class BacaraMachine extends Machine {
   setRemote(origin, options) {
     if (origin != 'post-connect') {
       for (let key in options) {
+/*        debug('setRemote %y',`remote.${key}`,options[key])*/
         this.setState(`remote.${key}`, options[key])
       }
     }
   }
-
 }
 
 function bacaraSequencer(name, sub, options) {
