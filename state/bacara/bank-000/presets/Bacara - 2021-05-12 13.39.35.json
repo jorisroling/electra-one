@@ -9,7 +9,7 @@
         "portName": "virus-ti"
       },
       "B": {
-        "portName": "iConnectMIDI4+ Deluge"
+        "portName": "deluge"
       }
     },
     "lfo": [

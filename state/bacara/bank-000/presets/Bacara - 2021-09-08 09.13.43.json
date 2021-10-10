@@ -1,12 +1,8 @@
 {
   "name": "electra-one",
-  "version": "1.1.7",
+  "version": "1.2.12",
   "model": "bacara",
-  "modulation": {
-    "matrix": {
-      "muteSteps": null
-    }
-  },
+  "modulation": {},
   "state": {
     "device": {
       "A": {
@@ -15,6 +11,938 @@
       "B": {
         "portName": "virus-ti"
       }
+    },
+    "drums": {
+      "grid": [
+        [
+          false,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ]
+      ],
+      "midi": {
+        "header": {
+          "keySignatures": [],
+          "meta": [],
+          "name": "Bacara Drums - 2021-10-10 16:10:57",
+          "ppq": 480,
+          "tempos": [],
+          "timeSignatures": []
+        },
+        "tracks": [
+          {
+            "channel": 0,
+            "controlChanges": {},
+            "pitchBends": [],
+            "instrument": {
+              "family": "piano",
+              "name": "acoustic grand piano",
+              "number": 0
+            },
+            "name": "Bacara Drums - 2021-10-10 16:10:57",
+            "notes": [
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 36,
+                "name": "C2",
+                "ticks": 0,
+                "time": 0,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 37,
+                "name": "C#2",
+                "ticks": 0,
+                "time": 0,
+                "velocity": 0.8828125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 39,
+                "name": "D#2",
+                "ticks": 0,
+                "time": 0,
+                "velocity": 0.8828125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 40,
+                "name": "E2",
+                "ticks": 0,
+                "time": 0,
+                "velocity": 0.8828125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 42,
+                "name": "F#2",
+                "ticks": 0,
+                "time": 0,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 42,
+                "name": "F#2",
+                "ticks": 120,
+                "time": 0.125,
+                "velocity": 0.9453125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 46,
+                "name": "A#2",
+                "ticks": 120,
+                "time": 0.125,
+                "velocity": 1
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 38,
+                "name": "D2",
+                "ticks": 240,
+                "time": 0.25,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 45,
+                "name": "A2",
+                "ticks": 240,
+                "time": 0.25,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 46,
+                "name": "A#2",
+                "ticks": 240,
+                "time": 0.25,
+                "velocity": 0.8828125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 46,
+                "name": "A#2",
+                "ticks": 360,
+                "time": 0.375,
+                "velocity": 1
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 36,
+                "name": "C2",
+                "ticks": 480,
+                "time": 0.5,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 37,
+                "name": "C#2",
+                "ticks": 480,
+                "time": 0.5,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 39,
+                "name": "D#2",
+                "ticks": 480,
+                "time": 0.5,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 43,
+                "name": "G2",
+                "ticks": 480,
+                "time": 0.5,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 38,
+                "name": "D2",
+                "ticks": 600,
+                "time": 0.625,
+                "velocity": 0.9453125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 46,
+                "name": "A#2",
+                "ticks": 600,
+                "time": 0.625,
+                "velocity": 0.9453125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 39,
+                "name": "D#2",
+                "ticks": 720,
+                "time": 0.75,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 46,
+                "name": "A#2",
+                "ticks": 720,
+                "time": 0.75,
+                "velocity": 0.8828125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 38,
+                "name": "D2",
+                "ticks": 840,
+                "time": 0.875,
+                "velocity": 0.9453125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 36,
+                "name": "C2",
+                "ticks": 960,
+                "time": 1,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 37,
+                "name": "C#2",
+                "ticks": 960,
+                "time": 1,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 41,
+                "name": "F2",
+                "ticks": 960,
+                "time": 1,
+                "velocity": 0.8828125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 38,
+                "name": "D2",
+                "ticks": 1200,
+                "time": 1.25,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 39,
+                "name": "D#2",
+                "ticks": 1200,
+                "time": 1.25,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 42,
+                "name": "F#2",
+                "ticks": 1200,
+                "time": 1.25,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 44,
+                "name": "G#2",
+                "ticks": 1200,
+                "time": 1.25,
+                "velocity": 0.8828125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 45,
+                "name": "A2",
+                "ticks": 1200,
+                "time": 1.25,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 46,
+                "name": "A#2",
+                "ticks": 1200,
+                "time": 1.25,
+                "velocity": 0.8828125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 40,
+                "name": "E2",
+                "ticks": 1320,
+                "time": 1.375,
+                "velocity": 0.9453125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 36,
+                "name": "C2",
+                "ticks": 1440,
+                "time": 1.5,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 37,
+                "name": "C#2",
+                "ticks": 1440,
+                "time": 1.5,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 38,
+                "name": "D2",
+                "ticks": 1440,
+                "time": 1.5,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 42,
+                "name": "F#2",
+                "ticks": 1440,
+                "time": 1.5,
+                "velocity": 0.8828125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 43,
+                "name": "G2",
+                "ticks": 1440,
+                "time": 1.5,
+                "velocity": 0.8828125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 39,
+                "name": "D#2",
+                "ticks": 1560,
+                "time": 1.625,
+                "velocity": 0.9453125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 42,
+                "name": "F#2",
+                "ticks": 1560,
+                "time": 1.625,
+                "velocity": 1
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 46,
+                "name": "A#2",
+                "ticks": 1560,
+                "time": 1.625,
+                "velocity": 0.9453125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 40,
+                "name": "E2",
+                "ticks": 1680,
+                "time": 1.75,
+                "velocity": 0.6328125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 42,
+                "name": "F#2",
+                "ticks": 1680,
+                "time": 1.75,
+                "velocity": 0.8828125
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 45,
+                "name": "A2",
+                "ticks": 1800,
+                "time": 1.875,
+                "velocity": 0.9453125
+              }
+            ]
+          }
+        ]
+      },
+      "patterns": [
+        [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          2,
+          2,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          2,
+          2,
+          0,
+          1,
+          2,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      ],
+      "sounding": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ]
     },
     "lfo": [
       {
@@ -51,14 +979,14 @@
           false,
           false,
           true,
+          false,
+          false,
+          false,
           true,
           false,
           false,
           true,
-          true,
           false,
-          true,
-          true,
           false,
           false,
           false,
@@ -89,7 +1017,7 @@
           false,
           false,
           true,
-          true,
+          false,
           false,
           false,
           false,
@@ -110,7 +1038,7 @@
           false,
           false,
           true,
-          true,
+          false,
           false,
           false,
           true,
@@ -271,8 +1199,7 @@
         }
       ]
     },
-    "playing": false,
-    "size": 16,
+    "playing": true,
     "sounding": [
       1,
       1,
@@ -321,7 +1248,7 @@
           ],
           "patchName": "Gorp",
           "preset": {
-            "filename": "Extra/Humanoid Sound Systems - Phenomenon.mid",
+            "bank": 92,
             "name": "Maze Jynx",
             "page": [
               "0C005C1F000000000000400000000000007F0000406000001E40201700404060005200004014007F2600000053004040400000000100003400407F1E2E684051000000640100004000004C4C404040300100004000004040404040740040000000000000000000017F0045107F4001000D4D00320E3301400000000000000000",
@@ -330,8 +1257,7 @@
               "6401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400000000000000000000000000000000000000000000000000016F7F400001000045"
             ],
             "part": 1,
-            "program": 31,
-            "rectified": true
+            "program": 31
           }
         },
         {
@@ -620,21 +1546,128 @@
       "A": {
         "bank": 30,
         "channel": 16,
-        "device": 34,
+        "device": 50,
         "mute": 0,
-        "port": 22,
-        "program": 22
+        "port": 29,
+        "program": 22,
+        "transpose": 0
       },
       "B": {
         "bank": 92,
         "channel": 1,
-        "device": 1,
+        "device": 17,
         "mute": 0,
-        "port": 16,
-        "program": 31
+        "port": 23,
+        "program": 31,
+        "transpose": 0
       }
     },
+    "drums": {
+      "continue": 0,
+      "density": 100,
+      "instrument": [
+        {
+          "device": 10,
+          "mute": 0,
+          "note": 36
+        },
+        {
+          "device": 10,
+          "mute": 0,
+          "note": 37
+        },
+        {
+          "device": 10,
+          "mute": 0,
+          "note": 53
+        },
+        {
+          "device": 10,
+          "mute": 0,
+          "note": 54
+        },
+        {
+          "device": 10,
+          "mute": 0,
+          "note": 55
+        },
+        {
+          "device": 10,
+          "mute": 0,
+          "note": 52
+        },
+        {
+          "device": 10,
+          "mute": 0,
+          "note": 45
+        },
+        {
+          "device": 10,
+          "mute": 0,
+          "note": 46
+        },
+        {
+          "device": 10,
+          "mute": 0,
+          "note": 47
+        },
+        {
+          "device": 10,
+          "mute": 0,
+          "note": 39
+        },
+        {
+          "device": 10,
+          "mute": 0,
+          "note": 38
+        }
+      ],
+      "mute": 0,
+      "probability": 100,
+      "redrum": [
+        {
+          "device": 51,
+          "instrument": 0,
+          "mute": 0,
+          "note": 36
+        },
+        {
+          "device": 51,
+          "instrument": 0,
+          "mute": 0,
+          "note": 38
+        },
+        {
+          "device": 51,
+          "instrument": 2,
+          "mute": 0,
+          "note": 43
+        },
+        {
+          "device": 51,
+          "instrument": 6,
+          "mute": 0,
+          "note": 39
+        },
+        {
+          "device": 51,
+          "instrument": 10,
+          "mute": 0,
+          "note": 42
+        },
+        {
+          "device": 51,
+          "instrument": 9,
+          "mute": 0,
+          "note": 46
+        }
+      ],
+      "steps": 16,
+      "style": 1,
+      "velocity": 0
+    },
     "gate": 0.789047619047619,
+    "grid": 2,
     "lfo": [
       {
         "amount": 79,
@@ -741,11 +1774,13 @@
     "muteShift": 0,
     "muteSteps": 0,
     "octaveChance": 7.936507936507937,
+    "pattern": 0,
     "probability": 100,
-    "program": 53,
+    "program": 54,
     "scales": 26,
     "shift": 0,
     "split": 48,
+    "steps": 16,
     "temperature": 3.07,
     "track": [
       {
@@ -794,56 +1829,56 @@
         "part": 1,
         "program": 31,
         "x1": {
-          "control": -0.5369307776828226,
+          "control": 0,
           "target": [
             1,
             2
           ]
         },
         "x2": {
-          "control": -0.5369307776828226,
+          "control": 0,
           "target": [
             22,
             27
           ]
         },
         "x3": {
-          "control": 0.0785007935539006,
+          "control": 0,
           "target": [
             42,
             20
           ]
         },
         "x4": {
-          "control": 0.47356855084849214,
+          "control": 0,
           "target": [
             118,
             0
           ]
         },
         "y1": {
-          "control": -0.6938102795751435,
+          "control": 0,
           "target": [
             3,
             0
           ]
         },
         "y2": {
-          "control": -0.8477597362959346,
+          "control": 0,
           "target": [
             23,
             28
           ]
         },
         "y3": {
-          "control": -0.0783787083384202,
+          "control": 0,
           "target": [
             45,
             0
           ]
         },
         "y4": {
-          "control": -0.5399829080698327,
+          "control": 0,
           "target": [
             119,
             0
@@ -945,6 +1980,28 @@
             "bank": 68,
             "level": 0,
             "program": 26
+          }
+        ]
+      },
+      "search": {
+        "part": [
+          {
+            "category": 0
+          },
+          {
+            "category": 0
+          },
+          {
+            "category": 0
+          },
+          {
+            "category": 0
+          },
+          {
+            "category": 0
+          },
+          {
+            "category": 0
           }
         ]
       }
