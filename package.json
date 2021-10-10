@@ -65,6 +65,7 @@
     "commands/preset.js",
     "commands/remove.js",
     "commands/router.js",
+    "commands/setup.js",
     "commands/upload.js",
     "training/pattern.js",
     "training/drum.js",

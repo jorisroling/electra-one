@@ -641,6 +641,7 @@ class BacaraMachine extends Machine {
           if (program >= 1 && program < 128) {
             const filename = this.load_preset(program - 1)
             if (filename) {
+
               this.sendDeviceProgramChange('A')
               this.sendDeviceProgramChange('B')
               for (let trk = 0; trk < 6; trk++) {
@@ -835,46 +836,51 @@ class BacaraMachine extends Machine {
 
     const deviceDeviceChange = (dev) => {
       return (elementPath, value, origin) => {
-        if (value > 0 && config.devices) {
-          let idx = 0
-          let choosenDeviceKey
-          let choosenChannel
+        if (origin == 'post-connect') {
+          this.ensureDevicePortName(dev)
+        } else {
+          if (value > 0 && config.devices) {
+            let idx = 0
+            let choosenDeviceKey
+            let choosenChannel
 
-          const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
-          deviceKeys.unshift('bacara')
+            const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
+            deviceKeys.unshift('bacara')
 
-          for (let deviceKey of deviceKeys) {
-            if (Array.isArray(config.devices[deviceKey].channels)) {
-              for (let c in config.devices[deviceKey].channels) {
-                idx++
-                if (idx == value) {
-                  choosenDeviceKey = deviceKey
-                  choosenChannel = config.devices[deviceKey].channels[c]
+            for (let deviceKey of deviceKeys) {
+              if (Array.isArray(config.devices[deviceKey].channels)) {
+                for (let c in config.devices[deviceKey].channels) {
+                  idx++
+                  if (idx == value) {
+                    choosenDeviceKey = deviceKey
+                    choosenChannel = config.devices[deviceKey].channels[c]
+                  }
                 }
               }
             }
-          }
 
-          /*          debug ('new %y %y',choosenDeviceKey,choosenChannel)*/
-          if (choosenDeviceKey && Number.isInteger(choosenChannel)) {
-            const port = _.get(config, `devices.${choosenDeviceKey}.port`)
-            if (port) {
-              const portName = _.get(config, `midi.ports.${port}.${os.platform()}`)
+            /*          debug ('new %y %y',choosenDeviceKey,choosenChannel)*/
+            if (choosenDeviceKey && Number.isInteger(choosenChannel)) {
+              const port = _.get(config, `devices.${choosenDeviceKey}.port`)
+              if (port) {
+                const portName = _.get(config, `midi.ports.${port}.${os.platform()}`)
 
-              if (portName) {
-                const midiNames = easymidi.getOutputs()
-                if (midiNames) {
-                  const idx = midiNames.indexOf(portName)
-                  if (idx >= 0) {
-                    this.interface.setParameter(`device.${dev}.port`, idx)
-                    let name = midiNames[idx]
+                if (portName) {
 
-                    const ports = Object.keys(config.midi.ports).filter( p => _.get(config, `midi.ports.${p}.out.${os.platform()}`, _.get(config, `midi.ports.${p}.${os.platform()}`)) == name )
-                    if (ports && ports.length == 1) {
-                      name = ports[0]
+                  const midiNames = _.get(config,'preset.midi.ports.output',[]).map( port => port.name ) //easymidi.getOutputs()
+                  if (midiNames) {
+                    const idx = midiNames.indexOf(portName)
+                    if (idx >= 0) {
+                      this.interface.setParameter(`device.${dev}.port`, idx)
+                      let name = midiNames[idx]
+
+                      const ports = Object.keys(config.midi.ports).filter( p => _.get(config, `midi.ports.${p}.out.${os.platform()}`, _.get(config, `midi.ports.${p}.${os.platform()}`)) == name )
+                      if (ports && ports.length == 1) {
+                        name = ports[0]
+                      }
+                      this.setState(`device.${dev}.portName`, name)
+                      this.interface.setParameter(`device.${dev}.channel`, choosenChannel)
                     }
-                    this.setState(`device.${dev}.portName`, name)
-                    this.interface.setParameter(`device.${dev}.channel`, choosenChannel)
                   }
                 }
               }
@@ -908,17 +914,25 @@ class BacaraMachine extends Machine {
 
     const devicePortChange = (dev) => {
       return (elementPath, value, origin) => {
-        this.setState(`device.${dev}.portName`, Midi.normalisePortName(value))
-        if (origin != 'internal') {
-          devicePortOrChannelChanged(dev)
+        if (origin == 'post-connect') {
+          debug('devicePortChange post-connect')
+        } else {
+          this.setState(`device.${dev}.portName`, Midi.normalisePortName(value))
+          if (origin != 'internal') {
+            devicePortOrChannelChanged(dev)
+          }
         }
       }
     }
 
     const deviceChannelChange = (dev) => {
       return (elementPath, value, origin) => {
-        if (origin != 'internal') {
-          devicePortOrChannelChanged(dev)
+        if (origin == 'post-connect') {
+          debug('deviceChannelChange post-connect')
+        } else {
+          if (origin != 'internal') {
+            devicePortOrChannelChanged(dev)
+          }
         }
       }
     }
@@ -959,7 +973,7 @@ class BacaraMachine extends Machine {
             if (port) {
               const portName = _.get(config, `midi.ports.${port}.${os.platform()}`)
               if (portName) {
-                const midiNames = easymidi.getOutputs()
+                const midiNames = _.get(config,'preset.midi.ports.output',[]).map( port => port.name ) //easymidi.getOutputs()
                 if (midiNames) {
                   const idx = midiNames.indexOf(portName)
                   if (idx >= 0) {
@@ -1229,7 +1243,7 @@ class BacaraMachine extends Machine {
               if (port) {
                 const portName = _.get(config, `midi.ports.${port}.${os.platform()}`)
                 if (portName) {
-                  const midiNames = easymidi.getOutputs()
+                  const midiNames = _.get(config,'preset.midi.ports.output',[]).map( port => port.name ) //easymidi.getOutputs()
                   if (midiNames) {
                     const idx = midiNames.indexOf(portName)
                     if (idx >= 0) {
@@ -2073,6 +2087,47 @@ class BacaraMachine extends Machine {
     return pat
   }
 
+  ensureDevicePortName(dev) {
+    const name = this.getState(`device.${dev}.portName`)
+    debug('ensureDevicePortName %y (%y)',dev,name)
+    const channel = this.interface.getParameter(`device.${dev}.channel`)
+
+    const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
+    deviceKeys.unshift('bacara')
+
+    let idx = 0
+    for (let deviceKey of deviceKeys) {
+      if (Array.isArray(config.devices[deviceKey].channels)) {
+        for (let c in config.devices[deviceKey].channels) {
+          idx++
+//            debug(`device.${dev}.device %y %y %y`, idx, name, channel)
+          if (deviceKey == name && config.devices[deviceKey].channels[c] == channel) {
+            debug(`device.${dev}.device %y (%y)`, idx,name)
+            this.interface.setParameter(`device.${dev}.device`,idx)
+
+            if (deviceKey && Number.isInteger(channel)) {
+              const port = _.get(config, `devices.${deviceKey}.port`)
+              if (port) {
+                const portName = _.get(config, `midi.ports.${port}.${os.platform()}`)
+
+                if (portName) {
+
+                  const midiNames = _.get(config,'preset.midi.ports.output',[]).map( port => port.name ) //easymidi.getOutputs()
+                  if (midiNames) {
+                    const idx = midiNames.indexOf(portName)
+                    if (idx >= 0) {
+                      this.interface.setParameter(`device.${dev}.port`, idx)
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   load_preset(program) {
     const presetFiles = this.presetFiles()
 
@@ -2093,6 +2148,8 @@ class BacaraMachine extends Machine {
       this.interface.setParameter('bank', bank)
       this.interface.setParameter('program', program)
       this.state.playing = playing
+      this.ensureDevicePortName('A')
+      this.ensureDevicePortName('B')
       return filename
     }
   }
@@ -2358,7 +2415,7 @@ class BacaraMachine extends Machine {
                   if (this.interface.getParameter(`drums.redrum.${trck}.instrument`) == instrument) {
                     if (!this.interface.getParameter(`drums.redrum.${trck}.mute`) && this.getState(`drums.redrum.${trck}.portName`) && this.interface.getParameter('drums.probability', 'modulated') >= Machine.getRandomInt(100)) {
                       const portName = this.getState(`drums.redrum.${trck}.portName`)
-                      const channel = this.getState(`drums.redrum.${trck}.channel`) - 1
+                      const channel = this.getState(`drums.redrum.${trck}.channel`,10) - 1
                       const midiNote = this.interface.getParameter(`drums.redrum.${trck}.note`)
                       debugMidiNoteOn('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
 
@@ -2563,9 +2620,10 @@ class BacaraMachine extends Machine {
       }
 
       if (config.electra.checkPresetVia == 'none' || electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
-        if (electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
-          debug('Electra One %y preset IS Loaded', bacaraPresetName)
+/*        if (electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
+          debug('Electra One %y preset IS Loaded 1', bacaraPresetName)
         }
+*/
         if (part >= 1 && part <= 6) {
           const matrixSelectControls = [145, 146, 147, 148, 149, 150]
           const searchSelectControls = [325, 326, 327, 328, 329, 330]
@@ -2576,8 +2634,8 @@ class BacaraMachine extends Machine {
           const ctrlId = 110
           electra.controlReflect(this.options.electraOneCtrl, ctrlId, {'name': virusPreset.name})
         }
-      } else {
-        debug('Electra One %y preset NOT Loaded', bacaraPresetName)
+//      } else {
+//        debug('Electra One %y preset NOT Loaded', bacaraPresetName)
       }
 
       let macros = {}
@@ -2675,8 +2733,8 @@ function bacaraSequencer(name, sub, options) {
     debugError('config %y', config.util.toObject(config))
   }
 
-  if (options.custom) {
-    Bacara.setPresetStateFilename(options.custom)
+  if (options.custom && options.custom.length) {
+    Bacara.setPresetStateFilename(options.custom[options.custom.length-1])
   }
   Midi.setupVirtualPorts(config.bacara.virtual)
 
@@ -2738,7 +2796,7 @@ function bacaraSequencer(name, sub, options) {
             if (_.isEqual(sysexCmd, electraSysexCmdPresetNameResponse)) {
               const presetName = electra.parseSysexCmdPresetNameResponse(options.electraOneCtrl, msg.bytes)
               if (presetName == bacaraPresetName) {
-                debug('Electra One %y preset IS Loaded', bacaraPresetName)
+                debug('Electra One %y preset IS Loaded (preset)', bacaraPresetName)
                 bacaraMachine.virusReflectParts()
               }
             } else if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
@@ -2754,7 +2812,7 @@ function bacaraSequencer(name, sub, options) {
             } else if (_.isEqual(sysexCmd, electraSysexCmdPatchResponse)) {
               const presetName = electra.parseSysexCmdPatchRequestResponse(options.electraOneCtrl, msg.bytes)
               if (presetName == bacaraPresetName) {
-                debug('Electra One %y preset IS Loaded', bacaraPresetName)
+                debug('Electra One %y preset IS Loaded (patch)', bacaraPresetName)
                 bacaraMachine.virusReflectParts()
               }
             } else {

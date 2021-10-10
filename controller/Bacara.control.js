@@ -166,8 +166,10 @@ function showRemoteControl(index, name, force = false) {
 }
 
 function cleanupLabel(name) {
-  if (!name) name = ''
-  return name.replace('&',' ').replace(/\s+/,' ').trim().substr(0, E1_MAX_LABEL_LENGTH)
+  if (!name) {
+    name = ''
+  }
+  return name.replace('&', ' ').replace(/\s+/, ' ').trim().substr(0, E1_MAX_LABEL_LENGTH)
 }
 
 function showPages(value, force) {
@@ -292,8 +294,8 @@ function init() {
 }
 
 function reSendAll() {
-  for (let s=0;s<E1_MAX_SEND_COUNT;s++) {
-    showSend(s, sendCache[s].name, sendCache[s].color,true)
+  for (let s = 0; s < E1_MAX_SEND_COUNT; s++) {
+    showSend(s, sendCache[s].name, sendCache[s].color, true)
   }
   for (let i = 0; i < E1_MAX_CONTROL_COUNT; i++) {
     const idx = (layoutColumns ? REVERSE_LAYOUT_COLUMNS_MAP[i] : i)
@@ -305,7 +307,7 @@ function reSendAll() {
       sendMidi(0xB0, E1_CC_LSB[idx], ((value * 16383) >> 0) & 0x7F)
     }
 
-    showRemoteControl(i,name,true)
+    showRemoteControl(i, name, true)
   }
   showPages( remoteControlsBank.selectedPageIndex().get(), true)
 }
@@ -362,7 +364,7 @@ function handleSysExMidi(data) {
 
       const match = head.match(/,"name"\s*:\s*"([^"]*)",/)
       presetActive = (match && match.length && /*match[1].trim() === presetName.trim()*/match[1].includes(presetName))
-      println(`Control changing ${presetActive?'IS':'is NOT'} active (the active preset name "${match[1]}" ${presetActive?'includes':'does NOT include'} the phrase "${presetName}")`)
+      println(`Control changing ${presetActive ? 'IS' : 'is NOT'} active (the active preset name "${match[1]}" ${presetActive ? 'includes' : 'does NOT include'} the phrase "${presetName}")`)
       if (presetActive) {
         reSendAll()
       }

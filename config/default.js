@@ -29,7 +29,7 @@ module.exports = customWrapper({
     name: '',
     template: path.resolve(__dirname + '/../presets/Bacara Template.epr'),
     presetName: 'Bacara',
-    custom: '',
+    custom: [],
   },
   electra: {
     checkPresetVia: 'patch',  // patch, preset or none

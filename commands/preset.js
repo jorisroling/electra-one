@@ -24,12 +24,9 @@ function generatePreset(name, sub, options) {
     debugError('options %y', _.fromPairs(_.toPairs(options).filter(a => a[0].length > 1 )) )
     debugError('config %y', config.util.toObject(config))
   }
-  if (options.custom) {
-    Bacara.setPresetStateFilename(options.custom)
+  if (options.custom && options.custom.length) {
+    Bacara.setPresetStateFilename(options.custom[options.custom.length-1])
   }
-
-  Bacara.scanMidiPorts()
-  virus.scanBanks()
 
   const interface = new Interface('bacara')
   if (options.template /*&& options.filename*/) {
