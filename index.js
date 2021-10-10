@@ -46,7 +46,7 @@ args
   .option('color', 'Control Update Color')
   .option('visible', 'Control Update Visible')
   .option('verbose', 'Verbose output')
-  .option('setup', 'List from setup',false)
+  .option('setup', 'List from setup', false)
 
 const commands = require('./lib/commands')
 

@@ -348,11 +348,11 @@ class BacaraMachine extends Machine {
               let actionPath
               if (msg.controller == _.get(config, 'touchBlock.button.9.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.next')
-//                debug('remote action %y',actionPath)
+                //                debug('remote action %y',actionPath)
               }
               if (msg.controller == _.get(config, 'touchBlock.button.8.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.previous')
-//                debug('remote action %y',actionPath)
+                //                debug('remote action %y',actionPath)
               }
               if (msg.controller == _.get(config, 'touchBlock.button.7.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.random')
@@ -873,7 +873,7 @@ class BacaraMachine extends Machine {
 
                 if (portName) {
 
-                  const midiNames = _.get(config,'preset.midi.ports.output',[]).map( port => port.name ) //easymidi.getOutputs()
+                  const midiNames = _.get(config, 'preset.midi.ports.output', []).map( port => port.name ) //easymidi.getOutputs()
                   if (midiNames) {
                     const idx = midiNames.indexOf(portName)
                     if (idx >= 0) {
@@ -979,7 +979,7 @@ class BacaraMachine extends Machine {
             if (port) {
               const portName = _.get(config, `midi.ports.${port}.${os.platform()}`)
               if (portName) {
-                const midiNames = _.get(config,'preset.midi.ports.output',[]).map( port => port.name ) //easymidi.getOutputs()
+                const midiNames = _.get(config, 'preset.midi.ports.output', []).map( port => port.name ) //easymidi.getOutputs()
                 if (midiNames) {
                   const idx = midiNames.indexOf(portName)
                   if (idx >= 0) {
@@ -1249,7 +1249,7 @@ class BacaraMachine extends Machine {
               if (port) {
                 const portName = _.get(config, `midi.ports.${port}.${os.platform()}`)
                 if (portName) {
-                  const midiNames = _.get(config,'preset.midi.ports.output',[]).map( port => port.name ) //easymidi.getOutputs()
+                  const midiNames = _.get(config, 'preset.midi.ports.output', []).map( port => port.name ) //easymidi.getOutputs()
                   if (midiNames) {
                     const idx = midiNames.indexOf(portName)
                     if (idx >= 0) {
@@ -1975,7 +1975,8 @@ class BacaraMachine extends Machine {
       if (bank >= virusRamRomBanks) {
         const part = channel
         const virusPreset = this.getState(`virus.part.${part - 1}.preset`)
-        if (virusPreset) {
+        this.virus.sendPreset(part, bank, program, virusPreset)
+        /*        if (virusPreset) {
           const bytes = Virus.presetToSysEx(part, virusPreset, bank, program)
           if (bytes) {
             fromStore = true
@@ -1989,8 +1990,9 @@ class BacaraMachine extends Machine {
             })
             bacaraEmit('virus-ti', part, 'sysex', bytes, 'internal')
             bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, 'internal')
+            bacaraEmit('virus-ti', part, 'part', null, 'internal')
           }
-        }
+        }*/
       }
       if (!fromStore) {
         this.virusSendBankAndProgram(channel, bank, program, 'internal')
@@ -2097,7 +2099,7 @@ class BacaraMachine extends Machine {
 
   ensureDevicePortName(dev) {
     const name = this.getState(`device.${dev}.portName`)
-/*    debug('ensureDevicePortName %y (%y)',dev,name)*/
+    /*    debug('ensureDevicePortName %y (%y)',dev,name)*/
     const channel = this.interface.getParameter(`device.${dev}.channel`)
 
     const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
@@ -2108,10 +2110,10 @@ class BacaraMachine extends Machine {
       if (Array.isArray(config.devices[deviceKey].channels)) {
         for (let c in config.devices[deviceKey].channels) {
           idx++
-//            debug(`device.${dev}.device %y %y %y`, idx, name, channel)
+          //            debug(`device.${dev}.device %y %y %y`, idx, name, channel)
           if (deviceKey == name && config.devices[deviceKey].channels[c] == channel) {
-/*            debug(`device.${dev}.device %y (%y)`, idx,name)*/
-            this.interface.setParameter(`device.${dev}.device`,idx)
+            /*            debug(`device.${dev}.device %y (%y)`, idx,name)*/
+            this.interface.setParameter(`device.${dev}.device`, idx)
 
             if (deviceKey && Number.isInteger(channel)) {
               const port = _.get(config, `devices.${deviceKey}.port`)
@@ -2120,7 +2122,7 @@ class BacaraMachine extends Machine {
 
                 if (portName) {
 
-                  const midiNames = _.get(config,'preset.midi.ports.output',[]).map( port => port.name ) //easymidi.getOutputs()
+                  const midiNames = _.get(config, 'preset.midi.ports.output', []).map( port => port.name ) //easymidi.getOutputs()
                   if (midiNames) {
                     const idx = midiNames.indexOf(portName)
                     if (idx >= 0) {
@@ -2425,7 +2427,7 @@ class BacaraMachine extends Machine {
                   if (this.interface.getParameter(`drums.redrum.${trck}.instrument`) == instrument) {
                     if (!this.interface.getParameter(`drums.redrum.${trck}.mute`) && this.getState(`drums.redrum.${trck}.portName`) && this.interface.getParameter('drums.probability', 'modulated') >= Machine.getRandomInt(100)) {
                       const portName = this.getState(`drums.redrum.${trck}.portName`)
-                      const channel = this.getState(`drums.redrum.${trck}.channel`,10) - 1
+                      const channel = this.getState(`drums.redrum.${trck}.channel`, 10) - 1
                       const midiNote = this.interface.getParameter(`drums.redrum.${trck}.note`)
                       debugMidiNoteOn('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
 
@@ -2543,7 +2545,7 @@ class BacaraMachine extends Machine {
   }
 
   virusSetupParts() {
-    for (let part = 16; part > 0; part--) {
+    for (let part = 1; part <= 16; part++) {
       const virusPreset = this.getState(`virus.part.${part - 1}.preset`)
       if (virusPreset) {
         const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
@@ -2571,7 +2573,10 @@ class BacaraMachine extends Machine {
       } else {
         if (origin != 'post-connect') {
           Virus.getPreset(bank - virusRamRomBanks, program, (virusPreset) => {
+            this.virus.sendPreset(part, bank, program, virusPreset)
+            /*
             if (virusPreset) {
+
               const bytes = Virus.presetToSysEx(part, virusPreset, bank, program)
               if (bytes) {
                 this.setState(`virus.part.${part - 1}.preset`, virusPreset)
@@ -2593,6 +2598,7 @@ class BacaraMachine extends Machine {
                 //              this.interface.setParameter(`virus.mixer.part.${part-1}.program`,virusBank.presets-1)
               }
             }
+*/
           })
         }
       }
@@ -2630,7 +2636,7 @@ class BacaraMachine extends Machine {
       }
 
       if (config.electra.checkPresetVia == 'none' || electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
-/*        if (electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
+        /*        if (electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
           debug('Electra One %y preset IS Loaded 1', bacaraPresetName)
         }
 */
@@ -2644,8 +2650,8 @@ class BacaraMachine extends Machine {
           const ctrlId = 110
           electra.controlReflect(this.options.electraOneCtrl, ctrlId, {'name': virusPreset.name})
         }
-//      } else {
-//        debug('Electra One %y preset NOT Loaded', bacaraPresetName)
+        //      } else {
+        //        debug('Electra One %y preset NOT Loaded', bacaraPresetName)
       }
 
       let macros = {}
@@ -2730,7 +2736,7 @@ class BacaraMachine extends Machine {
   setRemote(origin, options) {
     if (origin != 'post-connect') {
       for (let key in options) {
-/*        debug('setRemote %y',`remote.${key}`,options[key])*/
+        /*        debug('setRemote %y',`remote.${key}`,options[key])*/
         this.setState(`remote.${key}`, options[key])
       }
     }
@@ -2744,7 +2750,7 @@ function bacaraSequencer(name, sub, options) {
   }
 
   if (options.custom && options.custom.length) {
-    Bacara.setPresetStateFilename(options.custom[options.custom.length-1])
+    Bacara.setPresetStateFilename(options.custom[options.custom.length - 1])
   }
   Midi.setupVirtualPorts(config.bacara.virtual)
 

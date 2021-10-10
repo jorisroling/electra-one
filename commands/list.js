@@ -13,15 +13,15 @@ function listPorts(name, sub, options) {
 
   const data = []
   if (options.setup) {
-    data.push([`Setup MIDI Input`, `Setup MIDI Output`])
+    data.push(['Setup MIDI Input', 'Setup MIDI Output'])
 
-    for (let i = 0; i < _.get(config,'preset.midi.ports.input',[]).length || i < _.get(config,'preset.midi.ports.output',[]).length; i++) {
-      const input = _.get(config,`preset.midi.ports.input.${i}.name`)
-      const output = _.get(config,`preset.midi.ports.output.${i}.name`)
+    for (let i = 0; i < _.get(config, 'preset.midi.ports.input', []).length || i < _.get(config, 'preset.midi.ports.output', []).length; i++) {
+      const input = _.get(config, `preset.midi.ports.input.${i}.name`)
+      const output = _.get(config, `preset.midi.ports.output.${i}.name`)
       data.push([input ? `${dimColor('[')}${labelColor(input)}${dimColor(']')}` : '', output ? `${dimColor('[')}${labelColor(output)}${dimColor(']')}` : ''])
     }
   } else {
-    data.push([`MIDI Input`, `MIDI Output`])
+    data.push(['MIDI Input', 'MIDI Output'])
 
     Midi.setupVirtualPorts(config.list.virtual)
 

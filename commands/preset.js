@@ -25,7 +25,7 @@ function generatePreset(name, sub, options) {
     debugError('config %y', config.util.toObject(config))
   }
   if (options.custom && options.custom.length) {
-    Bacara.setPresetStateFilename(options.custom[options.custom.length-1])
+    Bacara.setPresetStateFilename(options.custom[options.custom.length - 1])
   }
 
   const interface = new Interface('bacara')

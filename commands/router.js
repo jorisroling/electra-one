@@ -310,10 +310,12 @@ function setupMidi(options) {
                 Midi.send(electraOnePortName, 'sysex', value)
               }
             } else {
-              debug('Part change (to %y), Single Request back', part)
-              setMapping('part', part)
-              Midi.send(electraOnePortName, 'sysex', [0xF0, 0x7D, 0x20, getMapping('part'), 0xF7])
-              Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
+              if (name == 'select') {
+                debug('Part change (to %y), Single Request back', part)
+                setMapping('part', part)
+                Midi.send(electraOnePortName, 'sysex', [0xF0, 0x7D, 0x20, getMapping('part'), 0xF7])
+                Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, getMapping('part:-1'), 0xF7], 'singleRequest', sendSingleRequestTimeoutTime)
+              }
             }
           }
         })

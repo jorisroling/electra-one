@@ -5,6 +5,7 @@ const Bacara = require('../lib/bacara')
 const yves = require('../lib/yves')
 const pkg = require('../package.json')
 const debugError = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:error`)
+const _ = require('lodash')
 
 let args
 
@@ -19,7 +20,7 @@ function generateSetup(name, sub, options) {
     debugError('config %y', config.util.toObject(config))
   }
   if (options.custom && options.custom.length) {
-    Bacara.setPresetStateFilename(options.custom[options.custom.length-1])
+    Bacara.setPresetStateFilename(options.custom[options.custom.length - 1])
   }
 
   Bacara.scanMidiPorts()
