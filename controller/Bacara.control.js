@@ -294,6 +294,31 @@ function init() {
       remoteControlValues[idx] = value
     })
 
+/*    parameter.displayedValue().addValueObserver(function(value) {
+      const idx = (layoutColumns ? REVERSE_LAYOUT_COLUMNS_MAP[i] : i)
+
+      const json = {
+        name: cleanupLabel(value),
+      }
+      if (presetActive) {
+        const ctrlId = remoteControlIDs[i] + controlOffset
+        const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
+        host.getMidiOutPort(1).sendSysex(data)
+      }
+
+      host.scheduleTask(  () => {
+        println(`${idx} display value ${value}`)
+        const json = {
+          name: cleanupLabel(remoteControlNames[i]),
+        }
+        if (presetActive) {
+          const ctrlId = remoteControlIDs[i] + controlOffset
+          const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
+         host.getMidiOutPort(1).sendSysex(data)
+        }
+      },1000)
+    })
+*/
     parameter.name().addValueObserver(function(name) {
       showRemoteControl(i, name)
     })
