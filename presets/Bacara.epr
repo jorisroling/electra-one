@@ -405,9 +405,18 @@
   "devices": [
     {
       "id": 1,
-      "name": "Generic MIDI",
+      "name": "Bacara Control",
       "port": 1,
-      "channel": 1
+      "channel": 1,
+      "patch": [
+        {
+          "request": [
+            "7D",
+            "00",
+            "03"
+          ]
+        }
+      ]
     },
     {
       "id": 17,

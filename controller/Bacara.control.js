@@ -1,12 +1,13 @@
 loadAPI(10)
 
-const CONTROLLER_SCRIPT_VERSION = '1.11'
+const CONTROLLER_SCRIPT_VERSION = '1.12'
 const CONTROLLER_BASE_NAME = 'Bacara'
 const CONTROLLER_SCRIPT_NAME = `${CONTROLLER_BASE_NAME} Control` //  v${CONTROLLER_SCRIPT_VERSION}
 host.setShouldFailOnDeprecatedUse(true)
 host.defineController('Bonboa', CONTROLLER_SCRIPT_NAME, CONTROLLER_SCRIPT_VERSION, '7f4b4851-911b-4dbf-a6a7-ee7801296ce3', 'Joris Röling')
 const E1_PAGE_INDEX  = 7
 const E1_PRESET_NAME = 'Bacara'
+const E1_PRESET_NAME_ALTERNATIVE = 'Bitwig Control'
 
 
 /* --------------------------------------  v1.12  -- */
@@ -21,9 +22,13 @@ if (host.platformIsWindows()) {
 }
 
 let presetActive = false
+let e1_firmware_version
+
 const highRes = true
 const layoutColumns = true
 
+const E1_MINIMAL_VERSION_TEXT = 'v2.1.2'
+const E1_MINIMAL_VERSION_NUMBER = 212
 
 let remoteControlsBank = null
 let cursorTrack = null
@@ -39,7 +44,8 @@ const COLOR_MAGENTA = 'C44795'
 let E1_CC_MSB = [3, 9, 14, 15, 16, 17, 18, 19]
 let E1_CC_LSB = []
 
-const E1_CONTROL_OFFSET  = ((E1_PAGE_INDEX - 1) * 36)
+let pageIndex = E1_PAGE_INDEX
+let controlOffset = ((pageIndex - 1) * 36)
 const E1_PAGE_NAME_CTRL_ID = 1
 const E1_PAGE_CTRL_ID = 13
 const remoteControlIDs = [2, 3, 4, 5, 8, 9, 10, 11]
@@ -138,7 +144,7 @@ function showSend(index, name, color = COLOR_YELLOW, force = false) {
   }
   if (index >= 0 && index < sendControlIDs.length && (force || (sendCache[index].name !== json.name || sendCache[index].visible !== json.visible || sendCache[index].color !== json.color))) {
     if (presetActive) {
-      const ctrlId = sendControlIDs[index] + E1_CONTROL_OFFSET
+      const ctrlId = sendControlIDs[index] + controlOffset
       const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
       host.getMidiOutPort(1).sendSysex(data)
     }
@@ -156,7 +162,7 @@ function showRemoteControl(index, name, force = false) {
   }
   if (index >= 0 && index < remoteControlIDs.length && (force || (remoteControlCache[index].name !== json.name || remoteControlCache[index].visible !== json.visible))) {
     if (presetActive) {
-      const ctrlId = remoteControlIDs[index] + E1_CONTROL_OFFSET
+      const ctrlId = remoteControlIDs[index] + controlOffset
       const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
       host.getMidiOutPort(1).sendSysex(data)
     }
@@ -188,7 +194,7 @@ function showPages(value, force) {
     }
     if (force || (remotePageCache[i].name !== json.name || remotePageCache[i].visible !== json.visible)) {
       if (presetActive) {
-        const ctrlId = E1_PAGE_CTRL_ID + E1_CONTROL_OFFSET + i
+        const ctrlId = E1_PAGE_CTRL_ID + controlOffset + i
         const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
         host.getMidiOutPort(1).sendSysex(data)
       }
@@ -202,7 +208,7 @@ function showPages(value, force) {
       name: cleanupLabel(name),
       visible: cleanupLabel(name).length ? true : false
     }
-    const ctrlId = E1_PAGE_NAME_CTRL_ID + E1_CONTROL_OFFSET
+    const ctrlId = E1_PAGE_NAME_CTRL_ID + controlOffset
     const data = `F0 00 21 45 14 07 ${num2hex(ctrlId & 0x7F)} ${num2hex(ctrlId >> 7)} ${str2hex(JSON.stringify(json))} F7`
     host.getMidiOutPort(1).sendSysex(data)
   }
@@ -287,10 +293,10 @@ function init() {
   cursorDevice.isEnabled().markInterested()
   cursorDevice.isWindowOpen().markInterested()
 
-  /* Patch Request */
-  host.getMidiOutPort(1).sendSysex('F0 00 21 45 02 01 F7')
-
   println(`${CONTROLLER_SCRIPT_NAME} v${CONTROLLER_SCRIPT_VERSION} initialized!`)
+
+
+  host.getMidiOutPort(1).sendSysex('F0 00 21 45 02 7F F7') /* Query data, Electra information */
 }
 
 function reSendAll() {
@@ -347,34 +353,90 @@ function handleMidi(status, data1, data2) {
   return false
 }
 
+function sysexToJSON(payload) {
+  let str = ''
+  for (let i = 0; i < payload.length; i += 2) {
+    str += String.fromCharCode(parseInt(payload.substr(i, 2), 16))
+  }
+  try {
+    return JSON.parse(str)
+  } catch(e) {
+    println(e.toString())
+  }
+}
+
+function deactivateAndRequest() {
+  presetActive = false
+  if (e1_firmware_version && e1_firmware_version < E1_MINIMAL_VERSION_NUMBER) {
+    host.getMidiOutPort(1).sendSysex('F0 00 21 45 02 01 F7') /* Patch Request */
+  } else {
+    host.getMidiOutPort(1).sendSysex('F0 00 21 45 02 7C F7') /* Preset Request */
+  }
+}
+
 function handleSysExMidi(data) {
   if (data && data.substr(0, 8) === 'f0002145') {  // Electra One
-    if (data.substr(8, 4) === '7e02') { //f00021457e02####f7 = Preset Switch
-      presetActive = false
-      host.getMidiOutPort(1).sendSysex('F0 00 21 45 02 01 F7')  /* Patch Request */
+    if (data.substr(8, 4) === '017f') { //f0002145017F####f7 = Response data, Electra information
+      const json=sysexToJSON(data.substr(12,data.length-14))
+      if (json && json.versionText) {
+        e1_firmware_version=parseInt(json.versionText.replace(/[v.]/g,''))
+        if (e1_firmware_version && e1_firmware_version < E1_MINIMAL_VERSION_NUMBER) {
+          host.showPopupNotification(`${CONTROLLER_SCRIPT_NAME}: Please upgrade the firmware on your Electra One to at least ${E1_MINIMAL_VERSION_TEXT}`)
+        }
+        deactivateAndRequest()
+      }
     }
 
-    if (data.substr(8, 4) === '0101') { //f00021450101####f7 = Patch Response
+    if (data.substr(8, 4) === '7e02') { //f00021457e02####f7 = Preset Switch
+      deactivateAndRequest()
+    }
 
-      const headData = data.substr(12, 64 * 2)
-      let head = ''
-      for (let i = 0; i < headData.length; i += 2) {
-        head += String.fromCharCode(parseInt(headData.substr(i, 2), 16))
+    if (e1_firmware_version && e1_firmware_version < E1_MINIMAL_VERSION_NUMBER) {
+      if (data.substr(8, 4) === '0101') { //f00021450101####f7 = Patch Response
+        const headData = data.substr(12, 64 * 2)
+        let head = ''
+        for (let i = 0; i < headData.length; i += 2) {
+          head += String.fromCharCode(parseInt(headData.substr(i, 2), 16))
+        }
+
+        const match = head.match(/,"name"\s*:\s*"([^"]*)",/)
+        presetActive = (match && match.length && match[1].includes(presetName))
+        println(`Control changing ${presetActive ? 'IS' : 'is NOT'} active (the active preset name "${match[1]}" ${presetActive ? 'includes' : 'does NOT include'} the phrase "${presetName}")`)
+        if (presetActive) {
+          reSendAll()
+        }
       }
+    }
 
-      const match = head.match(/,"name"\s*:\s*"([^"]*)",/)
-      presetActive = (match && match.length && /*match[1].trim() === presetName.trim()*/match[1].includes(presetName))
-      println(`Control changing ${presetActive ? 'IS' : 'is NOT'} active (the active preset name "${match[1]}" ${presetActive ? 'includes' : 'does NOT include'} the phrase "${presetName}")`)
-      if (presetActive) {
-        reSendAll()
+    if (e1_firmware_version && e1_firmware_version >= E1_MINIMAL_VERSION_NUMBER) {
+      if (data.substr(8, 4) === '017c') { //f0002145017C####f7 = Preset Response
+        const json=sysexToJSON(data.substr(12,data.length-14))
+        if (json && json.preset) {
+          presetActive = json.preset.includes(presetName)
+          println(`Control changing ${presetActive ? 'IS' : 'is NOT'} active (the active preset name "${json.preset}" ${presetActive ? 'includes' : 'does NOT include'} the phrase "${presetName}")`)
+          if (presetActive) {
+            reSendAll()
+          }
+        }
       }
     }
   } else if (data && data.substr(0, 4) === 'f07d') {  // Non-commercial SysEx: Ours!
-    if (data.substr(4, 4) === '0004') {
-      println('reload')
-      if (presetActive) {
-        reSendAll()
-      }
+
+    if (data.substr(4, 4) === '0003') {  // Bacara request patch
+      println('Received Reload from Bacara preset')
+      presetName = E1_PRESET_NAME
+      pageIndex = 7
+      controlOffset = ((pageIndex - 1) * 36)
+      println(`Switched to ${presetName} mode`)
+      deactivateAndRequest()
+    }
+    if (data.substr(4, 4) === '0004') {  // Bitwig Control request patch
+      println('Received Reload from Bitwig Control preset')
+      presetName = E1_PRESET_NAME_ALTERNATIVE
+      pageIndex = 1
+      controlOffset = ((pageIndex - 1) * 36)
+      println(`Switched to ${presetName} mode`)
+      deactivateAndRequest()
     }
   }
   return false
