@@ -373,7 +373,7 @@ function sysexToJSON(payload) {
   }
   try {
     return JSON.parse(str)
-  } catch(e) {
+  } catch (e) {
     println(e.toString())
   }
 }
@@ -390,9 +390,9 @@ function deactivateAndRequest() {
 function handleSysExMidi(data) {
   if (data && data.substr(0, 8) === 'f0002145') {  // Electra One
     if (data.substr(8, 4) === '017f') { //f0002145017F####f7 = Response data, Electra information
-      const json=sysexToJSON(data.substr(12,data.length-14))
+      const json = sysexToJSON(data.substr(12, data.length - 14))
       if (json && json.versionText) {
-        e1_firmware_version=parseInt(json.versionText.replace(/[v.]/g,''))
+        e1_firmware_version = parseInt(json.versionText.replace(/[v.]/g, ''))
         if (e1_firmware_version && e1_firmware_version < E1_MINIMAL_VERSION_NUMBER) {
           host.showPopupNotification(`${CONTROLLER_SCRIPT_NAME}: Please upgrade the firmware on your Electra One to at least ${E1_MINIMAL_VERSION_TEXT}`)
         }
@@ -423,7 +423,7 @@ function handleSysExMidi(data) {
 
     if (e1_firmware_version && e1_firmware_version >= E1_MINIMAL_VERSION_NUMBER) {
       if (data.substr(8, 4) === '017c') { //f0002145017C####f7 = Preset Response
-        const json=sysexToJSON(data.substr(12,data.length-14))
+        const json = sysexToJSON(data.substr(12, data.length - 14))
         if (json && json.preset) {
           presetActive = json.preset.includes(presetName)
           println(`Control changing ${presetActive ? 'IS' : 'is NOT'} active (the active preset name "${json.preset}" ${presetActive ? 'includes' : 'does NOT include'} the phrase "${presetName}")`)
