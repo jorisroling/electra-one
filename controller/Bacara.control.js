@@ -21,6 +21,19 @@ if (host.platformIsWindows()) {
   host.addDeviceNameBasedDiscoveryPair(['Electra Controller Electra Port 1', 'Electra Controller Electra CTRL'], ['Electra Controller Electra Port 1', 'Electra Controller Electra CTRL'])
 }
 
+const presetModes = {
+  bitwig: {
+    request: 4,
+    preset: 'Bitwig Control',
+    pageIndex: 1,
+  },
+  bacara: {
+    request: 3,
+    preset: 'Bacara',
+    pageIndex: 7,
+  },
+}
+
 let presetActive = false
 let e1_firmware_version
 
@@ -421,22 +434,17 @@ function handleSysExMidi(data) {
       }
     }
   } else if (data && data.substr(0, 4) === 'f07d') {  // Non-commercial SysEx: Ours!
-
-    if (data.substr(4, 4) === '0003') {  // Bacara request patch
-      println('Received Reload from Bacara preset')
-      presetName = E1_PRESET_NAME
-      pageIndex = 7
-      controlOffset = ((pageIndex - 1) * 36)
-      println(`Switched to ${presetName} mode`)
-      deactivateAndRequest()
-    }
-    if (data.substr(4, 4) === '0004') {  // Bitwig Control request patch
-      println('Received Reload from Bitwig Control preset')
-      presetName = E1_PRESET_NAME_ALTERNATIVE
-      pageIndex = 1
-      controlOffset = ((pageIndex - 1) * 36)
-      println(`Switched to ${presetName} mode`)
-      deactivateAndRequest()
+    if (data.substr(4, 3) === '000') {  // Bacara request patch
+      const req = parseInt(data.substr(7, 1))
+      for (let mode in presetModes) {
+        if (presetModes[mode].request == req) {
+          presetName = presetModes[mode].preset
+          pageIndex = presetModes[mode].pageIndex
+          controlOffset = ((pageIndex - 1) * 36)
+          println(`Switched to ${presetName} mode`)
+          deactivateAndRequest()
+        }
+      }
     }
   }
   return false
