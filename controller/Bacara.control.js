@@ -10,7 +10,7 @@ const E1_PRESET_NAME = 'Bacara'
 const E1_PRESET_NAME_ALTERNATIVE = 'Bitwig Control'
 
 
-/* --------------------------------------  v1.13  -- */
+/* --------------------------------------  v1.14  -- */
 host.defineMidiPorts(2, 2)
 
 if (host.platformIsWindows()) {
@@ -326,7 +326,7 @@ function reSendAll() {
       sendMidi(0xB0, E1_CC_LSB[idx], ((value * 16383) >> 0) & 0x7F)
     }
 
-    showRemoteControl(i, name, true)
+    showRemoteControl(idx, name, true)
   }
   showPages( remoteControlsBank.selectedPageIndex().get(), true)
 }
@@ -455,3 +455,8 @@ function flush() {}
 function exit() {
   println(`${CONTROLLER_SCRIPT_NAME} v${CONTROLLER_SCRIPT_VERSION} exited!`)
 }
+
+
+//  clearRemoteControlCache()
+//  clearRemotePageCache()
+//  clearSendCache()
