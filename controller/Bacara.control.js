@@ -1,6 +1,6 @@
 loadAPI(10)
 
-const CONTROLLER_SCRIPT_VERSION = '1.12'
+const CONTROLLER_SCRIPT_VERSION = '1.13'
 const CONTROLLER_BASE_NAME = 'Bacara'
 const CONTROLLER_SCRIPT_NAME = `${CONTROLLER_BASE_NAME} Control` //  v${CONTROLLER_SCRIPT_VERSION}
 host.setShouldFailOnDeprecatedUse(true)
@@ -10,7 +10,7 @@ const E1_PRESET_NAME = 'Bacara'
 const E1_PRESET_NAME_ALTERNATIVE = 'Bitwig Control'
 
 
-/* --------------------------------------  v1.12  -- */
+/* --------------------------------------  v1.13  -- */
 host.defineMidiPorts(2, 2)
 
 if (host.platformIsWindows()) {
