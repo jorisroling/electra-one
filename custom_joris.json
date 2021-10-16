@@ -74,7 +74,7 @@
         "darwin": "MRCC Port 12"
       },
       "lightpad-block": {
-        "darwin": "Lightpad BLOCK "
+        "darwin": "Lightpad BLOCK  Lightpad BLOCK"
       },
       "thouch-block": {
         "darwin": "Touch Block Bluetooth"
@@ -932,24 +932,9 @@
             "device": "thouch-block"
           },
           {
-            "name": "Lightpad BLOCK ",
+            "name": "Lightpad BLOCK  Lightpad BLOCK",
             "short": "Lightpad BLOCK",
             "device": "lightpad-block"
-          },
-          {
-            "name": "Electra Controller A Electra Port 1",
-            "short": "Electra Cont A.1",
-            "device": "electra-one-a-port-1"
-          },
-          {
-            "name": "Electra Controller A Electra Port 2",
-            "short": "Electra Cont A.2",
-            "device": "electra-one-a-port-2"
-          },
-          {
-            "name": "Electra Controller A Electra CTRL",
-            "short": "Electra Contro A.CTRL",
-            "device": "electra-one-a-ctrl"
           },
           {
             "name": "Electra Controller B Electra Port 1",
@@ -965,6 +950,21 @@
             "name": "Electra Controller B Electra CTRL",
             "short": "Electra Contro B.CTRL",
             "device": "electra-one-b-ctrl"
+          },
+          {
+            "name": "Electra Controller A Electra Port 1",
+            "short": "Electra Cont A.1",
+            "device": "electra-one-a-port-1"
+          },
+          {
+            "name": "Electra Controller A Electra Port 2",
+            "short": "Electra Cont A.2",
+            "device": "electra-one-a-port-2"
+          },
+          {
+            "name": "Electra Controller A Electra CTRL",
+            "short": "Electra Contro A.CTRL",
+            "device": "electra-one-a-ctrl"
           },
           {
             "name": "MRCC Port 1",
@@ -1113,24 +1113,9 @@
             "device": "thouch-block"
           },
           {
-            "name": "Lightpad BLOCK ",
+            "name": "Lightpad BLOCK  Lightpad BLOCK",
             "short": "Lightpad BLOCK",
             "device": "lightpad-block"
-          },
-          {
-            "name": "Electra Controller A Electra Port 1",
-            "short": "Electra Cont A.1",
-            "device": "electra-one-a-port-1"
-          },
-          {
-            "name": "Electra Controller A Electra Port 2",
-            "short": "Electra Cont A.2",
-            "device": "electra-one-a-port-2"
-          },
-          {
-            "name": "Electra Controller A Electra CTRL",
-            "short": "Electra Contro A.CTRL",
-            "device": "electra-one-a-ctrl"
           },
           {
             "name": "Electra Controller B Electra Port 1",
@@ -1146,6 +1131,21 @@
             "name": "Electra Controller B Electra CTRL",
             "short": "Electra Contro B.CTRL",
             "device": "electra-one-b-ctrl"
+          },
+          {
+            "name": "Electra Controller A Electra Port 1",
+            "short": "Electra Cont A.1",
+            "device": "electra-one-a-port-1"
+          },
+          {
+            "name": "Electra Controller A Electra Port 2",
+            "short": "Electra Cont A.2",
+            "device": "electra-one-a-port-2"
+          },
+          {
+            "name": "Electra Controller A Electra CTRL",
+            "short": "Electra Contro A.CTRL",
+            "device": "electra-one-a-ctrl"
           },
           {
             "name": "MRCC Port 1",

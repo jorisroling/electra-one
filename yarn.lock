@@ -796,11 +796,11 @@ duplexer3@^0.1.4:
   integrity sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=
 
 easymidi@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/easymidi/-/easymidi-2.0.5.tgz#0b49df7fed23811e9064a1ca2bde0b7efc2338c7"
-  integrity sha512-wybrrpOJ+MO9XXO2izLIo3qMVhqulk+Oe/6dYkU9pQIbFv7OylYu7MPcTdm47TKrgmcKH9AHjwF846BLpx3i1A==
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/easymidi/-/easymidi-2.1.0.tgz#8d628109bffad981f843c631e0aa961cb0ed5d9f"
+  integrity sha512-RWhn7AIl0uZLoOTo7wtyLFGQtz9QaLPNyGx9TM2SWqaGlhncGz8XgaiLrbNvNbBiCzO/Kn59mR4yaIGaKdET5A==
   dependencies:
-    midi "^1.0.4"
+    midi "^2.0.0"
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -1703,10 +1703,10 @@ midi-file@^1.1.2:
   resolved "https://registry.yarnpkg.com/midi-file/-/midi-file-1.1.2.tgz#57fafe2dcb605ef29f06652ac45e7a475873dc77"
   integrity sha512-VQNzirfADDFXTymgPJv2VfLylCq14spRNFhpA6u7dLqPMbw1BqGf5u9B0k7z++8X1RMs57pyn+G4kzhyIatlyw==
 
-midi@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/midi/-/midi-1.0.4.tgz#b8a33fded82b8cb74307dc10921ae29e7be1c5cc"
-  integrity sha512-fNZr4OEOHpV9HjDaZIg2lB5SRMaSdBvo2nX7Z9Mgk2OZ3JMtZdkbgDcXYoudBHNLWLf6B9C7bQGGyXDHYMSNKg==
+midi@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/midi/-/midi-2.0.0.tgz#5035dd0d0c4b381eeb6e9202c785ce81221d0c7a"
+  integrity sha512-HyCLWa+ET8Aqfu/NxdNkxfCx0EfCJrcZgKuhrY4c9UgkfxRt3ChM7RP1oC5vJf7ALXyuAG47jqr5yUlvSodTPQ==
   dependencies:
     bindings "~1.5.0"
     nan "^2.14.2"
