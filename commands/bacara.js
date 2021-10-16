@@ -640,7 +640,7 @@ class BacaraMachine extends Machine {
           this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern', random:'random_pattern'})
 
           const count = Pattern.patternFiles(this.state, true)
-          if (this.interface.getParameter('pattern', 0) < (count-1)) {
+          if (this.interface.getParameter('pattern', 0) < (count - 1)) {
             this.interface.setParameter('pattern', this.interface.getParameter('pattern', 0) + 1)
 
             this.state.pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
@@ -667,7 +667,7 @@ class BacaraMachine extends Machine {
       },
       previous_preset: (elementPath, origin) => {
         if (origin == 'surface') {
-          this.setRemote(origin, {next:'next_preset', previous:'previous_preset',random:'random_preset'})
+          this.setRemote(origin, {next:'next_preset', previous:'previous_preset', random:'random_preset'})
           const program = this.interface.getParameter('program')
           if (program >= 1 && program < 128) {
             const filename = this.load_preset(program - 1)
@@ -688,7 +688,7 @@ class BacaraMachine extends Machine {
       },
       next_preset: (elementPath, origin) => {
         if (origin == 'surface') {
-          this.setRemote(origin, {next:'next_preset', previous:'previous_preset',random:'random_preset'})
+          this.setRemote(origin, {next:'next_preset', previous:'previous_preset', random:'random_preset'})
           const program = this.interface.getParameter('program')
           if (program >= 0 && program < 127) {
             const filename = this.load_preset(program + 1)
@@ -709,7 +709,7 @@ class BacaraMachine extends Machine {
       },
       random_preset: (elementPath, origin) => {
         if (origin == 'surface') {
-          this.setRemote(origin, {next:'next_preset', previous:'previous_preset',random:'random_preset'})
+          this.setRemote(origin, {next:'next_preset', previous:'previous_preset', random:'random_preset'})
           const filename = this.load_preset(Machine.getRandomInt(this.presetFiles(true)))
           if (filename) {
             this.sendDeviceProgramChange('A')
@@ -2198,7 +2198,7 @@ class BacaraMachine extends Machine {
       const bank = this.interface.getParameter('bank', 0)
       const playing = this.state.playing
       const remote = this.state.remote
-      this.readState(filename,{bank, program})
+      this.readState(filename, {bank, program})
       this.state.playing = playing
       this.state.remote = remote
       this.ensureDevicePortName('A')
@@ -2846,8 +2846,8 @@ function bacaraSequencer(name, sub, options) {
           if (_.isEqual(sysexHeader, electraSysexHeader)) {
             if (_.isEqual(sysexCmd, electraSysexCmdInfoResponse)) {
               e1_system_info = electra.parseSysexCmdInfoResponse(options.electraOneCtrl, msg.bytes)
-              debug('info actual %y >= %y ? %y',e1_system_info.versionText, E1_FIRMWARE_PRESET_REQUEST_VERSION, semver.gte(e1_system_info.versionText,E1_FIRMWARE_PRESET_REQUEST_VERSION))
-              if (config.electra.checkPresetVia == 'patch' || semver.lt(e1_system_info.versionText,E1_FIRMWARE_PRESET_REQUEST_VERSION)) { // semver: see if actual version is smaller that v2.1.2
+              debug('info actual %y >= %y ? %y', e1_system_info.versionText, E1_FIRMWARE_PRESET_REQUEST_VERSION, semver.gte(e1_system_info.versionText, E1_FIRMWARE_PRESET_REQUEST_VERSION))
+              if (config.electra.checkPresetVia == 'patch' || semver.lt(e1_system_info.versionText, E1_FIRMWARE_PRESET_REQUEST_VERSION)) { // semver: see if actual version is smaller that v2.1.2
                 debug('Send Patch Request to %y', options.electraOneCtrl)
                 Midi.send(options.electraOneCtrl, 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
               } else if (config.electra.checkPresetVia == 'preset') {
@@ -2871,7 +2871,7 @@ function bacaraSequencer(name, sub, options) {
                 debug('Electra One "%y" preset is NOT Loaded (currently is "%y") (preset)', bacaraPresetName, presetName)
               }
             } else if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
-              if (config.electra.checkPresetVia == 'patch' || semver.lt(e1_system_info.versionText,E1_FIRMWARE_PRESET_REQUEST_VERSION)) {
+              if (config.electra.checkPresetVia == 'patch' || semver.lt(e1_system_info.versionText, E1_FIRMWARE_PRESET_REQUEST_VERSION)) {
                 debug('Send Patch Request to %y', options.electraOneCtrl)
                 Midi.send(options.electraOneCtrl, 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
               } else if (config.electra.checkPresetVia == 'preset') {

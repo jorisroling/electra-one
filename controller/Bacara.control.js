@@ -1,4 +1,6 @@
-loadAPI(10)
+loadAPI(14)
+
+//host.setShouldFailOnDeprecatedUse(true)
 
 const CONTROLLER_SCRIPT_VERSION = '1.13'
 const CONTROLLER_BASE_NAME = 'Bacara'
@@ -8,6 +10,7 @@ host.defineController('Bonboa', CONTROLLER_SCRIPT_NAME, CONTROLLER_SCRIPT_VERSIO
 const E1_PAGE_INDEX  = 7
 const E1_PRESET_NAME = 'Bacara'
 const E1_PRESET_NAME_ALTERNATIVE = 'Bitwig Control'
+
 
 
 /* --------------------------------------  v1.14  -- */
@@ -294,7 +297,7 @@ function init() {
       remoteControlValues[idx] = value
     })
 
-/*    parameter.displayedValue().addValueObserver(function(value) {
+    /*    parameter.displayedValue().addValueObserver(function(value) {
       const idx = (layoutColumns ? REVERSE_LAYOUT_COLUMNS_MAP[i] : i)
 
       const json = {
