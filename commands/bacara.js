@@ -648,7 +648,6 @@ class BacaraMachine extends Machine {
           if (program >= 1 && program < 128) {
             const filename = this.load_preset(program - 1)
             if (filename) {
-
               this.sendDeviceProgramChange('A')
               this.sendDeviceProgramChange('B')
               for (let trk = 0; trk < 6; trk++) {
@@ -2157,9 +2156,7 @@ class BacaraMachine extends Machine {
       const bank = this.interface.getParameter('bank', 0)
       const playing = this.state.playing
       const remote = this.state.remote
-      this.readState(filename)
-      this.interface.setParameter('bank', bank)
-      this.interface.setParameter('program', program)
+      this.readState(filename,{bank, program})
       this.state.playing = playing
       this.state.remote = remote
       this.ensureDevicePortName('A')
