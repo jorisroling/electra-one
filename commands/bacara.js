@@ -623,30 +623,51 @@ class BacaraMachine extends Machine {
       },
       previous_pattern: (elementPath, origin) => {
         if (origin == 'surface') {
-          this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern'})
-          this.interface.setParameter('pattern', this.interface.getParameter('pattern', 0) - 1)
-          this.state.pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
-          this.interface.setParameter('steps', this.getState('patternSteps'))
-          this.showPattern()
-          this.writeState()
-          debug('previous_pattern: %y', this.interface.getParameter('pattern'))
+          this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern', random:'random_pattern'})
+
+          if (this.interface.getParameter('pattern', 0) > 0 ) {
+            this.interface.setParameter('pattern', this.interface.getParameter('pattern', 0) - 1)
+            this.state.pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
+            this.interface.setParameter('steps', this.getState('patternSteps'))
+            this.showPattern()
+            this.writeState()
+            debug('previous_pattern: %y', this.interface.getParameter('pattern'))
+          }
         }
       },
       next_pattern: (elementPath, origin) => {
         if (origin == 'surface') {
-          this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern'})
-          this.interface.setParameter('pattern', this.interface.getParameter('pattern', 0) + 1)
+          this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern', random:'random_pattern'})
+
+          const count = Pattern.patternFiles(this.state, true)
+          if (this.interface.getParameter('pattern', 0) < (count-1)) {
+            this.interface.setParameter('pattern', this.interface.getParameter('pattern', 0) + 1)
+
+            this.state.pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
+            this.interface.setParameter('steps', this.getState('patternSteps'))
+            this.showPattern()
+            this.writeState()
+            debug('next_pattern: %y', this.interface.getParameter('pattern'))
+          }
+        }
+      },
+      random_pattern: (elementPath, origin) => {
+        if (origin == 'surface') {
+          this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern', random:'random_pattern'})
+
+          const count = Pattern.patternFiles(this.state, true)
+          this.interface.setParameter('pattern', Machine.getRandomInt(count) )
 
           this.state.pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
           this.interface.setParameter('steps', this.getState('patternSteps'))
           this.showPattern()
           this.writeState()
-          debug('next_pattern: %y', this.interface.getParameter('pattern'))
+          debug('random_pattern: %y', this.interface.getParameter('pattern'))
         }
       },
       previous_preset: (elementPath, origin) => {
         if (origin == 'surface') {
-          this.setRemote(origin, {next:'next_preset', previous:'previous_preset'})
+          this.setRemote(origin, {next:'next_preset', previous:'previous_preset',random:'random_preset'})
           const program = this.interface.getParameter('program')
           if (program >= 1 && program < 128) {
             const filename = this.load_preset(program - 1)
@@ -667,7 +688,7 @@ class BacaraMachine extends Machine {
       },
       next_preset: (elementPath, origin) => {
         if (origin == 'surface') {
-          this.setRemote(origin, {next:'next_preset', previous:'previous_preset'})
+          this.setRemote(origin, {next:'next_preset', previous:'previous_preset',random:'random_preset'})
           const program = this.interface.getParameter('program')
           if (program >= 0 && program < 127) {
             const filename = this.load_preset(program + 1)
@@ -683,6 +704,24 @@ class BacaraMachine extends Machine {
               this.writeState()
               debug('next_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
             }
+          }
+        }
+      },
+      random_preset: (elementPath, origin) => {
+        if (origin == 'surface') {
+          this.setRemote(origin, {next:'next_preset', previous:'previous_preset',random:'random_preset'})
+          const filename = this.load_preset(Machine.getRandomInt(this.presetFiles(true)))
+          if (filename) {
+            this.sendDeviceProgramChange('A')
+            this.sendDeviceProgramChange('B')
+            for (let trk = 0; trk < 6; trk++) {
+              this.sendTrackProgramChange(trk)
+            }
+            this.virusSetupParts()
+            this.interface.sendValues(origin)
+            this.showPattern()
+            this.writeState()
+            debug('next_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
           }
         }
       },
