@@ -114,7 +114,7 @@
   },
   "devDependencies": {
     "eslint": "^8.0.1",
-    "eslint-plugin-jest": "^25.2.1",
+    "eslint-plugin-jest": "^25.2.2",
     "nodemon": "^2.0.13"
   }
 }
