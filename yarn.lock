@@ -795,7 +795,7 @@ duplexer3@^0.1.4:
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
   integrity sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=
 
-easymidi@^2.0.5:
+easymidi@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/easymidi/-/easymidi-2.1.0.tgz#8d628109bffad981f843c631e0aa961cb0ed5d9f"
   integrity sha512-RWhn7AIl0uZLoOTo7wtyLFGQtz9QaLPNyGx9TM2SWqaGlhncGz8XgaiLrbNvNbBiCzO/Kn59mR4yaIGaKdET5A==
