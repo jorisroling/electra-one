@@ -352,30 +352,41 @@ class BacaraMachine extends Machine {
             if (msg.channel == (this.options.remoteChannel - 1)) {
               let actionPath
               if (msg.controller == _.get(config, 'touchBlock.button.9.cc') && msg.value == 127) {
-                actionPath = this.getState('remote.next')
-                //                debug('remote action %y',actionPath)
+                actionPath = this.getState('remote.next', 'virus.search.part.0.next')
               }
               if (msg.controller == _.get(config, 'touchBlock.button.8.cc') && msg.value == 127) {
-                actionPath = this.getState('remote.previous')
-                //                debug('remote action %y',actionPath)
+                actionPath = this.getState('remote.previous', 'virus.search.part.0.previous')
               }
               if (msg.controller == _.get(config, 'touchBlock.button.7.cc') && msg.value == 127) {
-                actionPath = this.getState('remote.random')
+                actionPath = this.getState('remote.random', 'virus.search.part.0.random')
+              }
+              if (msg.controller == _.get(config, 'touchBlock.button.6.cc') && msg.value == 127) {
+                actionPath = this.getState('remote.random_pattern', 'random_pattern')
               }
               if (msg.controller == _.get(config, 'touchBlock.button.5.cc') && msg.value == 127) {
-                actionPath = this.getState('remote.recenter')
+                actionPath = this.getState('remote.recenter', 'virus.axyz.recenter')
               }
               if (msg.controller == _.get(config, 'touchBlock.button.4.cc') && msg.value == 127) {
-                actionPath = this.getState('remote.nextBank')
+                actionPath = this.getState('remote.nextBank', 'virus.mixer.part.0.nextBank')
               }
               if (msg.controller == _.get(config, 'touchBlock.button.3.cc') && msg.value == 127) {
-                actionPath = this.getState('remote.previousBank')
+                actionPath = this.getState('remote.previousBank', 'virus.mixer.part.0.previousBank')
+              }
+              if (msg.controller == _.get(config, 'touchBlock.button.2.cc') && msg.value == 127) {
+                actionPath = this.getState('remote.next_pattern', 'next_pattern')
+              }
+              if (msg.controller == _.get(config, 'touchBlock.button.1.cc') && msg.value == 127) {
+                actionPath = this.getState('remote.previous_pattern', 'previous_pattern')
+              }
+              if (msg.controller == _.get(config, 'touchBlock.button.0.cc') && msg.value == 127) {
+                actionPath = this.getState('remote.remote_reset', 'remote_reset')
               }
               if (actionPath) {
+                /*                debug('remote action %y',actionPath)*/
                 const actionSideEffect = _.get(this.actionSideEffects, actionPath)
                 if (typeof actionSideEffect == 'function') {
                   debug('Remote %y', actionPath)
-                  actionSideEffect(path, 'surface')
+                  actionSideEffect(path, 'remote')
                 }
               }
             }
@@ -556,7 +567,7 @@ class BacaraMachine extends Machine {
       return {
         generate: (elementPath, origin) => {
           /*          debug('JJR1 %y %y',elementPath, origin)*/
-          if (origin == 'surface') {
+          if (origin == 'surface' || origin == 'remote') {
             const instrument = this.interface.getParameter(`drums.redrum.${trck}.instrument`)
             this.setState('drums.patterns', Drums.generate(this.interface.getParameter('drums.steps'), this.interface.getParameter('drums.style'), instrument, this.getState('drums.patterns')))
             this.setState('drums.midi', Drums.midiFromPatterns(this.interface.getParameter('drums.steps'), this.getState('drums.patterns')))
@@ -606,13 +617,16 @@ class BacaraMachine extends Machine {
         }
       },
       load: (elementPath, origin) => {
-        if (origin == 'surface') {
+        if (origin == 'surface' || origin == 'remote') {
           this.interface.sendValues(origin)
           debug('load')
         }
       },
+      remote_reset: (elementPath, origin) => {
+        this.setState('remote', {})
+      },
       generate: (elementPath, origin) => {
-        if (origin == 'surface') {
+        if (origin == 'surface' || origin == 'remote') {
           this.state.pattern = Pattern.generate(this.state, this.interface.getParameter('steps'))
           this.interface.setParameter('pattern', Pattern.patternFiles(this.state, true) - 1)
 
@@ -622,7 +636,7 @@ class BacaraMachine extends Machine {
         }
       },
       previous_pattern: (elementPath, origin) => {
-        if (origin == 'surface') {
+        if (origin == 'surface' || origin == 'remote') {
           this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern', random:'random_pattern'})
 
           if (this.interface.getParameter('pattern', 0) > 0 ) {
@@ -636,7 +650,7 @@ class BacaraMachine extends Machine {
         }
       },
       next_pattern: (elementPath, origin) => {
-        if (origin == 'surface') {
+        if (origin == 'surface' || origin == 'remote') {
           this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern', random:'random_pattern'})
 
           const count = Pattern.patternFiles(this.state, true)
@@ -652,7 +666,7 @@ class BacaraMachine extends Machine {
         }
       },
       random_pattern: (elementPath, origin) => {
-        if (origin == 'surface') {
+        if (origin == 'surface' || origin == 'remote') {
           this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern', random:'random_pattern'})
 
           const count = Pattern.patternFiles(this.state, true)
@@ -666,7 +680,7 @@ class BacaraMachine extends Machine {
         }
       },
       previous_preset: (elementPath, origin) => {
-        if (origin == 'surface') {
+        if (origin == 'surface' || origin == 'remote') {
           this.setRemote(origin, {next:'next_preset', previous:'previous_preset', random:'random_preset'})
           const program = this.interface.getParameter('program')
           if (program >= 1 && program < 128) {
@@ -687,7 +701,7 @@ class BacaraMachine extends Machine {
         }
       },
       next_preset: (elementPath, origin) => {
-        if (origin == 'surface') {
+        if (origin == 'surface' || origin == 'remote') {
           this.setRemote(origin, {next:'next_preset', previous:'previous_preset', random:'random_preset'})
           const program = this.interface.getParameter('program')
           if (program >= 0 && program < 127) {
@@ -708,7 +722,7 @@ class BacaraMachine extends Machine {
         }
       },
       random_preset: (elementPath, origin) => {
-        if (origin == 'surface') {
+        if (origin == 'surface' || origin == 'remote') {
           this.setRemote(origin, {next:'next_preset', previous:'previous_preset', random:'random_preset'})
           const filename = this.load_preset(Machine.getRandomInt(this.presetFiles(true)))
           if (filename) {
@@ -721,24 +735,24 @@ class BacaraMachine extends Machine {
             this.interface.sendValues(origin)
             this.showPattern()
             this.writeState()
-            debug('next_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
+            debug('random_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
           }
         }
       },
       add_preset: (elementPath, origin) => {
-        if (origin == 'surface') {
+        if (origin == 'surface' || origin == 'remote') {
           const filename = this.add_preset()
           debug('add_preset: %y', filename)
         }
       },
       save_preset: (elementPath, origin) => {
-        if (origin == 'surface') {
+        if (origin == 'surface' || origin == 'remote') {
           const filename = this.save_preset()
           debug('save_preset: %y', filename)
         }
       },
       reset_preset: (elementPath, origin) => {
-        if (origin == 'surface') {
+        if (origin == 'surface' || origin == 'remote') {
           this.interface.reset()
           this.showPattern()
           this.writeState()
@@ -760,7 +774,7 @@ class BacaraMachine extends Machine {
       },
       drums: {
         generate: (elementPath, origin) => {
-          if (origin == 'surface') {
+          if (origin == 'surface' || origin == 'remote') {
             this.setState('drums.patterns', Drums.generate(this.interface.getParameter('drums.steps'), this.interface.getParameter('drums.style'), -1, this.getState('drums.patterns')))
             this.setState('drums.midi', Drums.midiFromPatterns(this.interface.getParameter('drums.steps'), this.getState('drums.patterns')))
             this.showDrumsPattern()
@@ -1374,7 +1388,7 @@ class BacaraMachine extends Machine {
         debug('pattern: %y', value)
       },
       program: (elementPath, value, origin) => {
-        if (origin == 'surface') {
+        if (origin == 'surface' || origin == 'remote') {
           this.setRemote(origin, {next:'next_preset', previous:'previous_preset'})
           const presetFilesCount = Pattern.presetFiles(this.state, true)
           if (value >= 0 && value < presetFilesCount) {
@@ -2775,9 +2789,8 @@ class BacaraMachine extends Machine {
   }
 
   setRemote(origin, options) {
-    if (origin != 'post-connect') {
+    if (origin == 'surface') {
       for (let key in options) {
-        /*        debug('setRemote %y',`remote.${key}`,options[key])*/
         this.setState(`remote.${key}`, options[key])
       }
     }
@@ -2846,8 +2859,8 @@ function bacaraSequencer(name, sub, options) {
           if (_.isEqual(sysexHeader, electraSysexHeader)) {
             if (_.isEqual(sysexCmd, electraSysexCmdInfoResponse)) {
               e1_system_info = electra.parseSysexCmdInfoResponse(options.electraOneCtrl, msg.bytes)
-              debug('info actual %y >= %y ? %y', e1_system_info.versionText, E1_FIRMWARE_PRESET_REQUEST_VERSION, semver.gte(e1_system_info.versionText, E1_FIRMWARE_PRESET_REQUEST_VERSION))
-              if (config.electra.checkPresetVia == 'patch' || semver.lt(e1_system_info.versionText, E1_FIRMWARE_PRESET_REQUEST_VERSION)) { // semver: see if actual version is smaller that v2.1.2
+              debug('info actual %y >= %y ? %y', e1_system_info.versionText, E1_FIRMWARE_PRESET_REQUEST_VERSION, semver.gte(_.get(e1_system_info, 'versionText', 'v0.0.0'), E1_FIRMWARE_PRESET_REQUEST_VERSION))
+              if (config.electra.checkPresetVia == 'patch' || semver.lt(_.get(e1_system_info, 'versionText', 'v0.0.0'), E1_FIRMWARE_PRESET_REQUEST_VERSION)) { // semver: see if actual version is smaller that v2.1.2
                 debug('Send Patch Request to %y', options.electraOneCtrl)
                 Midi.send(options.electraOneCtrl, 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
               } else if (config.electra.checkPresetVia == 'preset') {
@@ -2871,7 +2884,7 @@ function bacaraSequencer(name, sub, options) {
                 debug('Electra One "%y" preset is NOT Loaded (currently is "%y") (preset)', bacaraPresetName, presetName)
               }
             } else if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
-              if (config.electra.checkPresetVia == 'patch' || semver.lt(e1_system_info.versionText, E1_FIRMWARE_PRESET_REQUEST_VERSION)) {
+              if (config.electra.checkPresetVia == 'patch' || semver.lt(_.get(e1_system_info, 'versionText', 'v0.0.0'), E1_FIRMWARE_PRESET_REQUEST_VERSION)) {
                 debug('Send Patch Request to %y', options.electraOneCtrl)
                 Midi.send(options.electraOneCtrl, 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x01, 0xF7])  /* Patch Request */
               } else if (config.electra.checkPresetVia == 'preset') {
