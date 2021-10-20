@@ -14,13 +14,16 @@
     "upload": "node index upload",
     "remove": "node index remove",
     "bacara": "nodemon --verbose -L --ignore state index bacara",
-    "fuse": "nodemon --verbose -L --ignore state index fuse",
+    "gui": "nodemon --verbose -L --ignore state --exec \"npx qode\" index gui",
+    "fuse": "nodemon --verbose -L --ignore state --exec \"npx qode\" index fuse",
     "preset": "node index preset --filename \"presets/Bacara.epr\" --presetName \"Bacara\" --custom custom_bacara.json",
     "preset_joris": "node index preset --filename \"presets/Bacara Joris.epr\" --presetName \"Bacara Joris\" --custom custom_joris.json",
     "build": "npm run preset;npm run preset_joris",
     "start": "npm run fuse",
     "lint": "eslint .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rebuild": "qode /usr/local/bin/npm rebuild",
+    "pack": "webpack && nodegui-packer --pack ./dist"
   },
   "repository": {
     "type": "git",
@@ -89,6 +92,7 @@
     "README.md"
   ],
   "dependencies": {
+    "@nodegui/nodegui": "^0.40.1",
     "@tonaljs/tonal": "^4.6.5",
     "@tonejs/midi": "^2.0.27",
     "args": "^5.0.1",
@@ -97,7 +101,7 @@
     "config": "^3.3.6",
     "deep-equal": "^2.0.5",
     "deep-sort-object": "^1.0.2",
-    "easymidi": "^2.0.5",
+    "easymidi": "^2.1.0",
     "escape-regex-string": "^1.0.6",
     "euclidean-rhythms": "^2.0.1",
     "fs-extra": "^10.0.0",
@@ -113,8 +117,17 @@
     "yves": "^1.0.80"
   },
   "devDependencies": {
+    "@nodegui/packer": "^1.5.0",
+    "@types/node": "^16.4.13",
+    "clean-webpack-plugin": "^4.0.0",
     "eslint": "^8.0.1",
     "eslint-plugin-jest": "^25.2.2",
-    "nodemon": "^2.0.13"
+    "file-loader": "^6.2.0",
+    "native-addon-loader": "^2.0.1",
+    "nodemon": "^2.0.13",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.3.5",
+    "webpack": "^5.49.0",
+    "webpack-cli": "^4.9.1"
   }
 }
