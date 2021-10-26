@@ -30,19 +30,19 @@ So these pattern can run, by clocking it to an external MIDI clock source. Now p
 
 The patterns are stored as MIDI clips, so one could always use them directly in any DAW.
 
-###Drums
+### Drums
 
 With a very simular process as described above, a 11 track drum pattern can be generated, and assigned to a external Drum Machine.
 
-###LFO
+### LFO
 
 The Bacara Sequencer has 3 LFO's allowing to target any internal parameter, or, target any CC on ddevice A and/or B
 
-###Modulation
+### Modulation
 
 The Bacara Sequencer has 3 modulation slots with 3 tagets each.
 
-###Virtual MIDI
+### Virtual MIDI
 
 All patterns (melodic & drums) are also reflected on a "virtual MIDI port" called Bacara. So with that you can target any DAW hosted software synthesizer (VTS/AU/native). On the Bacara port, Devices A goed to Bacara channel 1, Device B to Bacara channel 2, Drums to Bacara channel 10. So no hardware devices are actually required.
 
