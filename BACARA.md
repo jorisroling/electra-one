@@ -44,7 +44,7 @@ The Bacara Sequencer has 3 modulation slots with 3 tagets each.
 
 ### Virtual MIDI
 
-All patterns (melodic & drums) are also reflected on a "virtual MIDI port" called Bacara. So with that you can target any DAW hosted software synthesizer (VTS/AU/native). On the Bacara port, Devices A goed to Bacara channel 1, Device B to Bacara channel 2, Drums to Bacara channel 10. So no hardware devices are actually required.
+All patterns (melodic & drums) are also reflected on a "virtual MIDI port" called Bacara. So with that you can target any DAW hosted software synthesizer (VTS/AU/native). On the Bacara port, Devices A go to Bacara channel 1, Device B to Bacara channel 2, Drums to Bacara channel 10. So no hardware devices are actually required.
 
 ### Generating the Electra One preset.
 
