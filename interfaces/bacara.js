@@ -408,7 +408,7 @@ module.exports = {
         min: 0,
         max: 2,
       },
-      default: 0,
+      default: 2,
     },
     previous_preset: {
       name: 'Previous Preset',
@@ -2004,7 +2004,7 @@ module.exports = {
           },
           min: 0,
           max: 10,
-          default: 0,
+          default: 1,
         },
         generate: {
           name: 'Snare Drum Generate',

@@ -7,6 +7,10 @@ const glob = require('glob')
 const path = require('path')
 
 const _ = require('lodash')
+const fs = require('fs-extra')
+const jsonfile = require('jsonfile')
+const deepSortObject = require('deep-sort-object')
+
 
 const Pattern = require('../lib/pattern')
 const Drums = require('../lib/drums')
@@ -381,14 +385,7 @@ class BacaraMachine extends Machine {
               if (msg.controller == _.get(config, 'touchBlock.button.0.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.remote_reset', 'remote_reset')
               }
-              if (actionPath) {
-                /*                debug('remote action %y',actionPath)*/
-                const actionSideEffect = _.get(this.actionSideEffects, actionPath)
-                if (typeof actionSideEffect == 'function') {
-                  debug('Remote %y', actionPath)
-                  actionSideEffect(path, 'remote')
-                }
-              }
+              this.triggerAction(actionPath,'remote')
             }
             break
           }
@@ -532,6 +529,7 @@ class BacaraMachine extends Machine {
 
     const devicePreviousBank = (dev) => (elementPath, origin) => {
       debug('devicePreviousBank %y', dev)
+      this.setRemote(origin, {next:`device.${dev}.nextBank`, previous:`device.${dev}.previousBank`})
       const bank = this.interface.getParameter(`device.${dev}.bank`)
       if (bank > 0) {
         this.interface.setParameter(`device.${dev}.bank`, bank - 1)
@@ -540,6 +538,7 @@ class BacaraMachine extends Machine {
     }
     const deviceNextBank = (dev) => (elementPath, origin) => {
       debug('deviceNextBank %y', dev)
+      this.setRemote(origin, {next:`device.${dev}.nextBank`, previous:`device.${dev}.previousBank`})
       const bank = this.interface.getParameter(`device.${dev}.bank`)
       if (bank < 127) {
         this.interface.setParameter(`device.${dev}.bank`, bank + 1)
@@ -548,6 +547,7 @@ class BacaraMachine extends Machine {
     }
     const devicePrevious = (dev) => (elementPath, origin) => {
       debug('devicePrevious %y', dev)
+      this.setRemote(origin, {next:`device.${dev}.next`, previous:`device.${dev}.previous`})
       const program = this.interface.getParameter(`device.${dev}.program`)
       if (program > 0) {
         this.interface.setParameter(`device.${dev}.program`, program - 1)
@@ -556,6 +556,7 @@ class BacaraMachine extends Machine {
     }
     const deviceNext = (dev) => (elementPath, origin) => {
       debug('deviceNext %y', dev)
+      this.setRemote(origin, {next:`device.${dev}.next`, previous:`device.${dev}.previous`})
       const program = this.interface.getParameter(`device.${dev}.program`)
       if (program < 127) {
         this.interface.setParameter(`device.${dev}.program`, program + 1)
@@ -774,7 +775,8 @@ class BacaraMachine extends Machine {
       },
       drums: {
         generate: (elementPath, origin) => {
-          if (origin == 'surface' || origin == 'remote') {
+/*          console.trace('JJR GEN')*/
+          if (origin == 'surface' || origin == 'remote' || !this.getState('drums.patterns')) {
             this.setState('drums.patterns', Drums.generate(this.interface.getParameter('drums.steps'), this.interface.getParameter('drums.style'), -1, this.getState('drums.patterns')))
             this.setState('drums.midi', Drums.midiFromPatterns(this.interface.getParameter('drums.steps'), this.getState('drums.patterns')))
             this.showDrumsPattern()
@@ -1539,6 +1541,7 @@ class BacaraMachine extends Machine {
       },
       drums: {
         density: (elementPath, value, origin) => {
+//          console.trace('JJR DENS')
           if (origin == 'surface' || !this.getState('drums.sounding')) {
             const sounding = []
             for (let idx = 0; idx < this.interface.getParameter('drums.steps', patternStepsDefault); idx++) {
@@ -1788,6 +1791,102 @@ class BacaraMachine extends Machine {
               this.matrixSetSlotValue(slotIdx, this.interface.getParameter(`matrix.slot.${slotIdx}.slewLimiter`, 0), matrixSetSlotValueTimout, modSlotValue)
             }
           }
+        }
+      }
+    })
+  }
+
+  triggerAction(actionPath,origin) {
+    if (actionPath) {
+      const actionSideEffect = _.get(this.actionSideEffects, actionPath)
+      if (typeof actionSideEffect == 'function') {
+        debug('Trigger Action %y (origin %y)', actionPath,origin)
+        actionSideEffect(path, origin)
+      }
+    }
+  }
+
+  getPreset() {
+    return {
+      name:pkg.name,
+      version:pkg.version,
+      model:this.name,
+      lfo:deepSortObject(this.interface.lfo),
+      modulation:deepSortObject(this.interface.modulation),
+      state:deepSortObject(this.state),
+      parameters:deepSortObject(this.interface.getParameters())
+    }
+  }
+
+  readState(filename, keepObj) {
+    const filePath = filename ? filename : path.resolve( (process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/${this.name}.json`) : `${__dirname}/../../state/${this.name}.json` )
+    if (fs.existsSync(filePath)) {
+      let json
+      try {
+        json = jsonfile.readFileSync(filePath)
+      } catch (e) {
+        console.error(e)
+      }
+      if (json) {
+        const state = {}
+        const paths = [
+          'device.A.portName',
+          'device.B.portName',
+          'lfo.0.shapeName',
+          'lfo.1.shapeName',
+          'lfo.2.shapeName',
+          'octaves',
+          'pattern',
+          'playing',
+          'sounding',
+          'virus',
+          'remote',
+          'drums',
+        ]
+        paths.forEach( path => _.set(state, path, _.get(json.state ? json.state : json, path)) )
+        this.setStates(state)
+        if (!this.getState('redrum')) {
+          for (let i=0;i<6;i++) {
+            this.setState(`redrum.${i}`,{portName: `tr-6s`})
+          }
+        }
+        _.set(this.modulation, 'lfo', _.get(json, 'modulation.lfo', {}))
+        _.set(this.modulation, 'matrix', _.get(json, 'modulation.matrix', {}))
+
+        let parameters = (json.parameters ? json.parameters : json)
+        if (keepObj) {
+          _.merge(parameters, keepObj)
+        }
+        this.interface.setParameters(parameters)
+
+        this.interface.emitParameters('post-connect')
+
+        if (!this.getState('drums.midi')) {
+          this.triggerAction('drums.generate','post-connect')
+        }
+      }
+    }
+  }
+
+  writeState(filename) {
+    const filePath = filename ? filename : path.resolve((process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/${this.name}.json`) : `${__dirname}/../../state/${this.name}.json`)
+    fs.ensureDirSync(path.dirname(filePath))
+    jsonfile.writeFileSync(filePath, this.getPreset(), { flag: 'w', spaces: 2 })
+    //      debug('writeState %y',filePath)
+  }
+
+
+  notesReset() {
+    ['A', 'B'].forEach( dev => {
+      if (this.getState(`device.${dev}.portName`)) {
+        const channel = this.interface.getParameter(`device.${dev}.channel`, 0)
+        for (let midiNote = 0; midiNote < 128; midiNote++) {
+          debugMidiNoteOff('port %y  channel %y  note %y', this.state.device[dev].portName, channel, midiNote)
+          Midi.send(this.state.device[dev].portName, 'noteoff', {
+            note: midiNote,
+            velocity: 127,
+            channel: channel,
+          })
         }
       }
     })
