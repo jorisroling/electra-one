@@ -692,7 +692,7 @@ class BacaraMachine extends Machine {
                 this.sendTrackProgramChange(trk)
               }
               this.virusSetupParts()
-              this.interface.sendValues(origin)
+              this.interface.sendValues('surface')
               this.showPattern()
               this.writeState()
               debug('previous_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
@@ -713,7 +713,7 @@ class BacaraMachine extends Machine {
                 this.sendTrackProgramChange(trk)
               }
               this.virusSetupParts()
-              this.interface.sendValues(origin)
+              this.interface.sendValues('surface')
               this.showPattern()
               this.writeState()
               debug('next_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
@@ -732,7 +732,7 @@ class BacaraMachine extends Machine {
               this.sendTrackProgramChange(trk)
             }
             this.virusSetupParts()
-            this.interface.sendValues(origin)
+            this.interface.sendValues('surface')
             this.showPattern()
             this.writeState()
             debug('random_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
