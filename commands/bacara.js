@@ -2728,31 +2728,6 @@ class BacaraMachine extends Machine {
         if (origin != 'post-connect') {
           Virus.getPreset(bank - virusRamRomBanks, program, (virusPreset) => {
             this.virus.sendPreset(part, bank, program, virusPreset)
-            /*
-            if (virusPreset) {
-
-              const bytes = Virus.presetToSysEx(part, virusPreset, bank, program)
-              if (bytes) {
-                this.setState(`virus.part.${part - 1}.preset`, virusPreset)
-                Midi.send('virus-ti', 'sysex', bytes)
-                Virus.parseSysEx(bytes, (part, storedPreset) => {
-                  if (part >= 1 && part <= 16 && storedPreset) {
-                    this.setState(`virus.part.${part - 1}.preset`, storedPreset)
-                    this.writeState()
-                  }
-                  this.virusReflectPreset(part, storedPreset)
-                })
-                bacaraEmit('virus-ti', part, 'sysex', bytes, origin)
-                bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
-              }
-            } else {
-              const virusBank = Virus.getBank(bank - virusRamRomBanks)
-              debug('virusBank %y', virusBank)
-              if (virusBank && virusBank.presets) {
-                //              this.interface.setParameter(`virus.mixer.part.${part-1}.program`,virusBank.presets-1)
-              }
-            }
-*/
           })
         }
       }
