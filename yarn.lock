@@ -1692,9 +1692,9 @@ micromatch@^4.0.4:
     picomatch "^2.2.3"
 
 midi-file@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/midi-file/-/midi-file-1.1.2.tgz#57fafe2dcb605ef29f06652ac45e7a475873dc77"
-  integrity sha512-VQNzirfADDFXTymgPJv2VfLylCq14spRNFhpA6u7dLqPMbw1BqGf5u9B0k7z++8X1RMs57pyn+G4kzhyIatlyw==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/midi-file/-/midi-file-1.2.0.tgz#14e784e39e581a0beb8c15b8c67ad80fdcef91fd"
+  integrity sha512-zuCtB4kxVIulKnM/F8At5J+sJx87T1Gszm7u1oimPrtN+tePFpJDbpxJ/2/KHrpYR/t8VYuS+DRlar2r7l8SDw==
 
 midi@^2.0.0:
   version "2.0.0"
