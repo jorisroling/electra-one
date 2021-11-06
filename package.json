@@ -113,7 +113,7 @@
     "yves": "^1.0.80"
   },
   "devDependencies": {
-    "eslint": "^8.0.1",
+    "eslint": "^8.2.0",
     "eslint-plugin-jest": "^25.2.2",
     "nodemon": "^2.0.13"
   }
