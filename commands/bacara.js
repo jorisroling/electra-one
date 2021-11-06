@@ -40,6 +40,7 @@ const debugMidiControlChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(r
 const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:program:change`)
 
 const debugMonome = yves.debugger(`${pkg.name.replace(/^@/, '')}:monome`)
+const debugPattern = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:pattern`)
 
 const GRID_MODE_NONE = 0
 const GRID_MODE_MELODIC = 2
@@ -1998,7 +1999,7 @@ class BacaraMachine extends Machine {
       }
     })
 
-    debug(table.toString())
+    debugPattern(table.toString())
     /*    debug(grid)*/
     this.setState('drums.grid', grid)
     this.showPatternGrid(this.stepIdx)
@@ -2098,7 +2099,7 @@ class BacaraMachine extends Machine {
       row++
     })
 
-    debug(table.toString())
+    debugPattern(table.toString())
     /*    debug(grid)*/
     this.setState('pattern.grid', grid)
     this.showPatternGrid(this.stepIdx)
