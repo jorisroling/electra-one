@@ -7,6 +7,11 @@ const pkg = require('../package.json')
 const debugError = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:error`)
 const _ = require('lodash')
 
+const { table } = require('table')
+const chalk = require('chalk')
+const labelColor = chalk.hex('#FF8800')
+const dimColor = chalk.hex('#222')
+
 let args
 
 const Midi = require('../lib/midi/midi')
@@ -24,7 +29,15 @@ function generateSetup(name, sub, options) {
   }
 
   Bacara.scanMidiPorts()
-  virus.scanBanks()
+  const banks = virus.scanBanks()
+
+  const data = [['Bank', 'Short', 'Presets',dimColor('Index')]]
+
+  for (let m = 0; m < banks.length; m++) {
+    data.push([`${labelColor(banks[m].filename)}`, `${labelColor(banks[m].short)}`, `${labelColor(banks[m].presetCount)}`, `${dimColor(banks[m].index)}`])
+  }
+  const output = table(data, {})
+  console.log(output)
 
   process.exit(0)
 }
