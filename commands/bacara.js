@@ -386,7 +386,7 @@ class BacaraMachine extends Machine {
               if (msg.controller == _.get(config, 'touchBlock.button.0.cc') && msg.value == 127) {
                 actionPath = this.getState('remote.remote_reset', 'remote_reset')
               }
-              this.triggerAction(actionPath,'remote')
+              this.triggerAction(actionPath, 'remote')
             }
             break
           }
@@ -776,7 +776,7 @@ class BacaraMachine extends Machine {
       },
       drums: {
         generate: (elementPath, origin) => {
-/*          console.trace('JJR GEN')*/
+          /*          console.trace('JJR GEN')*/
           if (origin == 'surface' || origin == 'remote' || !this.getState('drums.patterns')) {
             this.setState('drums.patterns', Drums.generate(this.interface.getParameter('drums.steps'), this.interface.getParameter('drums.style'), -1, this.getState('drums.patterns')))
             this.setState('drums.midi', Drums.midiFromPatterns(this.interface.getParameter('drums.steps'), this.getState('drums.patterns')))
@@ -1542,7 +1542,7 @@ class BacaraMachine extends Machine {
       },
       drums: {
         density: (elementPath, value, origin) => {
-//          console.trace('JJR DENS')
+          //          console.trace('JJR DENS')
           if (origin == 'surface' || !this.getState('drums.sounding')) {
             const sounding = []
             for (let idx = 0; idx < this.interface.getParameter('drums.steps', patternStepsDefault); idx++) {
@@ -1797,11 +1797,11 @@ class BacaraMachine extends Machine {
     })
   }
 
-  triggerAction(actionPath,origin) {
+  triggerAction(actionPath, origin) {
     if (actionPath) {
       const actionSideEffect = _.get(this.actionSideEffects, actionPath)
       if (typeof actionSideEffect == 'function') {
-        debug('Trigger Action %y (origin %y)', actionPath,origin)
+        debug('Trigger Action %y (origin %y)', actionPath, origin)
         actionSideEffect(path, origin)
       }
     }
@@ -1847,8 +1847,8 @@ class BacaraMachine extends Machine {
         paths.forEach( path => _.set(state, path, _.get(json.state ? json.state : json, path)) )
         this.setStates(state)
         if (!this.getState('redrum')) {
-          for (let i=0;i<6;i++) {
-            this.setState(`redrum.${i}`,{portName: `tr-6s`})
+          for (let i = 0; i < 6; i++) {
+            this.setState(`redrum.${i}`, {portName: 'tr-6s'})
           }
         }
         _.set(this.modulation, 'lfo', _.get(json, 'modulation.lfo', {}))
@@ -1863,7 +1863,7 @@ class BacaraMachine extends Machine {
         this.interface.emitParameters('post-connect')
 
         if (!this.getState('drums.midi')) {
-          this.triggerAction('drums.generate','post-connect')
+          this.triggerAction('drums.generate', 'post-connect')
         }
       }
     }
