@@ -34,8 +34,8 @@ function listPorts(name, sub, options) {
   }
 
   const output = table(data, {})
-
   console.log(output)
+
   process.exit()
 }
 
