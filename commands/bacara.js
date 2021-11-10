@@ -2243,7 +2243,7 @@ class BacaraMachine extends Machine {
     let pat = euclideanRhythms.getPattern(muteSteps, steps)
     if (muteShift) {
       let p = Math.abs(muteShift)
-      while (--p) {
+      while (p--) {
         pat = arrayRotate(pat, muteShift > 0)
       }
     }
