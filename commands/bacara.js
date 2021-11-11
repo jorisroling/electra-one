@@ -1372,13 +1372,13 @@ class BacaraMachine extends Machine {
           this.interface.setParameter('density', 100)
         }
         if (origin == 'surface' || !this.state.sounding && value > 0) {
-          this.euclidian(this.interface.getParameter('muteSteps'), this.interface.getParameter('steps', patternStepsDefault), this.interface.getParameter('muteShift'))
+          this.euclidian(this.interface.getParameter('muteSteps', 'modulated'), this.interface.getParameter('steps', 'modulated'), this.interface.getParameter('muteShift', 'modulated'))
         }
       },
       muteShift: (elementPath, value, origin) => {
         if (this.interface.getParameter('muteSteps') > 0) {
           if (origin == 'surface' || !this.state.sounding) {
-            this.euclidian(this.interface.getParameter('muteSteps'), this.interface.getParameter('steps', patternStepsDefault), this.interface.getParameter('muteShift'))
+            this.euclidian(this.interface.getParameter('muteSteps', 'modulated'), this.interface.getParameter('steps', 'modulated'), this.interface.getParameter('muteShift', 'modulated'))
           }
         }
       },
@@ -2232,6 +2232,7 @@ class BacaraMachine extends Machine {
   }
 
   euclidian(muteSteps, steps, muteShift) {
+//    debug('euclidian %y %y %y',muteSteps, steps, muteShift)
     function arrayRotate(arr, reverse) {
       if (reverse) {
         arr.unshift(arr.pop())

@@ -245,6 +245,7 @@ module.exports = {
       max: 16,
       default: 0,
       unit: 'steps',
+      precision: 0,
     },
     muteShift: {
       name: 'Mute Shift',
@@ -266,6 +267,7 @@ module.exports = {
       max: 15,
       default: 0,
       unit: 'steps',
+      precision: 0,
     },
     scales: {
       name: 'Scales Mode',
