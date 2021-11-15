@@ -2238,7 +2238,16 @@ class BacaraMachine extends Machine {
   }
 
   euclidian(muteSteps, steps, muteShift) {
-//    debug('euclidian %y %y %y',muteSteps, steps, muteShift)
+    if (!muteSteps) {
+      muteSteps = 0
+    }
+    if (!steps) {
+      steps = 16
+    }
+    if (!muteShift) {
+      muteShift = 0
+    }
+    debug('euclidian %y %y %y', muteSteps, steps, muteShift)
     function arrayRotate(arr, reverse) {
       if (reverse) {
         arr.unshift(arr.pop())
@@ -2780,7 +2789,7 @@ class BacaraMachine extends Machine {
         }
 */
         if (part >= 1 && part <= 6) {
-//          debug('controlReflect %y %y',virusMixerSelectControls[part - 1],{'name': virusPreset.name})
+          //          debug('controlReflect %y %y',virusMixerSelectControls[part - 1],{'name': virusPreset.name})
           electra.controlReflect(this.options.electraOneCtrl, virusMixerSelectControls[part - 1], {'name': virusPreset.name})
           electra.controlReflect(this.options.electraOneCtrl, virusSearchSelectControls[part - 1], {'name': virusPreset.name})
         }
