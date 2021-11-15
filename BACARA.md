@@ -32,7 +32,7 @@ The patterns are stored as MIDI clips, so one could always use them directly in 
 
 ### Drums
 
-With a very simular process as described above, a 11 track drum pattern can be generated, and assigned to a external Drum Machine.
+With a very similar process as described above, a 11 track drum pattern can be generated, and assigned to a external Drum Machine.
 
 ### LFO
 

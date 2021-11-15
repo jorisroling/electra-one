@@ -84,6 +84,10 @@ const matrixSlotSources = {
   channelAftertouch: 3,
 }
 
+const virusMixerSelectControls = [145, 146, 147, 148, 149, 150]
+const virusSearchSelectControls = [325, 326, 327, 328, 329, 330]
+
+
 const beatCC = 2 // -1 for off
 const reverseDeviceBrowsOnGrid = true
 
@@ -2133,6 +2137,7 @@ class BacaraMachine extends Machine {
         const part = channel
         const virusPreset = this.getState(`virus.part.${part - 1}.preset`)
         this.virus.sendPreset(part, bank, program, virusPreset)
+        this.virusReflectPreset(part, virusPreset)
         /*        if (virusPreset) {
           const bytes = Virus.presetToSysEx(part, virusPreset, bank, program)
           if (bytes) {
@@ -2730,6 +2735,7 @@ class BacaraMachine extends Machine {
         if (origin != 'post-connect') {
           Virus.getPreset(bank - virusRamRomBanks, program, (virusPreset) => {
             this.virus.sendPreset(part, bank, program, virusPreset)
+            this.virusReflectPreset(part, virusPreset)
           })
         }
       }
@@ -2749,7 +2755,6 @@ class BacaraMachine extends Machine {
   }
 
   virusReflectPreset(part, virusPreset) {
-
     if (part >= 1 && part <= 6 && virusPreset && virusPreset.page) {
       const level = Virus.getPresetPageParameter(virusPreset, 0, 91)
       this.interface.setParameter(`virus.mixer.part.${part - 1}.level`, level)
@@ -2772,10 +2777,9 @@ class BacaraMachine extends Machine {
         }
 */
         if (part >= 1 && part <= 6) {
-          const matrixSelectControls = [145, 146, 147, 148, 149, 150]
-          const searchSelectControls = [325, 326, 327, 328, 329, 330]
-          electra.controlReflect(this.options.electraOneCtrl, matrixSelectControls[part - 1], {'name': virusPreset.name})
-          electra.controlReflect(this.options.electraOneCtrl, searchSelectControls[part - 1], {'name': virusPreset.name})
+//          debug('controlReflect %y %y',virusMixerSelectControls[part - 1],{'name': virusPreset.name})
+          electra.controlReflect(this.options.electraOneCtrl, virusMixerSelectControls[part - 1], {'name': virusPreset.name})
+          electra.controlReflect(this.options.electraOneCtrl, virusSearchSelectControls[part - 1], {'name': virusPreset.name})
         }
         if (part == this.interface.getParameter('virus.axyz.part')) {
           const ctrlId = 110
