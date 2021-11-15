@@ -2138,6 +2138,7 @@ class BacaraMachine extends Machine {
         const virusPreset = this.getState(`virus.part.${part - 1}.preset`)
         this.virus.sendPreset(part, bank, program, virusPreset)
         this.virusReflectPreset(part, virusPreset)
+        Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
         /*        if (virusPreset) {
           const bytes = Virus.presetToSysEx(part, virusPreset, bank, program)
           if (bytes) {
@@ -2713,6 +2714,7 @@ class BacaraMachine extends Machine {
         const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
         this.virus.sendPreset(part, bank, program, virusPreset)
         this.virusReflectPreset(part, virusPreset)
+        Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
       } else {
         Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
       }
@@ -2736,6 +2738,7 @@ class BacaraMachine extends Machine {
           Virus.getPreset(bank - virusRamRomBanks, program, (virusPreset) => {
             this.virus.sendPreset(part, bank, program, virusPreset)
             this.virusReflectPreset(part, virusPreset)
+            Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
           })
         }
       }
