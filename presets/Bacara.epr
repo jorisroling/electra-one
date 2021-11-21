@@ -54,6 +54,91 @@
   ],
   "groups": [
     {
+      "id": 1,
+      "pageId": 1,
+      "name": "MELODIC NOTES",
+      "color": "F49500",
+      "bounds": [
+        0,
+        16,
+        656,
+        16
+      ]
+    },
+    {
+      "id": 2,
+      "pageId": 1,
+      "name": "SCALE",
+      "color": "C44795",
+      "bounds": [
+        680,
+        16,
+        146,
+        16
+      ]
+    },
+    {
+      "id": 3,
+      "pageId": 1,
+      "name": "DEVICE",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        16,
+        146,
+        16
+      ]
+    },
+    {
+      "id": 4,
+      "pageId": 1,
+      "name": "DRUM PATTERN",
+      "color": "F45C51",
+      "bounds": [
+        0,
+        192,
+        316,
+        16
+      ]
+    },
+    {
+      "id": 5,
+      "pageId": 1,
+      "name": "MELODIC PATTERN",
+      "color": "03A598",
+      "bounds": [
+        340,
+        192,
+        656,
+        16
+      ]
+    },
+    {
+      "id": 6,
+      "pageId": 1,
+      "name": "DRUM PATTERN",
+      "color": "F45C51",
+      "bounds": [
+        0,
+        368,
+        316,
+        16
+      ]
+    },
+    {
+      "id": 7,
+      "pageId": 1,
+      "name": "PRESET",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        368,
+        656,
+        16
+      ]
+    },
+    {
+      "id": 8,
       "pageId": 2,
       "name": "LFO 1",
       "color": "F49500",
@@ -62,10 +147,10 @@
         16,
         826,
         16
-      ],
-      "id": 37
+      ]
     },
     {
+      "id": 9,
       "pageId": 2,
       "name": "LFO 2",
       "color": "03A598",
@@ -74,10 +159,10 @@
         192,
         826,
         16
-      ],
-      "id": 49
+      ]
     },
     {
+      "id": 10,
       "pageId": 2,
       "name": "LFO 3",
       "color": "C44795",
@@ -86,289 +171,48 @@
         368,
         826,
         16
-      ],
-      "id": 61
-    },
-    {
-      "pageId": 1,
-      "name": "Device",
-      "color": "FFFFFF",
-      "bounds": [
-        850,
-        16,
-        146,
-        16
-      ],
-      "id": 6
-    },
-    {
-      "pageId": 1,
-      "name": "Melodic Notes",
-      "color": "F49500",
-      "bounds": [
-        0,
-        16,
-        656,
-        16
-      ],
-      "id": 1
-    },
-    {
-      "pageId": 3,
-      "name": "Slot 1",
-      "bounds": [
-        170,
-        16,
-        656,
-        16
-      ],
-      "color": "FFFFFF",
-      "id": 74
-    },
-    {
-      "pageId": 3,
-      "name": "Slot 2",
-      "bounds": [
-        170,
-        192,
-        656,
-        16
-      ],
-      "color": "FFFFFF",
-      "id": 86
-    },
-    {
-      "pageId": 3,
-      "name": "Slot 3",
-      "bounds": [
-        170,
-        368,
-        656,
-        16
-      ],
-      "color": "FFFFFF",
-      "id": 98
-    },
-    {
-      "pageId": 1,
-      "name": "Scale",
-      "color": "C44795",
-      "bounds": [
-        680,
-        16,
-        146,
-        16
-      ],
-      "id": 5
-    },
-    {
-      "id": 253,
-      "pageId": 8,
-      "name": "Device A",
-      "color": "F45C51",
-      "bounds": [
-        0,
-        16,
-        996,
-        16
       ]
     },
     {
-      "id": 27,
-      "pageId": 1,
-      "name": "Preset",
+      "id": 11,
+      "pageId": 3,
+      "name": "SLOT 1",
+      "color": "FFFFFF",
       "bounds": [
-        340,
-        368,
-        656,
-        16
-      ],
-      "color": "FFFFFF"
-    },
-    {
-      "id": 15,
-      "pageId": 1,
-      "name": "Melodic Pattern",
-      "color": "03A598",
-      "bounds": [
-        340,
-        192,
+        170,
+        16,
         656,
         16
       ]
     },
     {
-      "id": 265,
-      "pageId": 8,
-      "name": "Device B",
-      "color": "529DEC",
+      "id": 12,
+      "pageId": 3,
+      "name": "SLOT 2",
+      "color": "FFFFFF",
       "bounds": [
-        0,
+        170,
         192,
-        996,
+        656,
         16
       ]
     },
     {
       "id": 13,
-      "pageId": 1,
-      "name": "Drum Pattern",
-      "color": "F45C51",
+      "pageId": 3,
+      "name": "SLOT 3",
+      "color": "FFFFFF",
       "bounds": [
-        0,
-        192,
-        316,
-        16
-      ]
-    },
-    {
-      "id": 289,
-      "pageId": 9,
-      "name": "Bass Drum",
-      "bounds": [
-        0,
-        16,
-        486,
-        16
-      ],
-      "color": "FFFFFF"
-    },
-    {
-      "id": 292,
-      "pageId": 9,
-      "name": "Snare Drum",
-      "color": "F45C51",
-      "bounds": [
-        510,
-        16,
-        486,
-        16
-      ]
-    },
-    {
-      "id": 295,
-      "pageId": 9,
-      "name": "Low Tom",
-      "color": "F49500",
-      "bounds": [
-        0,
-        104,
-        486,
-        16
-      ]
-    },
-    {
-      "id": 298,
-      "pageId": 9,
-      "name": "Mid Tom",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        104,
-        486,
-        16
-      ]
-    },
-    {
-      "id": 301,
-      "pageId": 9,
-      "name": "High Tom",
-      "color": "03A598",
-      "bounds": [
-        0,
-        192,
-        486,
-        16
-      ]
-    },
-    {
-      "id": 304,
-      "pageId": 9,
-      "name": "Rim Shot",
-      "color": "C44795",
-      "bounds": [
-        510,
-        192,
-        486,
-        16
-      ]
-    },
-    {
-      "id": 307,
-      "pageId": 9,
-      "name": "Hand Clap",
-      "bounds": [
-        0,
-        280,
-        486,
-        16
-      ],
-      "color": "FFFFFF"
-    },
-    {
-      "id": 310,
-      "pageId": 9,
-      "name": "Cow Bell",
-      "color": "F45C51",
-      "bounds": [
-        510,
-        280,
-        486,
-        16
-      ]
-    },
-    {
-      "id": 313,
-      "pageId": 9,
-      "name": "Cymbal",
-      "color": "F49500",
-      "bounds": [
-        0,
+        170,
         368,
-        486,
+        656,
         16
       ]
     },
     {
-      "id": 316,
-      "pageId": 9,
-      "name": "Open Hat",
-      "color": "529DEC",
-      "bounds": [
-        510,
-        368,
-        486,
-        16
-      ]
-    },
-    {
-      "id": 319,
-      "pageId": 9,
-      "name": "Closed Hat",
-      "color": "03A598",
-      "bounds": [
-        0,
-        456,
-        486,
-        16
-      ]
-    },
-    {
-      "id": 25,
-      "pageId": 1,
-      "name": "Drum Pattern",
-      "color": "F45C51",
-      "bounds": [
-        0,
-        368,
-        316,
-        16
-      ]
-    },
-    {
-      "id": 218,
+      "id": 28,
       "pageId": 7,
-      "name": "Bitwig Device Remote Controls",
+      "name": "BITWIG DEVICE REMOTE CONTROLS",
       "color": "F49500",
       "bounds": [
         170,
@@ -378,26 +222,182 @@
       ]
     },
     {
-      "id": 229,
+      "id": 29,
       "pageId": 7,
-      "name": "Remote Control Pages",
+      "name": "REMOTE CONTROL PAGES",
+      "color": "FFFFFF",
       "bounds": [
         0,
         192,
         996,
         16
-      ],
-      "color": "FFFFFF"
+      ]
     },
     {
-      "id": 241,
+      "id": 30,
       "pageId": 7,
-      "name": "Bitwig Track Sends",
+      "name": "BITWIG TRACK SENDS",
       "color": "F49500",
       "bounds": [
         0,
         368,
         996,
+        16
+      ]
+    },
+    {
+      "id": 31,
+      "pageId": 8,
+      "name": "DEVICE A",
+      "color": "F45C51",
+      "bounds": [
+        0,
+        16,
+        996,
+        16
+      ]
+    },
+    {
+      "id": 32,
+      "pageId": 8,
+      "name": "DEVICE B",
+      "color": "529DEC",
+      "bounds": [
+        0,
+        192,
+        996,
+        16
+      ]
+    },
+    {
+      "id": 33,
+      "pageId": 9,
+      "name": "BASS DRUM",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        16,
+        486,
+        16
+      ]
+    },
+    {
+      "id": 34,
+      "pageId": 9,
+      "name": "SNARE DRUM",
+      "color": "F45C51",
+      "bounds": [
+        510,
+        16,
+        486,
+        16
+      ]
+    },
+    {
+      "id": 35,
+      "pageId": 9,
+      "name": "LOW TOM",
+      "color": "F49500",
+      "bounds": [
+        0,
+        104,
+        486,
+        16
+      ]
+    },
+    {
+      "id": 36,
+      "pageId": 9,
+      "name": "MID TOM",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        104,
+        486,
+        16
+      ]
+    },
+    {
+      "id": 37,
+      "pageId": 9,
+      "name": "HIGH TOM",
+      "color": "03A598",
+      "bounds": [
+        0,
+        192,
+        486,
+        16
+      ]
+    },
+    {
+      "id": 38,
+      "pageId": 9,
+      "name": "RIM SHOT",
+      "color": "C44795",
+      "bounds": [
+        510,
+        192,
+        486,
+        16
+      ]
+    },
+    {
+      "id": 39,
+      "pageId": 9,
+      "name": "HAND CLAP",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        280,
+        486,
+        16
+      ]
+    },
+    {
+      "id": 40,
+      "pageId": 9,
+      "name": "COW BELL",
+      "color": "F45C51",
+      "bounds": [
+        510,
+        280,
+        486,
+        16
+      ]
+    },
+    {
+      "id": 41,
+      "pageId": 9,
+      "name": "CYMBAL",
+      "color": "F49500",
+      "bounds": [
+        0,
+        368,
+        486,
+        16
+      ]
+    },
+    {
+      "id": 42,
+      "pageId": 9,
+      "name": "OPEN HAT",
+      "color": "529DEC",
+      "bounds": [
+        510,
+        368,
+        486,
+        16
+      ]
+    },
+    {
+      "id": 43,
+      "pageId": 9,
+      "name": "CLOSED HAT",
+      "color": "03A598",
+      "bounds": [
+        0,
+        456,
+        486,
         16
       ]
     }
@@ -767,26 +767,6 @@
       "id": 8,
       "items": [
         {
-          "value": 0,
-          "label": "All",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "House",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "Breaks",
-          "index": 2
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "items": [
-        {
           "value": 1,
           "label": "1",
           "index": 0
@@ -825,6 +805,26 @@
           "value": 128,
           "label": "128",
           "index": 7
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "items": [
+        {
+          "value": 0,
+          "label": "All",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "House",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Breaks",
+          "index": 2
         }
       ]
     },
@@ -5057,6 +5057,40 @@
       ]
     },
     {
+      "id": 16,
+      "type": "list",
+      "visible": true,
+      "name": "STEPS",
+      "color": "03A598",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16260
+          },
+          "defaultValue": 16,
+          "overlayId": 8,
+          "id": "value"
+        }
+      ]
+    },
+    {
       "id": 17,
       "type": "pad",
       "mode": "toggle",
@@ -5156,7 +5190,7 @@
             "parameterNumber": 16288
           },
           "defaultValue": 16,
-          "overlayId": 8,
+          "overlayId": 9,
           "id": "value"
         }
       ]
@@ -5190,7 +5224,7 @@
             "parameterNumber": 16287
           },
           "defaultValue": 16,
-          "overlayId": 9,
+          "overlayId": 8,
           "id": "value"
         }
       ]
@@ -5231,10 +5265,10 @@
     },
     {
       "id": 22,
-      "type": "list",
+      "type": "fader",
       "visible": true,
       "name": "STEPS",
-      "color": "03A598",
+      "color": "FFFFFF",
       "bounds": [
         510,
         304,
@@ -5255,10 +5289,11 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16260
+            "parameterNumber": 16260,
+            "min": 0,
+            "max": 127
           },
           "defaultValue": 16,
-          "overlayId": 9,
           "id": "value"
         }
       ]

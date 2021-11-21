@@ -922,6 +922,21 @@
             "device": "electra-one-a-ctrl"
           },
           {
+            "name": "Electra Controller B Electra Port 1",
+            "short": "Electra Cont B.1",
+            "device": "electra-one-b-port-1"
+          },
+          {
+            "name": "Electra Controller B Electra Port 2",
+            "short": "Electra Cont B.2",
+            "device": "electra-one-b-port-2"
+          },
+          {
+            "name": "Electra Controller B Electra CTRL",
+            "short": "Electra Contro B.CTRL",
+            "device": "electra-one-b-ctrl"
+          },
+          {
             "name": "MRCC Port 1",
             "short": "MRCC Port.1",
             "device": "virus-ti"
@@ -1003,11 +1018,6 @@
             "name": "Lightpad BLOCK  Lightpad BLOCK",
             "short": "Lightpad BLOCK",
             "device": "lightpad-block"
-          },
-          {
-            "name": "Touch Block Bluetooth",
-            "short": "Touch Block Bl",
-            "device": "thouch-block"
           },
           {
             "name": "Bacara",
@@ -1072,6 +1082,21 @@
             "device": "electra-one-a-ctrl"
           },
           {
+            "name": "Electra Controller B Electra Port 1",
+            "short": "Electra Cont B.1",
+            "device": "electra-one-b-port-1"
+          },
+          {
+            "name": "Electra Controller B Electra Port 2",
+            "short": "Electra Cont B.2",
+            "device": "electra-one-b-port-2"
+          },
+          {
+            "name": "Electra Controller B Electra CTRL",
+            "short": "Electra Contro B.CTRL",
+            "device": "electra-one-b-ctrl"
+          },
+          {
             "name": "MRCC Port 1",
             "short": "MRCC Port.1",
             "device": "virus-ti"
@@ -1153,11 +1178,6 @@
             "name": "Lightpad BLOCK  Lightpad BLOCK",
             "short": "Lightpad BLOCK",
             "device": "lightpad-block"
-          },
-          {
-            "name": "Touch Block Bluetooth",
-            "short": "Touch Block Bl",
-            "device": "thouch-block"
           },
           {
             "name": "Bacara",

@@ -62,8 +62,8 @@ const E1_FIRMWARE_PRESET_REQUEST_VERSION = 'v2.1.2'
 let e1_system_info
 
 const phaseDetection = true
-const showPatternParameters = ['transpose', 'density', 'muteSteps', 'muteShift', 'scales', 'base', 'split', 'deviate', 'shift']
-const showDrumPatternParameters = ['drums.density', 'drums.velocity']
+const showPatternParameters = ['transpose', 'density', 'muteSteps', 'muteShift', 'scales', 'base', 'split', 'deviate', 'shift', 'steps']
+const showDrumPatternParameters = ['drums.density', 'drums.velocity', 'drums.steps']
 
 const toneJSmidi = require('@tonejs/midi')
 
@@ -117,6 +117,7 @@ class BacaraMachine extends Machine {
     this.pulseTime = [0, 0]
     this.pulses = 0
     this.stepIdx = -1
+    this.drumsStepIdx = -1
     this.showPatternGrid(this.stepIdx)
     this.pulseDuration = 0
     this.midiCache = new MidiCache()
@@ -599,6 +600,7 @@ class BacaraMachine extends Machine {
           this.setState('playing', true)
           this.pulses = 0
           this.stepIdx = 0
+          this.drumsStepIdx = 0
           this.showPatternGrid(this.stepIdx)
           this.pulseTime = process.hrtime()
           this.writeState()
@@ -610,6 +612,7 @@ class BacaraMachine extends Machine {
           this.setState('playing', false)
           this.showPatternGrid(this.stepIdx, false)
           this.stepIdx = -1
+          this.drumsStepIdx = -1
           this.writeState()
           debug('stop')
         }
@@ -2372,7 +2375,6 @@ class BacaraMachine extends Machine {
     const ticks = (this.pulses % ((24 * 4) * (this.interface.getParameter('steps') / 16))) * 20
     this.pulseDuration = (deltaTime[0] * 1000) + (deltaTime[1] / 1000000)
 
-    //    this.stepIdx = (ticks  * (this.interface.getParameter('steps') / 16) ) / ticksPerStep
     this.stepIdx = ticks / ticksPerStep
 
     if (this.getState('playing')) {
@@ -2546,11 +2548,20 @@ class BacaraMachine extends Machine {
       }
 
 
+
+      const drum_ticks = (this.pulses % ((24 * 4) * (this.interface.getParameter('drums.steps') / 16))) * 20
+      this.drumsStepIdx = drum_ticks / ticksPerStep
+
+      let drumsShiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.interface.getParameter('drums.steps'))
+      if (drumsShiftedTicks < 0) {
+        drumsShiftedTicks += ticksPerStep * this.interface.getParameter('drums.steps')
+      }
+
       if (this.getState('drums.midi') && !this.interface.getParameter('drums.mute', 'modulated')) {
         _.get(this.getState('drums.midi'), 'tracks.0.notes', []).forEach( note => {
-          if (note.ticks == shiftedTicks) {
+          if (note.ticks == drumsShiftedTicks) {
             const instrument = note.midi - Drums.baseNote()
-            if (this.stepIdx < this.interface.getParameter('drums.steps', 'modulated') && this.sounding(this.stepIdx, 'drums.sounding', instrument)) {
+            if (this.drumsStepIdx < this.interface.getParameter('drums.steps', 'modulated') && this.sounding(this.drumsStepIdx, 'drums.sounding', instrument)) {
               if (instrument >= 0 && instrument < 12) {
                 if (!this.interface.getParameter(`drums.instrument.${instrument}.mute`, 'modulated') && this.interface.getParameter('drums.probability', 'modulated') >= Machine.getRandomInt(100)) {
                   const portName = this.getState(`drums.instrument.${instrument}.portName`)
