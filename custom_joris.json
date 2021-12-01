@@ -867,6 +867,10 @@
       "ports": {
         "input": [
           {
+            "name": "IAC Driver Bus 1",
+            "short": "IAC Driver B.1"
+          },
+          {
             "name": "MX-1",
             "short": "MX-.1"
           },
@@ -1013,11 +1017,6 @@
           {
             "name": "Akai APC40",
             "short": "Akai APC.40"
-          },
-          {
-            "name": "Lightpad BLOCK  Lightpad BLOCK",
-            "short": "Lightpad BLOCK",
-            "device": "lightpad-block"
           },
           {
             "name": "Bacara",
@@ -1027,6 +1026,10 @@
         ],
         "output": [
           {
+            "name": "IAC Driver Bus 1",
+            "short": "IAC Driver B.1"
+          },
+          {
             "name": "MX-1",
             "short": "MX-.1"
           },
@@ -1173,11 +1176,6 @@
           {
             "name": "Akai APC40",
             "short": "Akai APC.40"
-          },
-          {
-            "name": "Lightpad BLOCK  Lightpad BLOCK",
-            "short": "Lightpad BLOCK",
-            "device": "lightpad-block"
           },
           {
             "name": "Bacara",

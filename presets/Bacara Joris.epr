@@ -5936,57 +5936,57 @@
       "items": [
         {
           "index": 0,
-          "label": "MX-.1",
+          "label": "IAC Driver B.1",
           "value": 0
         },
         {
           "index": 1,
-          "label": "MX-1.CTRL",
+          "label": "MX-.1",
           "value": 1
         },
         {
           "index": 2,
-          "label": "MX-1 USB.1",
+          "label": "MX-1.CTRL",
           "value": 2
         },
         {
           "index": 3,
-          "label": "MX-1 USB1.CTRL",
+          "label": "MX-1 USB.1",
           "value": 3
         },
         {
           "index": 4,
-          "label": "MX-1 USB.2",
+          "label": "MX-1 USB1.CTRL",
           "value": 4
         },
         {
           "index": 5,
-          "label": "MX-1 USB2.CTRL",
+          "label": "MX-1 USB.2",
           "value": 5
         },
         {
           "index": 6,
-          "label": "MX-1 USB.3",
+          "label": "MX-1 USB2.CTRL",
           "value": 6
         },
         {
           "index": 7,
-          "label": "MX-1 USB3.CTRL",
+          "label": "MX-1 USB.3",
           "value": 7
         },
         {
           "index": 8,
-          "label": "MX-1 USB.4",
+          "label": "MX-1 USB3.CTRL",
           "value": 8
         },
         {
           "index": 9,
-          "label": "MX-1 USB4.CTRL",
+          "label": "MX-1 USB.4",
           "value": 9
         },
         {
           "index": 10,
-          "label": "Electra Cont A.",
+          "label": "MX-1 USB4.CTRL",
           "value": 10
         },
         {
@@ -5996,12 +5996,12 @@
         },
         {
           "index": 12,
-          "label": "Electra Contro ",
+          "label": "Electra Cont A.",
           "value": 12
         },
         {
           "index": 13,
-          "label": "Electra Cont B.",
+          "label": "Electra Contro ",
           "value": 13
         },
         {
@@ -6011,97 +6011,97 @@
         },
         {
           "index": 15,
-          "label": "Electra Contro ",
+          "label": "Electra Cont B.",
           "value": 15
         },
         {
           "index": 16,
-          "label": "MRCC Port.1",
+          "label": "Electra Contro ",
           "value": 16
         },
         {
           "index": 17,
-          "label": "MRCC Port.2",
+          "label": "MRCC Port.1",
           "value": 17
         },
         {
           "index": 18,
-          "label": "MRCC Port.3",
+          "label": "MRCC Port.2",
           "value": 18
         },
         {
           "index": 19,
-          "label": "MRCC Port.4",
+          "label": "MRCC Port.3",
           "value": 19
         },
         {
           "index": 20,
-          "label": "MRCC Port.5",
+          "label": "MRCC Port.4",
           "value": 20
         },
         {
           "index": 21,
-          "label": "MRCC Port.6",
+          "label": "MRCC Port.5",
           "value": 21
         },
         {
           "index": 22,
-          "label": "MRCC Port.7",
+          "label": "MRCC Port.6",
           "value": 22
         },
         {
           "index": 23,
-          "label": "MRCC Port.8",
+          "label": "MRCC Port.7",
           "value": 23
         },
         {
           "index": 24,
-          "label": "MRCC Port.9",
+          "label": "MRCC Port.8",
           "value": 24
         },
         {
           "index": 25,
-          "label": "MRCC Port.10",
+          "label": "MRCC Port.9",
           "value": 25
         },
         {
           "index": 26,
-          "label": "MRCC Port.11",
+          "label": "MRCC Port.10",
           "value": 26
         },
         {
           "index": 27,
-          "label": "MRCC Port.12",
+          "label": "MRCC Port.11",
           "value": 27
         },
         {
           "index": 28,
-          "label": "MRCC Port.13",
+          "label": "MRCC Port.12",
           "value": 28
         },
         {
           "index": 29,
-          "label": "MRCC Port.14",
+          "label": "MRCC Port.13",
           "value": 29
         },
         {
           "index": 30,
-          "label": "MRCC Port.15",
+          "label": "MRCC Port.14",
           "value": 30
         },
         {
           "index": 31,
-          "label": "MRCC Port.16",
+          "label": "MRCC Port.15",
           "value": 31
         },
         {
           "index": 32,
-          "label": "Akai APC.40",
+          "label": "MRCC Port.16",
           "value": 32
         },
         {
           "index": 33,
-          "label": "Lightpad BLOCK",
+          "label": "Akai APC.40",
           "value": 33
         },
         {

@@ -2564,8 +2564,8 @@ class BacaraMachine extends Machine {
             if (this.drumsStepIdx < this.interface.getParameter('drums.steps', 'modulated') && this.sounding(this.drumsStepIdx, 'drums.sounding', instrument)) {
               if (instrument >= 0 && instrument < 12) {
                 if (!this.interface.getParameter(`drums.instrument.${instrument}.mute`, 'modulated') && this.interface.getParameter('drums.probability', 'modulated') >= Machine.getRandomInt(100)) {
-                  const portName = this.getState(`drums.instrument.${instrument}.portName`)
-                  const channel = this.getState(`drums.instrument.${instrument}.channel`) - 1
+                  const portName = this.getState(`drums.instrument.${instrument}.portName`,'bacara')
+                  const channel = this.getState(`drums.instrument.${instrument}.channel`,10) - 1
                   const midiNote = this.interface.getParameter(`drums.instrument.${instrument}.note`, 'modulated')
                   debugMidiNoteOn('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
 
