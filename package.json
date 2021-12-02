@@ -16,9 +16,11 @@
     "bacara": "nodemon --verbose -L --ignore state index bacara",
     "fuse": "nodemon --verbose -L --ignore state index fuse",
     "setup_joris": "node index setup --custom custom_joris.json",
+    "setup_richie": "node index setup --custom custom_richie.json",
     "preset": "node index preset --filename \"presets/Bacara.epr\" --presetName \"Bacara\" --custom custom_bacara.json",
     "preset_joris": "node index preset --filename \"presets/Bacara Joris.epr\" --presetName \"Bacara Joris\" --custom custom_joris.json",
-    "build": "npm run preset;npm run setup_joris;npm run preset_joris",
+    "preset_richie": "node index preset --filename \"presets/Bacara Richie.epr\" --presetName \"Bacara Richie\" --custom custom_richie.json",
+    "build": "npm run preset;npm run setup_joris;npm run preset_joris;npm run preset_richie",
     "start": "npm run fuse",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"

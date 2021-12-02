@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "Bacara",
+  "name": "Bacara Richie",
   "projectId": "zDfG7f2eOvd5TzGwNMdN",
   "pages": [
     {
@@ -54,6 +54,91 @@
   ],
   "groups": [
     {
+      "id": 1,
+      "pageId": 1,
+      "name": "MELODIC NOTES",
+      "color": "F49500",
+      "bounds": [
+        0,
+        16,
+        656,
+        16
+      ]
+    },
+    {
+      "id": 2,
+      "pageId": 1,
+      "name": "SCALE",
+      "color": "C44795",
+      "bounds": [
+        680,
+        16,
+        146,
+        16
+      ]
+    },
+    {
+      "id": 3,
+      "pageId": 1,
+      "name": "DEVICE",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        16,
+        146,
+        16
+      ]
+    },
+    {
+      "id": 4,
+      "pageId": 1,
+      "name": "DRUM PATTERN",
+      "color": "F45C51",
+      "bounds": [
+        0,
+        192,
+        316,
+        16
+      ]
+    },
+    {
+      "id": 5,
+      "pageId": 1,
+      "name": "MELODIC PATTERN",
+      "color": "03A598",
+      "bounds": [
+        340,
+        192,
+        656,
+        16
+      ]
+    },
+    {
+      "id": 6,
+      "pageId": 1,
+      "name": "DRUM PATTERN",
+      "color": "F45C51",
+      "bounds": [
+        0,
+        368,
+        316,
+        16
+      ]
+    },
+    {
+      "id": 7,
+      "pageId": 1,
+      "name": "PRESET",
+      "color": "FFFFFF",
+      "bounds": [
+        340,
+        368,
+        656,
+        16
+      ]
+    },
+    {
+      "id": 8,
       "pageId": 2,
       "name": "LFO 1",
       "color": "F49500",
@@ -62,10 +147,10 @@
         16,
         826,
         16
-      ],
-      "id": 37
+      ]
     },
     {
+      "id": 9,
       "pageId": 2,
       "name": "LFO 2",
       "color": "03A598",
@@ -74,10 +159,10 @@
         192,
         826,
         16
-      ],
-      "id": 49
+      ]
     },
     {
+      "id": 10,
       "pageId": 2,
       "name": "LFO 3",
       "color": "C44795",
@@ -86,157 +171,120 @@
         368,
         826,
         16
-      ],
-      "id": 61
-    },
-    {
-      "pageId": 1,
-      "name": "Device",
-      "color": "FFFFFF",
-      "bounds": [
-        850,
-        16,
-        146,
-        16
-      ],
-      "id": 6
-    },
-    {
-      "pageId": 1,
-      "name": "Melodic Notes",
-      "color": "F49500",
-      "bounds": [
-        0,
-        16,
-        656,
-        16
-      ],
-      "id": 1
-    },
-    {
-      "pageId": 3,
-      "name": "Slot 1",
-      "bounds": [
-        170,
-        16,
-        656,
-        16
-      ],
-      "color": "FFFFFF",
-      "id": 74
-    },
-    {
-      "pageId": 3,
-      "name": "Slot 2",
-      "bounds": [
-        170,
-        192,
-        656,
-        16
-      ],
-      "color": "FFFFFF",
-      "id": 86
-    },
-    {
-      "pageId": 3,
-      "name": "Slot 3",
-      "bounds": [
-        170,
-        368,
-        656,
-        16
-      ],
-      "color": "FFFFFF",
-      "id": 98
-    },
-    {
-      "pageId": 1,
-      "name": "Scale",
-      "color": "C44795",
-      "bounds": [
-        680,
-        16,
-        146,
-        16
-      ],
-      "id": 5
-    },
-    {
-      "id": 253,
-      "pageId": 8,
-      "name": "Device A",
-      "color": "F45C51",
-      "bounds": [
-        0,
-        16,
-        996,
-        16
       ]
     },
     {
-      "id": 27,
-      "pageId": 1,
-      "name": "Preset",
+      "id": 11,
+      "pageId": 3,
+      "name": "SLOT 1",
+      "color": "FFFFFF",
       "bounds": [
-        340,
-        368,
-        656,
-        16
-      ],
-      "color": "FFFFFF"
-    },
-    {
-      "id": 15,
-      "pageId": 1,
-      "name": "Melodic Pattern",
-      "color": "03A598",
-      "bounds": [
-        340,
-        192,
+        170,
+        16,
         656,
         16
       ]
     },
     {
-      "id": 265,
-      "pageId": 8,
-      "name": "Device B",
-      "color": "529DEC",
+      "id": 12,
+      "pageId": 3,
+      "name": "SLOT 2",
+      "color": "FFFFFF",
       "bounds": [
-        0,
+        170,
         192,
-        996,
+        656,
         16
       ]
     },
     {
       "id": 13,
-      "pageId": 1,
-      "name": "Drum Pattern",
-      "color": "F45C51",
+      "pageId": 3,
+      "name": "SLOT 3",
+      "color": "FFFFFF",
       "bounds": [
-        0,
-        192,
-        316,
+        170,
+        368,
+        656,
         16
       ]
     },
     {
-      "id": 289,
+      "id": 28,
+      "pageId": 7,
+      "name": "BITWIG DEVICE REMOTE CONTROLS",
+      "color": "F49500",
+      "bounds": [
+        170,
+        16,
+        656,
+        16
+      ]
+    },
+    {
+      "id": 29,
+      "pageId": 7,
+      "name": "REMOTE CONTROL PAGES",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        192,
+        996,
+        16
+      ]
+    },
+    {
+      "id": 30,
+      "pageId": 7,
+      "name": "BITWIG TRACK SENDS",
+      "color": "F49500",
+      "bounds": [
+        0,
+        368,
+        996,
+        16
+      ]
+    },
+    {
+      "id": 31,
+      "pageId": 8,
+      "name": "DEVICE A",
+      "color": "F45C51",
+      "bounds": [
+        0,
+        16,
+        996,
+        16
+      ]
+    },
+    {
+      "id": 32,
+      "pageId": 8,
+      "name": "DEVICE B",
+      "color": "529DEC",
+      "bounds": [
+        0,
+        192,
+        996,
+        16
+      ]
+    },
+    {
+      "id": 33,
       "pageId": 9,
-      "name": "Bass Drum",
+      "name": "BASS DRUM",
+      "color": "FFFFFF",
       "bounds": [
         0,
         16,
         486,
         16
-      ],
-      "color": "FFFFFF"
+      ]
     },
     {
-      "id": 292,
+      "id": 34,
       "pageId": 9,
-      "name": "Snare Drum",
+      "name": "SNARE DRUM",
       "color": "F45C51",
       "bounds": [
         510,
@@ -246,9 +294,9 @@
       ]
     },
     {
-      "id": 295,
+      "id": 35,
       "pageId": 9,
-      "name": "Low Tom",
+      "name": "LOW TOM",
       "color": "F49500",
       "bounds": [
         0,
@@ -258,9 +306,9 @@
       ]
     },
     {
-      "id": 298,
+      "id": 36,
       "pageId": 9,
-      "name": "Mid Tom",
+      "name": "MID TOM",
       "color": "529DEC",
       "bounds": [
         510,
@@ -270,9 +318,9 @@
       ]
     },
     {
-      "id": 301,
+      "id": 37,
       "pageId": 9,
-      "name": "High Tom",
+      "name": "HIGH TOM",
       "color": "03A598",
       "bounds": [
         0,
@@ -282,9 +330,9 @@
       ]
     },
     {
-      "id": 304,
+      "id": 38,
       "pageId": 9,
-      "name": "Rim Shot",
+      "name": "RIM SHOT",
       "color": "C44795",
       "bounds": [
         510,
@@ -294,21 +342,21 @@
       ]
     },
     {
-      "id": 307,
+      "id": 39,
       "pageId": 9,
-      "name": "Hand Clap",
+      "name": "HAND CLAP",
+      "color": "FFFFFF",
       "bounds": [
         0,
         280,
         486,
         16
-      ],
-      "color": "FFFFFF"
+      ]
     },
     {
-      "id": 310,
+      "id": 40,
       "pageId": 9,
-      "name": "Cow Bell",
+      "name": "COW BELL",
       "color": "F45C51",
       "bounds": [
         510,
@@ -318,9 +366,9 @@
       ]
     },
     {
-      "id": 313,
+      "id": 41,
       "pageId": 9,
-      "name": "Cymbal",
+      "name": "CYMBAL",
       "color": "F49500",
       "bounds": [
         0,
@@ -330,9 +378,9 @@
       ]
     },
     {
-      "id": 316,
+      "id": 42,
       "pageId": 9,
-      "name": "Open Hat",
+      "name": "OPEN HAT",
       "color": "529DEC",
       "bounds": [
         510,
@@ -342,9 +390,9 @@
       ]
     },
     {
-      "id": 319,
+      "id": 43,
       "pageId": 9,
-      "name": "Closed Hat",
+      "name": "CLOSED HAT",
       "color": "03A598",
       "bounds": [
         0,
@@ -352,60 +400,12 @@
         486,
         16
       ]
-    },
-    {
-      "id": 25,
-      "pageId": 1,
-      "name": "Drum Pattern",
-      "color": "F45C51",
-      "bounds": [
-        0,
-        368,
-        316,
-        16
-      ]
-    },
-    {
-      "id": 218,
-      "pageId": 7,
-      "name": "Bitwig Device Remote Controls",
-      "color": "F49500",
-      "bounds": [
-        170,
-        16,
-        656,
-        16
-      ]
-    },
-    {
-      "id": 229,
-      "pageId": 7,
-      "name": "Remote Control Pages",
-      "bounds": [
-        0,
-        192,
-        996,
-        16
-      ],
-      "color": "FFFFFF"
-    },
-    {
-      "id": 241,
-      "pageId": 7,
-      "name": "Bitwig Track Sends",
-      "color": "F49500",
-      "bounds": [
-        0,
-        368,
-        996,
-        16
-      ]
     }
   ],
   "devices": [
     {
       "id": 1,
-      "name": "Generic MIDI",
+      "name": "Bacara Control",
       "port": 1,
       "channel": 1
     },
@@ -767,26 +767,6 @@
       "id": 8,
       "items": [
         {
-          "value": 0,
-          "label": "All",
-          "index": 0
-        },
-        {
-          "value": 1,
-          "label": "House",
-          "index": 1
-        },
-        {
-          "value": 2,
-          "label": "Breaks",
-          "index": 2
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "items": [
-        {
           "value": 1,
           "label": "1",
           "index": 0
@@ -825,6 +805,26 @@
           "value": 128,
           "label": "128",
           "index": 7
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "items": [
+        {
+          "value": 0,
+          "label": "All",
+          "index": 0
+        },
+        {
+          "value": 1,
+          "label": "House",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "Breaks",
+          "index": 2
         }
       ]
     },
@@ -4343,203 +4343,8 @@
       "items": [
         {
           "index": 0,
-          "label": "Midihub MH-3.1",
-          "value": 0
-        },
-        {
-          "index": 1,
-          "label": "Midihub MH-3.2",
-          "value": 1
-        },
-        {
-          "index": 2,
-          "label": "Midihub MH-3.3",
-          "value": 2
-        },
-        {
-          "index": 3,
-          "label": "Midihub MH-3.4",
-          "value": 3
-        },
-        {
-          "index": 4,
-          "label": "Akai APC.40",
-          "value": 4
-        },
-        {
-          "index": 5,
-          "label": "MX-.1",
-          "value": 5
-        },
-        {
-          "index": 6,
-          "label": "MX-1.CTRL",
-          "value": 6
-        },
-        {
-          "index": 7,
-          "label": "MX-1 USB.1",
-          "value": 7
-        },
-        {
-          "index": 8,
-          "label": "MX-1 USB1.CTRL",
-          "value": 8
-        },
-        {
-          "index": 9,
-          "label": "MX-1 USB.2",
-          "value": 9
-        },
-        {
-          "index": 10,
-          "label": "MX-1 USB2.CTRL",
-          "value": 10
-        },
-        {
-          "index": 11,
-          "label": "MX-1 USB.3",
-          "value": 11
-        },
-        {
-          "index": 12,
-          "label": "MX-1 USB3.CTRL",
-          "value": 12
-        },
-        {
-          "index": 13,
-          "label": "MX-1 USB.4",
-          "value": 13
-        },
-        {
-          "index": 14,
-          "label": "MX-1 USB4.CTRL",
-          "value": 14
-        },
-        {
-          "index": 15,
-          "label": "Touch Block Bl",
-          "value": 15
-        },
-        {
-          "index": 16,
-          "label": "Lightpad BLOCK",
-          "value": 16
-        },
-        {
-          "index": 17,
-          "label": "Electra Cont A.",
-          "value": 17
-        },
-        {
-          "index": 18,
-          "label": "Electra Cont A.",
-          "value": 18
-        },
-        {
-          "index": 19,
-          "label": "Electra Contro ",
-          "value": 19
-        },
-        {
-          "index": 20,
-          "label": "Electra Cont B.",
-          "value": 20
-        },
-        {
-          "index": 21,
-          "label": "Electra Cont B.",
-          "value": 21
-        },
-        {
-          "index": 22,
-          "label": "Electra Contro ",
-          "value": 22
-        },
-        {
-          "index": 23,
-          "label": "MRCC Port.1",
-          "value": 23
-        },
-        {
-          "index": 24,
-          "label": "MRCC Port.2",
-          "value": 24
-        },
-        {
-          "index": 25,
-          "label": "MRCC Port.3",
-          "value": 25
-        },
-        {
-          "index": 26,
-          "label": "MRCC Port.4",
-          "value": 26
-        },
-        {
-          "index": 27,
-          "label": "MRCC Port.5",
-          "value": 27
-        },
-        {
-          "index": 28,
-          "label": "MRCC Port.6",
-          "value": 28
-        },
-        {
-          "index": 29,
-          "label": "MRCC Port.7",
-          "value": 29
-        },
-        {
-          "index": 30,
-          "label": "MRCC Port.8",
-          "value": 30
-        },
-        {
-          "index": 31,
-          "label": "MRCC Port.9",
-          "value": 31
-        },
-        {
-          "index": 32,
-          "label": "MRCC Port.10",
-          "value": 32
-        },
-        {
-          "index": 33,
-          "label": "MRCC Port.11",
-          "value": 33
-        },
-        {
-          "index": 34,
-          "label": "MRCC Port.12",
-          "value": 34
-        },
-        {
-          "index": 35,
-          "label": "MRCC Port.13",
-          "value": 35
-        },
-        {
-          "index": 36,
-          "label": "MRCC Port.14",
-          "value": 36
-        },
-        {
-          "index": 37,
-          "label": "MRCC Port.15",
-          "value": 37
-        },
-        {
-          "index": 38,
-          "label": "MRCC Port.16",
-          "value": 38
-        },
-        {
-          "index": 39,
           "label": "Bacara",
-          "value": 39
+          "value": 0
         }
       ]
     },
@@ -5252,6 +5057,40 @@
       ]
     },
     {
+      "id": 16,
+      "type": "list",
+      "visible": true,
+      "name": "STEPS",
+      "color": "03A598",
+      "bounds": [
+        510,
+        216,
+        146,
+        56
+      ],
+      "pageId": 1,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 4,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16260
+          },
+          "defaultValue": 16,
+          "overlayId": 8,
+          "id": "value"
+        }
+      ]
+    },
+    {
       "id": 17,
       "type": "pad",
       "mode": "toggle",
@@ -5351,7 +5190,7 @@
             "parameterNumber": 16288
           },
           "defaultValue": 16,
-          "overlayId": 8,
+          "overlayId": 9,
           "id": "value"
         }
       ]
@@ -5385,7 +5224,7 @@
             "parameterNumber": 16287
           },
           "defaultValue": 16,
-          "overlayId": 9,
+          "overlayId": 8,
           "id": "value"
         }
       ]
@@ -5426,10 +5265,10 @@
     },
     {
       "id": 22,
-      "type": "list",
+      "type": "fader",
       "visible": true,
       "name": "STEPS",
-      "color": "03A598",
+      "color": "FFFFFF",
       "bounds": [
         510,
         304,
@@ -5450,10 +5289,11 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16260
+            "parameterNumber": 16260,
+            "min": 0,
+            "max": 127
           },
           "defaultValue": 16,
-          "overlayId": 9,
           "id": "value"
         }
       ]
@@ -9186,7 +9026,7 @@
       "type": "pad",
       "mode": "momentary",
       "visible": true,
-      "name": "PREVIOUS BANK",
+      "name": "NEXT BANK",
       "color": "F45C51",
       "bounds": [
         510,
@@ -9208,7 +9048,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6018,
+            "parameterNumber": 6019,
             "onValue": 1,
             "offValue": 0
           },
@@ -9222,7 +9062,7 @@
       "type": "pad",
       "mode": "momentary",
       "visible": true,
-      "name": "NEXT BANK",
+      "name": "NEXT",
       "color": "F45C51",
       "bounds": [
         680,
@@ -9244,7 +9084,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6019,
+            "parameterNumber": 6149,
             "onValue": 1,
             "offValue": 0
           },
@@ -9397,7 +9237,7 @@
       "type": "pad",
       "mode": "momentary",
       "visible": true,
-      "name": "PREVIOUS",
+      "name": "PREVIOUS BANK",
       "color": "F45C51",
       "bounds": [
         510,
@@ -9419,7 +9259,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6148,
+            "parameterNumber": 6018,
             "onValue": 1,
             "offValue": 0
           },
@@ -9433,7 +9273,7 @@
       "type": "pad",
       "mode": "momentary",
       "visible": true,
-      "name": "NEXT",
+      "name": "PREVIOUS",
       "color": "F45C51",
       "bounds": [
         680,
@@ -9455,7 +9295,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6149,
+            "parameterNumber": 6148,
             "onValue": 1,
             "offValue": 0
           },
@@ -9567,7 +9407,7 @@
       "type": "pad",
       "mode": "momentary",
       "visible": true,
-      "name": "PREVIOUS BANK",
+      "name": "NEXT BANK",
       "color": "529DEC",
       "bounds": [
         510,
@@ -9589,7 +9429,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6274,
+            "parameterNumber": 6275,
             "onValue": 1,
             "offValue": 0
           },
@@ -9603,7 +9443,7 @@
       "type": "pad",
       "mode": "momentary",
       "visible": true,
-      "name": "NEXT BANK",
+      "name": "NEXT",
       "color": "529DEC",
       "bounds": [
         680,
@@ -9625,7 +9465,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6275,
+            "parameterNumber": 6403,
             "onValue": 1,
             "offValue": 0
           },
@@ -9778,7 +9618,7 @@
       "type": "pad",
       "mode": "momentary",
       "visible": true,
-      "name": "PREVIOUS",
+      "name": "PREVIOUS BANK",
       "color": "529DEC",
       "bounds": [
         510,
@@ -9800,7 +9640,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6402,
+            "parameterNumber": 6274,
             "onValue": 1,
             "offValue": 0
           },
@@ -9814,7 +9654,7 @@
       "type": "pad",
       "mode": "momentary",
       "visible": true,
-      "name": "NEXT",
+      "name": "PREVIOUS",
       "color": "529DEC",
       "bounds": [
         680,
@@ -9836,7 +9676,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6403,
+            "parameterNumber": 6402,
             "onValue": 1,
             "offValue": 0
           },
