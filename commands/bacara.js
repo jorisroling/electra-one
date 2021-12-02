@@ -2972,19 +2972,19 @@ function bacaraSequencer(name, sub, options) {
               }
             } else if (_.isEqual(sysexCmd, electraSysexCmdPatchResponse)) {
               const presetName = electra.parseSysexCmdPatchRequestResponse(options.electraOneCtrl, msg.bytes)
-              if (presetName == bacaraPresetName) {
-                debug('Electra One "%y" preset IS Loaded (patch)', bacaraPresetName)
+              if (presetName == bacaraPresetName || presetName.toLowerCase().indexOf('bacara')>=0) {
+                debug('Electra One "%s" preset IS Loaded (patch)', bacaraPresetName)
                 bacaraMachine.virusReflectParts()
               } else {
-                debug('Electra One "%y" preset is NOT Loaded (currently is "%y") (patch)', bacaraPresetName, presetName)
+                debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (patch)', bacaraPresetName, presetName)
               }
             } else if (_.isEqual(sysexCmd, electraSysexCmdPresetNameResponse)) {
               const presetName = electra.parseSysexCmdPresetNameResponse(options.electraOneCtrl, msg.bytes)
-              if (presetName == bacaraPresetName) {
-                debug('Electra One "%y" preset IS Loaded (preset)', bacaraPresetName)
+              if (presetName == bacaraPresetName || presetName.toLowerCase().indexOf('bacara')>=0) {
+                debug('Electra One "%s" preset IS Loaded (preset)', bacaraPresetName)
                 bacaraMachine.virusReflectParts()
               } else {
-                debug('Electra One "%y" preset is NOT Loaded (currently is "%y") (preset)', bacaraPresetName, presetName)
+                debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (preset)', bacaraPresetName, presetName, presetName.toLowerCase().indexOf(bacaraPresetName.toLowerCase()),presetName,bacaraPresetName)
               }
             } else if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
               if (config.electra.checkPresetVia == 'patch' || semver.lt(_.get(e1_system_info, 'versionText', 'v0.0.0'), E1_FIRMWARE_PRESET_REQUEST_VERSION)) {
