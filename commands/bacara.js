@@ -573,7 +573,6 @@ class BacaraMachine extends Machine {
     const drumsRedrumActions = (trck) => {
       return {
         generate: (elementPath, origin) => {
-          /*          debug('JJR1 %y %y',elementPath, origin)*/
           if (origin == 'surface' || origin == 'remote') {
             const instrument = this.interface.getParameter(`drums.redrum.${trck}.instrument`)
             this.setState('drums.patterns', Drums.generate(this.interface.getParameter('drums.steps'), this.interface.getParameter('drums.style'), instrument, this.getState('drums.patterns')))
@@ -584,7 +583,7 @@ class BacaraMachine extends Machine {
           }
         },
         preview: (elementPath, origin) => {
-          debug('JJR2 %y %y', elementPath, origin)
+//          debug('JJR2 %y %y', elementPath, origin)
         },
       }
     }
@@ -783,7 +782,6 @@ class BacaraMachine extends Machine {
       },
       drums: {
         generate: (elementPath, origin) => {
-          /*          console.trace('JJR GEN')*/
           if (origin == 'surface' || origin == 'remote' || !this.getState('drums.patterns')) {
             this.setState('drums.patterns', Drums.generate(this.interface.getParameter('drums.steps'), this.interface.getParameter('drums.style'), -1, this.getState('drums.patterns')))
             this.setState('drums.midi', Drums.midiFromPatterns(this.interface.getParameter('drums.steps'), this.getState('drums.patterns')))
@@ -1549,7 +1547,6 @@ class BacaraMachine extends Machine {
       },
       drums: {
         density: (elementPath, value, origin) => {
-          //          console.trace('JJR DENS')
           if (origin == 'surface' || !this.getState('drums.sounding')) {
             const sounding = []
             for (let idx = 0; idx < this.interface.getParameter('drums.steps', 'modulated'); idx++) {
@@ -2076,7 +2073,7 @@ class BacaraMachine extends Machine {
         {hAlign:'center', content:TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })/*+` ${noteMidi}`*/}
       ]
       for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
-        let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.interface.getParameter('steps', 'modulated')) // JJR ? steps?
+        let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.interface.getParameter('steps', 'modulated')) // steps?
         if (shiftedTicks < 0) {
           shiftedTicks +=  ticksPerStep * this.interface.getParameter('steps', 'modulated')
         }
@@ -2250,7 +2247,6 @@ class BacaraMachine extends Machine {
     if (!muteShift) {
       muteShift = 0
     }
-    debug('euclidian %y %y %y', muteSteps, steps, muteShift)
     function arrayRotate(arr, reverse) {
       if (reverse) {
         arr.unshift(arr.pop())
@@ -2270,6 +2266,8 @@ class BacaraMachine extends Machine {
     for (let idx = 0; idx < steps; idx++) {
       this.state.sounding[idx] = !pat[idx] ? 1 : 0
     }
+//    debug('euclidian %y %y %y %y', muteSteps, steps, muteShift, this.state.sounding)
+//    console.trace('JJR')
     return pat
   }
 
