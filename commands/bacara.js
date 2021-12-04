@@ -2564,8 +2564,8 @@ class BacaraMachine extends Machine {
                 if (!this.interface.getParameter(`drums.instrument.${instrument}.mute`, 'modulated') && this.interface.getParameter('drums.probability', 'modulated') >= Machine.getRandomInt(100)) {
                   const portName = this.getState(`drums.instrument.${instrument}.portName`,'bacara')
                   const channel = this.getState(`drums.instrument.${instrument}.channel`,10) - 1
-                  const midiNote = this.interface.getParameter(`drums.instrument.${instrument}.note`, 'modulated')
-                  debugMidiNoteOn('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
+                  const midiNote = this.interface.getParameter(`drums.instrument.${instrument}.note`/*, 'modulated'*/)
+                  debugMidiNoteOn('port %s  channel %d  note %y  instrument %y  ', portName, channel + 1, midiNote, instrument)
 
                   if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
                     Midi.send(portName, 'noteoff', {
@@ -2609,7 +2609,7 @@ class BacaraMachine extends Machine {
                       const portName = this.getState(`drums.redrum.${trck}.portName`)
                       const channel = this.getState(`drums.redrum.${trck}.channel`, 10) - 1
                       const midiNote = this.interface.getParameter(`drums.redrum.${trck}.note`, 'modulated')
-                      debugMidiNoteOn('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
+                      debugMidiNoteOn('port %s  channel %d  note %y  track %y  ', portName, channel + 1, midiNote,trck)
 
                       if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
                         Midi.send(portName, 'noteoff', {
