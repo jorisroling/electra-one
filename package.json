@@ -1,6 +1,6 @@
 {
   "name": "electra-one",
-  "version": "1.2.19",
+  "version": "1.2.20",
   "description": "Sequencer, Router & Instrument Files for Electra One",
   "main": "index.js",
   "bin": {
