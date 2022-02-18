@@ -21,7 +21,7 @@ args
   .option('page', 'Page ID to operate on, this options can be used more than once. Use \'electra-one page list --filename preset.epr\' to show available Page ID\'s')
 
   .option('electra', 'Electra One MIDI interface name (part)', _.get(config, 'options.electra', 'electra-one-port-2'))
-  .option('clock', 'Clock Input MIDI interface name (part)', _.get(config, 'options.clock', 'tr-6s'))
+  .option('clock', 'Clock Input MIDI interface name (part)', _.get(config, 'options.clock', 'missing-link'))
 
   .option('transpose', 'Transpose Input MIDI interface name (part)', _.get(config, 'options.transpose', 'komplete-kontrol'))
   .option('transposeChannel', 'Transpose Input Channel (1-16)', _.get(config, 'options.transposeChannel', 1))

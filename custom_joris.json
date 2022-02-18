@@ -4,7 +4,7 @@
     "electra": "electra-one-a-port-2",
     "electraOneCtrl": "electra-one-a-ctrl",
     "scenario": "default",
-    "clock": "tr-6s",
+    "clock": "missing-link",
     "transpose": "komplete-kontrol",
     "transposeChannel": 15,
     "general": "lightpad-block",
@@ -49,8 +49,8 @@
       "typhon": {
         "darwin": "MRCC Port 3"
       },
-      "tr-6s": {
-        "darwin": "MRCC Port 4"
+      "missing-link": {
+        "darwin": "MRCC Port 6"
       },
       "mb33": {
         "darwin": "MRCC Port 7"
@@ -911,6 +911,22 @@
             "short": "MX-1 USB4.CTRL"
           },
           {
+            "name": "Midihub MH-3Q5WJAZ Port 1",
+            "short": "Midihub MH-3.1"
+          },
+          {
+            "name": "Midihub MH-3Q5WJAZ Port 2",
+            "short": "Midihub MH-3.2"
+          },
+          {
+            "name": "Midihub MH-3Q5WJAZ Port 3",
+            "short": "Midihub MH-3.3"
+          },
+          {
+            "name": "Midihub MH-3Q5WJAZ Port 4",
+            "short": "Midihub MH-3.4"
+          },
+          {
             "name": "Electra Controller A Electra Port 1",
             "short": "Electra Cont A.1",
             "device": "electra-one-a-port-1"
@@ -957,8 +973,7 @@
           },
           {
             "name": "MRCC Port 4",
-            "short": "MRCC Port.4",
-            "device": "tr-6s"
+            "short": "MRCC Port.4"
           },
           {
             "name": "MRCC Port 5",
@@ -966,7 +981,8 @@
           },
           {
             "name": "MRCC Port 6",
-            "short": "MRCC Port.6"
+            "short": "MRCC Port.6",
+            "device": "missing-link"
           },
           {
             "name": "MRCC Port 7",
@@ -1017,6 +1033,14 @@
           {
             "name": "Akai APC40",
             "short": "Akai APC.40"
+          },
+          {
+            "name": "X-TOUCH MINI",
+            "short": "X-TOUCH MINI"
+          },
+          {
+            "name": "Elektron Analog Four MKII",
+            "short": "Elektron Analo"
           },
           {
             "name": "Bacara",
@@ -1070,6 +1094,22 @@
             "short": "MX-1 USB4.CTRL"
           },
           {
+            "name": "Midihub MH-3Q5WJAZ Port 1",
+            "short": "Midihub MH-3.1"
+          },
+          {
+            "name": "Midihub MH-3Q5WJAZ Port 2",
+            "short": "Midihub MH-3.2"
+          },
+          {
+            "name": "Midihub MH-3Q5WJAZ Port 3",
+            "short": "Midihub MH-3.3"
+          },
+          {
+            "name": "Midihub MH-3Q5WJAZ Port 4",
+            "short": "Midihub MH-3.4"
+          },
+          {
             "name": "Electra Controller A Electra Port 1",
             "short": "Electra Cont A.1",
             "device": "electra-one-a-port-1"
@@ -1116,8 +1156,7 @@
           },
           {
             "name": "MRCC Port 4",
-            "short": "MRCC Port.4",
-            "device": "tr-6s"
+            "short": "MRCC Port.4"
           },
           {
             "name": "MRCC Port 5",
@@ -1125,7 +1164,8 @@
           },
           {
             "name": "MRCC Port 6",
-            "short": "MRCC Port.6"
+            "short": "MRCC Port.6",
+            "device": "missing-link"
           },
           {
             "name": "MRCC Port 7",
@@ -1176,6 +1216,14 @@
           {
             "name": "Akai APC40",
             "short": "Akai APC.40"
+          },
+          {
+            "name": "X-TOUCH MINI",
+            "short": "X-TOUCH MINI"
+          },
+          {
+            "name": "Elektron Analog Four MKII",
+            "short": "Elektron Analo"
           },
           {
             "name": "Bacara",

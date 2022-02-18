@@ -12,6 +12,8 @@ const jsonfile = require('jsonfile')
 const deepSortObject = require('deep-sort-object')
 
 
+const Random = require('../lib/random')
+
 const Pattern = require('../lib/pattern')
 const Drums = require('../lib/drums')
 
@@ -678,7 +680,7 @@ class BacaraMachine extends Machine {
           this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern', random:'random_pattern'})
 
           const count = Pattern.patternFiles(this.state, true)
-          this.interface.setParameter('pattern', Machine.getRandomInt(count) )
+          this.interface.setParameter('pattern', Random.getRandomInt(count) )
 
           this.state.pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
           this.interface.setParameter('steps', this.getState('patternSteps'))
@@ -732,7 +734,7 @@ class BacaraMachine extends Machine {
       random_preset: (elementPath, origin) => {
         if (origin == 'surface' || origin == 'remote') {
           this.setRemote(origin, {next:'next_preset', previous:'previous_preset', random:'random_preset'})
-          const filename = this.load_preset(Machine.getRandomInt(this.presetFiles(true)))
+          const filename = this.load_preset(Random.getRandomInt(this.presetFiles(true)))
           if (filename) {
             this.sendDeviceProgramChange('A')
             this.sendDeviceProgramChange('B')
@@ -1356,7 +1358,7 @@ class BacaraMachine extends Machine {
         if (origin == 'surface' || !this.state.octaves) {
           this.state.octaves = []
           for (let idx = 0; idx < this.interface.getParameter('steps', 'modulated'); idx++) {
-            const octave = (Math.abs(value) > Machine.getRandomInt(100))
+            const octave = (Math.abs(value) > Random.getRandomInt(100))
             this.state.octaves[idx] = (octave ? (value > 0 ? 1 : -1) : 0)
           }
         }
@@ -1368,7 +1370,7 @@ class BacaraMachine extends Machine {
         if (origin == 'surface' || !this.state.sounding) {
           this.state.sounding = []
           for (let idx = 0; idx < this.interface.getParameter('steps', 'modulated'); idx++) {
-            this.state.sounding[idx] = (value && (value >= Machine.getRandomInt(100))) ? 1 : 0
+            this.state.sounding[idx] = (value && (value >= Random.getRandomInt(100))) ? 1 : 0
           }
         }
       },
@@ -1552,7 +1554,7 @@ class BacaraMachine extends Machine {
             for (let idx = 0; idx < this.interface.getParameter('drums.steps', 'modulated'); idx++) {
               sounding[idx] = []
               for (let instrument = 0; instrument < 12; instrument++) {
-                sounding[idx][instrument] = (value && (value >= Machine.getRandomInt(100))) ? 1 : 0
+                sounding[idx][instrument] = (value && (value >= Random.getRandomInt(100))) ? 1 : 0
               }
             }
             this.setState('drums.sounding', sounding)
@@ -1980,7 +1982,7 @@ class BacaraMachine extends Machine {
             const count = 1//Math.ceil(note.durationTicks / ticksPerStep)
 
             let velFactor = this.interface.getParameter('drums.velocity')
-            if (Math.abs(velFactor) < Machine.getRandomInt(100)) {
+            if (Math.abs(velFactor) < Random.getRandomInt(100)) {
               velFactor = 0
             }
             const relVelocity = ((note.velocity + (velFactor >= 0 ? ((1.0 - note.velocity) * (velFactor / 100)) : ((note.velocity) * (velFactor / 100)) ) ) )
@@ -2214,7 +2216,7 @@ class BacaraMachine extends Machine {
     case 'square':
       return (cycleStep < (stepsPerCycle / 4)) || ((cycleStep >= (stepsPerCycle / 2)) && (cycleStep < (stepsPerCycle * 0.75))) ? 128 : 0
     case 'random':
-      return Machine.getRandomInt(127)
+      return Random.getRandomInt(127)
     }
     return -1
   }
@@ -2498,12 +2500,12 @@ class BacaraMachine extends Machine {
                 midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
               }
 
-              const switchSide = (this.interface.getParameter('deviate', 'modulated') && this.interface.getParameter('deviate', 'modulated') >= Machine.getRandomInt(100))
+              const switchSide = (this.interface.getParameter('deviate', 'modulated') && this.interface.getParameter('deviate', 'modulated') >= Random.getRandomInt(100))
               const split = this.interface.getParameter('split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
               const dev =  (midiNote <= split) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
               midiNote += this.interface.getParameter('transpose', 'modulated') + this.interface.getParameter(`device.${dev}.transpose`, 'modulated') + this.octave(this.stepIdx)
 
-              if (!this.interface.getParameter(`device.${dev}.mute`, 'modulated') && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability', 'modulated') >= Machine.getRandomInt(100)) {
+              if (!this.interface.getParameter(`device.${dev}.mute`, 'modulated') && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability', 'modulated') >= Random.getRandomInt(100)) {
                 const portName = this.getState(`device.${dev}.portName`)
                 const channel = this.interface.getParameter(`device.${dev}.channel`, 'modulated') - 1
                 debugMidiNoteOn('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
@@ -2561,7 +2563,7 @@ class BacaraMachine extends Machine {
             const instrument = note.midi - Drums.baseNote()
             if (this.drumsStepIdx < this.interface.getParameter('drums.steps', 'modulated') && this.sounding(this.drumsStepIdx, 'drums.sounding', instrument)) {
               if (instrument >= 0 && instrument < 12) {
-                if (!this.interface.getParameter(`drums.instrument.${instrument}.mute`, 'modulated') && this.interface.getParameter('drums.probability', 'modulated') >= Machine.getRandomInt(100)) {
+                if (!this.interface.getParameter(`drums.instrument.${instrument}.mute`, 'modulated') && this.interface.getParameter('drums.probability', 'modulated') >= Random.getRandomInt(100)) {
                   const portName = this.getState(`drums.instrument.${instrument}.portName`,'bacara')
                   const channel = this.getState(`drums.instrument.${instrument}.channel`,10) - 1
                   const midiNote = this.interface.getParameter(`drums.instrument.${instrument}.note`/*, 'modulated'*/)
@@ -2577,7 +2579,7 @@ class BacaraMachine extends Machine {
                     })
                   }
                   let velFactor = this.interface.getParameter('drums.velocity', 'modulated')
-                  if (Math.abs(velFactor) < Machine.getRandomInt(100)) {
+                  if (Math.abs(velFactor) < Random.getRandomInt(100)) {
                     velFactor = 0
                   }
                   const velocity = (127 * (note.velocity + (velFactor >= 0 ? ((1.0 - note.velocity) * (velFactor / 100)) : ((note.velocity) * (velFactor / 100)) ) ) )
@@ -2605,7 +2607,7 @@ class BacaraMachine extends Machine {
                 }
                 for (let trck = 0; trck < 6; trck++) {
                   if (this.interface.getParameter(`drums.redrum.${trck}.instrument`, 'modulated') == instrument) {
-                    if (!this.interface.getParameter(`drums.redrum.${trck}.mute`, 'modulated') && this.getState(`drums.redrum.${trck}.portName`) && this.interface.getParameter('drums.probability', 'modulated') >= Machine.getRandomInt(100)) {
+                    if (!this.interface.getParameter(`drums.redrum.${trck}.mute`, 'modulated') && this.getState(`drums.redrum.${trck}.portName`) && this.interface.getParameter('drums.probability', 'modulated') >= Random.getRandomInt(100)) {
                       const portName = this.getState(`drums.redrum.${trck}.portName`)
                       const channel = this.getState(`drums.redrum.${trck}.channel`, 10) - 1
                       const midiNote = this.interface.getParameter(`drums.redrum.${trck}.note`, 'modulated')
@@ -2621,7 +2623,7 @@ class BacaraMachine extends Machine {
                         })
                       }
                       let velFactor = this.interface.getParameter('drums.velocity', 'modulated')
-                      if (Math.abs(velFactor) < Machine.getRandomInt(100)) {
+                      if (Math.abs(velFactor) < Random.getRandomInt(100)) {
                         velFactor = 0
                       }
                       const velocity = (127 * (note.velocity + (velFactor >= 0 ? ((1.0 - note.velocity) * (velFactor / 100)) : ((note.velocity) * (velFactor / 100)) ) ) )
