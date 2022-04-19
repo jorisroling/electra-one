@@ -867,94 +867,8 @@
       "ports": {
         "input": [
           {
-            "name": "IAC Driver Bus 1",
-            "short": "IAC Driver B.1"
-          },
-          {
-            "name": "MX-1",
-            "short": "MX-.1"
-          },
-          {
-            "name": "MX-1 CTRL",
-            "short": "MX-1.CTRL"
-          },
-          {
-            "name": "MX-1 USB1",
-            "short": "MX-1 USB.1"
-          },
-          {
-            "name": "MX-1 USB1 CTRL",
-            "short": "MX-1 USB1.CTRL"
-          },
-          {
-            "name": "MX-1 USB2",
-            "short": "MX-1 USB.2"
-          },
-          {
-            "name": "MX-1 USB2 CTRL",
-            "short": "MX-1 USB2.CTRL"
-          },
-          {
-            "name": "MX-1 USB3",
-            "short": "MX-1 USB.3"
-          },
-          {
-            "name": "MX-1 USB3 CTRL",
-            "short": "MX-1 USB3.CTRL"
-          },
-          {
-            "name": "MX-1 USB4",
-            "short": "MX-1 USB.4"
-          },
-          {
-            "name": "MX-1 USB4 CTRL",
-            "short": "MX-1 USB4.CTRL"
-          },
-          {
-            "name": "Midihub MH-3Q5WJAZ Port 1",
-            "short": "Midihub MH-3.1"
-          },
-          {
-            "name": "Midihub MH-3Q5WJAZ Port 2",
-            "short": "Midihub MH-3.2"
-          },
-          {
-            "name": "Midihub MH-3Q5WJAZ Port 3",
-            "short": "Midihub MH-3.3"
-          },
-          {
-            "name": "Midihub MH-3Q5WJAZ Port 4",
-            "short": "Midihub MH-3.4"
-          },
-          {
-            "name": "Electra Controller A Electra Port 1",
-            "short": "Electra Cont A.1",
-            "device": "electra-one-a-port-1"
-          },
-          {
-            "name": "Electra Controller A Electra Port 2",
-            "short": "Electra Cont A.2",
-            "device": "electra-one-a-port-2"
-          },
-          {
-            "name": "Electra Controller A Electra CTRL",
-            "short": "Electra Contro A.CTRL",
-            "device": "electra-one-a-ctrl"
-          },
-          {
-            "name": "Electra Controller B Electra Port 1",
-            "short": "Electra Cont B.1",
-            "device": "electra-one-b-port-1"
-          },
-          {
-            "name": "Electra Controller B Electra Port 2",
-            "short": "Electra Cont B.2",
-            "device": "electra-one-b-port-2"
-          },
-          {
-            "name": "Electra Controller B Electra CTRL",
-            "short": "Electra Contro B.CTRL",
-            "device": "electra-one-b-ctrl"
+            "name": "KOMPLETE KONTROL M32",
+            "short": "KOMPLETE KO.32"
           },
           {
             "name": "MRCC Port 1",
@@ -1031,16 +945,79 @@
             "short": "MRCC Port.16"
           },
           {
-            "name": "Akai APC40",
-            "short": "Akai APC.40"
-          },
-          {
             "name": "X-TOUCH MINI",
             "short": "X-TOUCH MINI"
           },
           {
+            "name": "Akai APC40",
+            "short": "Akai APC.40"
+          },
+          {
+            "name": "MX-1",
+            "short": "MX-.1"
+          },
+          {
+            "name": "MX-1 CTRL",
+            "short": "MX-1.CTRL"
+          },
+          {
+            "name": "MX-1 USB1",
+            "short": "MX-1 USB.1"
+          },
+          {
+            "name": "MX-1 USB1 CTRL",
+            "short": "MX-1 USB1.CTRL"
+          },
+          {
+            "name": "MX-1 USB2",
+            "short": "MX-1 USB.2"
+          },
+          {
+            "name": "MX-1 USB2 CTRL",
+            "short": "MX-1 USB2.CTRL"
+          },
+          {
+            "name": "MX-1 USB3",
+            "short": "MX-1 USB.3"
+          },
+          {
+            "name": "MX-1 USB3 CTRL",
+            "short": "MX-1 USB3.CTRL"
+          },
+          {
+            "name": "MX-1 USB4",
+            "short": "MX-1 USB.4"
+          },
+          {
+            "name": "MX-1 USB4 CTRL",
+            "short": "MX-1 USB4.CTRL"
+          },
+          {
             "name": "Elektron Analog Four MKII",
             "short": "Elektron Analo"
+          },
+          {
+            "name": "Elektron Analog Rytm MKII",
+            "short": "Elektron Analo"
+          },
+          {
+            "name": "Electra Controller Electra Port 1",
+            "short": "Electra Cont.1",
+            "device": "electra-one-port-1"
+          },
+          {
+            "name": "Electra Controller Electra Port 2",
+            "short": "Electra Cont.2",
+            "device": "electra-one-port-2"
+          },
+          {
+            "name": "Electra Controller Electra CTRL",
+            "short": "Electra Contro.CTRL",
+            "device": "electra-one-ctrl"
+          },
+          {
+            "name": "Komplete Kontrol M DAW",
+            "short": "Komplete Kontr"
           },
           {
             "name": "Bacara",
@@ -1050,94 +1027,8 @@
         ],
         "output": [
           {
-            "name": "IAC Driver Bus 1",
-            "short": "IAC Driver B.1"
-          },
-          {
-            "name": "MX-1",
-            "short": "MX-.1"
-          },
-          {
-            "name": "MX-1 CTRL",
-            "short": "MX-1.CTRL"
-          },
-          {
-            "name": "MX-1 USB1",
-            "short": "MX-1 USB.1"
-          },
-          {
-            "name": "MX-1 USB1 CTRL",
-            "short": "MX-1 USB1.CTRL"
-          },
-          {
-            "name": "MX-1 USB2",
-            "short": "MX-1 USB.2"
-          },
-          {
-            "name": "MX-1 USB2 CTRL",
-            "short": "MX-1 USB2.CTRL"
-          },
-          {
-            "name": "MX-1 USB3",
-            "short": "MX-1 USB.3"
-          },
-          {
-            "name": "MX-1 USB3 CTRL",
-            "short": "MX-1 USB3.CTRL"
-          },
-          {
-            "name": "MX-1 USB4",
-            "short": "MX-1 USB.4"
-          },
-          {
-            "name": "MX-1 USB4 CTRL",
-            "short": "MX-1 USB4.CTRL"
-          },
-          {
-            "name": "Midihub MH-3Q5WJAZ Port 1",
-            "short": "Midihub MH-3.1"
-          },
-          {
-            "name": "Midihub MH-3Q5WJAZ Port 2",
-            "short": "Midihub MH-3.2"
-          },
-          {
-            "name": "Midihub MH-3Q5WJAZ Port 3",
-            "short": "Midihub MH-3.3"
-          },
-          {
-            "name": "Midihub MH-3Q5WJAZ Port 4",
-            "short": "Midihub MH-3.4"
-          },
-          {
-            "name": "Electra Controller A Electra Port 1",
-            "short": "Electra Cont A.1",
-            "device": "electra-one-a-port-1"
-          },
-          {
-            "name": "Electra Controller A Electra Port 2",
-            "short": "Electra Cont A.2",
-            "device": "electra-one-a-port-2"
-          },
-          {
-            "name": "Electra Controller A Electra CTRL",
-            "short": "Electra Contro A.CTRL",
-            "device": "electra-one-a-ctrl"
-          },
-          {
-            "name": "Electra Controller B Electra Port 1",
-            "short": "Electra Cont B.1",
-            "device": "electra-one-b-port-1"
-          },
-          {
-            "name": "Electra Controller B Electra Port 2",
-            "short": "Electra Cont B.2",
-            "device": "electra-one-b-port-2"
-          },
-          {
-            "name": "Electra Controller B Electra CTRL",
-            "short": "Electra Contro B.CTRL",
-            "device": "electra-one-b-ctrl"
+            "name": "KOMPLETE KONTROL M32",
+            "short": "KOMPLETE KO.32"
           },
           {
             "name": "MRCC Port 1",
@@ -1214,16 +1105,79 @@
             "short": "MRCC Port.16"
           },
           {
-            "name": "Akai APC40",
-            "short": "Akai APC.40"
-          },
-          {
             "name": "X-TOUCH MINI",
             "short": "X-TOUCH MINI"
           },
           {
+            "name": "Akai APC40",
+            "short": "Akai APC.40"
+          },
+          {
+            "name": "MX-1",
+            "short": "MX-.1"
+          },
+          {
+            "name": "MX-1 CTRL",
+            "short": "MX-1.CTRL"
+          },
+          {
+            "name": "MX-1 USB1",
+            "short": "MX-1 USB.1"
+          },
+          {
+            "name": "MX-1 USB1 CTRL",
+            "short": "MX-1 USB1.CTRL"
+          },
+          {
+            "name": "MX-1 USB2",
+            "short": "MX-1 USB.2"
+          },
+          {
+            "name": "MX-1 USB2 CTRL",
+            "short": "MX-1 USB2.CTRL"
+          },
+          {
+            "name": "MX-1 USB3",
+            "short": "MX-1 USB.3"
+          },
+          {
+            "name": "MX-1 USB3 CTRL",
+            "short": "MX-1 USB3.CTRL"
+          },
+          {
+            "name": "MX-1 USB4",
+            "short": "MX-1 USB.4"
+          },
+          {
+            "name": "MX-1 USB4 CTRL",
+            "short": "MX-1 USB4.CTRL"
+          },
+          {
             "name": "Elektron Analog Four MKII",
             "short": "Elektron Analo"
+          },
+          {
+            "name": "Elektron Analog Rytm MKII",
+            "short": "Elektron Analo"
+          },
+          {
+            "name": "Electra Controller Electra Port 1",
+            "short": "Electra Cont.1",
+            "device": "electra-one-port-1"
+          },
+          {
+            "name": "Electra Controller Electra Port 2",
+            "short": "Electra Cont.2",
+            "device": "electra-one-port-2"
+          },
+          {
+            "name": "Electra Controller Electra CTRL",
+            "short": "Electra Contro.CTRL",
+            "device": "electra-one-ctrl"
+          },
+          {
+            "name": "Komplete Kontrol M DAW",
+            "short": "Komplete Kontr"
           },
           {
             "name": "Bacara",
