@@ -1001,19 +1001,19 @@
             "short": "Elektron Analo"
           },
           {
-            "name": "Electra Controller Electra Port 1",
-            "short": "Electra Cont.1",
-            "device": "electra-one-port-1"
+            "name": "Electra Controller A Electra Port 1",
+            "short": "Electra Cont A.1",
+            "device": "electra-one-a-port-1"
           },
           {
-            "name": "Electra Controller Electra Port 2",
-            "short": "Electra Cont.2",
-            "device": "electra-one-port-2"
+            "name": "Electra Controller A Electra Port 2",
+            "short": "Electra Cont A.2",
+            "device": "electra-one-a-port-2"
           },
           {
-            "name": "Electra Controller Electra CTRL",
-            "short": "Electra Contro.CTRL",
-            "device": "electra-one-ctrl"
+            "name": "Electra Controller A Electra CTRL",
+            "short": "Electra Contro A.CTRL",
+            "device": "electra-one-a-ctrl"
           },
           {
             "name": "Komplete Kontrol M DAW",
@@ -1161,19 +1161,19 @@
             "short": "Elektron Analo"
           },
           {
-            "name": "Electra Controller Electra Port 1",
-            "short": "Electra Cont.1",
-            "device": "electra-one-port-1"
+            "name": "Electra Controller A Electra Port 1",
+            "short": "Electra Cont A.1",
+            "device": "electra-one-a-port-1"
           },
           {
-            "name": "Electra Controller Electra Port 2",
-            "short": "Electra Cont.2",
-            "device": "electra-one-port-2"
+            "name": "Electra Controller A Electra Port 2",
+            "short": "Electra Cont A.2",
+            "device": "electra-one-a-port-2"
           },
           {
-            "name": "Electra Controller Electra CTRL",
-            "short": "Electra Contro.CTRL",
-            "device": "electra-one-ctrl"
+            "name": "Electra Controller A Electra CTRL",
+            "short": "Electra Contro A.CTRL",
+            "device": "electra-one-a-ctrl"
           },
           {
             "name": "Komplete Kontrol M DAW",

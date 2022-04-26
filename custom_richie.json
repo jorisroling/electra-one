@@ -23,13 +23,13 @@
   "midi": {
     "ports": {
       "electra-one-port-1": {
-        "darwin": "Electra Controller Electra Port 1"
+        "darwin": "Electra Controller A Electra Port 1"
       },
       "electra-one-port-2": {
-        "darwin": "Electra Controller Electra Port 2"
+        "darwin": "Electra Controller A Electra Port 2"
       },
       "electra-one-ctrl": {
-        "darwin": "Electra Controller Electra CTRL"
+        "darwin": "Electra Controller A Electra CTRL"
       }
     }
   },
