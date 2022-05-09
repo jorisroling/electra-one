@@ -97,7 +97,7 @@
   "dependencies": {
     "@tonaljs/tonal": "^4.6.5",
     "@tonejs/midi": "^2.0.28",
-    "args": "^5.0.1",
+    "args": "^5.0.3",
     "change-case": "^4.1.2",
     "cli-table3": "^0.6.2",
     "config": "^3.3.7",
@@ -117,11 +117,11 @@
     "sleep": "^6.3.0",
     "table": "^6.8.0",
     "untildify": "^4.0.0",
-    "yves": "^1.0.81"
+    "yves": "^1.0.82"
   },
   "devDependencies": {
     "eslint": "^8.14.0",
     "eslint-plugin-jest": "^26.1.5",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.16"
   }
 }
