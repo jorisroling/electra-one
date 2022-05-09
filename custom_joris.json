@@ -41,37 +41,37 @@
         "darwin": "Electra Controller B Electra CTRL"
       },
       "virus-ti": {
-        "darwin": "MRCC Port 1"
+        "darwin": "MRCC   Port 1"
       },
       "deluge": {
-        "darwin": "MRCC Port 2"
+        "darwin": "MRCC   Port 2"
       },
       "typhon": {
-        "darwin": "MRCC Port 3"
+        "darwin": "MRCC   Port 3"
       },
       "missing-link": {
-        "darwin": "MRCC Port 6"
+        "darwin": "MRCC   Port 6"
       },
       "mb33": {
-        "darwin": "MRCC Port 7"
+        "darwin": "MRCC   Port 7"
       },
       "vp-03": {
-        "darwin": "MRCC Port 8"
+        "darwin": "MRCC   Port 8"
       },
       "nts-1": {
-        "darwin": "MRCC Port 9"
+        "darwin": "MRCC   Port 9"
       },
       "acdgen": {
-        "darwin": "MRCC Port 10"
+        "darwin": "MRCC   Port 10"
       },
       "midihub": {
-        "darwin": "MRCC Port 11"
+        "darwin": "MRCC   Port 11"
       },
       "keystep-pro": {
-        "darwin": "MRCC Port 12"
+        "darwin": "MRCC   Port 12"
       },
       "komplete-kontrol": {
-        "darwin": "MRCC Port 12"
+        "darwin": "MRCC   Port 12"
       },
       "lightpad-block": {
         "darwin": "Lightpad BLOCK  Lightpad BLOCK"
@@ -871,84 +871,6 @@
             "short": "KOMPLETE KO.32"
           },
           {
-            "name": "MRCC Port 1",
-            "short": "MRCC Port.1",
-            "device": "virus-ti"
-          },
-          {
-            "name": "MRCC Port 2",
-            "short": "MRCC Port.2",
-            "device": "deluge"
-          },
-          {
-            "name": "MRCC Port 3",
-            "short": "MRCC Port.3",
-            "device": "typhon"
-          },
-          {
-            "name": "MRCC Port 4",
-            "short": "MRCC Port.4"
-          },
-          {
-            "name": "MRCC Port 5",
-            "short": "MRCC Port.5"
-          },
-          {
-            "name": "MRCC Port 6",
-            "short": "MRCC Port.6",
-            "device": "missing-link"
-          },
-          {
-            "name": "MRCC Port 7",
-            "short": "MRCC Port.7",
-            "device": "mb33"
-          },
-          {
-            "name": "MRCC Port 8",
-            "short": "MRCC Port.8",
-            "device": "vp-03"
-          },
-          {
-            "name": "MRCC Port 9",
-            "short": "MRCC Port.9",
-            "device": "nts-1"
-          },
-          {
-            "name": "MRCC Port 10",
-            "short": "MRCC Port.10",
-            "device": "acdgen"
-          },
-          {
-            "name": "MRCC Port 11",
-            "short": "MRCC Port.11",
-            "device": "midihub"
-          },
-          {
-            "name": "MRCC Port 12",
-            "short": "MRCC Port.12",
-            "device": "keystep-pro"
-          },
-          {
-            "name": "MRCC Port 13",
-            "short": "MRCC Port.13"
-          },
-          {
-            "name": "MRCC Port 14",
-            "short": "MRCC Port.14"
-          },
-          {
-            "name": "MRCC Port 15",
-            "short": "MRCC Port.15"
-          },
-          {
-            "name": "MRCC Port 16",
-            "short": "MRCC Port.16"
-          },
-          {
-            "name": "X-TOUCH MINI",
-            "short": "X-TOUCH MINI"
-          },
-          {
             "name": "Akai APC40",
             "short": "Akai APC.40"
           },
@@ -1014,6 +936,70 @@
             "name": "Electra Controller A Electra CTRL",
             "short": "Electra Contro A.CTRL",
             "device": "electra-one-a-ctrl"
+          },
+          {
+            "name": "Midihub MH-3Q5WJAZ Port 1",
+            "short": "Midihub MH-3.1"
+          },
+          {
+            "name": "Midihub MH-3Q5WJAZ Port 2",
+            "short": "Midihub MH-3.2"
+          },
+          {
+            "name": "Midihub MH-3Q5WJAZ Port 3",
+            "short": "Midihub MH-3.3"
+          },
+          {
+            "name": "Midihub MH-3Q5WJAZ Port 4",
+            "short": "Midihub MH-3.4"
+          },
+          {
+            "name": "MRCC   Port 1",
+            "short": "MRCC   Port.1"
+          },
+          {
+            "name": "MRCC   Port 2",
+            "short": "MRCC   Port.2"
+          },
+          {
+            "name": "MRCC   Port 3",
+            "short": "MRCC   Port.3"
+          },
+          {
+            "name": "MRCC   Port 4",
+            "short": "MRCC   Port.4"
+          },
+          {
+            "name": "MRCC   Port 5",
+            "short": "MRCC   Port.5"
+          },
+          {
+            "name": "MRCC   Port 6",
+            "short": "MRCC   Port.6"
+          },
+          {
+            "name": "MRCC   Port 7",
+            "short": "MRCC   Port.7"
+          },
+          {
+            "name": "MRCC   Port 8",
+            "short": "MRCC   Port.8"
+          },
+          {
+            "name": "MRCC   Port 9",
+            "short": "MRCC   Port.9"
+          },
+          {
+            "name": "MRCC   Port 10",
+            "short": "MRCC   Port.10"
+          },
+          {
+            "name": "MRCC   Port 11",
+            "short": "MRCC   Port.11"
+          },
+          {
+            "name": "MRCC   Port 12",
+            "short": "MRCC   Port.12"
           },
           {
             "name": "Komplete Kontrol M DAW",
@@ -1031,84 +1017,6 @@
             "short": "KOMPLETE KO.32"
           },
           {
-            "name": "MRCC Port 1",
-            "short": "MRCC Port.1",
-            "device": "virus-ti"
-          },
-          {
-            "name": "MRCC Port 2",
-            "short": "MRCC Port.2",
-            "device": "deluge"
-          },
-          {
-            "name": "MRCC Port 3",
-            "short": "MRCC Port.3",
-            "device": "typhon"
-          },
-          {
-            "name": "MRCC Port 4",
-            "short": "MRCC Port.4"
-          },
-          {
-            "name": "MRCC Port 5",
-            "short": "MRCC Port.5"
-          },
-          {
-            "name": "MRCC Port 6",
-            "short": "MRCC Port.6",
-            "device": "missing-link"
-          },
-          {
-            "name": "MRCC Port 7",
-            "short": "MRCC Port.7",
-            "device": "mb33"
-          },
-          {
-            "name": "MRCC Port 8",
-            "short": "MRCC Port.8",
-            "device": "vp-03"
-          },
-          {
-            "name": "MRCC Port 9",
-            "short": "MRCC Port.9",
-            "device": "nts-1"
-          },
-          {
-            "name": "MRCC Port 10",
-            "short": "MRCC Port.10",
-            "device": "acdgen"
-          },
-          {
-            "name": "MRCC Port 11",
-            "short": "MRCC Port.11",
-            "device": "midihub"
-          },
-          {
-            "name": "MRCC Port 12",
-            "short": "MRCC Port.12",
-            "device": "keystep-pro"
-          },
-          {
-            "name": "MRCC Port 13",
-            "short": "MRCC Port.13"
-          },
-          {
-            "name": "MRCC Port 14",
-            "short": "MRCC Port.14"
-          },
-          {
-            "name": "MRCC Port 15",
-            "short": "MRCC Port.15"
-          },
-          {
-            "name": "MRCC Port 16",
-            "short": "MRCC Port.16"
-          },
-          {
-            "name": "X-TOUCH MINI",
-            "short": "X-TOUCH MINI"
-          },
-          {
             "name": "Akai APC40",
             "short": "Akai APC.40"
           },
@@ -1174,6 +1082,70 @@
             "name": "Electra Controller A Electra CTRL",
             "short": "Electra Contro A.CTRL",
             "device": "electra-one-a-ctrl"
+          },
+          {
+            "name": "Midihub MH-3Q5WJAZ Port 1",
+            "short": "Midihub MH-3.1"
+          },
+          {
+            "name": "Midihub MH-3Q5WJAZ Port 2",
+            "short": "Midihub MH-3.2"
+          },
+          {
+            "name": "Midihub MH-3Q5WJAZ Port 3",
+            "short": "Midihub MH-3.3"
+          },
+          {
+            "name": "Midihub MH-3Q5WJAZ Port 4",
+            "short": "Midihub MH-3.4"
+          },
+          {
+            "name": "MRCC   Port 1",
+            "short": "MRCC   Port.1"
+          },
+          {
+            "name": "MRCC   Port 2",
+            "short": "MRCC   Port.2"
+          },
+          {
+            "name": "MRCC   Port 3",
+            "short": "MRCC   Port.3"
+          },
+          {
+            "name": "MRCC   Port 4",
+            "short": "MRCC   Port.4"
+          },
+          {
+            "name": "MRCC   Port 5",
+            "short": "MRCC   Port.5"
+          },
+          {
+            "name": "MRCC   Port 6",
+            "short": "MRCC   Port.6"
+          },
+          {
+            "name": "MRCC   Port 7",
+            "short": "MRCC   Port.7"
+          },
+          {
+            "name": "MRCC   Port 8",
+            "short": "MRCC   Port.8"
+          },
+          {
+            "name": "MRCC   Port 9",
+            "short": "MRCC   Port.9"
+          },
+          {
+            "name": "MRCC   Port 10",
+            "short": "MRCC   Port.10"
+          },
+          {
+            "name": "MRCC   Port 11",
+            "short": "MRCC   Port.11"
+          },
+          {
+            "name": "MRCC   Port 12",
+            "short": "MRCC   Port.12"
           },
           {
             "name": "Komplete Kontrol M DAW",
@@ -2247,6 +2219,14 @@
             "hash": "74c3e1bb7d46d36c0f214a3c50978fbd8fe6a0c2b27e61a566a73ea5202547c6"
           },
           {
+            "index": 147,
+            "filename": "Unknown - Bank S.mid",
+            "name": "Unknown - Bank S",
+            "short": "U.Bank.S",
+            "presetCount": 128,
+            "hash": "698c46139fb076846f717ad0b97987723118ca0ccfec11b7a6c2ca41f1c02ffe"
+          },
+          {
             "index": 118,
             "filename": "Extra/Ultimate X BASS Vol.1.mid",
             "name": "Ultimate X BASS Vol.1",
@@ -2327,7 +2307,7 @@
             "hash": "3e55630408ae90d7b23b48e6ff6ea0748a8160b241f54660068d5622cdd7e954"
           },
           {
-            "index": 179,
+            "index": 180,
             "filename": "VTG - Electro Patch Set 2010.mid",
             "name": "VTG - Electro Patch Set 2010",
             "short": "V.Electro.2010",
@@ -2367,7 +2347,7 @@
             "hash": "7837c85b9e34f5690ed342227af51339fa79937ae6565a78d94388237429c394"
           },
           {
-            "index": 147,
+            "index": 148,
             "filename": "Virus Other/Virus Other - Atomizer examples.mid",
             "name": "Virus Other - Atomizer examples",
             "short": "VO.Atomizer ex",
@@ -2375,7 +2355,7 @@
             "hash": "a45fd77f899ee80e905b8464b320c4dc72072a22943c320029ea23b76e2592f0"
           },
           {
-            "index": 148,
+            "index": 149,
             "filename": "Virus Other/Virus Other - My Patches RAM A.mid",
             "name": "Virus Other - My Patches RAM A",
             "short": "VO.My Patche.A",
@@ -2383,7 +2363,7 @@
             "hash": "7a89caa3cbb3ecc4ae16176970ba65c9448559c68ac85f6e8cf25ea5cc2d2ff7"
           },
           {
-            "index": 149,
+            "index": 150,
             "filename": "Virus Other/Virus Other - My Patches RAM B.mid",
             "name": "Virus Other - My Patches RAM B",
             "short": "VO.My Patche.B",
@@ -2391,7 +2371,7 @@
             "hash": "84a2c973f76100a8847a3f1c392e69af4a74847b468170eb201a64bea7e790a3"
           },
           {
-            "index": 150,
+            "index": 151,
             "filename": "Virus Other/Virus Other - My Patches RAM C.mid",
             "name": "Virus Other - My Patches RAM C",
             "short": "VO.My Patche.C",
@@ -2399,7 +2379,7 @@
             "hash": "55c982deae7c2d9c085fe29714c2a38c8226d5fb0d78ca36187df210b326ea67"
           },
           {
-            "index": 151,
+            "index": 152,
             "filename": "Virus Other/Virus Other - My Patches RAM D.mid",
             "name": "Virus Other - My Patches RAM D",
             "short": "VO.My Patche.D",
@@ -2407,7 +2387,7 @@
             "hash": "8366eb35733a767c42ec157ac1e51de7b0d72265e6eadaee53cf3ba8f23a8ece"
           },
           {
-            "index": 152,
+            "index": 153,
             "filename": "Virus Other/Virus Other - OS2 New Oscillator Patches.mid",
             "name": "Virus Other - OS2 New Oscillator Patches",
             "short": "VO.OS2 New Osc",
@@ -2415,7 +2395,7 @@
             "hash": "d382b41c7fdfeb933340147a22f34c52028a1fb612c30f73f9094512fe1dee04"
           },
           {
-            "index": 153,
+            "index": 154,
             "filename": "Virus Other/Virus Other - OS3 New FX example patches.mid",
             "name": "Virus Other - OS3 New FX example patches",
             "short": "VO.OS3 New FX",
@@ -2423,7 +2403,7 @@
             "hash": "dc9c24cebd55e0b37385dfe27a624571de3a41a6feb61cb8421368a548d6ca98"
           },
           {
-            "index": 154,
+            "index": 155,
             "filename": "Virus Other/Virus Other - OS4 New Features patches.mid",
             "name": "Virus Other - OS4 New Features patches",
             "short": "VO.OS4 New Fea",
@@ -2431,7 +2411,7 @@
             "hash": "a0bbbc48943ef62b4410e2b8030a92f52e1e8a2217b5210053b4a97a1a67b629"
           },
           {
-            "index": 155,
+            "index": 156,
             "filename": "Virus Other/Virus Other - OS45 New Features patches.mid",
             "name": "Virus Other - OS45 New Features patches",
             "short": "VO.OS45 New Fe",
@@ -2439,7 +2419,7 @@
             "hash": "660c6a35add41a1036dde147b0162f8924c5d05c46d141f2d92573830ec0aaae"
           },
           {
-            "index": 156,
+            "index": 157,
             "filename": "Virus Other/Virus Other - OS5 New Features patches.mid",
             "name": "Virus Other - OS5 New Features patches",
             "short": "VO.OS5 New Fea",
@@ -2447,7 +2427,7 @@
             "hash": "3247a30bd8bfb736e99c0b5edeb312374836d3ede3c5d0361d6ba8b38671e246"
           },
           {
-            "index": 157,
+            "index": 158,
             "filename": "Virus Other/Virus Other - Vocoder and input patches.mid",
             "name": "Virus Other - Vocoder and input patches",
             "short": "VO.Vocoder and",
@@ -2455,7 +2435,7 @@
             "hash": "f2ccfcdf4b81de70144b47942effc36292d3de2ff5c74e5aa550ffb8f0c67bad"
           },
           {
-            "index": 158,
+            "index": 159,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom A.mid",
             "name": "Virus TI2 - Rom A",
             "short": "VT.Rom.A",
@@ -2463,7 +2443,7 @@
             "hash": "0eeeb86ea026065c4c541398a61fb462ebb9c33873803972de2870e2a9f3cc6d"
           },
           {
-            "index": 159,
+            "index": 160,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom B.mid",
             "name": "Virus TI2 - Rom B",
             "short": "VT.Rom.B",
@@ -2471,7 +2451,7 @@
             "hash": "125e3c6d7bcc50633839326ae185718244130e74689570f036f3904dbc73c607"
           },
           {
-            "index": 160,
+            "index": 161,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom C.mid",
             "name": "Virus TI2 - Rom C",
             "short": "VT.Rom.C",
@@ -2479,7 +2459,7 @@
             "hash": "c76f04966d6cc46a3afa06e92df8bba6b5e6654d2433c5491f8b1c400d620c5a"
           },
           {
-            "index": 161,
+            "index": 162,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom D.mid",
             "name": "Virus TI2 - Rom D",
             "short": "VT.Rom.D",
@@ -2487,7 +2467,7 @@
             "hash": "87001abe8ac4c65b732b5745493be74d7535135219f899872c9193a4ccb8b70e"
           },
           {
-            "index": 162,
+            "index": 163,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom E.mid",
             "name": "Virus TI2 - Rom E",
             "short": "VT.Rom.E",
@@ -2495,7 +2475,7 @@
             "hash": "9b93dd24a58106cc7722d59056ec0818dfe0e0163a70965b416d68b2dffed4b9"
           },
           {
-            "index": 163,
+            "index": 164,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom F.mid",
             "name": "Virus TI2 - Rom F",
             "short": "VT.Rom.F",
@@ -2503,7 +2483,7 @@
             "hash": "5e7e3acce4a813298cfeb7627ac262b902f63e1ca4f9e395c5d11adcf7e889a7"
           },
           {
-            "index": 164,
+            "index": 165,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom G.mid",
             "name": "Virus TI2 - Rom G",
             "short": "VT.Rom.G",
@@ -2511,7 +2491,7 @@
             "hash": "74c0fd6c77200688100ed3a243770df7706fb1394b2bcf9592d83d490280df49"
           },
           {
-            "index": 165,
+            "index": 166,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom H.mid",
             "name": "Virus TI2 - Rom H",
             "short": "VT.Rom.H",
@@ -2519,7 +2499,7 @@
             "hash": "b4bf9e1d32d6510272be9546045a3501c2b64a230c6d76dbffac65b1367e1b64"
           },
           {
-            "index": 166,
+            "index": 167,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom I.mid",
             "name": "Virus TI2 - Rom I",
             "short": "VT.Rom.I",
@@ -2527,7 +2507,7 @@
             "hash": "09f798b995253ef4e95e86528df3c2af1bcb67b0f05afebd741ed9b66d7bb119"
           },
           {
-            "index": 167,
+            "index": 168,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom J.mid",
             "name": "Virus TI2 - Rom J",
             "short": "VT.Rom.J",
@@ -2535,7 +2515,7 @@
             "hash": "07b3958e1b2d0cba06407a2230f2dc770f830bc216f76abf3b20312e3e848ce6"
           },
           {
-            "index": 168,
+            "index": 169,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom K.mid",
             "name": "Virus TI2 - Rom K",
             "short": "VT.Rom.K",
@@ -2543,7 +2523,7 @@
             "hash": "d2f877be97ea06cec483561e2e003571f71eb90b8cefaf7f04da60d2a46e8794"
           },
           {
-            "index": 169,
+            "index": 170,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom L.mid",
             "name": "Virus TI2 - Rom L",
             "short": "VT.Rom.L",
@@ -2551,7 +2531,7 @@
             "hash": "a9c59520a0a91c23fe3dea7129df4accbc0523e488fbc518808afbdd2e398403"
           },
           {
-            "index": 170,
+            "index": 171,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom M.mid",
             "name": "Virus TI2 - Rom M",
             "short": "VT.Rom.M",
@@ -2559,7 +2539,7 @@
             "hash": "472b2a871636cc24c5a36639b7b2b789fb95423ce16fe28ce77127e5724fda7a"
           },
           {
-            "index": 171,
+            "index": 172,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom N.mid",
             "name": "Virus TI2 - Rom N",
             "short": "VT.Rom.N",
@@ -2567,7 +2547,7 @@
             "hash": "6407046626ab3d1c35867c54e7fc2d307a343e2ccc571c76a87182a261cd802e"
           },
           {
-            "index": 172,
+            "index": 173,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom O.mid",
             "name": "Virus TI2 - Rom O",
             "short": "VT.Rom.O",
@@ -2575,7 +2555,7 @@
             "hash": "6be8a874e77d6d6f4bf3e4a60d425bc834f12203e0c262c8d1e127a6e2a4efe3"
           },
           {
-            "index": 173,
+            "index": 174,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom P.mid",
             "name": "Virus TI2 - Rom P",
             "short": "VT.Rom.P",
@@ -2583,7 +2563,7 @@
             "hash": "023516d43d331bba9f990f803edd3164f703c95521d90b650a5c2dc7f308db20"
           },
           {
-            "index": 174,
+            "index": 175,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom Q.mid",
             "name": "Virus TI2 - Rom Q",
             "short": "VT.Rom.Q",
@@ -2591,7 +2571,7 @@
             "hash": "344034568b46d0e11c338053bad8ca617886f2decf1833e345898374d6543ba4"
           },
           {
-            "index": 175,
+            "index": 176,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom R.mid",
             "name": "Virus TI2 - Rom R",
             "short": "VT.Rom.R",
@@ -2599,7 +2579,7 @@
             "hash": "6fe6205689ebde86933802b4d01fdfadb6c79d94e8daa95bdfe62a49358edf2f"
           },
           {
-            "index": 176,
+            "index": 177,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom S.mid",
             "name": "Virus TI2 - Rom S",
             "short": "VT.Rom.S",
@@ -2607,7 +2587,7 @@
             "hash": "108d504b3466d65f5226c4e18747eeb5bae0859b0753a0d0d9b227d6f4e66b68"
           },
           {
-            "index": 177,
+            "index": 178,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom T.mid",
             "name": "Virus TI2 - Rom T",
             "short": "VT.Rom.T",
@@ -2615,7 +2595,7 @@
             "hash": "1d35f298452078d454ed4be36e9236c53da19dc533a9f1d076e68603cf9e105b"
           },
           {
-            "index": 178,
+            "index": 179,
             "filename": "Virus TI2 Factory/Virus TI2 - Rom U.mid",
             "name": "Virus TI2 - Rom U",
             "short": "VT.Rom.U",
@@ -2631,7 +2611,7 @@
             "hash": "95285cdac2b4e0e4c9f7a9b64393d8637ef4a3b512ecf57c1c60353557591009"
           },
           {
-            "index": 180,
+            "index": 181,
             "filename": "Zbandut Sound Consortium - Shaper EDM vol.1.mid",
             "name": "Zbandut Sound Consortium - Shaper EDM vol.1",
             "short": "ZSC.Shaper E.1",
@@ -2639,29 +2619,29 @@
             "hash": "1a37079b90dddc148f1681940c6162ec4d4736442b2d2f96f86599320ce12e49"
           }
         ],
-        "presetCount": 19856,
+        "presetCount": 19984,
         "categories": {
-          "Off": 16755,
-          "Acid": 483,
-          "Arpeggiator": 2435,
+          "Off": 16772,
+          "Acid": 488,
+          "Arpeggiator": 2470,
           "Atomizer": 30,
-          "Bass": 4003,
-          "Classic": 995,
-          "Decay": 825,
-          "Digital": 756,
-          "Drums": 400,
-          "EFX": 2307,
+          "Bass": 4024,
+          "Classic": 1038,
+          "Decay": 839,
+          "Digital": 773,
+          "Drums": 404,
+          "EFX": 2331,
           "FM": 235,
           "Input": 36,
-          "Lead": 3686,
-          "Organ": 238,
-          "Pad": 3428,
-          "Percussion": 315,
-          "Piano": 303,
-          "Pluck": 1468,
-          "String": 443,
-          "Vocoder": 54,
-          "Favorites 1": 363,
+          "Lead": 3697,
+          "Organ": 240,
+          "Pad": 3465,
+          "Percussion": 323,
+          "Piano": 309,
+          "Pluck": 1471,
+          "String": 450,
+          "Vocoder": 55,
+          "Favorites 1": 364,
           "Favorites 2": 9,
           "Favorites 3": 8
         }
