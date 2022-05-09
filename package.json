@@ -15,6 +15,7 @@
     "remove": "node index remove",
     "bacara": "nodemon --verbose -L --ignore state index bacara",
     "fuse": "SEED=${SEED:123} nodemon --verbose -L --ignore state index fuse",
+    "fuse_bacara" : "node index.js fuse  --custom custom_bacara.json",
     "setup_joris": "node index setup --custom custom_joris.json",
     "setup_richie": "node index setup --custom custom_richie.json",
     "preset": "node index preset --filename \"presets/Bacara.epr\" --presetName \"Bacara\" --custom custom_bacara.json",
