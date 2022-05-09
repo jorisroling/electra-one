@@ -2962,6 +2962,12 @@ function bacaraSequencer(name, sub, options) {
           if (_.isEqual(sysexHeader, electraSysexHeader)) {
             if (_.isEqual(sysexCmd, electraSysexCmdInfoResponse)) {
               e1_system_info = electra.parseSysexCmdInfoResponse(options.electraOneCtrl, msg.bytes)
+              if (!e1_system_info.versionText.match(/^v\d+\.\d+\.\d+$/)) {
+                if (e1_system_info.versionText.match(/^v\d+\.\d+$/)) {
+                  e1_system_info.versionText+='.0'
+                }
+                debug('%y %y',e1_system_info.versionText,E1_FIRMWARE_PRESET_REQUEST_VERSION)
+              }
               debug('info actual %y >= %y ? %y', e1_system_info.versionText, E1_FIRMWARE_PRESET_REQUEST_VERSION, semver.gte(_.get(e1_system_info, 'versionText', 'v0.0.0'), E1_FIRMWARE_PRESET_REQUEST_VERSION))
               if (config.electra.checkPresetVia == 'patch' || semver.lt(_.get(e1_system_info, 'versionText', 'v0.0.0'), E1_FIRMWARE_PRESET_REQUEST_VERSION)) { // semver: see if actual version is smaller that v2.1.2
                 debug('Send Patch Request to %y', options.electraOneCtrl)
