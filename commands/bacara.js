@@ -2133,40 +2133,42 @@ class BacaraMachine extends Machine {
     const channel = this.interface.getParameter(`device.${dev}.channel`)
     const bank = this.interface.getParameter(`device.${dev}.bank`)
     const program = this.interface.getParameter(`device.${dev}.program`)
-    if (portName == 'virus-ti') {
-      let fromStore = false
-      if (bank >= virusRamRomBanks) {
-        const part = channel
-        const virusPreset = this.getState(`virus.part.${part - 1}.preset`)
-        this.virus.sendPreset(part, bank, program, virusPreset)
-        this.virusReflectPreset(part, virusPreset)
-        Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
-        /*        if (virusPreset) {
-          const bytes = Virus.presetToSysEx(part, virusPreset, bank, program)
-          if (bytes) {
-            fromStore = true
-            Midi.send('virus-ti', 'sysex', bytes)
-            Virus.parseSysEx(bytes, (part, storedPreset) => {
-              if (part >= 1 && part <= 16 && storedPreset) {
-                this.setState(`virus.part.${part - 1}.preset`, storedPreset)
-                this.writeState()
-              }
-              this.virusReflectPreset(part, storedPreset)
-            })
-            bacaraEmit('virus-ti', part, 'sysex', bytes, 'internal')
-            bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, 'internal')
-            bacaraEmit('virus-ti', part, 'part', null, 'internal')
-          }
-        }*/
+    if (0) {
+      if (portName == 'virus-ti') {
+        let fromStore = false
+        if (bank >= virusRamRomBanks) {
+          const part = channel
+          const virusPreset = this.getState(`virus.part.${part - 1}.preset`)
+          this.virus.sendPreset(part, bank, program, virusPreset)
+          this.virusReflectPreset(part, virusPreset)//
+          Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
+          /*        if (virusPreset) {
+            const bytes = Virus.presetToSysEx(part, virusPreset, bank, program)
+            if (bytes) {
+              fromStore = true
+              Midi.send('virus-ti', 'sysex', bytes)
+              Virus.parseSysEx(bytes, (part, storedPreset) => {
+                if (part >= 1 && part <= 16 && storedPreset) {
+                  this.setState(`virus.part.${part - 1}.preset`, storedPreset)
+                  this.writeState()
+                }
+                this.virusReflectPreset(part, storedPreset)
+              })
+              bacaraEmit('virus-ti', part, 'sysex', bytes, 'internal')
+              bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, 'internal')
+              bacaraEmit('virus-ti', part, 'part', null, 'internal')
+            }
+          }*/
+        }
+        if (!fromStore) {
+          this.virusSendBankAndProgram(channel, bank, program, 'internal')
+        }
+      } else {
+        debugMidiControlChange('port %s  channel %d  CC %y = %y', portName, channel, 0, bank)
+        Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, `bankChange-${dev}`, 200)
+        debugMidiProgramChange('port %s  channel %d  PC %y', portName, channel - 1, program)
+        Midi.send(portName, 'program', {channel:channel - 1, number: program}, `programChange-${dev}`, 200)
       }
-      if (!fromStore) {
-        this.virusSendBankAndProgram(channel, bank, program, 'internal')
-      }
-    } else {
-      debugMidiControlChange('port %s  channel %d  CC %y = %y', portName, channel, 0, bank)
-      Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, `bankChange-${dev}`, 200)
-      debugMidiProgramChange('port %s  channel %d  PC %y', portName, channel - 1, program)
-      Midi.send(portName, 'program', {channel:channel - 1, number: program}, `programChange-${dev}`, 200)
     }
   }
 
@@ -2507,8 +2509,12 @@ class BacaraMachine extends Machine {
 
               if (!this.interface.getParameter(`device.${dev}.mute`, 'modulated') && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability', 'modulated') >= Random.getRandomInt(100)) {
                 const portName = this.getState(`device.${dev}.portName`)
-                const channel = this.interface.getParameter(`device.${dev}.channel`, 'modulated') - 1
+                const deviceNotes = this.getState(`device.${dev}.notes`,0)
+                const dispatch = this.interface.getParameter(`device.${dev}.dispatch`, 'modulated')
+                const channel = (this.interface.getParameter(`device.${dev}.channel`, 'modulated') - 1) + (dispatch ? (deviceNotes % (dispatch + 1)) : 0)
+                this.setState(`device.${dev}.notes`,deviceNotes+1)
                 debugMidiNoteOn('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
+               console.log(`Dev ${dev}  Step: ${this.stepIdx}  channel ${channel}  dispatch ${dispatch}`)
 
                 if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
                   Midi.send(portName, 'noteoff', {

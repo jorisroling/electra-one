@@ -41,37 +41,40 @@
         "darwin": "Electra Controller B Electra CTRL"
       },
       "virus-ti": {
-        "darwin": "MRCC   Port 1"
+        "darwin": "MRCC Port 1"
       },
-      "deluge": {
-        "darwin": "MRCC   Port 2"
+      "analog_four": {
+        "darwin": "MRCC Port 2"
       },
       "typhon": {
-        "darwin": "MRCC   Port 3"
+        "darwin": "MRCC Port 3"
+      },
+      "analog_rytm": {
+        "darwin": "MRCC Port 4"
       },
       "missing-link": {
-        "darwin": "MRCC   Port 6"
+        "darwin": "MRCC Port 6"
       },
       "mb33": {
-        "darwin": "MRCC   Port 7"
+        "darwin": "MRCC Port 7"
       },
       "vp-03": {
-        "darwin": "MRCC   Port 8"
+        "darwin": "MRCC Port 8"
       },
-      "nts-1": {
-        "darwin": "MRCC   Port 9"
+      "doctor_a": {
+        "darwin": "MRCC Port 9"
       },
       "acdgen": {
-        "darwin": "MRCC   Port 10"
+        "darwin": "MRCC Port 10"
       },
       "midihub": {
-        "darwin": "MRCC   Port 11"
+        "darwin": "MRCC Port 11"
       },
-      "keystep-pro": {
-        "darwin": "MRCC   Port 12"
+      "keystep-37": {
+        "darwin": "MRCC Port 12"
       },
       "komplete-kontrol": {
-        "darwin": "MRCC   Port 12"
+        "darwin": "MRCC Port 12"
       },
       "lightpad-block": {
         "darwin": "Lightpad BLOCK  Lightpad BLOCK"
@@ -130,9 +133,106 @@
         }
       }
     },
-    "deluge": {
-      "model": "Deluge",
-      "manufacturer": "Synthstrom",
+    "analog_four": {
+      "model": "Analog Four",
+      "manufacturer": "Elektron",
+      "channels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        9
+      ],
+      "port": "analog_four",
+      "electraOne": {
+        "port": 1
+      }
+    },
+    "typhon": {
+      "model": "Typhon",
+      "manufacturer": "Dreadbox",
+      "channels": [
+        15
+      ],
+      "port": "typhon",
+      "electraOne": {
+        "port": 1
+      }
+    },
+    "analog_rytm": {
+      "model": "Analog Rytm",
+      "manufacturer": "Elektron",
+      "channels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "port": "analog_rytm",
+      "electraOne": {
+        "port": 1
+      }
+    },
+    "mb33": {
+      "model": "MB33",
+      "manufacturer": "MAM",
+      "channels": [
+        16
+      ],
+      "port": "mb33",
+      "electraOne": {
+        "port": 1
+      }
+    },
+    "vp-03": {
+      "model": "VP-03",
+      "manufacturer": "Roland",
+      "channels": [
+        14
+      ],
+      "port": "vp-03",
+      "electraOne": {
+        "port": 1
+      }
+    },
+    "doctor_a": {
+      "model": "Doctor A",
+      "manufacturer": "Audiothingies",
+      "channels": [
+        1
+      ],
+      "port": "doctor_a",
+      "electraOne": {
+        "port": 1
+      }
+    },
+    "acdgen": {
+      "model": "ACDGEN",
+      "manufacturer": "Spektro Audio",
+      "channels": [
+        13
+      ],
+      "port": "acdgen",
+      "electraOne": {
+        "port": 1
+      }
+    },
+    "keystep-37": {
+      "model": "KeyStep 37",
+      "manufacturer": "Arturia",
       "channels": [
         1,
         2,
@@ -151,97 +251,7 @@
         15,
         16
       ],
-      "port": "deluge",
-      "electraOne": {
-        "port": 1
-      }
-    },
-    "typhon": {
-      "model": "Typhon",
-      "manufacturer": "Dreadbox",
-      "channels": [
-        15
-      ],
-      "port": "typhon",
-      "electraOne": {
-        "port": 1
-      }
-    },
-    "mb33": {
-      "model": "MB33",
-      "manufacturer": "MAM",
-      "channels": [
-        16
-      ],
-      "port": "mb33",
-      "electraOne": {
-        "port": 1
-      }
-    },
-    "tr-6s": {
-      "model": "TR-6S",
-      "manufacturer": "Roland",
-      "channels": [
-        10,
-        11
-      ],
-      "instances": [
-        "",
-        "Kits"
-      ],
-      "port": "tr-6s",
-      "electraOne": {
-        "port": 1
-      }
-    },
-    "vp-03": {
-      "model": "VP-03",
-      "manufacturer": "Roland",
-      "channels": [
-        14
-      ],
-      "port": "vp-03",
-      "electraOne": {
-        "port": 1
-      }
-    },
-    "nts-1": {
-      "model": "NTS-1",
-      "manufacturer": "Korg",
-      "channels": [
-        12
-      ],
-      "port": "nts-1",
-      "electraOne": {
-        "port": 1
-      }
-    },
-    "acdgen": {
-      "model": "ACDGEN",
-      "manufacturer": "Spektro Audio",
-      "channels": [
-        13
-      ],
-      "port": "acdgen",
-      "electraOne": {
-        "port": 1
-      }
-    },
-    "keystep-pro": {
-      "model": "KeyStep Pro",
-      "manufacturer": "Arturia",
-      "instance": "t.#",
-      "special": {
-        "10": "drm"
-      },
-      "channels": [
-        1,
-        2,
-        3,
-        4,
-        10
-      ],
-      "port": "keystep-pro",
+      "port": "keystep-37",
       "electraOne": {
         "port": 1
       }
@@ -298,17 +308,6 @@
               ]
             }
           },
-          "tr-6s": {
-            "enabled": false,
-            "port": 1,
-            "channels": [
-              10,
-              11
-            ],
-            "ignore": [
-              2
-            ]
-          },
           "acdgen": {
             "enabled": false,
             "port": 1,
@@ -326,11 +325,11 @@
             ],
             "oneway": true
           },
-          "nts-1": {
+          "doctor_a": {
             "enabled": false,
             "port": 1,
             "channels": [
-              12
+              1
             ],
             "oneway": true
           },
@@ -342,7 +341,7 @@
             ],
             "oneway": true
           },
-          "keystep-pro": {
+          "keystep-37": {
             "enabled": false,
             "port": 2,
             "channels": [
@@ -350,10 +349,21 @@
               2,
               3,
               4,
-              10
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16
             ],
             "flags": [
-              "keystep-pro-tracker"
+              "keystep-37-tracker"
             ],
             "oneway": false
           }
@@ -365,15 +375,26 @@
     "scenarios": {
       "default": {
         "actors": {
-          "keystep-pro": {
-            "enabled": true,
+          "keystep-37": {
+            "enabled": false,
             "port": 2,
             "channels": [
               1,
               2,
               3,
               4,
-              10
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16
             ],
             "flags": [
               "tracker"
@@ -938,68 +959,83 @@
             "device": "electra-one-a-ctrl"
           },
           {
-            "name": "Midihub MH-3Q5WJAZ Port 1",
-            "short": "Midihub MH-3.1"
+            "name": "Midihub Port 1",
+            "short": "Midihub Port.1"
           },
           {
-            "name": "Midihub MH-3Q5WJAZ Port 2",
-            "short": "Midihub MH-3.2"
+            "name": "Midihub Port 2",
+            "short": "Midihub Port.2"
           },
           {
-            "name": "Midihub MH-3Q5WJAZ Port 3",
-            "short": "Midihub MH-3.3"
+            "name": "Midihub Port 3",
+            "short": "Midihub Port.3"
           },
           {
-            "name": "Midihub MH-3Q5WJAZ Port 4",
-            "short": "Midihub MH-3.4"
+            "name": "Midihub Port 4",
+            "short": "Midihub Port.4"
           },
           {
-            "name": "MRCC   Port 1",
-            "short": "MRCC   Port.1"
+            "name": "MRCC Port 1",
+            "short": "MRCC Port.1",
+            "device": "virus-ti"
           },
           {
-            "name": "MRCC   Port 2",
-            "short": "MRCC   Port.2"
+            "name": "MRCC Port 2",
+            "short": "MRCC Port.2",
+            "device": "analog_four"
           },
           {
-            "name": "MRCC   Port 3",
-            "short": "MRCC   Port.3"
+            "name": "MRCC Port 3",
+            "short": "MRCC Port.3",
+            "device": "typhon"
           },
           {
-            "name": "MRCC   Port 4",
-            "short": "MRCC   Port.4"
+            "name": "MRCC Port 4",
+            "short": "MRCC Port.4",
+            "device": "analog_rytm"
           },
           {
-            "name": "MRCC   Port 5",
-            "short": "MRCC   Port.5"
+            "name": "MRCC Port 5",
+            "short": "MRCC Port.5"
           },
           {
-            "name": "MRCC   Port 6",
-            "short": "MRCC   Port.6"
+            "name": "MRCC Port 6",
+            "short": "MRCC Port.6",
+            "device": "missing-link"
           },
           {
-            "name": "MRCC   Port 7",
-            "short": "MRCC   Port.7"
+            "name": "MRCC Port 7",
+            "short": "MRCC Port.7",
+            "device": "mb33"
           },
           {
-            "name": "MRCC   Port 8",
-            "short": "MRCC   Port.8"
+            "name": "MRCC Port 8",
+            "short": "MRCC Port.8",
+            "device": "vp-03"
           },
           {
-            "name": "MRCC   Port 9",
-            "short": "MRCC   Port.9"
+            "name": "MRCC Port 9",
+            "short": "MRCC Port.9",
+            "device": "doctor_a"
           },
           {
-            "name": "MRCC   Port 10",
-            "short": "MRCC   Port.10"
+            "name": "MRCC Port 10",
+            "short": "MRCC Port.10",
+            "device": "acdgen"
           },
           {
-            "name": "MRCC   Port 11",
-            "short": "MRCC   Port.11"
+            "name": "MRCC Port 11",
+            "short": "MRCC Port.11",
+            "device": "midihub"
           },
           {
-            "name": "MRCC   Port 12",
-            "short": "MRCC   Port.12"
+            "name": "MRCC Port 12",
+            "short": "MRCC Port.12",
+            "device": "keystep-37"
+          },
+          {
+            "name": "Vestax PC-CONTROLLER",
+            "short": "Vestax PC-CONT"
           },
           {
             "name": "Komplete Kontrol M DAW",
@@ -1084,68 +1120,83 @@
             "device": "electra-one-a-ctrl"
           },
           {
-            "name": "Midihub MH-3Q5WJAZ Port 1",
-            "short": "Midihub MH-3.1"
+            "name": "Midihub Port 1",
+            "short": "Midihub Port.1"
           },
           {
-            "name": "Midihub MH-3Q5WJAZ Port 2",
-            "short": "Midihub MH-3.2"
+            "name": "Midihub Port 2",
+            "short": "Midihub Port.2"
           },
           {
-            "name": "Midihub MH-3Q5WJAZ Port 3",
-            "short": "Midihub MH-3.3"
+            "name": "Midihub Port 3",
+            "short": "Midihub Port.3"
           },
           {
-            "name": "Midihub MH-3Q5WJAZ Port 4",
-            "short": "Midihub MH-3.4"
+            "name": "Midihub Port 4",
+            "short": "Midihub Port.4"
           },
           {
-            "name": "MRCC   Port 1",
-            "short": "MRCC   Port.1"
+            "name": "MRCC Port 1",
+            "short": "MRCC Port.1",
+            "device": "virus-ti"
           },
           {
-            "name": "MRCC   Port 2",
-            "short": "MRCC   Port.2"
+            "name": "MRCC Port 2",
+            "short": "MRCC Port.2",
+            "device": "analog_four"
           },
           {
-            "name": "MRCC   Port 3",
-            "short": "MRCC   Port.3"
+            "name": "MRCC Port 3",
+            "short": "MRCC Port.3",
+            "device": "typhon"
           },
           {
-            "name": "MRCC   Port 4",
-            "short": "MRCC   Port.4"
+            "name": "MRCC Port 4",
+            "short": "MRCC Port.4",
+            "device": "analog_rytm"
           },
           {
-            "name": "MRCC   Port 5",
-            "short": "MRCC   Port.5"
+            "name": "MRCC Port 5",
+            "short": "MRCC Port.5"
           },
           {
-            "name": "MRCC   Port 6",
-            "short": "MRCC   Port.6"
+            "name": "MRCC Port 6",
+            "short": "MRCC Port.6",
+            "device": "missing-link"
           },
           {
-            "name": "MRCC   Port 7",
-            "short": "MRCC   Port.7"
+            "name": "MRCC Port 7",
+            "short": "MRCC Port.7",
+            "device": "mb33"
           },
           {
-            "name": "MRCC   Port 8",
-            "short": "MRCC   Port.8"
+            "name": "MRCC Port 8",
+            "short": "MRCC Port.8",
+            "device": "vp-03"
           },
           {
-            "name": "MRCC   Port 9",
-            "short": "MRCC   Port.9"
+            "name": "MRCC Port 9",
+            "short": "MRCC Port.9",
+            "device": "doctor_a"
           },
           {
-            "name": "MRCC   Port 10",
-            "short": "MRCC   Port.10"
+            "name": "MRCC Port 10",
+            "short": "MRCC Port.10",
+            "device": "acdgen"
           },
           {
-            "name": "MRCC   Port 11",
-            "short": "MRCC   Port.11"
+            "name": "MRCC Port 11",
+            "short": "MRCC Port.11",
+            "device": "midihub"
           },
           {
-            "name": "MRCC   Port 12",
-            "short": "MRCC   Port.12"
+            "name": "MRCC Port 12",
+            "short": "MRCC Port.12",
+            "device": "keystep-37"
+          },
+          {
+            "name": "Vestax PC-CONTROLLER",
+            "short": "Vestax PC-CONT"
           },
           {
             "name": "Komplete Kontrol M DAW",

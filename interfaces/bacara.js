@@ -1208,6 +1208,21 @@ module.exports = {
           default: 0,
           unit: 'notes',
         },
+        dispatch: {
+          name: 'Device A Dispatch',
+          type: 'parameter',
+          surface: {
+            type: 'nrpn',
+            number: 16365,
+            lsbFirst: true,
+            min: 0,
+            max: 15,
+          },
+          min: 0,
+          max: 15,
+          default: 0,
+          unit: 'channels',
+        },
       },
       B: {
         device: {
@@ -1359,6 +1374,21 @@ module.exports = {
           max: 63,
           default: 0,
           unit: 'notes',
+        },
+        dispatch: {
+          name: 'Device B Dispatch',
+          type: 'parameter',
+          surface: {
+            type: 'nrpn',
+            number: 16366,
+            lsbFirst: true,
+            min: 0,
+            max: 15,
+          },
+          min: 0,
+          max: 15,
+          default: 0,
+          unit: 'channels',
         },
       },
     },

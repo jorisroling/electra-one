@@ -4357,6 +4357,91 @@
           "index": 0
         },
         {
+          "value": 1,
+          "label": "1",
+          "index": 1
+        },
+        {
+          "value": 2,
+          "label": "2",
+          "index": 2
+        },
+        {
+          "value": 3,
+          "label": "3",
+          "index": 3
+        },
+        {
+          "value": 4,
+          "label": "4",
+          "index": 4
+        },
+        {
+          "value": 5,
+          "label": "5",
+          "index": 5
+        },
+        {
+          "value": 6,
+          "label": "6",
+          "index": 6
+        },
+        {
+          "value": 7,
+          "label": "7",
+          "index": 7
+        },
+        {
+          "value": 8,
+          "label": "8",
+          "index": 8
+        },
+        {
+          "value": 9,
+          "label": "9",
+          "index": 9
+        },
+        {
+          "value": 10,
+          "label": "10",
+          "index": 10
+        },
+        {
+          "value": 11,
+          "label": "11",
+          "index": 11
+        },
+        {
+          "value": 12,
+          "label": "12",
+          "index": 12
+        },
+        {
+          "value": 13,
+          "label": "13",
+          "index": 13
+        },
+        {
+          "value": 14,
+          "label": "14",
+          "index": 14
+        },
+        {
+          "value": 15,
+          "label": "15",
+          "index": 15
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "items": [
+        {
+          "value": 0,
+          "label": "Off",
+          "index": 0
+        },
+        {
           "value": 6,
           "label": "Acid",
           "index": 1
@@ -4464,7 +4549,7 @@
       ]
     },
     {
-      "id": 23,
+      "id": 24,
       "items": [
         {
           "value": 0,
@@ -8991,7 +9076,8 @@
     {
       "id": 255,
       "type": "fader",
-      "name": "BANK",
+      "visible": true,
+      "name": "TRANSPOSE",
       "color": "F45C51",
       "bounds": [
         340,
@@ -9009,24 +9095,25 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6017,
+            "parameterNumber": 6146,
             "min": 0,
             "max": 127
           },
-          "id": "value"
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0
         }
       ]
     },
     {
       "id": 256,
-      "type": "pad",
-      "mode": "momentary",
-      "visible": true,
-      "name": "NEXT BANK",
+      "type": "fader",
+      "name": "BANK",
       "color": "F45C51",
       "bounds": [
         510,
@@ -9048,11 +9135,10 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6019,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 6017,
+            "min": 0,
+            "max": 127
           },
-          "defaultValue": "off",
           "id": "value"
         }
       ]
@@ -9062,7 +9148,7 @@
       "type": "pad",
       "mode": "momentary",
       "visible": true,
-      "name": "NEXT",
+      "name": "NEXT BANK",
       "color": "F45C51",
       "bounds": [
         680,
@@ -9084,7 +9170,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6149,
+            "parameterNumber": 6019,
             "onValue": 1,
             "offValue": 0
           },
@@ -9095,9 +9181,10 @@
     },
     {
       "id": 258,
-      "type": "fader",
+      "type": "pad",
+      "mode": "momentary",
       "visible": true,
-      "name": "TRANSPOSE",
+      "name": "NEXT",
       "color": "F45C51",
       "bounds": [
         850,
@@ -9115,18 +9202,16 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6146,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 6149,
+            "onValue": 1,
+            "offValue": 0
           },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0
+          "defaultValue": "off",
+          "id": "value"
         }
       ]
     },
@@ -9202,7 +9287,8 @@
     {
       "id": 261,
       "type": "fader",
-      "name": "PROGRAM",
+      "visible": true,
+      "name": "DISPATCH",
       "color": "F45C51",
       "bounds": [
         340,
@@ -9220,24 +9306,24 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6145,
+            "parameterNumber": 16365,
             "min": 0,
-            "max": 127
+            "max": 15
           },
-          "id": "value"
+          "defaultValue": 1,
+          "overlayId": 22
         }
       ]
     },
     {
       "id": 262,
-      "type": "pad",
-      "mode": "momentary",
-      "visible": true,
-      "name": "PREVIOUS BANK",
+      "type": "fader",
+      "name": "PROGRAM",
       "color": "F45C51",
       "bounds": [
         510,
@@ -9259,11 +9345,10 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6018,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 6145,
+            "min": 0,
+            "max": 127
           },
-          "defaultValue": "off",
           "id": "value"
         }
       ]
@@ -9273,7 +9358,7 @@
       "type": "pad",
       "mode": "momentary",
       "visible": true,
-      "name": "PREVIOUS",
+      "name": "PREVIOUS BANK",
       "color": "F45C51",
       "bounds": [
         680,
@@ -9286,6 +9371,42 @@
       "inputs": [
         {
           "potId": 11,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6018,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 264,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "PREVIOUS",
+      "color": "F45C51",
+      "bounds": [
+        850,
+        128,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 12,
           "valueId": "value"
         }
       ],
@@ -9372,7 +9493,8 @@
     {
       "id": 267,
       "type": "fader",
-      "name": "BANK",
+      "visible": true,
+      "name": "TRANSPOSE",
       "color": "529DEC",
       "bounds": [
         340,
@@ -9390,24 +9512,25 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6273,
+            "parameterNumber": 6147,
             "min": 0,
             "max": 127
           },
-          "id": "value"
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0
         }
       ]
     },
     {
       "id": 268,
-      "type": "pad",
-      "mode": "momentary",
-      "visible": true,
-      "name": "NEXT BANK",
+      "type": "fader",
+      "name": "BANK",
       "color": "529DEC",
       "bounds": [
         510,
@@ -9429,11 +9552,10 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6275,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 6273,
+            "min": 0,
+            "max": 127
           },
-          "defaultValue": "off",
           "id": "value"
         }
       ]
@@ -9443,7 +9565,7 @@
       "type": "pad",
       "mode": "momentary",
       "visible": true,
-      "name": "NEXT",
+      "name": "NEXT BANK",
       "color": "529DEC",
       "bounds": [
         680,
@@ -9465,7 +9587,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6403,
+            "parameterNumber": 6275,
             "onValue": 1,
             "offValue": 0
           },
@@ -9476,9 +9598,10 @@
     },
     {
       "id": 270,
-      "type": "fader",
+      "type": "pad",
+      "mode": "momentary",
       "visible": true,
-      "name": "TRANSPOSE",
+      "name": "NEXT",
       "color": "529DEC",
       "bounds": [
         850,
@@ -9496,18 +9619,16 @@
       ],
       "values": [
         {
-          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6147,
-            "min": 0,
-            "max": 127
+            "parameterNumber": 6403,
+            "onValue": 1,
+            "offValue": 0
           },
-          "min": -64,
-          "max": 63,
-          "defaultValue": 0
+          "defaultValue": "off",
+          "id": "value"
         }
       ]
     },
@@ -9583,7 +9704,8 @@
     {
       "id": 273,
       "type": "fader",
-      "name": "PROGRAM",
+      "visible": true,
+      "name": "DISPATCH",
       "color": "529DEC",
       "bounds": [
         340,
@@ -9601,24 +9723,24 @@
       ],
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6401,
+            "parameterNumber": 16366,
             "min": 0,
-            "max": 127
+            "max": 15
           },
-          "id": "value"
+          "defaultValue": 1,
+          "overlayId": 22
         }
       ]
     },
     {
       "id": 274,
-      "type": "pad",
-      "mode": "momentary",
-      "visible": true,
-      "name": "PREVIOUS BANK",
+      "type": "fader",
+      "name": "PROGRAM",
       "color": "529DEC",
       "bounds": [
         510,
@@ -9640,11 +9762,10 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 6274,
-            "onValue": 1,
-            "offValue": 0
+            "parameterNumber": 6401,
+            "min": 0,
+            "max": 127
           },
-          "defaultValue": "off",
           "id": "value"
         }
       ]
@@ -9677,6 +9798,42 @@
             "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 6402,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off",
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": 276,
+      "type": "pad",
+      "mode": "momentary",
+      "visible": true,
+      "name": "PREVIOUS BANK",
+      "color": "529DEC",
+      "bounds": [
+        850,
+        304,
+        146,
+        56
+      ],
+      "pageId": 8,
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 6274,
             "onValue": 1,
             "offValue": 0
           },
