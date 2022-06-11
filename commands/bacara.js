@@ -35,6 +35,7 @@ const yves = require('../lib/yves')
 const pkg = require('../package.json')
 const debugError = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:error`)
 const debugLfo = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:lfo`)
+const debugDispatch = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:dispatch`)
 const debugMidi = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi`)
 const debugMidiNoteOn = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:note:on`)
 const debugMidiNoteOff = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:note:off`)
@@ -84,6 +85,13 @@ const matrixSlotSources = {
   modWheel: 1,
   velocity: 2,
   channelAftertouch: 3,
+}
+
+function msleep(n) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, n);
+}
+function sleep(n) {
+  msleep(n*1000);
 }
 
 const virusMixerSelectControls = [145, 146, 147, 148, 149, 150]
@@ -493,7 +501,7 @@ class BacaraMachine extends Machine {
 
     const virusSearchSelect = (part) => (elementPath, origin) => {
       if (part >= 1 && part <= 16) {
-        this.setRemote(origin, {next:`virus.search.part.${part - 1}.next`, previous:`virus.search.part.${part - 1}.previous`, random:`virus.search.part.${part - 1}.random`, nextBank:`virus.search.part.${part - 1}.nextBank`, previousBank:`virus.search.part.${part - 1}.previousBank`})
+        this.setRemote(origin, {next:`virus.search.part.${part - 1}.next`, previous:`virus.search.part.${part - 1}.previous`, random:`virus.search.part.${part - 1}.random`, remote_reset:`virus.search.part.${part - 1}.randomAll`, nextBank:`virus.search.part.${part - 1}.nextBank`, previousBank:`virus.search.part.${part - 1}.previousBank`})
         bacaraEmit('virus-ti', part, 'select', null, origin)
       }
     }
@@ -532,6 +540,14 @@ class BacaraMachine extends Machine {
           debug('Random bank %y program %y', bank, program)
           virusSearch(part, 0, bank + virusRamRomBanks, program, origin)
         })
+      } else if (part == -1) {
+        for (part = 0; part < 16; part++) {
+          msleep(300)
+          Virus.randomBankAndProgram((bank, program) => {
+            debug('Random bank %y program %y', bank, program)
+            virusSearch(part, 0, bank + virusRamRomBanks, program, origin)
+          })
+        }
       }
     }
 
@@ -871,36 +887,42 @@ class BacaraMachine extends Machine {
               next: virusSearchNext(1),
               previous: virusSearchPrevious(1),
               random: virusSearchRandom(1),
+              randomAll: virusSearchRandom(-1),
             },
             {
               select: virusSearchSelect(2),
               next: virusSearchNext(2),
               previous: virusSearchPrevious(2),
               random: virusSearchRandom(2),
+              randomAll: virusSearchRandom(-1),
             },
             {
               select: virusSearchSelect(3),
               next: virusSearchNext(3),
               previous: virusSearchPrevious(3),
               random: virusSearchRandom(3),
+              randomAll: virusSearchRandom(-1),
             },
             {
               select: virusSearchSelect(4),
               next: virusSearchNext(4),
               previous: virusSearchPrevious(4),
               random: virusSearchRandom(4),
+              randomAll: virusSearchRandom(-1),
             },
             {
               select: virusSearchSelect(5),
               next: virusSearchNext(5),
               previous: virusSearchPrevious(5),
               random: virusSearchRandom(5),
+              randomAll: virusSearchRandom(-1),
             },
             {
               select: virusSearchSelect(6),
               next: virusSearchNext(6),
               previous: virusSearchPrevious(6),
               random: virusSearchRandom(6),
+              randomAll: virusSearchRandom(-1),
             },
           ],
         },
@@ -2510,11 +2532,38 @@ class BacaraMachine extends Machine {
               if (!this.interface.getParameter(`device.${dev}.mute`, 'modulated') && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability', 'modulated') >= Random.getRandomInt(100)) {
                 const portName = this.getState(`device.${dev}.portName`)
                 const deviceNotes = this.getState(`device.${dev}.notes`,0)
+                let channelAdd = this.getState(`device.${dev}.channelAdd`,0)
                 const dispatch = this.interface.getParameter(`device.${dev}.dispatch`, 'modulated')
-                const channel = (this.interface.getParameter(`device.${dev}.channel`, 'modulated') - 1) + (dispatch ? (deviceNotes % (dispatch + 1)) : 0)
+                let dispatchMode
+                let dispatchValue
+                if (dispatch == 0) { // OFF
+                  dispatchMode = 'off'
+                  dispatchValue = 0
+                  channelAdd = 0
+                } else if (dispatch >= 1 && dispatch <= 15) { // ROUND ROBIN
+                  dispatchMode = 'round robin'
+                  dispatchValue = dispatch + 1
+                  channelAdd = (dispatch ? (deviceNotes % dispatchValue) : 0)
+                } else if (dispatch >= 16 && dispatch <= 30) { // RANDOM
+                  dispatchMode = 'random'
+                  dispatchValue = (dispatch - 16 ) + 2
+                  channelAdd = Random.getRandomInt(dispatchValue - 1)
+                } else if (dispatch >= 31 && dispatch <= 45) { // OTHER
+                  dispatchMode = 'other'
+                  dispatchValue = (dispatch - 31) + 2
+                  let tmp
+                  do {
+                    tmp = Random.getRandomInt(dispatchValue - 1)
+                  } while (channelAdd == tmp)
+                  channelAdd = tmp
+                }
+                this.setState(`device.${dev}.channelAdd`,channelAdd)
+                const channel = ((this.interface.getParameter(`device.${dev}.channel`, 'modulated') - 1) + channelAdd) % 16
                 this.setState(`device.${dev}.notes`,deviceNotes+1)
                 debugMidiNoteOn('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
-               console.log(`Dev ${dev}  Step: ${this.stepIdx}  channel ${channel}  dispatch ${dispatch}`)
+
+                debugDispatch('device %y  step %y  base %y  dispatch %y  mode %y  value %y  add %y  channel %y',dev,this.stepIdx,this.interface.getParameter(`device.${dev}.channel`, 'modulated'),dispatch,dispatchMode,dispatchValue,channelAdd,channel+1)
+//                console.log(`Dev ${dev}  Step: ${this.stepIdx}  base channel ${(this.interface.getParameter(`device.${dev}.channel`, 'modulated'))}  dispatch ${dispatch}  mode ${dispatchMode}  value ${dispatchValue}  channelAdd ${channelAdd}  channel ${channel+1}`)
 
                 if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
                   Midi.send(portName, 'noteoff', {

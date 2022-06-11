@@ -1216,10 +1216,10 @@ module.exports = {
             number: 16365,
             lsbFirst: true,
             min: 0,
-            max: 15,
+            max: 45,
           },
           min: 0,
-          max: 15,
+          max: 45,
           default: 0,
           unit: 'channels',
         },
@@ -1383,10 +1383,10 @@ module.exports = {
             number: 16366,
             lsbFirst: true,
             min: 0,
-            max: 15,
+            max: 45,
           },
           min: 0,
-          max: 15,
+          max: 45,
           default: 0,
           unit: 'channels',
         },
@@ -1527,7 +1527,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 36,
+          default: 0,
         },
         mute: {
           name: 'Bass Drum Mute',
@@ -1567,7 +1567,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 37,
+          default: 1,
         },
         mute: {
           name: 'Snare Drum Mute',
@@ -1607,7 +1607,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 53,
+          default: 5,
         },
         mute: {
           name: 'Low Tom Mute',
@@ -1647,7 +1647,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 54,
+          default: 6,
         },
         mute: {
           name: 'Mid Tom Mute',
@@ -1687,7 +1687,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 55,
+          default: 7,
         },
         mute: {
           name: 'High Tom Mute',
@@ -1727,7 +1727,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 52,
+          default: 2,
         },
         mute: {
           name: 'Rim Shot Mute',
@@ -1767,7 +1767,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 45,
+          default: 8,
         },
         mute: {
           name: 'Hand Clap Mute',
@@ -1807,7 +1807,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 46,
+          default: 11,
         },
         mute: {
           name: 'Cow Bell Mute',
@@ -1847,7 +1847,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 47,
+          default: 10,
         },
         mute: {
           name: 'Cymbal Mute',
@@ -1887,7 +1887,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 39,
+          default: 9,
         },
         mute: {
           name: 'Open Hat Mute',
@@ -1927,7 +1927,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 38,
+          default: 8,
         },
         mute: {
           name: 'Closed Hat Mute',
@@ -1996,7 +1996,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('tr-6s', 10),
+          default: deviceToIndex('analog_rytm', 14),
         },
         note: {
           name: 'Bass Drum Note',
@@ -2008,7 +2008,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 36,
+          default: 0,
         },
         preview: {
           name: 'Bass Drum Preview',
@@ -2076,7 +2076,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('tr-6s', 10),
+          default: deviceToIndex('analog_rytm', 14),
         },
         note: {
           name: 'Snare Drum Note',
@@ -2088,7 +2088,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 38,
+          default: 1,
         },
         preview: {
           name: 'Snare Drum Preview',
@@ -2156,7 +2156,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('tr-6s', 10),
+          default: deviceToIndex('analog_rytm', 14),
         },
         note: {
           name: 'Low Tom Note',
@@ -2168,7 +2168,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 43,
+          default: 6,
         },
         preview: {
           name: 'Low Tom Preview',
@@ -2236,7 +2236,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('tr-6s', 10),
+          default: deviceToIndex('analog_rytm', 14),
         },
         note: {
           name: 'Hand Clap Note',
@@ -2248,7 +2248,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 39,
+          default: 3,
         },
         preview: {
           name: 'Hand Clap Preview',
@@ -2316,7 +2316,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('tr-6s', 10),
+          default: deviceToIndex('analog_rytm', 14),
         },
         note: {
           name: 'Closed Hat Note',
@@ -2328,7 +2328,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 42,
+          default: 8,
         },
         preview: {
           name: 'Closed Hat Preview',
@@ -2396,7 +2396,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('tr-6s', 10),
+          default: deviceToIndex('analog_rytm', 14),
         },
         note: {
           name: 'Open Hat Note',
@@ -2408,7 +2408,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
-          default: 46,
+          default: 9,
         },
         preview: {
           name: 'Open Hat Preview',

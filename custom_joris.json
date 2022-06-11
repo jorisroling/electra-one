@@ -6,7 +6,7 @@
     "scenario": "default",
     "clock": "missing-link",
     "transpose": "komplete-kontrol",
-    "transposeChannel": 15,
+    "transposeChannel": 1,
     "general": "lightpad-block",
     "generalChannel": 1,
     "remote": "thouch-block",
@@ -74,7 +74,7 @@
         "darwin": "MRCC Port 12"
       },
       "komplete-kontrol": {
-        "darwin": "MRCC Port 12"
+        "darwin": "KOMPLETE KONTROL M32"
       },
       "lightpad-block": {
         "darwin": "Lightpad BLOCK  Lightpad BLOCK"
@@ -889,7 +889,8 @@
         "input": [
           {
             "name": "KOMPLETE KONTROL M32",
-            "short": "KOMPLETE KO.32"
+            "short": "KOMPLETE KO.32",
+            "device": "komplete-kontrol"
           },
           {
             "name": "Akai APC40",
@@ -975,6 +976,10 @@
             "short": "Midihub Port.4"
           },
           {
+            "name": "Vestax PC-CONTROLLER",
+            "short": "Vestax PC-CONT"
+          },
+          {
             "name": "MRCC Port 1",
             "short": "MRCC Port.1",
             "device": "virus-ti"
@@ -1034,8 +1039,20 @@
             "device": "keystep-37"
           },
           {
-            "name": "Vestax PC-CONTROLLER",
-            "short": "Vestax PC-CONT"
+            "name": "MRCC Port 13",
+            "short": "MRCC Port.13"
+          },
+          {
+            "name": "MRCC Port 14",
+            "short": "MRCC Port.14"
+          },
+          {
+            "name": "MRCC Port 15",
+            "short": "MRCC Port.15"
+          },
+          {
+            "name": "MRCC Port 16",
+            "short": "MRCC Port.16"
           },
           {
             "name": "Komplete Kontrol M DAW",
@@ -1050,7 +1067,8 @@
         "output": [
           {
             "name": "KOMPLETE KONTROL M32",
-            "short": "KOMPLETE KO.32"
+            "short": "KOMPLETE KO.32",
+            "device": "komplete-kontrol"
           },
           {
             "name": "Akai APC40",
@@ -1136,6 +1154,10 @@
             "short": "Midihub Port.4"
           },
           {
+            "name": "Vestax PC-CONTROLLER",
+            "short": "Vestax PC-CONT"
+          },
+          {
             "name": "MRCC Port 1",
             "short": "MRCC Port.1",
             "device": "virus-ti"
@@ -1195,8 +1217,20 @@
             "device": "keystep-37"
           },
           {
-            "name": "Vestax PC-CONTROLLER",
-            "short": "Vestax PC-CONT"
+            "name": "MRCC Port 13",
+            "short": "MRCC Port.13"
+          },
+          {
+            "name": "MRCC Port 14",
+            "short": "MRCC Port.14"
+          },
+          {
+            "name": "MRCC Port 15",
+            "short": "MRCC Port.15"
+          },
+          {
+            "name": "MRCC Port 16",
+            "short": "MRCC Port.16"
           },
           {
             "name": "Komplete Kontrol M DAW",
