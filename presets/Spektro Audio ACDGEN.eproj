@@ -1,0 +1,772 @@
+{
+  "id": "SVForMaOHUw8a5J7xfsa",
+  "name": "Spektro Audio ACDGEN",
+  "description": null,
+  "devices": [
+    {
+      "id": 1,
+      "name": "ACDGEN",
+      "instrumentId": "generic-midi",
+      "port": 1,
+      "channel": 13
+    }
+  ],
+  "tiles": [
+    {
+      "id": "64ae29b0-fdf7-4f0e-b09c-efba016e34fe",
+      "slotId": 1,
+      "type": "fader",
+      "deviceId": 1,
+      "name": "Swing",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "31521a96-7713-456e-87ee-78ebc10f8a73",
+      "slotId": 2,
+      "type": "fader",
+      "deviceId": 1,
+      "name": "Octave",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 8,
+            "min": 0,
+            "max": 127
+          },
+          "min": -63,
+          "max": 64,
+          "defaultValue": 0
+        }
+      ]
+    },
+    {
+      "id": "a8866e75-c491-47f0-9728-2cf9164dc951",
+      "slotId": 3,
+      "type": "fader",
+      "deviceId": 1,
+      "name": "Key",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 4,
+            "min": 0,
+            "max": 127
+          }
+        }
+      ]
+    },
+    {
+      "id": "e2b52d30-2239-4bae-94e8-138cefdc8188",
+      "slotId": 4,
+      "type": "list",
+      "deviceId": 1,
+      "name": "Scale",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 5
+          },
+          "textValues": [
+            {
+              "label": "Major",
+              "index": 0,
+              "value": 0
+            },
+            {
+              "value": 127,
+              "label": "Minor",
+              "index": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "97b3a191-be95-48b4-84b7-640c152b8a54",
+      "slotId": 5,
+      "type": "fader",
+      "deviceId": 1,
+      "name": "Algorithm",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 6,
+            "min": 0,
+            "max": 127
+          }
+        }
+      ]
+    },
+    {
+      "id": "4e578e25-07d6-4174-a48e-5f523b2b3d1b",
+      "slotId": 6,
+      "type": "pad",
+      "deviceId": 1,
+      "name": "Generate",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 10,
+            "onValue": 127,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "mode": "momentary"
+    },
+    {
+      "id": "e9f48c88-9b5d-4d19-8813-b741d5a9cc5d",
+      "slotId": 7,
+      "type": "fader",
+      "deviceId": 1,
+      "name": "Rand Velocity",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 7,
+            "min": 0,
+            "max": 127
+          }
+        }
+      ]
+    },
+    {
+      "id": "bdbe0281-d523-4fe8-bc3c-5185f6db27f2",
+      "slotId": 8,
+      "type": "fader",
+      "deviceId": 1,
+      "name": "Note Length",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 9,
+            "min": 0,
+            "max": 127
+          }
+        }
+      ]
+    },
+    {
+      "id": "36104fb0-72d2-4649-8f0d-7694f3c70fac",
+      "slotId": 9,
+      "type": "fader",
+      "deviceId": 1,
+      "name": "Variate",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 11
+          }
+        }
+      ]
+    },
+    {
+      "id": "40bd418c-dd1e-4d6f-a6f9-440bc411157c",
+      "slotId": 10,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "FFFFFF",
+      "name": "Shift",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 1,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0
+        }
+      ]
+    },
+    {
+      "id": "03fbd2f0-2a2e-425d-a73f-30c21ec74d4f",
+      "slotId": 11,
+      "type": "list",
+      "deviceId": 1,
+      "name": "Length",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 2
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "3",
+              "index": 0
+            },
+            {
+              "value": 16,
+              "label": "4",
+              "index": 1
+            },
+            {
+              "value": 32,
+              "label": "5",
+              "index": 2
+            },
+            {
+              "value": 48,
+              "label": "6",
+              "index": 3
+            },
+            {
+              "value": 64,
+              "label": "7",
+              "index": 4
+            },
+            {
+              "value": 80,
+              "label": "8",
+              "index": 5
+            },
+            {
+              "value": 96,
+              "label": "16",
+              "index": 6
+            },
+            {
+              "value": 112,
+              "label": "32",
+              "index": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5a5b29ee-35f2-4e4c-9e12-e3ffadc6111a",
+      "slotId": 12,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "FFFFFF",
+      "name": "Density",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 3
+          },
+          "defaultValue": 96
+        }
+      ]
+    },
+    {
+      "id": "59db6612-718b-47b9-8c1e-eebfaeec59af",
+      "slotId": 13,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "03A598",
+      "name": "Hold Prob.",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 13,
+            "min": 0,
+            "max": 50
+          }
+        }
+      ]
+    },
+    {
+      "id": "1ba95e7f-f957-4eb9-8d87-72c511100c9f",
+      "slotId": 14,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "03A598",
+      "name": "Slide Prob.",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 100,
+            "min": 0,
+            "max": 60
+          }
+        }
+      ]
+    },
+    {
+      "id": "7656ea92-5c97-4449-af56-f6c9f4c6a2f1",
+      "slotId": 15,
+      "type": "list",
+      "deviceId": 1,
+      "color": "03A598",
+      "name": "Shift Range",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 101
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "12 Steps",
+              "index": 0
+            },
+            {
+              "value": 1,
+              "label": "24 Steps",
+              "index": 1
+            },
+            {
+              "value": 2,
+              "label": "36 Steps",
+              "index": 2
+            }
+          ],
+          "defaultValue": 1
+        }
+      ]
+    },
+    {
+      "id": "bb36f334-5f68-4193-ac33-1c1b6c28420d",
+      "slotId": 16,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "03A598",
+      "name": "Scale Range",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 113,
+            "min": 1,
+            "max": 7
+          },
+          "defaultValue": 4
+        }
+      ]
+    },
+    {
+      "id": "5df73448-80cd-49d6-af98-f39a9ae71108",
+      "slotId": 17,
+      "type": "list",
+      "deviceId": 1,
+      "color": "03A598",
+      "name": "Swing Mode",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 115
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Logic A to F",
+              "index": 0
+            },
+            {
+              "value": 1,
+              "label": "50% - 75%",
+              "index": 1
+            },
+            {
+              "value": 2,
+              "label": "50% - 60%",
+              "index": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "80273b6f-a397-44be-a4ac-785208e2366f",
+      "slotId": 18,
+      "type": "pad",
+      "deviceId": 1,
+      "color": "03A598",
+      "name": "KB Shift",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 107,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "mode": "toggle"
+    },
+    {
+      "id": "9406137a-e331-4160-a8d2-ab8e621776ed",
+      "slotId": 19,
+      "type": "list",
+      "deviceId": 1,
+      "color": "03A598",
+      "name": "Shift Mode",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 102
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Normal",
+              "index": 0
+            },
+            {
+              "value": 1,
+              "label": "Lowest",
+              "index": 1
+            },
+            {
+              "value": 2,
+              "label": "Higher",
+              "index": 2
+            }
+          ],
+          "defaultValue": 0
+        }
+      ]
+    },
+    {
+      "id": "d1761757-652d-4eb5-996e-37d2bfaa5f5b",
+      "slotId": 20,
+      "type": "list",
+      "deviceId": 1,
+      "color": "03A598",
+      "name": "Random Mode",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 114
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Velocity",
+              "index": 0
+            },
+            {
+              "value": 1,
+              "label": "Length",
+              "index": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b0fd153b-a3e1-4c7d-8e9f-46594981067c",
+      "slotId": 21,
+      "type": "pad",
+      "deviceId": 1,
+      "color": "F49500",
+      "name": "Sequencer",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 103,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "mode": "toggle"
+    },
+    {
+      "id": "8c535efa-f79b-4c7f-83c8-a0fd53d9accc",
+      "slotId": 22,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "F49500",
+      "name": "Controller",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 104,
+            "min": 0,
+            "max": 127
+          },
+          "defaultValue": 1
+        }
+      ]
+    },
+    {
+      "id": "0120e0aa-5d25-42e1-ba58-831c1c9c9328",
+      "slotId": 23,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "F49500",
+      "name": "Min",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 105,
+            "min": 0,
+            "max": 127
+          },
+          "defaultValue": 0
+        }
+      ]
+    },
+    {
+      "id": "0f63249e-3017-42c1-9582-20bfb8e2450f",
+      "slotId": 24,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "F49500",
+      "name": "Max",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 106,
+            "min": 0,
+            "max": 127
+          },
+          "defaultValue": 127
+        }
+      ]
+    },
+    {
+      "id": "8298d798-2101-4137-80c0-89f2b4937643",
+      "slotId": 31,
+      "type": "list",
+      "deviceId": 1,
+      "name": "Key",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 4
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "C",
+              "index": 0
+            },
+            {
+              "value": 10,
+              "label": "C#",
+              "index": 1
+            },
+            {
+              "value": 20,
+              "label": "D",
+              "index": 2
+            },
+            {
+              "value": 30,
+              "label": "D#",
+              "index": 3
+            },
+            {
+              "value": 40,
+              "label": "E",
+              "index": 4
+            },
+            {
+              "value": 50,
+              "label": "F",
+              "index": 5
+            },
+            {
+              "value": 60,
+              "label": "F#",
+              "index": 6
+            },
+            {
+              "value": 70,
+              "label": "G",
+              "index": 7
+            },
+            {
+              "value": 80,
+              "label": "G#",
+              "index": 8
+            },
+            {
+              "value": 90,
+              "label": "A",
+              "index": 9
+            },
+            {
+              "value": 100,
+              "label": "A#",
+              "index": 10
+            },
+            {
+              "value": 110,
+              "label": "B",
+              "index": 11
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "9dfe9e4c-7cb2-4eeb-a673-a5769ecd6f76",
+      "slotId": 34,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "FFFFFF",
+      "name": "Length",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 2
+          },
+          "defaultValue": 96
+        }
+      ]
+    },
+    {
+      "id": "cc369dcb-1406-4479-b66a-6f37ba295bf3",
+      "slotId": 35,
+      "type": "list",
+      "deviceId": 1,
+      "name": "Algorithm",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 6
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Normal",
+              "index": 0
+            },
+            {
+              "value": 16,
+              "label": "Floor",
+              "index": 1
+            },
+            {
+              "value": 32,
+              "label": "FifthOct",
+              "index": 2
+            },
+            {
+              "value": 48,
+              "label": "Upwards",
+              "index": 3
+            },
+            {
+              "value": 64,
+              "label": "Up-Stepped",
+              "index": 4
+            },
+            {
+              "value": 80,
+              "label": "Downwards",
+              "index": 5
+            },
+            {
+              "value": 96,
+              "label": "Down-Stepped",
+              "index": 6
+            },
+            {
+              "value": 112,
+              "label": "Arpware",
+              "index": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": 21,
+      "pageId": 1,
+      "name": "MIDI CC Sequencer",
+      "span": 4,
+      "x": 2,
+      "y": 3,
+      "color": "F49500"
+    },
+    {
+      "id": 1,
+      "pageId": 1,
+      "name": "ACDGEN",
+      "span": 6,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": 13,
+      "pageId": 1,
+      "name": "Customizer",
+      "span": 6,
+      "x": 0,
+      "y": 2,
+      "color": "03A598"
+    }
+  ],
+  "pages": [
+    {
+      "id": 1,
+      "name": "ACDGEN"
+    }
+  ]
+}

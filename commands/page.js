@@ -155,11 +155,11 @@ module.exports = {
     args = a
   },
   name: 'page',
-  description: 'Operates on pages in a Preset File (.epr), possible subcommands: list, copy, swap',
+  description: 'Operates on pages in a Preset File (.eproj), possible subcommands: list, copy, swap',
   examples: [
-    {usage:'electra-one page list --filename ./preset.epr', description:'List all pages in a Preset File (.epr)'},
-    //    {usage:'electra-one page copy --page 1 --page 2 --filename ./preset.epr', description:'Copy a page to a new position in a Preset File (.epr)'},
-    {usage:'electra-one page swap --page 1 --page 2 --filename ./preset.epr', description:'Swap two pages in a Preset File (.epr)'},
+    {usage:'electra-one page list --filename ./preset.eproj', description:'List all pages in a Preset File (.eproj)'},
+    //    {usage:'electra-one page copy --page 1 --page 2 --filename ./preset.eproj', description:'Copy a page to a new position in a Preset File (.eproj)'},
+    {usage:'electra-one page swap --page 1 --page 2 --filename ./preset.eproj', description:'Swap two pages in a Preset File (.eproj)'},
   ],
   handler: pageSwap,
   aliases:[]

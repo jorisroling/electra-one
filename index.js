@@ -18,7 +18,7 @@ args
   .option('custom', 'External custom configuration JSON filename', _.get(config, 'options.custom'))
   .option('electraOneCtrl', 'Electra One MIDI CTRL interface name', _.get(config, 'options.electraOneCtrl', 'electra-one-ctrl'))
   .option('scenario', 'Routing Scenario', _.get(config, 'options.scenario', 'default'))
-  .option('page', 'Page ID to operate on, this options can be used more than once. Use \'electra-one page list --filename preset.epr\' to show available Page ID\'s')
+  .option('page', 'Page ID to operate on, this options can be used more than once. Use \'electra-one page list --filename preset.eproj\' to show available Page ID\'s')
 
   .option('electra', 'Electra One MIDI interface name (part)', _.get(config, 'options.electra', 'electra-one-port-2'))
   .option('clock', 'Clock Input MIDI interface name (part)', _.get(config, 'options.clock', 'missing-link'))

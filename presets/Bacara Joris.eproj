@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "zDfG7f2eOvd5TzGwNMdN",
-  "name": "Bacara Template",
+  "name": "Bacara Joris",
   "description": "# Bacara Template\n\nNot directly working on a Electra One, used as Template to generate actual Preset File (.EPROJ)",
   "lua": "print (\"Bacara Control Lua ext initialized\")\n\npatch.requestAll ()\n\n",
   "devices": [
@@ -53,8 +53,7 @@
       "color": "F49500",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -67,8 +66,7 @@
       "color": "C44795",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -81,8 +79,7 @@
       "color": "FFFFFF",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -809,8 +806,7 @@
       "color": "F45C51",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -823,8 +819,7 @@
       "color": "03A598",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -1256,8 +1251,7 @@
       "color": "F45C51",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -1269,8 +1263,7 @@
       "name": "Preset",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -1494,9 +1487,7 @@
           },
           "min": -100,
           "max": 100,
-          "textValues": [
-
-          ],
+          "textValues": [],
           "defaultValue": 0
         }
       ],
@@ -1688,8 +1679,7 @@
       "color": "F49500",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -2092,8 +2082,7 @@
       "color": "03A598",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -2496,8 +2485,7 @@
       "color": "C44795",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -2900,8 +2888,7 @@
       "color": "FFFFFF",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -3276,8 +3263,7 @@
       "color": "FFFFFF",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -3652,8 +3638,7 @@
       "color": "FFFFFF",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -4426,8 +4411,7 @@
       "color": "FFFFFF",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -4764,8 +4748,7 @@
       "color": "FFFFFF",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -5090,8 +5073,7 @@
       "color": "03A598",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -5104,8 +5086,7 @@
       "color": "F45C51",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -5118,8 +5099,7 @@
       "color": "F49500",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -5132,8 +5112,7 @@
       "color": "C44795",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -5145,8 +5124,7 @@
       "name": "Part 5",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -5159,8 +5137,7 @@
       "color": "529DEC",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -6146,8 +6123,7 @@
       "color": "03A598",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -6160,8 +6136,7 @@
       "color": "F45C51",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -6438,8 +6413,7 @@
       "color": "F49500",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -6452,8 +6426,7 @@
       "color": "C44795",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -6730,8 +6703,7 @@
       "color": "FFFFFF",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -6744,8 +6716,7 @@
       "color": "529DEC",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -7022,8 +6993,7 @@
       "color": "F49500",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -7266,8 +7236,7 @@
       "name": "Remote Control Pages",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -7532,8 +7501,7 @@
       "color": "F49500",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -7798,8 +7766,7 @@
       "color": "F45C51",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -8389,8 +8356,7 @@
       "color": "529DEC",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -8979,8 +8945,7 @@
       "name": "Bass Drum",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -8993,8 +8958,7 @@
       "color": "F45C51",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -9147,8 +9111,7 @@
       "color": "F49500",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -9161,8 +9124,7 @@
       "color": "529DEC",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -9317,8 +9279,7 @@
       "color": "03A598",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -9331,8 +9292,7 @@
       "color": "C44795",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -9486,8 +9446,7 @@
       "name": "Hand Clap",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -9500,8 +9459,7 @@
       "color": "F45C51",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -9654,8 +9612,7 @@
       "color": "F49500",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -9668,8 +9625,7 @@
       "color": "529DEC",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -9824,8 +9780,7 @@
       "color": "03A598",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -9909,8 +9864,7 @@
       "color": "03A598",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -9923,8 +9877,7 @@
       "color": "F45C51",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -9937,8 +9890,7 @@
       "color": "F49500",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -9951,8 +9903,7 @@
       "color": "C44795",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -9964,8 +9915,7 @@
       "name": "Part 5",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -9978,8 +9928,7 @@
       "color": "529DEC",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -11521,8 +11470,7 @@
       "color": "F45C51",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -11535,8 +11483,7 @@
       "color": "F49500",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -11549,8 +11496,7 @@
       "color": "529DEC",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -11563,8 +11509,7 @@
       "color": "03A598",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -11577,8 +11522,7 @@
       "color": "C44795",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -11590,8 +11534,7 @@
       "name": "Open Hat",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -11854,8 +11797,7 @@
       "color": "F45C51",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -11868,8 +11810,7 @@
       "color": "F49500",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -11882,8 +11823,7 @@
       "color": "529DEC",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -11896,8 +11836,7 @@
       "color": "03A598",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -11910,8 +11849,7 @@
       "color": "C44795",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -11923,8 +11861,7 @@
       "name": "Open Hat",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -12174,8 +12111,7 @@
       "name": "Common",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -12415,8 +12351,7 @@
       "name": "Bass Drum",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -12429,8 +12364,7 @@
       "color": "F45C51",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -12828,8 +12762,7 @@
       "color": "F49500",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -12842,8 +12775,7 @@
       "color": "529DEC",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -13246,8 +13178,7 @@
       "color": "03A598",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -13260,8 +13191,7 @@
       "color": "C44795",
       "values": [
         {
-          "message": {
-          }
+          "message": {}
         }
       ]
     },
@@ -13671,15 +13601,15 @@
     },
     {
       "id": 4,
-      "name": "Virus Axyz [[device=virus-ti]]"
+      "name": "Virus Axyz"
     },
     {
       "id": 5,
-      "name": "Virus Mixer [[device=virus-ti]]"
+      "name": "Virus Mixer"
     },
     {
       "id": 6,
-      "name": "Virus Macros [[device=virus-ti]]"
+      "name": "Virus Macros"
     },
     {
       "id": 7,
@@ -13695,19 +13625,17 @@
     },
     {
       "id": 10,
-      "name": "Virus Search [[device=virus-ti]]"
+      "name": "Virus Search"
     },
     {
       "id": 11,
-      "name": "TR-6S [[device=analog_rytm]]"
+      "name": "TR-6S"
     },
     {
       "id": 12,
-      "name": "ReDrum [[device=analog_rytm]]"
+      "name": "ReDrum"
     }
   ],
-  "categories": [
-
-  ],
+  "categories": [],
   "firstPageId": 1
 }

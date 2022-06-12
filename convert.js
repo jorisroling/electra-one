@@ -16,9 +16,9 @@ console.log(0.99, -1.0, 1.0, 0, 16383, remap(0.99, -1.0, 1.0, 0, 16383))
 
 const jsonfile = require('jsonfile')
 require('./lib/yves')
-const epr = jsonfile.readFileSync('./presets/Access Virus TI.epr')
+const epr = jsonfile.readFileSync('./presets/Access Virus TI.eproj')
 //debug('epr %y',epr)
-//const epr = require('./presets/Access Virus TI.epr')
+//const epr = require('./presets/Access Virus TI.eproj')
 
 
 const list = []

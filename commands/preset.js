@@ -260,11 +260,11 @@ module.exports = {
     args = a
   },
   name: 'preset',
-  description: 'Generate Preset File (.epr)',
+  description: 'Generate Preset File (.eproj)',
   handler: generatePreset,
   examples: [
-    {usage:'electra-one preset --filename <preset-file>', description:'Generates Preset File (.epr) and outputs to filename'},
-    {usage:'electra-one preset', description:'Generates Preset File (.epr) and outputs to stdout'},
+    {usage:'electra-one preset --filename <preset-file>', description:'Generates Preset File (.eproj) and outputs to filename'},
+    {usage:'electra-one preset', description:'Generates Preset File (.eproj) and outputs to stdout'},
   ],
   aliases:[]
 }

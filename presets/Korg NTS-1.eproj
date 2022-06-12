@@ -1,0 +1,1049 @@
+{
+  "id": "OuoR2KUdhkLflRQHVdrG",
+  "name": "Korg NTS-1",
+  "description": null,
+  "lua": "",
+  "devices": [
+    {
+      "id": 1,
+      "name": "NTS-1",
+      "port": 1,
+      "channel": 12,
+      "instrumentId": "generic-midi"
+    }
+  ],
+  "tiles": [
+    {
+      "id": "586e78c0-c0c0-4ac1-8049-9a860f067f60",
+      "type": "list",
+      "name": "OSC TYPE",
+      "color": "F45C51",
+      "bounds": [
+        0,
+        40,
+        146,
+        56
+      ],
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 1,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 53,
+            "deviceId": 1
+          },
+          "overlayId": 1,
+          "id": "value",
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Saw"
+            },
+            {
+              "value": 10,
+              "label": "Triangle"
+            },
+            {
+              "value": 22,
+              "label": "Square"
+            },
+            {
+              "value": 33,
+              "label": "UPN"
+            },
+            {
+              "value": 44,
+              "label": "Waves"
+            },
+            {
+              "value": 55,
+              "label": "Volca Bass"
+            },
+            {
+              "value": 66,
+              "label": "Shapes"
+            },
+            {
+              "value": 77,
+              "label": "Devide"
+            },
+            {
+              "value": 88,
+              "label": "Soup 2"
+            },
+            {
+              "value": 99,
+              "label": "1973"
+            },
+            {
+              "value": 110,
+              "label": "Ruismaker"
+            }
+          ]
+        }
+      ],
+      "slotId": 1,
+      "deviceId": 1
+    },
+    {
+      "id": "9dc3747c-3003-48f4-ae54-24e2b8c95b0d",
+      "type": "fader",
+      "name": "SHAPE",
+      "color": "F45C51",
+      "bounds": [
+        170,
+        40,
+        146,
+        56
+      ],
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 2,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 54,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ],
+      "slotId": 2,
+      "deviceId": 1
+    },
+    {
+      "id": "cbb65f69-6cd2-4cc6-a8af-0e57db7f5ce3",
+      "type": "fader",
+      "name": "ALT",
+      "color": "F45C51",
+      "bounds": [
+        340,
+        40,
+        146,
+        56
+      ],
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 3,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 55,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ],
+      "slotId": 3,
+      "deviceId": 1
+    },
+    {
+      "id": "04001d75-1670-4313-bb7f-3d9f302f999f",
+      "slotId": 4,
+      "type": "list",
+      "deviceId": 1,
+      "color": "F49500",
+      "name": "FILTER TYPE",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 42,
+            "deviceId": 1
+          },
+          "overlayId": 3,
+          "id": "value",
+          "textValues": [
+            {
+              "value": 108,
+              "label": "Off"
+            },
+            {
+              "value": 0,
+              "label": "LP 2"
+            },
+            {
+              "value": 18,
+              "label": "LP 4"
+            },
+            {
+              "value": 36,
+              "label": "BP 2"
+            },
+            {
+              "value": 54,
+              "label": "BP 4"
+            },
+            {
+              "value": 72,
+              "label": "HP 2"
+            },
+            {
+              "value": 90,
+              "label": "HP 4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "521783e3-57b2-4bbb-aa10-8202ad0be384",
+      "slotId": 5,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "F49500",
+      "name": "CUTOFF",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 43,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "f197401d-f123-4722-b08e-285c9d79e500",
+      "slotId": 6,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "F49500",
+      "name": "RESONANCE",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 44,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "c1b5ffbe-8bf6-4232-b87c-64b677e797a5",
+      "slotId": 7,
+      "type": "list",
+      "deviceId": 1,
+      "color": "529DEC",
+      "name": "EG TYPE",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 14,
+            "deviceId": 1
+          },
+          "overlayId": 2,
+          "id": "value",
+          "textValues": [
+            {
+              "value": 0,
+              "label": "ADSR"
+            },
+            {
+              "value": 25,
+              "label": "AHR"
+            },
+            {
+              "value": 50,
+              "label": "AR"
+            },
+            {
+              "value": 75,
+              "label": "AR LOOP"
+            },
+            {
+              "value": 100,
+              "label": "Open"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8cccf6f1-27ab-4076-a663-6eacfd758c06",
+      "slotId": 8,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "529DEC",
+      "name": "ATTACK",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 16,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "b617d22c-d5ff-4b41-8ca1-975918ae0f13",
+      "slotId": 9,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "529DEC",
+      "name": "RELEASE",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 19,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "c0d6c3a4-ad14-46c5-90de-0baa66044ac9",
+      "slotId": 11,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "FFFFFF",
+      "name": "DEPTH",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 45,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "0e23af1f-1424-4f83-8e24-2362f7919c27",
+      "slotId": 12,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "FFFFFF",
+      "name": "RATE",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 46,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "bd361ed3-d4fb-49af-98ae-6ebe7d5dd623",
+      "slotId": 13,
+      "type": "list",
+      "deviceId": 1,
+      "color": "F49500",
+      "name": "TYPE",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 88,
+            "deviceId": 1
+          },
+          "overlayId": 4,
+          "id": "value",
+          "textValues": [
+            {
+              "value": 0,
+              "label": "OFF"
+            },
+            {
+              "value": 25,
+              "label": "Chorus"
+            },
+            {
+              "value": 50,
+              "label": "Ensemble"
+            },
+            {
+              "value": 75,
+              "label": "Phaser"
+            },
+            {
+              "value": 100,
+              "label": "Flanger"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "61696ba0-7c2e-4318-9d9e-e9ff0952a318",
+      "slotId": 14,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "F49500",
+      "name": "TIME",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 28,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "59b24e5a-5fd9-4ce2-a64f-40cec31766b8",
+      "slotId": 15,
+      "type": "list",
+      "deviceId": 1,
+      "color": "03A598",
+      "name": "TYPE",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 89,
+            "deviceId": 1
+          },
+          "overlayId": 5,
+          "id": "value",
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Off"
+            },
+            {
+              "value": 21,
+              "label": "Stereo"
+            },
+            {
+              "value": 42,
+              "label": "Mono"
+            },
+            {
+              "value": 63,
+              "label": "Ping Pong"
+            },
+            {
+              "value": 84,
+              "label": "Highpass"
+            },
+            {
+              "value": 105,
+              "label": "Tape"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "78446613-eb6e-4c24-8353-6103c2517265",
+      "slotId": 16,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "03A598",
+      "name": "TIME",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 30,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "82ade118-1b00-436f-b2b7-ddb5bee4448e",
+      "slotId": 17,
+      "type": "list",
+      "deviceId": 1,
+      "color": "C44795",
+      "name": "TYPE",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 90,
+            "deviceId": 1
+          },
+          "overlayId": 6,
+          "id": "value",
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Off"
+            },
+            {
+              "value": 10,
+              "label": "Hall"
+            },
+            {
+              "value": 20,
+              "label": "Plate"
+            },
+            {
+              "value": 30,
+              "label": "Space"
+            },
+            {
+              "value": 40,
+              "label": "Riser"
+            },
+            {
+              "value": 50,
+              "label": "Submarine"
+            },
+            {
+              "value": 60,
+              "label": "Breath Pro"
+            },
+            {
+              "value": 70,
+              "label": "Sniff Pro"
+            },
+            {
+              "value": 80,
+              "label": "Cathedral Pro"
+            },
+            {
+              "value": 90,
+              "label": "Haze Pro"
+            },
+            {
+              "value": 100,
+              "label": "Theatre Pro"
+            },
+            {
+              "value": 110,
+              "label": "Mist Pro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "9e2e1c56-892f-4cfe-b258-c104ae9c7648",
+      "slotId": 18,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "C44795",
+      "name": "TIME",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 34,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "6ffc1090-2ea8-4ea0-80b8-df26c31b3fcd",
+      "slotId": 19,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "F49500",
+      "name": "DEPTH",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 29,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "bfb05e21-f4bf-45f0-9d6b-8574ee2c7b9f",
+      "slotId": 21,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "03A598",
+      "name": "DEPTH",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 31,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "53f59ea0-3a01-4a2f-8058-f512d0c378eb",
+      "slotId": 22,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "03A598",
+      "name": "MIX",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 33,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "1c9b500a-2518-44bc-be8c-4e7acde5dbf0",
+      "slotId": 23,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "C44795",
+      "name": "DEPTH",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 35,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "7c4f2987-3b13-4348-a221-bc4a6e4aa446",
+      "slotId": 24,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "C44795",
+      "name": "MIX",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 36,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "340281d7-1fca-4ab1-b77c-b4e5bf903c4e",
+      "slotId": 25,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "529DEC",
+      "name": "RATE",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 21,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "3ca91310-edf7-472c-b187-3b2967760b8a",
+      "slotId": 26,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "529DEC",
+      "name": "DEPTH",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 20,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "be5f4e54-b393-4538-851d-29ef2c785e4a",
+      "slotId": 27,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "F45C51",
+      "name": "RATE",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 24,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "ebab5604-e11d-4d3a-8e65-385e38e24a13",
+      "slotId": 28,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "F45C51",
+      "name": "DEPTH",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 1,
+            "parameterNumber": 26,
+            "min": 0,
+            "max": 127
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0,
+          "id": "value"
+        }
+      ]
+    },
+    {
+      "id": "0c82f70b-d7bc-4dfb-8943-2974b03abd79",
+      "slotId": 29,
+      "type": "list",
+      "deviceId": 1,
+      "color": "FFFFFF",
+      "name": "PATTERN",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 117,
+            "deviceId": 1
+          },
+          "overlayId": 7,
+          "id": "value",
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Up"
+            },
+            {
+              "value": 12,
+              "label": "Down"
+            },
+            {
+              "value": 24,
+              "label": "Up - Down"
+            },
+            {
+              "value": 36,
+              "label": "Down - Up"
+            },
+            {
+              "value": 48,
+              "label": "Convergent"
+            },
+            {
+              "value": 60,
+              "label": "Divergent"
+            },
+            {
+              "value": 72,
+              "label": "Conv - Div"
+            },
+            {
+              "value": 84,
+              "label": "Div - Conv"
+            },
+            {
+              "value": 96,
+              "label": "Random"
+            },
+            {
+              "value": 108,
+              "label": "Stock"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8d3e3aef-0fa7-4807-8d22-6a8e5fa2913c",
+      "type": "fader",
+      "name": "INTERVALS",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        392,
+        146,
+        56
+      ],
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 6,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 118,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ],
+      "slotId": 30,
+      "deviceId": 1
+    },
+    {
+      "id": "31ce144f-6b85-4d63-9003-5fcc7f27e4b7",
+      "type": "fader",
+      "name": "LENGTH",
+      "color": "FFFFFF",
+      "bounds": [
+        850,
+        480,
+        146,
+        56
+      ],
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 12,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "parameterNumber": 119,
+            "min": 0,
+            "max": 127,
+            "deviceId": 1
+          },
+          "id": "value"
+        }
+      ],
+      "slotId": 36,
+      "deviceId": 1
+    }
+  ],
+  "groups": [
+    {
+      "pageId": 1,
+      "name": "OSC",
+      "color": "F45C51",
+      "bounds": [
+        0,
+        16,
+        486,
+        16
+      ],
+      "x": 0,
+      "y": 0,
+      "span": 3,
+      "id": 1
+    },
+    {
+      "pageId": 1,
+      "name": "Filter",
+      "color": "F49500",
+      "bounds": [
+        510,
+        16,
+        486,
+        16
+      ],
+      "x": 3,
+      "y": 0,
+      "span": 3,
+      "id": 4
+    },
+    {
+      "pageId": 1,
+      "name": "Envelope",
+      "color": "529DEC",
+      "bounds": [
+        0,
+        104,
+        826,
+        16
+      ],
+      "x": 0,
+      "y": 1,
+      "span": 3,
+      "id": 7
+    },
+    {
+      "pageId": 1,
+      "name": "Delay FX",
+      "color": "03A598",
+      "bounds": [
+        340,
+        192,
+        316,
+        16
+      ],
+      "x": 2,
+      "y": 2,
+      "span": 2,
+      "id": 15
+    },
+    {
+      "pageId": 1,
+      "name": "Reverb FX",
+      "color": "C44795",
+      "bounds": [
+        680,
+        192,
+        316,
+        16
+      ],
+      "x": 4,
+      "y": 2,
+      "span": 2,
+      "id": 17
+    },
+    {
+      "pageId": 1,
+      "name": "Mod FX",
+      "color": "F49500",
+      "bounds": [
+        0,
+        192,
+        316,
+        16
+      ],
+      "x": 0,
+      "y": 2,
+      "span": 2,
+      "id": 13
+    },
+    {
+      "pageId": 1,
+      "name": "Tremolo",
+      "color": "529DEC",
+      "bounds": [
+        0,
+        368,
+        316,
+        16
+      ],
+      "x": 0,
+      "y": 4,
+      "span": 2,
+      "id": 25
+    },
+    {
+      "pageId": 1,
+      "name": "Arpeggiator",
+      "bounds": [
+        680,
+        368,
+        316,
+        16
+      ],
+      "color": "FFFFFF",
+      "x": 4,
+      "y": 4,
+      "span": 2,
+      "id": 29
+    },
+    {
+      "id": 11,
+      "pageId": 1,
+      "name": "Filter Sweep",
+      "span": 2,
+      "x": 4,
+      "y": 1,
+      "color": "FFFFFF"
+    },
+    {
+      "id": 27,
+      "pageId": 1,
+      "name": "LFO",
+      "span": 2,
+      "x": 2,
+      "y": 4,
+      "color": "F45C51"
+    }
+  ],
+  "pages": [
+    {
+      "id": 1,
+      "name": "Main"
+    }
+  ],
+  "firstPageId": 1
+}

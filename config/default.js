@@ -27,7 +27,7 @@ module.exports = customWrapper({
     slot: 0,
     id: 0,
     name: '',
-    template: path.resolve(__dirname + '/../presets/Bacara Template.epr'),
+    template: path.resolve(__dirname + '/../presets/Bacara Template.eproj'),
     presetName: 'Bacara',
     custom: [],
   },

@@ -1,0 +1,616 @@
+{
+  "id": "HEf0dwGXlfXYNAq1Svas",
+  "name": "Roland VP-03",
+  "description": null,
+  "devices": [
+    {
+      "id": 14,
+      "name": "VP-03",
+      "instrumentId": "generic-midi",
+      "port": 1,
+      "channel": 14
+    }
+  ],
+  "tiles": [
+    {
+      "id": "0de6e732-d163-4cc0-9e4e-2099231cfce7",
+      "slotId": 1,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "529DEC",
+      "name": "Time",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 14,
+            "parameterNumber": 12,
+            "min": 0,
+            "max": 127
+          }
+        }
+      ]
+    },
+    {
+      "id": "c0b6e008-c26a-4b62-bda1-d8e6c966d90f",
+      "slotId": 2,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "529DEC",
+      "name": "Set",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 13
+          }
+        }
+      ]
+    },
+    {
+      "id": "474c56e0-b62f-4e68-9cae-d6a841da694d",
+      "slotId": 3,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "529DEC",
+      "name": "Bend Range",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 20
+          }
+        }
+      ]
+    },
+    {
+      "id": "f4064ee5-d4cb-4af3-b547-243e51ce2859",
+      "slotId": 4,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "F49500",
+      "name": "Tune",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 14,
+            "parameterNumber": 79,
+            "bitWidth": 7
+          },
+          "min": -64,
+          "max": 63,
+          "defaultValue": 0
+        }
+      ]
+    },
+    {
+      "id": "6f731193-d0af-4507-87bf-c47e5f3a82fa",
+      "slotId": 5,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "03A598",
+      "name": "Direct Mic",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 16
+          }
+        }
+      ]
+    },
+    {
+      "id": "65ee5b9e-4489-44b7-bdd8-10ab1ebd7996",
+      "slotId": 6,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "03A598",
+      "name": "Strings",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 18
+          }
+        }
+      ]
+    },
+    {
+      "id": "d79af97c-3b67-4228-aafe-5ddcf3c38cc2",
+      "slotId": 7,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "529DEC",
+      "name": "Shift",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 14
+          }
+        }
+      ]
+    },
+    {
+      "id": "cd982cac-892b-4722-9c87-3ca52104683e",
+      "slotId": 8,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "529DEC",
+      "name": "Shift Mode",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 15
+          }
+        }
+      ]
+    },
+    {
+      "id": "2613a9b6-c5ae-4834-ad41-9347aa85c14f",
+      "slotId": 10,
+      "type": "pad",
+      "deviceId": 14,
+      "color": "F49500",
+      "name": "Hold",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 14,
+            "parameterNumber": 64,
+            "onValue": 127,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "mode": "toggle"
+    },
+    {
+      "id": "2dd72de7-9d1b-4399-bce0-3315be07ae11",
+      "slotId": 11,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "03A598",
+      "name": "Human Voice",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 17
+          }
+        }
+      ]
+    },
+    {
+      "id": "28ce4ad1-731b-42aa-9b95-cad8a62fc725",
+      "slotId": 13,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "F49500",
+      "name": "Formant",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 19
+          }
+        }
+      ]
+    },
+    {
+      "id": "be6f937c-34a8-45ff-b4a9-d23d8b01825e",
+      "slotId": 14,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "F49500",
+      "name": "Hold",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 66
+          }
+        }
+      ]
+    },
+    {
+      "id": "159ddda6-5442-4945-bff3-35f3943c18bc",
+      "slotId": 15,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "F49500",
+      "name": "Ensemble",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 14,
+            "parameterNumber": 91,
+            "min": 0,
+            "max": 127
+          }
+        }
+      ]
+    },
+    {
+      "id": "a7f30e1f-ddc9-43de-9d9c-278c730f11c3",
+      "slotId": 17,
+      "type": "fader",
+      "deviceId": 14,
+      "name": "Attack",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 73
+          }
+        }
+      ]
+    },
+    {
+      "id": "8f401b94-5ead-4ab2-a019-07e685322cb2",
+      "slotId": 18,
+      "type": "fader",
+      "deviceId": 14,
+      "name": "Release",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 72
+          }
+        }
+      ]
+    },
+    {
+      "id": "2d9f1f9c-a32c-4566-8377-6044ca9644db",
+      "slotId": 19,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "F49500",
+      "name": "Level",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 14,
+            "parameterNumber": 70,
+            "min": 0,
+            "max": 127
+          }
+        }
+      ]
+    },
+    {
+      "id": "c46deb24-10e1-4b97-9ed1-ec89238fb8c9",
+      "slotId": 20,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "F49500",
+      "name": "Tone",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 14,
+            "parameterNumber": 71,
+            "min": 0,
+            "max": 127
+          }
+        }
+      ]
+    },
+    {
+      "id": "0a3d0c40-bde7-4b6e-8b19-a4eb39fbd1b7",
+      "slotId": 21,
+      "type": "pad",
+      "deviceId": 14,
+      "color": "F49500",
+      "name": "Vocoder",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "offValue": 0,
+            "onValue": 127,
+            "parameterNumber": 80
+          }
+        }
+      ],
+      "mode": "toggle"
+    },
+    {
+      "id": "a2579482-1a8c-4766-9fd9-af9760f0d757",
+      "slotId": 23,
+      "type": "fader",
+      "deviceId": 14,
+      "name": "Tone",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 74
+          }
+        }
+      ]
+    },
+    {
+      "id": "93d42786-a013-4497-be3a-ae5526c9e278",
+      "slotId": 24,
+      "type": "pad",
+      "deviceId": 14,
+      "name": "Strings",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 14,
+            "parameterNumber": 83,
+            "onValue": 127,
+            "offValue": 0
+          },
+          "defaultValue": "on"
+        }
+      ],
+      "mode": "toggle"
+    },
+    {
+      "id": "aa1913f1-c218-4e9d-ab54-cb9b631e5347",
+      "slotId": 25,
+      "type": "fader",
+      "deviceId": 14,
+      "name": "Rate",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 76
+          }
+        }
+      ]
+    },
+    {
+      "id": "22188a3a-ad7b-444d-a0fb-559366604f47",
+      "slotId": 26,
+      "type": "fader",
+      "deviceId": 14,
+      "name": "Depth",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 77
+          }
+        }
+      ]
+    },
+    {
+      "id": "3ab6c0a4-e366-42f5-b991-2e7d42ac1a52",
+      "slotId": 27,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "F45C51",
+      "name": "Time",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 14,
+            "parameterNumber": 5,
+            "min": 0,
+            "max": 127
+          }
+        }
+      ]
+    },
+    {
+      "id": "84c16cc5-3d4b-449b-8f12-c3f3eb36f8e9",
+      "slotId": 29,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "C44795",
+      "name": "Attack",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 75
+          }
+        }
+      ]
+    },
+    {
+      "id": "a3fb6d2a-b814-4193-b9bf-4ec16bc249f8",
+      "slotId": 30,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "C44795",
+      "name": "Male 8'",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 81
+          }
+        }
+      ]
+    },
+    {
+      "id": "ba0bd5d4-0f86-4e5b-b90a-9151acd43d0a",
+      "slotId": 31,
+      "type": "fader",
+      "deviceId": 14,
+      "name": "Delay Time",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 78
+          }
+        }
+      ]
+    },
+    {
+      "id": "219b9942-0923-4c9e-b31a-38500726d4f7",
+      "slotId": 33,
+      "type": "pad",
+      "deviceId": 14,
+      "color": "F45C51",
+      "name": "Portament",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "offValue": 0,
+            "onValue": 127,
+            "parameterNumber": 65
+          }
+        }
+      ],
+      "mode": "toggle"
+    },
+    {
+      "id": "dc921dcd-b9c3-4963-9d15-ee6065173c18",
+      "slotId": 35,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "C44795",
+      "name": "Ensemble",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "deviceId": 14,
+            "parameterNumber": 92,
+            "min": 0,
+            "max": 127
+          }
+        }
+      ]
+    },
+    {
+      "id": "e0654f2d-8f58-4294-8cb6-e925c1b6ed72",
+      "slotId": 36,
+      "type": "fader",
+      "deviceId": 14,
+      "color": "C44795",
+      "name": "Female 4'",
+      "values": [
+        {
+          "message": {
+            "type": "cc7",
+            "min": 0,
+            "max": 127,
+            "parameterNumber": 82
+          }
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "pageId": 1,
+      "name": "Pitch",
+      "span": 3,
+      "x": 0,
+      "y": 0,
+      "color": "529DEC"
+    },
+    {
+      "id": 5,
+      "pageId": 1,
+      "name": "Balance",
+      "span": 2,
+      "x": 4,
+      "y": 0,
+      "color": "03A598"
+    },
+    {
+      "id": 17,
+      "pageId": 1,
+      "name": "Strings",
+      "span": 2,
+      "x": 4,
+      "y": 2
+    },
+    {
+      "id": 13,
+      "pageId": 1,
+      "name": "Vocoder",
+      "span": 3,
+      "x": 0,
+      "y": 2,
+      "color": "F49500"
+    },
+    {
+      "id": 25,
+      "pageId": 1,
+      "name": "Vibrato",
+      "span": 2,
+      "x": 0,
+      "y": 4
+    },
+    {
+      "id": 29,
+      "pageId": 1,
+      "name": "Human Voice",
+      "span": 2,
+      "x": 4,
+      "y": 4,
+      "color": "C44795"
+    },
+    {
+      "id": 27,
+      "pageId": 1,
+      "name": "Portament",
+      "span": 1,
+      "x": 2,
+      "y": 4
+    }
+  ],
+  "pages": [
+    {
+      "id": 1,
+      "name": "VP-03"
+    }
+  ]
+}
