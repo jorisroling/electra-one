@@ -43,13 +43,13 @@
       "virus-ti": {
         "darwin": "MRCC Port 1"
       },
-      "analog_four": {
+      "analog-four": {
         "darwin": "MRCC Port 2"
       },
       "typhon": {
         "darwin": "MRCC Port 3"
       },
-      "analog_rytm": {
+      "analog-rytm": {
         "darwin": "MRCC Port 4"
       },
       "missing-link": {
@@ -133,9 +133,10 @@
         }
       }
     },
-    "analog_four": {
+    "analog-four": {
       "model": "Analog Four",
       "manufacturer": "Elektron",
+      "instance": "t#",
       "channels": [
         1,
         2,
@@ -145,7 +146,7 @@
         6,
         9
       ],
-      "port": "analog_four",
+      "port": "analog-four",
       "electraOne": {
         "port": 1
       }
@@ -161,9 +162,10 @@
         "port": 1
       }
     },
-    "analog_rytm": {
+    "analog-rytm": {
       "model": "Analog Rytm",
       "manufacturer": "Elektron",
+      "instance": "t#",
       "channels": [
         1,
         2,
@@ -181,7 +183,7 @@
         14,
         15
       ],
-      "port": "analog_rytm",
+      "port": "analog-rytm",
       "electraOne": {
         "port": 1
       }
@@ -233,6 +235,7 @@
     "keystep-37": {
       "model": "KeyStep 37",
       "manufacturer": "Arturia",
+      "instance": "c.#",
       "channels": [
         1,
         2,
@@ -987,7 +990,7 @@
           {
             "name": "MRCC Port 2",
             "short": "MRCC Port.2",
-            "device": "analog_four"
+            "device": "analog-four"
           },
           {
             "name": "MRCC Port 3",
@@ -997,7 +1000,7 @@
           {
             "name": "MRCC Port 4",
             "short": "MRCC Port.4",
-            "device": "analog_rytm"
+            "device": "analog-rytm"
           },
           {
             "name": "MRCC Port 5",
@@ -1165,7 +1168,7 @@
           {
             "name": "MRCC Port 2",
             "short": "MRCC Port.2",
-            "device": "analog_four"
+            "device": "analog-four"
           },
           {
             "name": "MRCC Port 3",
@@ -1175,7 +1178,7 @@
           {
             "name": "MRCC Port 4",
             "short": "MRCC Port.4",
-            "device": "analog_rytm"
+            "device": "analog-rytm"
           },
           {
             "name": "MRCC Port 5",

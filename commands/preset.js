@@ -76,6 +76,176 @@ function generatePreset(name, sub, options) {
           }
         }
 
+        // For newer .EPROJ preset files
+        if (Array.isArray(preset.tiles)) {
+          for (let tile of preset.tiles) {
+            if (tile.values) {
+              for (let value of tile.values) {
+                if (Array.isArray(value.textValues) && value.textValues.length && value.textValues[0].label) {
+                  const match = value.textValues[0].label.match(/\s*\[\s*\[\s*(.*?)\s*\]\s*\]\s*/)
+                  if (match) {
+                    const overlayType = match[1]
+                    const lfoTargetMatch = overlayType.match(/lfo([\d])Target/)
+
+                    if (overlayType == 'devices') {
+                      if (config.devices) {
+                        value.textValues = [{
+                          index: 0,
+                          label: 'Unknown',
+                          value: 0,
+                        }]
+                        let idx = 1
+
+                        const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
+                        deviceKeys.unshift('bacara')
+
+                        for (let deviceKey of deviceKeys) {
+                          let instance = config.devices[deviceKey].instance ? config.devices[deviceKey].instance : 'ch.#'
+                          const model = config.devices[deviceKey].model
+
+                          if (Array.isArray(config.devices[deviceKey].channels)) {
+                            for (let c in config.devices[deviceKey].channels) {
+                              if (Array.isArray(config.devices[deviceKey].instances) && config.devices[deviceKey].instances.length > c) {
+                                instance = config.devices[deviceKey].instances[c]
+                              }
+                              if (typeof config.devices[deviceKey].special === 'object' && config.devices[deviceKey].special[config.devices[deviceKey].channels[c]]) {
+                                instance = config.devices[deviceKey].special[config.devices[deviceKey].channels[c]]
+                              }
+                              const label = config.devices[deviceKey].channels.length > 1 ? `${model} ${instance}`.trim() : model
+                              const rLabel = label.replace('#', config.devices[deviceKey].instance ? (parseInt(c) + 1) : config.devices[deviceKey].channels[c])
+
+                              value.textValues.push({
+                                index: idx,
+                                label: rLabel.substr(0, 15),
+                                value: idx,
+                              })
+                              idx++
+                            }
+                          }
+                        }
+                      }
+                    } else if (overlayType == 'ports') {
+                      if (config.devices) {
+                        value.textValues = []
+                        let idx = 0
+
+                        for (let port of Bacara.getPresetState('midi.ports.output', [])) {
+                          value.textValues.push({
+                            index: idx,
+                            label: port.short.substr(0, 15),
+                            value: idx,
+                          })
+                          idx++
+                        }
+                      }
+                    } else if (overlayType == 'matrixTarget') {
+                      value.textValues = [{
+                        index: 0,
+                        label: 'Off',
+                        value: 0,
+                      }]
+                      let idx = 1
+                      for (let ctrl = 1; ctrl < 128; ctrl++) {
+                        const path = interface.getMapPath('external', 'cc', ctrl)
+                        /*                 debug('path %y %y %y',path,`^lfo.${currentLfo-1}.`,path && path.match(`^lfo.${currentLfo-1}.`))*/
+                        if (path) {
+                          value.textValues.push({
+                            index: idx++,
+                            label: interface.getElementAttribute(path, 'name'),
+                            value: ctrl,
+                          })
+                        }
+                      }
+                    } else if (lfoTargetMatch) {
+                      const currentLfo = parseInt(lfoTargetMatch[1])
+                      value.textValues = [{
+                        index: 0,
+                        label: 'Off',
+                        value: 0,
+                      }]
+                      let idx = 1
+                      for (let ctrl = 1; ctrl < 128; ctrl++) {
+                        value.textValues.push({
+                          index: idx++,
+                          label: `Control #${ctrl}`,
+                          value: ctrl + 128,
+                        })
+                      }
+                      /*                debug('map %y',interface.map)*/
+                      for (let ctrl = 1; ctrl < 128; ctrl++) {
+                        const path = interface.getMapPath('external', 'cc', ctrl)
+                        /*                 debug('path %y %y %y',path,`^lfo.${currentLfo-1}.`,path && path.match(`^lfo.${currentLfo-1}.`))*/
+                        if (path && !path.match(`^lfo.${currentLfo - 1}.`)) {
+                          value.textValues.push({
+                            index: idx++,
+                            label: interface.getElementAttribute(path, 'name'),
+                            value: ctrl,
+                          })
+                        }
+                      }
+                      /*               debug('hi %y %y', lfoTargetMatch,overlay)*/
+                    } else if (overlayType == 'axyzTarget') {
+                      value.textValues = [{
+                        index: 0,
+                        label: 'Off',
+                        value: 0,
+                      }]
+                      let idx = 1
+                      const list = devices['virus-ti'].flatList
+                      for (let ctrl = 0; ctrl < list.length; ctrl++) {
+                        const path = list[ctrl]
+                        if (path) {
+                          value.textValues.push({
+                            index: idx++,
+                            label: path.replace(/\./g, ' '),
+                            value: ctrl + 1,
+                          })
+                        }
+                      }
+                    } else if (overlayType == 'virusBank') {
+
+                      value.textValues = []
+
+                      let idx = 0
+                      for (let i = 0; i < 4; i++) {
+                        value.textValues.push({
+                          index: idx,
+                          label: `RAM ${String.fromCharCode('A'.charCodeAt(0) + i)}`,
+                          value: idx,
+                        })
+                        idx++
+                      }
+                      for (let i = 0; i < 26; i++) {
+                        value.textValues.push({
+                          index: idx,
+                          label: `ROM ${String.fromCharCode('A'.charCodeAt(0) + i)}`,
+                          value: idx,
+                        })
+                        idx++
+                      }
+
+                      const banks = virus.getBanks()
+                      if (banks) {
+                        for (let bank of banks) {
+                          value.textValues.push({
+                            index: idx,
+                            label: bank.short,
+                            value: idx,
+                          })
+                          idx++
+                        }
+                      }
+                    } else {
+                      console.error(`Unknown (and thus unhandled) overlay type "${overlayType}"`)
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        // For older .EPR preset files
         if (Array.isArray(preset.overlays)) {
           for (let overlay of preset.overlays) {
             if (Array.isArray(overlay.items) && overlay.items.length && overlay.items[0].label) {

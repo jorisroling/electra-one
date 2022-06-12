@@ -1,14 +1,18 @@
 {
   "name": "electra-one",
-  "version": "1.2.0",
+  "version": "1.2.24",
   "model": "bacara",
   "modulation": {},
   "state": {
     "device": {
       "A": {
+        "channelAdd": 0,
+        "notes": 4124,
         "portName": "mb33"
       },
       "B": {
+        "channelAdd": 5,
+        "notes": 954,
         "portName": "virus-ti"
       }
     },
@@ -22,9 +26,45 @@
           false,
           false,
           true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
           true,
           false,
           true,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
           false,
           false,
           false,
@@ -35,48 +75,12 @@
         [
           false,
           false,
-          true,
-          false,
-          false,
-          true,
-          true,
-          false,
-          false,
-          true,
-          true,
-          false,
-          true,
-          true,
-          false,
-          false
-        ],
-        [
-          false,
           false,
           false,
           true,
           false,
           false,
           false,
-          false,
-          false,
-          false,
-          false,
-          true,
-          false,
-          false,
-          false,
-          false
-        ],
-        [
-          false,
-          false,
-          true,
-          false,
-          true,
-          true,
-          false,
-          true,
           false,
           false,
           true,
@@ -108,54 +112,54 @@
       "instrument": [
         {
           "channel": 14,
-          "portName": "vp-03"
+          "portName": "analog-rytm"
         },
         {
           "channel": 14,
-          "portName": "vp-03"
+          "portName": "analog-rytm"
         },
         {
           "channel": 14,
-          "portName": "vp-03"
+          "portName": "analog-rytm"
         },
         {
           "channel": 14,
-          "portName": "vp-03"
+          "portName": "analog-rytm"
         },
         {
           "channel": 14,
-          "portName": "vp-03"
+          "portName": "analog-rytm"
         },
         {
           "channel": 14,
-          "portName": "vp-03"
+          "portName": "analog-rytm"
         },
         {
           "channel": 14,
-          "portName": "vp-03"
+          "portName": "analog-rytm"
         },
         {
           "channel": 14,
-          "portName": "vp-03"
+          "portName": "analog-rytm"
         },
         {
           "channel": 14,
-          "portName": "vp-03"
+          "portName": "analog-rytm"
         },
         {
           "channel": 14,
-          "portName": "vp-03"
+          "portName": "analog-rytm"
         },
         {
           "channel": 14,
-          "portName": "vp-03"
+          "portName": "analog-rytm"
         }
       ],
       "midi": {
         "header": {
           "keySignatures": [],
           "meta": [],
-          "name": "Bacara Drums - 2021-10-02 16:15:26",
+          "name": "Bacara Drums - 2022-06-11 20:19:42",
           "ppq": 480,
           "tempos": [],
           "timeSignatures": []
@@ -164,13 +168,13 @@
           {
             "channel": 0,
             "controlChanges": {},
-            "pitchBends": [],
+            "endOfTrackTicks": 1740,
             "instrument": {
               "family": "piano",
               "name": "acoustic grand piano",
               "number": 0
             },
-            "name": "Bacara Drums - 2021-10-02 16:15:26",
+            "name": "Bacara Drums - 2022-06-11 20:19:42",
             "notes": [
               {
                 "duration": 0.0625,
@@ -179,7 +183,7 @@
                 "name": "C2",
                 "ticks": 0,
                 "time": 0,
-                "velocity": 0.6328125
+                "velocity": 0.6299212598425197
               },
               {
                 "duration": 0.0625,
@@ -188,7 +192,7 @@
                 "name": "C#2",
                 "ticks": 0,
                 "time": 0,
-                "velocity": 0.6328125
+                "velocity": 0.6299212598425197
               },
               {
                 "duration": 0.0625,
@@ -197,7 +201,7 @@
                 "name": "D#2",
                 "ticks": 0,
                 "time": 0,
-                "velocity": 0.6328125
+                "velocity": 0.6299212598425197
               },
               {
                 "duration": 0.0625,
@@ -206,7 +210,16 @@
                 "name": "G#2",
                 "ticks": 0,
                 "time": 0,
-                "velocity": 0.8828125
+                "velocity": 0.8818897637795275
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 45,
+                "name": "A2",
+                "ticks": 0,
+                "time": 0,
+                "velocity": 0.6299212598425197
               },
               {
                 "duration": 0.0625,
@@ -215,16 +228,25 @@
                 "name": "G#2",
                 "ticks": 120,
                 "time": 0.125,
-                "velocity": 0.6328125
+                "velocity": 0.6299212598425197
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
-                "midi": 38,
-                "name": "D2",
+                "midi": 45,
+                "name": "A2",
+                "ticks": 120,
+                "time": 0.125,
+                "velocity": 0.6299212598425197
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 39,
+                "name": "D#2",
                 "ticks": 240,
                 "time": 0.25,
-                "velocity": 0.9453125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -251,7 +273,7 @@
                 "name": "F#2",
                 "ticks": 360,
                 "time": 0.375,
-                "velocity": 0.9453125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -260,7 +282,7 @@
                 "name": "C2",
                 "ticks": 480,
                 "time": 0.5,
-                "velocity": 0.6328125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -269,7 +291,7 @@
                 "name": "C#2",
                 "ticks": 480,
                 "time": 0.5,
-                "velocity": 0.6328125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -278,25 +300,7 @@
                 "name": "D2",
                 "ticks": 480,
                 "time": 0.5,
-                "velocity": 0.6328125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 39,
-                "name": "D#2",
-                "ticks": 480,
-                "time": 0.5,
-                "velocity": 0.6328125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 41,
-                "name": "F2",
-                "ticks": 480,
-                "time": 0.5,
-                "velocity": 0.8828125
+                "velocity": 1
               },
               {
                 "duration": 0.0625,
@@ -305,159 +309,177 @@
                 "name": "G2",
                 "ticks": 480,
                 "time": 0.5,
-                "velocity": 0.6328125
+                "velocity": 1
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
-                "midi": 44,
-                "name": "G#2",
+                "midi": 45,
+                "name": "A2",
                 "ticks": 480,
                 "time": 0.5,
-                "velocity": 0.6328125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 38,
-                "name": "D2",
-                "ticks": 600,
-                "time": 0.625,
-                "velocity": 0.6328125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 45,
-                "name": "A2",
-                "ticks": 600,
-                "time": 0.625,
-                "velocity": 0.6328125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 45,
-                "name": "A2",
-                "ticks": 720,
-                "time": 0.75,
-                "velocity": 1
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 46,
-                "name": "A#2",
-                "ticks": 720,
-                "time": 0.75,
-                "velocity": 1
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 38,
-                "name": "D2",
-                "ticks": 840,
-                "time": 0.875,
-                "velocity": 0.9453125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 46,
-                "name": "A#2",
-                "ticks": 840,
-                "time": 0.875,
-                "velocity": 0.9453125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 36,
-                "name": "C2",
-                "ticks": 960,
-                "time": 1,
-                "velocity": 0.6328125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 37,
-                "name": "C#2",
-                "ticks": 960,
-                "time": 1,
-                "velocity": 0.6328125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
                 "midi": 39,
                 "name": "D#2",
-                "ticks": 960,
-                "time": 1,
-                "velocity": 0.6328125
+                "ticks": 600,
+                "time": 0.625,
+                "velocity": 0.6299212598425197
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
-                "midi": 45,
-                "name": "A2",
-                "ticks": 1080,
-                "time": 1.125,
-                "velocity": 0.6328125
+                "midi": 41,
+                "name": "F2",
+                "ticks": 600,
+                "time": 0.625,
+                "velocity": 0.8818897637795275
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
-                "midi": 46,
-                "name": "A#2",
-                "ticks": 1080,
-                "time": 1.125,
-                "velocity": 0.6328125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 38,
-                "name": "D2",
-                "ticks": 1200,
-                "time": 1.25,
-                "velocity": 0.9453125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 39,
-                "name": "D#2",
-                "ticks": 1200,
-                "time": 1.25,
-                "velocity": 0.9453125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 44,
-                "name": "G#2",
-                "ticks": 1200,
-                "time": 1.25,
-                "velocity": 1
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 45,
-                "name": "A2",
-                "ticks": 1200,
-                "time": 1.25,
-                "velocity": 1
+                "midi": 41,
+                "name": "F2",
+                "ticks": 720,
+                "time": 0.75,
+                "velocity": 0.8818897637795275
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
                 "midi": 42,
                 "name": "F#2",
-                "ticks": 1320,
-                "time": 1.375,
+                "ticks": 720,
+                "time": 0.75,
+                "velocity": 0.6299212598425197
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 45,
+                "name": "A2",
+                "ticks": 720,
+                "time": 0.75,
+                "velocity": 0.8818897637795275
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 46,
+                "name": "A#2",
+                "ticks": 720,
+                "time": 0.75,
+                "velocity": 0.8818897637795275
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 41,
+                "name": "F2",
+                "ticks": 840,
+                "time": 0.875,
+                "velocity": 1
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 45,
+                "name": "A2",
+                "ticks": 840,
+                "time": 0.875,
+                "velocity": 0.9448818897637795
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 36,
+                "name": "C2",
+                "ticks": 960,
+                "time": 1,
+                "velocity": 0.6299212598425197
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 37,
+                "name": "C#2",
+                "ticks": 960,
+                "time": 1,
+                "velocity": 0.6299212598425197
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 41,
+                "name": "F2",
+                "ticks": 960,
+                "time": 1,
+                "velocity": 0.6299212598425197
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 42,
+                "name": "F#2",
+                "ticks": 960,
+                "time": 1,
+                "velocity": 0.8818897637795275
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 45,
+                "name": "A2",
+                "ticks": 960,
+                "time": 1,
+                "velocity": 0.6299212598425197
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 41,
+                "name": "F2",
+                "ticks": 1080,
+                "time": 1.125,
+                "velocity": 0.6299212598425197
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 38,
+                "name": "D2",
+                "ticks": 1200,
+                "time": 1.25,
+                "velocity": 1
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 44,
+                "name": "G#2",
+                "ticks": 1200,
+                "time": 1.25,
+                "velocity": 1
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 45,
+                "name": "A2",
+                "ticks": 1200,
+                "time": 1.25,
+                "velocity": 1
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 46,
+                "name": "A#2",
+                "ticks": 1200,
+                "time": 1.25,
                 "velocity": 1
               },
               {
@@ -467,7 +489,7 @@
                 "name": "C2",
                 "ticks": 1440,
                 "time": 1.5,
-                "velocity": 0.6328125
+                "velocity": 0.6299212598425197
               },
               {
                 "duration": 0.0625,
@@ -476,7 +498,7 @@
                 "name": "C#2",
                 "ticks": 1440,
                 "time": 1.5,
-                "velocity": 0.6328125
+                "velocity": 0.6299212598425197
               },
               {
                 "duration": 0.0625,
@@ -485,16 +507,7 @@
                 "name": "G2",
                 "ticks": 1440,
                 "time": 1.5,
-                "velocity": 0.6328125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 45,
-                "name": "A2",
-                "ticks": 1440,
-                "time": 1.5,
-                "velocity": 0.6328125
+                "velocity": 0.8818897637795275
               },
               {
                 "duration": 0.0625,
@@ -503,25 +516,7 @@
                 "name": "D2",
                 "ticks": 1560,
                 "time": 1.625,
-                "velocity": 0.6328125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 39,
-                "name": "D#2",
-                "ticks": 1560,
-                "time": 1.625,
-                "velocity": 0.6328125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 40,
-                "name": "E2",
-                "ticks": 1560,
-                "time": 1.625,
-                "velocity": 0.6328125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -530,7 +525,7 @@
                 "name": "A2",
                 "ticks": 1560,
                 "time": 1.625,
-                "velocity": 0.8828125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -539,7 +534,25 @@
                 "name": "D2",
                 "ticks": 1680,
                 "time": 1.75,
-                "velocity": 1
+                "velocity": 0.8818897637795275
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 42,
+                "name": "F#2",
+                "ticks": 1680,
+                "time": 1.75,
+                "velocity": 0.6299212598425197
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 45,
+                "name": "A2",
+                "ticks": 1680,
+                "time": 1.75,
+                "velocity": 0.8818897637795275
               },
               {
                 "duration": 0.0625,
@@ -548,18 +561,10 @@
                 "name": "A#2",
                 "ticks": 1680,
                 "time": 1.75,
-                "velocity": 0.9453125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 41,
-                "name": "F2",
-                "ticks": 1800,
-                "time": 1.875,
-                "velocity": 0.9453125
+                "velocity": 0.8818897637795275
               }
-            ]
+            ],
+            "pitchBends": []
           }
         ]
       },
@@ -603,15 +608,15 @@
         [
           0,
           0,
-          1,
-          0,
-          1,
-          1,
-          0,
-          1,
           0,
           0,
-          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
           0,
           0,
           1,
@@ -621,70 +626,16 @@
         [
           1,
           0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          1,
-          0,
           1,
           0,
           0,
           1,
           0,
-          0
-        ],
-        [
           0,
           0,
           0,
           0,
           0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          2,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          1
-        ],
-        [
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2,
           0,
           0,
           0,
@@ -695,7 +646,6 @@
           0,
           0,
           0,
-          1,
           0,
           0,
           0,
@@ -703,23 +653,6 @@
           0,
           0,
           0,
-          1,
-          0,
-          0,
-          0
-        ],
-        [
-          2,
-          1,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2,
           0,
           0,
           0,
@@ -729,32 +662,32 @@
         [
           0,
           0,
+          0,
+          0,
+          0,
           2,
-          0,
-          0,
+          2,
+          2,
           1,
-          2,
-          0,
-          0,
           1,
-          2,
           0,
-          1,
-          2,
+          0,
+          0,
+          0,
           0,
           0
         ],
         [
           0,
           0,
-          2,
-          0,
-          0,
-          0,
-          2,
-          1,
           0,
           1,
+          0,
+          0,
+          1,
+          0,
+          2,
+          0,
           0,
           0,
           0,
@@ -765,19 +698,91 @@
         [
           0,
           0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
           1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          2,
+          0,
+          1,
+          0,
+          2,
+          1,
+          1,
+          0,
+          2,
+          0,
+          0,
+          1,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          2,
+          1,
+          0,
+          0,
+          2,
+          0,
+          0,
           1,
           0,
           0,
           1,
-          1,
           0,
-          0,
-          1,
-          1,
-          0,
-          0,
-          1,
           1
         ]
       ],
@@ -1031,6 +1036,230 @@
           1,
           1,
           1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
         ]
       ]
     },
@@ -1046,28 +1275,28 @@
       }
     ],
     "octaves": [
+      0,
+      0,
       1,
       1,
       0,
       0,
       1,
-      1,
-      1,
-      1,
-      1,
       0,
       1,
       0,
       1,
-      1,
-      1,
+      0,
+      0,
+      0,
+      0,
       0
     ],
     "pattern": {
       "header": {
         "keySignatures": [],
         "meta": [],
-        "name": "Acid - 2021-05-16 20:57:13",
+        "name": "Acid - 2021-05-11 15:24:56",
         "ppq": 480,
         "tempos": [],
         "timeSignatures": []
@@ -1079,27 +1308,18 @@
           "pitchBends": [],
           "instrument": {
             "family": "piano",
-            "name": "acoustic grand piano",
-            "number": 0
+            "number": 0,
+            "name": "acoustic grand piano"
           },
-          "name": "Acid - 2021-05-16 20:57:13",
+          "name": "Acid - 2021-05-11 15:24:56",
           "notes": [
             {
               "duration": 0.1875,
               "durationTicks": 180,
-              "midi": 49,
-              "name": "C#3",
+              "midi": 36,
+              "name": "C2",
               "ticks": 0,
               "time": 0,
-              "velocity": 1
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 32,
-              "name": "G#1",
-              "ticks": 120,
-              "time": 0.125,
               "velocity": 0.7874015748031497
             },
             {
@@ -1114,37 +1334,10 @@
             {
               "duration": 0.0625,
               "durationTicks": 60,
-              "midi": 63,
-              "name": "D#4",
+              "midi": 48,
+              "name": "C3",
               "ticks": 360,
               "time": 0.375,
-              "velocity": 1
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 60,
-              "name": "C4",
-              "ticks": 480,
-              "time": 0.5,
-              "velocity": 0.7874015748031497
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 67,
-              "name": "G4",
-              "ticks": 600,
-              "time": 0.625,
-              "velocity": 0.7874015748031497
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 53,
-              "name": "F3",
-              "ticks": 720,
-              "time": 0.75,
               "velocity": 0.7874015748031497
             },
             {
@@ -1152,15 +1345,42 @@
               "durationTicks": 60,
               "midi": 48,
               "name": "C3",
-              "ticks": 840,
-              "time": 0.875,
+              "ticks": 480,
+              "time": 0.5,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 36,
+              "name": "C2",
+              "ticks": 600,
+              "time": 0.625,
               "velocity": 1
             },
             {
               "duration": 0.0625,
               "durationTicks": 60,
-              "midi": 50,
-              "name": "D3",
+              "midi": 48,
+              "name": "C3",
+              "ticks": 720,
+              "time": 0.75,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 24,
+              "name": "C1",
+              "ticks": 840,
+              "time": 0.875,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 36,
+              "name": "C2",
               "ticks": 960,
               "time": 1,
               "velocity": 0.7874015748031497
@@ -1168,35 +1388,26 @@
             {
               "duration": 0.0625,
               "durationTicks": 60,
-              "midi": 51,
-              "name": "D#3",
+              "midi": 48,
+              "name": "C3",
               "ticks": 1080,
               "time": 1.125,
-              "velocity": 1
+              "velocity": 0.7874015748031497
             },
             {
               "duration": 0.0625,
               "durationTicks": 60,
-              "midi": 38,
-              "name": "D2",
+              "midi": 42,
+              "name": "F#2",
               "ticks": 1200,
               "time": 1.25,
               "velocity": 0.7874015748031497
             },
             {
-              "duration": 0.1875,
-              "durationTicks": 180,
-              "midi": 56,
-              "name": "G#3",
-              "ticks": 1320,
-              "time": 1.375,
-              "velocity": 0.7874015748031497
-            },
-            {
               "duration": 0.0625,
               "durationTicks": 60,
-              "midi": 52,
-              "name": "E3",
+              "midi": 42,
+              "name": "F#2",
               "ticks": 1440,
               "time": 1.5,
               "velocity": 0.7874015748031497
@@ -1204,43 +1415,47 @@
             {
               "duration": 0.0625,
               "durationTicks": 60,
-              "midi": 53,
-              "name": "F3",
-              "ticks": 1560,
-              "time": 1.625,
-              "velocity": 0.7874015748031497
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 61,
-              "name": "C#4",
+              "midi": 42,
+              "name": "F#2",
               "ticks": 1680,
               "time": 1.75,
               "velocity": 0.7874015748031497
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 51,
-              "name": "D#3",
-              "ticks": 1800,
-              "time": 1.875,
-              "velocity": 1
             }
           ],
-          "endOfTrackTicks": 1860
+          "endOfTrackTicks": 1740
         }
       ]
     },
     "patternSteps": 16,
     "playing": true,
+    "redrum": [
+      {
+        "portName": "analog-rytm"
+      },
+      {
+        "portName": "analog-rytm"
+      },
+      {
+        "portName": "analog-rytm"
+      },
+      {
+        "portName": "analog-rytm"
+      },
+      {
+        "portName": "analog-rytm"
+      },
+      {
+        "portName": "analog-rytm"
+      }
+    ],
     "remote": {
-      "next": "virus.search.part.0.next",
+      "next": "next_pattern",
       "nextBank": "virus.search.part.0.nextBank",
-      "previous": "virus.search.part.0.previous",
+      "previous": "previous_pattern",
       "previousBank": "virus.search.part.0.previousBank",
-      "random": "virus.search.part.0.random"
+      "random": "virus.search.part.0.random",
+      "recenter": "virus.axyz.recenter",
+      "remote_reset": "virus.search.part.0.randomAll"
     },
     "sounding": [
       1,
@@ -1265,90 +1480,46 @@
         {
           "macros": [
             {
-              "cc": 13,
+              "cc": 1,
+              "index": 1,
+              "name": "Sharpen",
+              "softknob": 1,
+              "type": "cc"
+            },
+            {
+              "cc": 3,
               "index": 2,
-              "name": "Phaser",
-              "softknob": 10,
-              "type": "cc"
-            },
-            {
-              "cc": 1,
-              "name": "Mod Wheel",
-              "softknob": 1,
-              "type": "cc"
-            },
-            {
-              "cc": 12,
-              "name": "Control 12",
-              "softknob": 9,
-              "type": "cc"
-            },
-            {
-              "cc": 14,
-              "name": "Control 14",
-              "softknob": 11,
+              "name": "Effects",
+              "softknob": 3,
               "type": "cc"
             }
           ],
           "preset": {
-            "bank": 30,
-            "name": "Anemic  42",
+            "bank": 4,
+            "name": "Punchy  BC",
             "page": [
-              "08001E020300007F0000407F00000000004043004060747200237F030140406000474C00771000405A1B232A141450506A0800000000001935400E043F16400D0000001001000040000040714040403E040000400000404060604064014000000007302A40000100010045107F400100012940344A05013C0000000100000000",
-              "0001120001231B6001000001310F00004D04130011007F000001423E01000101012400000000000000004040282B51413F40402C2B335050414100404840140A1818480B146100400C6660004000400040004000037F247030737F005041334C382820000000000D0E4C14004003181E416E656D696320203432400800000001",
-              "0110036A03401C03000000000000000000000000000000000000002B00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001030300000000010000000040",
-              "6401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400000000000000000000000000000000000000000000000000000000000000000077"
-            ],
-            "part": 1,
-            "program": 2
-          }
-        },
-        {
-          "macros": [
-            {
-              "cc": 1,
-              "name": "Mod Wheel",
-              "softknob": 1,
-              "type": "cc"
-            }
-          ],
-          "preset": {
-            "bank": 13,
-            "name": "BlueDoom",
-            "page": [
-              "0C010D0E003200000000530000000000007F590040607F0B0040190000404060004E4500462E007F41261010545458583505000003015B6949406E007558345A000000530100004000004040644040340000004000004040405D19560040000000012B7F400001017F00310A39310100033E0030100C01400000000100000000",
-              "400000000040005D010000011C0D000039040000050000000001423E0100010101240000000000000003533423444540404040452B0B524D404000004040555E033A640000400040000040004000400040004000032D133930277F00494721626B532000002C00030040030040030040426C7565446F6F6D2020020000000000",
-              "0000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007F40000000000014460040461446004046004000400040004000400040004000400040000000000000000000000000000000000000001F40",
-              "6401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400000000000000000000000000000000000000000000000000012B7F400001000020"
-            ],
-            "part": 2,
-            "program": 14
-          }
-        },
-        {
-          "macros": [
-            {
-              "cc": 1,
-              "name": "Mod Wheel",
-              "softknob": 1,
-              "type": "cc"
-            },
-            {
-              "name": "Pitch Bend",
-              "type": "pitch"
-            }
-          ],
-          "preset": {
-            "bank": 12,
-            "name": "AR arp",
-            "page": [
-              "0C010C6C001A00000000400000000000004E16144060420A1740132A013F0060003F6E0047000040546A0B0A4138201B40001E00000000677C0826112E46001400000000010000000000404043404D0005000000000041403131407F0034010000000000000000017F00162B005E0100011A0000280601400000000100000000",
-              "00000900004000000100000100000001310400000D00000000014040010001010124000000000000000D1234002B25334B40400F361640404040000040403A36012E2A03185C0040010E341E57054E00400040000036093616602500675733544A7F000016500003004003004003004041522061727020202020000800000000",
-              "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000014460040461446004046004000400040004000400040004000400040000000000000000000000000000000000000001F40",
+              "0C01044D0100007F0000407F00000000006D41004060254B004020500140406000002E0040000040002D000053007E7F000800020101000700407F006A0040350000003001000040000040404040404B02010055007E40004040407F013401000000307F400001017F0033447F40010001004015100C01400000000100000000",
+              "400000000040003001000001000000003904000005007F000001423E01000101012400004000000000004040282B554040404037152F7A4040400040694001031A072F056A636635181844365116430040004000033B000031562100404733404028200003000003004003004003184E50756E63687920204243000500010000",
+              "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000400040004000400040004000400040000000000000000000000000000000000000001F40",
               "6401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400000000000000000000000000000000000000000000000000000000000000000029"
             ],
-            "part": 3,
-            "program": 108
+            "part": 1,
+            "program": 77
+          }
+        },
+        {
+          "macros": [],
+          "preset": {
+            "bank": 5,
+            "name": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+            "page": [
+              "0C01053D0300007F0000407F0000000000145F0040600000002820000040406000007F005D0000401D4000007F7F50504000000400004B65746D4D534005000000016200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+              "00000000000140640001406400406401406400406401406400406401406400406401406400406401406400000000000000000000000000000000000000000000000000000000000000000033F7",
+              "",
+              ""
+            ],
+            "part": 2,
+            "program": 61
           }
         },
         {
@@ -1361,45 +1532,62 @@
               "type": "cc"
             },
             {
-              "cc": 3,
-              "name": "Control 3",
-              "softknob": 3,
-              "type": "cc"
+              "name": "Channel Pressure",
+              "softknob": 64,
+              "type": "pressure"
             }
           ],
           "preset": {
-            "bank": 21,
-            "name": "Dukbass+BC",
+            "bank": 6,
+            "name": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
             "page": [
-              "0C01153F0122064B0100407F0000000000003023406000002A4000307F40406000407F007F007F4033463A1F281F514040027F00000100102C1D00092D71400C0000006901000040000040404040400C01000040000040402440406A013403000000307F400001017F0045107F40010001004000280601400000000100000000",
-              "400000000040006301000001003800003904000000007F0000014C3401000101002400007F00000000007F34282B5540404040221F4340404040000340400112053A62031C491A530000400040004000400040000300247030407F0040473340407F1D0000000003004003004003004044756B626173732B4243000200010000",
+              "0C01067B6200037F0200407F0000000000000012346000000C40000000404060000062007F0000407F0000007F00447F000000060000003C00406300407F58400000005601000040340040404040404F02010017007F00404040407F0134020000006E00400001017F00432D7F40010006164011280601400000001000000000",
+              "400000000040003001005A04000000005504000405007F000001433D010001010124010000000000000040402B404040404040221E0B40404040004040400103184A4A030B4E523B0249580040004000400040000300185855407F00446A334840191E0000440000000000000000000000000000000000000000000000000000",
               "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000400040004000400040004000400040000000000000000000000000000000000000001F40",
-              "6401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400000000000000000000000000000000000000000000000000000000000000000027"
+              "640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640000000000000000000000000000000000000000000000000000000000000000004F"
             ],
-            "part": 4,
-            "program": 63
+            "part": 3,
+            "program": 123
           }
         },
         {
           "macros": [
             {
               "cc": 1,
-              "name": "Mod Wheel",
+              "index": 2,
+              "name": "Pitch",
               "softknob": 1,
               "type": "cc"
+            },
+            {
+              "cc": 15,
+              "name": "Control 15",
+              "softknob": 12,
+              "type": "cc"
+            },
+            {
+              "cc": 16,
+              "name": "Control 16",
+              "softknob": 13,
+              "type": "cc"
+            },
+            {
+              "name": "Channel Pressure",
+              "softknob": 64,
+              "type": "pressure"
             }
           ],
           "preset": {
-            "bank": 13,
-            "name": "SYNKO   BE",
+            "bank": 11,
+            "name": "PizzachiSV",
             "page": [
-              "0C010D4A000000000000400000000000007F491540607F15144020000140406000414400400000407F3B000000004040400000000000007F00407F007F7F40040000006B020000400000404040404030010000400000404040404064004000000000307F400001017F0045107F40010001483F53100C01400000000000000000",
-              "400000000040005E010000010000000039040000000000000001423E01000101012400004000000000004040282B55404040402D2A40404040400000404022101400401821650040035A7F0040004000400040000321247030047F00404733404028200009000000004000004000004053594E4B4F2020204245020706000000",
-              "000000000000000000004003040200000000007F40407F7F40000000000000000000000000000000004000000000000000000000000000000000000000400000000000000000007F7F40000000000014460040461446004046004000400040004000400040004000400040000000000000000000000000000000000000001F40",
-              "640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640000000000000000000000000000000000000000000000000000307F400001000045"
+              "0C010B7F0300007F00007F7F00000000006A000A4C60420025407F40014040600063000040000000024000007F7F404040000000000000463540431E522B40100000004201000040000040404040406D0001004000004040404040640140010000012075400001017F0045107F40010014000019100C01400000000100000000",
+              "40000100006F003001000001000000003903000000007F000001423E000001010124000040000000000D4040283D5540404040262D4E5E40404000404040520115497F0F213122591B0369323A004000400E00000300247030407F00404733004028200000000003624C0262410E744150697A7A616368695356400500000000",
+              "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000400040004000400040004000400040000000000000000000000000000000000000001F40",
+              "6401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400000000000000000000000000000000000000000000000000000000000000000037"
             ],
-            "part": 5,
-            "program": 74
+            "part": 4,
+            "program": 127
           }
         },
         {
@@ -1407,33 +1595,41 @@
             {
               "cc": 1,
               "index": 1,
-              "name": "Vibrato",
+              "name": "Length",
               "softknob": 1,
               "type": "cc"
             },
             {
-              "cc": 2,
+              "cc": 6,
               "index": 2,
-              "name": "Elevate",
-              "softknob": 2,
-              "type": "cc"
-            },
-            {
-              "cc": 3,
-              "index": 3,
-              "name": "Reverb",
-              "softknob": 3,
+              "name": "Attack",
+              "softknob": 5,
               "type": "cc"
             }
           ],
           "preset": {
-            "bank": 26,
-            "name": "InnocentHS",
+            "bank": 10,
+            "name": "LktroPlkBC",
             "page": [
-              "0C001A310000007F0000407F00000000000000004C60000001402000004040600059000040000040324000002D004E40000000000000002E00407F08600040120000004C000000400002403A4040393001000040000040404040405B004000000000307F400001017F0045107F40010001004000100C01400000000000000000",
-              "400000000040005A010000010000000039040000000000000001423E01000101012400000000000000040065282B55404040404316347F40404000007A400102033A642661610040056C72003F004000400040000300247030407F0040473340404E6D000000001A2A38230943042151496E6E6F63656E744853001200000000",
-              "023D02150036000000000003040200000000007F40407F7F40070003000000000000000000000000004000000000000000000000000000000000000000400000000000000000007F7F4000000000000B1F000046144600004639440040004062370040627F004022540E46000000000000000000000000000000000000001F40",
-              "640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640000000000000000000000000000000000000000000000000000307F40000100002E"
+              "0C010A310100007F0000747F0000000000400028406040002A40270000404060004000005B316F3E672A001B346B4D4C40006F0002000014000000002500400F000000760200000000544040404040160100002A00004040404040700140010000000000000001017F045A46084E010001004000280601400000000100000000",
+              "400001010140006401000001003200002504000000007F000001423E01000101000C00660000000000004040282B554040404023093440404040001B5A40010514223413273700400327573A64013D0040004000004200007F5700004C54334040364B0000000018115203285F0721504C6B74726F506C6B4243000504010300",
+              "012D03232B24040021004003040200000000007F40407F7F4000001B000000000000000000000000004000000000000000000000000000000000000000400000000000000000007F7F40000000000014460040461446004046004000400040004000400040004000400040000000000000000000000000000000000000001F40",
+              "640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640000000000000000000000000000000000000000000000010000000000000000004F"
+            ],
+            "part": 5,
+            "program": 49
+          }
+        },
+        {
+          "macros": [],
+          "preset": {
+            "bank": 26,
+            "name": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+            "page": [
+              "0C001A310000000000004000000000000040000040604000004020000040406000400000400000407F4000000000404040000000000000000000000000000000000000000000000000307F400001000028F7",
+              "",
+              "",
+              ""
             ],
             "part": 6,
             "program": 49
@@ -1441,16 +1637,16 @@
         },
         {
           "preset": {
-            "bank": 5,
-            "name": "\u0000\u0000\u0000\u0000@\u00000\u0001\u0000\u0000",
+            "bank": 4,
+            "name": "VelFmBasBC",
             "page": [
-              "0C0105610300007F0000407F0000000000484313006045006D4020000400406000327F00001000003E4000000000604601050039000050414100405040090A1818540B142000400C49204A60004000400040000305247030407F00563B26547F367F000000000D3A4A14165E031825536368696C6C61204D5340150000000058",
-              "004064640040640040406464004064014064004064014064000000000000000000000000000000000000000000000000000000000000000030404040404030010000400000404040404064014000000000307F400001017F0045104040010001004000100C014000000001000000004000000000400030010000010000000039",
-              "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000400040004000400040004000400040000000000000000000000000000000000000001F40",
-              "6401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400000000000000000000000000000000000000000000000000000000000000000059"
+              "0C1104716200037F0200407F00000000004843131C6000000F1C1D0000404060007F0000440000403E400000007F4935400000000000001A00406300400040180000005601000040340040404040406E0101000E00006A404040407F004C00000000327F400001017F00333C7F40010001004000280601400000001000000000",
+              "400000000040006001000001002C000039040000000000000001423E010001010124004000000000000040402B40402147405A43480B4040404000004E400103183548033A640040023A6700400040004000400003131858294055004050334040191E0000000005185800004000004056656C466D4261734243010200000001",
+              "010003683B404D002B004003040200000000007F40407F7F40000016000200000000020000000000004000000000000000000000000000000000000000400000000000000000007F7F40000000000014460040461446004046185800400040004000400040004000400040000000040000000002010200000001000300001F40",
+              "640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640000000000000000000000000000000000000000000000000000327F400001000059"
             ],
             "part": 7,
-            "program": 97
+            "program": 113
           }
         },
         {
@@ -1586,25 +1782,27 @@
     "bank": 0,
     "base": 4,
     "density": 100,
-    "deviate": 20,
+    "deviate": 12,
     "device": {
       "A": {
-        "bank": 25,
+        "bank": 0,
         "channel": 16,
-        "device": 50,
+        "device": 56,
+        "dispatch": 0,
         "mute": 0,
-        "port": 27,
-        "program": 18,
+        "port": 28,
+        "program": 0,
         "transpose": 0
       },
       "B": {
         "bank": 30,
         "channel": 1,
         "device": 17,
+        "dispatch": 45,
         "mute": 0,
-        "port": 21,
+        "port": 22,
         "program": 2,
-        "transpose": 0
+        "transpose": 12
       }
     },
     "drums": {
@@ -1614,102 +1812,102 @@
         {
           "device": 53,
           "mute": 0,
-          "note": 36
+          "note": 0
         },
         {
           "device": 53,
           "mute": 0,
-          "note": 37
+          "note": 1
         },
         {
           "device": 53,
           "mute": 0,
-          "note": 53
+          "note": 5
         },
         {
           "device": 53,
           "mute": 0,
-          "note": 54
+          "note": 6
         },
         {
           "device": 53,
           "mute": 0,
-          "note": 54
+          "note": 7
         },
         {
           "device": 53,
           "mute": 0,
-          "note": 52
+          "note": 2
         },
         {
           "device": 53,
           "mute": 0,
-          "note": 45
+          "note": 3
         },
         {
           "device": 53,
           "mute": 0,
-          "note": 46
+          "note": 11
         },
         {
           "device": 53,
           "mute": 0,
-          "note": 47
+          "note": 10
         },
         {
           "device": 53,
           "mute": 0,
-          "note": 39
+          "note": 9
         },
         {
           "device": 53,
           "mute": 0,
-          "note": 38
+          "note": 8
         }
       ],
-      "mute": 0,
+      "mute": 1,
       "probability": 100,
       "redrum": [
         {
           "device": 51,
           "instrument": 0,
-          "mute": 0,
-          "note": 36
+          "mute": 1,
+          "note": 0
         },
         {
           "device": 51,
           "instrument": 0,
-          "mute": 0,
-          "note": 38
+          "mute": 1,
+          "note": 2
         },
         {
           "device": 51,
           "instrument": 2,
-          "mute": 0,
-          "note": 43
+          "mute": 1,
+          "note": 5
         },
         {
           "device": 51,
           "instrument": 6,
-          "mute": 0,
-          "note": 39
+          "mute": 1,
+          "note": 3
         },
         {
-          "device": 51,
+          "device": 55,
           "instrument": 10,
-          "mute": 0,
-          "note": 42
+          "mute": 1,
+          "note": 8
         },
         {
-          "device": 51,
+          "device": 53,
           "instrument": 9,
-          "mute": 0,
-          "note": 46
+          "mute": 1,
+          "note": 9
         }
       ],
       "steps": 16,
       "style": 1,
-      "velocity": 0
+      "velocity": 69
     },
     "gate": 1.346984126984127,
     "grid": 2,
@@ -1818,13 +2016,13 @@
     "mute": 0,
     "muteShift": 0,
     "muteSteps": 0,
-    "octaveChance": 74,
-    "pattern": 59,
-    "probability": 80,
-    "program": 64,
+    "octaveChance": 28.571428571428584,
+    "pattern": 24,
+    "probability": 100,
+    "program": 0,
     "scales": 22,
     "shift": 0,
-    "split": 56,
+    "split": 44,
     "steps": 16,
     "temperature": 3.09,
     "track": [
@@ -1871,7 +2069,7 @@
         "bank": 46,
         "level": 100,
         "mode": 0,
-        "part": 3,
+        "part": 7,
         "program": 4,
         "x1": {
           "control": 0,
@@ -1934,8 +2132,8 @@
         "part": [
           {
             "control": [
-              0,
-              0,
+              1,
+              77,
               0,
               0,
               0,
@@ -1944,9 +2142,19 @@
           },
           {
             "control": [
+              0,
+              0,
+              0,
+              16,
+              0,
+              0
+            ]
+          },
+          {
+            "control": [
               1,
-              0,
-              0,
+              35,
+              3,
               32,
               0,
               0
@@ -1955,19 +2163,9 @@
           {
             "control": [
               1,
-              14920,
-              0,
-              32,
-              0,
-              0
-            ]
-          },
-          {
-            "control": [
-              1,
-              63,
               0,
               0,
+              16,
               0,
               0
             ]
@@ -1975,7 +2173,7 @@
           {
             "control": [
               1,
-              1,
+              0,
               0,
               0,
               0,
@@ -1984,7 +2182,7 @@
           },
           {
             "control": [
-              0,
+              1,
               26,
               49,
               0,
@@ -1998,12 +2196,12 @@
         "part": [
           {
             "bank": 30,
-            "level": 100,
+            "level": 127,
             "program": 2
           },
           {
             "bank": 64,
-            "level": 86,
+            "level": 0,
             "program": 4
           },
           {
@@ -2012,18 +2210,18 @@
             "program": 4
           },
           {
-            "bank": 21,
-            "level": 106,
-            "program": 63
+            "bank": 11,
+            "level": 100,
+            "program": 127
           },
           {
-            "bank": 13,
-            "level": 100,
-            "program": 74
+            "bank": 10,
+            "level": 112,
+            "program": 49
           },
           {
             "bank": 26,
-            "level": 91,
+            "level": null,
             "program": 49
           }
         ]

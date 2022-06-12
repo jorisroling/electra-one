@@ -781,22 +781,22 @@
       ],
       "redrum": [
         {
-          "portName": "tr-6s"
+          "portName": "analog-rytm"
         },
         {
-          "portName": "tr-6s"
+          "portName": "analog-rytm"
         },
         {
-          "portName": "tr-6s"
+          "portName": "analog-rytm"
         },
         {
-          "portName": "tr-6s"
+          "portName": "analog-rytm"
         },
         {
-          "portName": "tr-6s"
+          "portName": "analog-rytm"
         },
         {
-          "portName": "tr-6s"
+          "portName": "analog-rytm"
         }
       ],
       "sounding": [
@@ -1193,22 +1193,22 @@
     "playing": true,
     "redrum": [
       {
-        "portName": "tr-6s"
+        "portName": "analog-rytm"
       },
       {
-        "portName": "tr-6s"
+        "portName": "analog-rytm"
       },
       {
-        "portName": "tr-6s"
+        "portName": "analog-rytm"
       },
       {
-        "portName": "tr-6s"
+        "portName": "analog-rytm"
       },
       {
-        "portName": "tr-6s"
+        "portName": "analog-rytm"
       },
       {
-        "portName": "tr-6s"
+        "portName": "analog-rytm"
       }
     ],
     "remote": {

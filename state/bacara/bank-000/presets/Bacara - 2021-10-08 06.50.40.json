@@ -712,27 +712,27 @@
       "redrum": [
         {
           "channel": 10,
-          "portName": "tr-6s"
+          "portName": "analog-rytm"
         },
         {
           "channel": 10,
-          "portName": "tr-6s"
+          "portName": "analog-rytm"
         },
         {
           "channel": 10,
-          "portName": "tr-6s"
+          "portName": "analog-rytm"
         },
         {
           "channel": 10,
-          "portName": "tr-6s"
+          "portName": "analog-rytm"
         },
         {
           "channel": 10,
-          "portName": "tr-6s"
+          "portName": "analog-rytm"
         },
         {
           "channel": 10,
-          "portName": "tr-6s"
+          "portName": "analog-rytm"
         }
       ],
       "sounding": [

@@ -1996,7 +1996,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('analog_rytm', 14),
+          default: deviceToIndex('analog-rytm', 14),
         },
         note: {
           name: 'Bass Drum Note',
@@ -2076,7 +2076,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('analog_rytm', 14),
+          default: deviceToIndex('analog-rytm', 14),
         },
         note: {
           name: 'Snare Drum Note',
@@ -2156,7 +2156,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('analog_rytm', 14),
+          default: deviceToIndex('analog-rytm', 14),
         },
         note: {
           name: 'Low Tom Note',
@@ -2236,7 +2236,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('analog_rytm', 14),
+          default: deviceToIndex('analog-rytm', 14),
         },
         note: {
           name: 'Hand Clap Note',
@@ -2316,7 +2316,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('analog_rytm', 14),
+          default: deviceToIndex('analog-rytm', 14),
         },
         note: {
           name: 'Closed Hat Note',
@@ -2396,7 +2396,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: deviceToIndex('analog_rytm', 14),
+          default: deviceToIndex('analog-rytm', 14),
         },
         note: {
           name: 'Open Hat Note',

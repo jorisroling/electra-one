@@ -1876,7 +1876,7 @@ class BacaraMachine extends Machine {
         this.setStates(state)
         if (!this.getState('redrum')) {
           for (let i = 0; i < 6; i++) {
-            this.setState(`redrum.${i}`, {portName: 'tr-6s'})
+            this.setState(`redrum.${i}`, {portName: 'analog-rytm'})
           }
         }
         _.set(this.modulation, 'lfo', _.get(json, 'modulation.lfo', {}))

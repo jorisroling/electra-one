@@ -13699,11 +13699,11 @@
     },
     {
       "id": 11,
-      "name": "TR-6S [[device=analog_rytm]]"
+      "name": "TR-6S [[device=analog-rytm]]"
     },
     {
       "id": 12,
-      "name": "ReDrum [[device=analog_rytm]]"
+      "name": "ReDrum [[device=analog-rytm]]"
     }
   ],
   "categories": [
