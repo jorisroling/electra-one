@@ -2643,6 +2643,8 @@ class BacaraMachine extends Machine {
                     note: midiNote,
                     velocity,
                     channel,
+                    sendShadowMidiToBacaraPort: true,
+                    shadowChannel: 9,
                   })
                   this.midiCache.setValue(portName, channel, 'note', midiNote, true)
 
@@ -3023,6 +3025,7 @@ function bacaraSequencer(name, sub, options) {
                 }
                 debug('%y %y',e1_system_info.versionText,E1_FIRMWARE_PRESET_REQUEST_VERSION)
               }
+              e1_system_info.versionText = e1_system_info.versionText.replace(/[a-zA-Z-]/g,'')  // allows for v3.0-a.2
               debug('info actual %y >= %y ? %y', e1_system_info.versionText, E1_FIRMWARE_PRESET_REQUEST_VERSION, semver.gte(_.get(e1_system_info, 'versionText', 'v0.0.0'), E1_FIRMWARE_PRESET_REQUEST_VERSION))
               if (config.electra.checkPresetVia == 'patch' || semver.lt(_.get(e1_system_info, 'versionText', 'v0.0.0'), E1_FIRMWARE_PRESET_REQUEST_VERSION)) { // semver: see if actual version is smaller that v2.1.2
                 debug('Send Patch Request to %y', options.electraOneCtrl)
@@ -3040,8 +3043,8 @@ function bacaraSequencer(name, sub, options) {
                 debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (patch)', bacaraPresetName, presetName)
               }
             } else if (_.isEqual(sysexCmd, electraSysexCmdPresetNameResponse)) {
-              const presetName = electra.parseSysexCmdPresetNameResponse(options.electraOneCtrl, msg.bytes)
-              if (presetName == bacaraPresetName || presetName.toLowerCase().indexOf('bacara')>=0) {
+              const presetName = electra.parseSysexCmdPresetNameResponse(options.electraOneCtrl, msg.bytes) || ''
+              if (!presetName || (presetName == bacaraPresetName || presetName.toLowerCase().indexOf('bacara')>=0)) {
                 debug('Electra One "%s" preset IS Loaded (preset)', bacaraPresetName)
                 bacaraMachine.virusReflectParts()
               } else {
