@@ -7,7 +7,7 @@
     "clock": "bacara",
     "transpose": "bacara",
     "transposeChannel": 15,
-    "general": null,
+    "general": "bacara",
     "generalChannel": 1,
     "remote": null,
     "remoteChannel": 1,
