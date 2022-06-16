@@ -1315,46 +1315,34 @@ class BacaraMachine extends Machine {
       return {
         device: (elementPath, value, origin) => {
           if (value > 0 && config.devices) {
-            let idx = 0
-            let choosenDeviceKey
-            let choosenChannel
-            const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
-            deviceKeys.unshift('bacara')
 
-            for (let deviceKey of deviceKeys) {
-              if (Array.isArray(config.devices[deviceKey].channels)) {
-                for (let c in config.devices[deviceKey].channels) {
-                  idx++
-                  if (idx == value) {
-                    choosenDeviceKey = deviceKey
-                    choosenChannel = config.devices[deviceKey].channels[c]
-                  }
-                }
-              }
-            }
-
-            if (choosenDeviceKey && Number.isInteger(choosenChannel)) {
-              const port = _.get(config, `devices.${choosenDeviceKey}.port`)
-              if (port) {
-                const portName = _.get(config, `midi.ports.${port}.${os.platform()}`)
-                if (portName) {
-                  const midiNames = _.get(config, 'preset.midi.ports.output', []).map( port => port.name ) //easymidi.getOutputs()
-                  if (midiNames) {
-                    const idx = midiNames.indexOf(portName)
-                    if (idx >= 0) {
-                      let name = midiNames[idx]
-                      const ports = Object.keys(config.midi.ports).filter( p => config.midi.ports[p][os.platform()] == name )
-                      if (ports && ports.length == 1) {
-                        name = ports[0]
-                      }
-                      this.setState(`drums.${type}.${trck}.portName`, name)
-                    }
-                  }
-                }
-              }
-            }
+            const info = deviceInfo(value)
+            if (info.portName) this.setState(`drums.${type}.${trck}.portName`, info.portName)
           }
         },
+        note: (elementPath, value, origin) => {
+/*          debug('yo %y %y %y',elementPath, value, origin)*/
+
+          const info = deviceInfo(this.interface.getParameter(elementPath.replace('.note','.device')))
+
+          debug('info %y',info)
+          Midi.send(info.portName, 'noteon', {
+            note: value,
+            velocity: 100,
+            channel: info.channel,
+            sendShadowMidiToBacaraPort: true,
+            shadowChannel: 10,
+          })
+
+          Midi.send(info.portName, 'noteoff', {
+            note: value,
+            velocity: 100,
+            channel: info.channel,
+            sendShadowMidiToBacaraPort: true,
+            shadowChannel: 10,
+          })
+
+        }
       }
     }
 
@@ -2523,12 +2511,12 @@ class BacaraMachine extends Machine {
               if (scaleMapping && scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
                 midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
               }
+//              console.log(`note ${midiNote} ${this.interface.getParameter('base', 'modulated')}`)
 
               const switchSide = (this.interface.getParameter('deviate', 'modulated') && this.interface.getParameter('deviate', 'modulated') >= Random.getRandomInt(100))
               const split = this.interface.getParameter('split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
               const dev =  (midiNote <= split) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
               midiNote += this.interface.getParameter('transpose', 'modulated') + this.interface.getParameter(`device.${dev}.transpose`, 'modulated') + this.octave(this.stepIdx)
-
               if (!this.interface.getParameter(`device.${dev}.mute`, 'modulated') && this.getState(`device.${dev}.portName`) && this.interface.getParameter('probability', 'modulated') >= Random.getRandomInt(100)) {
                 const portName = this.getState(`device.${dev}.portName`)
                 const deviceNotes = this.getState(`device.${dev}.notes`,0)
@@ -2623,7 +2611,6 @@ class BacaraMachine extends Machine {
                   const channel = this.getState(`drums.instrument.${instrument}.channel`,10) - 1
                   const midiNote = this.interface.getParameter(`drums.instrument.${instrument}.note`/*, 'modulated'*/)
                   debugMidiNoteOn('port %s  channel %d  note %y  instrument %y  ', portName, channel + 1, midiNote, instrument)
-
                   if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
                     Midi.send(portName, 'noteoff', {
                       note: midiNote,
@@ -2669,6 +2656,7 @@ class BacaraMachine extends Machine {
                       const channel = this.getState(`drums.redrum.${trck}.channel`, 10) - 1
                       const midiNote = this.interface.getParameter(`drums.redrum.${trck}.note`, 'modulated')
                       debugMidiNoteOn('port %s  channel %d  note %y  track %y  ', portName, channel + 1, midiNote,trck)
+                      console.log(`drums: ${midiNote}  drums.redrum.${trck}.mute = ${this.interface.getParameter(`drums.redrum.${trck}.mute`, 'modulated')}`)
 
                       if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
                         Midi.send(portName, 'noteoff', {
@@ -2955,6 +2943,48 @@ class BacaraMachine extends Machine {
       }
     }
   }
+}
+
+
+function deviceInfo(value) {
+  let idx = 0
+
+  const result = {}
+  const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
+  deviceKeys.unshift('bacara')
+
+  for (let deviceKey of deviceKeys) {
+    if (Array.isArray(config.devices[deviceKey].channels)) {
+      for (let c in config.devices[deviceKey].channels) {
+        idx++
+        if (idx == value) {
+          result.deviceKey = deviceKey
+          result.channel = config.devices[deviceKey].channels[c] - 1
+        }
+      }
+    }
+  }
+
+  if (result.deviceKey && Number.isInteger(result.channel)) {
+    const port = _.get(config, `devices.${result.deviceKey}.port`)
+    if (port) {
+      const portName = _.get(config, `midi.ports.${port}.${os.platform()}`)
+      if (portName) {
+        const midiNames = _.get(config, 'preset.midi.ports.output', []).map( port => port.name )
+        if (midiNames) {
+          const idx = midiNames.indexOf(portName)
+          if (idx >= 0) {
+            result.portName = midiNames[idx]
+            const ports = Object.keys(config.midi.ports).filter( p => config.midi.ports[p][os.platform()] == result.portName )
+            if (ports && ports.length == 1) {
+              result.portName = ports[0]
+            }
+          }
+        }
+      }
+    }
+  }
+  return result
 }
 
 function bacaraSequencer(name, sub, options) {

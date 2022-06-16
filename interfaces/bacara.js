@@ -348,6 +348,7 @@ module.exports = {
       min: 0,
       max: 11,
       default: 0,
+      integer: true,
       list: ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'],
     },
     shift: {
