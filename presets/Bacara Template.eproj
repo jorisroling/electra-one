@@ -27,20 +27,6 @@
         }
       ],
       "instrumentId": "generic-midi"
-    },
-    {
-      "id": 26,
-      "name": "TR-6S",
-      "instrumentId": "generic-midi",
-      "port": 1,
-      "channel": 10
-    },
-    {
-      "id": 27,
-      "name": "TR-6S Kit",
-      "instrumentId": "generic-midi",
-      "port": 1,
-      "channel": 11
     }
   ],
   "tiles": [
@@ -4181,40 +4167,28 @@
     },
     {
       "id": "06670b56-2979-4dc1-8699-ac7688660c5b",
+      "slotId": 227,
       "type": "fader",
-      "name": "X4",
+      "deviceId": 17,
       "color": "C44795",
-      "bounds": [
-        850,
-        40,
-        146,
-        56
-      ],
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 6,
-          "valueId": "value"
-        }
-      ],
+      "name": "X4",
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 16129,
+            "parameterNumber": 16004,
             "min": 0,
             "max": 16383
           },
           "min": -8192,
           "max": 8191,
-          "defaultValue": 0,
-          "id": "value"
+          "defaultValue": 0
         }
       ],
-      "slotId": 227,
-      "deviceId": 17
+      "visible": true
     },
     {
       "id": "baefafee-2415-45ac-8b12-e6009f07be2d",
@@ -4575,7 +4549,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 16130
+            "parameterNumber": 16005
           },
           "textValues": [
             {
@@ -4742,7 +4716,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 16131
+            "parameterNumber": 16006
           },
           "textValues": [
             {
@@ -11513,906 +11487,1295 @@
       "mode": "momentary"
     },
     {
-      "id": "3b617d7f-bc9e-44c7-a876-be387f275b2a",
+      "id": "00a0e159-dca5-428f-967c-00ca0f1d67f0",
       "type": "label",
       "slotId": 720,
-      "span": 1,
-      "name": "Bass Drum",
-      "color": "F45C51",
+      "span": 3,
+      "name": "Closed Hat",
+      "color": "03A598",
       "values": [
         {
           "message": {
+            "parameterNumber": 16379
           }
         }
       ]
     },
     {
-      "id": "6309c64e-fd79-4c84-ae4f-cd51fc5fa35a",
-      "type": "label",
-      "slotId": 721,
-      "span": 1,
-      "name": "Snare Drum",
-      "color": "F49500",
-      "values": [
-        {
-          "message": {
-          }
-        }
-      ]
-    },
-    {
-      "id": "ec90593f-a4f1-40f5-ae60-64b804053b0f",
-      "type": "label",
-      "slotId": 722,
-      "span": 1,
-      "name": "Low Tom",
-      "color": "529DEC",
-      "values": [
-        {
-          "message": {
-          }
-        }
-      ]
-    },
-    {
-      "id": "0d05f152-668c-43ce-9f34-1d0cdb5e38bf",
+      "id": "c578fb80-003e-4804-9258-084055438f44",
       "type": "label",
       "slotId": 723,
-      "span": 1,
-      "name": "Hand Clap",
-      "color": "03A598",
-      "values": [
-        {
-          "message": {
-          }
-        }
-      ]
-    },
-    {
-      "id": "9511b1e5-9669-42d3-85e3-b49e0def0212",
-      "type": "label",
-      "slotId": 724,
-      "span": 1,
-      "name": "Closed Hat",
+      "span": 3,
+      "name": "Open Hat",
       "color": "C44795",
       "values": [
         {
           "message": {
+            "parameterNumber": 16380
           }
         }
       ]
     },
     {
-      "id": "00e6ebca-8d21-4536-bcfa-4092dae1b545",
-      "type": "label",
-      "slotId": 725,
-      "span": 1,
-      "name": "Open Hat",
-      "values": [
-        {
-          "message": {
-          }
-        }
-      ]
-    },
-    {
-      "id": "4d9731ab-8b64-4a62-a9ed-b90d9743a50e",
+      "id": "d17ea1c7-8734-41b3-8198-7b85fbf48c1c",
       "slotId": 726,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "F45C51",
-      "name": "Tune",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 26,
-            "parameterNumber": 20,
-            "min": 0,
-            "max": 127
-          },
-          "min": -128,
-          "max": 127,
-          "defaultValue": 0
-        }
-      ]
-    },
-    {
-      "id": "121b0e02-c721-4cf7-b7d3-d4428e949067",
-      "slotId": 727,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "F49500",
-      "name": "Tune",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 26,
-            "parameterNumber": 25,
-            "min": 0,
-            "max": 127
-          },
-          "min": -128,
-          "max": 127,
-          "defaultValue": 0
-        }
-      ]
-    },
-    {
-      "id": "5a8195bc-8647-4e49-be77-15cb46726ee0",
-      "slotId": 728,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "529DEC",
-      "name": "Tune",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 26,
-            "parameterNumber": 46,
-            "min": 0,
-            "max": 127
-          },
-          "min": -128,
-          "max": 127,
-          "defaultValue": 0
-        }
-      ]
-    },
-    {
-      "id": "7bea83a8-3ff6-4d8f-a176-b5a83dd94713",
-      "slotId": 729,
-      "type": "fader",
-      "deviceId": 26,
+      "type": "list",
+      "deviceId": 17,
       "color": "03A598",
-      "name": "Tune",
+      "name": "Instrument",
       "values": [
         {
           "message": {
-            "type": "cc7",
-            "deviceId": 26,
-            "parameterNumber": 58,
-            "min": 0,
-            "max": 127
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16129
           },
-          "min": -128,
-          "max": 127,
-          "defaultValue": 0
-        }
-      ]
-    },
-    {
-      "id": "c223417a-35b5-40ec-a6df-4c40df2cb2be",
-      "slotId": 730,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "C44795",
-      "name": "Tune",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 26,
-            "parameterNumber": 61,
-            "min": 0,
-            "max": 127
-          },
-          "min": -128,
-          "max": 127,
-          "defaultValue": 0
-        }
-      ]
-    },
-    {
-      "id": "cb53eb0c-f961-4219-a276-5b6929192435",
-      "slotId": 731,
-      "type": "fader",
-      "deviceId": 26,
-      "name": "Tune",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 26,
-            "parameterNumber": 80,
-            "min": 0,
-            "max": 127
-          },
-          "min": -128,
-          "max": 127,
-          "defaultValue": 0
-        }
-      ]
-    },
-    {
-      "id": "4640eeb3-8115-4879-8d2e-78e4c73173c8",
-      "slotId": 738,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "F45C51",
-      "name": "Decay",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 23,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "090b0dd6-4678-4bf8-8c8c-a0d98c51080b",
-      "slotId": 739,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "F49500",
-      "name": "Decay",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 28,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "02eedbff-f344-46f3-828d-bfa238a08641",
-      "slotId": 740,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "529DEC",
-      "name": "Decay",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 47,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "191850fb-7089-43f7-8caa-d0b6b36a0705",
-      "slotId": 741,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "03A598",
-      "name": "Decay",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 59,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "8ddfdd47-eb28-455c-be36-8d8a92cb01bc",
-      "slotId": 742,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "C44795",
-      "name": "Decay",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 62,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "d3658817-94d2-4de9-b782-0d316249e75f",
-      "slotId": 743,
-      "type": "fader",
-      "deviceId": 26,
-      "name": "Decay",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 81,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "795fa841-9a1c-4257-9554-75a35050d832",
-      "type": "label",
-      "slotId": 744,
-      "span": 1,
-      "name": "Bass Drum",
-      "color": "F45C51",
-      "values": [
-        {
-          "message": {
-          }
-        }
-      ]
-    },
-    {
-      "id": "8a091e7c-98a0-43dc-b167-d2b32041b936",
-      "type": "label",
-      "slotId": 745,
-      "span": 1,
-      "name": "Snare Drum",
-      "color": "F49500",
-      "values": [
-        {
-          "message": {
-          }
-        }
-      ]
-    },
-    {
-      "id": "79bdc782-194f-4892-ab0c-2925f830f7ac",
-      "type": "label",
-      "slotId": 746,
-      "span": 1,
-      "name": "Low Tom",
-      "color": "529DEC",
-      "values": [
-        {
-          "message": {
-          }
-        }
-      ]
-    },
-    {
-      "id": "d289b4bd-d147-4238-a5d3-955bcf08e2b0",
-      "type": "label",
-      "slotId": 747,
-      "span": 1,
-      "name": "Hand Clap",
-      "color": "03A598",
-      "values": [
-        {
-          "message": {
-          }
-        }
-      ]
-    },
-    {
-      "id": "4e8103f2-22ea-41f6-803c-4a3ecfb9a4b1",
-      "type": "label",
-      "slotId": 748,
-      "span": 1,
-      "name": "Closed Hat",
-      "color": "C44795",
-      "values": [
-        {
-          "message": {
-          }
-        }
-      ]
-    },
-    {
-      "id": "a1ee1068-0369-4b01-b52f-2a6bf272354e",
-      "type": "label",
-      "slotId": 749,
-      "span": 1,
-      "name": "Open Hat",
-      "values": [
-        {
-          "message": {
-          }
-        }
-      ]
-    },
-    {
-      "id": "0df5bfd8-63c8-4aff-96af-0e3332a5f72c",
-      "slotId": 750,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "F45C51",
-      "name": "Control",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 96,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "43784235-80c6-4dab-8906-249e5c312c00",
-      "slotId": 751,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "F49500",
-      "name": "Control",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 97,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "2d69a977-c5e3-479c-b140-00177399befe",
-      "slotId": 752,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "529DEC",
-      "name": "Control",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 102,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "cea3b747-c826-4b64-b5ee-e76f8d3d7920",
-      "slotId": 753,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "03A598",
-      "name": "Control",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 106,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "32c78ac4-0a69-48a9-92df-e101d40ded47",
-      "slotId": 754,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "C44795",
-      "name": "Control",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 107,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "ef628336-8abe-4344-bcc9-9cc6f768b846",
-      "slotId": 755,
-      "type": "fader",
-      "deviceId": 26,
-      "name": "Control",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 108,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "82876b4b-5791-4ce9-b4dd-416a280d92e4",
-      "slotId": 762,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "F45C51",
-      "name": "Level",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 24,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "89b3dabe-4c01-4aee-b1fa-798c4de0e948",
-      "slotId": 763,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "F49500",
-      "name": "Level",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 29,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "771439e5-eb69-4610-8dc1-052ea26edea5",
-      "slotId": 764,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "529DEC",
-      "name": "Level",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 48,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "68df2c39-8033-447f-a26e-6b72f2b476f9",
-      "slotId": 765,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "03A598",
-      "name": "Level",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 60,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "9b6f1df0-84d0-4454-8319-c30d56142934",
-      "slotId": 766,
-      "type": "fader",
-      "deviceId": 26,
-      "color": "C44795",
-      "name": "Level",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 63,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "2cf712eb-0f50-456a-927f-1ab8249bcc98",
-      "slotId": 767,
-      "type": "fader",
-      "deviceId": 26,
-      "name": "Level",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 82,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "5585cab1-f6fc-48f3-8d6c-97f5acb58a50",
-      "type": "label",
-      "slotId": 768,
-      "span": 6,
-      "name": "Common",
-      "values": [
-        {
-          "message": {
-          }
-        }
-      ]
-    },
-    {
-      "id": "eb8ddfa8-387e-4bde-b198-2914b5db75d7",
-      "slotId": 774,
-      "type": "fader",
-      "deviceId": 26,
-      "name": "Reverb Level",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 91,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "612b2112-3110-4ee5-ae3c-bc45ed78f3c2",
-      "slotId": 775,
-      "type": "fader",
-      "deviceId": 26,
-      "name": "Delay Level",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 16,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "d5a879da-948f-4f84-aa4a-69892dcdc806",
-      "slotId": 776,
-      "type": "fader",
-      "deviceId": 26,
-      "name": "Delay Time",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 26,
-            "parameterNumber": 17,
-            "min": 0,
-            "max": 127
-          }
-        }
-      ]
-    },
-    {
-      "id": "08f87b1a-f604-4420-aa4c-8a23e94c27a1",
-      "slotId": 777,
-      "type": "fader",
-      "deviceId": 26,
-      "name": "Delay Feedback",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 26,
-            "parameterNumber": 18,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "149dfd07-1e51-4117-a472-56ce37a580ae",
-      "slotId": 778,
-      "type": "fader",
-      "deviceId": 26,
-      "name": "Master FX Ctrl",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "parameterNumber": 19,
-            "min": 0,
-            "max": 127
-          },
-          "min": 0,
-          "max": 255
-        }
-      ]
-    },
-    {
-      "id": "d8447310-f372-412a-b4ac-ac0459c24a42",
-      "slotId": 779,
-      "type": "pad",
-      "deviceId": 26,
-      "name": "Master FX",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 26,
-            "parameterNumber": 15,
-            "onValue": 127,
-            "offValue": 0
-          },
-          "defaultValue": "off"
-        }
-      ],
-      "mode": "toggle"
-    },
-    {
-      "id": "25e8e9da-4561-4e2d-a512-e19157159279",
-      "slotId": 786,
-      "type": "fader",
-      "deviceId": 27,
-      "color": "F49500",
-      "name": "Kit",
-      "values": [
-        {
-          "message": {
-            "type": "program",
-            "deviceId": 27,
-            "min": 0,
-            "max": 127
-          },
-          "min": 1,
-          "max": 128
+          "textValues": [
+            {
+              "value": 0,
+              "label": "None",
+              "index": 11
+            },
+            {
+              "value": 1,
+              "label": "Bass Drum",
+              "index": 0
+            },
+            {
+              "value": 2,
+              "label": "Snare Drum",
+              "index": 1
+            },
+            {
+              "value": 3,
+              "label": "Low Tom",
+              "index": 2
+            },
+            {
+              "value": 4,
+              "label": "Mid Tom",
+              "index": 3
+            },
+            {
+              "value": 5,
+              "label": "High Tom",
+              "index": 4
+            },
+            {
+              "value": 6,
+              "label": "Rim Shot",
+              "index": 5
+            },
+            {
+              "value": 7,
+              "label": "Hand Clap",
+              "index": 6
+            },
+            {
+              "value": 8,
+              "label": "Cow Bell",
+              "index": 7
+            },
+            {
+              "value": 9,
+              "label": "Cymbal",
+              "index": 8
+            },
+            {
+              "value": 10,
+              "label": "Open Hat",
+              "index": 9
+            },
+            {
+              "value": 11,
+              "label": "Closed Hat",
+              "index": 10
+            }
+          ],
+          "defaultValue": 11
         }
       ],
       "visible": true
     },
     {
-      "id": "ddef17a2-2dec-4de5-a808-092da10cf022",
-      "slotId": 787,
-      "type": "fader",
-      "deviceId": 26,
-      "name": "Accent",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 26,
-            "parameterNumber": 71,
-            "min": 0,
-            "max": 127
-          }
-        }
-      ]
-    },
-    {
-      "id": "9e421705-b503-4c82-9911-59fcab827c84",
-      "slotId": 788,
-      "type": "fader",
-      "deviceId": 26,
-      "name": "External Level",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 26,
-            "parameterNumber": 12,
-            "min": 0,
-            "max": 127
-          }
-        }
-      ]
-    },
-    {
-      "id": "980b4f44-fec1-4a2c-9847-67fe024fc5e3",
-      "slotId": 789,
-      "type": "fader",
-      "deviceId": 26,
-      "name": "Shuffle",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 26,
-            "parameterNumber": 9,
-            "min": 0,
-            "max": 127
-          }
-        }
-      ]
-    },
-    {
-      "id": "5bd058a1-ce33-4884-89a0-941926d3e368",
-      "slotId": 790,
-      "type": "fader",
-      "deviceId": 26,
-      "name": "Manual Trig",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 26,
-            "parameterNumber": 70,
-            "min": 0,
-            "max": 127
-          }
-        }
-      ]
-    },
-    {
-      "id": "caf622bd-3387-4021-871f-d06632d0462a",
-      "slotId": 791,
+      "id": "8b45d7b8-8eca-4779-8047-cee9783103a8",
+      "slotId": 727,
       "type": "pad",
-      "deviceId": 26,
-      "name": "Auto Fill In",
+      "deviceId": 17,
+      "color": "03A598",
+      "name": "Generate",
       "values": [
         {
           "message": {
-            "type": "cc7",
-            "deviceId": 26,
-            "parameterNumber": 14,
-            "onValue": 127,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16130,
+            "onValue": 1,
             "offValue": 0
           },
           "defaultValue": "off"
         }
       ],
+      "visible": true,
+      "mode": "momentary"
+    },
+    {
+      "id": "2a0b5fa6-5b27-40bf-82f2-186ed7f0981d",
+      "slotId": 728,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "03A598",
+      "name": "Mute",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16131,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
       "mode": "toggle"
+    },
+    {
+      "id": "f065f041-fc7e-4c9a-b30a-7e5bfbd2075d",
+      "slotId": 729,
+      "type": "list",
+      "deviceId": 17,
+      "color": "C44795",
+      "name": "Instrument",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16135
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "None",
+              "index": 11
+            },
+            {
+              "value": 1,
+              "label": "Bass Drum",
+              "index": 0
+            },
+            {
+              "value": 2,
+              "label": "Snare Drum",
+              "index": 1
+            },
+            {
+              "value": 3,
+              "label": "Low Tom",
+              "index": 2
+            },
+            {
+              "value": 4,
+              "label": "Mid Tom",
+              "index": 3
+            },
+            {
+              "value": 5,
+              "label": "High Tom",
+              "index": 4
+            },
+            {
+              "value": 6,
+              "label": "Rim Shot",
+              "index": 5
+            },
+            {
+              "value": 7,
+              "label": "Hand Clap",
+              "index": 6
+            },
+            {
+              "value": 8,
+              "label": "Cow Bell",
+              "index": 7
+            },
+            {
+              "value": 9,
+              "label": "Cymbal",
+              "index": 8
+            },
+            {
+              "value": 10,
+              "label": "Open Hat",
+              "index": 9
+            },
+            {
+              "value": 11,
+              "label": "Closed Hat",
+              "index": 10
+            }
+          ],
+          "defaultValue": 10
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "7a061f78-8bf5-4646-82e1-3be0a022f935",
+      "slotId": 730,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "C44795",
+      "name": "Generate",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16136,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
+    },
+    {
+      "id": "75be5ff0-2325-4f86-bef6-e12e4e948de1",
+      "slotId": 731,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "C44795",
+      "name": "Mute",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16137,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "toggle"
+    },
+    {
+      "id": "ba5224c1-42f1-479e-9ed2-355d83dda615",
+      "slotId": 738,
+      "type": "list",
+      "deviceId": 17,
+      "color": "03A598",
+      "name": "DEVICE",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16132
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "[[devices]]",
+              "index": 0
+            }
+          ]
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "e27f821f-e218-40d4-af52-574ef5b1d9a9",
+      "slotId": 739,
+      "type": "fader",
+      "deviceId": 17,
+      "color": "03A598",
+      "name": "Note",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16133,
+            "min": 0,
+            "max": 127
+          },
+          "defaultValue": 8
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "a79c00aa-fb27-4ba6-b910-bb7b26ed3803",
+      "slotId": 740,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "03A598",
+      "name": "Preview",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16134,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
+    },
+    {
+      "id": "75cdcbd7-f986-4f83-bb96-c15ae42d8dd1",
+      "slotId": 741,
+      "type": "list",
+      "deviceId": 17,
+      "color": "C44795",
+      "name": "DEVICE",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16138
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "[[devices]]",
+              "index": 0
+            }
+          ]
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "3a7484df-79ec-43d8-bb9e-e8a006151de0",
+      "slotId": 742,
+      "type": "fader",
+      "deviceId": 17,
+      "color": "C44795",
+      "name": "Note",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16139,
+            "min": 0,
+            "max": 127
+          },
+          "defaultValue": 9
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "3e014685-68b7-4a74-83a1-03323b8aeae4",
+      "slotId": 743,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "C44795",
+      "name": "Preview",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16140,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
+    },
+    {
+      "id": "b7ea6bf0-1dd0-4987-bbc8-0a3cb30002d7",
+      "type": "label",
+      "slotId": 744,
+      "span": 3,
+      "name": "Bass Tom",
+      "color": "F49500",
+      "values": [
+        {
+          "message": {
+            "parameterNumber": 16377
+          }
+        }
+      ]
+    },
+    {
+      "id": "7b940ba4-740b-48f7-9c70-504450efdf66",
+      "type": "label",
+      "slotId": 747,
+      "span": 3,
+      "name": "Low Tom",
+      "color": "529DEC",
+      "values": [
+        {
+          "message": {
+            "parameterNumber": 16378
+          }
+        }
+      ]
+    },
+    {
+      "id": "a2b9b294-36c0-4ccf-a88c-049a223c44fb",
+      "slotId": 750,
+      "type": "list",
+      "deviceId": 17,
+      "color": "F49500",
+      "name": "Instrument",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16141
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "None",
+              "index": 11
+            },
+            {
+              "value": 1,
+              "label": "Bass Drum",
+              "index": 0
+            },
+            {
+              "value": 2,
+              "label": "Snare Drum",
+              "index": 1
+            },
+            {
+              "value": 3,
+              "label": "Low Tom",
+              "index": 2
+            },
+            {
+              "value": 4,
+              "label": "Mid Tom",
+              "index": 3
+            },
+            {
+              "value": 5,
+              "label": "High Tom",
+              "index": 4
+            },
+            {
+              "value": 6,
+              "label": "Rim Shot",
+              "index": 5
+            },
+            {
+              "value": 7,
+              "label": "Hand Clap",
+              "index": 6
+            },
+            {
+              "value": 8,
+              "label": "Cow Bell",
+              "index": 7
+            },
+            {
+              "value": 9,
+              "label": "Cymbal",
+              "index": 8
+            },
+            {
+              "value": 10,
+              "label": "Open Hat",
+              "index": 9
+            },
+            {
+              "value": 11,
+              "label": "Closed Hat",
+              "index": 10
+            }
+          ],
+          "defaultValue": 0
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "9ec4e9b7-6686-41b4-8bc6-e7277524f91b",
+      "slotId": 751,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "F49500",
+      "name": "Generate",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16142,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
+    },
+    {
+      "id": "42e7583d-30e1-4db4-b560-0e2e29a541f3",
+      "slotId": 752,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "F49500",
+      "name": "Mute",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16143,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "toggle"
+    },
+    {
+      "id": "7735465e-fe51-4a23-809d-0415d24554cb",
+      "slotId": 753,
+      "type": "list",
+      "deviceId": 17,
+      "color": "529DEC",
+      "name": "Instrument",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16147
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "None",
+              "index": 11
+            },
+            {
+              "value": 1,
+              "label": "Bass Drum",
+              "index": 0
+            },
+            {
+              "value": 2,
+              "label": "Snare Drum",
+              "index": 1
+            },
+            {
+              "value": 3,
+              "label": "Low Tom",
+              "index": 2
+            },
+            {
+              "value": 4,
+              "label": "Mid Tom",
+              "index": 3
+            },
+            {
+              "value": 5,
+              "label": "High Tom",
+              "index": 4
+            },
+            {
+              "value": 6,
+              "label": "Rim Shot",
+              "index": 5
+            },
+            {
+              "value": 7,
+              "label": "Hand Clap",
+              "index": 6
+            },
+            {
+              "value": 8,
+              "label": "Cow Bell",
+              "index": 7
+            },
+            {
+              "value": 9,
+              "label": "Cymbal",
+              "index": 8
+            },
+            {
+              "value": 10,
+              "label": "Open Hat",
+              "index": 9
+            },
+            {
+              "value": 11,
+              "label": "Closed Hat",
+              "index": 10
+            }
+          ],
+          "defaultValue": 3
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "8c7472f9-f12a-4040-89d6-ed73aadf5c03",
+      "slotId": 754,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "529DEC",
+      "name": "Generate",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16148,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
+    },
+    {
+      "id": "c471acf3-6642-449a-ade2-225e1927c28c",
+      "slotId": 755,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "529DEC",
+      "name": "Mute",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16149,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "toggle"
+    },
+    {
+      "id": "bb7a2d8d-bf66-49f7-935c-debfaecaff7d",
+      "slotId": 762,
+      "type": "list",
+      "deviceId": 17,
+      "color": "F49500",
+      "name": "DEVICE",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16144
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "[[devices]]",
+              "index": 0
+            }
+          ]
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "ec727386-0fbe-4064-ae50-da5369b10613",
+      "slotId": 763,
+      "type": "fader",
+      "deviceId": 17,
+      "color": "F49500",
+      "name": "Note",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16145,
+            "min": 0,
+            "max": 127
+          },
+          "defaultValue": 4
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "32f69340-7684-4900-9aa8-b9ac0146b05e",
+      "slotId": 764,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "F49500",
+      "name": "Preview",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16146,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
+    },
+    {
+      "id": "712de244-c79a-4c02-a4ad-de216799a477",
+      "slotId": 765,
+      "type": "list",
+      "deviceId": 17,
+      "color": "529DEC",
+      "name": "DEVICE",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16150
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "[[devices]]",
+              "index": 0
+            }
+          ]
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "71b463c4-c438-4f71-8bc1-81ed6afbfdc5",
+      "slotId": 766,
+      "type": "fader",
+      "deviceId": 17,
+      "color": "529DEC",
+      "name": "Note",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16151,
+            "min": 0,
+            "max": 127
+          },
+          "defaultValue": 5
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "fc437ecb-4f6c-42ef-a7fc-a430587d5718",
+      "slotId": 767,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "529DEC",
+      "name": "Preview",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16152,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
+    },
+    {
+      "id": "b951a2a1-5ca6-4466-8cc4-ffe209db8717",
+      "type": "label",
+      "slotId": 768,
+      "span": 3,
+      "name": "Bass Drum",
+      "values": [
+        {
+          "message": {
+            "parameterNumber": 16375
+          }
+        }
+      ]
+    },
+    {
+      "id": "f5c98df1-f4bc-4049-ad87-cd64b57e3b84",
+      "type": "label",
+      "slotId": 771,
+      "span": 3,
+      "name": "Snare Drum",
+      "color": "F45C51",
+      "values": [
+        {
+          "message": {
+            "parameterNumber": 16376
+          }
+        }
+      ]
+    },
+    {
+      "id": "35ae78e0-56fd-4e8e-91e7-bffd4d7ca2e8",
+      "slotId": 774,
+      "type": "list",
+      "deviceId": 17,
+      "name": "Instrument",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16153
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "None",
+              "index": 11
+            },
+            {
+              "value": 1,
+              "label": "Bass Drum",
+              "index": 0
+            },
+            {
+              "value": 2,
+              "label": "Snare Drum",
+              "index": 1
+            },
+            {
+              "value": 3,
+              "label": "Low Tom",
+              "index": 2
+            },
+            {
+              "value": 4,
+              "label": "Mid Tom",
+              "index": 3
+            },
+            {
+              "value": 5,
+              "label": "High Tom",
+              "index": 4
+            },
+            {
+              "value": 6,
+              "label": "Rim Shot",
+              "index": 5
+            },
+            {
+              "value": 7,
+              "label": "Hand Clap",
+              "index": 6
+            },
+            {
+              "value": 8,
+              "label": "Cow Bell",
+              "index": 7
+            },
+            {
+              "value": 9,
+              "label": "Cymbal",
+              "index": 8
+            },
+            {
+              "value": 10,
+              "label": "Open Hat",
+              "index": 9
+            },
+            {
+              "value": 11,
+              "label": "Closed Hat",
+              "index": 10
+            }
+          ],
+          "defaultValue": 1
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "46a8cf01-ecff-4ea8-990f-382d43ae4497",
+      "slotId": 775,
+      "type": "pad",
+      "deviceId": 17,
+      "name": "Generate",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16154,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
+    },
+    {
+      "id": "6d6fc064-40a3-4eba-b0a1-080e8025831f",
+      "slotId": 776,
+      "type": "pad",
+      "deviceId": 17,
+      "name": "Mute",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16155,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "toggle"
+    },
+    {
+      "id": "53572e27-aa54-440e-b51e-7656c5fd41cf",
+      "slotId": 777,
+      "type": "list",
+      "deviceId": 17,
+      "color": "F45C51",
+      "name": "Instrument",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16159
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "None",
+              "index": 11
+            },
+            {
+              "value": 1,
+              "label": "Bass Drum",
+              "index": 0
+            },
+            {
+              "value": 2,
+              "label": "Snare Drum",
+              "index": 1
+            },
+            {
+              "value": 3,
+              "label": "Low Tom",
+              "index": 2
+            },
+            {
+              "value": 4,
+              "label": "Mid Tom",
+              "index": 3
+            },
+            {
+              "value": 5,
+              "label": "High Tom",
+              "index": 4
+            },
+            {
+              "value": 6,
+              "label": "Rim Shot",
+              "index": 5
+            },
+            {
+              "value": 7,
+              "label": "Hand Clap",
+              "index": 6
+            },
+            {
+              "value": 8,
+              "label": "Cow Bell",
+              "index": 7
+            },
+            {
+              "value": 9,
+              "label": "Cymbal",
+              "index": 8
+            },
+            {
+              "value": 10,
+              "label": "Open Hat",
+              "index": 9
+            },
+            {
+              "value": 11,
+              "label": "Closed Hat",
+              "index": 10
+            }
+          ],
+          "defaultValue": 2
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "fb3bd034-d25f-4a58-a4af-8e31ce6c6671",
+      "slotId": 778,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "F45C51",
+      "name": "Generate",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16160,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
+    },
+    {
+      "id": "25397327-ac86-43c5-a4b1-dcb4ed111e60",
+      "slotId": 779,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "F45C51",
+      "name": "Mute",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16161,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "toggle"
+    },
+    {
+      "id": "80f1d9cc-84e5-44d5-8a47-859554edbdd8",
+      "slotId": 786,
+      "type": "list",
+      "deviceId": 17,
+      "color": "FFFFFF",
+      "name": "DEVICE",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16156
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "[[devices]]",
+              "index": 0
+            }
+          ]
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "1d0ccf3a-a353-4583-86a1-f7c4d6251d69",
+      "slotId": 787,
+      "type": "fader",
+      "deviceId": 17,
+      "name": "Note",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16157,
+            "min": 0,
+            "max": 127
+          },
+          "defaultValue": 0
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "22bb5145-b11e-44ae-bd5d-4a4d423ff17b",
+      "slotId": 788,
+      "type": "pad",
+      "deviceId": 17,
+      "name": "Preview",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16158,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
+    },
+    {
+      "id": "55b35e51-6e06-446c-b9e2-90856ad74594",
+      "slotId": 789,
+      "type": "list",
+      "deviceId": 17,
+      "color": "F45C51",
+      "name": "DEVICE",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16162
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "[[devices]]",
+              "index": 0
+            }
+          ]
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "1a52e7f3-1ed5-42b9-ba95-5e0d94d2714e",
+      "slotId": 790,
+      "type": "fader",
+      "deviceId": 17,
+      "color": "F45C51",
+      "name": "Note",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16163,
+            "min": 0,
+            "max": 127
+          },
+          "defaultValue": 1
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "2bb917a0-c427-4718-81cc-10e55b7ffb53",
+      "slotId": 791,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "F45C51",
+      "name": "Preview",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16164,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
     },
     {
       "id": "e374d897-f803-4cfe-a19a-e800a84e4902",
       "type": "label",
       "slotId": 792,
       "span": 3,
-      "name": "Bass Drum",
+      "name": "Cymbal",
       "values": [
         {
           "message": {
@@ -12425,7 +12788,7 @@
       "type": "label",
       "slotId": 795,
       "span": 3,
-      "name": "Snare Drum",
+      "name": "Cowbell",
       "color": "F45C51",
       "values": [
         {
@@ -12446,66 +12809,71 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16329
+            "parameterNumber": 16165
           },
           "textValues": [
             {
               "value": 0,
+              "label": "None",
+              "index": 11
+            },
+            {
+              "value": 1,
               "label": "Bass Drum",
               "index": 0
             },
             {
-              "value": 1,
+              "value": 2,
               "label": "Snare Drum",
               "index": 1
             },
             {
-              "value": 2,
+              "value": 3,
               "label": "Low Tom",
               "index": 2
             },
             {
-              "value": 3,
+              "value": 4,
               "label": "Mid Tom",
               "index": 3
             },
             {
-              "value": 4,
+              "value": 5,
               "label": "High Tom",
               "index": 4
             },
             {
-              "value": 5,
+              "value": 6,
               "label": "Rim Shot",
               "index": 5
             },
             {
-              "value": 6,
+              "value": 7,
               "label": "Hand Clap",
               "index": 6
             },
             {
-              "value": 7,
+              "value": 8,
               "label": "Cow Bell",
               "index": 7
             },
             {
-              "value": 8,
+              "value": 9,
               "label": "Cymbal",
               "index": 8
             },
             {
-              "value": 9,
+              "value": 10,
               "label": "Open Hat",
               "index": 9
             },
             {
-              "value": 10,
+              "value": 11,
               "label": "Closed Hat",
               "index": 10
             }
           ],
-          "defaultValue": 0
+          "defaultValue": 9
         }
       ],
       "visible": true
@@ -12522,7 +12890,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16330,
+            "parameterNumber": 16166,
             "onValue": 1,
             "offValue": 0
           },
@@ -12544,7 +12912,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16331,
+            "parameterNumber": 16167,
             "onValue": 1,
             "offValue": 0
           },
@@ -12567,66 +12935,71 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16335
+            "parameterNumber": 16171
           },
           "textValues": [
             {
               "value": 0,
+              "label": "None",
+              "index": 11
+            },
+            {
+              "value": 1,
               "label": "Bass Drum",
               "index": 0
             },
             {
-              "value": 1,
+              "value": 2,
               "label": "Snare Drum",
               "index": 1
             },
             {
-              "value": 2,
+              "value": 3,
               "label": "Low Tom",
               "index": 2
             },
             {
-              "value": 3,
+              "value": 4,
               "label": "Mid Tom",
               "index": 3
             },
             {
-              "value": 4,
+              "value": 5,
               "label": "High Tom",
               "index": 4
             },
             {
-              "value": 5,
+              "value": 6,
               "label": "Rim Shot",
               "index": 5
             },
             {
-              "value": 6,
+              "value": 7,
               "label": "Hand Clap",
               "index": 6
             },
             {
-              "value": 7,
+              "value": 8,
               "label": "Cow Bell",
               "index": 7
             },
             {
-              "value": 8,
+              "value": 9,
               "label": "Cymbal",
               "index": 8
             },
             {
-              "value": 9,
+              "value": 10,
               "label": "Open Hat",
               "index": 9
             },
             {
-              "value": 10,
+              "value": 11,
               "label": "Closed Hat",
               "index": 10
             }
           ],
-          "defaultValue": 1
+          "defaultValue": 8
         }
       ],
       "visible": true
@@ -12644,7 +13017,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16336,
+            "parameterNumber": 16172,
             "onValue": 1,
             "offValue": 0
           },
@@ -12667,7 +13040,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16337,
+            "parameterNumber": 16173,
             "onValue": 1,
             "offValue": 0
           },
@@ -12691,7 +13064,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16332
+            "parameterNumber": 16168
           },
           "textValues": [
             {
@@ -12716,7 +13089,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16333,
+            "parameterNumber": 16169,
             "min": 0,
             "max": 127
           },
@@ -12737,7 +13110,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16334,
+            "parameterNumber": 16170,
             "onValue": 1,
             "offValue": 0
           },
@@ -12761,7 +13134,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16338
+            "parameterNumber": 16174
           },
           "textValues": [
             {
@@ -12787,7 +13160,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16339,
+            "parameterNumber": 16175,
             "min": 0,
             "max": 127
           },
@@ -12809,7 +13182,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16340,
+            "parameterNumber": 16176,
             "onValue": 1,
             "offValue": 0
           },
@@ -12824,7 +13197,7 @@
       "type": "label",
       "slotId": 816,
       "span": 3,
-      "name": "Low Tom",
+      "name": "Mid Tom",
       "color": "F49500",
       "values": [
         {
@@ -12838,7 +13211,7 @@
       "type": "label",
       "slotId": 819,
       "span": 3,
-      "name": "Hand Clap",
+      "name": "High Tom",
       "color": "529DEC",
       "values": [
         {
@@ -12860,66 +13233,71 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16341
+            "parameterNumber": 16177
           },
           "textValues": [
             {
               "value": 0,
+              "label": "None",
+              "index": 11
+            },
+            {
+              "value": 1,
               "label": "Bass Drum",
               "index": 0
             },
             {
-              "value": 1,
+              "value": 2,
               "label": "Snare Drum",
               "index": 1
             },
             {
-              "value": 2,
+              "value": 3,
               "label": "Low Tom",
               "index": 2
             },
             {
-              "value": 3,
+              "value": 4,
               "label": "Mid Tom",
               "index": 3
             },
             {
-              "value": 4,
+              "value": 5,
               "label": "High Tom",
               "index": 4
             },
             {
-              "value": 5,
+              "value": 6,
               "label": "Rim Shot",
               "index": 5
             },
             {
-              "value": 6,
+              "value": 7,
               "label": "Hand Clap",
               "index": 6
             },
             {
-              "value": 7,
+              "value": 8,
               "label": "Cow Bell",
               "index": 7
             },
             {
-              "value": 8,
+              "value": 9,
               "label": "Cymbal",
               "index": 8
             },
             {
-              "value": 9,
+              "value": 10,
               "label": "Open Hat",
               "index": 9
             },
             {
-              "value": 10,
+              "value": 11,
               "label": "Closed Hat",
               "index": 10
             }
           ],
-          "defaultValue": 2
+          "defaultValue": 4
         }
       ],
       "visible": true
@@ -12937,7 +13315,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16342,
+            "parameterNumber": 16178,
             "onValue": 1,
             "offValue": 0
           },
@@ -12960,7 +13338,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16343,
+            "parameterNumber": 16179,
             "onValue": 1,
             "offValue": 0
           },
@@ -12983,66 +13361,71 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16347
+            "parameterNumber": 16183
           },
           "textValues": [
             {
               "value": 0,
+              "label": "None",
+              "index": 11
+            },
+            {
+              "value": 1,
               "label": "Bass Drum",
               "index": 0
             },
             {
-              "value": 1,
+              "value": 2,
               "label": "Snare Drum",
               "index": 1
             },
             {
-              "value": 2,
+              "value": 3,
               "label": "Low Tom",
               "index": 2
             },
             {
-              "value": 3,
+              "value": 4,
               "label": "Mid Tom",
               "index": 3
             },
             {
-              "value": 4,
+              "value": 5,
               "label": "High Tom",
               "index": 4
             },
             {
-              "value": 5,
+              "value": 6,
               "label": "Rim Shot",
               "index": 5
             },
             {
-              "value": 6,
+              "value": 7,
               "label": "Hand Clap",
               "index": 6
             },
             {
-              "value": 7,
+              "value": 8,
               "label": "Cow Bell",
               "index": 7
             },
             {
-              "value": 8,
+              "value": 9,
               "label": "Cymbal",
               "index": 8
             },
             {
-              "value": 9,
+              "value": 10,
               "label": "Open Hat",
               "index": 9
             },
             {
-              "value": 10,
+              "value": 11,
               "label": "Closed Hat",
               "index": 10
             }
           ],
-          "defaultValue": 6
+          "defaultValue": 5
         }
       ],
       "visible": true
@@ -13060,7 +13443,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16348,
+            "parameterNumber": 16184,
             "onValue": 1,
             "offValue": 0
           },
@@ -13083,7 +13466,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16349,
+            "parameterNumber": 16185,
             "onValue": 1,
             "offValue": 0
           },
@@ -13107,7 +13490,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16344
+            "parameterNumber": 16380
           },
           "textValues": [
             {
@@ -13133,7 +13516,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16345,
+            "parameterNumber": 16181,
             "min": 0,
             "max": 127
           },
@@ -13155,7 +13538,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16346,
+            "parameterNumber": 16182,
             "onValue": 1,
             "offValue": 0
           },
@@ -13179,7 +13562,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16350
+            "parameterNumber": 16186
           },
           "textValues": [
             {
@@ -13205,7 +13588,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16351,
+            "parameterNumber": 16187,
             "min": 0,
             "max": 127
           },
@@ -13227,7 +13610,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16352,
+            "parameterNumber": 16188,
             "onValue": 1,
             "offValue": 0
           },
@@ -13242,7 +13625,7 @@
       "type": "label",
       "slotId": 840,
       "span": 3,
-      "name": "Closed Hat",
+      "name": "Rim Shot",
       "color": "03A598",
       "values": [
         {
@@ -13256,7 +13639,7 @@
       "type": "label",
       "slotId": 843,
       "span": 3,
-      "name": "Open Hat",
+      "name": "Hand Clap",
       "color": "C44795",
       "values": [
         {
@@ -13278,66 +13661,71 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16353
+            "parameterNumber": 16189
           },
           "textValues": [
             {
               "value": 0,
+              "label": "None",
+              "index": 11
+            },
+            {
+              "value": 1,
               "label": "Bass Drum",
               "index": 0
             },
             {
-              "value": 1,
+              "value": 2,
               "label": "Snare Drum",
               "index": 1
             },
             {
-              "value": 2,
+              "value": 3,
               "label": "Low Tom",
               "index": 2
             },
             {
-              "value": 3,
+              "value": 4,
               "label": "Mid Tom",
               "index": 3
             },
             {
-              "value": 4,
+              "value": 5,
               "label": "High Tom",
               "index": 4
             },
             {
-              "value": 5,
+              "value": 6,
               "label": "Rim Shot",
               "index": 5
             },
             {
-              "value": 6,
+              "value": 7,
               "label": "Hand Clap",
               "index": 6
             },
             {
-              "value": 7,
+              "value": 8,
               "label": "Cow Bell",
               "index": 7
             },
             {
-              "value": 8,
+              "value": 9,
               "label": "Cymbal",
               "index": 8
             },
             {
-              "value": 9,
+              "value": 10,
               "label": "Open Hat",
               "index": 9
             },
             {
-              "value": 10,
+              "value": 11,
               "label": "Closed Hat",
               "index": 10
             }
           ],
-          "defaultValue": 10
+          "defaultValue": 6
         }
       ],
       "visible": true
@@ -13355,7 +13743,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16354,
+            "parameterNumber": 16190,
             "onValue": 1,
             "offValue": 0
           },
@@ -13378,7 +13766,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16355,
+            "parameterNumber": 16191,
             "onValue": 1,
             "offValue": 0
           },
@@ -13401,66 +13789,71 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16359
+            "parameterNumber": 16195
           },
           "textValues": [
             {
               "value": 0,
+              "label": "None",
+              "index": 11
+            },
+            {
+              "value": 1,
               "label": "Bass Drum",
               "index": 0
             },
             {
-              "value": 1,
+              "value": 2,
               "label": "Snare Drum",
               "index": 1
             },
             {
-              "value": 2,
+              "value": 3,
               "label": "Low Tom",
               "index": 2
             },
             {
-              "value": 3,
+              "value": 4,
               "label": "Mid Tom",
               "index": 3
             },
             {
-              "value": 4,
+              "value": 5,
               "label": "High Tom",
               "index": 4
             },
             {
-              "value": 5,
+              "value": 6,
               "label": "Rim Shot",
               "index": 5
             },
             {
-              "value": 6,
+              "value": 7,
               "label": "Hand Clap",
               "index": 6
             },
             {
-              "value": 7,
+              "value": 8,
               "label": "Cow Bell",
               "index": 7
             },
             {
-              "value": 8,
+              "value": 9,
               "label": "Cymbal",
               "index": 8
             },
             {
-              "value": 9,
+              "value": 10,
               "label": "Open Hat",
               "index": 9
             },
             {
-              "value": 10,
+              "value": 11,
               "label": "Closed Hat",
               "index": 10
             }
           ],
-          "defaultValue": 9
+          "defaultValue": 7
         }
       ],
       "visible": true
@@ -13478,7 +13871,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16360,
+            "parameterNumber": 16196,
             "onValue": 1,
             "offValue": 0
           },
@@ -13501,7 +13894,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16361,
+            "parameterNumber": 16197,
             "onValue": 1,
             "offValue": 0
           },
@@ -13525,7 +13918,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16356
+            "parameterNumber": 16192
           },
           "textValues": [
             {
@@ -13551,7 +13944,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16357,
+            "parameterNumber": 16193,
             "min": 0,
             "max": 127
           },
@@ -13573,7 +13966,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16358,
+            "parameterNumber": 16194,
             "onValue": 1,
             "offValue": 0
           },
@@ -13597,7 +13990,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16362
+            "parameterNumber": 16198
           },
           "textValues": [
             {
@@ -13623,7 +14016,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16363,
+            "parameterNumber": 16199,
             "min": 0,
             "max": 127
           },
@@ -13645,7 +14038,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16364,
+            "parameterNumber": 16200,
             "onValue": 1,
             "offValue": 0
           },
@@ -13699,11 +14092,11 @@
     },
     {
       "id": 11,
-      "name": "TR-6S [[device=analog-rytm]]"
+      "name": "Rytm A [[device=analog-rytm]]"
     },
     {
       "id": 12,
-      "name": "ReDrum [[device=analog-rytm]]"
+      "name": "Rytm B [[device=analog-rytm]]"
     }
   ],
   "categories": [

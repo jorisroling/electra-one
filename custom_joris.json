@@ -137,7 +137,8 @@
     "analog-four": {
       "model": "Analog Four",
       "manufacturer": "Elektron",
-      "instance": "t#",
+      "short": "A.Four",
+      "instance": "tr.#",
       "channels": [
         1,
         2,
@@ -166,7 +167,8 @@
     "analog-rytm": {
       "model": "Analog Rytm",
       "manufacturer": "Elektron",
-      "instance": "t#",
+      "short": "A.Rytm",
+      "instance": "tr.#",
       "channels": [
         1,
         2,
@@ -949,19 +951,19 @@
             "short": "Elektron Analo"
           },
           {
-            "name": "Electra Controller A Electra Port 1",
-            "short": "Electra Cont A.1",
-            "device": "electra-one-a-port-1"
+            "name": "Electra Controller B Electra Port 1",
+            "short": "Electra Cont B.1",
+            "device": "electra-one-b-port-1"
           },
           {
-            "name": "Electra Controller A Electra Port 2",
-            "short": "Electra Cont A.2",
-            "device": "electra-one-a-port-2"
+            "name": "Electra Controller B Electra Port 2",
+            "short": "Electra Cont B.2",
+            "device": "electra-one-b-port-2"
           },
           {
-            "name": "Electra Controller A Electra CTRL",
-            "short": "Electra Contro A.CTRL",
-            "device": "electra-one-a-ctrl"
+            "name": "Electra Controller B Electra CTRL",
+            "short": "Electra Contro B.CTRL",
+            "device": "electra-one-b-ctrl"
           },
           {
             "name": "Midihub Port 1",
@@ -978,10 +980,6 @@
           {
             "name": "Midihub Port 4",
             "short": "Midihub Port.4"
-          },
-          {
-            "name": "Vestax PC-CONTROLLER",
-            "short": "Vestax PC-CONT"
           },
           {
             "name": "MRCC Port 1",
@@ -1057,6 +1055,21 @@
           {
             "name": "MRCC Port 16",
             "short": "MRCC Port.16"
+          },
+          {
+            "name": "Electra Controller A Electra Port 1",
+            "short": "Electra Cont A.1",
+            "device": "electra-one-a-port-1"
+          },
+          {
+            "name": "Electra Controller A Electra Port 2",
+            "short": "Electra Cont A.2",
+            "device": "electra-one-a-port-2"
+          },
+          {
+            "name": "Electra Controller A Electra CTRL",
+            "short": "Electra Contro A.CTRL",
+            "device": "electra-one-a-ctrl"
           },
           {
             "name": "Komplete Kontrol M DAW",
@@ -1127,19 +1140,19 @@
             "short": "Elektron Analo"
           },
           {
-            "name": "Electra Controller A Electra Port 1",
-            "short": "Electra Cont A.1",
-            "device": "electra-one-a-port-1"
+            "name": "Electra Controller B Electra Port 1",
+            "short": "Electra Cont B.1",
+            "device": "electra-one-b-port-1"
           },
           {
-            "name": "Electra Controller A Electra Port 2",
-            "short": "Electra Cont A.2",
-            "device": "electra-one-a-port-2"
+            "name": "Electra Controller B Electra Port 2",
+            "short": "Electra Cont B.2",
+            "device": "electra-one-b-port-2"
           },
           {
-            "name": "Electra Controller A Electra CTRL",
-            "short": "Electra Contro A.CTRL",
-            "device": "electra-one-a-ctrl"
+            "name": "Electra Controller B Electra CTRL",
+            "short": "Electra Contro B.CTRL",
+            "device": "electra-one-b-ctrl"
           },
           {
             "name": "Midihub Port 1",
@@ -1156,10 +1169,6 @@
           {
             "name": "Midihub Port 4",
             "short": "Midihub Port.4"
-          },
-          {
-            "name": "Vestax PC-CONTROLLER",
-            "short": "Vestax PC-CONT"
           },
           {
             "name": "MRCC Port 1",
@@ -1235,6 +1244,21 @@
           {
             "name": "MRCC Port 16",
             "short": "MRCC Port.16"
+          },
+          {
+            "name": "Electra Controller A Electra Port 1",
+            "short": "Electra Cont A.1",
+            "device": "electra-one-a-port-1"
+          },
+          {
+            "name": "Electra Controller A Electra Port 2",
+            "short": "Electra Cont A.2",
+            "device": "electra-one-a-port-2"
+          },
+          {
+            "name": "Electra Controller A Electra CTRL",
+            "short": "Electra Contro A.CTRL",
+            "device": "electra-one-a-ctrl"
           },
           {
             "name": "Komplete Kontrol M DAW",

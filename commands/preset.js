@@ -41,7 +41,7 @@ function generatePreset(name, sub, options) {
             if (match) {
               const pageCondition = match[1].split('=').map( part => part.trim() )
               if (pageCondition) {
-                /*                debug('pageCondition %y',pageCondition)*/
+               debug('pageCondition %y',pageCondition)
                 if (pageCondition[0] == 'device') {
                   if (!_.get(config, `midi.ports.${pageCondition[1]}`)) {
                     blacklistPages.push(page.id)
@@ -49,6 +49,7 @@ function generatePreset(name, sub, options) {
                 }
               }
               if (blacklistPages.indexOf(page.id) >= 0) {
+//                debug('blacklistPages %y',blacklistPages)
                 debug('ditch page %y as its condition %y = %y is not met.', page.name.replace(/\s*\[\s*\[\s*(.*?)\s*\]\s*\]\s*/, ''), pageCondition[0], pageCondition[1])
                 page.name = 'Page ' + page.id
               } else {
@@ -102,6 +103,7 @@ function generatePreset(name, sub, options) {
                         for (let deviceKey of deviceKeys) {
                           let instance = config.devices[deviceKey].instance ? config.devices[deviceKey].instance : 'ch.#'
                           const model = config.devices[deviceKey].model
+                          const short = config.devices[deviceKey].short
 
                           if (Array.isArray(config.devices[deviceKey].channels)) {
                             for (let c in config.devices[deviceKey].channels) {
@@ -111,7 +113,7 @@ function generatePreset(name, sub, options) {
                               if (typeof config.devices[deviceKey].special === 'object' && config.devices[deviceKey].special[config.devices[deviceKey].channels[c]]) {
                                 instance = config.devices[deviceKey].special[config.devices[deviceKey].channels[c]]
                               }
-                              const label = config.devices[deviceKey].channels.length > 1 ? `${model} ${instance}`.trim() : model
+                              const label = config.devices[deviceKey].channels.length > 1 ? `${short?short:model} ${instance}`.trim() : model
                               const rLabel = label.replace('#', config.devices[deviceKey].instance ? (parseInt(c) + 1) : config.devices[deviceKey].channels[c])
 
                               value.textValues.push({
@@ -269,6 +271,7 @@ function generatePreset(name, sub, options) {
                     for (let deviceKey of deviceKeys) {
                       let instance = config.devices[deviceKey].instance ? config.devices[deviceKey].instance : 'ch.#'
                       const model = config.devices[deviceKey].model
+                      const short = config.devices[deviceKey].short
 
                       if (Array.isArray(config.devices[deviceKey].channels)) {
                         for (let c in config.devices[deviceKey].channels) {
@@ -278,7 +281,7 @@ function generatePreset(name, sub, options) {
                           if (typeof config.devices[deviceKey].special === 'object' && config.devices[deviceKey].special[config.devices[deviceKey].channels[c]]) {
                             instance = config.devices[deviceKey].special[config.devices[deviceKey].channels[c]]
                           }
-                          const label = config.devices[deviceKey].channels.length > 1 ? `${model} ${instance}`.trim() : model
+                          const label = config.devices[deviceKey].channels.length > 1 ? `${short?short:model} ${instance}`.trim() : model
                           const rLabel = label.replace('#', config.devices[deviceKey].instance ? (parseInt(c) + 1) : config.devices[deviceKey].channels[c])
 
                           overlay.items.push({
