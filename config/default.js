@@ -11,7 +11,7 @@ module.exports = customWrapper({
   local:false,
   custom: false,
   debugPrefix,
-  debug: Object.prototype.hasOwnProperty.call(process.env, 'DEBUG') ? process.env.DEBUG : `${debugPrefix}*,-${debugPrefix}:bacara:midi:*,-${debugPrefix}:*:part*,-${debugPrefix}:*:lfo*,-${debugPrefix}:lib:midi:interface,-${debugPrefix}:midi:*,-${debugPrefix}:router:midi:sysex,-${debugPrefix}:bacara:virus:preset,-${debugPrefix}:bacara:dispatch`,
+  debug: Object.prototype.hasOwnProperty.call(process.env, 'DEBUG') ? process.env.DEBUG : `${debugPrefix}*,-${debugPrefix}:*:part*,-${debugPrefix}:*:lfo*,-${debugPrefix}:lib:midi:interface,-${debugPrefix}:bacara:midi:note:on,-${debugPrefix}:bacara:midi:note:off,-${debugPrefix}:midi:send,-${debugPrefix}:router:midi:sysex,-${debugPrefix}:bacara:virus:preset,-${debugPrefix}:bacara:dispatch,-${debugPrefix}:bacara:state`,
   options: {
     electra: 'electra-one-port-2',
     electraOneCtrl: 'electra-one-ctrl',
