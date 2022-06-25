@@ -1887,7 +1887,7 @@ class BacaraMachine extends Machine {
   }
 
   readState(filename, keepObj) {
-    const filePath = filename ? filename : path.resolve( (process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/${this.name}.json`) : `${__dirname}/../../state/${this.name}.json` )
+    const filePath = filename ? filename : path.resolve( (process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/${this.name}.json`) : `${__dirname}/../state/${this.name}.json` )
     if (fs.existsSync(filePath)) {
       let json
       try {
@@ -1895,6 +1895,7 @@ class BacaraMachine extends Machine {
       } catch (e) {
         console.error(e)
       }
+      debug('state (%y) %y',filePath,json)
       if (json) {
         const state = {}
         const paths = [
@@ -1937,7 +1938,7 @@ class BacaraMachine extends Machine {
   }
 
   writeState(filename) {
-    const filePath = filename ? filename : path.resolve((process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/${this.name}.json`) : `${__dirname}/../../state/${this.name}.json`)
+    const filePath = filename ? filename : path.resolve((process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/${this.name}.json`) : `${__dirname}/../state/${this.name}.json`)
     fs.ensureDirSync(path.dirname(filePath))
     jsonfile.writeFileSync(filePath, this.getPreset(), { flag: 'w', spaces: 2 })
     //      debug('writeState %y',filePath)
