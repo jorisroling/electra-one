@@ -742,9 +742,10 @@ class BacaraMachine extends Machine {
             if (filename) {
               this.sendDeviceProgramChange('A')
               this.sendDeviceProgramChange('B')
-              for (let trk = 0; trk < 6; trk++) {
+/*              for (let trk = 0; trk < 6; trk++) {
                 this.sendTrackProgramChange(trk)
               }
+*/
               this.virusSetupParts()
               this.interface.sendValues('surface')
               this.showPattern()
@@ -763,9 +764,10 @@ class BacaraMachine extends Machine {
             if (filename) {
               this.sendDeviceProgramChange('A')
               this.sendDeviceProgramChange('B')
-              for (let trk = 0; trk < 6; trk++) {
+/*              for (let trk = 0; trk < 6; trk++) {
                 this.sendTrackProgramChange(trk)
               }
+*/
               this.virusSetupParts()
               this.interface.sendValues('surface')
               this.showPattern()
@@ -782,9 +784,10 @@ class BacaraMachine extends Machine {
           if (filename) {
             this.sendDeviceProgramChange('A')
             this.sendDeviceProgramChange('B')
-            for (let trk = 0; trk < 6; trk++) {
+/*            for (let trk = 0; trk < 6; trk++) {
               this.sendTrackProgramChange(trk)
             }
+*/
             this.virusSetupParts()
             this.interface.sendValues('surface')
             this.showPattern()
@@ -1073,7 +1076,7 @@ class BacaraMachine extends Machine {
       }
     }
 
-    const trackDeviceChange = (trk) => {
+/*    const trackDeviceChange = (trk) => {
       return (elementPath, value, origin) => {
         if (value > 0 && config.devices) {
           let idx = 0
@@ -1094,7 +1097,6 @@ class BacaraMachine extends Machine {
             }
           }
 
-          /*          debug ('new %y %y',choosenDeviceKey,choosenChannel)*/
           if (choosenDeviceKey && Number.isInteger(choosenChannel)) {
             this.setState(`track.${trk}.channel`, choosenChannel)
 
@@ -1120,18 +1122,19 @@ class BacaraMachine extends Machine {
             this.clearState(`track.${trk}.portName`)
             this.clearState(`track.${trk}.channel`)
           }
-        }
+          }
       }
     }
+*/
 
-    const trackBankOrProgramChange = (trk) => {
+/*    const trackBankOrProgramChange = (trk) => {
       return (elementPath, value, origin) => {
         if (origin != 'internal') {
           this.sendTrackProgramChange(trk)
         }
       }
     }
-
+*/
 
 
     const lfoShapeChange = (lfoIdx) => {
@@ -1452,9 +1455,10 @@ class BacaraMachine extends Machine {
             if (filename) {
               this.sendDeviceProgramChange('A')
               this.sendDeviceProgramChange('B')
-              for (let trk = 0; trk < 6; trk++) {
+/*              for (let trk = 0; trk < 6; trk++) {
                 this.sendTrackProgramChange(trk)
               }
+*/
               this.virusSetupParts()
               this.interface.sendValues()
               this.writeState()
@@ -1483,7 +1487,7 @@ class BacaraMachine extends Machine {
         },
       },
 
-      track: [
+/*      track: [
         {
           device: trackDeviceChange(0),
           bank: trackBankOrProgramChange(0),
@@ -1515,6 +1519,7 @@ class BacaraMachine extends Machine {
           program: trackBankOrProgramChange(5),
         },
       ],
+*/
       lfo: [
         {
           shape: lfoShapeChange(0),
@@ -1593,7 +1598,11 @@ class BacaraMachine extends Machine {
           },
         ]
       },
-      drums: {
+/*      deviations: {
+        note: {
+        },
+      },
+*/      drums: {
         density: (elementPath, value, origin) => {
           if (origin == 'surface' || !this.getState('drums.sounding')) {
             const sounding = []
@@ -2224,7 +2233,7 @@ class BacaraMachine extends Machine {
     }
   }
 
-  sendTrackProgramChange(trk) {
+/*  sendTrackProgramChange(trk) {
     const portName = this.getState(`track.${trk}.portName`)
     const channel = this.getState(`track.${trk}.channel`, 1)
     const bank = this.interface.getParameter(`track.${trk}.bank`)
@@ -2234,7 +2243,7 @@ class BacaraMachine extends Machine {
     debugMidiProgramChange('port %s  channel %d  PC %y', portName, channel - 1, program)
     Midi.send(portName, 'program', {channel:channel - 1, number:program}, `programChange-${trk}`, 200)
   }
-
+*/
   sendVirusMixerChannel(part) {
     const portName = 'virus-ti'
     const channel = part

@@ -6,13 +6,6 @@
   "lua": "print (\"Bacara Control Lua ext initialized\")\n\npatch.requestAll ()\n\n",
   "devices": [
     {
-      "id": 1,
-      "name": "Bacara Control",
-      "instrumentId": "generic-midi",
-      "port": 1,
-      "channel": 1
-    },
-    {
       "id": 17,
       "name": "Bacara",
       "port": 2,
@@ -8072,40 +8065,28 @@
     },
     {
       "id": "06670b56-2979-4dc1-8699-ac7688660c5b",
+      "slotId": 227,
       "type": "fader",
-      "name": "X4",
+      "deviceId": 17,
       "color": "C44795",
-      "bounds": [
-        850,
-        40,
-        146,
-        56
-      ],
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 6,
-          "valueId": "value"
-        }
-      ],
+      "name": "X4",
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 16129,
+            "parameterNumber": 16004,
             "min": 0,
             "max": 16383
           },
           "min": -8192,
           "max": 8191,
-          "defaultValue": 0,
-          "id": "value"
+          "defaultValue": 0
         }
       ],
-      "slotId": 227,
-      "deviceId": 17
+      "visible": true
     },
     {
       "id": "baefafee-2415-45ac-8b12-e6009f07be2d",
@@ -10530,7 +10511,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 16130
+            "parameterNumber": 16005
           },
           "textValues": [
             {
@@ -13257,7 +13238,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": false,
-            "parameterNumber": 16131
+            "parameterNumber": 16006
           },
           "textValues": [
             {
@@ -22146,11 +22127,11 @@
       "visible": true
     },
     {
-      "id": "ba78f67b-e1d4-4426-a006-204b47b9794c",
+      "id": "54522041-44f3-4542-92f5-2096662a1198",
+      "slotId": 432,
       "type": "label",
-      "slotId": 433,
-      "span": 4,
-      "name": "Bitwig Device Remote Controls",
+      "name": "Note",
+      "span": 3,
       "color": "F49500",
       "values": [
         {
@@ -22159,507 +22140,741 @@
       ]
     },
     {
-      "id": "22dc7c9a-ad15-4c08-84ee-69d02880bb01",
-      "slotId": 438,
-      "type": "pad",
-      "deviceId": 1,
-      "name": "",
+      "id": "ec390030-def3-4a93-9399-26495fb19cb2",
+      "slotId": 435,
+      "type": "label",
+      "name": "Velocity",
+      "span": 3,
+      "color": "529DEC",
       "values": [
         {
           "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 82,
-            "onValue": 127,
-            "offValue": 0
-          },
-          "defaultValue": "off"
+            "parameterNumber": 16381
+          }
         }
-      ],
-      "visible": false,
-      "mode": "momentary"
+      ]
     },
     {
-      "id": "cf304826-96ed-4a6b-92dd-9545bef3ba2a",
+      "id": "e61fe453-14a4-46c3-b960-f1c892bfecb0",
+      "slotId": 438,
+      "type": "fader",
+      "deviceId": 17,
+      "color": "F49500",
+      "name": "Maximum",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2946,
+            "min": 0,
+            "max": 254
+          },
+          "min": -127,
+          "max": 127,
+          "defaultValue": 0
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "05a7545d-671f-43f9-baa8-d9c41f53647b",
       "slotId": 439,
       "type": "fader",
-      "deviceId": 1,
+      "deviceId": 17,
       "color": "F49500",
-      "name": "Parameter #1",
+      "name": "PROBABILITY",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 3,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2947,
             "min": 0,
-            "max": 16383
-          }
+            "max": 100
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "None",
+              "index": 0
+            },
+            {
+              "value": 100,
+              "label": "All",
+              "index": 1
+            }
+          ],
+          "defaultValue": 100
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "3fa6c768-c300-481a-9a77-2dd883e06975",
+      "id": "2c1404f8-939b-429f-9f68-0cb42d81a3b0",
       "slotId": 440,
       "type": "fader",
-      "deviceId": 1,
+      "deviceId": 17,
       "color": "F49500",
-      "name": "Parameter #2",
+      "name": "Euclidian",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 14,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2948,
             "min": 0,
-            "max": 16383
-          }
+            "max": 16
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Off",
+              "index": 0
+            }
+          ],
+          "defaultValue": 0
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "20d2d964-a830-443b-9f2d-fffd1087f997",
+      "id": "f522abcd-17b7-4f9a-9458-fe8506a2fe2d",
       "slotId": 441,
       "type": "fader",
-      "deviceId": 1,
-      "color": "F49500",
-      "name": "Parameter #3",
+      "deviceId": 17,
+      "color": "529DEC",
+      "name": "Maximum",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 16,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2952,
             "min": 0,
-            "max": 16383
-          }
+            "max": 254
+          },
+          "min": -127,
+          "max": 127,
+          "defaultValue": 0
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "525af0e7-0a61-4118-9ecf-237d91706904",
+      "id": "3e471b51-c3f5-403f-9f45-e82fa584de10",
       "slotId": 442,
       "type": "fader",
-      "deviceId": 1,
-      "color": "F49500",
-      "name": "Parameter #4",
+      "deviceId": 17,
+      "color": "529DEC",
+      "name": "PROBABILITY",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 18,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2953,
             "min": 0,
-            "max": 16383
-          }
+            "max": 100
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "None",
+              "index": 0
+            },
+            {
+              "value": 100,
+              "label": "All",
+              "index": 1
+            }
+          ],
+          "defaultValue": 100
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "74654b95-d96e-49ca-8621-416144f2b383",
+      "id": "88b981ab-5964-409e-ac6a-51debaa9bdfc",
       "slotId": 443,
-      "type": "pad",
-      "deviceId": 1,
-      "name": "Up",
+      "type": "fader",
+      "deviceId": 17,
+      "color": "529DEC",
+      "name": "Euclidian",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 80,
-            "onValue": 127,
-            "offValue": 0
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2954,
+            "min": 0,
+            "max": 16
           },
-          "defaultValue": "off"
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Off",
+              "index": 0
+            }
+          ],
+          "defaultValue": 0
         }
       ],
-      "visible": true,
-      "mode": "momentary"
+      "visible": true
     },
     {
-      "id": "73221961-2c9c-4737-beaf-fc9f4c6a3a8d",
+      "id": "ad867113-61db-4193-bd03-b73b90b6c6f8",
+      "slotId": 450,
+      "type": "fader",
+      "deviceId": 17,
+      "color": "F49500",
+      "name": "Minimum",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2949,
+            "min": 0,
+            "max": 254
+          },
+          "min": -127,
+          "max": 127,
+          "defaultValue": 0
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "3764bd0d-5ecb-4f3b-ba5e-78e89922e4da",
       "slotId": 451,
       "type": "fader",
-      "deviceId": 1,
+      "deviceId": 17,
       "color": "F49500",
-      "name": "Parameter #5",
+      "name": "Chance",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 9,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2950,
             "min": 0,
-            "max": 16383
-          }
+            "max": 100
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Never",
+              "index": 0
+            },
+            {
+              "value": 100,
+              "label": "Allways",
+              "index": 1
+            }
+          ],
+          "defaultValue": 100
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "38a87f4a-ae19-4dda-98bf-6477ad6d1c14",
+      "id": "02fd03ab-170d-4cae-8c29-dab9a7a9934c",
       "slotId": 452,
       "type": "fader",
-      "deviceId": 1,
+      "deviceId": 17,
       "color": "F49500",
-      "name": "Parameter #6",
+      "name": "Rotate",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 15,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2951,
             "min": 0,
-            "max": 16383
-          }
+            "max": 30
+          },
+          "min": -15,
+          "max": 15,
+          "defaultValue": 0
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "d3b1169f-d4b1-46fc-b66d-2ce9dcaf51f4",
+      "id": "bea32f9e-48dd-4bb4-8e50-e677bbed7136",
       "slotId": 453,
       "type": "fader",
-      "deviceId": 1,
-      "color": "F49500",
-      "name": "Parameter #7",
+      "deviceId": 17,
+      "color": "529DEC",
+      "name": "Minimum",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 17,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2955,
             "min": 0,
-            "max": 16383
-          }
+            "max": 254
+          },
+          "min": -127,
+          "max": 127,
+          "defaultValue": 0
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "5b047053-82f8-486d-a334-5aff21e6223f",
+      "id": "27a83d10-bc85-4eba-9357-a5d4ddd8aa97",
       "slotId": 454,
       "type": "fader",
-      "deviceId": 1,
-      "color": "F49500",
-      "name": "Parameter #8",
+      "deviceId": 17,
+      "color": "529DEC",
+      "name": "Chance",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2956,
+            "min": 0,
+            "max": 100
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Never",
+              "index": 0
+            },
+            {
+              "value": 100,
+              "label": "Allways",
+              "index": 1
+            }
+          ],
+          "defaultValue": 100
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "77df53fd-0bdd-4dd4-98da-c66201a50aa0",
+      "slotId": 455,
+      "type": "fader",
+      "deviceId": 17,
+      "color": "529DEC",
+      "name": "Rotate",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2957,
+            "min": 0,
+            "max": 30
+          },
+          "min": -15,
+          "max": 15,
+          "defaultValue": 0
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "503f5995-d790-4138-ad15-de1043e8b238",
+      "slotId": 456,
+      "type": "label",
+      "name": "Length",
+      "span": 3,
+      "color": "03A598",
       "values": [
         {
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 19,
-            "min": 0,
-            "max": 16383
+            "parameterNumber": 16382
           }
         }
-      ],
-      "visible": false
+      ]
     },
     {
-      "id": "83982411-cf7b-4e84-823e-25dd1e325d63",
-      "slotId": 455,
-      "type": "pad",
-      "deviceId": 1,
-      "name": "Down",
+      "id": "f86e801e-1b09-459e-9062-4616b392e2e7",
+      "slotId": 459,
+      "type": "label",
+      "name": "Device",
+      "span": 3,
+      "color": "C44795",
       "values": [
         {
           "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 81,
-            "onValue": 127,
-            "offValue": 0
-          },
-          "defaultValue": "off"
-        }
-      ],
-      "visible": true,
-      "mode": "momentary"
-    },
-    {
-      "id": "2fc5c462-2a60-4189-adc7-2f60444e2fc1",
-      "type": "label",
-      "slotId": 456,
-      "span": 6,
-      "name": "Remote Control Pages",
-      "values": [
-        {
-          "message": {}
+            "parameterNumber": 16383
+          }
         }
       ]
     },
     {
-      "id": "466d689d-cad2-419e-9045-97e89878589f",
+      "id": "66867abf-b2e3-498d-9ac4-6abfd8ebb181",
       "slotId": 462,
-      "type": "pad",
-      "deviceId": 1,
-      "name": "Page #1",
+      "type": "fader",
+      "deviceId": 17,
+      "color": "03A598",
+      "name": "Maximum",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 100,
-            "onValue": 127,
-            "offValue": 0
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2958,
+            "min": 0,
+            "max": 200
           },
-          "defaultValue": "off"
+          "min": -100,
+          "max": 100,
+          "defaultValue": 0
         }
       ],
-      "visible": false,
-      "mode": "toggle"
+      "visible": true
     },
     {
-      "id": "8451093f-aac4-4067-9f6b-186e8404bd30",
+      "id": "50a96a05-b047-4a73-af3a-9ce2915230a4",
       "slotId": 463,
-      "type": "pad",
-      "deviceId": 1,
-      "name": "Page #2",
+      "type": "fader",
+      "deviceId": 17,
+      "color": "03A598",
+      "name": "PROBABILITY",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 101,
-            "onValue": 127,
-            "offValue": 0
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2959,
+            "min": 0,
+            "max": 100
           },
-          "defaultValue": "off"
+          "textValues": [
+            {
+              "value": 0,
+              "label": "None",
+              "index": 0
+            },
+            {
+              "value": 100,
+              "label": "All",
+              "index": 1
+            }
+          ],
+          "defaultValue": 100
         }
       ],
-      "visible": false,
-      "mode": "toggle"
+      "visible": true
     },
     {
-      "id": "80f0f22b-84d1-44bd-a7fc-dbede31436cd",
+      "id": "3304a84e-908a-4433-9282-2994c6de6917",
       "slotId": 464,
-      "type": "pad",
-      "deviceId": 1,
-      "name": "Page #3",
+      "type": "fader",
+      "deviceId": 17,
+      "color": "03A598",
+      "name": "Euclidian",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 102,
-            "onValue": 127,
-            "offValue": 0
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2960,
+            "min": 0,
+            "max": 16
           },
-          "defaultValue": "off"
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Off",
+              "index": 0
+            }
+          ],
+          "defaultValue": 0
         }
       ],
-      "visible": false,
-      "mode": "toggle"
+      "visible": true
     },
     {
-      "id": "6335c6b7-e4bb-4702-8368-aa0ddedf3266",
+      "id": "9c531f9e-5da6-446c-8e6e-3f3497a0a8fa",
       "slotId": 465,
-      "type": "pad",
-      "deviceId": 1,
-      "name": "Page #4",
+      "type": "fader",
+      "deviceId": 17,
+      "color": "C44795",
+      "name": "SPLIT",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 103,
-            "onValue": 127,
-            "offValue": 0
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2964,
+            "min": 0,
+            "max": 127
           },
-          "defaultValue": "off"
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Only Device B",
+              "index": 0
+            },
+            {
+              "value": 127,
+              "label": "Only Device A",
+              "index": 1
+            }
+          ],
+          "defaultValue": 127
         }
       ],
-      "visible": false,
-      "mode": "toggle"
+      "visible": true
     },
     {
-      "id": "37a9f344-3eca-4449-aeda-fe755bc199c1",
+      "id": "164854d0-a047-4fbe-ae3e-69e15be09d2a",
       "slotId": 466,
-      "type": "pad",
-      "deviceId": 1,
-      "name": "Page #5",
+      "type": "fader",
+      "deviceId": 17,
+      "color": "C44795",
+      "name": "PROBABILITY",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 104,
-            "onValue": 127,
-            "offValue": 0
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2965,
+            "min": 0,
+            "max": 100
           },
-          "defaultValue": "off"
+          "textValues": [
+            {
+              "value": 0,
+              "label": "None",
+              "index": 0
+            },
+            {
+              "value": 100,
+              "label": "All",
+              "index": 1
+            }
+          ],
+          "defaultValue": 100
         }
       ],
-      "visible": false,
-      "mode": "toggle"
+      "visible": true
     },
     {
-      "id": "52196be5-96db-4e3a-8b17-cd74a9c6cfca",
+      "id": "6eb8131d-d401-4a9c-bf7c-ff665b8641e3",
       "slotId": 467,
-      "type": "pad",
-      "deviceId": 1,
-      "name": "Page #6",
+      "type": "fader",
+      "deviceId": 17,
+      "color": "C44795",
+      "name": "Euclidian",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 105,
-            "onValue": 127,
-            "offValue": 0
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2966,
+            "min": 0,
+            "max": 16
           },
-          "defaultValue": "off"
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Off",
+              "index": 0
+            }
+          ],
+          "defaultValue": 0
         }
       ],
-      "visible": false,
-      "mode": "toggle"
+      "visible": true
     },
     {
-      "id": "87f80bcb-e4f3-4f15-b117-2b982501755e",
+      "id": "5e73b894-48e3-40c4-ad56-9275bd59c395",
       "slotId": 474,
-      "type": "pad",
-      "deviceId": 1,
-      "name": "Page #7",
+      "type": "fader",
+      "deviceId": 17,
+      "color": "03A598",
+      "name": "Minimum",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 106,
-            "onValue": 127,
-            "offValue": 0
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2961,
+            "min": 0,
+            "max": 200
           },
-          "defaultValue": "off"
+          "min": -100,
+          "max": 100,
+          "defaultValue": 0
         }
       ],
-      "visible": false,
-      "mode": "toggle"
+      "visible": true
     },
     {
-      "id": "65470891-2c8c-4579-b699-f97b2697ca37",
+      "id": "e7b1b085-5603-4d86-a079-7b325ed4da9f",
       "slotId": 475,
-      "type": "pad",
-      "deviceId": 1,
-      "name": "Page #8",
+      "type": "fader",
+      "deviceId": 17,
+      "color": "03A598",
+      "name": "Chance",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 107,
-            "onValue": 127,
-            "offValue": 0
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2962,
+            "min": 0,
+            "max": 100
           },
-          "defaultValue": "off"
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Never",
+              "index": 0
+            },
+            {
+              "value": 100,
+              "label": "Allways",
+              "index": 1
+            }
+          ],
+          "defaultValue": 100
         }
       ],
-      "visible": false,
-      "mode": "toggle"
+      "visible": true
     },
     {
-      "id": "596a6c62-a6d6-4403-a584-6acee6969b4f",
+      "id": "bb7811ed-2d77-44fc-9171-c635c425442b",
       "slotId": 476,
-      "type": "pad",
-      "deviceId": 1,
-      "name": "Page #9",
+      "type": "fader",
+      "deviceId": 17,
+      "color": "03A598",
+      "name": "Rotate",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 108,
-            "onValue": 127,
-            "offValue": 0
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2963,
+            "min": 0,
+            "max": 30
           },
-          "defaultValue": "off"
+          "min": -15,
+          "max": 15,
+          "defaultValue": 0
         }
       ],
-      "visible": false,
-      "mode": "toggle"
+      "visible": true
     },
     {
-      "id": "520b549f-c2a0-4e46-aed2-d4c8c5e25ab8",
-      "slotId": 477,
-      "type": "pad",
-      "deviceId": 1,
-      "name": "Page #10",
-      "values": [
-        {
-          "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 109,
-            "onValue": 127,
-            "offValue": 0
-          },
-          "defaultValue": "off"
-        }
-      ],
-      "visible": false,
-      "mode": "toggle"
-    },
-    {
-      "id": "ab149c34-d1a5-497f-b3f8-9c86ad5c82bd",
+      "id": "1740e901-6f37-438e-9c92-3829a669c27d",
       "slotId": 478,
-      "type": "pad",
-      "deviceId": 1,
-      "name": "Page #11",
+      "type": "fader",
+      "deviceId": 17,
+      "color": "C44795",
+      "name": "Chance",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 110,
-            "onValue": 127,
-            "offValue": 0
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2968,
+            "min": 0,
+            "max": 100
           },
-          "defaultValue": "off"
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Never",
+              "index": 0
+            },
+            {
+              "value": 100,
+              "label": "Allways",
+              "index": 1
+            }
+          ],
+          "defaultValue": 100
         }
       ],
-      "visible": false,
-      "mode": "toggle"
+      "visible": true
     },
     {
-      "id": "3252383b-cb9d-4ac0-8295-5eda6003874f",
+      "id": "c7b0a479-cf88-4e30-b848-633f87ebb1ee",
       "slotId": 479,
-      "type": "pad",
-      "deviceId": 1,
-      "name": "Page #12",
+      "type": "fader",
+      "deviceId": 17,
+      "color": "C44795",
+      "name": "Rotate",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc7",
-            "deviceId": 1,
-            "parameterNumber": 111,
-            "onValue": 127,
-            "offValue": 0
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2969,
+            "min": 0,
+            "max": 30
           },
-          "defaultValue": "off"
+          "min": -15,
+          "max": 15,
+          "defaultValue": 0
         }
       ],
-      "visible": false,
-      "mode": "toggle"
+      "visible": true
     },
     {
-      "id": "cdc8eac9-7079-4cd7-9045-4a4ca7ed899e",
-      "type": "label",
+      "id": "01563d20-b796-414a-b82f-5d5fcac68b29",
       "slotId": 480,
-      "span": 6,
-      "name": "Bitwig Track Sends",
-      "color": "F49500",
+      "type": "label",
+      "name": "Accent",
+      "span": 2,
       "values": [
         {
           "message": {}
@@ -22667,256 +22882,405 @@
       ]
     },
     {
-      "id": "e9be5f91-51ab-4c44-8f2b-f3ecc8524652",
+      "id": "83461ef4-b4b8-46d2-9bd3-b2bd497ea8cf",
+      "slotId": 482,
+      "type": "label",
+      "name": "Mute",
+      "span": 2,
+      "values": [
+        {
+          "message": {}
+        }
+      ],
+      "color": "F45C51"
+    },
+    {
+      "id": "17932904-7c4f-45eb-9fd0-80c5114853c5",
+      "slotId": 484,
+      "type": "label",
+      "name": "Octave",
+      "span": 2,
+      "values": [
+        {
+          "message": {}
+        }
+      ],
+      "color": "F49500"
+    },
+    {
+      "id": "9cc02d19-8fa1-461b-ae66-239a23a06965",
       "slotId": 486,
       "type": "fader",
-      "deviceId": 1,
-      "color": "F49500",
-      "name": "Send #1",
+      "deviceId": 17,
+      "color": "FFFFFF",
+      "name": "PROBABILITY",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 20,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2970,
             "min": 0,
-            "max": 16383
-          }
+            "max": 100
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "None",
+              "index": 0
+            },
+            {
+              "value": 100,
+              "label": "All",
+              "index": 1
+            }
+          ],
+          "defaultValue": 100
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "f9e99c97-c569-4721-a2e9-64e676779442",
+      "id": "672abd04-68c2-4858-afdc-c9f3497ddd56",
       "slotId": 487,
       "type": "fader",
-      "deviceId": 1,
-      "color": "F49500",
-      "name": "Send #2",
+      "deviceId": 17,
+      "color": "FFFFFF",
+      "name": "Euclidian",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 21,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2971,
             "min": 0,
-            "max": 16383
-          }
+            "max": 16
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Off",
+              "index": 0
+            }
+          ],
+          "defaultValue": 0
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "7efec19c-320e-4dad-87c8-deedf8d8aa77",
+      "id": "75e5d0f6-6a45-440f-a5b6-7fad8a7dc64f",
       "slotId": 488,
       "type": "fader",
-      "deviceId": 1,
-      "color": "F49500",
-      "name": "Send #3",
+      "deviceId": 17,
+      "color": "F45C51",
+      "name": "PROBABILITY",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 22,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2974,
             "min": 0,
-            "max": 16383
-          }
+            "max": 100
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "None",
+              "index": 0
+            },
+            {
+              "value": 100,
+              "label": "All",
+              "index": 1
+            }
+          ],
+          "defaultValue": 100
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "0c62b8b7-d611-4f55-8deb-62c5b27f3f4f",
+      "id": "037dacf2-0e32-471c-819a-273dc2d93d5e",
       "slotId": 489,
       "type": "fader",
-      "deviceId": 1,
-      "color": "F49500",
-      "name": "Send #4",
+      "deviceId": 17,
+      "color": "F45C51",
+      "name": "Euclidian",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 23,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2975,
             "min": 0,
-            "max": 16383
-          }
+            "max": 16
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Off",
+              "index": 0
+            }
+          ],
+          "defaultValue": 0
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "5375fcb7-4a91-4ea2-b042-3da6d6ff659f",
+      "id": "8232045c-1132-45bf-b726-2737adecb3ee",
       "slotId": 490,
       "type": "fader",
-      "deviceId": 1,
+      "deviceId": 17,
       "color": "F49500",
-      "name": "Send #5",
+      "name": "PROBABILITY",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 24,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2978,
             "min": 0,
-            "max": 16383
-          }
+            "max": 100
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "None",
+              "index": 0
+            },
+            {
+              "value": 100,
+              "label": "All",
+              "index": 1
+            }
+          ],
+          "defaultValue": 100
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "ad8b7ce8-96aa-431c-9dfe-4b83bd0a4412",
+      "id": "a808dffc-725d-4911-aa44-85368a4c987d",
       "slotId": 491,
       "type": "fader",
-      "deviceId": 1,
+      "deviceId": 17,
       "color": "F49500",
-      "name": "Send #6",
+      "name": "Euclidian",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 25,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2979,
             "min": 0,
-            "max": 16383
-          }
+            "max": 16
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Off",
+              "index": 0
+            }
+          ],
+          "defaultValue": 0
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "bf1574a5-e910-47a1-b449-91f691a370c8",
+      "id": "1dbcf909-d1aa-4ced-9f35-55c61453fdc1",
       "slotId": 498,
       "type": "fader",
-      "deviceId": 1,
-      "color": "F49500",
-      "name": "Send #7",
+      "deviceId": 17,
+      "color": "FFFFFF",
+      "name": "Chance",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 26,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2972,
             "min": 0,
-            "max": 16383
-          }
+            "max": 100
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Never",
+              "index": 0
+            },
+            {
+              "value": 100,
+              "label": "Allways",
+              "index": 1
+            }
+          ],
+          "defaultValue": 100
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "6cd8d699-7451-4c51-9b6d-bf286651ef19",
+      "id": "8c52bce0-d73e-4c4b-addd-93271ebf4d7a",
       "slotId": 499,
       "type": "fader",
-      "deviceId": 1,
-      "color": "F49500",
-      "name": "Send #8",
+      "deviceId": 17,
+      "color": "FFFFFF",
+      "name": "Rotate",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 27,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2973,
             "min": 0,
-            "max": 16383
-          }
+            "max": 30
+          },
+          "min": -15,
+          "max": 15,
+          "defaultValue": 0
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "7ace373b-c034-4158-8372-3596f750a7ad",
+      "id": "7a424cbf-1cf6-427f-9395-3ba005ca5541",
       "slotId": 500,
       "type": "fader",
-      "deviceId": 1,
-      "color": "F49500",
-      "name": "Send #9",
+      "deviceId": 17,
+      "color": "F45C51",
+      "name": "Chance",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 28,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2976,
             "min": 0,
-            "max": 16383
-          }
+            "max": 100
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Never",
+              "index": 0
+            },
+            {
+              "value": 100,
+              "label": "Allways",
+              "index": 1
+            }
+          ],
+          "defaultValue": 100
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "dd818ce9-312a-4303-8937-d7b97745849f",
+      "id": "00e7e1d3-4217-4965-9a6b-123d8e4000fd",
       "slotId": 501,
       "type": "fader",
-      "deviceId": 1,
-      "color": "F49500",
-      "name": "Send #10",
+      "deviceId": 17,
+      "color": "F45C51",
+      "name": "Rotate",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 29,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2977,
             "min": 0,
-            "max": 16383
-          }
+            "max": 30
+          },
+          "min": -15,
+          "max": 15,
+          "defaultValue": 0
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "443caa95-c9e0-4398-a848-41a6781c47ee",
+      "id": "943a4d5f-025e-4fd7-be38-fab389723cfa",
       "slotId": 502,
       "type": "fader",
-      "deviceId": 1,
+      "deviceId": 17,
       "color": "F49500",
-      "name": "Send #11",
+      "name": "Chance",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 30,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2980,
             "min": 0,
-            "max": 16383
-          }
+            "max": 100
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Never",
+              "index": 0
+            },
+            {
+              "value": 100,
+              "label": "Allways",
+              "index": 1
+            }
+          ],
+          "defaultValue": 100
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
-      "id": "ea73505c-e2bf-4267-a3f6-3d47e196bd87",
+      "id": "00388307-1c94-4718-bb19-f268b0c7fc22",
       "slotId": 503,
       "type": "fader",
-      "deviceId": 1,
+      "deviceId": 17,
       "color": "F49500",
-      "name": "Send #12",
+      "name": "Rotate",
       "values": [
         {
+          "id": "value",
           "message": {
-            "type": "cc14",
-            "deviceId": 1,
-            "lsbFirst": false,
-            "parameterNumber": 31,
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2981,
             "min": 0,
-            "max": 16383
-          }
+            "max": 30
+          },
+          "min": -15,
+          "max": 15,
+          "defaultValue": 0
         }
       ],
-      "visible": false
+      "visible": true
     },
     {
       "id": "12847a72-6c3b-4c29-8f07-707c6e160a0b",
@@ -28575,7 +28939,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16353
+            "parameterNumber": 16129
           },
           "textValues": [
             {
@@ -28657,7 +29021,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16354,
+            "parameterNumber": 16130,
             "onValue": 1,
             "offValue": 0
           },
@@ -28680,7 +29044,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16355,
+            "parameterNumber": 16131,
             "onValue": 1,
             "offValue": 0
           },
@@ -28703,7 +29067,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16359
+            "parameterNumber": 16135
           },
           "textValues": [
             {
@@ -28785,7 +29149,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16360,
+            "parameterNumber": 16136,
             "onValue": 1,
             "offValue": 0
           },
@@ -28808,7 +29172,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16361,
+            "parameterNumber": 16137,
             "onValue": 1,
             "offValue": 0
           },
@@ -28832,7 +29196,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16356
+            "parameterNumber": 16132
           },
           "textValues": [
             {
@@ -28938,7 +29302,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16357,
+            "parameterNumber": 16133,
             "min": 0,
             "max": 127
           },
@@ -28960,7 +29324,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16358,
+            "parameterNumber": 16134,
             "onValue": 1,
             "offValue": 0
           },
@@ -28984,7 +29348,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16362
+            "parameterNumber": 16138
           },
           "textValues": [
             {
@@ -29090,7 +29454,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16363,
+            "parameterNumber": 16139,
             "min": 0,
             "max": 127
           },
@@ -29112,7 +29476,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16364,
+            "parameterNumber": 16140,
             "onValue": 1,
             "offValue": 0
           },
@@ -29165,7 +29529,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16341
+            "parameterNumber": 16141
           },
           "textValues": [
             {
@@ -29247,7 +29611,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16342,
+            "parameterNumber": 16142,
             "onValue": 1,
             "offValue": 0
           },
@@ -29270,7 +29634,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16343,
+            "parameterNumber": 16143,
             "onValue": 1,
             "offValue": 0
           },
@@ -29293,7 +29657,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16347
+            "parameterNumber": 16147
           },
           "textValues": [
             {
@@ -29375,7 +29739,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16348,
+            "parameterNumber": 16148,
             "onValue": 1,
             "offValue": 0
           },
@@ -29398,7 +29762,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16349,
+            "parameterNumber": 16149,
             "onValue": 1,
             "offValue": 0
           },
@@ -29422,7 +29786,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16344
+            "parameterNumber": 16144
           },
           "textValues": [
             {
@@ -29528,7 +29892,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16345,
+            "parameterNumber": 16145,
             "min": 0,
             "max": 127
           },
@@ -29550,7 +29914,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16346,
+            "parameterNumber": 16146,
             "onValue": 1,
             "offValue": 0
           },
@@ -29574,7 +29938,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16350
+            "parameterNumber": 16150
           },
           "textValues": [
             {
@@ -29680,7 +30044,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16351,
+            "parameterNumber": 16151,
             "min": 0,
             "max": 127
           },
@@ -29702,7 +30066,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16352,
+            "parameterNumber": 16152,
             "onValue": 1,
             "offValue": 0
           },
@@ -29753,7 +30117,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16329
+            "parameterNumber": 16153
           },
           "textValues": [
             {
@@ -29834,7 +30198,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16330,
+            "parameterNumber": 16154,
             "onValue": 1,
             "offValue": 0
           },
@@ -29856,7 +30220,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16331,
+            "parameterNumber": 16155,
             "onValue": 1,
             "offValue": 0
           },
@@ -29879,7 +30243,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16335
+            "parameterNumber": 16159
           },
           "textValues": [
             {
@@ -29961,7 +30325,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16336,
+            "parameterNumber": 16160,
             "onValue": 1,
             "offValue": 0
           },
@@ -29984,7 +30348,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16337,
+            "parameterNumber": 16161,
             "onValue": 1,
             "offValue": 0
           },
@@ -30008,7 +30372,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16332
+            "parameterNumber": 16156
           },
           "textValues": [
             {
@@ -30113,7 +30477,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16333,
+            "parameterNumber": 16157,
             "min": 0,
             "max": 127
           },
@@ -30134,7 +30498,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16334,
+            "parameterNumber": 16158,
             "onValue": 1,
             "offValue": 0
           },
@@ -30158,7 +30522,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16338
+            "parameterNumber": 16162
           },
           "textValues": [
             {
@@ -30264,7 +30628,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16339,
+            "parameterNumber": 16163,
             "min": 0,
             "max": 127
           },
@@ -30286,7 +30650,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16340,
+            "parameterNumber": 16164,
             "onValue": 1,
             "offValue": 0
           },
@@ -30313,7 +30677,7 @@
       "type": "label",
       "slotId": 795,
       "span": 3,
-      "name": "Cowbel",
+      "name": "Cowbell",
       "color": "F45C51",
       "values": [
         {
@@ -30333,7 +30697,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16329
+            "parameterNumber": 16165
           },
           "textValues": [
             {
@@ -30414,7 +30778,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16330,
+            "parameterNumber": 16166,
             "onValue": 1,
             "offValue": 0
           },
@@ -30436,7 +30800,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16331,
+            "parameterNumber": 16167,
             "onValue": 1,
             "offValue": 0
           },
@@ -30459,7 +30823,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16335
+            "parameterNumber": 16171
           },
           "textValues": [
             {
@@ -30541,7 +30905,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16336,
+            "parameterNumber": 16172,
             "onValue": 1,
             "offValue": 0
           },
@@ -30564,7 +30928,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16337,
+            "parameterNumber": 16173,
             "onValue": 1,
             "offValue": 0
           },
@@ -30588,7 +30952,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16332
+            "parameterNumber": 16168
           },
           "textValues": [
             {
@@ -30693,7 +31057,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16333,
+            "parameterNumber": 16169,
             "min": 0,
             "max": 127
           },
@@ -30714,7 +31078,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16334,
+            "parameterNumber": 16170,
             "onValue": 1,
             "offValue": 0
           },
@@ -30738,7 +31102,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16338
+            "parameterNumber": 16174
           },
           "textValues": [
             {
@@ -30844,7 +31208,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16339,
+            "parameterNumber": 16175,
             "min": 0,
             "max": 127
           },
@@ -30866,7 +31230,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16340,
+            "parameterNumber": 16176,
             "onValue": 1,
             "offValue": 0
           },
@@ -30915,7 +31279,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16341
+            "parameterNumber": 16177
           },
           "textValues": [
             {
@@ -30997,7 +31361,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16342,
+            "parameterNumber": 16178,
             "onValue": 1,
             "offValue": 0
           },
@@ -31020,7 +31384,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16343,
+            "parameterNumber": 16179,
             "onValue": 1,
             "offValue": 0
           },
@@ -31043,7 +31407,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16347
+            "parameterNumber": 16183
           },
           "textValues": [
             {
@@ -31125,7 +31489,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16348,
+            "parameterNumber": 16184,
             "onValue": 1,
             "offValue": 0
           },
@@ -31148,7 +31512,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16349,
+            "parameterNumber": 16185,
             "onValue": 1,
             "offValue": 0
           },
@@ -31172,7 +31536,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16344
+            "parameterNumber": 16380
           },
           "textValues": [
             {
@@ -31278,7 +31642,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16345,
+            "parameterNumber": 16181,
             "min": 0,
             "max": 127
           },
@@ -31300,7 +31664,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16346,
+            "parameterNumber": 16182,
             "onValue": 1,
             "offValue": 0
           },
@@ -31324,7 +31688,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16350
+            "parameterNumber": 16186
           },
           "textValues": [
             {
@@ -31430,7 +31794,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16351,
+            "parameterNumber": 16187,
             "min": 0,
             "max": 127
           },
@@ -31452,7 +31816,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16352,
+            "parameterNumber": 16188,
             "onValue": 1,
             "offValue": 0
           },
@@ -31501,7 +31865,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16353
+            "parameterNumber": 16189
           },
           "textValues": [
             {
@@ -31583,7 +31947,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16354,
+            "parameterNumber": 16190,
             "onValue": 1,
             "offValue": 0
           },
@@ -31606,7 +31970,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16355,
+            "parameterNumber": 16191,
             "onValue": 1,
             "offValue": 0
           },
@@ -31629,7 +31993,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16359
+            "parameterNumber": 16195
           },
           "textValues": [
             {
@@ -31711,7 +32075,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16360,
+            "parameterNumber": 16196,
             "onValue": 1,
             "offValue": 0
           },
@@ -31734,7 +32098,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16361,
+            "parameterNumber": 16197,
             "onValue": 1,
             "offValue": 0
           },
@@ -31758,7 +32122,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16356
+            "parameterNumber": 16192
           },
           "textValues": [
             {
@@ -31864,7 +32228,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16357,
+            "parameterNumber": 16193,
             "min": 0,
             "max": 127
           },
@@ -31886,7 +32250,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16358,
+            "parameterNumber": 16194,
             "onValue": 1,
             "offValue": 0
           },
@@ -31910,7 +32274,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16362
+            "parameterNumber": 16198
           },
           "textValues": [
             {
@@ -32016,7 +32380,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16363,
+            "parameterNumber": 16199,
             "min": 0,
             "max": 127
           },
@@ -32038,7 +32402,7 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 16364,
+            "parameterNumber": 16200,
             "onValue": 1,
             "offValue": 0
           },
@@ -32076,7 +32440,7 @@
     },
     {
       "id": 7,
-      "name": "Bitwig"
+      "name": "Deviations"
     },
     {
       "id": 8,
