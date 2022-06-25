@@ -41,6 +41,7 @@ const debugMidiNoteOn = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require(
 const debugMidiNoteOff = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:note:off`)
 const debugMidiControlChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:control:change`)
 const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:program:change`)
+const debugState = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:state`)
 
 const debugMonome = yves.debugger(`${pkg.name.replace(/^@/, '')}:monome`)
 const debugPattern = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:pattern`)
@@ -1385,6 +1386,68 @@ class BacaraMachine extends Machine {
       }
     }
 
+    this.deviationsPickFromRange = (type) => {
+      const maximum = Math.max(this.interface.getParameter(`deviations.${type}.maximum`, 'modulated'),this.interface.getParameter(`deviations.${type}.minimum`, 'modulated'))
+      const minimum = Math.min(this.interface.getParameter(`deviations.${type}.minimum`, 'modulated'),this.interface.getParameter(`deviations.${type}.maximum`, 'modulated'))
+      do {
+        const result = minimum + Random.getRandomInt(maximum-minimum)
+        if (result) return result
+      } while (maximum-minimum)
+      return 0
+    }
+
+    this.deviationsEuclidian = (euclidianValue, steps, rotation) => {
+      if (!euclidianValue) {
+        euclidianValue = 0
+      }
+      if (!steps) {
+        steps = 16
+      }
+      if (!rotation) {
+        rotation = 0
+      }
+      const arrayRotate = (arr, reverse) => {
+        if (reverse) {
+          arr.unshift(arr.pop())
+        } else {
+          arr.push(arr.shift())
+        }
+        return arr
+      }
+      let pat = euclideanRhythms.getPattern(euclidianValue, steps)
+      if (rotation) {
+        let p = Math.abs(rotation)
+        while (p--) {
+          pat = arrayRotate(pat, rotation > 0)
+        }
+      }
+      return pat
+    }
+
+
+    this.deviationsGenerate = (type) => {
+      const map = []
+
+      const probability = this.interface.getParameter(`deviations.${type}.probability`, 'modulated')
+      const euclidian = this.interface.getParameter(`deviations.${type}.euclidian`, 'modulated')
+      const rotation = this.interface.getParameter(`deviations.${type}.rotation`, 'modulated')
+      const steps = this.interface.getParameter('steps', 'modulated')
+      const pat = euclidian?this.deviationsEuclidian(euclidian,steps,rotation):null
+
+      for (let idx = 0; idx < steps; idx++) {
+        if (probability) {
+          map[idx] = (probability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange(type) : 0
+        } else if (euclidian) {
+          map[idx] = (pat && pat[idx]) ? this.deviationsPickFromRange(type) : 0
+        } else {
+          map[idx] = 0
+        }
+      }
+
+      this.setState(`deviations.${type}`,map)
+      debug('map %y',map)
+    }
+
 
     this.parameterEminentSideEffects = {
       virus: {
@@ -1470,6 +1533,65 @@ class BacaraMachine extends Machine {
         }
       },
 
+      deviations: {
+        note: {
+          maximum: (elementPath, value, origin) => {
+            if (origin == 'surface') this.deviationsGenerate('note')
+          },
+          minimum: (elementPath, value, origin) => {
+            if (origin == 'surface') this.deviationsGenerate('note')
+          },
+          probability: (elementPath, value, origin) => {
+            if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.note.euclidian',0)
+            if (origin == 'surface') this.deviationsGenerate('note')
+          },
+          euclidian: (elementPath, value, origin) => {
+            if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.note.probability',0)
+            if (origin == 'surface') this.deviationsGenerate('note')
+          },
+          rotation: (elementPath, value, origin) => {
+            if (origin == 'surface') this.deviationsGenerate('note')
+          },
+        },
+        velocity: {
+          maximum: (elementPath, value, origin) => {
+            if (origin == 'surface') this.deviationsGenerate('velocity')
+          },
+          minimum: (elementPath, value, origin) => {
+            if (origin == 'surface') this.deviationsGenerate('velocity')
+          },
+          probability: (elementPath, value, origin) => {
+            if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.velocity.euclidian',0)
+            if (origin == 'surface') this.deviationsGenerate('velocity')
+          },
+          euclidian: (elementPath, value, origin) => {
+            if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.velocity.probability',0)
+            if (origin == 'surface') this.deviationsGenerate('velocity')
+          },
+          rotation: (elementPath, value, origin) => {
+            if (origin == 'surface') this.deviationsGenerate('velocity')
+          },
+        },
+        length: {
+          maximum: (elementPath, value, origin) => {
+            if (origin == 'surface') this.deviationsGenerate('length')
+          },
+          minimum: (elementPath, value, origin) => {
+            if (origin == 'surface') this.deviationsGenerate('length')
+          },
+          probability: (elementPath, value, origin) => {
+            if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.length.euclidian',0)
+            if (origin == 'surface') this.deviationsGenerate('length')
+          },
+          euclidian: (elementPath, value, origin) => {
+            if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.length.probability',0)
+            if (origin == 'surface') this.deviationsGenerate('length')
+          },
+          rotation: (elementPath, value, origin) => {
+            if (origin == 'surface') this.deviationsGenerate('length')
+          },
+        },
+      },
       device: {
         A: {
           device: deviceDeviceChange('A'),
@@ -1895,7 +2017,7 @@ class BacaraMachine extends Machine {
       } catch (e) {
         console.error(e)
       }
-      debug('state (%y) %y',filePath,json)
+      debugState('readState (%y) %y',filePath,json)
       if (json) {
         const state = {}
         const paths = [
@@ -1940,7 +2062,9 @@ class BacaraMachine extends Machine {
   writeState(filename) {
     const filePath = filename ? filename : path.resolve((process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/${this.name}.json`) : `${__dirname}/../state/${this.name}.json`)
     fs.ensureDirSync(path.dirname(filePath))
-    jsonfile.writeFileSync(filePath, this.getPreset(), { flag: 'w', spaces: 2 })
+    const json = this.getPreset()
+    jsonfile.writeFileSync(filePath, json, { flag: 'w', spaces: 2 })
+    debugState('writeState (%y) %y',filePath,json)
     //      debug('writeState %y',filePath)
   }
 
