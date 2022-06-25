@@ -2753,18 +2753,18 @@ class BacaraMachine extends Machine {
                 }
               }
               if (midiNote>=0 && midiNote<=127) {
-                const switchSide = (this.interface.getParameter('deviate', 'modulated') && this.interface.getParameter('deviate', 'modulated') >= Random.getRandomInt(100))
-                const split = this.interface.getParameter('split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
-                const dev =  (midiNote <= split) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
-
-                midiNote += this.interface.getParameter('transpose', 'modulated') + this.interface.getParameter(`device.${dev}.transpose`, 'modulated') + this.octave(this.stepIdx)
-
                 const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
                 const midiNoteFromBase = (midiNote + this.interface.getParameter('base', 'modulated')) % 12
                 const midiNoteBase =  midiNote - midiNoteFromBase
                 if (scaleMapping && scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
                   midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
                 }
+
+                const switchSide = (this.interface.getParameter('deviate', 'modulated') && this.interface.getParameter('deviate', 'modulated') >= Random.getRandomInt(100))
+                const split = this.interface.getParameter('split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
+                const dev =  (midiNote <= split) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
+
+                midiNote += this.interface.getParameter('transpose', 'modulated') + this.interface.getParameter(`device.${dev}.transpose`, 'modulated') + this.octave(this.stepIdx)
 
 
                 if (midiNote>=0 && midiNote<=127) {
