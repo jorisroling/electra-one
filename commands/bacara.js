@@ -2784,9 +2784,26 @@ class BacaraMachine extends Machine {
                   midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
                 }
 
-                const switchSide = (this.interface.getParameter('deviate', 'modulated') && this.interface.getParameter('deviate', 'modulated') >= Random.getRandomInt(100))
-                const split = this.interface.getParameter('split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
-                const dev =  (midiNote <= split) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
+                const deviationDeviceProbability = this.interface.getParameter('deviations.device.probability', 'modulated')
+                const deviationDeviceMap = this.getState('deviations.device')
+//                const switchSide = (this.interface.getParameter('deviations.device.density', 'modulated') && this.interface.getParameter('deviations.device.density', 'modulated') >= Random.getRandomInt(100))
+                let switchSide = false
+                if (Array.isArray(deviationDeviceMap) && deviationDeviceMap.length>this.stepIdx) {
+                  if (deviationDeviceMap[this.stepIdx]) {
+                    if (deviationDeviceProbability) {
+                      switchSide = (deviationDeviceProbability >= Random.getRandomInt(100)) ? 1 : 0
+                    } else {
+                      switchSide = deviationDeviceMap[this.stepIdx]
+                    }
+                  }
+                } else {
+                  if (deviationDeviceProbability) {
+                    switchSide = (deviationDeviceProbability >= Random.getRandomInt(100)) ? 1 : 0
+                  }
+                }
+
+                const split = this.interface.getParameter('deviations.device.split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
+                const dev =  (midiNote > split) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
 
                 midiNote += this.interface.getParameter('transpose', 'modulated') + this.interface.getParameter(`device.${dev}.transpose`, 'modulated') + this.octave(this.stepIdx)
 
