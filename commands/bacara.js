@@ -1660,6 +1660,45 @@ class BacaraMachine extends Machine {
             if (origin == 'surface') this.deviationsRotate('device', originalValue)
           },
         },
+        accent: {
+          density: (elementPath, value, origin) => {
+            if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.accent.euclidian',0)
+            if (origin == 'surface') this.deviationsGenerate('accent',true)
+          },
+          euclidian: (elementPath, value, origin) => {
+            if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.accent.density',0)
+            if (origin == 'surface') this.deviationsGenerate('accent',true)
+          },
+          rotation: (elementPath, value, origin, originalValue) => {
+            if (origin == 'surface') this.deviationsRotate('accent', originalValue)
+          },
+        },
+        mute: {
+          density: (elementPath, value, origin) => {
+            if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.mute.euclidian',0)
+            if (origin == 'surface') this.deviationsGenerate('mute',true)
+          },
+          euclidian: (elementPath, value, origin) => {
+            if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.mute.density',0)
+            if (origin == 'surface') this.deviationsGenerate('mute',true)
+          },
+          rotation: (elementPath, value, origin, originalValue) => {
+            if (origin == 'surface') this.deviationsRotate('mute', originalValue)
+          },
+        },
+        octave: {
+          density: (elementPath, value, origin) => {
+            if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.octave.euclidian',0)
+            if (origin == 'surface') this.deviationsGenerate('octave',true)
+          },
+          euclidian: (elementPath, value, origin) => {
+            if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.octave.density',0)
+            if (origin == 'surface') this.deviationsGenerate('octave',true)
+          },
+          rotation: (elementPath, value, origin, originalValue) => {
+            if (origin == 'surface') this.deviationsRotate('octave', originalValue)
+          },
+        },
       },
       device: {
         A: {
@@ -2750,149 +2789,129 @@ class BacaraMachine extends Machine {
           if (note.ticks == shiftedTicks) {
 
             if (this.stepIdx < this.interface.getParameter('steps', 'modulated') && this.sounding(this.stepIdx)) {
-              let midiNote = note.midi
 
-              const deviationNoteProbability = this.interface.getParameter('deviations.note.probability', 'modulated')
-              const deviationNoteMap = this.getState('deviations.note')
-              if (Array.isArray(deviationNoteMap) && deviationNoteMap.length>this.stepIdx) {
-                if (deviationNoteMap[this.stepIdx]) {
+              // DEVIATIONS MUTE
+              let midiMute = false
+              const deviationMuteProbability = this.interface.getParameter('deviations.mute.probability', 'modulated')
+              const deviationMuteMap = this.getState('deviations.mute')
+              if (Array.isArray(deviationMuteMap) && deviationMuteMap.length>this.stepIdx) {
+                if (deviationMuteMap[this.stepIdx]) {
+                  if (deviationMuteProbability) {
+                    midiMute = (deviationMuteProbability >= Random.getRandomInt(100)) ? 1 : 0
+                  } else {
+                    midiMute = deviationMuteMap[this.stepIdx]
+                  }
+                }
+              } else {
+                midiMute = (deviationMuteProbability >= Random.getRandomInt(100)) ? 1 : 0
+              }
+              if (!midiMute) {
+
+                let midiNote = note.midi
+
+                // DEVIATIONS NOTE
+                const deviationNoteProbability = this.interface.getParameter('deviations.note.probability', 'modulated')
+                const deviationNoteMap = this.getState('deviations.note')
+                if (Array.isArray(deviationNoteMap) && deviationNoteMap.length>this.stepIdx) {
+                  if (deviationNoteMap[this.stepIdx]) {
+                    if (deviationNoteProbability) {
+                      const addNote = (deviationNoteProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('note') : 0
+                      if ((midiNote+addNote)>=0 && (midiNote+addNote)<=127) {
+                        midiNote += addNote
+                      }
+                    } else {
+                      const addNote = deviationNoteMap[this.stepIdx]
+                      if ((midiNote+addNote)>=0 && (midiNote+addNote)<=127) {
+                        midiNote += addNote
+                      }
+                    }
+                  }
+                } else {
                   if (deviationNoteProbability) {
                     const addNote = (deviationNoteProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('note') : 0
                     if ((midiNote+addNote)>=0 && (midiNote+addNote)<=127) {
                       midiNote += addNote
                     }
-                  } else {
-                    const addNote = deviationNoteMap[this.stepIdx]
-                    if ((midiNote+addNote)>=0 && (midiNote+addNote)<=127) {
-                      midiNote += addNote
-                    }
                   }
                 }
-              } else {
-                if (deviationNoteProbability) {
-                  const addNote = (deviationNoteProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('note') : 0
-                  if ((midiNote+addNote)>=0 && (midiNote+addNote)<=127) {
-                    midiNote += addNote
-                  }
-                }
-              }
-              if (midiNote>=0 && midiNote<=127) {
-                const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
-                const midiNoteFromBase = (midiNote + this.interface.getParameter('base', 'modulated')) % 12
-                const midiNoteBase =  midiNote - midiNoteFromBase
-                if (scaleMapping && scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
-                  midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
-                }
-
-                const deviationDeviceProbability = this.interface.getParameter('deviations.device.probability', 'modulated')
-                const deviationDeviceMap = this.getState('deviations.device')
-//                const switchSide = (this.interface.getParameter('deviations.device.density', 'modulated') && this.interface.getParameter('deviations.device.density', 'modulated') >= Random.getRandomInt(100))
-                let switchSide = false
-                if (Array.isArray(deviationDeviceMap) && deviationDeviceMap.length>this.stepIdx) {
-                  if (deviationDeviceMap[this.stepIdx]) {
-                    if (deviationDeviceProbability) {
-                      switchSide = (deviationDeviceProbability >= Random.getRandomInt(100)) ? 1 : 0
-                    } else {
-                      switchSide = deviationDeviceMap[this.stepIdx]
-                    }
-                  }
-                } else {
-                  if (deviationDeviceProbability) {
-                    switchSide = (deviationDeviceProbability >= Random.getRandomInt(100)) ? 1 : 0
-                  }
-                }
-
-                const split = this.interface.getParameter('deviations.device.split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
-                const dev =  (midiNote > split) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
-
-                midiNote += this.interface.getParameter('transpose', 'modulated') + this.interface.getParameter(`device.${dev}.transpose`, 'modulated') + this.octave(this.stepIdx)
-
-
                 if (midiNote>=0 && midiNote<=127) {
+                  const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
+                  const midiNoteFromBase = (midiNote + this.interface.getParameter('base', 'modulated')) % 12
+                  const midiNoteBase =  midiNote - midiNoteFromBase
+                  if (scaleMapping && scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
+                    midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
+                  }
 
-                  let midiVelocity = 127 * note.velocity
-                  const deviationVelocityProbability = this.interface.getParameter('deviations.velocity.probability', 'modulated')
-                  const deviationVelocityMap = this.getState('deviations.velocity')
-                  if (Array.isArray(deviationVelocityMap) && deviationVelocityMap.length>this.stepIdx) {
-                    if (deviationVelocityMap[this.stepIdx]) {
-                      if (deviationVelocityProbability) {
-                        midiVelocity += (deviationVelocityProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('velocity') : 0
+                  // DEVIATIONS DEVICE
+                  const deviationDeviceProbability = this.interface.getParameter('deviations.device.probability', 'modulated')
+                  const deviationDeviceMap = this.getState('deviations.device')
+  //                const switchSide = (this.interface.getParameter('deviations.device.density', 'modulated') && this.interface.getParameter('deviations.device.density', 'modulated') >= Random.getRandomInt(100))
+                  let switchSide = false
+                  if (Array.isArray(deviationDeviceMap) && deviationDeviceMap.length>this.stepIdx) {
+                    if (deviationDeviceMap[this.stepIdx]) {
+                      if (deviationDeviceProbability) {
+                        switchSide = (deviationDeviceProbability >= Random.getRandomInt(100)) ? 1 : 0
                       } else {
-                        midiVelocity += deviationVelocityMap[this.stepIdx]
+                        switchSide = deviationDeviceMap[this.stepIdx]
                       }
                     }
                   } else {
-                    if (deviationVelocityProbability) {
-                      midiVelocity += (deviationVelocityProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('velocity') : 0
+                    if (deviationDeviceProbability) {
+                      switchSide = (deviationDeviceProbability >= Random.getRandomInt(100)) ? 1 : 0
                     }
                   }
 
-                  if (midiVelocity<0) midiVelocity=0
-                  if (midiVelocity>127) midiVelocity=127
+                  const split = this.interface.getParameter('deviations.device.split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
+                  const dev =  (midiNote > split) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
+
+                  midiNote += this.interface.getParameter('transpose', 'modulated') + this.interface.getParameter(`device.${dev}.transpose`, 'modulated') + this.octave(this.stepIdx)
 
 
-/*                  console.log(`note ${midiNote} velo ${midiVelocity}  ${this.interface.getParameter('base', 'modulated')}`)*/
+                  if (midiNote>=0 && midiNote<=127) {
 
-                  const portName = this.getState(`device.${dev}.portName`)
-                  if (portName && !this.interface.getParameter(`device.${dev}.mute`, 'modulated') && this.interface.getParameter('probability', 'modulated') >= Random.getRandomInt(100)) {
-                    const deviceNotes = this.getState(`device.${dev}.notes`,0)
-                    let channelAdd = this.getState(`device.${dev}.channelAdd`,0)
-                    const dispatch = this.interface.getParameter(`device.${dev}.dispatch`, 'modulated')
-                    let dispatchMode
-                    let dispatchValue
-                    if (dispatch == 0) { // OFF
-                      dispatchMode = 'off'
-                      dispatchValue = 0
-                      channelAdd = 0
-                    } else if (dispatch >= 1 && dispatch <= 15) { // ROUND ROBIN
-                      dispatchMode = 'round robin'
-                      dispatchValue = dispatch + 1
-                      channelAdd = (dispatch ? (deviceNotes % dispatchValue) : 0)
-                    } else if (dispatch >= 16 && dispatch <= 30) { // RANDOM
-                      dispatchMode = 'random'
-                      dispatchValue = (dispatch - 16 ) + 2
-                      channelAdd = Random.getRandomInt(dispatchValue - 1)
-                    } else if (dispatch >= 31 && dispatch <= 45) { // OTHER
-                      dispatchMode = 'other'
-                      dispatchValue = (dispatch - 31) + 2
-                      let tmp
-                      do {
-                        tmp = Random.getRandomInt(dispatchValue - 1)
-                      } while (channelAdd == tmp)
-                      channelAdd = tmp
-                    }
-                    this.setState(`device.${dev}.channelAdd`,channelAdd)
-                    const channel = ((this.interface.getParameter(`device.${dev}.channel`, 'modulated') - 1) + channelAdd) % 16
-                    this.setState(`device.${dev}.notes`,deviceNotes+1)
-                    debugMidiNoteOn('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
-
-                    debugDispatch('device %y  step %y  base %y  dispatch %y  mode %y  value %y  add %y  channel %y',dev,this.stepIdx,this.interface.getParameter(`device.${dev}.channel`, 'modulated'),dispatch,dispatchMode,dispatchValue,channelAdd,channel+1)
-    //                console.log(`Dev ${dev}  Step: ${this.stepIdx}  base channel ${(this.interface.getParameter(`device.${dev}.channel`, 'modulated'))}  dispatch ${dispatch}  mode ${dispatchMode}  value ${dispatchValue}  channelAdd ${channelAdd}  channel ${channel+1}`)
-
-                    if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
-                      Midi.send(portName, 'noteoff', {
-                        note: midiNote,
-                        velocity: 127,
-                        channel: channel,
-                        sendShadowMidiToBacaraPort: true,
-                        shadowChannel: dev == 'A' ? 0 : 1,
-                      })
+                    // DEVIATIONS VELOCITY
+                    let midiVelocity = 127 * note.velocity
+                    const deviationVelocityProbability = this.interface.getParameter('deviations.velocity.probability', 'modulated')
+                    const deviationVelocityMap = this.getState('deviations.velocity')
+                    if (Array.isArray(deviationVelocityMap) && deviationVelocityMap.length>this.stepIdx) {
+                      if (deviationVelocityMap[this.stepIdx]) {
+                        if (deviationVelocityProbability) {
+                          midiVelocity += (deviationVelocityProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('velocity') : 0
+                        } else {
+                          midiVelocity += deviationVelocityMap[this.stepIdx]
+                        }
+                      }
+                    } else {
+                      if (deviationVelocityProbability) {
+                        midiVelocity += (deviationVelocityProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('velocity') : 0
+                      }
                     }
 
 
+                    // DEVIATIONS ACCENT
+                    let midiAccent = false
+                    const deviationAccentProbability = this.interface.getParameter('deviations.accent.probability', 'modulated')
+                    const deviationAccentMap = this.getState('deviations.accent')
+                    if (Array.isArray(deviationAccentMap) && deviationAccentMap.length>this.stepIdx) {
+                      if (deviationAccentMap[this.stepIdx]) {
+                        if (deviationAccentProbability) {
+                          midiAccent = (deviationAccentProbability >= Random.getRandomInt(100)) ? 1 : 0
+                        } else {
+                          midiAccent = deviationAccentMap[this.stepIdx]
+                        }
+                      }
+                    } else {
+                      midiAccent = (deviationAccentProbability >= Random.getRandomInt(100)) ? 1 : 0
+                    }
+                    if (midiAccent) midiVelocity=127
 
-                    Midi.send(portName, 'noteon', {
-                      note: midiNote,
-                      velocity: midiVelocity,
-                      channel: channel,
-                      sendShadowMidiToBacaraPort: true,
-                      shadowChannel: dev == 'A' ? 0 : 1,
-                    })
-                    this.midiCache.setValue(portName, channel, 'note', midiNote, true)
 
+                    if (midiVelocity<0) midiVelocity=0
+                    if (midiVelocity>127) midiVelocity=127
+
+
+                    // DEVIATIONS DURATION
                     let midiDuration = note.durationTicks
-
-/*                      console.log(midiDuration)*/
                     const deviationDurationProbability = this.interface.getParameter('deviations.duration.probability', 'modulated')
                     const deviationDurationMap = this.getState('deviations.duration')
                     if (Array.isArray(deviationDurationMap) && deviationDurationMap.length>this.stepIdx) {
@@ -2909,29 +2928,88 @@ class BacaraMachine extends Machine {
                       }
                     }
 
-/*                                debug('duration %y (was %y)',midiDuration,note.durationTicks)*/
+  /*                                debug('duration %y (was %y)',midiDuration,note.durationTicks)*/
+
+  /*                  console.log(`note ${midiNote} velo ${midiVelocity}  ${this.interface.getParameter('base', 'modulated')}`)*/
+
+                    const portName = this.getState(`device.${dev}.portName`)
+                  if (portName && !this.interface.getParameter(`device.${dev}.mute`, 'modulated') /* && this.interface.getParameter('probability', 'modulated') >= Random.getRandomInt(100) */) {
+                      const deviceNotes = this.getState(`device.${dev}.notes`,0)
+                      let channelAdd = this.getState(`device.${dev}.channelAdd`,0)
+                      const dispatch = this.interface.getParameter(`device.${dev}.dispatch`, 'modulated')
+                      let dispatchMode
+                      let dispatchValue
+                      if (dispatch == 0) { // OFF
+                        dispatchMode = 'off'
+                        dispatchValue = 0
+                        channelAdd = 0
+                      } else if (dispatch >= 1 && dispatch <= 15) { // ROUND ROBIN
+                        dispatchMode = 'round robin'
+                        dispatchValue = dispatch + 1
+                        channelAdd = (dispatch ? (deviceNotes % dispatchValue) : 0)
+                      } else if (dispatch >= 16 && dispatch <= 30) { // RANDOM
+                        dispatchMode = 'random'
+                        dispatchValue = (dispatch - 16 ) + 2
+                        channelAdd = Random.getRandomInt(dispatchValue - 1)
+                      } else if (dispatch >= 31 && dispatch <= 45) { // OTHER
+                        dispatchMode = 'other'
+                        dispatchValue = (dispatch - 31) + 2
+                        let tmp
+                        do {
+                          tmp = Random.getRandomInt(dispatchValue - 1)
+                        } while (channelAdd == tmp)
+                        channelAdd = tmp
+                      }
+                      this.setState(`device.${dev}.channelAdd`,channelAdd)
+                      const channel = ((this.interface.getParameter(`device.${dev}.channel`, 'modulated') - 1) + channelAdd) % 16
+                      this.setState(`device.${dev}.notes`,deviceNotes+1)
+                      debugMidiNoteOn('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
+
+                      debugDispatch('device %y  step %y  base %y  dispatch %y  mode %y  value %y  add %y  channel %y note %y velocity %y duration %y',dev,this.stepIdx,this.interface.getParameter(`device.${dev}.channel`, 'modulated'),dispatch,dispatchMode,dispatchValue,channelAdd,channel+1,midiNote,midiVelocity,midiDuration)
+      //                console.log(`Dev ${dev}  Step: ${this.stepIdx}  base channel ${(this.interface.getParameter(`device.${dev}.channel`, 'modulated'))}  dispatch ${dispatch}  mode ${dispatchMode}  value ${dispatchValue}  channelAdd ${channelAdd}  channel ${channel+1}`)
+
+                      if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
+                        Midi.send(portName, 'noteoff', {
+                          note: midiNote,
+                          velocity: 127,
+                          channel: channel,
+                          sendShadowMidiToBacaraPort: true,
+                          shadowChannel: dev == 'A' ? 0 : 1,
+                        })
+                      }
 
 
-                    const b = Math.floor(midiDuration / ticksPerStep) * ticksPerStep
-                    const r = (midiDuration % ticksPerStep) * this.interface.getParameter('gate', 'modulated')
 
-                    setTimeout((portName, midiNote, channel, shadowChannel) => {
-                      debugMidiNoteOff('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
-                      Midi.send(portName, 'noteoff', {
+                      Midi.send(portName, 'noteon', {
                         note: midiNote,
-                        velocity: 127,
-                        channel,
+                        velocity: midiVelocity,
+                        channel: channel,
                         sendShadowMidiToBacaraPort: true,
-                        shadowChannel,
+                        shadowChannel: dev == 'A' ? 0 : 1,
                       })
-                      this.midiCache.clearValue(portName, channel, 'note', midiNote)
-                    }, b + r, portName, midiNote, channel, dev == 'A' ? 0 : 1)
+                      this.midiCache.setValue(portName, channel, 'note', midiNote, true)
+
+                      const b = Math.floor(midiDuration / ticksPerStep) * ticksPerStep
+                      const r = (midiDuration % ticksPerStep) * this.interface.getParameter('gate', 'modulated')
+
+                      setTimeout((portName, midiNote, channel, shadowChannel) => {
+                        debugMidiNoteOff('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
+                        Midi.send(portName, 'noteoff', {
+                          note: midiNote,
+                          velocity: 127,
+                          channel,
+                          sendShadowMidiToBacaraPort: true,
+                          shadowChannel,
+                        })
+                        this.midiCache.clearValue(portName, channel, 'note', midiNote)
+                      }, b + r, portName, midiNote, channel, dev == 'A' ? 0 : 1)
+                    }
+                  } else {
+                    debugMidiNoteError('MIDI B note out of range: %y', midiNote)
                   }
                 } else {
-                  debugMidiNoteError('MIDI B note out of range: %y', midiNote)
+                  debugMidiNoteError('MIDI A note out of range: %y', midiNote)
                 }
-              } else {
-                debugMidiNoteError('MIDI A note out of range: %y', midiNote)
               }
             }
           }

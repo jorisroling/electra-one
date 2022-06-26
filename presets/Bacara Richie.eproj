@@ -22645,12 +22645,12 @@
           "textValues": [
             {
               "value": 0,
-              "label": "Only Device A",
+              "label": "Device A",
               "index": 0
             },
             {
               "value": 127,
-              "label": "Only Device B",
+              "label": "Device B",
               "index": 1
             }
           ],
