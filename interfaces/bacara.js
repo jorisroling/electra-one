@@ -560,8 +560,8 @@ module.exports = {
           default: 0,
           unit: 'notes',
         },
-        probability: {
-          name: 'Note Probability',
+        density: {
+          name: 'Note Density',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -575,8 +575,8 @@ module.exports = {
           default: 0,
           unit: '%',
         },
-        chance: {
-          name: 'Note Chance',
+        probability: {
+          name: 'Note Probability',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -652,8 +652,8 @@ module.exports = {
           max: 127,
           default: 0,
         },
-        probability: {
-          name: 'Velocity Probability',
+        density: {
+          name: 'Velocity Density',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -667,8 +667,8 @@ module.exports = {
           default: 0,
           unit: '%',
         },
-        chance: {
-          name: 'Velocity Chance',
+        probability: {
+          name: 'Velocity Probability',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -715,9 +715,9 @@ module.exports = {
           precision: 0,
         },
       },
-      length: {
+      duration: {
         maximum: {
-          name: 'Length Maximum',
+          name: 'Duration Maximum',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -732,7 +732,7 @@ module.exports = {
           unit: '%',
         },
         minimum: {
-          name: 'Length Minimum',
+          name: 'Duration Minimum',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -746,8 +746,8 @@ module.exports = {
           default: 0,
           unit: '%',
         },
-        probability: {
-          name: 'Length Probability',
+        density: {
+          name: 'Duration Density',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -761,8 +761,8 @@ module.exports = {
           default: 0,
           unit: '%',
         },
-        chance: {
-          name: 'Length Chance',
+        probability: {
+          name: 'Duration Probability',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -777,7 +777,7 @@ module.exports = {
           unit: '%',
         },
         euclidian: {
-          name: 'Length Euclidian',
+          name: 'Duration Euclidian',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -793,7 +793,7 @@ module.exports = {
           precision: 0,
         },
         rotation: {
-          name: 'Length Rotation',
+          name: 'Duration Rotation',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -825,8 +825,8 @@ module.exports = {
           default: 127,
           unit: 'note',
         },
-        probability: {
-          name: 'Device Probability',
+        density: {
+          name: 'Device Density',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -840,8 +840,8 @@ module.exports = {
           default: 0,
           unit: '%',
         },
-        chance: {
-          name: 'Device Chance',
+        probability: {
+          name: 'Device Probability',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -889,8 +889,8 @@ module.exports = {
         },
       },
       accent: {
-        probability: {
-          name: 'Accent Probability',
+        density: {
+          name: 'Accent Density',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -904,8 +904,8 @@ module.exports = {
           default: 0,
           unit: '%',
         },
-        chance: {
-          name: 'Accent Chance',
+        probability: {
+          name: 'Accent Probability',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -953,8 +953,8 @@ module.exports = {
         },
       },
       mute: {
-        probability: {
-          name: 'Mute Probability',
+        density: {
+          name: 'Mute Density',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -968,8 +968,8 @@ module.exports = {
           default: 0,
           unit: '%',
         },
-        chance: {
-          name: 'Mute Chance',
+        probability: {
+          name: 'Mute Probability',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -1017,8 +1017,8 @@ module.exports = {
         },
       },
       octave: {
-        probability: {
-          name: 'Octave Probability',
+        density: {
+          name: 'Octave Density',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -1032,8 +1032,8 @@ module.exports = {
           default: 0,
           unit: '%',
         },
-        chance: {
-          name: 'Octave Chance',
+        probability: {
+          name: 'Octave Probability',
           type: 'parameter',
           surface: {
             type: 'nrpn',

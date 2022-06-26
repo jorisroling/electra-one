@@ -7040,7 +7040,7 @@
       "type": "fader",
       "deviceId": 17,
       "color": "F49500",
-      "name": "PROBABILITY",
+      "name": "Density",
       "values": [
         {
           "id": "value",
@@ -7130,7 +7130,7 @@
       "type": "fader",
       "deviceId": 17,
       "color": "529DEC",
-      "name": "PROBABILITY",
+      "name": "Density",
       "values": [
         {
           "id": "value",
@@ -7220,7 +7220,7 @@
       "type": "fader",
       "deviceId": 17,
       "color": "F49500",
-      "name": "Chance",
+      "name": "Probability",
       "values": [
         {
           "id": "value",
@@ -7235,7 +7235,7 @@
           "textValues": [
             {
               "value": 0,
-              "label": "Never",
+              "label": "Fixed",
               "index": 0
             },
             {
@@ -7305,7 +7305,7 @@
       "type": "fader",
       "deviceId": 17,
       "color": "529DEC",
-      "name": "Chance",
+      "name": "Probability",
       "values": [
         {
           "id": "value",
@@ -7320,7 +7320,7 @@
           "textValues": [
             {
               "value": 0,
-              "label": "Never",
+              "label": "Fixed",
               "index": 0
             },
             {
@@ -7363,7 +7363,7 @@
       "id": "503f5995-d790-4138-ad15-de1043e8b238",
       "slotId": 456,
       "type": "label",
-      "name": "Length",
+      "name": "Duration",
       "span": 3,
       "color": "03A598",
       "values": [
@@ -7420,7 +7420,7 @@
       "type": "fader",
       "deviceId": 17,
       "color": "03A598",
-      "name": "PROBABILITY",
+      "name": "Density",
       "values": [
         {
           "id": "value",
@@ -7520,7 +7520,7 @@
       "type": "fader",
       "deviceId": 17,
       "color": "C44795",
-      "name": "PROBABILITY",
+      "name": "Density",
       "values": [
         {
           "id": "value",
@@ -7610,7 +7610,7 @@
       "type": "fader",
       "deviceId": 17,
       "color": "03A598",
-      "name": "Chance",
+      "name": "Probability",
       "values": [
         {
           "id": "value",
@@ -7625,7 +7625,7 @@
           "textValues": [
             {
               "value": 0,
-              "label": "Never",
+              "label": "Fixed",
               "index": 0
             },
             {
@@ -7670,7 +7670,7 @@
       "type": "fader",
       "deviceId": 17,
       "color": "C44795",
-      "name": "Chance",
+      "name": "Probability",
       "values": [
         {
           "id": "value",
@@ -7685,7 +7685,7 @@
           "textValues": [
             {
               "value": 0,
-              "label": "Never",
+              "label": "Fixed",
               "index": 0
             },
             {
@@ -7771,7 +7771,7 @@
       "type": "fader",
       "deviceId": 17,
       "color": "FFFFFF",
-      "name": "PROBABILITY",
+      "name": "Density",
       "values": [
         {
           "id": "value",
@@ -7836,7 +7836,7 @@
       "type": "fader",
       "deviceId": 17,
       "color": "F45C51",
-      "name": "PROBABILITY",
+      "name": "Density",
       "values": [
         {
           "id": "value",
@@ -7901,7 +7901,7 @@
       "type": "fader",
       "deviceId": 17,
       "color": "F49500",
-      "name": "PROBABILITY",
+      "name": "Density",
       "values": [
         {
           "id": "value",
@@ -7966,7 +7966,7 @@
       "type": "fader",
       "deviceId": 17,
       "color": "FFFFFF",
-      "name": "Chance",
+      "name": "Probability",
       "values": [
         {
           "id": "value",
@@ -7981,7 +7981,7 @@
           "textValues": [
             {
               "value": 0,
-              "label": "Never",
+              "label": "Fixed",
               "index": 0
             },
             {
@@ -8026,7 +8026,7 @@
       "type": "fader",
       "deviceId": 17,
       "color": "F45C51",
-      "name": "Chance",
+      "name": "Probability",
       "values": [
         {
           "id": "value",
@@ -8041,7 +8041,7 @@
           "textValues": [
             {
               "value": 0,
-              "label": "Never",
+              "label": "Fixed",
               "index": 0
             },
             {
@@ -8086,7 +8086,7 @@
       "type": "fader",
       "deviceId": 17,
       "color": "F49500",
-      "name": "Chance",
+      "name": "Probability",
       "values": [
         {
           "id": "value",
@@ -8101,7 +8101,7 @@
           "textValues": [
             {
               "value": 0,
-              "label": "Never",
+              "label": "Fixed",
               "index": 0
             },
             {
