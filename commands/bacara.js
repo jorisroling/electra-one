@@ -2391,8 +2391,7 @@ class BacaraMachine extends Machine {
 
       const split = this.interface.getParameter('split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
       let deviceA = (split && noteMidiTransposed > split)
-      let deviceList = [deviceA ? deviceAColor('A') : deviceBColor('B')]
-      let deviationCount=0
+      let deviceList = []
       for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
         let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.interface.getParameter('steps', 'modulated')) // steps?
         if (shiftedTicks < 0) {
@@ -2409,10 +2408,9 @@ class BacaraMachine extends Machine {
 
           if (deviatedNote  == noteMidi && note.ticks == shiftedTicks) {
             if (this.deviationsValue('device',shiftedTicks / ticksPerStep)) {
-              deviceA = !deviceA
-              if (!deviationCount) deviceList = []
+              deviceList.push([deviceA ? deviceBColor('B') : deviceAColor('A')])
+            } else {
               deviceList.push([deviceA ? deviceAColor('A') : deviceBColor('B')])
-              deviationCount++
             }
           }
         })
