@@ -69,7 +69,13 @@ const E1_FIRMWARE_PRESET_REQUEST_VERSION = 'v2.1.2'
 let e1_system_info
 
 const phaseDetection = true
-const showPatternParameters = ['transpose', 'scales', 'base', 'split', 'shift', 'steps']
+const showPatternParameters = ['transpose', 'scales', 'base', 'split', 'shift', 'steps',
+'deviations.note.maximum','deviations.note.minimum','deviations.note.density','deviations.note.euclidian','deviations.note.rotation',
+'deviations.velocity.maximum','deviations.velocity.minimum','deviations.velocity.density','deviations.velocity.euclidian','deviations.velocity.rotation',
+'deviations.accent.density','deviations.accent.euclidian','deviations.accent.rotation',
+'deviations.mute.density','deviations.mute.euclidian','deviations.mute.rotation',
+'deviations.device.density','deviations.device.euclidian','deviations.device.rotation',
+]
 const showDrumPatternParameters = ['drums.density', 'drums.velocity', 'drums.steps']
 
 const toneJSmidi = require('@tonejs/midi')
@@ -1390,6 +1396,16 @@ class BacaraMachine extends Machine {
 
 //// DEVIATION FUNCTIONS
 
+    this.deviationsValue = (type,step) => {
+      const map = this.getState(`deviations.${type}`)
+      let result = 0
+      if (Array.isArray(map) && step<map.length) {
+        result = map[step]
+      }
+      return result
+    }
+
+
     this.deviationsPickFromRange = (type) => {
       let minimum
       let maximum
@@ -2311,6 +2327,7 @@ class BacaraMachine extends Machine {
     }
     const accentedColor = chalk.bgHex('#FF8800')
     const normalColor = chalk.bgHex('#00BB00')
+    const deviatedColor = chalk.bgHex('#BB0000')
     const disabledColor = chalk.bgHex('#666666')
 
     const deviceAColor = chalk.hex('#FF0000')
@@ -2320,12 +2337,14 @@ class BacaraMachine extends Machine {
 
     const grid = []
 
+/*          {colSpan:size, content:pattern.header.name + `            normal ${normalColor('  ')}   accented ${accentedColor('  ')}   disabled ${disabledColor('  ')}`}*/
+
     let table = new Table(
       {
         head: [
           'Device',
           'Note',
-          {colSpan:size, content:pattern.header.name + `            normal ${normalColor('  ')}   accented ${accentedColor('  ')}   disabled ${disabledColor('  ')}`}
+          {colSpan:size,content:`                             normal ${normalColor('  ')}   deviated ${deviatedColor('  ')}   accented ${accentedColor('  ')}   muted ${disabledColor('  ')}`}
         ]
         /*,style:{head:[],border:[]}*/
       }
@@ -2334,8 +2353,18 @@ class BacaraMachine extends Machine {
     const notes = []
 
     _.get(pattern, 'tracks.0.notes', []).forEach( note => {
-      if (notes.indexOf(note.midi) < 0) {
-        notes.push(note.midi)
+      let midiNote = note.midi
+
+      let shiftedTicks = (note.ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.interface.getParameter('steps', 'modulated')) // steps?
+      if (shiftedTicks < 0) {
+        shiftedTicks +=  ticksPerStep * this.interface.getParameter('steps', 'modulated')
+      }
+
+      const addNote = this.deviationsValue('note',shiftedTicks / ticksPerStep)
+      if ((midiNote+addNote)>=0 && (midiNote+addNote)<127) midiNote += addNote
+
+      if (notes.indexOf(midiNote) < 0) {
+        notes.push(midiNote)
       }
     })
     notes.sort()
@@ -2361,7 +2390,29 @@ class BacaraMachine extends Machine {
 
 
       const split = this.interface.getParameter('split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
-      const deviceBrow = (split && noteMidiTransposed > split)
+      let deviceBrow = (split && noteMidiTransposed > split)
+
+      for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
+        let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.interface.getParameter('steps', 'modulated')) // steps?
+        if (shiftedTicks < 0) {
+          shiftedTicks +=  ticksPerStep * this.interface.getParameter('steps', 'modulated')
+        }
+        _.get(pattern, 'tracks.0.notes', []).forEach( note => {
+          let deviatedNote = note.midi
+          let addNote = this.deviationsValue('note',shiftedTicks / ticksPerStep)
+          if ((deviatedNote+addNote)>=0 && (deviatedNote+addNote)<127) {
+            deviatedNote += addNote
+          } else {
+            addNote = 0
+          }
+
+          if (deviatedNote  == noteMidi && note.ticks == shiftedTicks) {
+            if (this.deviationsValue('device',shiftedTicks / ticksPerStep)) deviceBrow = !deviceBrow
+          }
+        })
+      }
+
+
       const arr = [
         {hAlign:'center', content:deviceBrow ? deviceAColor('A') : deviceBColor('B') },
         {hAlign:'center', content:TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })/*+` ${noteMidi}`*/}
@@ -2374,9 +2425,32 @@ class BacaraMachine extends Machine {
         //debug ('ticks %y  shiftedTicks %y',ticks,shiftedTicks)
         let chNote = '  '
         _.get(pattern, 'tracks.0.notes', []).forEach( note => {
-          if (note.midi  == noteMidi && note.ticks == shiftedTicks) {
+
+          let deviatedNote = note.midi
+          let addNote = this.deviationsValue('note',shiftedTicks / ticksPerStep)
+          if ((deviatedNote+addNote)>=0 && (deviatedNote+addNote)<127) {
+            deviatedNote += addNote
+          } else {
+            addNote = 0
+          }
+
+          if (deviatedNote  == noteMidi && note.ticks == shiftedTicks) {
             const count = Math.ceil(note.durationTicks / ticksPerStep)
-            const color = this.sounding(ticks / ticksPerStep) ? (note.velocity == 1 ? accentedColor : normalColor) : disabledColor
+            const mute = this.deviationsValue('mute',ticks / ticksPerStep)
+
+
+            let velocity = (note.velocity * 127) + (this.deviationsValue('velocity',ticks / ticksPerStep))
+            if (velocity<0) velocity=0
+            if (velocity>127) velocity=127
+
+          const soundColor = addNote ? chalk.bgHex(`#${Math.floor(velocity).toString(16).padStart(2, '0')}0000`) : chalk.bgHex(`#00${Math.floor(velocity).toString(16).padStart(2, '0')}00`)
+
+            const noSoundColor = chalk.bgHex(`#${Math.floor(velocity).toString(16).padStart(2, '0')}${Math.floor(velocity).toString(16).padStart(2, '0')}${Math.floor(velocity).toString(16).padStart(2, '0')}`)
+
+            let accent = this.deviationsValue('accent',ticks / ticksPerStep)
+
+            const color = !mute ? ((velocity == 127 || accent) ? accentedColor : soundColor/*normalColor*/) : noSoundColor/*disabledColor*/
+
             const rep = count * 2 + ((count - 1) * 3)
             chNote = {colSpan:count, content:color(' '.repeat(rep >= 0 ? rep : 0))}
             grid[row][Math.floor(ticks / ticksPerStep)] = this.sounding(ticks / ticksPerStep) ? true : false
@@ -2530,40 +2604,6 @@ class BacaraMachine extends Machine {
       }
     }
     return result
-  }
-
-  euclidian(muteSteps, steps, muteShift) {
-    if (!muteSteps) {
-      muteSteps = 0
-    }
-    if (!steps) {
-      steps = 16
-    }
-    if (!muteShift) {
-      muteShift = 0
-    }
-    function arrayRotate(arr, reverse) {
-      if (reverse) {
-        arr.unshift(arr.pop())
-      } else {
-        arr.push(arr.shift())
-      }
-      return arr
-    }
-    let pat = euclideanRhythms.getPattern(muteSteps, steps)
-    if (muteShift) {
-      let p = Math.abs(muteShift)
-      while (p--) {
-        pat = arrayRotate(pat, muteShift > 0)
-      }
-    }
-//    this.state.sounding = []
-//    for (let idx = 0; idx < steps; idx++) {
-//      this.state.sounding[idx] = !pat[idx] ? 1 : 0
-//    }
-//    debug('euclidian %y %y %y %y', muteSteps, steps, muteShift, this.state.sounding)
-//    console.trace('JJR')
-    return pat
   }
 
   ensureDevicePortName(dev) {
