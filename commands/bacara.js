@@ -43,6 +43,7 @@ const debugMidiNoteError = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(requi
 const debugMidiControlChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:control:change`)
 const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:program:change`)
 const debugState = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:state`)
+const debugDeviation = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:deviation`)
 
 const debugMonome = yves.debugger(`${pkg.name.replace(/^@/, '')}:monome`)
 const debugPattern = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:pattern`)
@@ -412,7 +413,7 @@ class BacaraMachine extends Machine {
       }
     }
 
-    this.state.sounding = new Array(this.interface.getParameter('steps', patternStepsDefault)).fill(1)
+//    this.state.sounding = new Array(this.interface.getParameter('steps', patternStepsDefault)).fill(1)
 
 
     const virusMixerSelect = (part) => (elementPath, origin) => {
@@ -1356,7 +1357,7 @@ class BacaraMachine extends Machine {
           if (value > 0 && config.devices) {
 
             const info = deviceInfo(value)
-            debug('info %y',info)
+/*            debug('info %y',info)*/
             if (info.portName) this.setState(`drums.${type}.${trck}.portName`, info.portName)
             if (info.channel >=0 ) this.setState(`drums.${type}.${trck}.channel`, info.channel)
           }
@@ -1387,16 +1388,23 @@ class BacaraMachine extends Machine {
       }
     }
 
-    this.deviationsPickFromRange = (type,minimum,maximum) => {
-      if (!maximum) maximum = Math.max(this.interface.getParameter(`deviations.${type}.maximum`, 'modulated'),this.interface.getParameter(`deviations.${type}.minimum`, 'modulated'))
-      if (!minimum) minimum = Math.min(this.interface.getParameter(`deviations.${type}.minimum`, 'modulated'),this.interface.getParameter(`deviations.${type}.maximum`, 'modulated'))
+//// DEVIATION FUNCTIONS
+
+    this.deviationsPickFromRange = (type) => {
+      let minimum
+      let maximum
+      if (this.interface.isParameter(`deviations.${type}.maximum`) && this.interface.isParameter(`deviations.${type}.minimum`)) {
+        if (!maximum) maximum = Math.max(this.interface.getParameter(`deviations.${type}.maximum`, 'modulated'),this.interface.getParameter(`deviations.${type}.minimum`, 'modulated'))
+        if (!minimum) minimum = Math.min(this.interface.getParameter(`deviations.${type}.minimum`, 'modulated'),this.interface.getParameter(`deviations.${type}.maximum`, 'modulated'))
+      }
       if (typeof maximum == "number" && typeof minimum == "number") {
         do {
           const result = minimum + Random.getRandomInt(maximum-minimum)
           if (result) return result
         } while (maximum-minimum)
+        return 0
       }
-      return 0
+      return 1 // boolean deviation
     }
 
     this.deviationsEuclidian = (euclidianValue, steps, rotation) => {
@@ -1455,7 +1463,7 @@ class BacaraMachine extends Machine {
         }*/
         this.setState(`deviations.${type}`,map)
         this.writeState()
-        debug('map %y %y (was %y) %y',type,rotation,originalValue,map)
+        debugDeviation('rotate map for %y rotate %y (was %y) %y',type,rotation,originalValue,map)
       }
     }
 
@@ -1472,14 +1480,13 @@ class BacaraMachine extends Machine {
         if (changes) {
           this.setState(`deviations.${type}`,map)
           this.writeState()
-          debug('map %y %y %y',type,changes,map)
+          debugDeviation('repopulated map for %y (changes %y) %y',type,changes,map)
         }
       }
     }
 
-    this.deviationsGenerate = (type, boolean,minimum,maximum) => {
+    this.deviationsGenerate = (type) => {
       let map = []
-
       const density = this.interface.getParameter(`deviations.${type}.density`, 'modulated')
       const euclidian = this.interface.getParameter(`deviations.${type}.euclidian`, 'modulated')
       const rotation = this.interface.getParameter(`deviations.${type}.rotation`, 'modulated')
@@ -1488,9 +1495,9 @@ class BacaraMachine extends Machine {
       if (density || euclidian) {
         for (let idx = 0; idx < steps; idx++) {
           if (density) {
-            map[idx] = (density >= Random.getRandomInt(100)) ? (boolean?1:this.deviationsPickFromRange(type,minimum,maximum)) : 0
+            map[idx] = (density >= Random.getRandomInt(100)) ? this.deviationsPickFromRange(type) : 0
           } else if (euclidian) {
-            map[idx] = (pat && pat[idx]) ? (boolean?1:this.deviationsPickFromRange(type,minimum,maximum)) : 0
+            map[idx] = (pat && pat[idx]) ? this.deviationsPickFromRange(type) : 0
           } else {
             map[idx] = 0
           }
@@ -1501,9 +1508,10 @@ class BacaraMachine extends Machine {
 
       this.setState(`deviations.${type}`,map)
       this.writeState()
-      debug('map %y %y',type,map)
+      debugDeviation('generated map for %y %y',type,map)
     }
 
+///////////////
 
     this.parameterEminentSideEffects = {
       virus: {
@@ -1634,11 +1642,11 @@ class BacaraMachine extends Machine {
         accent: {
           density: (elementPath, value, origin) => {
             if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.accent.euclidian',0)
-            if (origin == 'surface') this.deviationsGenerate('accent',true)
+            if (origin == 'surface') this.deviationsGenerate('accent')
           },
           euclidian: (elementPath, value, origin) => {
             if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.accent.density',0)
-            if (origin == 'surface') this.deviationsGenerate('accent',true)
+            if (origin == 'surface') this.deviationsGenerate('accent')
           },
           rotation: (elementPath, value, origin, originalValue) => {
             if (origin == 'surface') this.deviationsRotate('accent', originalValue)
@@ -1647,11 +1655,11 @@ class BacaraMachine extends Machine {
         mute: {
           density: (elementPath, value, origin) => {
             if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.mute.euclidian',0)
-            if (origin == 'surface') this.deviationsGenerate('mute',true)
+            if (origin == 'surface') this.deviationsGenerate('mute')
           },
           euclidian: (elementPath, value, origin) => {
             if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.mute.density',0)
-            if (origin == 'surface') this.deviationsGenerate('mute',true)
+            if (origin == 'surface') this.deviationsGenerate('mute')
           },
           rotation: (elementPath, value, origin, originalValue) => {
             if (origin == 'surface') this.deviationsRotate('mute', originalValue)
@@ -1660,11 +1668,11 @@ class BacaraMachine extends Machine {
         device: {
           density: (elementPath, value, origin) => {
             if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.device.euclidian',0)
-            if (origin == 'surface') this.deviationsGenerate('device',true)
+            if (origin == 'surface') this.deviationsGenerate('device')
           },
           euclidian: (elementPath, value, origin) => {
             if (origin == 'surface' && value != 0) this.interface.setParameter('deviations.device.density',0)
-            if (origin == 'surface') this.deviationsGenerate('device',true)
+            if (origin == 'surface') this.deviationsGenerate('device')
           },
           rotation: (elementPath, value, origin, originalValue) => {
             if (origin == 'surface') this.deviationsRotate('device', originalValue)
@@ -2108,11 +2116,10 @@ class BacaraMachine extends Machine {
           'octaves',
           'pattern',
           'playing',
-          'sounding',
+//          'sounding',
           'virus',
           'remote',
           'drums',
-          'sounding',
           'deviations',
         ]
         paths.forEach( path => _.set(state, path, _.get(json.state ? json.state : json, path)) )
@@ -2132,6 +2139,24 @@ class BacaraMachine extends Machine {
         this.interface.setParameters(parameters)
 
         this.interface.emitParameters('post-connect')
+
+        const deviations = ['note','velocity','octave','duration','accent','mute','device']
+        const aspects = ['maximum','minimum','density','probability','euclidian','rotation']
+        deviations.forEach( deviation => {
+          let up=false
+          aspects.forEach( aspect => {
+            const value = this.interface.getParameter(`deviations.${deviation}.${aspect}`)
+            if (value) up=true
+          })
+
+          const mapped = (typeof this.getState(`deviations.${deviation}`) != 'undefined')
+
+          if ((up && !mapped) || (!up && mapped)) {
+            debug('Regenerating %y map',deviation)
+            this.deviationsGenerate(deviation)
+          }
+        })
+
 
         if (!this.getState('drums.midi')) {
           this.triggerAction('drums.generate', 'post-connect')
@@ -2351,7 +2376,6 @@ class BacaraMachine extends Machine {
         _.get(pattern, 'tracks.0.notes', []).forEach( note => {
           if (note.midi  == noteMidi && note.ticks == shiftedTicks) {
             const count = Math.ceil(note.durationTicks / ticksPerStep)
-            /*            const color = this.getState('sounding')[ticks / ticksPerStep] ? (note.velocity == 1 ? accentedColor : normalColor) : disabledColor*/
             const color = this.sounding(ticks / ticksPerStep) ? (note.velocity == 1 ? accentedColor : normalColor) : disabledColor
             const rep = count * 2 + ((count - 1) * 3)
             chNote = {colSpan:count, content:color(' '.repeat(rep >= 0 ? rep : 0))}
@@ -2533,10 +2557,10 @@ class BacaraMachine extends Machine {
         pat = arrayRotate(pat, muteShift > 0)
       }
     }
-    this.state.sounding = []
-    for (let idx = 0; idx < steps; idx++) {
-      this.state.sounding[idx] = !pat[idx] ? 1 : 0
-    }
+//    this.state.sounding = []
+//    for (let idx = 0; idx < steps; idx++) {
+//      this.state.sounding[idx] = !pat[idx] ? 1 : 0
+//    }
 //    debug('euclidian %y %y %y %y', muteSteps, steps, muteShift, this.state.sounding)
 //    console.trace('JJR')
     return pat
@@ -2759,7 +2783,7 @@ class BacaraMachine extends Machine {
         _.get(this.getState('pattern'), 'tracks.0.notes', []).forEach( note => {
           if (note.ticks == shiftedTicks) {
 
-            if (this.stepIdx < this.interface.getParameter('steps', 'modulated') && this.sounding(this.stepIdx)) {
+          if (this.stepIdx < this.interface.getParameter('steps', 'modulated') /*&& this.sounding(this.stepIdx)*/) {
 
               // DEVIATIONS MUTE
               let midiMute = false
