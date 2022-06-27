@@ -1479,7 +1479,7 @@ class BacaraMachine extends Machine {
         }*/
         this.setState(`deviations.${type}`,map)
         this.writeState()
-        debugDeviation('rotate map for %y rotate %y (was %y) %y',type,rotation,originalValue,map)
+        debugDeviation('rotate map for %y rotate %y (was %y) %y',type,rotation,originalValue,map && map.join(', '))
       }
     }
 
@@ -1496,7 +1496,7 @@ class BacaraMachine extends Machine {
         if (changes) {
           this.setState(`deviations.${type}`,map)
           this.writeState()
-          debugDeviation('repopulated map for %y (changes %y) %y',type,changes,map)
+          debugDeviation('repopulated map for %y (changes %y) %y',type,changes,map && map.join(', '))
         }
       }
     }
@@ -1524,7 +1524,7 @@ class BacaraMachine extends Machine {
 
       this.setState(`deviations.${type}`,map)
       this.writeState()
-      debugDeviation('generated map for %y %y',type,map)
+      debugDeviation('generated map for %y %y',type,map && map.join(', '))
     }
 
 ///////////////
@@ -2390,8 +2390,9 @@ class BacaraMachine extends Machine {
 
 
       const split = this.interface.getParameter('split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
-      let deviceBrow = (split && noteMidiTransposed > split)
-
+      let deviceA = (split && noteMidiTransposed > split)
+      let deviceList = [deviceA ? deviceAColor('A') : deviceBColor('B')]
+      let deviationCount=0
       for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
         let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.interface.getParameter('steps', 'modulated')) // steps?
         if (shiftedTicks < 0) {
@@ -2407,14 +2408,19 @@ class BacaraMachine extends Machine {
           }
 
           if (deviatedNote  == noteMidi && note.ticks == shiftedTicks) {
-            if (this.deviationsValue('device',shiftedTicks / ticksPerStep)) deviceBrow = !deviceBrow
+            if (this.deviationsValue('device',shiftedTicks / ticksPerStep)) {
+              deviceA = !deviceA
+              if (!deviationCount) deviceList = []
+              deviceList.push([deviceA ? deviceAColor('A') : deviceBColor('B')])
+              deviationCount++
+            }
           }
         })
       }
 
 
       const arr = [
-        {hAlign:'center', content:deviceBrow ? deviceAColor('A') : deviceBColor('B') },
+        {hAlign:'center', content:deviceList.join(' ') },
         {hAlign:'center', content:TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })/*+` ${noteMidi}`*/}
       ]
       for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
@@ -2461,11 +2467,12 @@ class BacaraMachine extends Machine {
           arr.push(chNote)
         }
       }
-      if (deviceBrow && reverseDeviceBrowsOnGrid) {
+/*      if (deviceA && reverseDeviceBrowsOnGrid) {
         for (let col = 0; col < grid[row].length; col++) {
           grid[row][col] = !grid[row][col]
         }
       }
+*/
       table.push(arr)
       row++
     })
