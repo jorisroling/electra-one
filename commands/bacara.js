@@ -70,11 +70,13 @@ let e1_system_info
 
 const phaseDetection = true
 const showPatternParameters = ['transpose', 'scales', 'base', 'split', 'shift', 'steps',
-'deviations.note.maximum','deviations.note.minimum','deviations.note.density','deviations.note.euclidian','deviations.note.rotation',
-'deviations.velocity.maximum','deviations.velocity.minimum','deviations.velocity.density','deviations.velocity.euclidian','deviations.velocity.rotation',
-'deviations.accent.density','deviations.accent.euclidian','deviations.accent.rotation',
-'deviations.mute.density','deviations.mute.euclidian','deviations.mute.rotation',
-'deviations.device.density','deviations.device.euclidian','deviations.device.rotation',
+'deviations.note.maximum','deviations.note.minimum','deviations.note.density','deviations.note.probability','deviations.note.euclidian','deviations.note.rotation',
+'deviations.velocity.maximum','deviations.velocity.minimum','deviations.velocity.density','deviations.velocity.probability','deviations.velocity.euclidian','deviations.velocity.rotation',
+'deviations.octave.maximum','deviations.octave.minimum','deviations.octave.density','deviations.octave.probability','deviations.octave.euclidian','deviations.octave.rotation',
+'deviations.duration.maximum','deviations.duration.minimum','deviations.duration.density','deviations.duration.probability','deviations.duration.euclidian','deviations.duration.rotation',
+'deviations.accent.density','deviations.accent.probability','deviations.accent.euclidian','deviations.accent.rotation',
+'deviations.mute.density','deviations.mute.probability','deviations.mute.euclidian','deviations.mute.rotation',
+'deviations.device.density','deviations.device.probability','deviations.device.euclidian','deviations.device.rotation',
 ]
 const showDrumPatternParameters = ['drums.density', 'drums.velocity', 'drums.steps']
 
@@ -2330,6 +2332,7 @@ class BacaraMachine extends Machine {
     const deviatedColor = chalk.bgHex('#BB0000')
     const disabledColor = chalk.bgHex('#666666')
 
+    const deviationColor = chalk.hex('#FF8800')
     const deviceAColor = chalk.hex('#FF0000')
     const deviceBColor = chalk.hex('#0000FF')
     //    const deviceAColor = chalk.hex('#F45C51')
@@ -2348,7 +2351,20 @@ class BacaraMachine extends Machine {
         ]
         /*,style:{head:[],border:[]}*/
       }
-    )
+    );
+
+    ['note','velocity','octave','duration','accent','mute','device'].forEach( deviation => {
+      const map = this.getState(`deviations.${deviation}`)
+      if (map) {
+        let arr = [
+          {hAlign:'center', colSpan:2, content:deviationColor(deviation) },
+        ]
+        const probability = this.interface.getParameter(`deviations.${deviation}.probability`)
+        arr=arr.concat((map?map:[]).map( e => e?(probability?`${deviationColor(probability)}%`:deviationColor(e)):'' ) )
+        table.push(arr)
+      }
+    })
+
 
     const notes = []
 
@@ -2362,6 +2378,9 @@ class BacaraMachine extends Machine {
 
       const addNote = this.deviationsValue('note',shiftedTicks / ticksPerStep)
       if ((midiNote+addNote)>=0 && (midiNote+addNote)<127) midiNote += addNote
+
+      const octave = this.deviationsValue('octave',shiftedTicks / ticksPerStep)
+      if ((midiNote+(octave*12))>=0 && (midiNote+(octave*12))<127) midiNote += (octave*12)
 
       if (notes.indexOf(midiNote) < 0) {
         notes.push(midiNote)
@@ -2386,7 +2405,7 @@ class BacaraMachine extends Machine {
         midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
       }
 
-      const noteMidiTransposed = midiNote + this.interface.getParameter('transpose', 'modulated')
+      const noteMidiTransposed = midiNote + this.interface.getParameter('transpose', 'modulated');
 
 
       const split = this.interface.getParameter('split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
@@ -2405,6 +2424,10 @@ class BacaraMachine extends Machine {
           } else {
             addNote = 0
           }
+          const octave = this.deviationsValue('octave',shiftedTicks / ticksPerStep)
+          if ((deviatedNote+(octave*12))>=0 && (deviatedNote+(octave*12))<127) {
+            deviatedNote += (octave*12)
+          }
 
           if (deviatedNote  == noteMidi && note.ticks == shiftedTicks) {
             if (this.deviationsValue('device',shiftedTicks / ticksPerStep)) {
@@ -2416,11 +2439,12 @@ class BacaraMachine extends Machine {
         })
       }
 
-
       const arr = [
         {hAlign:'center', content:deviceList.join(' ') },
         {hAlign:'center', content:TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })/*+` ${noteMidi}`*/}
       ]
+
+
       for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
         let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.interface.getParameter('steps', 'modulated')) // steps?
         if (shiftedTicks < 0) {
@@ -2431,12 +2455,21 @@ class BacaraMachine extends Machine {
         _.get(pattern, 'tracks.0.notes', []).forEach( note => {
 
           let deviatedNote = note.midi
+
           let addNote = this.deviationsValue('note',shiftedTicks / ticksPerStep)
           if ((deviatedNote+addNote)>=0 && (deviatedNote+addNote)<127) {
             deviatedNote += addNote
           } else {
             addNote = 0
           }
+
+          let octave = this.deviationsValue('octave',shiftedTicks / ticksPerStep)
+          if ((deviatedNote+(octave*12))>=0 && (deviatedNote+(octave*12))<127) {
+            deviatedNote += (octave*12)
+          } else {
+            octave = 0
+          }
+
 
           if (deviatedNote  == noteMidi && note.ticks == shiftedTicks) {
             const count = Math.ceil(note.durationTicks / ticksPerStep)
@@ -2447,7 +2480,7 @@ class BacaraMachine extends Machine {
             if (velocity<0) velocity=0
             if (velocity>127) velocity=127
 
-          const soundColor = addNote ? chalk.bgHex(`#${Math.floor(velocity).toString(16).padStart(2, '0')}0000`) : chalk.bgHex(`#00${Math.floor(velocity).toString(16).padStart(2, '0')}00`)
+            const soundColor = addNote ? chalk.bgHex(`#${Math.floor(velocity).toString(16).padStart(2, '0')}0000`) : chalk.bgHex(`#00${Math.floor(velocity).toString(16).padStart(2, '0')}00`)
 
             const noSoundColor = chalk.bgHex(`#${Math.floor(velocity).toString(16).padStart(2, '0')}${Math.floor(velocity).toString(16).padStart(2, '0')}${Math.floor(velocity).toString(16).padStart(2, '0')}`)
 
