@@ -2347,6 +2347,13 @@ class BacaraMachine extends Machine {
   }
 
   showPattern() {
+
+console.log('\x1Bc'); // Clear screen
+//console.log('\x1Bc'); // Clear screen
+/*    console.log('\033[2J')
+    console.log('\033[2J')
+    process.stdout.write('\033c');
+*/
     const pattern = this.getState('pattern')
     const size = this.interface.getParameter('steps')
     if (!pattern) {
@@ -2505,7 +2512,18 @@ class BacaraMachine extends Machine {
 
 
           if (deviatedNote  == noteMidi && note.ticks == shiftedTicks) {
-            const count = Math.ceil(note.durationTicks / ticksPerStep)
+
+            const durationDeviation = this.deviationsValue('duration',shiftedTicks / ticksPerStep)
+            const durationFactor = (1.0+(Math.max(-90,durationDeviation)/100))
+
+            if (durationFactor<0.1) durationFactor
+/*            console.log(durationFactor,note.durationTicks,Math.floor(note.durationTicks * durationFactor),ticksPerStep)*/
+            const durationTicks =  Math.floor(note.durationTicks * durationFactor)
+
+
+
+
+            const count = Math.ceil(durationTicks / ticksPerStep)
             const mute = this.deviationsValue('mute',ticks / ticksPerStep)
 
 
@@ -3054,7 +3072,7 @@ class BacaraMachine extends Machine {
                       }
                     } else {
                       if (deviationDurationProbability) {
-                        midiDuration += midiDuration * (((deviationDurationProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('duration') : 0)/100)
+                        midiDuration += midiDuration * (((deviationDurationProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('duration') : 5)/100)
                       }
                     }
 
