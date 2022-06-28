@@ -48,6 +48,7 @@ const debugDeviation = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('
 const debugMonome = yves.debugger(`${pkg.name.replace(/^@/, '')}:monome`)
 const debugPattern = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:pattern`)
 
+const DRUM_TRACKS = 11
 const REDRUM_TRACKS = 12
 const GRID_MODE_NONE = 0
 const GRID_MODE_MELODIC = 2
@@ -78,7 +79,20 @@ const showPatternParameters = ['transpose', 'scales', 'base', 'split', 'shift', 
 'deviations.mute.density','deviations.mute.probability','deviations.mute.euclidian','deviations.mute.rotation',
 'deviations.device.density','deviations.device.probability','deviations.device.euclidian','deviations.device.rotation',
 ]
+const showPatternStates = []
+
 const showDrumPatternParameters = ['drums.density', 'drums.velocity', 'drums.steps']
+
+for (let trck = 0; trck < DRUM_TRACKS; trck++) {
+  showDrumPatternParameters.push(`drums.instrument.${trck}.mute`)
+}
+
+for (let trck = 0; trck < REDRUM_TRACKS; trck++) {
+  showDrumPatternParameters.push(`drums.redrum.${trck}.instrument`)
+  showDrumPatternParameters.push(`drums.redrum.${trck}.mute`)
+}
+
+const showDrumPatternStates = ['drums.sounding']
 
 const toneJSmidi = require('@tonejs/midi')
 
@@ -421,9 +435,6 @@ class BacaraMachine extends Machine {
       }
     }
 
-//    this.state.sounding = new Array(this.interface.getParameter('steps', patternStepsDefault)).fill(1)
-
-
     const virusMixerSelect = (part) => (elementPath, origin) => {
       if (part >= 1 && part <= 16) {
         this.setRemote(origin, {next:`virus.mixer.part.${part - 1}.next`, previous:`virus.mixer.part.${part - 1}.previous`, random:`virus.mixer.part.${part - 1}.random`, nextBank:`virus.mixer.part.${part - 1}.nextBank`, previousBank:`virus.mixer.part.${part - 1}.previousBank`})
@@ -692,7 +703,8 @@ class BacaraMachine extends Machine {
       },
       generate: (elementPath, origin) => {
         if (origin == 'surface' || origin == 'remote') {
-          this.state.pattern = Pattern.generate(this.state, this.interface.getParameter('steps'))
+          const pattern = Pattern.generate(this.state, this.interface.getParameter('steps'))
+          this.setState('pattern',pattern)
           this.interface.setParameter('pattern', Pattern.patternFiles(this.state, true) - 1)
 
           this.showPattern()
@@ -706,7 +718,8 @@ class BacaraMachine extends Machine {
 
           if (this.interface.getParameter('pattern', 0) > 0 ) {
             this.interface.setParameter('pattern', this.interface.getParameter('pattern', 0) - 1)
-            this.state.pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
+            const pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
+            this.setState('pattern',pattern)
             this.interface.setParameter('steps', this.getState('patternSteps'))
             this.showPattern()
             this.writeState()
@@ -722,7 +735,8 @@ class BacaraMachine extends Machine {
           if (this.interface.getParameter('pattern', 0) < (count - 1)) {
             this.interface.setParameter('pattern', this.interface.getParameter('pattern', 0) + 1)
 
-            this.state.pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
+            const pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
+            this.setState('pattern',pattern)
             this.interface.setParameter('steps', this.getState('patternSteps'))
             this.showPattern()
             this.writeState()
@@ -737,7 +751,8 @@ class BacaraMachine extends Machine {
           const count = Pattern.patternFiles(this.state, true)
           this.interface.setParameter('pattern', Random.getRandomInt(count) )
 
-          this.state.pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
+          const pattern = Pattern.load_pattern(this.state, this.interface.getParameter('pattern', 0))
+          this.setState('pattern',pattern)
           this.interface.setParameter('steps', this.getState('patternSteps'))
           this.showPattern()
           this.writeState()
@@ -1549,7 +1564,8 @@ class BacaraMachine extends Machine {
 
     this.parameterSideEffects = {
       pattern: (elementPath, value, origin) => {
-        this.state.pattern = Pattern.load_pattern(this.state, value)
+        const pattern = Pattern.load_pattern(this.state, value)
+        this.setState('pattern',pattern)
         this.interface.setParameter('steps', this.getState('patternSteps'))
         this.showPattern()
         this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern'})
@@ -1835,7 +1851,7 @@ class BacaraMachine extends Machine {
             const sounding = []
             for (let idx = 0; idx < this.interface.getParameter('drums.steps', 'modulated'); idx++) {
               sounding[idx] = []
-              for (let instrument = 0; instrument < 12; instrument++) {
+              for (let instrument = 0; instrument < DRUM_TRACKS; instrument++) {
                 sounding[idx][instrument] = (value && (value >= Random.getRandomInt(100))) ? 1 : 0
               }
             }
@@ -2004,6 +2020,16 @@ class BacaraMachine extends Machine {
       }
     })
 
+    this.on('stateChange', (path, value, originalValue) => {
+/*      console.log(path,value)*/
+      if (showPatternStates.indexOf(path) >= 0) {
+        this.showPattern()
+      }
+      if (showDrumPatternStates.indexOf(path) >= 0) {
+        this.showDrumsPattern()
+      }
+    })
+
     this.interface.on('modulationChange', (path, value, reason) => {
       if (showPatternParameters.indexOf(path) >= 0) {
         this.showPattern()
@@ -2134,7 +2160,6 @@ class BacaraMachine extends Machine {
           'octaves',
           'pattern',
           'playing',
-//          'sounding',
           'virus',
           'remote',
           'drums',
@@ -2198,8 +2223,8 @@ class BacaraMachine extends Machine {
       if (this.getState(`device.${dev}.portName`)) {
         const channel = this.interface.getParameter(`device.${dev}.channel`)
         for (let midiNote = 0; midiNote < 128; midiNote++) {
-          debugMidiNoteOff('port %y  channel %y  note %y', this.state.device[dev].portName, channel, midiNote)
-          Midi.send(this.state.device[dev].portName, 'noteoff', {
+          debugMidiNoteOff('port %y  channel %y  note %y', this.getState(`device.${dev}.portName`), channel, midiNote)
+          Midi.send(this.getState(`device.${dev}.portName`), 'noteoff', {
             note: midiNote,
             velocity: 127,
             channel: channel,
@@ -2332,7 +2357,9 @@ class BacaraMachine extends Machine {
     const deviatedColor = chalk.bgHex('#BB0000')
     const disabledColor = chalk.bgHex('#666666')
 
-    const deviationColor = chalk.hex('#FF8800')
+    const deviationColor = chalk.hex('#00FF88')
+    const deviationColorBg = chalk.bgHex('#00FF88')
+
     const deviceAColor = chalk.hex('#FF0000')
     const deviceBColor = chalk.hex('#0000FF')
     //    const deviceAColor = chalk.hex('#F45C51')
@@ -2347,7 +2374,7 @@ class BacaraMachine extends Machine {
         head: [
           'Device',
           'Note',
-          {colSpan:size,content:`                             normal ${normalColor('  ')}   deviated ${deviatedColor('  ')}   accented ${accentedColor('  ')}   muted ${disabledColor('  ')}`}
+          {colSpan:size, hAlign:'right', content:`normal ${normalColor('  ')}   deviated ${deviatedColor('  ')}   accented ${accentedColor('  ')}   muted ${disabledColor('  ')}`}
         ]
         /*,style:{head:[],border:[]}*/
       }
@@ -2355,14 +2382,20 @@ class BacaraMachine extends Machine {
 
     ['note','velocity','octave','duration','accent','mute','device'].forEach( deviation => {
       const map = this.getState(`deviations.${deviation}`)
+      const probability = this.interface.getParameter(`deviations.${deviation}.probability`)
+      let arr = [
+        {hAlign:'center', colSpan:2, content:deviationColor(deviation) },
+      ]
+      const minmax = (this.interface.isParameter(`deviations.${deviation}.maximum`) && this.interface.isParameter(`deviations.${deviation}.minimum`))
       if (map) {
-        let arr = [
-          {hAlign:'center', colSpan:2, content:deviationColor(deviation) },
-        ]
-        const probability = this.interface.getParameter(`deviations.${deviation}.probability`)
-        arr=arr.concat((map?map:[]).map( e => e?(probability?`${deviationColor(probability)}%`:deviationColor(e)):'' ) )
+        const minmax = (this.interface.isParameter(`deviations.${deviation}.maximum`) && this.interface.isParameter(`deviations.${deviation}.minimum`))
+        arr=arr.concat((map?map:[]).map( e => e?(probability?`${deviationColor(probability)}%`:minmax?(deviationColor(e)):(deviationColorBg('  '))):'' ) )
+        table.push(arr)
+      } else if (probability) {
+        arr=arr.concat({colSpan:this.interface.getParameter('steps', 'modulated'), hAlign:'center', content:`${deviationColor(probability)}%${minmax?` ( max: ${deviationColor(this.interface.getParameter(`deviations.${deviation}.maximum`))}  min: ${deviationColor(this.interface.getParameter(`deviations.${deviation}.minimum`))} )`:''}`})
         table.push(arr)
       }
+
     })
 
 
@@ -2477,8 +2510,8 @@ class BacaraMachine extends Machine {
 
 
             let velocity = (note.velocity * 127) + (this.deviationsValue('velocity',ticks / ticksPerStep))
-            if (velocity<0) velocity=0
-            if (velocity>127) velocity=127
+            if (velocity<0) velocity = 0
+            if (velocity>127) velocity = 127
 
             const soundColor = addNote ? chalk.bgHex(`#${Math.floor(velocity).toString(16).padStart(2, '0')}0000`) : chalk.bgHex(`#00${Math.floor(velocity).toString(16).padStart(2, '0')}00`)
 
@@ -2700,11 +2733,11 @@ class BacaraMachine extends Machine {
     const filename = presetFiles[program]
     if (filename) {
       const bank = this.interface.getParameter('bank')
-      const playing = this.state.playing
-      const remote = this.state.remote
+      const playing = this.getState('playing')
+      const remote = this.getState('remote')
       this.readState(filename, {bank, program})
-      this.state.playing = playing
-      this.state.remote = remote
+      this.setState('playing',playing)
+      this.setState('remote',remote)
       this.ensureDevicePortName('A')
       this.ensureDevicePortName('B')
       return filename
@@ -2876,7 +2909,9 @@ class BacaraMachine extends Machine {
                   }
                 }
               } else {
-                midiMute = (deviationMuteProbability >= Random.getRandomInt(100)) ? 1 : 0
+                if (deviationMuteProbability) {
+                  midiMute = (deviationMuteProbability >= Random.getRandomInt(100)) ? 1 : 0
+                }
               }
               if (!midiMute) {
 
@@ -2960,9 +2995,6 @@ class BacaraMachine extends Machine {
                     midiNote += (midiOctave*12)
                   }
 
-                  //+ this.octave(this.stepIdx)
-
-
                   if (midiNote>=0 && midiNote<=127) {
 
                     // DEVIATIONS VELOCITY
@@ -2997,7 +3029,9 @@ class BacaraMachine extends Machine {
                         }
                       }
                     } else {
-                      midiAccent = (deviationAccentProbability >= Random.getRandomInt(100)) ? 1 : 0
+                      if (deviationAccentProbability) {
+                        midiAccent = (deviationAccentProbability >= Random.getRandomInt(100)) ? 1 : 0
+                      }
                     }
                     if (midiAccent) midiVelocity=127
 
@@ -3061,8 +3095,8 @@ class BacaraMachine extends Machine {
                       this.setState(`device.${dev}.notes`,deviceNotes+1)
                       debugMidiNoteOn('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
 
+//                      debugDispatch('device %y  step %y  base %y  dispatch %y  mode %y  value %y  add %y  channel %y note %y velocity %y duration %y %s',dev,this.stepIdx,this.interface.getParameter(`device.${dev}.channel`, 'modulated'),dispatch,dispatchMode,dispatchValue,channelAdd,channel+1,midiNote,midiVelocity,midiDuration,midiVelocity==127?(`accent ${midiAccent} deviationAccentProbability ${deviationAccentProbability} map ${(deviationAccentMap || []).join(',')} deviationVelocityProbability ${deviationVelocityProbability}`):'')
                       debugDispatch('device %y  step %y  base %y  dispatch %y  mode %y  value %y  add %y  channel %y note %y velocity %y duration %y',dev,this.stepIdx,this.interface.getParameter(`device.${dev}.channel`, 'modulated'),dispatch,dispatchMode,dispatchValue,channelAdd,channel+1,midiNote,midiVelocity,midiDuration)
-      //                console.log(`Dev ${dev}  Step: ${this.stepIdx}  base channel ${(this.interface.getParameter(`device.${dev}.channel`, 'modulated'))}  dispatch ${dispatch}  mode ${dispatchMode}  value ${dispatchValue}  channelAdd ${channelAdd}  channel ${channel+1}`)
 
                       if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
                         Midi.send(portName, 'noteoff', {
@@ -3126,7 +3160,7 @@ class BacaraMachine extends Machine {
           if (note.ticks == drumsShiftedTicks) {
             const instrument = note.midi - Drums.baseNote()
             if (this.drumsStepIdx < this.interface.getParameter('drums.steps', 'modulated') && this.sounding(this.drumsStepIdx, 'drums.sounding', instrument)) {
-              if (instrument >= 0 && instrument < 12) {
+              if (instrument >= 0 && instrument < DRUM_TRACKS) {
                 if (!this.interface.getParameter(`drums.instrument.${instrument}.mute`, 'modulated') && this.interface.getParameter('drums.probability', 'modulated') >= Random.getRandomInt(100)) {
                   const portName = this.getState(`drums.instrument.${instrument}.portName`,'bacara')
                   const channel = this.getState(`drums.instrument.${instrument}.channel`,10) - 1
@@ -3453,10 +3487,6 @@ class BacaraMachine extends Machine {
         return (step < arr.length) ? arr[step] : 1
       }
     }
-  }
-
-  octave(stepIdx) {
-    return ((stepIdx < this.state.octaves.length && this.state.octaves[stepIdx]) ? (this.state.octaves[stepIdx] * 12) : 0)
   }
 
   setRemote(origin, options) {
