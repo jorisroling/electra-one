@@ -26,6 +26,8 @@ args
   .option('transpose', 'Transpose Input MIDI interface name (part)', _.get(config, 'options.transpose', 'komplete-kontrol'))
   .option('transposeChannel', 'Transpose Input Channel (1-16)', _.get(config, 'options.transposeChannel', 1))
 
+  .option('osc', 'OSC Input Device Name', _.get(config, 'options.osc', null))
+
   .option('general', 'General Input MIDI interface name (part)', _.get(config, 'options.general', 'lightpad-block'))
   .option('generalChannel', 'General Input Channel (1-16)', _.get(config, 'options.generalChannel', 1))
 

@@ -11,6 +11,8 @@ const fs = require('fs-extra')
 const jsonfile = require('jsonfile')
 const deepSortObject = require('deep-sort-object')
 
+const osc = require('osc')
+
 
 const Random = require('../lib/random')
 
@@ -44,6 +46,7 @@ const debugMidiControlChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(r
 const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:program:change`)
 const debugState = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:state`)
 const debugDeviation = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:deviation`)
+const debugOsc = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:osc`)
 
 const debugMonome = yves.debugger(`${pkg.name.replace(/^@/, '')}:monome`)
 const debugPattern = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:pattern`)
@@ -2348,12 +2351,8 @@ class BacaraMachine extends Machine {
 
   showPattern() {
 
-console.log('\x1Bc'); // Clear screen
 //console.log('\x1Bc'); // Clear screen
-/*    console.log('\033[2J')
-    console.log('\033[2J')
-    process.stdout.write('\033c');
-*/
+
     const pattern = this.getState('pattern')
     const size = this.interface.getParameter('steps')
     if (!pattern) {
@@ -2381,7 +2380,7 @@ console.log('\x1Bc'); // Clear screen
         head: [
           'Device',
           'Note',
-          {colSpan:size, hAlign:'right', content:`normal ${normalColor('  ')}   deviated ${deviatedColor('  ')}   accented ${accentedColor('  ')}   muted ${disabledColor('  ')}`}
+          {colSpan:size, hAlign:'right', content:`normal ${normalColor('  ')}   deviation ${deviationColorBg('  ')}   accented ${accentedColor('  ')}   muted ${disabledColor('  ')}`}
         ]
         /*,style:{head:[],border:[]}*/
       }
@@ -2396,7 +2395,7 @@ console.log('\x1Bc'); // Clear screen
       const minmax = (this.interface.isParameter(`deviations.${deviation}.maximum`) && this.interface.isParameter(`deviations.${deviation}.minimum`))
       if (map) {
         const minmax = (this.interface.isParameter(`deviations.${deviation}.maximum`) && this.interface.isParameter(`deviations.${deviation}.minimum`))
-        arr=arr.concat((map?map:[]).map( e => e?(probability?`${deviationColor(probability)}%`:minmax?(deviationColor(e)):(deviationColorBg('  '))):'' ) )
+        arr=arr.concat((map?map:[]).map( e => e?(probability && (!minmax || probability<100)?`${deviationColor(probability)}%`:minmax?(deviationColor(e)):(deviationColorBg('  '))):'' ) )
         table.push(arr)
       } else if (probability) {
         arr=arr.concat({colSpan:this.interface.getParameter('steps', 'modulated'), hAlign:'center', content:`${deviationColor(probability)}%${minmax?` ( max: ${deviationColor(this.interface.getParameter(`deviations.${deviation}.maximum`))}  min: ${deviationColor(this.interface.getParameter(`deviations.${deviation}.minimum`))} )`:''}`})
@@ -2531,7 +2530,7 @@ console.log('\x1Bc'); // Clear screen
             if (velocity<0) velocity = 0
             if (velocity>127) velocity = 127
 
-            const soundColor = addNote ? chalk.bgHex(`#${Math.floor(velocity).toString(16).padStart(2, '0')}0000`) : chalk.bgHex(`#00${Math.floor(velocity).toString(16).padStart(2, '0')}00`)
+            const soundColor = addNote ? chalk.bgHex(`#${Math.floor(velocity).toString(16).padStart(2, '0')}BB00`) : chalk.bgHex(`#00${Math.floor(velocity).toString(16).padStart(2, '0')}00`)
 
             const noSoundColor = chalk.bgHex(`#${Math.floor(velocity).toString(16).padStart(2, '0')}${Math.floor(velocity).toString(16).padStart(2, '0')}${Math.floor(velocity).toString(16).padStart(2, '0')}`)
 
@@ -2941,7 +2940,7 @@ console.log('\x1Bc'); // Clear screen
                 if (Array.isArray(deviationNoteMap) && deviationNoteMap.length>this.stepIdx) {
                   if (deviationNoteMap[this.stepIdx]) {
                     if (deviationNoteProbability) {
-                      const addNote = (deviationNoteProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('note') : 0
+                      const addNote = (Math.abs(deviationNoteProbability) >= Random.getRandomInt(100)) ? (deviationNoteProbability<0?this.deviationsPickFromRange('note'):deviationNoteMap[this.stepIdx]) : 0
                       if ((midiNote+addNote)>=0 && (midiNote+addNote)<=127) {
                         midiNote += addNote
                       }
@@ -2954,7 +2953,7 @@ console.log('\x1Bc'); // Clear screen
                   }
                 } else {
                   if (deviationNoteProbability) {
-                    const addNote = (deviationNoteProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('note') : 0
+                    const addNote = (Math.abs(deviationNoteProbability) >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('note') : 0
                     if ((midiNote+addNote)>=0 && (midiNote+addNote)<=127) {
                       midiNote += addNote
                     }
@@ -2999,14 +2998,14 @@ console.log('\x1Bc'); // Clear screen
                   if (Array.isArray(deviationOctaveMap) && deviationOctaveMap.length>this.stepIdx) {
                     if (deviationOctaveMap[this.stepIdx]) {
                       if (deviationOctaveProbability) {
-                        midiOctave = (deviationOctaveProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('octave') : 0
+                        midiOctave = (Math.abs(deviationOctaveProbability) >= Random.getRandomInt(100)) ? (deviationOctaveProbability<0?this.deviationsPickFromRange('octave'):deviationOctaveMap[this.stepIdx]) : 0
                       } else {
                         midiOctave = deviationOctaveMap[this.stepIdx]
                       }
                     }
                   } else {
                     if (deviationOctaveProbability) {
-                      midiOctave = (deviationOctaveProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('octave') : 0
+                      midiOctave = (Math.abs(deviationOctaveProbability) >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('octave') : 0
                     }
                   }
                   if ((midiNote+(midiOctave*12))>=0 && (midiNote+(midiOctave*12))<=127) {
@@ -3022,14 +3021,14 @@ console.log('\x1Bc'); // Clear screen
                     if (Array.isArray(deviationVelocityMap) && deviationVelocityMap.length>this.stepIdx) {
                       if (deviationVelocityMap[this.stepIdx]) {
                         if (deviationVelocityProbability) {
-                          midiVelocity += (deviationVelocityProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('velocity') : 0
+                          midiVelocity += (Math.abs(deviationVelocityProbability) >= Random.getRandomInt(100)) ? (deviationVelocityProbability<0?this.deviationsPickFromRange('velocity'):deviationVelocityMap[this.stepIdx]) : 0
                         } else {
                           midiVelocity += deviationVelocityMap[this.stepIdx]
                         }
                       }
                     } else {
                       if (deviationVelocityProbability) {
-                        midiVelocity += (deviationVelocityProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('velocity') : 0
+                        midiVelocity += (Math.abs(deviationVelocityProbability) >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('velocity') : 0
                       }
                     }
 
@@ -3065,14 +3064,14 @@ console.log('\x1Bc'); // Clear screen
                     if (Array.isArray(deviationDurationMap) && deviationDurationMap.length>this.stepIdx) {
                       if (deviationDurationMap[this.stepIdx]) {
                         if (deviationDurationProbability) {
-                          midiDuration += midiDuration * (((deviationDurationProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('duration') : deviationDurationMap[this.stepIdx])/100)
+                          midiDuration += midiDuration * (((Math.abs(deviationDurationProbability) >= Random.getRandomInt(100)) ? (deviationDurationProbability<0?this.deviationsPickFromRange('duration'):deviationDurationMap[this.stepIdx]) : 100)/100)
                         } else {
                           midiDuration += midiDuration * (deviationDurationMap[this.stepIdx]/100)
                         }
                       }
                     } else {
                       if (deviationDurationProbability) {
-                        midiDuration += midiDuration * (((deviationDurationProbability >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('duration') : 5)/100)
+                        midiDuration += midiDuration * (((Math.abs(deviationDurationProbability) >= Random.getRandomInt(100)) ? this.deviationsPickFromRange('duration') : 5)/100)
                       }
                     }
 
@@ -3181,7 +3180,7 @@ console.log('\x1Bc'); // Clear screen
               if (instrument >= 0 && instrument < DRUM_TRACKS) {
                 if (!this.interface.getParameter(`drums.instrument.${instrument}.mute`, 'modulated') && this.interface.getParameter('drums.probability', 'modulated') >= Random.getRandomInt(100)) {
                   const portName = this.getState(`drums.instrument.${instrument}.portName`,'bacara')
-                  const channel = this.getState(`drums.instrument.${instrument}.channel`,10) - 1
+                  const channel = this.getState(`drums.instrument.${instrument}.channel`,10 - 1)
                   const midiNote = this.interface.getParameter(`drums.instrument.${instrument}.note`/*, 'modulated'*/)
                   debugMidiNoteOn('port %s  channel %d  note %y  instrument %y  ', portName, channel + 1, midiNote, instrument)
                   if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
@@ -3199,6 +3198,7 @@ console.log('\x1Bc'); // Clear screen
                   }
                   const velocity = (127 * (note.velocity + (velFactor >= 0 ? ((1.0 - note.velocity) * (velFactor / 100)) : ((note.velocity) * (velFactor / 100)) ) ) )
                   /*                  debug('velocity %y %y %y',note.velocity,velFactor,velocity)*/
+/*                  debug('cha.%y  instr.%y  note.%y',channel,instrument,midiNote)*/
                   Midi.send(portName, 'noteon', {
                     note: midiNote,
                     velocity,
@@ -3673,6 +3673,54 @@ function bacaraSequencer(name, sub, options) {
 
   bacaraMachine.connect(options.electra, 'surface')
 
+  if (options.osc) {
+    const oscSetup = _.get(config,`osc.devices.${options.osc}`)
+    if (oscSetup) {
+      debugOsc('setup %y',oscSetup)
+
+      const getIPAddresses = () => {
+        const os = require('os')
+        const interfaces = os.networkInterfaces()
+        const ipAddresses = []
+
+        for (let deviceName in interfaces) {
+          const addresses = interfaces[deviceName]
+          for (let i = 0; i < addresses.length; i++) {
+            const addressInfo = addresses[i]
+            if (addressInfo.family === 'IPv4' && !addressInfo.internal) {
+              ipAddresses.push(addressInfo.address)
+            }
+          }
+        }
+        return ipAddresses
+      }
+
+
+      const udpPort = new osc.UDPPort({
+        localAddress: oscSetup.address,
+        localPort: oscSetup.port
+      })
+
+      udpPort.on('ready', function () {
+        const ipAddresses = getIPAddresses();
+
+        debugOsc('Listening for OSC over UDP.');
+        ipAddresses.forEach( address => {
+          debugOsc(' Host: %y  Port: %y', address, udpPort.options.localPort);
+        })
+      })
+
+      udpPort.on('message', function (oscMessage) {
+        debugOsc('message %y',oscMessage)
+      })
+
+      udpPort.on('error', function (err) {
+        debugOsc('error %y',err)
+      })
+
+      udpPort.open()
+    }
+  }
   if (options.general) {
     bacaraMachine.connect(options.general, 'external', Number.isInteger(options.generalChannel) ? parseInt(options.generalChannel) - 1 : 0)
   }

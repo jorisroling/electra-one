@@ -712,14 +712,26 @@
       "type": "label",
       "name": "Drum Mute",
       "color": "529DEC",
-      "span": 1
+      "span": 1,
+      "values": [
+        {
+          "message": {
+          }
+        }
+      ]
     },
     {
       "id": "0e568962-6e2c-4a7c-b32b-61f62e6aaa9c",
       "slotId": 25,
       "type": "label",
       "name": "Drum Velocity",
-      "color": "C44795"
+      "color": "C44795",
+      "values": [
+        {
+          "message": {
+          }
+        }
+      ]
     },
     {
       "id": "0da66dd6-91d1-49bf-b4db-bb299fc0dd74",
@@ -727,7 +739,13 @@
       "type": "label",
       "span": 4,
       "name": "Drum Pattern",
-      "color": "F45C51"
+      "color": "F45C51",
+      "values": [
+        {
+          "message": {
+          }
+        }
+      ]
     },
     {
       "id": "3d09d266-bd75-4ae3-942e-f6fb57844935",
@@ -1003,14 +1021,26 @@
       "slotId": 48,
       "type": "label",
       "name": "Device",
-      "color": "FFFFFF"
+      "color": "FFFFFF",
+      "values": [
+        {
+          "message": {
+          }
+        }
+      ]
     },
     {
       "id": "39c48744-e7bb-41e7-9e3d-fa28ab6ac6b9",
       "slotId": 49,
       "type": "label",
       "name": "",
-      "color": "F45C51"
+      "color": "F45C51",
+      "values": [
+        {
+          "message": {
+          }
+        }
+      ]
     },
     {
       "id": "821545ed-3193-4e39-91a9-cb050926043c",
@@ -6915,21 +6945,28 @@
             "lsbFirst": true,
             "parameterNumber": 2950,
             "min": 0,
-            "max": 100
+            "max": 200
           },
+          "min": -100,
+          "max": 100,
           "textValues": [
             {
+              "value": -100,
+              "label": "Deviate",
+              "index": 2
+            },
+            {
               "value": 0,
-              "label": "Fixed",
+              "label": "None",
               "index": 0
             },
             {
               "value": 100,
-              "label": "Allways",
+              "label": "Fixed",
               "index": 1
             }
           ],
-          "defaultValue": 100
+          "defaultValue": 0
         }
       ],
       "visible": true
@@ -7000,21 +7037,28 @@
             "lsbFirst": true,
             "parameterNumber": 2956,
             "min": 0,
-            "max": 100
+            "max": 200
           },
+          "min": -100,
+          "max": 100,
           "textValues": [
             {
+              "value": -100,
+              "label": "Deviate",
+              "index": 2
+            },
+            {
               "value": 0,
-              "label": "Fixed",
+              "label": "None",
               "index": 0
             },
             {
               "value": 100,
-              "label": "Allways",
+              "label": "Fixed",
               "index": 1
             }
           ],
-          "defaultValue": 100
+          "defaultValue": 0
         }
       ],
       "visible": true
@@ -7295,21 +7339,28 @@
             "lsbFirst": true,
             "parameterNumber": 2980,
             "min": 0,
-            "max": 100
+            "max": 200
           },
+          "min": -100,
+          "max": 100,
           "textValues": [
             {
+              "value": -100,
+              "label": "Deviate",
+              "index": 2
+            },
+            {
               "value": 0,
-              "label": "Fixed",
+              "label": "None",
               "index": 0
             },
             {
               "value": 100,
-              "label": "Allways",
+              "label": "Fixed",
               "index": 1
             }
           ],
-          "defaultValue": 100
+          "defaultValue": 0
         }
       ],
       "visible": true
@@ -7380,21 +7431,28 @@
             "lsbFirst": true,
             "parameterNumber": 2962,
             "min": 0,
-            "max": 100
+            "max": 200
           },
+          "min": -100,
+          "max": 100,
           "textValues": [
             {
+              "value": -100,
+              "label": "Deviate",
+              "index": 2
+            },
+            {
               "value": 0,
-              "label": "Fixed",
+              "label": "None",
               "index": 0
             },
             {
               "value": 100,
-              "label": "Allways",
+              "label": "Fixed",
               "index": 1
             }
           ],
-          "defaultValue": 100
+          "defaultValue": 0
         }
       ],
       "visible": true
@@ -7682,12 +7740,12 @@
           "textValues": [
             {
               "value": 0,
-              "label": "Fixed",
+              "label": "None",
               "index": 0
             },
             {
               "value": 100,
-              "label": "Allways",
+              "label": "Fixed",
               "index": 1
             }
           ],
@@ -7742,12 +7800,12 @@
           "textValues": [
             {
               "value": 0,
-              "label": "Fixed",
+              "label": "None",
               "index": 0
             },
             {
               "value": 100,
-              "label": "Allways",
+              "label": "Fixed",
               "index": 1
             }
           ],
@@ -7802,12 +7860,12 @@
           "textValues": [
             {
               "value": 0,
-              "label": "Fixed",
+              "label": "None",
               "index": 0
             },
             {
               "value": 100,
-              "label": "Allways",
+              "label": "Fixed",
               "index": 1
             }
           ],
