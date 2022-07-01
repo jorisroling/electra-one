@@ -49,6 +49,7 @@ args
   .option('visible', 'Control Update Visible')
   .option('verbose', 'Verbose output')
   .option('setup', 'List from setup', false)
+  .option('focus', 'Focus', 'bacara')
 
 const commands = require('./lib/commands')
 

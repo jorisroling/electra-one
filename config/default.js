@@ -27,8 +27,15 @@ module.exports = customWrapper({
     slot: 0,
     id: 0,
     name: '',
-    template: path.resolve(__dirname + '/../presets/Bacara Template.eproj'),
-    presetName: 'Bacara',
+    focus: 'bacara',
+    template: {
+      bacara: path.resolve(__dirname + '/../presets/Bacara Template.eproj'),
+      virus: path.resolve(__dirname + '/../presets/Virus TI Companion Template.eproj'),
+    },
+    presetName: {
+      bacara: 'Bacara',
+      virus: 'Virus TI Companion',
+    },
     custom: [],
   },
   electra: {

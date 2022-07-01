@@ -29,11 +29,11 @@ function generatePreset(name, sub, options) {
   }
 
   const interface = new Interface('bacara')
-  if (options.template /*&& options.filename*/) {
-    if (fs.existsSync(options.template)) {
-      const preset = jsonfile.readFileSync(options.template)
+  if (options.focus && options.template[options.focus] /*&& options.filename*/) {
+    if (fs.existsSync(options.template[options.focus])) {
+      const preset = jsonfile.readFileSync(options.template[options.focus])
       if (preset) {
-        preset.name = options.presetName ? options.presetName : preset.name.replace('Template', '').trim()
+        preset.name = options.presetName[options.focus] ? options.presetName[options.focus] : preset.name.replace('Template', '').trim()
         const blacklistPages = []
         if (Array.isArray(preset.pages)) {
           for (let page of preset.pages) {
@@ -421,7 +421,7 @@ function generatePreset(name, sub, options) {
         process.stdout.write(JSON.stringify(preset, null, 2) + '\n')
       }
     } else {
-      console.error(`The file "${options.template}" does not exist`)
+      console.error(`The file "${options.template[options.focus]}" does not exist`)
     }
   } else {
     args.showHelp()
