@@ -1,0 +1,44 @@
+{
+  "/t1/channel": {
+    "type": "integer",
+    "min": 0,
+    "max": 16
+  },
+  "/t1/steps": {
+    "type": "integer",
+    "min": 1,
+    "max": 16
+  },
+  "/t1/pulses": {
+    "type": "integer",
+    "min": 1,
+    "max": 16
+  },
+  "/t1/numNotes": {
+    "type": "integer",
+    "min": 1,
+    "max": 127
+  },
+  "/t1/sustain": {
+    "type": "integer",
+    "min": 1,
+    "max": 127
+  },
+  "/t1/root": {
+    "type": "note",
+    "min": 0,
+    "max": 127
+  },
+  "/t1/notes": {
+    "type": "integer"
+  },
+  "/t1/scale": {
+    "type": "strings"
+  },
+  "/t1/pulsesLOC": {
+    "type": "integers"
+  },
+  "/t1/division": {
+    "type": "strings"
+  }
+}

@@ -68,6 +68,8 @@ const deviceCCs = knownDeviceCCs()
 const E1_FIRMWARE_PRESET_REQUEST_VERSION = 'v2.1.2'
 let e1_system_info
 
+const torsoT1OSC = require('../extra/osc/torso-t1.json')
+
 const phaseDetection = true
 const showPatternParameters = ['transpose', 'scales', 'base', 'split', 'shift', 'steps',
   'deviations.note.maximum', 'deviations.note.minimum', 'deviations.note.density', 'deviations.note.probability', 'deviations.note.euclidian', 'deviations.note.rotation',
@@ -1770,7 +1772,7 @@ class BacaraMachine extends Machine {
 
     ['note', 'velocity', 'octave', 'duration', 'accent', 'mute', 'device'].forEach( deviation => {
       const map = this.getState(`deviations.${deviation}`)
-      const probability = this.interface.getParameter(`deviations.${deviation}.probability`)
+      const probability = this.interface.getParameter(`deviations.${deviation}.probability`,'modulated')
       let arr = [
         {hAlign:'center', colSpan:2, content:deviationColor(deviation) },
       ]
@@ -2861,6 +2863,22 @@ function bacaraSequencer(name, sub, options) {
 
       udpPort.on('message', function (oscMessage) {
         debugOsc('message %y', oscMessage)
+
+        let modSlotSource = Object.keys(matrixSlotSources).length
+        for (addr in torsoT1OSC) {
+          if (oscMessage.address == addr && torsoT1OSC[addr].type == 'integer') {
+            const modSlotValue = oscMessage.args[0]
+            for (let slotIdx = 0; slotIdx < 3; slotIdx++) {
+              if (bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.source`) == modSlotSource) {
+                if (bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.value`) !== modSlotValue) {
+                  bacaraMachine.matrixSetSlotValue(slotIdx, bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.slewLimiter`, 0), matrixSetSlotValueTimout, modSlotValue)
+                }
+              }
+            }
+          }
+          modSlotSource++
+        }
+
       })
 
       udpPort.on('error', function (err) {

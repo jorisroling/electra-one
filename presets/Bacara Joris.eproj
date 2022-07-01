@@ -6,6 +6,13 @@
   "lua": "print (\"Bacara Control Lua ext initialized\")\n\npatch.requestAll ()\n\n",
   "devices": [
     {
+      "id": 1,
+      "name": "Generic MIDI",
+      "instrumentId": "generic-midi",
+      "port": 1,
+      "channel": 1
+    },
+    {
       "id": 17,
       "name": "Bacara",
       "port": 2,
@@ -1024,8 +1031,8 @@
       "id": "39c48744-e7bb-41e7-9e3d-fa28ab6ac6b9",
       "slotId": 49,
       "type": "label",
-      "name": "",
-      "color": "F45C51",
+      "name": "Torso T1",
+      "color": "03A598",
       "values": [
         {
           "message": {}
@@ -1075,6 +1082,31 @@
             }
           ],
           "defaultValue": 0
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "41b85d05-2936-4e27-82e7-915c691f49f8",
+      "slotId": 55,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "03A598",
+      "name": "Channel",
+      "categoryId": "faders",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": true,
+            "parameterNumber": 14000,
+            "min": 1,
+            "max": 16
+          },
+          "min": 1,
+          "max": 16,
+          "defaultValue": 16
         }
       ],
       "visible": true
@@ -13934,22 +13966,11 @@
     },
     {
       "id": "edccd991-10b8-4d8b-b202-aba7cd0fe6d0",
+      "slotId": 511,
       "type": "list",
-      "name": "SOURCE",
+      "deviceId": 17,
       "color": "F49500",
-      "bounds": [
-        170,
-        40,
-        146,
-        56
-      ],
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 2,
-          "valueId": "value"
-        }
-      ],
+      "name": "SOURCE",
       "values": [
         {
           "id": "value",
@@ -13959,33 +13980,61 @@
             "lsbFirst": true,
             "parameterNumber": 9473
           },
-          "overlayId": 13,
           "textValues": [
             {
-              "value": 0,
+              "index": 0,
               "label": "Off",
-              "index": 0
+              "value": 0
             },
             {
-              "value": 1,
-              "label": "Mod Wheel",
-              "index": 1
+              "index": 1,
+              "label": "Mod WHeel",
+              "value": 1
             },
             {
-              "value": 2,
+              "index": 2,
               "label": "Velocity",
-              "index": 2
+              "value": 2
             },
             {
-              "value": 3,
-              "label": "CH Aftertouch",
-              "index": 3
+              "index": 3,
+              "label": "Ch.Aftertouch",
+              "value": 3
+            },
+            {
+              "index": 4,
+              "label": "T-1 OSC Channel",
+              "value": 4
+            },
+            {
+              "index": 5,
+              "label": "T-1 OSC Steps",
+              "value": 5
+            },
+            {
+              "index": 6,
+              "label": "T-1 OSC Pulses",
+              "value": 6
+            },
+            {
+              "index": 7,
+              "label": "T-1 OSC numNotes",
+              "value": 7
+            },
+            {
+              "index": 8,
+              "label": "T-1 OSC Sustain",
+              "value": 8
+            },
+            {
+              "index": 9,
+              "label": "T-1 OSC Notes",
+              "value": 9
             }
           ]
         }
       ],
-      "slotId": 511,
-      "deviceId": 17
+      "visible": true
     },
     {
       "id": "a5654a4b-d434-4701-85e3-c937b6611117",
@@ -15256,22 +15305,11 @@
     },
     {
       "id": "f28cb3aa-5556-4d82-9f91-9befbb35a70b",
+      "slotId": 535,
       "type": "list",
-      "name": "SOURCE",
+      "deviceId": 17,
       "color": "F49500",
-      "bounds": [
-        170,
-        216,
-        146,
-        56
-      ],
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 2,
-          "valueId": "value"
-        }
-      ],
+      "name": "SOURCE",
       "values": [
         {
           "id": "value",
@@ -15281,33 +15319,61 @@
             "lsbFirst": true,
             "parameterNumber": 10369
           },
-          "overlayId": 13,
           "textValues": [
             {
-              "value": 0,
+              "index": 0,
               "label": "Off",
-              "index": 0
+              "value": 0
             },
             {
-              "value": 1,
-              "label": "Mod Wheel",
-              "index": 1
+              "index": 1,
+              "label": "Mod WHeel",
+              "value": 1
             },
             {
-              "value": 2,
+              "index": 2,
               "label": "Velocity",
-              "index": 2
+              "value": 2
             },
             {
-              "value": 3,
-              "label": "CH Aftertouch",
-              "index": 3
+              "index": 3,
+              "label": "Ch.Aftertouch",
+              "value": 3
+            },
+            {
+              "index": 4,
+              "label": "T-1 OSC Channel",
+              "value": 4
+            },
+            {
+              "index": 5,
+              "label": "T-1 OSC Steps",
+              "value": 5
+            },
+            {
+              "index": 6,
+              "label": "T-1 OSC Pulses",
+              "value": 6
+            },
+            {
+              "index": 7,
+              "label": "T-1 OSC numNotes",
+              "value": 7
+            },
+            {
+              "index": 8,
+              "label": "T-1 OSC Sustain",
+              "value": 8
+            },
+            {
+              "index": 9,
+              "label": "T-1 OSC Notes",
+              "value": 9
             }
           ]
         }
       ],
-      "slotId": 535,
-      "deviceId": 17
+      "visible": true
     },
     {
       "id": "3b8294d8-9188-46d0-8da1-5e9161f0796a",
@@ -16578,22 +16644,11 @@
     },
     {
       "id": "e2b7e866-3414-4997-b425-ad8de1d02413",
+      "slotId": 559,
       "type": "list",
-      "name": "SOURCE",
+      "deviceId": 17,
       "color": "F49500",
-      "bounds": [
-        170,
-        392,
-        146,
-        56
-      ],
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 2,
-          "valueId": "value"
-        }
-      ],
+      "name": "SOURCE",
       "values": [
         {
           "id": "value",
@@ -16603,33 +16658,61 @@
             "lsbFirst": true,
             "parameterNumber": 11265
           },
-          "overlayId": 13,
           "textValues": [
             {
-              "value": 0,
+              "index": 0,
               "label": "Off",
-              "index": 0
+              "value": 0
             },
             {
-              "value": 1,
-              "label": "Mod Wheel",
-              "index": 1
+              "index": 1,
+              "label": "Mod WHeel",
+              "value": 1
             },
             {
-              "value": 2,
+              "index": 2,
               "label": "Velocity",
-              "index": 2
+              "value": 2
             },
             {
-              "value": 3,
-              "label": "CH Aftertouch",
-              "index": 3
+              "index": 3,
+              "label": "Ch.Aftertouch",
+              "value": 3
+            },
+            {
+              "index": 4,
+              "label": "T-1 OSC Channel",
+              "value": 4
+            },
+            {
+              "index": 5,
+              "label": "T-1 OSC Steps",
+              "value": 5
+            },
+            {
+              "index": 6,
+              "label": "T-1 OSC Pulses",
+              "value": 6
+            },
+            {
+              "index": 7,
+              "label": "T-1 OSC numNotes",
+              "value": 7
+            },
+            {
+              "index": 8,
+              "label": "T-1 OSC Sustain",
+              "value": 8
+            },
+            {
+              "index": 9,
+              "label": "T-1 OSC Notes",
+              "value": 9
             }
           ]
         }
       ],
-      "slotId": 559,
-      "deviceId": 17
+      "visible": true
     },
     {
       "id": "1ad79cfc-0725-4f2b-8983-dbbcd3cfec15",

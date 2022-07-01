@@ -6,6 +6,13 @@
   "lua": "print (\"Bacara Control Lua ext initialized\")\n\npatch.requestAll ()\n\n",
   "devices": [
     {
+      "id": 1,
+      "name": "Generic MIDI",
+      "instrumentId": "generic-midi",
+      "port": 1,
+      "channel": 1
+    },
+    {
       "id": 17,
       "name": "Bacara",
       "port": 2,
@@ -1024,8 +1031,8 @@
       "id": "39c48744-e7bb-41e7-9e3d-fa28ab6ac6b9",
       "slotId": 49,
       "type": "label",
-      "name": "",
-      "color": "F45C51",
+      "name": "Torso T1",
+      "color": "03A598",
       "values": [
         {
           "message": {}
@@ -1075,6 +1082,31 @@
             }
           ],
           "defaultValue": 0
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "41b85d05-2936-4e27-82e7-915c691f49f8",
+      "slotId": 55,
+      "type": "fader",
+      "deviceId": 1,
+      "color": "03A598",
+      "name": "Channel",
+      "categoryId": "faders",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 1,
+            "lsbFirst": true,
+            "parameterNumber": 14000,
+            "min": 1,
+            "max": 16
+          },
+          "min": 1,
+          "max": 16,
+          "defaultValue": 16
         }
       ],
       "visible": true

@@ -9,6 +9,11 @@ const yves = require('../lib/yves')
 const pkg = require('../package.json')
 const debugError = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:error`)
 
+/*const changeCace = require('change-case')*/
+const { titleCase } = require('title-case')
+
+const torsoT1OSC = require('../extra/osc/torso-t1.json')
+
 let args
 
 const Interface = require('../lib/midi/interface')
@@ -95,7 +100,7 @@ function generatePreset(name, sub, options) {
                           label: 'Unknown',
                           value: 0,
                         }]
-                        let idx = 1
+                        let idx = value.textValues.length
 
                         const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
                         deviceKeys.unshift('bacara')
@@ -129,7 +134,7 @@ function generatePreset(name, sub, options) {
                     } else if (overlayType == 'ports') {
                       if (config.devices) {
                         value.textValues = []
-                        let idx = 0
+                        let idx = value.textValues.length
 
                         for (let port of Bacara.getPresetState('midi.ports.output', [])) {
                           value.textValues.push({
@@ -140,13 +145,48 @@ function generatePreset(name, sub, options) {
                           idx++
                         }
                       }
+                    } else if (overlayType == 'matrixSrce') {
+                      value.textValues = [
+                        {
+                          index: 0,
+                          label: 'Off',
+                          value: 0,
+                        },
+                        {
+                          index: 1,
+                          label: 'Mod WHeel',
+                          value: 1,
+                        },
+                        {
+                          index: 2,
+                          label: 'Velocity',
+                          value: 2,
+                        },
+                        {
+                          index: 3,
+                          label: 'Ch.Aftertouch',
+                          value: 3,
+                        },
+                      ]
+                      let idx = value.textValues.length
+                      for (addr in torsoT1OSC) {
+                        if (torsoT1OSC[addr].type == "integer") {
+                          console.log(addr,torsoT1OSC[addr])
+                          value.textValues.push({
+                            index: idx,
+                            label: 'T-1 OSC '+titleCase(addr.substr(4)),
+                            value: idx++,
+                          })
+                        }
+                      }
+                      console.log(value.textValues)
                     } else if (overlayType == 'matrixTarget') {
                       value.textValues = [{
                         index: 0,
                         label: 'Off',
                         value: 0,
                       }]
-                      let idx = 1
+                      let idx = value.textValues.length
                       for (let ctrl = 1; ctrl < 128; ctrl++) {
                         const path = interface.getMapPath('external', 'cc', ctrl)
                         /*                 debug('path %y %y %y',path,`^lfo.${currentLfo-1}.`,path && path.match(`^lfo.${currentLfo-1}.`))*/
@@ -165,7 +205,7 @@ function generatePreset(name, sub, options) {
                         label: 'Off',
                         value: 0,
                       }]
-                      let idx = 1
+                      let idx = value.textValues.length
                       for (let ctrl = 1; ctrl < 128; ctrl++) {
                         value.textValues.push({
                           index: idx++,
@@ -192,7 +232,7 @@ function generatePreset(name, sub, options) {
                         label: 'Off',
                         value: 0,
                       }]
-                      let idx = 1
+                      let idx = value.textValues.length
                       const list = devices['virus-ti'].flatList
                       for (let ctrl = 0; ctrl < list.length; ctrl++) {
                         const path = list[ctrl]
@@ -208,7 +248,7 @@ function generatePreset(name, sub, options) {
 
                       value.textValues = []
 
-                      let idx = 0
+                      let idx = value.textValues.length
                       for (let i = 0; i < 4; i++) {
                         value.textValues.push({
                           index: idx,
@@ -263,7 +303,7 @@ function generatePreset(name, sub, options) {
                       label: 'Unknown',
                       value: 0,
                     }]
-                    let idx = 1
+                    let idx = overlay.items.length
 
                     const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
                     deviceKeys.unshift('bacara')
@@ -297,7 +337,7 @@ function generatePreset(name, sub, options) {
                 } else if (overlayType == 'ports') {
                   if (config.devices) {
                     overlay.items = []
-                    let idx = 0
+                    let idx = overlay.items.length
 
                     for (let port of Bacara.getPresetState('midi.ports.output', [])) {
                       overlay.items.push({
@@ -314,7 +354,7 @@ function generatePreset(name, sub, options) {
                     label: 'Off',
                     value: 0,
                   }]
-                  let idx = 1
+                  let idx = overlay.items.length
                   for (let ctrl = 1; ctrl < 128; ctrl++) {
                     const path = interface.getMapPath('external', 'cc', ctrl)
                     /*                 debug('path %y %y %y',path,`^lfo.${currentLfo-1}.`,path && path.match(`^lfo.${currentLfo-1}.`))*/
@@ -333,7 +373,7 @@ function generatePreset(name, sub, options) {
                     label: 'Off',
                     value: 0,
                   }]
-                  let idx = 1
+                  let idx = overlay.items.length
                   for (let ctrl = 1; ctrl < 128; ctrl++) {
                     overlay.items.push({
                       index: idx++,
@@ -360,7 +400,7 @@ function generatePreset(name, sub, options) {
                     label: 'Off',
                     value: 0,
                   }]
-                  let idx = 1
+                  let idx = overlay.items.length
                   const list = devices['virus-ti'].flatList
                   for (let ctrl = 0; ctrl < list.length; ctrl++) {
                     const path = list[ctrl]
@@ -376,7 +416,7 @@ function generatePreset(name, sub, options) {
 
                   overlay.items = []
 
-                  let idx = 0
+                  let idx = overlay.items.length
                   for (let i = 0; i < 4; i++) {
                     overlay.items.push({
                       index: idx,

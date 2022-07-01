@@ -1,21 +1,16 @@
 const config = require('config')
 const Midi = require('../lib/midi/midi')
 
-function virusMacroControl(part, ctrl) {
-  return {
-    name: `Part #${part} Control #${ctrl}`,
-    type: 'parameter',
-    surface: {
-      type: 'nrpn',
-      number: 128 + ((part - 1) * 6) + (ctrl),
-      lsbFirst: false,
-      min: 0,
-      max: 16383,
-    },
-    min: 0,
-    max: 16383,
-    default: 0,
+const torsoT1OSC = require('../extra/osc/torso-t1.json')
+
+function matrixSources() {
+  let result = 3  // num of matrixSlotSources from bacara.js
+  for (addr in torsoT1OSC) {
+    if (torsoT1OSC[addr]. type == 'integer') {
+      result++
+    }
   }
+  return result
 }
 
 function deviceToIndex(portName, channel) {
@@ -255,6 +250,20 @@ module.exports = {
       min: 0,
       max: 127,
       default: 127,
+    },
+    torsoT1Channel: {
+      name: 'Torso T-1 Channel',
+      type: 'parameter',
+      surface: {
+        type: 'nrpn',
+        number: 14000,
+        lsbFirst: true,
+        min: 1,
+        max: 16,
+      },
+      min: 1,
+      max: 16,
+      default: 16,
     },
     reset_preset: {
       name: 'Reset Preset',
@@ -3605,10 +3614,10 @@ module.exports = {
             number: 9473,
             lsbFirst: true,
             min: 0,
-            max: 3,
+            max: matrixSources(),
           },
           min: 0,
-          max: 3,
+          max: matrixSources(),
           default: 0,
         },
         value: {
@@ -3740,10 +3749,10 @@ module.exports = {
             number: 10369,
             lsbFirst: true,
             min: 0,
-            max: 3,
+            max: matrixSources(),
           },
           min: 0,
-          max: 3,
+          max: matrixSources(),
           default: 0,
         },
         value: {
@@ -3875,10 +3884,10 @@ module.exports = {
             number: 11265,
             lsbFirst: true,
             min: 0,
-            max: 3,
+            max: matrixSources(),
           },
           min: 0,
-          max: 3,
+          max: matrixSources(),
           default: 0,
         },
         value: {
