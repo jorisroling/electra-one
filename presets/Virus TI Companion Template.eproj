@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
-  "id": "BsMqV41d5kNwwQepaFle",
-  "name": "Virus TI Companion",
-  "description": "# Bacara Template\n\nNot directly working on a Electra One, used as Template to generate actual Preset File (.EPROJ)",
-  "lua": "print (\"Bacara Control Lua ext initialized\")\n\npatch.requestAll ()\n\n",
+  "id": "JJR7CiB7mrcNeojgxler",
+  "name": "Virus TI Companion Template",
+  "description": "# Virus TI Companion Template\n\nNot directly working on a Electra One, used as Template to generate actual Preset File (.EPROJ)",
+  "lua": "print (\"Virus TI Companion Lua ext initialized\")\n\npatch.requestAll ()\n\n",
   "devices": [
     {
       "id": 17,
