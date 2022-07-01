@@ -2867,7 +2867,7 @@ function bacaraSequencer(name, sub, options) {
         let modSlotSource = Object.keys(matrixSlotSources).length
         for (addr in torsoT1OSC) {
           if (oscMessage.address == addr && torsoT1OSC[addr].type == 'integer') {
-            const modSlotValue = oscMessage.args[0]
+            const modSlotValue = oscMessage.args[0] * ( 128 / ((torsoT1OSC[addr].max - torsoT1OSC[addr].min) + 1) )
             for (let slotIdx = 0; slotIdx < 3; slotIdx++) {
               if (bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.source`) == modSlotSource) {
                 if (bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.value`) !== modSlotValue) {
