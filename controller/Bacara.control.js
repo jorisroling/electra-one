@@ -397,7 +397,7 @@ function handleSysExMidi(data) {
       if (json && json.versionText) {
         if (!json.versionText.match(/^v\d+\.\d+\.\d+$/)) {
           if (json.versionText.match(/^v\d+\.\d+$/)) {
-            json.versionText+='.0'
+            json.versionText += '.0'
           }
         }
         e1_firmware_version = parseInt(json.versionText.replace(/[v.]/g, ''))

@@ -19,7 +19,9 @@
   },
   "electra": {
     "checkPresetVia": "none",
-    "presetName": "Bacara Richie"
+    "presetName": {
+      "bacara": "Bacara Richie"
+    }
   },
   "osc": {
     "devices": {

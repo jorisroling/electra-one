@@ -2241,121 +2241,81 @@
             },
             {
               "index": 132,
-              "label": "Virus Axyz X1",
-              "value": 20
-            },
-            {
-              "index": 133,
-              "label": "Virus Axyz Y1",
-              "value": 21
-            },
-            {
-              "index": 134,
-              "label": "Virus Axyz X2",
-              "value": 23
-            },
-            {
-              "index": 135,
-              "label": "Virus Axyz Y2",
-              "value": 24
-            },
-            {
-              "index": 136,
-              "label": "Virus Axyz X3",
-              "value": 26
-            },
-            {
-              "index": 137,
-              "label": "Virus Axyz Y3",
-              "value": 27
-            },
-            {
-              "index": 138,
-              "label": "Virus Axyz X4",
-              "value": 29
-            },
-            {
-              "index": 139,
-              "label": "Virus Axyz Y4",
-              "value": 30
-            },
-            {
-              "index": 140,
               "label": "LFO 2 Shape",
               "value": 87
             },
             {
-              "index": 141,
+              "index": 133,
               "label": "LFO 2 Amount",
               "value": 88
             },
             {
-              "index": 142,
+              "index": 134,
               "label": "LFO 2 Rate",
               "value": 89
             },
             {
-              "index": 143,
+              "index": 135,
               "label": "LFO 2 Offset",
               "value": 90
             },
             {
-              "index": 144,
+              "index": 136,
               "label": "LFO 2 Phase",
               "value": 102
             },
             {
-              "index": 145,
+              "index": 137,
               "label": "LFO 2 Density",
               "value": 103
             },
             {
-              "index": 146,
+              "index": 138,
               "label": "LFO 2 Device A",
               "value": 104
             },
             {
-              "index": 147,
+              "index": 139,
               "label": "LFO 2 Device B",
               "value": 105
             },
             {
-              "index": 148,
+              "index": 140,
               "label": "LFO 3 Shape",
               "value": 107
             },
             {
-              "index": 149,
+              "index": 141,
               "label": "LFO 3 Amount",
               "value": 108
             },
             {
-              "index": 150,
+              "index": 142,
               "label": "LFO 3 Rate",
               "value": 109
             },
             {
-              "index": 151,
+              "index": 143,
               "label": "LFO 3 Offset",
               "value": 110
             },
             {
-              "index": 152,
+              "index": 144,
               "label": "LFO 3 Phase",
               "value": 111
             },
             {
-              "index": 153,
+              "index": 145,
               "label": "LFO 3 Density",
               "value": 112
             },
             {
-              "index": 154,
+              "index": 146,
               "label": "LFO 3 Device A",
               "value": 113
             },
             {
-              "index": 155,
+              "index": 147,
               "label": "LFO 3 Device B",
               "value": 114
             }
@@ -3419,86 +3379,46 @@
             },
             {
               "index": 132,
-              "label": "Virus Axyz X1",
-              "value": 20
-            },
-            {
-              "index": 133,
-              "label": "Virus Axyz Y1",
-              "value": 21
-            },
-            {
-              "index": 134,
-              "label": "Virus Axyz X2",
-              "value": 23
-            },
-            {
-              "index": 135,
-              "label": "Virus Axyz Y2",
-              "value": 24
-            },
-            {
-              "index": 136,
-              "label": "Virus Axyz X3",
-              "value": 26
-            },
-            {
-              "index": 137,
-              "label": "Virus Axyz Y3",
-              "value": 27
-            },
-            {
-              "index": 138,
-              "label": "Virus Axyz X4",
-              "value": 29
-            },
-            {
-              "index": 139,
-              "label": "Virus Axyz Y4",
-              "value": 30
-            },
-            {
-              "index": 140,
               "label": "LFO 1 Device B",
               "value": 85
             },
             {
-              "index": 141,
+              "index": 133,
               "label": "LFO 3 Shape",
               "value": 107
             },
             {
-              "index": 142,
+              "index": 134,
               "label": "LFO 3 Amount",
               "value": 108
             },
             {
-              "index": 143,
+              "index": 135,
               "label": "LFO 3 Rate",
               "value": 109
             },
             {
-              "index": 144,
+              "index": 136,
               "label": "LFO 3 Offset",
               "value": 110
             },
             {
-              "index": 145,
+              "index": 137,
               "label": "LFO 3 Phase",
               "value": 111
             },
             {
-              "index": 146,
+              "index": 138,
               "label": "LFO 3 Density",
               "value": 112
             },
             {
-              "index": 147,
+              "index": 139,
               "label": "LFO 3 Device A",
               "value": 113
             },
             {
-              "index": 148,
+              "index": 140,
               "label": "LFO 3 Device B",
               "value": 114
             }
@@ -4562,86 +4482,46 @@
             },
             {
               "index": 132,
-              "label": "Virus Axyz X1",
-              "value": 20
-            },
-            {
-              "index": 133,
-              "label": "Virus Axyz Y1",
-              "value": 21
-            },
-            {
-              "index": 134,
-              "label": "Virus Axyz X2",
-              "value": 23
-            },
-            {
-              "index": 135,
-              "label": "Virus Axyz Y2",
-              "value": 24
-            },
-            {
-              "index": 136,
-              "label": "Virus Axyz X3",
-              "value": 26
-            },
-            {
-              "index": 137,
-              "label": "Virus Axyz Y3",
-              "value": 27
-            },
-            {
-              "index": 138,
-              "label": "Virus Axyz X4",
-              "value": 29
-            },
-            {
-              "index": 139,
-              "label": "Virus Axyz Y4",
-              "value": 30
-            },
-            {
-              "index": 140,
               "label": "LFO 1 Device B",
               "value": 85
             },
             {
-              "index": 141,
+              "index": 133,
               "label": "LFO 2 Shape",
               "value": 87
             },
             {
-              "index": 142,
+              "index": 134,
               "label": "LFO 2 Amount",
               "value": 88
             },
             {
-              "index": 143,
+              "index": 135,
               "label": "LFO 2 Rate",
               "value": 89
             },
             {
-              "index": 144,
+              "index": 136,
               "label": "LFO 2 Offset",
               "value": 90
             },
             {
-              "index": 145,
+              "index": 137,
               "label": "LFO 2 Phase",
               "value": 102
             },
             {
-              "index": 146,
+              "index": 138,
               "label": "LFO 2 Density",
               "value": 103
             },
             {
-              "index": 147,
+              "index": 139,
               "label": "LFO 2 Device A",
               "value": 104
             },
             {
-              "index": 148,
+              "index": 140,
               "label": "LFO 2 Device B",
               "value": 105
             }
@@ -4992,126 +4872,86 @@
             },
             {
               "index": 5,
-              "label": "Virus Axyz X1",
-              "value": 20
-            },
-            {
-              "index": 6,
-              "label": "Virus Axyz Y1",
-              "value": 21
-            },
-            {
-              "index": 7,
-              "label": "Virus Axyz X2",
-              "value": 23
-            },
-            {
-              "index": 8,
-              "label": "Virus Axyz Y2",
-              "value": 24
-            },
-            {
-              "index": 9,
-              "label": "Virus Axyz X3",
-              "value": 26
-            },
-            {
-              "index": 10,
-              "label": "Virus Axyz Y3",
-              "value": 27
-            },
-            {
-              "index": 11,
-              "label": "Virus Axyz X4",
-              "value": 29
-            },
-            {
-              "index": 12,
-              "label": "Virus Axyz Y4",
-              "value": 30
-            },
-            {
-              "index": 13,
               "label": "LFO 1 Device B",
               "value": 85
             },
             {
-              "index": 14,
+              "index": 6,
               "label": "LFO 2 Shape",
               "value": 87
             },
             {
-              "index": 15,
+              "index": 7,
               "label": "LFO 2 Amount",
               "value": 88
             },
             {
-              "index": 16,
+              "index": 8,
               "label": "LFO 2 Rate",
               "value": 89
             },
             {
-              "index": 17,
+              "index": 9,
               "label": "LFO 2 Offset",
               "value": 90
             },
             {
-              "index": 18,
+              "index": 10,
               "label": "LFO 2 Phase",
               "value": 102
             },
             {
-              "index": 19,
+              "index": 11,
               "label": "LFO 2 Density",
               "value": 103
             },
             {
-              "index": 20,
+              "index": 12,
               "label": "LFO 2 Device A",
               "value": 104
             },
             {
-              "index": 21,
+              "index": 13,
               "label": "LFO 2 Device B",
               "value": 105
             },
             {
-              "index": 22,
+              "index": 14,
               "label": "LFO 3 Shape",
               "value": 107
             },
             {
-              "index": 23,
+              "index": 15,
               "label": "LFO 3 Amount",
               "value": 108
             },
             {
-              "index": 24,
+              "index": 16,
               "label": "LFO 3 Rate",
               "value": 109
             },
             {
-              "index": 25,
+              "index": 17,
               "label": "LFO 3 Offset",
               "value": 110
             },
             {
-              "index": 26,
+              "index": 18,
               "label": "LFO 3 Phase",
               "value": 111
             },
             {
-              "index": 27,
+              "index": 19,
               "label": "LFO 3 Density",
               "value": 112
             },
             {
-              "index": 28,
+              "index": 20,
               "label": "LFO 3 Device A",
               "value": 113
             },
             {
-              "index": 29,
+              "index": 21,
               "label": "LFO 3 Device B",
               "value": 114
             }
@@ -5177,126 +5017,86 @@
             },
             {
               "index": 5,
-              "label": "Virus Axyz X1",
-              "value": 20
-            },
-            {
-              "index": 6,
-              "label": "Virus Axyz Y1",
-              "value": 21
-            },
-            {
-              "index": 7,
-              "label": "Virus Axyz X2",
-              "value": 23
-            },
-            {
-              "index": 8,
-              "label": "Virus Axyz Y2",
-              "value": 24
-            },
-            {
-              "index": 9,
-              "label": "Virus Axyz X3",
-              "value": 26
-            },
-            {
-              "index": 10,
-              "label": "Virus Axyz Y3",
-              "value": 27
-            },
-            {
-              "index": 11,
-              "label": "Virus Axyz X4",
-              "value": 29
-            },
-            {
-              "index": 12,
-              "label": "Virus Axyz Y4",
-              "value": 30
-            },
-            {
-              "index": 13,
               "label": "LFO 1 Device B",
               "value": 85
             },
             {
-              "index": 14,
+              "index": 6,
               "label": "LFO 2 Shape",
               "value": 87
             },
             {
-              "index": 15,
+              "index": 7,
               "label": "LFO 2 Amount",
               "value": 88
             },
             {
-              "index": 16,
+              "index": 8,
               "label": "LFO 2 Rate",
               "value": 89
             },
             {
-              "index": 17,
+              "index": 9,
               "label": "LFO 2 Offset",
               "value": 90
             },
             {
-              "index": 18,
+              "index": 10,
               "label": "LFO 2 Phase",
               "value": 102
             },
             {
-              "index": 19,
+              "index": 11,
               "label": "LFO 2 Density",
               "value": 103
             },
             {
-              "index": 20,
+              "index": 12,
               "label": "LFO 2 Device A",
               "value": 104
             },
             {
-              "index": 21,
+              "index": 13,
               "label": "LFO 2 Device B",
               "value": 105
             },
             {
-              "index": 22,
+              "index": 14,
               "label": "LFO 3 Shape",
               "value": 107
             },
             {
-              "index": 23,
+              "index": 15,
               "label": "LFO 3 Amount",
               "value": 108
             },
             {
-              "index": 24,
+              "index": 16,
               "label": "LFO 3 Rate",
               "value": 109
             },
             {
-              "index": 25,
+              "index": 17,
               "label": "LFO 3 Offset",
               "value": 110
             },
             {
-              "index": 26,
+              "index": 18,
               "label": "LFO 3 Phase",
               "value": 111
             },
             {
-              "index": 27,
+              "index": 19,
               "label": "LFO 3 Density",
               "value": 112
             },
             {
-              "index": 28,
+              "index": 20,
               "label": "LFO 3 Device A",
               "value": 113
             },
             {
-              "index": 29,
+              "index": 21,
               "label": "LFO 3 Device B",
               "value": 114
             }
@@ -5362,126 +5162,86 @@
             },
             {
               "index": 5,
-              "label": "Virus Axyz X1",
-              "value": 20
-            },
-            {
-              "index": 6,
-              "label": "Virus Axyz Y1",
-              "value": 21
-            },
-            {
-              "index": 7,
-              "label": "Virus Axyz X2",
-              "value": 23
-            },
-            {
-              "index": 8,
-              "label": "Virus Axyz Y2",
-              "value": 24
-            },
-            {
-              "index": 9,
-              "label": "Virus Axyz X3",
-              "value": 26
-            },
-            {
-              "index": 10,
-              "label": "Virus Axyz Y3",
-              "value": 27
-            },
-            {
-              "index": 11,
-              "label": "Virus Axyz X4",
-              "value": 29
-            },
-            {
-              "index": 12,
-              "label": "Virus Axyz Y4",
-              "value": 30
-            },
-            {
-              "index": 13,
               "label": "LFO 1 Device B",
               "value": 85
             },
             {
-              "index": 14,
+              "index": 6,
               "label": "LFO 2 Shape",
               "value": 87
             },
             {
-              "index": 15,
+              "index": 7,
               "label": "LFO 2 Amount",
               "value": 88
             },
             {
-              "index": 16,
+              "index": 8,
               "label": "LFO 2 Rate",
               "value": 89
             },
             {
-              "index": 17,
+              "index": 9,
               "label": "LFO 2 Offset",
               "value": 90
             },
             {
-              "index": 18,
+              "index": 10,
               "label": "LFO 2 Phase",
               "value": 102
             },
             {
-              "index": 19,
+              "index": 11,
               "label": "LFO 2 Density",
               "value": 103
             },
             {
-              "index": 20,
+              "index": 12,
               "label": "LFO 2 Device A",
               "value": 104
             },
             {
-              "index": 21,
+              "index": 13,
               "label": "LFO 2 Device B",
               "value": 105
             },
             {
-              "index": 22,
+              "index": 14,
               "label": "LFO 3 Shape",
               "value": 107
             },
             {
-              "index": 23,
+              "index": 15,
               "label": "LFO 3 Amount",
               "value": 108
             },
             {
-              "index": 24,
+              "index": 16,
               "label": "LFO 3 Rate",
               "value": 109
             },
             {
-              "index": 25,
+              "index": 17,
               "label": "LFO 3 Offset",
               "value": 110
             },
             {
-              "index": 26,
+              "index": 18,
               "label": "LFO 3 Phase",
               "value": 111
             },
             {
-              "index": 27,
+              "index": 19,
               "label": "LFO 3 Density",
               "value": 112
             },
             {
-              "index": 28,
+              "index": 20,
               "label": "LFO 3 Device A",
               "value": 113
             },
             {
-              "index": 29,
+              "index": 21,
               "label": "LFO 3 Device B",
               "value": 114
             }
@@ -5802,126 +5562,86 @@
             },
             {
               "index": 5,
-              "label": "Virus Axyz X1",
-              "value": 20
-            },
-            {
-              "index": 6,
-              "label": "Virus Axyz Y1",
-              "value": 21
-            },
-            {
-              "index": 7,
-              "label": "Virus Axyz X2",
-              "value": 23
-            },
-            {
-              "index": 8,
-              "label": "Virus Axyz Y2",
-              "value": 24
-            },
-            {
-              "index": 9,
-              "label": "Virus Axyz X3",
-              "value": 26
-            },
-            {
-              "index": 10,
-              "label": "Virus Axyz Y3",
-              "value": 27
-            },
-            {
-              "index": 11,
-              "label": "Virus Axyz X4",
-              "value": 29
-            },
-            {
-              "index": 12,
-              "label": "Virus Axyz Y4",
-              "value": 30
-            },
-            {
-              "index": 13,
               "label": "LFO 1 Device B",
               "value": 85
             },
             {
-              "index": 14,
+              "index": 6,
               "label": "LFO 2 Shape",
               "value": 87
             },
             {
-              "index": 15,
+              "index": 7,
               "label": "LFO 2 Amount",
               "value": 88
             },
             {
-              "index": 16,
+              "index": 8,
               "label": "LFO 2 Rate",
               "value": 89
             },
             {
-              "index": 17,
+              "index": 9,
               "label": "LFO 2 Offset",
               "value": 90
             },
             {
-              "index": 18,
+              "index": 10,
               "label": "LFO 2 Phase",
               "value": 102
             },
             {
-              "index": 19,
+              "index": 11,
               "label": "LFO 2 Density",
               "value": 103
             },
             {
-              "index": 20,
+              "index": 12,
               "label": "LFO 2 Device A",
               "value": 104
             },
             {
-              "index": 21,
+              "index": 13,
               "label": "LFO 2 Device B",
               "value": 105
             },
             {
-              "index": 22,
+              "index": 14,
               "label": "LFO 3 Shape",
               "value": 107
             },
             {
-              "index": 23,
+              "index": 15,
               "label": "LFO 3 Amount",
               "value": 108
             },
             {
-              "index": 24,
+              "index": 16,
               "label": "LFO 3 Rate",
               "value": 109
             },
             {
-              "index": 25,
+              "index": 17,
               "label": "LFO 3 Offset",
               "value": 110
             },
             {
-              "index": 26,
+              "index": 18,
               "label": "LFO 3 Phase",
               "value": 111
             },
             {
-              "index": 27,
+              "index": 19,
               "label": "LFO 3 Density",
               "value": 112
             },
             {
-              "index": 28,
+              "index": 20,
               "label": "LFO 3 Device A",
               "value": 113
             },
             {
-              "index": 29,
+              "index": 21,
               "label": "LFO 3 Device B",
               "value": 114
             }
@@ -5987,126 +5707,86 @@
             },
             {
               "index": 5,
-              "label": "Virus Axyz X1",
-              "value": 20
-            },
-            {
-              "index": 6,
-              "label": "Virus Axyz Y1",
-              "value": 21
-            },
-            {
-              "index": 7,
-              "label": "Virus Axyz X2",
-              "value": 23
-            },
-            {
-              "index": 8,
-              "label": "Virus Axyz Y2",
-              "value": 24
-            },
-            {
-              "index": 9,
-              "label": "Virus Axyz X3",
-              "value": 26
-            },
-            {
-              "index": 10,
-              "label": "Virus Axyz Y3",
-              "value": 27
-            },
-            {
-              "index": 11,
-              "label": "Virus Axyz X4",
-              "value": 29
-            },
-            {
-              "index": 12,
-              "label": "Virus Axyz Y4",
-              "value": 30
-            },
-            {
-              "index": 13,
               "label": "LFO 1 Device B",
               "value": 85
             },
             {
-              "index": 14,
+              "index": 6,
               "label": "LFO 2 Shape",
               "value": 87
             },
             {
-              "index": 15,
+              "index": 7,
               "label": "LFO 2 Amount",
               "value": 88
             },
             {
-              "index": 16,
+              "index": 8,
               "label": "LFO 2 Rate",
               "value": 89
             },
             {
-              "index": 17,
+              "index": 9,
               "label": "LFO 2 Offset",
               "value": 90
             },
             {
-              "index": 18,
+              "index": 10,
               "label": "LFO 2 Phase",
               "value": 102
             },
             {
-              "index": 19,
+              "index": 11,
               "label": "LFO 2 Density",
               "value": 103
             },
             {
-              "index": 20,
+              "index": 12,
               "label": "LFO 2 Device A",
               "value": 104
             },
             {
-              "index": 21,
+              "index": 13,
               "label": "LFO 2 Device B",
               "value": 105
             },
             {
-              "index": 22,
+              "index": 14,
               "label": "LFO 3 Shape",
               "value": 107
             },
             {
-              "index": 23,
+              "index": 15,
               "label": "LFO 3 Amount",
               "value": 108
             },
             {
-              "index": 24,
+              "index": 16,
               "label": "LFO 3 Rate",
               "value": 109
             },
             {
-              "index": 25,
+              "index": 17,
               "label": "LFO 3 Offset",
               "value": 110
             },
             {
-              "index": 26,
+              "index": 18,
               "label": "LFO 3 Phase",
               "value": 111
             },
             {
-              "index": 27,
+              "index": 19,
               "label": "LFO 3 Density",
               "value": 112
             },
             {
-              "index": 28,
+              "index": 20,
               "label": "LFO 3 Device A",
               "value": 113
             },
             {
-              "index": 29,
+              "index": 21,
               "label": "LFO 3 Device B",
               "value": 114
             }
@@ -6172,126 +5852,86 @@
             },
             {
               "index": 5,
-              "label": "Virus Axyz X1",
-              "value": 20
-            },
-            {
-              "index": 6,
-              "label": "Virus Axyz Y1",
-              "value": 21
-            },
-            {
-              "index": 7,
-              "label": "Virus Axyz X2",
-              "value": 23
-            },
-            {
-              "index": 8,
-              "label": "Virus Axyz Y2",
-              "value": 24
-            },
-            {
-              "index": 9,
-              "label": "Virus Axyz X3",
-              "value": 26
-            },
-            {
-              "index": 10,
-              "label": "Virus Axyz Y3",
-              "value": 27
-            },
-            {
-              "index": 11,
-              "label": "Virus Axyz X4",
-              "value": 29
-            },
-            {
-              "index": 12,
-              "label": "Virus Axyz Y4",
-              "value": 30
-            },
-            {
-              "index": 13,
               "label": "LFO 1 Device B",
               "value": 85
             },
             {
-              "index": 14,
+              "index": 6,
               "label": "LFO 2 Shape",
               "value": 87
             },
             {
-              "index": 15,
+              "index": 7,
               "label": "LFO 2 Amount",
               "value": 88
             },
             {
-              "index": 16,
+              "index": 8,
               "label": "LFO 2 Rate",
               "value": 89
             },
             {
-              "index": 17,
+              "index": 9,
               "label": "LFO 2 Offset",
               "value": 90
             },
             {
-              "index": 18,
+              "index": 10,
               "label": "LFO 2 Phase",
               "value": 102
             },
             {
-              "index": 19,
+              "index": 11,
               "label": "LFO 2 Density",
               "value": 103
             },
             {
-              "index": 20,
+              "index": 12,
               "label": "LFO 2 Device A",
               "value": 104
             },
             {
-              "index": 21,
+              "index": 13,
               "label": "LFO 2 Device B",
               "value": 105
             },
             {
-              "index": 22,
+              "index": 14,
               "label": "LFO 3 Shape",
               "value": 107
             },
             {
-              "index": 23,
+              "index": 15,
               "label": "LFO 3 Amount",
               "value": 108
             },
             {
-              "index": 24,
+              "index": 16,
               "label": "LFO 3 Rate",
               "value": 109
             },
             {
-              "index": 25,
+              "index": 17,
               "label": "LFO 3 Offset",
               "value": 110
             },
             {
-              "index": 26,
+              "index": 18,
               "label": "LFO 3 Phase",
               "value": 111
             },
             {
-              "index": 27,
+              "index": 19,
               "label": "LFO 3 Density",
               "value": 112
             },
             {
-              "index": 28,
+              "index": 20,
               "label": "LFO 3 Device A",
               "value": 113
             },
             {
-              "index": 29,
+              "index": 21,
               "label": "LFO 3 Device B",
               "value": 114
             }
@@ -6612,126 +6252,86 @@
             },
             {
               "index": 5,
-              "label": "Virus Axyz X1",
-              "value": 20
-            },
-            {
-              "index": 6,
-              "label": "Virus Axyz Y1",
-              "value": 21
-            },
-            {
-              "index": 7,
-              "label": "Virus Axyz X2",
-              "value": 23
-            },
-            {
-              "index": 8,
-              "label": "Virus Axyz Y2",
-              "value": 24
-            },
-            {
-              "index": 9,
-              "label": "Virus Axyz X3",
-              "value": 26
-            },
-            {
-              "index": 10,
-              "label": "Virus Axyz Y3",
-              "value": 27
-            },
-            {
-              "index": 11,
-              "label": "Virus Axyz X4",
-              "value": 29
-            },
-            {
-              "index": 12,
-              "label": "Virus Axyz Y4",
-              "value": 30
-            },
-            {
-              "index": 13,
               "label": "LFO 1 Device B",
               "value": 85
             },
             {
-              "index": 14,
+              "index": 6,
               "label": "LFO 2 Shape",
               "value": 87
             },
             {
-              "index": 15,
+              "index": 7,
               "label": "LFO 2 Amount",
               "value": 88
             },
             {
-              "index": 16,
+              "index": 8,
               "label": "LFO 2 Rate",
               "value": 89
             },
             {
-              "index": 17,
+              "index": 9,
               "label": "LFO 2 Offset",
               "value": 90
             },
             {
-              "index": 18,
+              "index": 10,
               "label": "LFO 2 Phase",
               "value": 102
             },
             {
-              "index": 19,
+              "index": 11,
               "label": "LFO 2 Density",
               "value": 103
             },
             {
-              "index": 20,
+              "index": 12,
               "label": "LFO 2 Device A",
               "value": 104
             },
             {
-              "index": 21,
+              "index": 13,
               "label": "LFO 2 Device B",
               "value": 105
             },
             {
-              "index": 22,
+              "index": 14,
               "label": "LFO 3 Shape",
               "value": 107
             },
             {
-              "index": 23,
+              "index": 15,
               "label": "LFO 3 Amount",
               "value": 108
             },
             {
-              "index": 24,
+              "index": 16,
               "label": "LFO 3 Rate",
               "value": 109
             },
             {
-              "index": 25,
+              "index": 17,
               "label": "LFO 3 Offset",
               "value": 110
             },
             {
-              "index": 26,
+              "index": 18,
               "label": "LFO 3 Phase",
               "value": 111
             },
             {
-              "index": 27,
+              "index": 19,
               "label": "LFO 3 Density",
               "value": 112
             },
             {
-              "index": 28,
+              "index": 20,
               "label": "LFO 3 Device A",
               "value": 113
             },
             {
-              "index": 29,
+              "index": 21,
               "label": "LFO 3 Device B",
               "value": 114
             }
@@ -6797,126 +6397,86 @@
             },
             {
               "index": 5,
-              "label": "Virus Axyz X1",
-              "value": 20
-            },
-            {
-              "index": 6,
-              "label": "Virus Axyz Y1",
-              "value": 21
-            },
-            {
-              "index": 7,
-              "label": "Virus Axyz X2",
-              "value": 23
-            },
-            {
-              "index": 8,
-              "label": "Virus Axyz Y2",
-              "value": 24
-            },
-            {
-              "index": 9,
-              "label": "Virus Axyz X3",
-              "value": 26
-            },
-            {
-              "index": 10,
-              "label": "Virus Axyz Y3",
-              "value": 27
-            },
-            {
-              "index": 11,
-              "label": "Virus Axyz X4",
-              "value": 29
-            },
-            {
-              "index": 12,
-              "label": "Virus Axyz Y4",
-              "value": 30
-            },
-            {
-              "index": 13,
               "label": "LFO 1 Device B",
               "value": 85
             },
             {
-              "index": 14,
+              "index": 6,
               "label": "LFO 2 Shape",
               "value": 87
             },
             {
-              "index": 15,
+              "index": 7,
               "label": "LFO 2 Amount",
               "value": 88
             },
             {
-              "index": 16,
+              "index": 8,
               "label": "LFO 2 Rate",
               "value": 89
             },
             {
-              "index": 17,
+              "index": 9,
               "label": "LFO 2 Offset",
               "value": 90
             },
             {
-              "index": 18,
+              "index": 10,
               "label": "LFO 2 Phase",
               "value": 102
             },
             {
-              "index": 19,
+              "index": 11,
               "label": "LFO 2 Density",
               "value": 103
             },
             {
-              "index": 20,
+              "index": 12,
               "label": "LFO 2 Device A",
               "value": 104
             },
             {
-              "index": 21,
+              "index": 13,
               "label": "LFO 2 Device B",
               "value": 105
             },
             {
-              "index": 22,
+              "index": 14,
               "label": "LFO 3 Shape",
               "value": 107
             },
             {
-              "index": 23,
+              "index": 15,
               "label": "LFO 3 Amount",
               "value": 108
             },
             {
-              "index": 24,
+              "index": 16,
               "label": "LFO 3 Rate",
               "value": 109
             },
             {
-              "index": 25,
+              "index": 17,
               "label": "LFO 3 Offset",
               "value": 110
             },
             {
-              "index": 26,
+              "index": 18,
               "label": "LFO 3 Phase",
               "value": 111
             },
             {
-              "index": 27,
+              "index": 19,
               "label": "LFO 3 Density",
               "value": 112
             },
             {
-              "index": 28,
+              "index": 20,
               "label": "LFO 3 Device A",
               "value": 113
             },
             {
-              "index": 29,
+              "index": 21,
               "label": "LFO 3 Device B",
               "value": 114
             }
@@ -6982,126 +6542,86 @@
             },
             {
               "index": 5,
-              "label": "Virus Axyz X1",
-              "value": 20
-            },
-            {
-              "index": 6,
-              "label": "Virus Axyz Y1",
-              "value": 21
-            },
-            {
-              "index": 7,
-              "label": "Virus Axyz X2",
-              "value": 23
-            },
-            {
-              "index": 8,
-              "label": "Virus Axyz Y2",
-              "value": 24
-            },
-            {
-              "index": 9,
-              "label": "Virus Axyz X3",
-              "value": 26
-            },
-            {
-              "index": 10,
-              "label": "Virus Axyz Y3",
-              "value": 27
-            },
-            {
-              "index": 11,
-              "label": "Virus Axyz X4",
-              "value": 29
-            },
-            {
-              "index": 12,
-              "label": "Virus Axyz Y4",
-              "value": 30
-            },
-            {
-              "index": 13,
               "label": "LFO 1 Device B",
               "value": 85
             },
             {
-              "index": 14,
+              "index": 6,
               "label": "LFO 2 Shape",
               "value": 87
             },
             {
-              "index": 15,
+              "index": 7,
               "label": "LFO 2 Amount",
               "value": 88
             },
             {
-              "index": 16,
+              "index": 8,
               "label": "LFO 2 Rate",
               "value": 89
             },
             {
-              "index": 17,
+              "index": 9,
               "label": "LFO 2 Offset",
               "value": 90
             },
             {
-              "index": 18,
+              "index": 10,
               "label": "LFO 2 Phase",
               "value": 102
             },
             {
-              "index": 19,
+              "index": 11,
               "label": "LFO 2 Density",
               "value": 103
             },
             {
-              "index": 20,
+              "index": 12,
               "label": "LFO 2 Device A",
               "value": 104
             },
             {
-              "index": 21,
+              "index": 13,
               "label": "LFO 2 Device B",
               "value": 105
             },
             {
-              "index": 22,
+              "index": 14,
               "label": "LFO 3 Shape",
               "value": 107
             },
             {
-              "index": 23,
+              "index": 15,
               "label": "LFO 3 Amount",
               "value": 108
             },
             {
-              "index": 24,
+              "index": 16,
               "label": "LFO 3 Rate",
               "value": 109
             },
             {
-              "index": 25,
+              "index": 17,
               "label": "LFO 3 Offset",
               "value": 110
             },
             {
-              "index": 26,
+              "index": 18,
               "label": "LFO 3 Phase",
               "value": 111
             },
             {
-              "index": 27,
+              "index": 19,
               "label": "LFO 3 Density",
               "value": 112
             },
             {
-              "index": 28,
+              "index": 20,
               "label": "LFO 3 Device A",
               "value": 113
             },
             {
-              "index": 29,
+              "index": 21,
               "label": "LFO 3 Device B",
               "value": 114
             }

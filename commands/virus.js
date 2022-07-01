@@ -1,10 +1,19 @@
 const config = require('config')
+const path = require('path')
+
+
 const virus = require('../lib/virus')
 
 const yves = require('../lib/yves')
 const pkg = require('../package.json')
 const debugError = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:error`)
 const _ = require('lodash')
+
+const glob = require('glob')
+
+const fs = require('fs-extra')
+const jsonfile = require('jsonfile')
+const deepSortObject = require('deep-sort-object')
 
 const { table } = require('table')
 const chalk = require('chalk')
@@ -14,9 +23,20 @@ const dimColor = chalk.hex('#222')
 let args
 
 const Bacara = require('../lib/bacara')
+const { devices, knownDeviceCCs } = require('../lib/devices')
+const Random = require('../lib/random')
 
+const semver = require('semver')
+
+const virusCompanionPresetName = config.electra.presetName.virus //'Virus Companion'
 const Machine = require('../lib/midi/machine')
 const Interface = require('../lib/midi/interface')
+const untildify = require('untildify')
+
+const electra = require('../lib/electra')
+
+const E1_FIRMWARE_PRESET_REQUEST_VERSION = 'v2.1.2'
+let e1_system_info
 
 const VIRUS_MAX_PART = 6
 
@@ -29,8 +49,40 @@ const virusMixerSelectControls = [145, 146, 147, 148, 149, 150]
 const virusSearchSelectControls = [325, 326, 327, 328, 329, 330]
 
 
+/*
+const debugError = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:error`)
+const debugLfo = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:lfo`)
+const debugDispatch = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:dispatch`)
+const debugMidi = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi`)
+const debugMidiNoteOn = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:note:on`)
+const debugMidiNoteOff = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:note:off`)
+const debugMidiNoteError = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:note:error`)
+*/
+const debugMidiControlChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:control:change`)
+const debugState = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:state`)
+const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:program:change`)
 
+/*
+const debugDeviation = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:deviation`)
+const debugOsc = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:osc`)
+*/
 const Midi = require('../lib/midi/midi')
+
+function msleep(n) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, n)
+}
+function sleep(n) {
+  msleep(n * 1000)
+}
+
+
+let bacaraEmitPart
+let bacaraEmitTime
+function bacaraEmit(portName, part, type, value, origin) {
+  bacaraEmitTime = Date.now()
+  bacaraEmitPart = part
+  Bacara.event().emit('change', portName, part, type, value, origin, path.basename(__filename, '.js'))
+}
 
 
 class VirusMachine extends Machine {
@@ -456,15 +508,8 @@ class VirusMachine extends Machine {
           if (program >= 1 && program < 128) {
             const filename = this.load_preset(program - 1)
             if (filename) {
-              this.sendDeviceProgramChange('A')
-              this.sendDeviceProgramChange('B')
-/*              for (let trk = 0; trk < 6; trk++) {
-                this.sendTrackProgramChange(trk)
-              }
-*/
               this.virusSetupParts()
               this.interface.sendValues('surface')
-              this.showPattern()
               this.writeState()
               debug('previous_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
             }
@@ -478,15 +523,8 @@ class VirusMachine extends Machine {
           if (program >= 0 && program < 127) {
             const filename = this.load_preset(program + 1)
             if (filename) {
-              this.sendDeviceProgramChange('A')
-              this.sendDeviceProgramChange('B')
-/*              for (let trk = 0; trk < 6; trk++) {
-                this.sendTrackProgramChange(trk)
-              }
-*/
               this.virusSetupParts()
               this.interface.sendValues('surface')
-              this.showPattern()
               this.writeState()
               debug('next_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
             }
@@ -498,15 +536,8 @@ class VirusMachine extends Machine {
           this.setRemote(origin, {next:'next_preset', previous:'previous_preset', random:'random_preset'})
           const filename = this.load_preset(Random.getRandomInt(this.presetFiles(true)))
           if (filename) {
-            this.sendDeviceProgramChange('A')
-            this.sendDeviceProgramChange('B')
-/*            for (let trk = 0; trk < 6; trk++) {
-              this.sendTrackProgramChange(trk)
-            }
-*/
             this.virusSetupParts()
             this.interface.sendValues('surface')
-            this.showPattern()
             this.writeState()
             debug('random_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
           }
@@ -804,24 +835,6 @@ class VirusMachine extends Machine {
     }
 
     this.parameterSideEffects = {
-      program: (elementPath, value, origin) => {
-        if (origin == 'surface' || origin == 'remote') {
-          this.setRemote(origin, {next:'next_preset', previous:'previous_preset'})
-          const presetFilesCount = Pattern.presetFiles(this.state, true)
-          if (value >= 0 && value < presetFilesCount) {
-            const filename = this.load_preset(value)
-            if (filename) {
-              this.virusSetupParts()
-              this.interface.sendValues()
-              this.writeState()
-              debug('program: %y %y', value, path.basename(filename))
-            }
-          } else {
-            debug('program: NOT PRESET %y', value)
-          }
-        }
-      },
-
       virus: {
         axyz: {
           part: virusAxyzPart,
@@ -909,15 +922,15 @@ class VirusMachine extends Machine {
 
 
     this.interface.on('parameterChange', (path, value, origin, originalValue) => {
-      debug('parameterChange %y %y',path,value)
+      debug('parameterChange %y %y', path, value)
     })
 
     this.on('stateChange', (path, value, originalValue) => {
-      debug('stateChange %y %y (was %y)',path,value,originalValue)
+      debug('stateChange %y %y (was %y)', path, value, originalValue)
     })
 
     this.interface.on('modulationChange', (path, value, reason) => {
-      debug('modulationChange %y %y (reason %y)',path,value,reason)
+      debug('modulationChange %y %y (reason %y)', path, value, reason)
     })
 
   }
@@ -951,7 +964,7 @@ class VirusMachine extends Machine {
       } catch (e) {
         console.error(e)
       }
-      debugState('readState (%y) %y',filePath,json)
+      debugState('readState (%y) %y', filePath, json)
       if (json) {
         const state = {}
         const paths = [
@@ -977,54 +990,9 @@ class VirusMachine extends Machine {
     fs.ensureDirSync(path.dirname(filePath))
     const json = this.getPreset()
     jsonfile.writeFileSync(filePath, json, { flag: 'w', spaces: 2 })
-    debugState('writeState (%y) %y',filePath,json)
+    debugState('writeState (%y) %y', filePath, json)
     //      debug('writeState %y',filePath)
   }
-
-  sendDeviceProgramChange(dev) {
-    const portName = this.getState(`device.${dev}.portName`)
-    const channel = this.interface.getParameter(`device.${dev}.channel`)
-    const bank = this.interface.getParameter(`device.${dev}.bank`)
-    const program = this.interface.getParameter(`device.${dev}.program`)
-    if (0) {
-      if (portName == 'virus-ti') {
-        let fromStore = false
-        if (bank >= virusRamRomBanks) {
-          const part = channel
-          const virusPreset = this.getState(`virus.part.${part - 1}.preset`)
-          this.virus.sendPreset(part, bank, program, virusPreset)
-          this.virusReflectPreset(part, virusPreset)//
-          Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
-          /*        if (virusPreset) {
-            const bytes = Virus.presetToSysEx(part, virusPreset, bank, program)
-            if (bytes) {
-              fromStore = true
-              Midi.send('virus-ti', 'sysex', bytes)
-              Virus.parseSysEx(bytes, (part, storedPreset) => {
-                if (part >= 1 && part <= 16 && storedPreset) {
-                  this.setState(`virus.part.${part - 1}.preset`, storedPreset)
-                  this.writeState()
-                }
-                this.virusReflectPreset(part, storedPreset)
-              })
-              bacaraEmit('virus-ti', part, 'sysex', bytes, 'internal')
-              bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, 'internal')
-              bacaraEmit('virus-ti', part, 'part', null, 'internal')
-            }
-          }*/
-        }
-        if (!fromStore) {
-          this.virusSendBankAndProgram(channel, bank, program, 'internal')
-        }
-      } else {
-        debugMidiControlChange('port %s  channel %d  CC %y = %y', portName, channel, 0, bank)
-        Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, `bankChange-${dev}`, 200)
-        debugMidiProgramChange('port %s  channel %d  PC %y', portName, channel - 1, program)
-        Midi.send(portName, 'program', {channel:channel - 1, number: program}, `programChange-${dev}`, 200)
-      }
-    }
-  }
-
 
   sendVirusMixerChannel(part) {
     const portName = 'virus-ti'
@@ -1057,7 +1025,7 @@ class VirusMachine extends Machine {
       const bank = this.interface.getParameter('bank')
       const remote = this.getState('remote')
       this.readState(filename, {bank, program})
-      this.setState('remote',remote)
+      this.setState('remote', remote)
       return filename
     }
   }
@@ -1091,7 +1059,7 @@ class VirusMachine extends Machine {
   }
 
   virusMacros(part) {
-    if (config.electra.checkPresetVia == 'none' || electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
+    if (config.electra.checkPresetVia == 'none' || electra.presetEquals(this.options.electraOneCtrl, virusCompanionPresetName)) {
       if (part >= 1 && part <= 6) {
         const macros = this.getState(`virus.part.${part - 1}.macros`, [])
         for (let i = 0; i < 6; i++) {
@@ -1160,7 +1128,7 @@ class VirusMachine extends Machine {
 
 
   virusReflectParts() {
-    if (config.electra.checkPresetVia == 'none' || electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
+    if (config.electra.checkPresetVia == 'none' || electra.presetEquals(this.options.electraOneCtrl, virusCompanionPresetName)) {
       for (let part = 16; part >= 1; part--) {
         const virusPreset = this.getState(`virus.part.${part - 1}.preset`)
         if (virusPreset) {
@@ -1187,9 +1155,9 @@ class VirusMachine extends Machine {
         }
       }
 
-      if (config.electra.checkPresetVia == 'none' || electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
-        /*        if (electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
-          debug('Electra One %y preset IS Loaded 1', bacaraPresetName)
+      if (config.electra.checkPresetVia == 'none' || electra.presetEquals(this.options.electraOneCtrl, virusCompanionPresetName)) {
+        /*        if (electra.presetEquals(this.options.electraOneCtrl, virusCompanionPresetName)) {
+          debug('Electra One %y preset IS Loaded 1', virusCompanionPresetName)
         }
 */
         if (part >= 1 && part <= 6) {
@@ -1202,7 +1170,7 @@ class VirusMachine extends Machine {
           electra.controlReflect(this.options.electraOneCtrl, ctrlId, {'name': virusPreset.name})
         }
         //      } else {
-        //        debug('Electra One %y preset NOT Loaded', bacaraPresetName)
+        //        debug('Electra One %y preset NOT Loaded', virusCompanionPresetName)
       }
 
       let macros = {}
@@ -1325,11 +1293,11 @@ function virusCompanion(name, sub, options) {
                   e1_system_info = electra.parseSysexCmdInfoResponse(options.electraOneCtrl, msg.bytes)
                   if (!e1_system_info.versionText.match(/^v\d+\.\d+\.\d+$/)) {
                     if (e1_system_info.versionText.match(/^v\d+\.\d+$/)) {
-                      e1_system_info.versionText+='.0'
+                      e1_system_info.versionText += '.0'
                     }
-                    debug('%y %y',e1_system_info.versionText,E1_FIRMWARE_PRESET_REQUEST_VERSION)
+                    debug('%y %y', e1_system_info.versionText, E1_FIRMWARE_PRESET_REQUEST_VERSION)
                   }
-                  e1_system_info.versionText = e1_system_info.versionText.replace(/[a-zA-Z-]/g,'')  // allows for v3.0-a.2
+                  e1_system_info.versionText = e1_system_info.versionText.replace(/[a-zA-Z-]/g, '')  // allows for v3.0-a.2
                   debug('info actual %y >= %y ? %y', e1_system_info.versionText, E1_FIRMWARE_PRESET_REQUEST_VERSION, semver.gte(_.get(e1_system_info, 'versionText', 'v0.0.0'), E1_FIRMWARE_PRESET_REQUEST_VERSION))
                   if (config.electra.checkPresetVia == 'patch' || semver.lt(_.get(e1_system_info, 'versionText', 'v0.0.0'), E1_FIRMWARE_PRESET_REQUEST_VERSION)) { // semver: see if actual version is smaller that v2.1.2
                     debug('Send Patch Request to %y', options.electraOneCtrl)
@@ -1340,19 +1308,19 @@ function virusCompanion(name, sub, options) {
                   }
                 } else if (_.isEqual(sysexCmd, electraSysexCmdPatchResponse)) {
                   const presetName = electra.parseSysexCmdPatchRequestResponse(options.electraOneCtrl, msg.bytes)
-                  if (presetName == bacaraPresetName || presetName.toLowerCase().indexOf('bacara')>=0) {
-                    debug('Electra One "%s" preset IS Loaded (patch)', bacaraPresetName)
+                  if (presetName == virusCompanionPresetName || presetName.toLowerCase().indexOf('bacara') >= 0) {
+                    debug('Electra One "%s" preset IS Loaded (patch)', virusCompanionPresetName)
                     virusMachine.virusReflectParts()
                   } else {
-                    debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (patch)', bacaraPresetName, presetName)
+                    debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (patch)', virusCompanionPresetName, presetName)
                   }
                 } else if (_.isEqual(sysexCmd, electraSysexCmdPresetNameResponse)) {
                   const presetName = electra.parseSysexCmdPresetNameResponse(options.electraOneCtrl, msg.bytes) || ''
-                  if (!presetName || (presetName == bacaraPresetName || presetName.toLowerCase().indexOf('bacara')>=0)) {
-                    debug('Electra One "%s" preset IS Loaded (preset)', bacaraPresetName)
+                  if (!presetName || (presetName == virusCompanionPresetName || presetName.toLowerCase().indexOf('bacara') >= 0)) {
+                    debug('Electra One "%s" preset IS Loaded (preset)', virusCompanionPresetName)
                     virusMachine.virusReflectParts()
                   } else {
-                    debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (preset)', bacaraPresetName, presetName, presetName.toLowerCase().indexOf(bacaraPresetName.toLowerCase()),presetName,bacaraPresetName)
+                    debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (preset)', virusCompanionPresetName, presetName, presetName.toLowerCase().indexOf(virusCompanionPresetName.toLowerCase()), presetName, virusCompanionPresetName)
                   }
                 } else if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
                   if (config.electra.checkPresetVia == 'patch' || semver.lt(_.get(e1_system_info, 'versionText', 'v0.0.0'), E1_FIRMWARE_PRESET_REQUEST_VERSION)) {
@@ -1385,6 +1353,7 @@ function virusCompanion(name, sub, options) {
       virusMachine.interface.sendValues('surface')
       virusMachine.virusSetupParts()
     }
+    break
   case 'preset':
     switch (sub.length > 1 && sub[1] && sub[1].toLowerCase()) {
     case 'search':

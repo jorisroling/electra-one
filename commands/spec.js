@@ -15,65 +15,81 @@ const surface_nrpn = {}
 
 function show(path) {
 
-	const base = path ? _.get(bacara_interface.elements,path) : bacara_interface.elements
+  const base = path ? _.get(bacara_interface.elements, path) : bacara_interface.elements
   if (typeof base == 'object') {
     if (base.surface) {
       if (base.surface.type == 'cc') {
         if (base.surface.hiRes) {
-          if (surface_cc[''+base.surface.number]) debug('Surface: %y & %y share the same CC (%y)',surface_cc[''+base.surface.number],path+' (MSB)',base.surface.number)
-          surface_cc[''+base.surface.number] = path+' (MSB)'
-          if (surface_cc[''+(base.surface.number + 32)]) debug('Surface: %y & %y share the same CC (%y)',surface_cc[''+(base.surface.number + 32)],path+' (LSB)',base.surface.number)
-          surface_cc[''+(base.surface.number + 32)] = path+' (LSB)'
+          if (surface_cc['' + base.surface.number]) {
+            debug('Surface: %y & %y share the same CC (%y)', surface_cc['' + base.surface.number], path + ' (MSB)', base.surface.number)
+          }
+          surface_cc['' + base.surface.number] = path + ' (MSB)'
+          if (surface_cc['' + (base.surface.number + 32)]) {
+            debug('Surface: %y & %y share the same CC (%y)', surface_cc['' + (base.surface.number + 32)], path + ' (LSB)', base.surface.number)
+          }
+          surface_cc['' + (base.surface.number + 32)] = path + ' (LSB)'
         } else {
-          if (surface_cc[''+base.surface.number]) debug('Surface: %y & %y share the same CC (%y)',surface_cc[''+base.surface.number],path,base.surface.number)
-          surface_cc[''+base.surface.number] = path
+          if (surface_cc['' + base.surface.number]) {
+            debug('Surface: %y & %y share the same CC (%y)', surface_cc['' + base.surface.number], path, base.surface.number)
+          }
+          surface_cc['' + base.surface.number] = path
         }
       }
       if (base.surface.type == 'nrpn') {
-        if (surface_nrpn[''+base.surface.number]) debug('Surface: %y & %y share the same NRPN (%y)',surface_nrpn[''+base.surface.number],path,base.surface.number)
-        surface_nrpn[''+base.surface.number] = path
+        if (surface_nrpn['' + base.surface.number]) {
+          debug('Surface: %y & %y share the same NRPN (%y)', surface_nrpn['' + base.surface.number], path, base.surface.number)
+        }
+        surface_nrpn['' + base.surface.number] = path
       }
     }
     if (base.external) {
       if (base.external.type == 'cc') {
         if (base.external.hiRes) {
-          if (external_cc[''+base.external.number]) debug('External: %y & %y share the same CC (%y)',external_cc[''+base.external.number],path+' (MSB)',base.external.number)
-          external_cc[''+base.external.number] = path+' (MSB)'
-          if (external_cc[''+(base.external.number + 32)]) debug('External: %y & %y share the same CC (%y)',external_cc[''+(base.external.number + 32)],path+' (LSB)',base.external.number)
-          external_cc[''+(base.external.number + 32)] = path+' (LSB)'
+          if (external_cc['' + base.external.number]) {
+            debug('External: %y & %y share the same CC (%y)', external_cc['' + base.external.number], path + ' (MSB)', base.external.number)
+          }
+          external_cc['' + base.external.number] = path + ' (MSB)'
+          if (external_cc['' + (base.external.number + 32)]) {
+            debug('External: %y & %y share the same CC (%y)', external_cc['' + (base.external.number + 32)], path + ' (LSB)', base.external.number)
+          }
+          external_cc['' + (base.external.number + 32)] = path + ' (LSB)'
         } else {
-          if (external_cc[''+base.external.number]) debug('External: %y & %y share the same CC (%y)',external_cc[''+base.external.number],path,base.external.number)
-          external_cc[''+base.external.number] = path
+          if (external_cc['' + base.external.number]) {
+            debug('External: %y & %y share the same CC (%y)', external_cc['' + base.external.number], path, base.external.number)
+          }
+          external_cc['' + base.external.number] = path
         }
       }
       if (base.external.type == 'nrpn') {
-        if (external_nrpn[''+base.external.number]) debug('External: %y & %y share the same NRPN (%y)',external_nrpn[''+base.external.number],path,base.external.number)
-        external_nrpn[''+base.external.number] = path
+        if (external_nrpn['' + base.external.number]) {
+          debug('External: %y & %y share the same NRPN (%y)', external_nrpn['' + base.external.number], path, base.external.number)
+        }
+        external_nrpn['' + base.external.number] = path
       }
 
-/*      debugShow('element: %y',path)*/
+      /*      debugShow('element: %y',path)*/
     }
-  	for (let key in base) {
-      if (key !='surface' && key != 'external') {
-        const ep = path?`${path}.${key}`:`${key}`
-    		show(ep)
+    for (let key in base) {
+      if (key != 'surface' && key != 'external') {
+        const ep = path ? `${path}.${key}` : `${key}`
+        show(ep)
       }
-  	}
+    }
   }
-//	debugShow('base: %y',base)
+  //	debugShow('base: %y',base)
 
 }
 
 function spec(name, sub, options) {
 /*  debugShow('hi: %y',bacara_interface)*/
 
-	show()
+  show()
 
-	debugShow('surface cc: %y',surface_cc)
-	debugShow('surface nrpn: %y',surface_nrpn)
+  debugShow('surface cc: %y', surface_cc)
+  debugShow('surface nrpn: %y', surface_nrpn)
 
-	debugShow('external cc: %y',external_cc)
-	debugShow('external nrpn: %y',external_nrpn)
+  debugShow('external cc: %y', external_cc)
+  debugShow('external nrpn: %y', external_nrpn)
 }
 
 module.exports = {

@@ -33,7 +33,10 @@ module.exports = customWrapper({
   },
   electra: {
     checkPresetVia: 'patch',  // patch, preset or none
-    presetName: 'Bacara Joris',
+    presetName: {
+      bacara: 'Bacara',
+      virus: 'Virus TI Companion',
+    },
   },
   midi: {
     ports: {

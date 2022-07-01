@@ -20,7 +20,9 @@
   },
   "electra": {
     "checkPresetVia": "preset",
-    "presetName": "Bacara Joris"
+    "presetName": {
+      "bacara": "Bacara Joris"
+    }
   },
   "osc": {
     "devices": {
@@ -903,11 +905,6 @@
       "ports": {
         "input": [
           {
-            "name": "KOMPLETE KONTROL M32",
-            "short": "KOMPLETE KO.32",
-            "device": "komplete-kontrol"
-          },
-          {
             "name": "Akai APC40",
             "short": "Akai APC.40"
           },
@@ -960,24 +957,25 @@
             "short": "Elektron Analo"
           },
           {
-            "name": "Electra Controller B Electra Port 1",
-            "short": "Electra Cont B.1",
-            "device": "electra-one-b-port-1"
+            "name": "Midihub Port 1",
+            "short": "Midihub Port.1"
           },
           {
-            "name": "Electra Controller B Electra Port 2",
-            "short": "Electra Cont B.2",
-            "device": "electra-one-b-port-2"
+            "name": "Midihub Port 2",
+            "short": "Midihub Port.2"
           },
           {
-            "name": "Electra Controller B Electra CTRL",
-            "short": "Electra Contro B.CTRL",
-            "device": "electra-one-b-ctrl"
+            "name": "Midihub Port 3",
+            "short": "Midihub Port.3"
+          },
+          {
+            "name": "Midihub Port 4",
+            "short": "Midihub Port.4"
           },
           {
             "name": "MRCC Port 1",
             "short": "MRCC Port.1",
-            "device": "virus-ti"
+            "device": "Xvirus-ti"
           },
           {
             "name": "MRCC Port 2",
@@ -1063,10 +1061,6 @@
             "name": "Electra Controller A Electra CTRL",
             "short": "Electra Contro A.CTRL",
             "device": "electra-one-a-ctrl"
-          },
-          {
-            "name": "Komplete Kontrol M DAW",
-            "short": "Komplete Kontr"
           },
           {
             "name": "Bacara",
@@ -1076,11 +1070,6 @@
         ],
         "output": [
           {
-            "name": "KOMPLETE KONTROL M32",
-            "short": "KOMPLETE KO.32",
-            "device": "komplete-kontrol"
-          },
-          {
             "name": "Akai APC40",
             "short": "Akai APC.40"
           },
@@ -1133,24 +1122,25 @@
             "short": "Elektron Analo"
           },
           {
-            "name": "Electra Controller B Electra Port 1",
-            "short": "Electra Cont B.1",
-            "device": "electra-one-b-port-1"
+            "name": "Midihub Port 1",
+            "short": "Midihub Port.1"
           },
           {
-            "name": "Electra Controller B Electra Port 2",
-            "short": "Electra Cont B.2",
-            "device": "electra-one-b-port-2"
+            "name": "Midihub Port 2",
+            "short": "Midihub Port.2"
           },
           {
-            "name": "Electra Controller B Electra CTRL",
-            "short": "Electra Contro B.CTRL",
-            "device": "electra-one-b-ctrl"
+            "name": "Midihub Port 3",
+            "short": "Midihub Port.3"
+          },
+          {
+            "name": "Midihub Port 4",
+            "short": "Midihub Port.4"
           },
           {
             "name": "MRCC Port 1",
             "short": "MRCC Port.1",
-            "device": "virus-ti"
+            "device": "Xvirus-ti"
           },
           {
             "name": "MRCC Port 2",
@@ -1236,10 +1226,6 @@
             "name": "Electra Controller A Electra CTRL",
             "short": "Electra Contro A.CTRL",
             "device": "electra-one-a-ctrl"
-          },
-          {
-            "name": "Komplete Kontrol M DAW",
-            "short": "Komplete Kontr"
           },
           {
             "name": "Bacara",
