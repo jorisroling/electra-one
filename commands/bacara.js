@@ -53,6 +53,7 @@ const debugPattern = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('ch
 
 const DRUM_TRACKS = 11
 const REDRUM_TRACKS = 12
+const LFOS = 3
 const GRID_MODE_NONE = 0
 const GRID_MODE_MELODIC = 2
 const GRID_MODE_DRUMS = 2
@@ -2138,7 +2139,7 @@ class BacaraMachine extends Machine {
 
         this.interface.clearModulation('lfo')
 
-        for (let l = 0; l < 3; l++) {
+        for (let l = 0; l < LFOS; l++) {
           let control = this.interface.getParameter(`lfo.${l}.control`)
 
           const value = this.lfoValue(l)

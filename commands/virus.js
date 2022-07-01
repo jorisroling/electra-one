@@ -45,8 +45,14 @@ const virusAxyzModeAbsolute = 1
 
 const Virus = require('../lib/virus')
 const virusRamRomBanks = 30
-const virusMixerSelectControls = [145, 146, 147, 148, 149, 150]
-const virusSearchSelectControls = [325, 326, 327, 328, 329, 330]
+//const virusMixerSelectControls = [145, 146, 147, 148, 149, 150]
+
+const virusMixerPage = 1
+const virusMixerSelectControls = [1, 2, 3, 4, 5, 6]
+
+
+const virusSearchPage = 7
+const virusSearchSelectControls = [1, 2, 3, 4, 5, 6]
 
 
 /*
@@ -61,6 +67,7 @@ const debugMidiNoteError = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(requi
 const debugMidiControlChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:control:change`)
 const debugState = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:state`)
 const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:program:change`)
+const debugChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:change`)
 
 /*
 const debugDeviation = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:deviation`)
@@ -922,15 +929,15 @@ class VirusMachine extends Machine {
 
 
     this.interface.on('parameterChange', (path, value, origin, originalValue) => {
-      debug('parameterChange %y %y', path, value)
+      debugChange('parameterChange %y %y', path, value)
     })
 
     this.on('stateChange', (path, value, originalValue) => {
-      debug('stateChange %y %y (was %y)', path, value, originalValue)
+      debugChange('stateChange %y %y (was %y)', path, value, originalValue)
     })
 
     this.interface.on('modulationChange', (path, value, reason) => {
-      debug('modulationChange %y %y (reason %y)', path, value, reason)
+      debugChange('modulationChange %y %y (reason %y)', path, value, reason)
     })
 
   }
@@ -1162,8 +1169,8 @@ class VirusMachine extends Machine {
 */
         if (part >= 1 && part <= 6) {
           //          debug('controlReflect %y %y',virusMixerSelectControls[part - 1],{'name': virusPreset.name})
-          electra.controlReflect(this.options.electraOneCtrl, virusMixerSelectControls[part - 1], {'name': virusPreset.name})
-          electra.controlReflect(this.options.electraOneCtrl, virusSearchSelectControls[part - 1], {'name': virusPreset.name})
+          electra.controlReflect(this.options.electraOneCtrl, virusMixerSelectControls[part - 1] + ((virusMixerPage-1)*36), {'name': virusPreset.name})
+          electra.controlReflect(this.options.electraOneCtrl, virusSearchSelectControls[part - 1] + ((virusSearchPage-1)*36), {'name': virusPreset.name})
         }
         if (part == this.interface.getParameter('virus.axyz.part')) {
           const ctrlId = 110

@@ -973,9 +973,14 @@
             "short": "Midihub Port.4"
           },
           {
+            "name": "Touch Block Bluetooth",
+            "short": "Touch Block Bl",
+            "device": "thouch-block"
+          },
+          {
             "name": "MRCC Port 1",
             "short": "MRCC Port.1",
-            "device": "Xvirus-ti"
+            "device": "virus-ti"
           },
           {
             "name": "MRCC Port 2",
@@ -1138,9 +1143,14 @@
             "short": "Midihub Port.4"
           },
           {
+            "name": "Touch Block Bluetooth",
+            "short": "Touch Block Bl",
+            "device": "thouch-block"
+          },
+          {
             "name": "MRCC Port 1",
             "short": "MRCC Port.1",
-            "device": "Xvirus-ti"
+            "device": "virus-ti"
           },
           {
             "name": "MRCC Port 2",
