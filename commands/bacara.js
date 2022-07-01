@@ -57,17 +57,12 @@ const GRID_MODE_NONE = 0
 const GRID_MODE_MELODIC = 2
 const GRID_MODE_DRUMS = 2
 
-const VIRUS_MAX_PART = 6
-
 const euclideanRhythms = require('euclidean-rhythms')
 const scaleMappings = require('../extra/scales/scales.json')
 
 const chalk = require('chalk')
 const { devices, knownDeviceCCs } = require('../lib/devices')
 const deviceCCs = knownDeviceCCs()
-
-const virusAxyzModeRelative = 0
-const virusAxyzModeAbsolute = 1
 
 const E1_FIRMWARE_PRESET_REQUEST_VERSION = 'v2.1.2'
 let e1_system_info
@@ -102,10 +97,8 @@ const toneJSmidi = require('@tonejs/midi')
 const Table = require('cli-table3')
 const ticksPerStep = 120
 
-const Virus = require('../lib/virus')
 const electra = require('../lib/electra')
 
-const virusRamRomBanks = 30
 const patternStepsDefault = 16
 
 const matrixSetSlotValueTimout = 10
@@ -122,10 +115,6 @@ function msleep(n) {
 function sleep(n) {
   msleep(n*1000);
 }
-
-const virusMixerSelectControls = [145, 146, 147, 148, 149, 150]
-const virusSearchSelectControls = [325, 326, 327, 328, 329, 330]
-
 
 const beatCC = 2 // -1 for off
 const reverseDeviceBrowsOnGrid = true
@@ -163,29 +152,12 @@ class BacaraMachine extends Machine {
     this.lfoHistory = [[], [], []]
     this.slewLimiterTimouts = []
 
-    this.virus = new Virus('virus-ti')
     this.remote = {}
 
     Bacara.event().on('change', (device, part, name, value, origin, command) => {
       if (/*command != me &&*/ device == 'virus-ti' && (part >= 1 && part <= 16)) {
         //debug('BACARA change %y - device: %y  part: %y  name: %y  value: %y  origin: %y command: %y',me,device, part, name, value, origin, command)
         if (name == 'bank-and-program') {
-          if (value && value.bank) {
-            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, value.bank)
-          }
-          if (value && value.program) {
-            this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, value.program)
-          }
-          if (part == this.interface.getParameter('virus.axyz.part')) {
-
-            if (value && value.bank) {
-              this.interface.setParameter('virus.axyz.bank', value.bank)
-            }
-            if (value && value.program) {
-              this.interface.setParameter('virus.axyz.program', value.program)
-            }
-            virusAxyzRecenterSend()
-          }
           ['A', 'B'].forEach( dev => {
             const portName = this.getState(`device.${dev}.portName`)
             const channel = this.interface.getParameter(`device.${dev}.channel`, 1)
@@ -201,195 +173,11 @@ class BacaraMachine extends Machine {
             }
           })
           this.writeState()
-        } else if (name == 'select') {
-          this.interface.setParameter('virus.axyz.part', part)
-          virusAxyzRecenterSend()
         }
       }
     })
+//  }
 
-    const virusAxyzRestoreDefaultSend = (axyz) => {
-      const virusPortName = 'virus-ti'
-      const part = this.interface.getParameter('virus.axyz.part', 1)
-      const channel = part
-
-      const rstAxyz = (axyz) => {
-        for (let t = 0; t < 2; t++) {
-          const value = 0
-          const trgt = this.interface.getParameter(`virus.axyz.${axyz}.target.${t}`)
-          if (trgt) {
-            const idx = trgt - 1
-
-            const parameter = _.get(devices['virus-ti'].parameters, list[idx])
-            if (parameter && parameter.cc) {
-              const patchDefault = Virus.getPresetPageParameter(this.getState(`virus.part.${part - 1}.preset`), 0, parameter.cc)
-              if (patchDefault >= 0) {
-                //                 debug('Reset Axyz %y T %d CC %y = patch default %y',axyz,t,parameter.cc,patchDefault)
-                Midi.send(virusPortName, 'cc', {channel:channel - 1, controller:parameter.cc, value:patchDefault})
-                Bacara.event().emit('change', virusPortName, part, 'cc', {controller:parameter.cc, value:patchDefault}, 'surface', path.basename(__filename, '.js'))
-              }
-            }
-          }
-        }
-      }
-
-      const list = devices['virus-ti'].flatList
-      for (let a = 1; a <= 4; a++) {
-        if (!axyz || axyz == `x${a}`) {
-          rstAxyz(`x${a}`)
-        }
-        if (!axyz || axyz == `y${a}`) {
-          rstAxyz(`y${a}`)
-        }
-      }
-    }
-
-    const virusAxyzRecenterSend = () => {
-      this.interface.setParameter('virus.axyz.x1.control', 0)
-      this.interface.setParameter('virus.axyz.y1.control', 0)
-      this.interface.setParameter('virus.axyz.x2.control', 0)
-      this.interface.setParameter('virus.axyz.y2.control', 0)
-      this.interface.setParameter('virus.axyz.x3.control', 0)
-      this.interface.setParameter('virus.axyz.y3.control', 0)
-      this.interface.setParameter('virus.axyz.x4.control', 0)
-      this.interface.setParameter('virus.axyz.y4.control', 0)
-
-      virusAxyzRestoreDefaultSend()
-    }
-
-    virusAxyzRecenterSend()
-
-    const virusAxyzRecenter = (elementPath, origin) => {
-      virusAxyzRecenterSend()
-    }
-
-    const virusAxyzResetTargets = (elementPath, origin) => {
-      virusAxyzRecenterSend()
-      const rstAxyzTargets = (axyz) => {
-        virusAxyzRestoreDefaultSend(axyz)
-        for (let t = 0; t < 2; t++) {
-          const elementPath = `virus.axyz.${axyz}.target.${t}`
-          this.interface.setParameter(elementPath, this.interface.getElementAttribute(elementPath, 'default', 0))
-        }
-      }
-
-      const list = devices['virus-ti'].flatList
-      for (let a = 1; a <= 4; a++) {
-        rstAxyzTargets(`x${a}`)
-        rstAxyzTargets(`y${a}`)
-      }
-
-    }
-
-    const virusAxyzSelect = (elementPath, origin) => {
-      const part = this.interface.getParameter('virus.axyz.part', 1)
-      this.setRemote(origin, {next:'virus.axyz.next', previous:'virus.axyz.previous', random:'virus.axyz.random', nextBank:'virus.axyz.nextBank', previousBank:'virus.axyz.previousBank', recenter:'virus.axyz.recenter'})
-      if (part >= 1 && part <= 16) {
-        bacaraEmit('virus-ti', part, 'select', null, origin)
-      }
-    }
-
-    const virusAxyzNext = (elementPath, origin) => {
-      const part = this.interface.getParameter('virus.axyz.part', 1)
-      if (part >= 1 && part <= 16) {
-        const bank = this.interface.getParameter('virus.axyz.bank')
-        const program = this.interface.getParameter('virus.axyz.program')
-        if (program < 127) {
-          this.interface.setParameter('virus.axyz.program', program + 1)
-        } else {
-          const banks = Virus.getBanks()
-          if (banks && bank < (virusRamRomBanks + banks.length)) {
-            this.interface.setParameter('virus.axyz.bank', bank + 1)
-          } else {
-            this.interface.setParameter('virus.axyz.bank', 0)
-          }
-          this.interface.setParameter('virus.axyz.program', 0)
-        }
-        virusAxyzSendBankAndProgram(elementPath, 1, origin)
-      }
-    }
-
-
-    const virusAxyzPrevious = (elementPath, origin) => {
-      const part = this.interface.getParameter('virus.axyz.part', 1)
-      if (part >= 1 && part <= 16) {
-        const bank = this.interface.getParameter('virus.axyz.bank')
-        const program = this.interface.getParameter('virus.axyz.program')
-        if (program > 0) {
-          this.interface.setParameter('virus.axyz.program', program - 1)
-        } else {
-          if (bank > 0) {
-            this.interface.setParameter('virus.axyz.bank', bank - 1)
-          } else {
-            const banks = Virus.getBanks()
-            if (banks) {
-              this.interface.setParameter('virus.axyz.bank', (virusRamRomBanks + banks.length) - 1)
-            }
-          }
-          this.interface.setParameter('virus.axyz.program', 127)
-        }
-        virusAxyzSendBankAndProgram(elementPath, 1, origin)
-      }
-    }
-
-    const virusAxyzRandom = (elementPath, origin) => {
-      const part = this.interface.getParameter('virus.axyz.part', 1)
-      if (part >= 1 && part <= 16) {
-        Virus.randomBankAndProgram((bank, program) => {
-          this.interface.setParameter('virus.axyz.bank', bank + virusRamRomBanks)
-          this.interface.setParameter('virus.axyz.program', program)
-          virusAxyzSendBankAndProgram(elementPath, 1, origin)
-        })
-      }
-    }
-
-    const virusAxyzNextBank = (elementPath, origin) => {
-      const part = this.interface.getParameter('virus.axyz.part', 1)
-      if (part >= 1 && part <= 16) {
-        const bank = this.interface.getParameter('virus.axyz.bank')
-        const banks = Virus.getBanks()
-        if (banks && bank < (virusRamRomBanks + banks.length)) {
-          this.interface.setParameter('virus.axyz.bank', bank + 1)
-          virusAxyzSendBankAndProgram(elementPath, 1, origin)
-        }
-      }
-    }
-
-    const virusAxyzPreviousBank = (elementPath, origin) => {
-      const part = this.interface.getParameter('virus.axyz.part', 1)
-      if (part >= 1 && part <= 16) {
-        const bank = this.interface.getParameter('virus.axyz.bank')
-        if (bank > 0) {
-          this.interface.setParameter('virus.axyz.bank', bank - 1)
-          virusAxyzSendBankAndProgram(elementPath, 1, origin)
-        } else {
-          const banks = Virus.getBanks()
-          if (banks) {
-            this.interface.setParameter('virus.axyz.bank', (virusRamRomBanks + banks.length) - 1)
-            virusAxyzSendBankAndProgram(elementPath, 1, origin)
-          }
-        }
-      }
-    }
-
-    const midiInput_virusTI = Midi.input('virus-ti', true)
-    if (midiInput_virusTI) {
-      midiInput_virusTI.on('message', (msg) => {
-        switch (msg._type) {
-        case 'sysex':
-          Virus.parseSysEx(msg.bytes, (part, storedPreset) => {
-            if (part >= 1 && part <= 16 && storedPreset) {
-              this.setState(`virus.part.${part - 1}.preset`, storedPreset)
-              this.writeState()
-            }
-            this.virusReflectPreset(part, storedPreset)
-          })
-          break
-        }
-      })
-    }
-
-    //    debug('options %y', options)
     if (options.remote) {
       const midiInput_remote = Midi.input(options.remote)
       if (midiInput_remote) {
@@ -437,146 +225,6 @@ class BacaraMachine extends Machine {
         })
       }
     }
-
-    const virusMixerSelect = (part) => (elementPath, origin) => {
-      if (part >= 1 && part <= 16) {
-        this.setRemote(origin, {next:`virus.mixer.part.${part - 1}.next`, previous:`virus.mixer.part.${part - 1}.previous`, random:`virus.mixer.part.${part - 1}.random`, nextBank:`virus.mixer.part.${part - 1}.nextBank`, previousBank:`virus.mixer.part.${part - 1}.previousBank`})
-        bacaraEmit('virus-ti', part, 'select', null, origin)
-      }
-    }
-
-    const virusMixerNext = (part) => (elementPath, origin) => {
-      if (part >= 1 && part <= 16) {
-        const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
-        const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
-        if (program < 127) {
-          this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, program + 1)
-        } else {
-          const banks = Virus.getBanks()
-          if (banks) {
-            if (bank < (virusRamRomBanks + banks.length)) {
-              this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, bank + 1)
-            } else {
-              this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, 0)
-            }
-          }
-          this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, 0)
-        }
-        virusMixerSendBankAndProgram(part, origin)
-      }
-    }
-
-    const virusMixerPrevious = (part) => (elementPath, origin) => {
-      if (part >= 1 && part <= 16) {
-        const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
-        const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
-        if (program > 0) {
-          this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, program - 1)
-        } else {
-          if (bank > 0) {
-            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, bank - 1)
-          } else {
-            const banks = Virus.getBanks()
-            if (banks) {
-              this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, (virusRamRomBanks + banks.length) - 1)
-            }
-          }
-          this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, 127)
-        }
-        virusMixerSendBankAndProgram(part, origin)
-      }
-    }
-
-    const virusMixerRandom = (part) => (elementPath, origin) => {
-      if (part >= 1 && part <= 16) {
-        Virus.randomBankAndProgram((bank, program) => {
-          this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, bank + virusRamRomBanks)
-          this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, program)
-          virusMixerSendBankAndProgram(part, origin)
-        })
-      }
-    }
-
-    const virusMixerNextBank = (part) => (elementPath, origin) => {
-      if (part >= 1 && part <= 16) {
-        const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
-        const banks = Virus.getBanks()
-        if (banks && bank < (virusRamRomBanks + banks.length)) {
-          this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, bank + 1)
-          virusMixerSendBankAndProgram(part, origin)
-        }
-      }
-    }
-
-    const virusMixerPreviousBank = (part) => (elementPath, origin) => {
-      if (part >= 1 && part <= 16) {
-        const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
-        if (bank > 0) {
-          this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, bank - 1)
-          virusMixerSendBankAndProgram(part, origin)
-        } else {
-          const banks = Virus.getBanks()
-          if (banks) {
-            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, (virusRamRomBanks + banks.length) - 1)
-            virusMixerSendBankAndProgram(part, origin)
-          }
-        }
-      }
-    }
-
-
-    const virusSearchSelect = (part) => (elementPath, origin) => {
-      if (part >= 1 && part <= 16) {
-        this.setRemote(origin, {next:`virus.search.part.${part - 1}.next`, previous:`virus.search.part.${part - 1}.previous`, random:`virus.search.part.${part - 1}.random`, remote_reset:`virus.search.part.${part - 1}.randomAll`, nextBank:`virus.search.part.${part - 1}.nextBank`, previousBank:`virus.search.part.${part - 1}.previousBank`})
-        bacaraEmit('virus-ti', part, 'select', null, origin)
-      }
-    }
-
-    const virusSearch = (part, direction, bank, program, origin) => {
-      if (part >= 1 && part <= 16) {
-        const category = this.interface.getParameter(`virus.search.part.${part - 1}.category`)
-        Virus.searchCategory(category, direction, bank >= virusRamRomBanks ? bank - virusRamRomBanks : -1, bank >= virusRamRomBanks ? program : -1, (bank, program) => {
-          if (bank >= 0) {
-            this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, bank + virusRamRomBanks)
-          }
-          if (program >= 0) {
-            this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, program)
-          }
-          virusMixerSendBankAndProgram(part, origin)
-          this.setRemote(origin, {next:`virus.search.part.${part - 1}.next`, previous:`virus.search.part.${part - 1}.previous`, random:`virus.search.part.${part - 1}.random`, nextBank:`virus.search.part.${part - 1}.nextBank`, previousBank:`virus.search.part.${part - 1}.previousBank`})
-        })
-      }
-    }
-
-    const virusSearchNext = (part) => (elementPath, origin) => {
-      const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
-      const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
-      virusSearch(part, 1, bank, program, origin)
-    }
-
-    const virusSearchPrevious = (part) => (elementPath, origin) => {
-      const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
-      const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
-      virusSearch(part, -1, bank, program, origin)
-    }
-
-    const virusSearchRandom = (part) => (elementPath, origin) => {
-      if (part >= 1 && part <= 16) {
-        Virus.randomBankAndProgram((bank, program) => {
-          debug('Random bank %y program %y', bank, program)
-          virusSearch(part, 0, bank + virusRamRomBanks, program, origin)
-        })
-      } else if (part == -1) {
-        for (part = 0; part < 16; part++) {
-          msleep(300)
-          Virus.randomBankAndProgram((bank, program) => {
-            debug('Random bank %y program %y', bank, program)
-            virusSearch(part, 0, bank + virusRamRomBanks, program, origin)
-          })
-        }
-      }
-    }
-
     const devicePreviousBank = (dev) => (elementPath, origin) => {
       debug('devicePreviousBank %y', dev)
       this.setRemote(origin, {next:`device.${dev}.nextBank`, previous:`device.${dev}.previousBank`})
@@ -771,11 +419,6 @@ class BacaraMachine extends Machine {
             if (filename) {
               this.sendDeviceProgramChange('A')
               this.sendDeviceProgramChange('B')
-/*              for (let trk = 0; trk < 6; trk++) {
-                this.sendTrackProgramChange(trk)
-              }
-*/
-              this.virusSetupParts()
               this.interface.sendValues('surface')
               this.showPattern()
               this.writeState()
@@ -793,11 +436,6 @@ class BacaraMachine extends Machine {
             if (filename) {
               this.sendDeviceProgramChange('A')
               this.sendDeviceProgramChange('B')
-/*              for (let trk = 0; trk < 6; trk++) {
-                this.sendTrackProgramChange(trk)
-              }
-*/
-              this.virusSetupParts()
               this.interface.sendValues('surface')
               this.showPattern()
               this.writeState()
@@ -813,11 +451,6 @@ class BacaraMachine extends Machine {
           if (filename) {
             this.sendDeviceProgramChange('A')
             this.sendDeviceProgramChange('B')
-/*            for (let trk = 0; trk < 6; trk++) {
-              this.sendTrackProgramChange(trk)
-            }
-*/
-            this.virusSetupParts()
             this.interface.sendValues('surface')
             this.showPattern()
             this.writeState()
@@ -882,116 +515,6 @@ class BacaraMachine extends Machine {
           drumsRedrumActions(10),
           drumsRedrumActions(11),
         ],
-      },
-      virus: {
-        axyz: {
-          recenter: virusAxyzRecenter,
-          resetTargets: virusAxyzResetTargets,
-          select: virusAxyzSelect,
-          next: virusAxyzNext,
-          previous: virusAxyzPrevious,
-          random: virusAxyzRandom,
-          nextBank: virusAxyzNextBank,
-          previousBank: virusAxyzPreviousBank,
-        },
-        mixer: {
-          part: [
-            {
-              select: virusMixerSelect(1),
-              next: virusMixerNext(1),
-              previous: virusMixerPrevious(1),
-              random: virusMixerRandom(1),
-              nextBank: virusMixerNextBank(1),
-              previousBank: virusMixerPreviousBank(1),
-            },
-            {
-              select: virusMixerSelect(2),
-              next: virusMixerNext(2),
-              previous: virusMixerPrevious(2),
-              random: virusMixerRandom(2),
-              nextBank: virusMixerNextBank(2),
-              previousBank: virusMixerPreviousBank(2),
-            },
-            {
-              select: virusMixerSelect(3),
-              next: virusMixerNext(3),
-              previous: virusMixerPrevious(3),
-              random: virusMixerRandom(3),
-              nextBank: virusMixerNextBank(3),
-              previousBank: virusMixerPreviousBank(3),
-            },
-            {
-              select: virusMixerSelect(4),
-              next: virusMixerNext(4),
-              previous: virusMixerPrevious(4),
-              random: virusMixerRandom(4),
-              nextBank: virusMixerNextBank(4),
-              previousBank: virusMixerPreviousBank(4),
-            },
-            {
-              select: virusMixerSelect(5),
-              next: virusMixerNext(5),
-              previous: virusMixerPrevious(5),
-              random: virusMixerRandom(5),
-              nextBank: virusMixerNextBank(5),
-              previousBank: virusMixerPreviousBank(5),
-            },
-            {
-              select: virusMixerSelect(6),
-              next: virusMixerNext(6),
-              previous: virusMixerPrevious(6),
-              random: virusMixerRandom(6),
-              nextBank: virusMixerNextBank(6),
-              previousBank: virusMixerPreviousBank(6),
-            },
-          ],
-        },
-        search: {
-          part: [
-            {
-              select: virusSearchSelect(1),
-              next: virusSearchNext(1),
-              previous: virusSearchPrevious(1),
-              random: virusSearchRandom(1),
-              randomAll: virusSearchRandom(-1),
-            },
-            {
-              select: virusSearchSelect(2),
-              next: virusSearchNext(2),
-              previous: virusSearchPrevious(2),
-              random: virusSearchRandom(2),
-              randomAll: virusSearchRandom(-1),
-            },
-            {
-              select: virusSearchSelect(3),
-              next: virusSearchNext(3),
-              previous: virusSearchPrevious(3),
-              random: virusSearchRandom(3),
-              randomAll: virusSearchRandom(-1),
-            },
-            {
-              select: virusSearchSelect(4),
-              next: virusSearchNext(4),
-              previous: virusSearchPrevious(4),
-              random: virusSearchRandom(4),
-              randomAll: virusSearchRandom(-1),
-            },
-            {
-              select: virusSearchSelect(5),
-              next: virusSearchNext(5),
-              previous: virusSearchPrevious(5),
-              random: virusSearchRandom(5),
-              randomAll: virusSearchRandom(-1),
-            },
-            {
-              select: virusSearchSelect(6),
-              next: virusSearchNext(6),
-              previous: virusSearchPrevious(6),
-              random: virusSearchRandom(6),
-              randomAll: virusSearchRandom(-1),
-            },
-          ],
-        },
       },
     }
 
@@ -1234,149 +757,6 @@ class BacaraMachine extends Machine {
       }
     }
 
-    const virusAxyzPart = (elementPath, value, origin) => {
-      virusAxyzRecenterSend()
-      bacaraEmit('virus-ti', value, 'select', null, origin)
-      this.writeState()
-    }
-
-    const virusAxyzLevel = (elementPath, value, origin) => {
-      const portName = 'virus-ti'
-      const part = this.interface.getParameter('virus.axyz.part', 1)
-      const channel = part
-      const bank = this.interface.getParameter('virus.axyz.bank')
-      const program = this.interface.getParameter('virus.axyz.program')
-      this.setRemote(origin, {next:'virus.axyz.next', previous:'virus.axyz.previous', random:'virus.axyz.random', nextBank:'virus.axyz.nextBank', previousBank:'virus.axyz.previousBank'})
-      debugMidiControlChange('port %s  channel %d  CC %y = %y', portName, channel, 91, value)
-      Midi.send(portName, 'cc', {channel:channel - 1, controller:91, value}, 'levelChange-virus', 200)
-    }
-
-    const virusAxyzSendBankAndProgram = (elementPath, value, origin) => {
-      const part = this.interface.getParameter('virus.axyz.part', 1)
-      const bank = this.interface.getParameter('virus.axyz.bank')
-      const program = this.interface.getParameter('virus.axyz.program')
-
-      this.setRemote(origin, {next:'virus.axyz.next', previous:'virus.axyz.previous', random:'virus.axyz.random', nextBank:'virus.axyz.nextBank', previousBank:'virus.axyz.previousBank'})
-      this.virusSendBankAndProgram(part, bank, program, origin)
-    }
-
-    const virusAxyzBank = (elementPath, value, origin) => {
-      virusAxyzSendBankAndProgram(elementPath, value, origin)
-    }
-
-    const virusAxyzProgram = (elementPath, value, origin) => {
-      virusAxyzSendBankAndProgram(elementPath, value, origin)
-    }
-
-    const virusAxyzControl = (axyz) => {
-      return (elementPath, value, origin) => {
-        const virusPortName = 'virus-ti'
-        const part = this.interface.getParameter('virus.axyz.part', 1)
-        const channel = part
-
-        const mode = this.interface.getParameter('virus.axyz.mode', 0)
-
-        const list = devices['virus-ti'].flatList
-        for (let t = 0; t < 2; t++) {
-          const trgt = this.interface.getParameter(`virus.axyz.${axyz}.target.${t}`)
-          if (trgt) {
-            const idx = trgt - 1
-            //          debug('Axyz %y Target %y = %y %y %y',axyz,idx,idx,list[idx],_.get(devices['virus-ti'].parameters,list[idx]))
-
-            const parameter = _.get(devices['virus-ti'].parameters, list[idx])
-
-            if (parameter && parameter.cc) {
-              let val
-              const patchDefault = Virus.getPresetPageParameter(this.getState(`virus.part.${part - 1}.preset`), 0, parameter.cc)
-              if (mode == virusAxyzModeRelative) {
-                if (value >= 0.0) {
-                  val = Math.round(patchDefault + ((127 - patchDefault) * value))
-                } else {
-                  val = Math.round(patchDefault - (patchDefault * -value))
-                }
-              } else if (mode == virusAxyzModeAbsolute) {
-                val = Math.round(Interface.remap(value, -1, 1, 0, 127))
-              }
-              //               debug('Axyz %y T %d CC %y = %y (because %y) (patch default %y)',axyz,t,parameter.cc,val,value,patchDefault)
-              Midi.send(virusPortName, 'cc', {channel:channel - 1, controller:parameter.cc, value:val})
-              Bacara.event().emit('change', virusPortName, part, 'cc', {controller:parameter.cc, value:val}, origin, path.basename(__filename, '.js'))
-            }
-          }
-        }
-      }
-    }
-
-    const virusAxyzRestoreDefault = (axyz, trgt) => (elementPath, value, origin) => {
-      virusAxyzRestoreDefaultSend(axyz)
-      this.writeState()
-    }
-
-    const virusAxyzTarget = (axyz, trgt) => {
-      return (elementPath, value, origin) => {
-        if (value) {
-          const idx = value - 1
-          const list = devices['virus-ti'].flatList
-          //debug('Axyz %y Target %y = %y %y %y', axyz, trgt, idx, list[idx], _.get(devices['virus-ti'].parameters, list[idx]))
-        }
-      }
-    }
-
-    const virusMixerSendBankAndProgram = (part, origin) => {
-      if (part >= 1 && part <= 16) {
-        this.setRemote(origin, {next:`virus.mixer.part.${part - 1}.next`, previous:`virus.mixer.part.${part - 1}.previous`, random:`virus.mixer.part.${part - 1}.random`, nextBank:`virus.mixer.part.${part - 1}.nextBank`, previousBank:`virus.mixer.part.${part - 1}.previousBank`})
-        const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
-        const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
-        this.virusSendBankAndProgram(part, bank, program, origin)
-      }
-    }
-
-
-    const virusMixerBank = (part) => (elementPath, value, origin) => {
-      virusMixerSendBankAndProgram(part, origin)
-    }
-
-    const virusMixerProgram = (part) => (elementPath, value, origin) => {
-      virusMixerSendBankAndProgram(part, origin)
-    }
-
-    const virusMixerLevel = (part) => (elementPath, value, origin) => {
-      if (part >= 1 && part <= 16) {
-        Midi.send('virus-ti', 'cc', {channel:part - 1, controller:91, value}, 'levelChange-virus', 200)
-        bacaraEmit('virus-ti', part, 'level', value, origin)
-      }
-    }
-
-    const virusMacroControl = (part, ctrl) => (elementPath, value, origin) => {
-      if (part >= 1 && part <= 16) {
-        const type = this.getState(`virus.part.${part - 1}.macros.${ctrl - 1}.type`)
-        let val = value
-        switch (type) {
-        case 'cc':
-          {
-            const controller = this.getState(`virus.part.${part - 1}.macros.${ctrl - 1}.cc`)
-            if (controller) {
-              val = Math.round(Interface.remap(value, 0, 16383, 0, 127))
-              Midi.send('virus-ti', 'cc', {channel:part - 1, controller, value:val}, 'macrosChange-virus', 200)
-            }
-          }
-          break
-        case 'pressure':
-          val = Math.round(Interface.remap(value, 0, 16383, 0, 127))
-          Midi.send('virus-ti', 'channel aftertouch', {channel:part - 1, pressure:val}, 'macrosChange-virus', 200)
-          break
-        case 'pitch':
-          Midi.send('virus-ti', 'pitch', {channel:part - 1, value:value}, 'macrosChange-virus', 200)
-          break
-        }
-        bacaraEmit('virus-ti', part, `macrosControl#${ctrl}`, val, origin)
-      }
-    }
-
-    const virusSearchCategory = (part) => (elementPath, value, origin) => {
-      //debug('Category part %y %y', part, value)
-      this.setRemote(origin, {next:`virus.search.part.${part - 1}.next`, previous:`virus.search.part.${part - 1}.previous`, random:`virus.search.part.${part - 1}.random`, nextBank:`virus.search.part.${part - 1}.nextBank`, previousBank:`virus.search.part.${part - 1}.previousBank`})
-    }
-
     const drumDevice = (trck, type) => {
       return {
         device: (elementPath, value, origin) => {
@@ -1550,19 +930,6 @@ class BacaraMachine extends Machine {
 ///////////////
 
     this.parameterEminentSideEffects = {
-      virus: {
-        axyz: {
-          //          part: virusAxyzRecenter,
-          x1: { target: [virusAxyzRestoreDefault('x1', 1), virusAxyzRestoreDefault('x1', 2)] },
-          y1: { target: [virusAxyzRestoreDefault('y1', 1), virusAxyzRestoreDefault('y1', 2)] },
-          x2: { target: [virusAxyzRestoreDefault('x2', 1), virusAxyzRestoreDefault('x2', 2)] },
-          y2: { target: [virusAxyzRestoreDefault('y2', 1), virusAxyzRestoreDefault('y2', 2)] },
-          x3: { target: [virusAxyzRestoreDefault('x3', 1), virusAxyzRestoreDefault('x3', 2)] },
-          y3: { target: [virusAxyzRestoreDefault('y3', 1), virusAxyzRestoreDefault('y3', 2)] },
-          x4: { target: [virusAxyzRestoreDefault('x4', 1), virusAxyzRestoreDefault('x4', 2)] },
-          y4: { target: [virusAxyzRestoreDefault('y4', 1), virusAxyzRestoreDefault('y4', 2)] },
-        },
-      },
     }
 
     this.parameterSideEffects = {
@@ -1584,11 +951,6 @@ class BacaraMachine extends Machine {
             if (filename) {
               this.sendDeviceProgramChange('A')
               this.sendDeviceProgramChange('B')
-/*              for (let trk = 0; trk < 6; trk++) {
-                this.sendTrackProgramChange(trk)
-              }
-*/
-              this.virusSetupParts()
               this.interface.sendValues()
               this.writeState()
               debug('program: %y %y', value, path.basename(filename))
@@ -1889,88 +1251,6 @@ class BacaraMachine extends Machine {
           drumDevice(11, 'redrum'),
         ],
       },
-      virus: {
-        axyz: {
-          part: virusAxyzPart,
-          level: virusAxyzLevel,
-          bank: virusAxyzBank,
-          program: virusAxyzProgram,
-          x1: { control:virusAxyzControl('x1'), target: [virusAxyzTarget('x1', 1), virusAxyzTarget('x1', 2)] },
-          y1: { control:virusAxyzControl('y1'), target: [virusAxyzTarget('y1', 1), virusAxyzTarget('y1', 2)] },
-          x2: { control:virusAxyzControl('x2'), target: [virusAxyzTarget('x2', 1), virusAxyzTarget('x2', 2)] },
-          y2: { control:virusAxyzControl('y2'), target: [virusAxyzTarget('y2', 1), virusAxyzTarget('y2', 2)] },
-          x3: { control:virusAxyzControl('x3'), target: [virusAxyzTarget('x3', 1), virusAxyzTarget('x3', 2)] },
-          y3: { control:virusAxyzControl('y3'), target: [virusAxyzTarget('y3', 1), virusAxyzTarget('y3', 2)] },
-          x4: { control:virusAxyzControl('x4'), target: [virusAxyzTarget('x4', 1), virusAxyzTarget('x4', 2)] },
-          y4: { control:virusAxyzControl('y4'), target: [virusAxyzTarget('y4', 1), virusAxyzTarget('y4', 2)] },
-        },
-        mixer: {
-          part: [
-            {
-              bank: virusMixerBank(1),
-              program: virusMixerProgram(1),
-              level: virusMixerLevel(1),
-            },
-            {
-              bank: virusMixerBank(2),
-              program: virusMixerProgram(2),
-              level: virusMixerLevel(2),
-            },
-            {
-              bank: virusMixerBank(3),
-              program: virusMixerProgram(3),
-              level: virusMixerLevel(3),
-            },
-            {
-              bank: virusMixerBank(4),
-              program: virusMixerProgram(4),
-              level: virusMixerLevel(4),
-            },
-            {
-              bank: virusMixerBank(5),
-              program: virusMixerProgram(5),
-              level: virusMixerLevel(5),
-            },
-            {
-              bank: virusMixerBank(6),
-              program: virusMixerProgram(6),
-              level: virusMixerLevel(6),
-            },
-          ],
-        },
-        macros: {
-          part: [
-            { control: [ virusMacroControl(1, 1), virusMacroControl(1, 2), virusMacroControl(1, 3), virusMacroControl(1, 4), virusMacroControl(1, 5), virusMacroControl(1, 6) ] },
-            { control: [ virusMacroControl(2, 1), virusMacroControl(2, 2), virusMacroControl(2, 3), virusMacroControl(2, 4), virusMacroControl(2, 5), virusMacroControl(2, 6) ] },
-            { control: [ virusMacroControl(3, 1), virusMacroControl(3, 2), virusMacroControl(3, 3), virusMacroControl(3, 4), virusMacroControl(3, 5), virusMacroControl(3, 6) ] },
-            { control: [ virusMacroControl(4, 1), virusMacroControl(4, 2), virusMacroControl(4, 3), virusMacroControl(4, 4), virusMacroControl(4, 5), virusMacroControl(4, 6) ] },
-            { control: [ virusMacroControl(5, 1), virusMacroControl(5, 2), virusMacroControl(5, 3), virusMacroControl(5, 4), virusMacroControl(5, 5), virusMacroControl(5, 6) ] },
-            { control: [ virusMacroControl(6, 1), virusMacroControl(6, 2), virusMacroControl(6, 3), virusMacroControl(6, 4), virusMacroControl(6, 5), virusMacroControl(6, 6) ] },
-          ],
-        },
-        search: {
-          part: [
-            {
-              category: virusSearchCategory(1),
-            },
-            {
-              category: virusSearchCategory(2),
-            },
-            {
-              category: virusSearchCategory(3),
-            },
-            {
-              category: virusSearchCategory(4),
-            },
-            {
-              category: virusSearchCategory(5),
-            },
-            {
-              category: virusSearchCategory(6),
-            },
-          ],
-        },
-      },
     }
 
 
@@ -2163,7 +1443,6 @@ class BacaraMachine extends Machine {
           'octaves',
           'pattern',
           'playing',
-          'virus',
           'remote',
           'drums',
           'deviations',
@@ -2220,6 +1499,17 @@ class BacaraMachine extends Machine {
     //      debug('writeState %y',filePath)
   }
 
+  sendDeviceProgramChange(dev) {
+    const portName = this.getState(`device.${dev}.portName`)
+    const channel = this.interface.getParameter(`device.${dev}.channel`)
+    const bank = this.interface.getParameter(`device.${dev}.bank`)
+    const program = this.interface.getParameter(`device.${dev}.program`)
+
+    debugMidiControlChange('port %s  channel %d  CC %y = %y', portName, channel, 0, bank)
+    Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, `bankChange-${dev}`, 200)
+    debugMidiProgramChange('port %s  channel %d  PC %y', portName, channel - 1, program)
+    Midi.send(portName, 'program', {channel:channel - 1, number: program}, `programChange-${dev}`, 200)
+  }
 
   notesReset() {
     ['A', 'B'].forEach( dev => {
@@ -2580,75 +1870,6 @@ class BacaraMachine extends Machine {
     }
   }
 
-
-  sendDeviceProgramChange(dev) {
-    const portName = this.getState(`device.${dev}.portName`)
-    const channel = this.interface.getParameter(`device.${dev}.channel`)
-    const bank = this.interface.getParameter(`device.${dev}.bank`)
-    const program = this.interface.getParameter(`device.${dev}.program`)
-    if (0) {
-      if (portName == 'virus-ti') {
-        let fromStore = false
-        if (bank >= virusRamRomBanks) {
-          const part = channel
-          const virusPreset = this.getState(`virus.part.${part - 1}.preset`)
-          this.virus.sendPreset(part, bank, program, virusPreset)
-          this.virusReflectPreset(part, virusPreset)//
-          Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
-          /*        if (virusPreset) {
-            const bytes = Virus.presetToSysEx(part, virusPreset, bank, program)
-            if (bytes) {
-              fromStore = true
-              Midi.send('virus-ti', 'sysex', bytes)
-              Virus.parseSysEx(bytes, (part, storedPreset) => {
-                if (part >= 1 && part <= 16 && storedPreset) {
-                  this.setState(`virus.part.${part - 1}.preset`, storedPreset)
-                  this.writeState()
-                }
-                this.virusReflectPreset(part, storedPreset)
-              })
-              bacaraEmit('virus-ti', part, 'sysex', bytes, 'internal')
-              bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, 'internal')
-              bacaraEmit('virus-ti', part, 'part', null, 'internal')
-            }
-          }*/
-        }
-        if (!fromStore) {
-          this.virusSendBankAndProgram(channel, bank, program, 'internal')
-        }
-      } else {
-        debugMidiControlChange('port %s  channel %d  CC %y = %y', portName, channel, 0, bank)
-        Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, `bankChange-${dev}`, 200)
-        debugMidiProgramChange('port %s  channel %d  PC %y', portName, channel - 1, program)
-        Midi.send(portName, 'program', {channel:channel - 1, number: program}, `programChange-${dev}`, 200)
-      }
-    }
-  }
-
-/*  sendTrackProgramChange(trk) {
-    const portName = this.getState(`track.${trk}.portName`)
-    const channel = this.getState(`track.${trk}.channel`, 1)
-    const bank = this.interface.getParameter(`track.${trk}.bank`)
-    const program = this.interface.getParameter(`track.${trk}.program`)
-    debugMidiControlChange('port %s  channel %d  CC %y = %y', portName, channel - 1, 0, bank)
-    Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, `bankChange-${trk}`, 200)
-    debugMidiProgramChange('port %s  channel %d  PC %y', portName, channel - 1, program)
-    Midi.send(portName, 'program', {channel:channel - 1, number:program}, `programChange-${trk}`, 200)
-  }
-*/
-  sendVirusMixerChannel(part) {
-    const portName = 'virus-ti'
-    const channel = part
-    const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
-    const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
-    const level = this.interface.getParameter(`virus.mixer.part.${part - 1}.level`)
-    debugMidiControlChange('port %s  cahnnel %d  CC %y = %y', portName, channel - 1, 0, bank)
-    Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, `bankChange-${part}`, 200)
-    debugMidiProgramChange('port %s  channel %d  PC %y', portName, channel - 1, program)
-    Midi.send(portName, 'program', {channel:channel - 1, number:program}, `programChange-${part}`, 200)
-    debugMidiControlChange('port %s  channel %d  CC %y = %y', portName, channel - 1, 91, level)
-    Midi.send(portName, 'cc', {channel:channel - 1, controller:91, value:level}, `bankChange-${part}`, 200)
-  }
 
   lfo(step, stepsPerCycle, shape, phase) {
     let cycleStep = ((step + 0) + (((phase + 0.0) % 1.0) * stepsPerCycle)) % stepsPerCycle
@@ -3316,186 +2537,6 @@ class BacaraMachine extends Machine {
   }
 
 
-
-  virusMacros(part) {
-    if (config.electra.checkPresetVia == 'none' || electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
-      if (part >= 1 && part <= 6) {
-        const macros = this.getState(`virus.part.${part - 1}.macros`, [])
-        for (let i = 0; i < 6; i++) {
-
-          const selectControls = [253, 254, 255, 256, 257, 258]
-          const macroControls = [
-            [181, 182, 183, 187, 188, 189],
-            [184, 185, 186, 190, 191, 192],
-            [193, 194, 195, 199, 200, 201],
-            [196, 197, 198, 202, 203, 204],
-            [205, 206, 207, 211, 212, 213],
-            [208, 209, 210, 214, 215, 216],
-          ]
-          let json
-          if (i < macros.length) {
-            json = {name:macros[i].name, visible:true}
-          } else {
-            json = {visible:false}
-          }
-
-          const ctrlId = macroControls[part - 1][i]
-          electra.controlReflect(this.options.electraOneCtrl, ctrlId, json)
-        }
-      }
-    }
-  }
-
-  virusSetupParts() {
-    for (let part = 1; part <= VIRUS_MAX_PART; part++) {
-      const virusPreset = this.getState(`virus.part.${part - 1}.preset`)
-      if (virusPreset) {
-        const bank = this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`)
-        const program = this.interface.getParameter(`virus.mixer.part.${part - 1}.program`)
-        this.virus.sendPreset(part, bank, program, virusPreset)
-        this.virusReflectPreset(part, virusPreset)
-        Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
-      } else {
-        Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
-      }
-    }
-  }
-
-  virusSendBankAndProgram(part, bank, program, origin) {
-    if (part >= 1 && part <= 16) {
-      const portName = 'virus-ti'
-      const channel = part
-      if (bank < virusRamRomBanks) {
-        debugMidiControlChange('port %s  channel %d  CC %y = %y', portName, channel, 0, bank)
-        Midi.send(portName, 'cc', {channel:channel - 1, controller:0, value:bank}, 'bankChange-virus', 200)
-        debugMidiProgramChange('port %s  channel %d  PC %y', portName, channel - 1, program)
-        Midi.send(portName, 'program', {channel:channel - 1, number: program}, 'programChange-virus', 200)
-        bacaraEmit('virus-ti', part, 'bank-and-program', {bank, program}, origin)
-        _.unset(this.state, `virus.part.${part - 1}.preset`)
-        Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
-      } else {
-        if (origin != 'post-connect') {
-          Virus.getPreset(bank - virusRamRomBanks, program, (virusPreset) => {
-            this.virus.sendPreset(part, bank, program, virusPreset)
-            this.virusReflectPreset(part, virusPreset)
-            Midi.send('virus-ti', 'sysex', [0xF0, 0x00, 0x20, 0x33, 0x01, 0x10, 0x30, 0x00, part - 1, 0xF7], `singleRequest-part-${part}`, 200)
-          })
-        }
-      }
-    }
-  }
-
-
-  virusReflectParts() {
-    if (config.electra.checkPresetVia == 'none' || electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
-      for (let part = 16; part >= 1; part--) {
-        const virusPreset = this.getState(`virus.part.${part - 1}.preset`)
-        if (virusPreset) {
-          this.virusReflectPreset(part, virusPreset)
-        }
-      }
-    }
-  }
-
-  virusReflectPreset(part, virusPreset) {
-    if (part >= 1 && part <= 6 && virusPreset && virusPreset.page) {
-      const level = Virus.getPresetPageParameter(virusPreset, 0, 91)
-      this.interface.setParameter(`virus.mixer.part.${part - 1}.level`, level)
-
-      if (this.interface.getParameter(`virus.mixer.part.${part - 1}.bank`) < virusRamRomBanks) {
-        this.interface.setParameter(`virus.mixer.part.${part - 1}.bank`, Virus.getPresetPageParameter(virusPreset, 0, 2))
-        this.interface.setParameter(`virus.mixer.part.${part - 1}.program`, Virus.getPresetPageParameter(virusPreset, 0, 3))
-      }
-
-      if (part == this.interface.getParameter('virus.axyz.part')) {
-        if (this.interface.getParameter('virus.axyz.bank') < virusRamRomBanks) {
-          this.interface.setParameter('virus.axyz.bank', Virus.getPresetPageParameter(virusPreset, 0, 2))
-          this.interface.setParameter('virus.axyz.program', Virus.getPresetPageParameter(virusPreset, 0, 3))
-        }
-      }
-
-      if (config.electra.checkPresetVia == 'none' || electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
-        /*        if (electra.presetEquals(this.options.electraOneCtrl, bacaraPresetName)) {
-          debug('Electra One %y preset IS Loaded 1', bacaraPresetName)
-        }
-*/
-        if (part >= 1 && part <= 6) {
-          //          debug('controlReflect %y %y',virusMixerSelectControls[part - 1],{'name': virusPreset.name})
-          electra.controlReflect(this.options.electraOneCtrl, virusMixerSelectControls[part - 1], {'name': virusPreset.name})
-          electra.controlReflect(this.options.electraOneCtrl, virusSearchSelectControls[part - 1], {'name': virusPreset.name})
-        }
-        if (part == this.interface.getParameter('virus.axyz.part')) {
-          const ctrlId = 110
-          electra.controlReflect(this.options.electraOneCtrl, ctrlId, {'name': virusPreset.name})
-        }
-        //      } else {
-        //        debug('Electra One %y preset NOT Loaded', bacaraPresetName)
-      }
-
-      let macros = {}
-
-      for (let s = 0; s < 6; s++) {
-        const slotSource = Virus.getPresetPageParameter(virusPreset, _.get(config, `virus.info.matrix.slot.${s}.source.page`), _.get(config, `virus.info.matrix.slot.${s}.source.offset`))
-        if (slotSource > 0 && slotSource <= 18) {
-          let destinations = 0
-          for (let d = 0; d < 3; d++) {
-            const target = Virus.getPresetPageParameter(virusPreset, _.get(config, `virus.info.matrix.slot.${s}.destinations.${d}.target.page`), _.get(config, `virus.info.matrix.slot.${s}.destinations.${d}.target.offset`))
-            const amount = Virus.getPresetPageParameter(virusPreset, _.get(config, `virus.info.matrix.slot.${s}.destinations.${d}.amount.page`), _.get(config, `virus.info.matrix.slot.${s}.destinations.${d}.amount.offset`))
-            if (target && amount) {
-              destinations++
-            }
-          }
-          if (destinations) {
-            const slotSourceType = Object.assign({}, _.get(config, `virus.info.matrix.source.type.${slotSource}`))
-            /*                  debug('mod slot #%d (%s) source %y %s %y',s+1,_.get(config,`virus.info.matrix.slot.${s}.name`),slotSource,slotSourceType.name,slotSourceType.cc)*/
-            macros[slotSourceType.name] = slotSourceType
-          }
-        }
-      }
-      /*          debug('macros %y',macros)*/
-      macros = Object.values(macros)
-
-      const names = _.get(config, 'virus.info.soft.names')
-      for (let macro of macros) {
-        if (macro.softknob) {
-          for (let k = 0; k < 3; k++) {
-            const destination = Virus.getPresetPageParameter(virusPreset, _.get(config, `virus.info.soft.knob.${k}.destination.page`), _.get(config, `virus.info.soft.knob.${k}.destination.offset`))
-            /*                  debug('knob %d dest %y',k+1,destination)*/
-            if (destination == macro.softknob) {
-              macro.name = names[Virus.getPresetPageParameter(virusPreset, _.get(config, `virus.info.soft.knob.${k}.name.page`), _.get(config, `virus.info.soft.knob.${k}.name.offset`))]
-              macro.index = k + 1
-            }
-          }
-        }
-      }
-
-      macros.sort(function(a, b) {
-        if (a.index || b.index) {
-          return (a.index ? a.index : 1000) - (b.index ? b.index : 1000)
-        } else if (a.cc && b.cc) {
-          return a.cc - b.cc
-        } else {
-          return a.type.localeCompare(b.type)
-        }
-      })
-
-      for (let ctrl = 0; ctrl < 6; ctrl++) {
-        const macro = (ctrl < macros.length) ? macros[ctrl] : null
-        if (macro) {
-          if (macro.type == 'cc' && macro.cc) {
-            this.interface.setParameter(`virus.macros.part.${part - 1}.control.${ctrl}`, Virus.getPresetPageParameter(virusPreset, 0, macro.cc))
-          }
-        }
-      }
-      this.setState(`virus.part.${part - 1}.macros`, macros)
-
-      this.virusMacros(part)
-      /*            debug('Part #%y Macros %y',part,macros)*/
-
-      this.writeState()
-    }
-  }
-
   sounding(step, path = 'sounding', instrument) {
     const arr = this.getState(path)
     if (Array.isArray(arr) && step >= 0) {
@@ -3639,7 +2680,7 @@ function bacaraSequencer(name, sub, options) {
               const presetName = electra.parseSysexCmdPatchRequestResponse(options.electraOneCtrl, msg.bytes)
               if (presetName == bacaraPresetName || presetName.toLowerCase().indexOf('bacara')>=0) {
                 debug('Electra One "%s" preset IS Loaded (patch)', bacaraPresetName)
-                bacaraMachine.virusReflectParts()
+//                bacaraMachine.virusReflectParts()
               } else {
                 debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (patch)', bacaraPresetName, presetName)
               }
@@ -3647,7 +2688,7 @@ function bacaraSequencer(name, sub, options) {
               const presetName = electra.parseSysexCmdPresetNameResponse(options.electraOneCtrl, msg.bytes) || ''
               if (!presetName || (presetName == bacaraPresetName || presetName.toLowerCase().indexOf('bacara')>=0)) {
                 debug('Electra One "%s" preset IS Loaded (preset)', bacaraPresetName)
-                bacaraMachine.virusReflectParts()
+//                bacaraMachine.virusReflectParts()
               } else {
                 debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (preset)', bacaraPresetName, presetName, presetName.toLowerCase().indexOf(bacaraPresetName.toLowerCase()),presetName,bacaraPresetName)
               }
@@ -3737,7 +2778,6 @@ function bacaraSequencer(name, sub, options) {
   bacaraMachine.interface.sendValues('surface')
   bacaraMachine.showPattern()
   bacaraMachine.showDrumsPattern()
-  bacaraMachine.virusSetupParts()
 }
 
 module.exports = {
