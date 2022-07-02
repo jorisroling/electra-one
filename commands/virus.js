@@ -309,7 +309,7 @@ class VirusMachine extends Machine {
       })
     }
 
-    //    debug('options %y', options)
+//       debug('options %y', options)
     if (options.remote) {
       const midiInput_remote = Midi.input(options.remote)
       if (midiInput_remote) {
@@ -1254,7 +1254,7 @@ class VirusMachine extends Machine {
 }
 
 
-function virusCompanion(name, sub, options) {
+function virusCommandHandler(name, sub, options) {
 
   if (options.verbose) {
     debugError('options %y', _.fromPairs(_.toPairs(options).filter(a => a[0].length > 1 )) )
@@ -1387,8 +1387,8 @@ module.exports = {
     args = a
   },
   name: 'virus',
-  description: 'Virus TI companion',
-  handler: virusCompanion,
+  description: 'Virus TI tools',
+  handler: virusCommandHandler,
   examples: [
     {usage:'electra-one virus companion', description:'Virus Companion'},
     {usage:'electra-one virus preset search <search pattern>', description:'Search preset in Virus TI banks'},

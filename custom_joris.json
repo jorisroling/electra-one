@@ -8,8 +8,9 @@
     "transpose": "komplete-kontrol",
     "transposeChannel": 1,
     "osc": "torso-t1",
-    "general": "bacara",
+    "general-old2": "bacara",
     "general-old": "lightpad-block",
+    "general": "lightpad-block-bluetooth",
     "generalChannel": 1,
     "remote": "thouch-block",
     "remoteChannel": 1,
@@ -90,6 +91,9 @@
       },
       "lightpad-block": {
         "darwin": "Lightpad BLOCK  Lightpad BLOCK"
+      },
+      "lightpad-block-bluetooth": {
+        "darwin": "Lightpad Block Bluetooth"
       },
       "thouch-block": {
         "darwin": "Touch Block Bluetooth"
