@@ -9761,22 +9761,11 @@
     },
     {
       "id": "edccd991-10b8-4d8b-b202-aba7cd0fe6d0",
+      "slotId": 511,
       "type": "list",
-      "name": "SOURCE",
+      "deviceId": 17,
       "color": "F49500",
-      "bounds": [
-        170,
-        40,
-        146,
-        56
-      ],
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 2,
-          "valueId": "value"
-        }
-      ],
+      "name": "SOURCE",
       "values": [
         {
           "id": "value",
@@ -9786,33 +9775,71 @@
             "lsbFirst": true,
             "parameterNumber": 9473
           },
-          "overlayId": 13,
           "textValues": [
             {
-              "value": 0,
+              "index": 0,
               "label": "Off",
-              "index": 0
+              "value": 0
             },
             {
-              "value": 1,
-              "label": "Mod Wheel",
-              "index": 1
+              "index": 1,
+              "label": "Mod WHeel",
+              "value": 1
             },
             {
-              "value": 2,
+              "index": 2,
               "label": "Velocity",
-              "index": 2
+              "value": 2
             },
             {
-              "value": 3,
-              "label": "CH Aftertouch",
-              "index": 3
+              "index": 3,
+              "label": "Ch.Aftertouch",
+              "value": 3
+            },
+            {
+              "index": 4,
+              "label": "T-1 OSC Steps",
+              "value": 4
+            },
+            {
+              "index": 5,
+              "label": "T-1 OSC Pulses",
+              "value": 5
+            },
+            {
+              "index": 6,
+              "label": "T-1 OSC numNotes",
+              "value": 6
+            },
+            {
+              "index": 7,
+              "label": "T-1 OSC Sustain",
+              "value": 7
+            },
+            {
+              "index": 8,
+              "label": "T-1 OSC Root",
+              "value": 8
+            },
+            {
+              "index": 9,
+              "label": "T-1 OSC Notes",
+              "value": 9
+            },
+            {
+              "index": 10,
+              "label": "T-1 OSC Scale",
+              "value": 10
+            },
+            {
+              "index": 11,
+              "label": "T-1 OSC pulseLoc",
+              "value": 11
             }
           ]
         }
       ],
-      "slotId": 511,
-      "deviceId": 17
+      "visible": true
     },
     {
       "id": "a5654a4b-d434-4701-85e3-c937b6611117",
@@ -11083,22 +11110,11 @@
     },
     {
       "id": "f28cb3aa-5556-4d82-9f91-9befbb35a70b",
+      "slotId": 535,
       "type": "list",
-      "name": "SOURCE",
+      "deviceId": 17,
       "color": "F49500",
-      "bounds": [
-        170,
-        216,
-        146,
-        56
-      ],
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 2,
-          "valueId": "value"
-        }
-      ],
+      "name": "SOURCE",
       "values": [
         {
           "id": "value",
@@ -11108,33 +11124,71 @@
             "lsbFirst": true,
             "parameterNumber": 10369
           },
-          "overlayId": 13,
           "textValues": [
             {
-              "value": 0,
+              "index": 0,
               "label": "Off",
-              "index": 0
+              "value": 0
             },
             {
-              "value": 1,
-              "label": "Mod Wheel",
-              "index": 1
+              "index": 1,
+              "label": "Mod WHeel",
+              "value": 1
             },
             {
-              "value": 2,
+              "index": 2,
               "label": "Velocity",
-              "index": 2
+              "value": 2
             },
             {
-              "value": 3,
-              "label": "CH Aftertouch",
-              "index": 3
+              "index": 3,
+              "label": "Ch.Aftertouch",
+              "value": 3
+            },
+            {
+              "index": 4,
+              "label": "T-1 OSC Steps",
+              "value": 4
+            },
+            {
+              "index": 5,
+              "label": "T-1 OSC Pulses",
+              "value": 5
+            },
+            {
+              "index": 6,
+              "label": "T-1 OSC numNotes",
+              "value": 6
+            },
+            {
+              "index": 7,
+              "label": "T-1 OSC Sustain",
+              "value": 7
+            },
+            {
+              "index": 8,
+              "label": "T-1 OSC Root",
+              "value": 8
+            },
+            {
+              "index": 9,
+              "label": "T-1 OSC Notes",
+              "value": 9
+            },
+            {
+              "index": 10,
+              "label": "T-1 OSC Scale",
+              "value": 10
+            },
+            {
+              "index": 11,
+              "label": "T-1 OSC pulseLoc",
+              "value": 11
             }
           ]
         }
       ],
-      "slotId": 535,
-      "deviceId": 17
+      "visible": true
     },
     {
       "id": "3b8294d8-9188-46d0-8da1-5e9161f0796a",
@@ -12405,22 +12459,11 @@
     },
     {
       "id": "e2b7e866-3414-4997-b425-ad8de1d02413",
+      "slotId": 559,
       "type": "list",
-      "name": "SOURCE",
+      "deviceId": 17,
       "color": "F49500",
-      "bounds": [
-        170,
-        392,
-        146,
-        56
-      ],
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 2,
-          "valueId": "value"
-        }
-      ],
+      "name": "SOURCE",
       "values": [
         {
           "id": "value",
@@ -12430,33 +12473,71 @@
             "lsbFirst": true,
             "parameterNumber": 11265
           },
-          "overlayId": 13,
           "textValues": [
             {
-              "value": 0,
+              "index": 0,
               "label": "Off",
-              "index": 0
+              "value": 0
             },
             {
-              "value": 1,
-              "label": "Mod Wheel",
-              "index": 1
+              "index": 1,
+              "label": "Mod WHeel",
+              "value": 1
             },
             {
-              "value": 2,
+              "index": 2,
               "label": "Velocity",
-              "index": 2
+              "value": 2
             },
             {
-              "value": 3,
-              "label": "CH Aftertouch",
-              "index": 3
+              "index": 3,
+              "label": "Ch.Aftertouch",
+              "value": 3
+            },
+            {
+              "index": 4,
+              "label": "T-1 OSC Steps",
+              "value": 4
+            },
+            {
+              "index": 5,
+              "label": "T-1 OSC Pulses",
+              "value": 5
+            },
+            {
+              "index": 6,
+              "label": "T-1 OSC numNotes",
+              "value": 6
+            },
+            {
+              "index": 7,
+              "label": "T-1 OSC Sustain",
+              "value": 7
+            },
+            {
+              "index": 8,
+              "label": "T-1 OSC Root",
+              "value": 8
+            },
+            {
+              "index": 9,
+              "label": "T-1 OSC Notes",
+              "value": 9
+            },
+            {
+              "index": 10,
+              "label": "T-1 OSC Scale",
+              "value": 10
+            },
+            {
+              "index": 11,
+              "label": "T-1 OSC pulseLoc",
+              "value": 11
             }
           ]
         }
       ],
-      "slotId": 559,
-      "deviceId": 17
+      "visible": true
     },
     {
       "id": "1ad79cfc-0725-4f2b-8983-dbbcd3cfec15",

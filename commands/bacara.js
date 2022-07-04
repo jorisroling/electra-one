@@ -69,6 +69,7 @@ const E1_FIRMWARE_PRESET_REQUEST_VERSION = 'v2.1.2'
 let e1_system_info
 
 const torsoT1OSC = require('../extra/osc/torso-t1.json')
+let torsoT1_LastChannel  // Last Torso T1 /t1/channel value
 
 const phaseDetection = true
 const showPatternParameters = ['transpose', 'scales', 'base', 'split', 'shift', 'steps',
@@ -1772,7 +1773,7 @@ class BacaraMachine extends Machine {
 
     ['note', 'velocity', 'octave', 'duration', 'accent', 'mute', 'device'].forEach( deviation => {
       const map = this.getState(`deviations.${deviation}`)
-      const probability = this.interface.getParameter(`deviations.${deviation}.probability`,'modulated')
+      const probability = this.interface.getParameter(`deviations.${deviation}.probability`, 'modulated')
       let arr = [
         {hAlign:'center', colSpan:2, content:deviationColor(deviation) },
       ]
@@ -1933,7 +1934,7 @@ class BacaraMachine extends Machine {
             const color = !mute ? ((velocity == 127 || accent) ? accentedColor : soundColor/*normalColor*/) : noSoundColor/*disabledColor*/
 
             const rep = count * 2 + ((count - 1) * 3)
-            chNote = {colSpan:count, content:color(' '.repeat(rep >= 0 ? rep : 0))}
+            chNote = {colSpan:count ? count : 1, content:color(' '.repeat(rep >= 0 ? rep : 0))}
             grid[row][Math.floor(ticks / ticksPerStep)] = this.sounding(ticks / ticksPerStep) ? true : false
             ticks += (count - 1) * ticksPerStep
           }
@@ -1951,7 +1952,7 @@ class BacaraMachine extends Machine {
       table.push(arr)
       row++
     })
-
+    /*    debugOsc('table %y',table)*/
     debugPattern(table.toString())
     /*    debug(grid)*/
     this.setState('pattern.grid', grid)
@@ -2827,7 +2828,7 @@ function bacaraSequencer(name, sub, options) {
   if (options.osc) {
     const oscSetup = _.get(config, `osc.devices.${options.osc}`)
     if (oscSetup) {
-      debugOsc('setup %y', oscSetup)
+      debugOsc('setup %y', config.util.toObject(oscSetup))
 
       const getIPAddresses = () => {
         const os = require('os')
@@ -2862,23 +2863,75 @@ function bacaraSequencer(name, sub, options) {
       })
 
       udpPort.on('message', function (oscMessage) {
-        debugOsc('message %y', oscMessage)
+        /*        console.log('message %y', oscMessage)*/
 
-        let modSlotSource = Object.keys(matrixSlotSources).length
-        for (addr in torsoT1OSC) {
-          if (oscMessage.address == addr && torsoT1OSC[addr].type == 'integer') {
-            const modSlotValue = oscMessage.args[0] * ( 128 / ((torsoT1OSC[addr].max - torsoT1OSC[addr].min) + 1) )
+        /*        debugOsc('Address %y Value %y Last %y Mine %y',oscMessage.address,oscMessage.args.join(', '),torsoT1_LastChannel,bacaraMachine.interface.getParameter('torsoT1Channel'))*/
+        if (oscMessage.address == '/t1/channel' && Array.isArray(oscMessage.args) && oscMessage.args.length == 1) {
+          torsoT1_LastChannel = oscMessage.args[0]
+          //          if (!torsoT1_LastChannel) return
+        } else if (torsoT1_LastChannel == 0 || torsoT1_LastChannel == bacaraMachine.interface.getParameter('torsoT1Channel')) {
+          /*          debugOsc('channel %y message %y (%y)', torsoT1_LastChannel,oscMessage.address,oscMessage.args.join(', '))*/
+          let tmpModSlotSource = Object.keys(matrixSlotSources).length - 1  // Let last of the other (non-T1) mod sources
+          let modSlotSource
+          for (let addr in torsoT1OSC) {
+            if (torsoT1OSC[addr].matrix) {
+              tmpModSlotSource++
+              if (oscMessage.address == addr) {
+                modSlotSource = tmpModSlotSource
+              }
+            }
+          }
+          //          debugOsc('source %y',modSlotSource)
+          if (modSlotSource) {
             for (let slotIdx = 0; slotIdx < 3; slotIdx++) {
+              /*              debugOsc('slot %y source %y',slotIdx+1,bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.source`))*/
               if (bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.source`) == modSlotSource) {
-                if (bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.value`) !== modSlotValue) {
-                  bacaraMachine.matrixSetSlotValue(slotIdx, bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.slewLimiter`, 0), matrixSetSlotValueTimout, modSlotValue)
+                if (torsoT1OSC[oscMessage.address].type == 'integer') {
+                  const modSlotValue = (oscMessage.args[0] * ( 128 / ((torsoT1OSC[oscMessage.address].max - torsoT1OSC[oscMessage.address].min) + 1) ))
+                  if (bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.value`) !== modSlotValue) {
+                    bacaraMachine.matrixSetSlotValue(slotIdx, bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.slewLimiter`, 0), matrixSetSlotValueTimout, modSlotValue)
+                    debugOsc('modulate slot %y  addr %y  value %y', slotIdx + 1, oscMessage.address, oscMessage.args)
+                  }
+                } else if (oscMessage.address == '/t1/pulseLoc') {
+                  let setCount = 0
+                  for (let destIdx = 0; destIdx < 3; destIdx++) {
+                    const target = bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.destination.${destIdx}.target`)
+                    const path = bacaraMachine.interface.getMapPath('external', 'cc', target)
+                    const match = path && path.match(/deviations.(\w+).density/)
+                    if (match) {
+                      const deviation = match[1]
+                      //      debugOsc('destination %y target %y',destIdx+1,target,path)
+                      const minmax = (bacaraMachine.interface.isParameter(`deviations.${deviation}.maximum`) && bacaraMachine.interface.isParameter(`deviations.${deviation}.minimum`))
+                      const amount = minmax ? bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.destination.${destIdx}.amount`) : Math.abs(bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.destination.${destIdx}.amount`))
+                      if (amount) {
+                        const density = []
+                        for (let i = 0; i < 16; i++) {
+                          density[i] = 0
+                        }
+                        for (let i = 0; i < oscMessage.args.length; i++) {
+                          density[oscMessage.args[i] - 1] = minmax ? bacaraMachine.deviationsPickFromRange(deviation) : 1
+                        }
+                        setCount++
+                        bacaraMachine.interface.setParameter(`deviations.${deviation}.density`, oscMessage.args.length ? (oscMessage.args.length / 16) * 100 : 0,'external')
+                        bacaraMachine.setState(`deviations.${deviation}`, oscMessage.args.length ? density : null)
+                        //                        debugOsc('deviation %y map %y',deviation,bacaraMachine.getState(`deviations.${deviation}`))
+                        debugOsc('modulate slot %y destination %y addr %y  value %y deviation %y', slotIdx + 1, destIdx + 1, oscMessage.address, oscMessage.args.join(', '), deviation)
+                        if (!minmax) {
+                          bacaraMachine.interface.setParameter(`deviations.${deviation}.probability`, oscMessage.args.length?amount:0,'external')
+                        }
+                      }
+                    }
+                  }
+                  if (setCount) {
+                    bacaraMachine.showPattern()
+                  }
+                } else if (oscMessage.address == '/t1/scale') {
+                  debugOsc('modulate slot %y  addr %y  value %y', slotIdx + 1, oscMessage.address, oscMessage.args.join(', '))
                 }
               }
             }
           }
-          modSlotSource++
         }
-
       })
 
       udpPort.on('error', function (err) {

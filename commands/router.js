@@ -272,7 +272,10 @@ function setupMidi(options) {
     for (const actor of actors) {
       if (scenario.actors[actor].enabled && scenario.actors[actor].port && scenario.actors[actor].channels && scenario.actors[actor].channels.length) {
         //        const electra = _.get(config, `router.scenarios.${options.scenario}.electra`)
-        const electraOnePortName = scenario.electra.replace('{port}', scenario.actors[actor].port) //`electra-one-port-${scenario.actors[actor].port}`
+        const electraOnePortName = scenario.electra.replace('{port}', scenario.actors[actor].port)
+
+        console.log(electraOnePortName)
+        //`electra-one-port-${scenario.actors[actor].port}`
         const midiInput_electraOne = Midi.input(electraOnePortName, true)
         if (midiInput_electraOne) {
           midiInput_electraOne.on('message', handleIncoming(electraOnePortName, actor, false, {actor, ...scenario.actors[actor]}) )

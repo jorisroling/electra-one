@@ -977,11 +977,6 @@
             "short": "Midihub Port.4"
           },
           {
-            "name": "Touch Block Bluetooth",
-            "short": "Touch Block Bl",
-            "device": "thouch-block"
-          },
-          {
             "name": "MRCC Port 1",
             "short": "MRCC Port.1",
             "device": "virus-ti"
@@ -1070,6 +1065,22 @@
             "name": "Electra Controller A Electra CTRL",
             "short": "Electra Contro A.CTRL",
             "device": "electra-one-a-ctrl"
+          },
+          {
+            "name": "T-1",
+            "short": "T-.1"
+          },
+          {
+            "name": "microKONTROL MIDI IN",
+            "short": "microKONTROL M"
+          },
+          {
+            "name": "microKONTROL PORT A",
+            "short": "microKONTROL.A"
+          },
+          {
+            "name": "microKONTROL PORT B",
+            "short": "microKONTROL.B"
           },
           {
             "name": "Bacara",
@@ -1147,11 +1158,6 @@
             "short": "Midihub Port.4"
           },
           {
-            "name": "Touch Block Bluetooth",
-            "short": "Touch Block Bl",
-            "device": "thouch-block"
-          },
-          {
             "name": "MRCC Port 1",
             "short": "MRCC Port.1",
             "device": "virus-ti"
@@ -1240,6 +1246,18 @@
             "name": "Electra Controller A Electra CTRL",
             "short": "Electra Contro A.CTRL",
             "device": "electra-one-a-ctrl"
+          },
+          {
+            "name": "T-1",
+            "short": "T-.1"
+          },
+          {
+            "name": "microKONTROL MIDI OUT",
+            "short": "microKONTROL M"
+          },
+          {
+            "name": "microKONTROL CTRL",
+            "short": "microKONTROL.CTRL"
           },
           {
             "name": "Bacara",

@@ -169,17 +169,16 @@ function generatePreset(name, sub, options) {
                         },
                       ]
                       let idx = value.textValues.length
-                      for (addr in torsoT1OSC) {
-                        if (torsoT1OSC[addr].type == "integer") {
-                          console.log(addr,torsoT1OSC[addr])
+                      for (let addr in torsoT1OSC) {
+                        if (torsoT1OSC[addr].matrix) {
                           value.textValues.push({
                             index: idx,
-                            label: 'T-1 OSC '+titleCase(addr.substr(4)),
+                            label: 'T-1 OSC ' + titleCase(addr.substr(4)),
                             value: idx++,
                           })
                         }
                       }
-                      console.log(value.textValues)
+                      /*                      console.log(value.textValues)*/
                     } else if (overlayType == 'matrixTarget') {
                       value.textValues = [{
                         index: 0,

@@ -55,24 +55,11 @@ const virusSearchPage = 7
 const virusSearchSelectControls = [1, 2, 3, 4, 5, 6]
 
 
-/*
-const debugError = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:error`)
-const debugLfo = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:lfo`)
-const debugDispatch = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:dispatch`)
-const debugMidi = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi`)
-const debugMidiNoteOn = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:note:on`)
-const debugMidiNoteOff = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:note:off`)
-const debugMidiNoteError = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:note:error`)
-*/
 const debugMidiControlChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:control:change`)
 const debugState = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:state`)
 const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:midi:program:change`)
 const debugChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:change`)
 
-/*
-const debugDeviation = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:deviation`)
-const debugOsc = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:osc`)
-*/
 const Midi = require('../lib/midi/midi')
 
 function msleep(n) {
@@ -309,7 +296,7 @@ class VirusMachine extends Machine {
       })
     }
 
-//       debug('options %y', options)
+    //       debug('options %y', options)
     if (options.remote) {
       const midiInput_remote = Midi.input(options.remote)
       if (midiInput_remote) {
@@ -1169,8 +1156,8 @@ class VirusMachine extends Machine {
 */
         if (part >= 1 && part <= 6) {
           //          debug('controlReflect %y %y',virusMixerSelectControls[part - 1],{'name': virusPreset.name})
-          electra.controlReflect(this.options.electraOneCtrl, virusMixerSelectControls[part - 1] + ((virusMixerPage-1)*36), {'name': virusPreset.name})
-          electra.controlReflect(this.options.electraOneCtrl, virusSearchSelectControls[part - 1] + ((virusSearchPage-1)*36), {'name': virusPreset.name})
+          electra.controlReflect(this.options.electraOneCtrl, virusMixerSelectControls[part - 1] + ((virusMixerPage - 1) * 36), {'name': virusPreset.name})
+          electra.controlReflect(this.options.electraOneCtrl, virusSearchSelectControls[part - 1] + ((virusSearchPage - 1) * 36), {'name': virusPreset.name})
         }
         if (part == this.interface.getParameter('virus.axyz.part')) {
           const ctrlId = 110
@@ -1261,11 +1248,12 @@ function virusCommandHandler(name, sub, options) {
     debugError('config %y', config.util.toObject(config))
   }
 
-  //    debug('sub %y',sub)
+  //     debug('sub [%y] %y %y %y %y',sub, sub.length, sub[0], sub[0].toLowerCase(),(sub && sub.length > 0 && sub[0] && sub[0].toLowerCase()))
 
-  switch (sub && sub.length > 0 && sub[0] && sub[0].toLowerCase()) {
+  switch (sub) {
   case 'companion':
     {
+
       if (options.verbose) {
         debugError('options %y', _.fromPairs(_.toPairs(options).filter(a => a[0].length > 1 )) )
         debugError('config %y', config.util.toObject(config))

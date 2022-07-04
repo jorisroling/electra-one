@@ -2,43 +2,55 @@
   "/t1/channel": {
     "type": "integer",
     "min": 0,
-    "max": 16
+    "max": 16,
+    "matrix": false
   },
   "/t1/steps": {
     "type": "integer",
     "min": 1,
-    "max": 16
+    "max": 16,
+    "matrix": true
   },
   "/t1/pulses": {
     "type": "integer",
     "min": 1,
-    "max": 16
+    "max": 16,
+    "matrix": true
   },
   "/t1/numNotes": {
     "type": "integer",
     "min": 1,
-    "max": 127
+    "max": 127,
+    "matrix": true
   },
   "/t1/sustain": {
     "type": "integer",
-    "min": 1,
-    "max": 127
+    "min": 0,
+    "max": 127,
+    "matrix": true
   },
   "/t1/root": {
     "type": "note",
     "min": 0,
-    "max": 127
+    "max": 127,
+    "matrix": true
   },
   "/t1/notes": {
-    "type": "integer"
+    "type": "integer",
+    "min": 0,
+    "max": 127,
+    "matrix": true
   },
   "/t1/scale": {
-    "type": "strings"
+    "type": "strings",
+    "matrix": true
   },
-  "/t1/pulsesLOC": {
-    "type": "integers"
+  "/t1/pulseLoc": {
+    "type": "integers",
+    "matrix": true
   },
   "/t1/division": {
-    "type": "strings"
+    "type": "strings",
+    "matrix": false
   }
 }
