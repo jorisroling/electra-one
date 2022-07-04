@@ -15,7 +15,10 @@
     "bank": 0,
     "slot": 0,
     "id": 0,
-    "name": ""
+    "name": "",
+    "presetName": {
+      "bacara": "Bacara Richie"
+    }
   },
   "electra": {
     "checkPresetVia": "none",

@@ -18,7 +18,10 @@
     "bank": 0,
     "slot": 0,
     "id": 0,
-    "name": ""
+    "name": "",
+    "presetName": {
+      "bacara": "Bacara Joris"
+    }
   },
   "electra": {
     "checkPresetVia": "preset",
@@ -1083,11 +1086,13 @@
           },
           {
             "name": "microKONTROL PORT A",
-            "short": "microKONTROL.A"
+            "short": "microKONTROL.A",
+            "device": "microkontrol-pad"
           },
           {
             "name": "microKONTROL PORT B",
-            "short": "microKONTROL.B"
+            "short": "microKONTROL.B",
+            "device": "microkontrol-key"
           },
           {
             "name": "Bacara",

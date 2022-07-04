@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "zDfG7f2eOvd5TzGwNMdN",
-  "name": "Bacara",
+  "name": "Bacara Richie",
   "description": "# Bacara Template\n\nNot directly working on a Electra One, used as Template to generate actual Preset File (.EPROJ)",
   "lua": "print (\"Bacara Control Lua ext initialized\")\n\npatch.requestAll ()\n\n",
   "devices": [
