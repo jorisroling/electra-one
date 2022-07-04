@@ -1416,12 +1416,13 @@ class BacaraMachine extends Machine {
     })
 
     this.interface.on('incoming', (msg, origin, channel) => {
-      //     if (msg._type!='clock' /*&& origin!='clock'*/) debug('Incoming (from %y) ch.%y: %y',origin,channel,msg)
+/*          if (msg._type!='clock' || origin!='clock') debug('Incoming (from %y) ch.%y: %y',origin,channel,msg)*/
       /*      return*/
       let modSlotIdx
       let modSlotSource
       let modSlotValue
 
+/*     if (origin!='clock') console.log('hi:'+origin+' '+msg._type)*/
       // dedicated functions like beat & transpose
       if (!Number.isInteger(channel) || msg.channel == channel) {
         if (origin == 'transpose') {
@@ -1451,6 +1452,11 @@ class BacaraMachine extends Machine {
             modSlotSource = matrixSlotSources.modWheel
             modSlotValue = msg.value
           }
+          if (msg._type == 'cc' && msg.controller > 1 && msg.controller <=127) {
+            modSlotSource = Object.keys(matrixSlotSources).length + (msg.controller - 2)
+            modSlotValue = msg.value
+            //console.log(`CC ${msg.controller} = ${msg.value}`)
+          }
           if (msg._type == 'channel aftertouch') {
             modSlotSource = matrixSlotSources.channelAftertouch
             modSlotValue = msg.pressure
@@ -1471,21 +1477,26 @@ class BacaraMachine extends Machine {
             }
           }
         }
-      }
-
-      if (origin == 'external') {
-        //        if (msg._type!='clock' /*&& origin!='clock'*/) debug('Incoming (from %y) ch.%y: %y',origin,channel,msg)
-
-        if (Number.isInteger(msg.channel)) { // is it Voice Message?
-          //debug('Incoming (from %y) ch.%y: %y',origin,channel,msg)
+        if (origin == 'external') {
+          if (msg._type == 'cc' && msg.controller == 1) {
+            modSlotSource = matrixSlotSources.modWheel
+            modSlotValue = msg.value
+          }
+          if (msg._type == 'cc' && msg.controller > 1 && msg.controller <=127) {
+            modSlotSource = Object.keys(matrixSlotSources).length + (msg.controller - 1)
+            modSlotValue = msg.value
+/*           console.log(`CC ${msg.controller} = ${msg.value} (${modSlotSource})`)*/
+          }
         }
       }
+
 
       if (modSlotSource) {
         for (let slotIdx = 0; slotIdx < 3; slotIdx++) {
           if (this.interface.getParameter(`matrix.slot.${slotIdx}.source`) == modSlotSource) {
             if (this.interface.getParameter(`matrix.slot.${slotIdx}.value`) !== modSlotValue) {
               this.matrixSetSlotValue(slotIdx, this.interface.getParameter(`matrix.slot.${slotIdx}.slewLimiter`, 0), matrixSetSlotValueTimout, modSlotValue)
+//              console.log(`CC ${msg.controller} = ${msg.value} (${modSlotSource})`)
             }
           }
         }
@@ -1739,7 +1750,8 @@ class BacaraMachine extends Machine {
     //console.log('\x1Bc'); // Clear screen
 
     const pattern = this.getState('pattern')
-    const size = this.interface.getParameter('steps')
+    const size = this.interface.getParameter('steps'/*, 'modulated'*/)
+//    console.log(size,this.interface.getParameter('steps', 'modulated'))
     if (!pattern) {
       return
     }
@@ -2869,10 +2881,14 @@ function bacaraSequencer(name, sub, options) {
         if (oscMessage.address == '/t1/channel' && Array.isArray(oscMessage.args) && oscMessage.args.length == 1) {
           torsoT1_LastChannel = oscMessage.args[0]
           //          if (!torsoT1_LastChannel) return
+          setTimeout(() => {
+            bacaraMachine.showPattern()
+          },200)
         } else if (torsoT1_LastChannel == 0 || torsoT1_LastChannel == bacaraMachine.interface.getParameter('torsoT1Channel')) {
           /*          debugOsc('channel %y message %y (%y)', torsoT1_LastChannel,oscMessage.address,oscMessage.args.join(', '))*/
-          let tmpModSlotSource = Object.keys(matrixSlotSources).length - 1  // Let last of the other (non-T1) mod sources
+          let tmpModSlotSource = (Object.keys(matrixSlotSources).length - 1) + 126  // Let last of the other (non-T1) mod sources
           let modSlotSource
+
           for (let addr in torsoT1OSC) {
             if (torsoT1OSC[addr].matrix) {
               tmpModSlotSource++
@@ -2883,17 +2899,18 @@ function bacaraSequencer(name, sub, options) {
           }
           //          debugOsc('source %y',modSlotSource)
           if (modSlotSource) {
+            let setCount = 0
             for (let slotIdx = 0; slotIdx < 3; slotIdx++) {
               /*              debugOsc('slot %y source %y',slotIdx+1,bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.source`))*/
               if (bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.source`) == modSlotSource) {
                 if (torsoT1OSC[oscMessage.address].type == 'integer') {
-                  const modSlotValue = (oscMessage.args[0] * ( 128 / ((torsoT1OSC[oscMessage.address].max - torsoT1OSC[oscMessage.address].min) + 1) ))
+                  const modSlotValue = (parseInt(oscMessage.args[0]) * ( 128 / ((torsoT1OSC[oscMessage.address].max - torsoT1OSC[oscMessage.address].min) + 1) ))
                   if (bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.value`) !== modSlotValue) {
                     bacaraMachine.matrixSetSlotValue(slotIdx, bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.slewLimiter`, 0), matrixSetSlotValueTimout, modSlotValue)
-                    debugOsc('modulate slot %y  addr %y  value %y', slotIdx + 1, oscMessage.address, oscMessage.args)
+                    setCount++
+                    debugOsc('modulate slot %y  addr %y  value %y  val %y', slotIdx + 1, oscMessage.address, oscMessage.args.join(', '),modSlotValue)
                   }
                 } else if (oscMessage.address == '/t1/pulseLoc') {
-                  let setCount = 0
                   for (let destIdx = 0; destIdx < 3; destIdx++) {
                     const target = bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.destination.${destIdx}.target`)
                     const path = bacaraMachine.interface.getMapPath('external', 'cc', target)
@@ -2902,8 +2919,8 @@ function bacaraSequencer(name, sub, options) {
                       const deviation = match[1]
                       //      debugOsc('destination %y target %y',destIdx+1,target,path)
                       const minmax = (bacaraMachine.interface.isParameter(`deviations.${deviation}.maximum`) && bacaraMachine.interface.isParameter(`deviations.${deviation}.minimum`))
-                      const amount = minmax ? bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.destination.${destIdx}.amount`) : Math.abs(bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.destination.${destIdx}.amount`))
-                      if (amount) {
+                      //const amount = minmax ? bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.destination.${destIdx}.amount`) : Math.abs(bacaraMachine.interface.getParameter(`matrix.slot.${slotIdx}.destination.${destIdx}.amount`))
+                      //if (amount) {
                         const density = []
                         for (let i = 0; i < 16; i++) {
                           density[i] = 0
@@ -2917,20 +2934,24 @@ function bacaraSequencer(name, sub, options) {
                         //                        debugOsc('deviation %y map %y',deviation,bacaraMachine.getState(`deviations.${deviation}`))
                         debugOsc('modulate slot %y destination %y addr %y  value %y deviation %y', slotIdx + 1, destIdx + 1, oscMessage.address, oscMessage.args.join(', '), deviation)
                         if (!minmax) {
-                          bacaraMachine.interface.setParameter(`deviations.${deviation}.probability`, oscMessage.args.length?amount:0,'external')
+                          //bacaraMachine.interface.setParameter(`deviations.${deviation}.probability`, oscMessage.args.length?amount:0,'external')
                         }
-                      }
+                        //}
                     }
-                  }
-                  if (setCount) {
-                    bacaraMachine.showPattern()
                   }
                 } else if (oscMessage.address == '/t1/scale') {
                   debugOsc('modulate slot %y  addr %y  value %y', slotIdx + 1, oscMessage.address, oscMessage.args.join(', '))
                 }
               }
             }
+            if (setCount) {
+//              bacaraMachine.showPattern()
+            }
           }
+        }
+
+        if (oscMessage.address == '/t1/steps') {
+          bacaraMachine.interface.setParameter('steps',parseInt(oscMessage.args[0])-1,'external');
         }
       })
 

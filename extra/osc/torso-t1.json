@@ -9,7 +9,7 @@
     "type": "integer",
     "min": 1,
     "max": 16,
-    "matrix": true
+    "matrix": false
   },
   "/t1/pulses": {
     "type": "integer",
@@ -33,7 +33,7 @@
     "type": "note",
     "min": 0,
     "max": 127,
-    "matrix": true
+    "matrix": false
   },
   "/t1/notes": {
     "type": "integer",
@@ -43,7 +43,7 @@
   },
   "/t1/scale": {
     "type": "strings",
-    "matrix": true
+    "matrix": false
   },
   "/t1/pulseLoc": {
     "type": "integers",

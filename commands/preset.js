@@ -168,6 +168,13 @@ function generatePreset(name, sub, options) {
                           value: 3,
                         },
                       ]
+                      for (let cc=2; cc <= 127; cc++) {
+                        value.textValues.push({
+                          index: 3 + cc,
+                          label: `CC #${cc}`,
+                          value: 3 + cc,
+                        })
+                      }
                       let idx = value.textValues.length
                       for (let addr in torsoT1OSC) {
                         if (torsoT1OSC[addr].matrix) {

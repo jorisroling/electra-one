@@ -4,7 +4,7 @@ const Midi = require('../lib/midi/midi')
 const torsoT1OSC = require('../extra/osc/torso-t1.json')
 
 function matrixSources() {
-  let result = 4  // num of matrixSlotSources from bacara.js
+  let result = 4 + 126 // num of matrixSlotSources from bacara.js
   for (let addr in torsoT1OSC) {
     if (torsoT1OSC[addr].matrix) {
       result++
@@ -84,9 +84,16 @@ module.exports = {
         min: 1,
         max: 128,
       },
+      external: {
+        type: 'cc',
+        number: 4,
+        min: 0,
+        max: 127,
+      },
       min: 1,
       max: 128,
       default: 16,
+      integer: true,
       unit: 'steps',
     },
     previous_pattern: {

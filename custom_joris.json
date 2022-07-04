@@ -8,9 +8,10 @@
     "transpose": "komplete-kontrol",
     "transposeChannel": 1,
     "osc": "torso-t1",
-    "general-old2": "bacara",
     "general-old": "lightpad-block",
-    "general": "lightpad-block-bluetooth",
+    "general-old2": "bacara",
+    "general-old3": "lightpad-block-bluetooth",
+    "general": "microkontrol-pad",
     "generalChannel": 1,
     "remote": "thouch-block",
     "remoteChannel": 1,
@@ -97,6 +98,12 @@
       },
       "thouch-block": {
         "darwin": "Touch Block Bluetooth"
+      },
+      "microkontrol-pad": {
+        "darwin": "microKONTROL PORT A"
+      },
+      "microkontrol-key": {
+        "darwin": "microKONTROL PORT B"
       }
     }
   },

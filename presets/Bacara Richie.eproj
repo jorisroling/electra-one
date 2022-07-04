@@ -2258,276 +2258,281 @@
             },
             {
               "index": 129,
+              "label": "Steps",
+              "value": 4
+            },
+            {
+              "index": 130,
               "label": "Scales Mode",
               "value": 11
             },
             {
-              "index": 130,
+              "index": 131,
               "label": "Scales Base",
               "value": 12
             },
             {
-              "index": 131,
+              "index": 132,
               "label": "Shift",
               "value": 19
             },
             {
-              "index": 132,
+              "index": 133,
               "label": "LFO 2 Device A",
               "value": 71
             },
             {
-              "index": 133,
+              "index": 134,
               "label": "LFO 2 Device B",
               "value": 72
             },
             {
-              "index": 134,
+              "index": 135,
               "label": "LFO 2 Shape",
               "value": 73
             },
             {
-              "index": 135,
+              "index": 136,
               "label": "LFO 2 Rate",
               "value": 74
             },
             {
-              "index": 136,
+              "index": 137,
               "label": "LFO 2 Phase",
               "value": 75
             },
             {
-              "index": 137,
+              "index": 138,
               "label": "LFO 2 Amount",
               "value": 76
             },
             {
-              "index": 138,
+              "index": 139,
               "label": "LFO 2 Offset",
               "value": 77
             },
             {
-              "index": 139,
+              "index": 140,
               "label": "LFO 2 Density",
               "value": 78
             },
             {
-              "index": 140,
+              "index": 141,
               "label": "LFO 3 Device A",
               "value": 79
             },
             {
-              "index": 141,
+              "index": 142,
               "label": "LFO 3 Device B",
               "value": 80
             },
             {
-              "index": 142,
+              "index": 143,
               "label": "LFO 3 Shape",
               "value": 81
             },
             {
-              "index": 143,
+              "index": 144,
               "label": "LFO 3 Rate",
               "value": 82
             },
             {
-              "index": 144,
+              "index": 145,
               "label": "LFO 3 Phase",
               "value": 83
             },
             {
-              "index": 145,
+              "index": 146,
               "label": "LFO 3 Amount",
               "value": 84
             },
             {
-              "index": 146,
+              "index": 147,
               "label": "LFO 3 Offset",
               "value": 85
             },
             {
-              "index": 147,
+              "index": 148,
               "label": "LFO 3 Density",
               "value": 86
             },
             {
-              "index": 148,
+              "index": 149,
               "label": "Note Maximum",
               "value": 90
             },
             {
-              "index": 149,
+              "index": 150,
               "label": "Note Minimum",
               "value": 91
             },
             {
-              "index": 150,
+              "index": 151,
               "label": "Note Density",
               "value": 92
             },
             {
-              "index": 151,
+              "index": 152,
               "label": "Note Probability",
               "value": 93
             },
             {
-              "index": 152,
+              "index": 153,
               "label": "Note Euclidian",
               "value": 94
             },
             {
-              "index": 153,
+              "index": 154,
               "label": "Note Rotation",
               "value": 95
             },
             {
-              "index": 154,
+              "index": 155,
               "label": "Velocity Maximum",
               "value": 96
             },
             {
-              "index": 155,
+              "index": 156,
               "label": "Velocity Minimum",
               "value": 97
             },
             {
-              "index": 156,
+              "index": 157,
               "label": "Velocity Density",
               "value": 98
             },
             {
-              "index": 157,
+              "index": 158,
               "label": "Velocity Probability",
               "value": 99
             },
             {
-              "index": 158,
+              "index": 159,
               "label": "Velocity Euclidian",
               "value": 100
             },
             {
-              "index": 159,
+              "index": 160,
               "label": "Velocity Rotation",
               "value": 101
             },
             {
-              "index": 160,
+              "index": 161,
               "label": "Duration Maximum",
               "value": 102
             },
             {
-              "index": 161,
+              "index": 162,
               "label": "Duration Minimum",
               "value": 103
             },
             {
-              "index": 162,
+              "index": 163,
               "label": "Duration Density",
               "value": 104
             },
             {
-              "index": 163,
+              "index": 164,
               "label": "Duration Probability",
               "value": 105
             },
             {
-              "index": 164,
+              "index": 165,
               "label": "Duration Euclidian",
               "value": 106
             },
             {
-              "index": 165,
+              "index": 166,
               "label": "Duration Rotation",
               "value": 107
             },
             {
-              "index": 166,
+              "index": 167,
               "label": "Octave Maximum",
               "value": 108
             },
             {
-              "index": 167,
+              "index": 168,
               "label": "Octave Minimum",
               "value": 109
             },
             {
-              "index": 168,
+              "index": 169,
               "label": "Octave Density",
               "value": 110
             },
             {
-              "index": 169,
+              "index": 170,
               "label": "Octave Probability",
               "value": 111
             },
             {
-              "index": 170,
+              "index": 171,
               "label": "Octave Euclidian",
               "value": 112
             },
             {
-              "index": 171,
+              "index": 172,
               "label": "Octave Rotation",
               "value": 113
             },
             {
-              "index": 172,
+              "index": 173,
               "label": "Accent Density",
               "value": 114
             },
             {
-              "index": 173,
+              "index": 174,
               "label": "Accent Probability",
               "value": 115
             },
             {
-              "index": 174,
+              "index": 175,
               "label": "Accent Euclidian",
               "value": 116
             },
             {
-              "index": 175,
+              "index": 176,
               "label": "Accent Rotation",
               "value": 117
             },
             {
-              "index": 176,
+              "index": 177,
               "label": "Mute Density",
               "value": 118
             },
             {
-              "index": 177,
+              "index": 178,
               "label": "Mute Probability",
               "value": 119
             },
             {
-              "index": 178,
+              "index": 179,
               "label": "Mute Euclidian",
               "value": 120
             },
             {
-              "index": 179,
+              "index": 180,
               "label": "Mute Rotation",
               "value": 121
             },
             {
-              "index": 180,
+              "index": 181,
               "label": "Device Density",
               "value": 122
             },
             {
-              "index": 181,
+              "index": 182,
               "label": "Device Probability",
               "value": 123
             },
             {
-              "index": 182,
+              "index": 183,
               "label": "Device Euclidian",
               "value": 124
             },
             {
-              "index": 183,
+              "index": 184,
               "label": "Device Rotation",
               "value": 125
             }
@@ -3576,271 +3581,276 @@
             },
             {
               "index": 129,
+              "label": "Steps",
+              "value": 4
+            },
+            {
+              "index": 130,
               "label": "Scales Mode",
               "value": 11
             },
             {
-              "index": 130,
+              "index": 131,
               "label": "Scales Base",
               "value": 12
             },
             {
-              "index": 131,
+              "index": 132,
               "label": "Shift",
               "value": 19
             },
             {
-              "index": 132,
+              "index": 133,
               "label": "LFO 1 Device A",
               "value": 64
             },
             {
-              "index": 133,
+              "index": 134,
               "label": "LFO 1 Device B",
               "value": 65
             },
             {
-              "index": 134,
+              "index": 135,
               "label": "LFO 1 Shape",
               "value": 66
             },
             {
-              "index": 135,
+              "index": 136,
               "label": "LFO 1 Rate",
               "value": 67
             },
             {
-              "index": 136,
+              "index": 137,
               "label": "LFO 1 Phase",
               "value": 68
             },
             {
-              "index": 137,
+              "index": 138,
               "label": "LFO 1 Amount",
               "value": 69
             },
             {
-              "index": 138,
+              "index": 139,
               "label": "LFO 1 Offset",
               "value": 70
             },
             {
-              "index": 139,
+              "index": 140,
               "label": "LFO 3 Device A",
               "value": 79
             },
             {
-              "index": 140,
+              "index": 141,
               "label": "LFO 3 Device B",
               "value": 80
             },
             {
-              "index": 141,
+              "index": 142,
               "label": "LFO 3 Shape",
               "value": 81
             },
             {
-              "index": 142,
+              "index": 143,
               "label": "LFO 3 Rate",
               "value": 82
             },
             {
-              "index": 143,
+              "index": 144,
               "label": "LFO 3 Phase",
               "value": 83
             },
             {
-              "index": 144,
+              "index": 145,
               "label": "LFO 3 Amount",
               "value": 84
             },
             {
-              "index": 145,
+              "index": 146,
               "label": "LFO 3 Offset",
               "value": 85
             },
             {
-              "index": 146,
+              "index": 147,
               "label": "LFO 3 Density",
               "value": 86
             },
             {
-              "index": 147,
+              "index": 148,
               "label": "Note Maximum",
               "value": 90
             },
             {
-              "index": 148,
+              "index": 149,
               "label": "Note Minimum",
               "value": 91
             },
             {
-              "index": 149,
+              "index": 150,
               "label": "Note Density",
               "value": 92
             },
             {
-              "index": 150,
+              "index": 151,
               "label": "Note Probability",
               "value": 93
             },
             {
-              "index": 151,
+              "index": 152,
               "label": "Note Euclidian",
               "value": 94
             },
             {
-              "index": 152,
+              "index": 153,
               "label": "Note Rotation",
               "value": 95
             },
             {
-              "index": 153,
+              "index": 154,
               "label": "Velocity Maximum",
               "value": 96
             },
             {
-              "index": 154,
+              "index": 155,
               "label": "Velocity Minimum",
               "value": 97
             },
             {
-              "index": 155,
+              "index": 156,
               "label": "Velocity Density",
               "value": 98
             },
             {
-              "index": 156,
+              "index": 157,
               "label": "Velocity Probability",
               "value": 99
             },
             {
-              "index": 157,
+              "index": 158,
               "label": "Velocity Euclidian",
               "value": 100
             },
             {
-              "index": 158,
+              "index": 159,
               "label": "Velocity Rotation",
               "value": 101
             },
             {
-              "index": 159,
+              "index": 160,
               "label": "Duration Maximum",
               "value": 102
             },
             {
-              "index": 160,
+              "index": 161,
               "label": "Duration Minimum",
               "value": 103
             },
             {
-              "index": 161,
+              "index": 162,
               "label": "Duration Density",
               "value": 104
             },
             {
-              "index": 162,
+              "index": 163,
               "label": "Duration Probability",
               "value": 105
             },
             {
-              "index": 163,
+              "index": 164,
               "label": "Duration Euclidian",
               "value": 106
             },
             {
-              "index": 164,
+              "index": 165,
               "label": "Duration Rotation",
               "value": 107
             },
             {
-              "index": 165,
+              "index": 166,
               "label": "Octave Maximum",
               "value": 108
             },
             {
-              "index": 166,
+              "index": 167,
               "label": "Octave Minimum",
               "value": 109
             },
             {
-              "index": 167,
+              "index": 168,
               "label": "Octave Density",
               "value": 110
             },
             {
-              "index": 168,
+              "index": 169,
               "label": "Octave Probability",
               "value": 111
             },
             {
-              "index": 169,
+              "index": 170,
               "label": "Octave Euclidian",
               "value": 112
             },
             {
-              "index": 170,
+              "index": 171,
               "label": "Octave Rotation",
               "value": 113
             },
             {
-              "index": 171,
+              "index": 172,
               "label": "Accent Density",
               "value": 114
             },
             {
-              "index": 172,
+              "index": 173,
               "label": "Accent Probability",
               "value": 115
             },
             {
-              "index": 173,
+              "index": 174,
               "label": "Accent Euclidian",
               "value": 116
             },
             {
-              "index": 174,
+              "index": 175,
               "label": "Accent Rotation",
               "value": 117
             },
             {
-              "index": 175,
+              "index": 176,
               "label": "Mute Density",
               "value": 118
             },
             {
-              "index": 176,
+              "index": 177,
               "label": "Mute Probability",
               "value": 119
             },
             {
-              "index": 177,
+              "index": 178,
               "label": "Mute Euclidian",
               "value": 120
             },
             {
-              "index": 178,
+              "index": 179,
               "label": "Mute Rotation",
               "value": 121
             },
             {
-              "index": 179,
+              "index": 180,
               "label": "Device Density",
               "value": 122
             },
             {
-              "index": 180,
+              "index": 181,
               "label": "Device Probability",
               "value": 123
             },
             {
-              "index": 181,
+              "index": 182,
               "label": "Device Euclidian",
               "value": 124
             },
             {
-              "index": 182,
+              "index": 183,
               "label": "Device Rotation",
               "value": 125
             }
@@ -4889,271 +4899,276 @@
             },
             {
               "index": 129,
+              "label": "Steps",
+              "value": 4
+            },
+            {
+              "index": 130,
               "label": "Scales Mode",
               "value": 11
             },
             {
-              "index": 130,
+              "index": 131,
               "label": "Scales Base",
               "value": 12
             },
             {
-              "index": 131,
+              "index": 132,
               "label": "Shift",
               "value": 19
             },
             {
-              "index": 132,
+              "index": 133,
               "label": "LFO 1 Device A",
               "value": 64
             },
             {
-              "index": 133,
+              "index": 134,
               "label": "LFO 1 Device B",
               "value": 65
             },
             {
-              "index": 134,
+              "index": 135,
               "label": "LFO 1 Shape",
               "value": 66
             },
             {
-              "index": 135,
+              "index": 136,
               "label": "LFO 1 Rate",
               "value": 67
             },
             {
-              "index": 136,
+              "index": 137,
               "label": "LFO 1 Phase",
               "value": 68
             },
             {
-              "index": 137,
+              "index": 138,
               "label": "LFO 1 Amount",
               "value": 69
             },
             {
-              "index": 138,
+              "index": 139,
               "label": "LFO 1 Offset",
               "value": 70
             },
             {
-              "index": 139,
+              "index": 140,
               "label": "LFO 2 Device A",
               "value": 71
             },
             {
-              "index": 140,
+              "index": 141,
               "label": "LFO 2 Device B",
               "value": 72
             },
             {
-              "index": 141,
+              "index": 142,
               "label": "LFO 2 Shape",
               "value": 73
             },
             {
-              "index": 142,
+              "index": 143,
               "label": "LFO 2 Rate",
               "value": 74
             },
             {
-              "index": 143,
+              "index": 144,
               "label": "LFO 2 Phase",
               "value": 75
             },
             {
-              "index": 144,
+              "index": 145,
               "label": "LFO 2 Amount",
               "value": 76
             },
             {
-              "index": 145,
+              "index": 146,
               "label": "LFO 2 Offset",
               "value": 77
             },
             {
-              "index": 146,
+              "index": 147,
               "label": "LFO 2 Density",
               "value": 78
             },
             {
-              "index": 147,
+              "index": 148,
               "label": "Note Maximum",
               "value": 90
             },
             {
-              "index": 148,
+              "index": 149,
               "label": "Note Minimum",
               "value": 91
             },
             {
-              "index": 149,
+              "index": 150,
               "label": "Note Density",
               "value": 92
             },
             {
-              "index": 150,
+              "index": 151,
               "label": "Note Probability",
               "value": 93
             },
             {
-              "index": 151,
+              "index": 152,
               "label": "Note Euclidian",
               "value": 94
             },
             {
-              "index": 152,
+              "index": 153,
               "label": "Note Rotation",
               "value": 95
             },
             {
-              "index": 153,
+              "index": 154,
               "label": "Velocity Maximum",
               "value": 96
             },
             {
-              "index": 154,
+              "index": 155,
               "label": "Velocity Minimum",
               "value": 97
             },
             {
-              "index": 155,
+              "index": 156,
               "label": "Velocity Density",
               "value": 98
             },
             {
-              "index": 156,
+              "index": 157,
               "label": "Velocity Probability",
               "value": 99
             },
             {
-              "index": 157,
+              "index": 158,
               "label": "Velocity Euclidian",
               "value": 100
             },
             {
-              "index": 158,
+              "index": 159,
               "label": "Velocity Rotation",
               "value": 101
             },
             {
-              "index": 159,
+              "index": 160,
               "label": "Duration Maximum",
               "value": 102
             },
             {
-              "index": 160,
+              "index": 161,
               "label": "Duration Minimum",
               "value": 103
             },
             {
-              "index": 161,
+              "index": 162,
               "label": "Duration Density",
               "value": 104
             },
             {
-              "index": 162,
+              "index": 163,
               "label": "Duration Probability",
               "value": 105
             },
             {
-              "index": 163,
+              "index": 164,
               "label": "Duration Euclidian",
               "value": 106
             },
             {
-              "index": 164,
+              "index": 165,
               "label": "Duration Rotation",
               "value": 107
             },
             {
-              "index": 165,
+              "index": 166,
               "label": "Octave Maximum",
               "value": 108
             },
             {
-              "index": 166,
+              "index": 167,
               "label": "Octave Minimum",
               "value": 109
             },
             {
-              "index": 167,
+              "index": 168,
               "label": "Octave Density",
               "value": 110
             },
             {
-              "index": 168,
+              "index": 169,
               "label": "Octave Probability",
               "value": 111
             },
             {
-              "index": 169,
+              "index": 170,
               "label": "Octave Euclidian",
               "value": 112
             },
             {
-              "index": 170,
+              "index": 171,
               "label": "Octave Rotation",
               "value": 113
             },
             {
-              "index": 171,
+              "index": 172,
               "label": "Accent Density",
               "value": 114
             },
             {
-              "index": 172,
+              "index": 173,
               "label": "Accent Probability",
               "value": 115
             },
             {
-              "index": 173,
+              "index": 174,
               "label": "Accent Euclidian",
               "value": 116
             },
             {
-              "index": 174,
+              "index": 175,
               "label": "Accent Rotation",
               "value": 117
             },
             {
-              "index": 175,
+              "index": 176,
               "label": "Mute Density",
               "value": 118
             },
             {
-              "index": 176,
+              "index": 177,
               "label": "Mute Probability",
               "value": 119
             },
             {
-              "index": 177,
+              "index": 178,
               "label": "Mute Euclidian",
               "value": 120
             },
             {
-              "index": 178,
+              "index": 179,
               "label": "Mute Rotation",
               "value": 121
             },
             {
-              "index": 179,
+              "index": 180,
               "label": "Device Density",
               "value": 122
             },
             {
-              "index": 180,
+              "index": 181,
               "label": "Device Probability",
               "value": 123
             },
             {
-              "index": 181,
+              "index": 182,
               "label": "Device Euclidian",
               "value": 124
             },
             {
-              "index": 182,
+              "index": 183,
               "label": "Device Rotation",
               "value": 125
             }
@@ -9797,44 +9812,659 @@
               "value": 3
             },
             {
-              "index": 4,
-              "label": "T-1 OSC Steps",
-              "value": 4
-            },
-            {
               "index": 5,
-              "label": "T-1 OSC Pulses",
+              "label": "CC #2",
               "value": 5
             },
             {
               "index": 6,
-              "label": "T-1 OSC numNotes",
+              "label": "CC #3",
               "value": 6
             },
             {
               "index": 7,
-              "label": "T-1 OSC Sustain",
+              "label": "CC #4",
               "value": 7
             },
             {
               "index": 8,
-              "label": "T-1 OSC Root",
+              "label": "CC #5",
               "value": 8
             },
             {
               "index": 9,
-              "label": "T-1 OSC Notes",
+              "label": "CC #6",
               "value": 9
             },
             {
               "index": 10,
-              "label": "T-1 OSC Scale",
+              "label": "CC #7",
               "value": 10
             },
             {
               "index": 11,
-              "label": "T-1 OSC pulseLoc",
+              "label": "CC #8",
               "value": 11
+            },
+            {
+              "index": 12,
+              "label": "CC #9",
+              "value": 12
+            },
+            {
+              "index": 13,
+              "label": "CC #10",
+              "value": 13
+            },
+            {
+              "index": 14,
+              "label": "CC #11",
+              "value": 14
+            },
+            {
+              "index": 15,
+              "label": "CC #12",
+              "value": 15
+            },
+            {
+              "index": 16,
+              "label": "CC #13",
+              "value": 16
+            },
+            {
+              "index": 17,
+              "label": "CC #14",
+              "value": 17
+            },
+            {
+              "index": 18,
+              "label": "CC #15",
+              "value": 18
+            },
+            {
+              "index": 19,
+              "label": "CC #16",
+              "value": 19
+            },
+            {
+              "index": 20,
+              "label": "CC #17",
+              "value": 20
+            },
+            {
+              "index": 21,
+              "label": "CC #18",
+              "value": 21
+            },
+            {
+              "index": 22,
+              "label": "CC #19",
+              "value": 22
+            },
+            {
+              "index": 23,
+              "label": "CC #20",
+              "value": 23
+            },
+            {
+              "index": 24,
+              "label": "CC #21",
+              "value": 24
+            },
+            {
+              "index": 25,
+              "label": "CC #22",
+              "value": 25
+            },
+            {
+              "index": 26,
+              "label": "CC #23",
+              "value": 26
+            },
+            {
+              "index": 27,
+              "label": "CC #24",
+              "value": 27
+            },
+            {
+              "index": 28,
+              "label": "CC #25",
+              "value": 28
+            },
+            {
+              "index": 29,
+              "label": "CC #26",
+              "value": 29
+            },
+            {
+              "index": 30,
+              "label": "CC #27",
+              "value": 30
+            },
+            {
+              "index": 31,
+              "label": "CC #28",
+              "value": 31
+            },
+            {
+              "index": 32,
+              "label": "CC #29",
+              "value": 32
+            },
+            {
+              "index": 33,
+              "label": "CC #30",
+              "value": 33
+            },
+            {
+              "index": 34,
+              "label": "CC #31",
+              "value": 34
+            },
+            {
+              "index": 35,
+              "label": "CC #32",
+              "value": 35
+            },
+            {
+              "index": 36,
+              "label": "CC #33",
+              "value": 36
+            },
+            {
+              "index": 37,
+              "label": "CC #34",
+              "value": 37
+            },
+            {
+              "index": 38,
+              "label": "CC #35",
+              "value": 38
+            },
+            {
+              "index": 39,
+              "label": "CC #36",
+              "value": 39
+            },
+            {
+              "index": 40,
+              "label": "CC #37",
+              "value": 40
+            },
+            {
+              "index": 41,
+              "label": "CC #38",
+              "value": 41
+            },
+            {
+              "index": 42,
+              "label": "CC #39",
+              "value": 42
+            },
+            {
+              "index": 43,
+              "label": "CC #40",
+              "value": 43
+            },
+            {
+              "index": 44,
+              "label": "CC #41",
+              "value": 44
+            },
+            {
+              "index": 45,
+              "label": "CC #42",
+              "value": 45
+            },
+            {
+              "index": 46,
+              "label": "CC #43",
+              "value": 46
+            },
+            {
+              "index": 47,
+              "label": "CC #44",
+              "value": 47
+            },
+            {
+              "index": 48,
+              "label": "CC #45",
+              "value": 48
+            },
+            {
+              "index": 49,
+              "label": "CC #46",
+              "value": 49
+            },
+            {
+              "index": 50,
+              "label": "CC #47",
+              "value": 50
+            },
+            {
+              "index": 51,
+              "label": "CC #48",
+              "value": 51
+            },
+            {
+              "index": 52,
+              "label": "CC #49",
+              "value": 52
+            },
+            {
+              "index": 53,
+              "label": "CC #50",
+              "value": 53
+            },
+            {
+              "index": 54,
+              "label": "CC #51",
+              "value": 54
+            },
+            {
+              "index": 55,
+              "label": "CC #52",
+              "value": 55
+            },
+            {
+              "index": 56,
+              "label": "CC #53",
+              "value": 56
+            },
+            {
+              "index": 57,
+              "label": "CC #54",
+              "value": 57
+            },
+            {
+              "index": 58,
+              "label": "CC #55",
+              "value": 58
+            },
+            {
+              "index": 59,
+              "label": "CC #56",
+              "value": 59
+            },
+            {
+              "index": 60,
+              "label": "CC #57",
+              "value": 60
+            },
+            {
+              "index": 61,
+              "label": "CC #58",
+              "value": 61
+            },
+            {
+              "index": 62,
+              "label": "CC #59",
+              "value": 62
+            },
+            {
+              "index": 63,
+              "label": "CC #60",
+              "value": 63
+            },
+            {
+              "index": 64,
+              "label": "CC #61",
+              "value": 64
+            },
+            {
+              "index": 65,
+              "label": "CC #62",
+              "value": 65
+            },
+            {
+              "index": 66,
+              "label": "CC #63",
+              "value": 66
+            },
+            {
+              "index": 67,
+              "label": "CC #64",
+              "value": 67
+            },
+            {
+              "index": 68,
+              "label": "CC #65",
+              "value": 68
+            },
+            {
+              "index": 69,
+              "label": "CC #66",
+              "value": 69
+            },
+            {
+              "index": 70,
+              "label": "CC #67",
+              "value": 70
+            },
+            {
+              "index": 71,
+              "label": "CC #68",
+              "value": 71
+            },
+            {
+              "index": 72,
+              "label": "CC #69",
+              "value": 72
+            },
+            {
+              "index": 73,
+              "label": "CC #70",
+              "value": 73
+            },
+            {
+              "index": 74,
+              "label": "CC #71",
+              "value": 74
+            },
+            {
+              "index": 75,
+              "label": "CC #72",
+              "value": 75
+            },
+            {
+              "index": 76,
+              "label": "CC #73",
+              "value": 76
+            },
+            {
+              "index": 77,
+              "label": "CC #74",
+              "value": 77
+            },
+            {
+              "index": 78,
+              "label": "CC #75",
+              "value": 78
+            },
+            {
+              "index": 79,
+              "label": "CC #76",
+              "value": 79
+            },
+            {
+              "index": 80,
+              "label": "CC #77",
+              "value": 80
+            },
+            {
+              "index": 81,
+              "label": "CC #78",
+              "value": 81
+            },
+            {
+              "index": 82,
+              "label": "CC #79",
+              "value": 82
+            },
+            {
+              "index": 83,
+              "label": "CC #80",
+              "value": 83
+            },
+            {
+              "index": 84,
+              "label": "CC #81",
+              "value": 84
+            },
+            {
+              "index": 85,
+              "label": "CC #82",
+              "value": 85
+            },
+            {
+              "index": 86,
+              "label": "CC #83",
+              "value": 86
+            },
+            {
+              "index": 87,
+              "label": "CC #84",
+              "value": 87
+            },
+            {
+              "index": 88,
+              "label": "CC #85",
+              "value": 88
+            },
+            {
+              "index": 89,
+              "label": "CC #86",
+              "value": 89
+            },
+            {
+              "index": 90,
+              "label": "CC #87",
+              "value": 90
+            },
+            {
+              "index": 91,
+              "label": "CC #88",
+              "value": 91
+            },
+            {
+              "index": 92,
+              "label": "CC #89",
+              "value": 92
+            },
+            {
+              "index": 93,
+              "label": "CC #90",
+              "value": 93
+            },
+            {
+              "index": 94,
+              "label": "CC #91",
+              "value": 94
+            },
+            {
+              "index": 95,
+              "label": "CC #92",
+              "value": 95
+            },
+            {
+              "index": 96,
+              "label": "CC #93",
+              "value": 96
+            },
+            {
+              "index": 97,
+              "label": "CC #94",
+              "value": 97
+            },
+            {
+              "index": 98,
+              "label": "CC #95",
+              "value": 98
+            },
+            {
+              "index": 99,
+              "label": "CC #96",
+              "value": 99
+            },
+            {
+              "index": 100,
+              "label": "CC #97",
+              "value": 100
+            },
+            {
+              "index": 101,
+              "label": "CC #98",
+              "value": 101
+            },
+            {
+              "index": 102,
+              "label": "CC #99",
+              "value": 102
+            },
+            {
+              "index": 103,
+              "label": "CC #100",
+              "value": 103
+            },
+            {
+              "index": 104,
+              "label": "CC #101",
+              "value": 104
+            },
+            {
+              "index": 105,
+              "label": "CC #102",
+              "value": 105
+            },
+            {
+              "index": 106,
+              "label": "CC #103",
+              "value": 106
+            },
+            {
+              "index": 107,
+              "label": "CC #104",
+              "value": 107
+            },
+            {
+              "index": 108,
+              "label": "CC #105",
+              "value": 108
+            },
+            {
+              "index": 109,
+              "label": "CC #106",
+              "value": 109
+            },
+            {
+              "index": 110,
+              "label": "CC #107",
+              "value": 110
+            },
+            {
+              "index": 111,
+              "label": "CC #108",
+              "value": 111
+            },
+            {
+              "index": 112,
+              "label": "CC #109",
+              "value": 112
+            },
+            {
+              "index": 113,
+              "label": "CC #110",
+              "value": 113
+            },
+            {
+              "index": 114,
+              "label": "CC #111",
+              "value": 114
+            },
+            {
+              "index": 115,
+              "label": "CC #112",
+              "value": 115
+            },
+            {
+              "index": 116,
+              "label": "CC #113",
+              "value": 116
+            },
+            {
+              "index": 117,
+              "label": "CC #114",
+              "value": 117
+            },
+            {
+              "index": 118,
+              "label": "CC #115",
+              "value": 118
+            },
+            {
+              "index": 119,
+              "label": "CC #116",
+              "value": 119
+            },
+            {
+              "index": 120,
+              "label": "CC #117",
+              "value": 120
+            },
+            {
+              "index": 121,
+              "label": "CC #118",
+              "value": 121
+            },
+            {
+              "index": 122,
+              "label": "CC #119",
+              "value": 122
+            },
+            {
+              "index": 123,
+              "label": "CC #120",
+              "value": 123
+            },
+            {
+              "index": 124,
+              "label": "CC #121",
+              "value": 124
+            },
+            {
+              "index": 125,
+              "label": "CC #122",
+              "value": 125
+            },
+            {
+              "index": 126,
+              "label": "CC #123",
+              "value": 126
+            },
+            {
+              "index": 127,
+              "label": "CC #124",
+              "value": 127
+            },
+            {
+              "index": 128,
+              "label": "CC #125",
+              "value": 128
+            },
+            {
+              "index": 129,
+              "label": "CC #126",
+              "value": 129
+            },
+            {
+              "index": 130,
+              "label": "CC #127",
+              "value": 130
+            },
+            {
+              "index": 130,
+              "label": "T-1 OSC Pulses",
+              "value": 130
+            },
+            {
+              "index": 131,
+              "label": "T-1 OSC numNotes",
+              "value": 131
+            },
+            {
+              "index": 132,
+              "label": "T-1 OSC Sustain",
+              "value": 132
+            },
+            {
+              "index": 133,
+              "label": "T-1 OSC Notes",
+              "value": 133
+            },
+            {
+              "index": 134,
+              "label": "T-1 OSC pulseLoc",
+              "value": 134
             }
           ]
         }
@@ -9882,311 +10512,316 @@
             },
             {
               "index": 2,
+              "label": "Steps",
+              "value": 4
+            },
+            {
+              "index": 3,
               "label": "Scales Mode",
               "value": 11
             },
             {
-              "index": 3,
+              "index": 4,
               "label": "Scales Base",
               "value": 12
             },
             {
-              "index": 4,
+              "index": 5,
               "label": "Shift",
               "value": 19
             },
             {
-              "index": 5,
+              "index": 6,
               "label": "LFO 1 Device A",
               "value": 64
             },
             {
-              "index": 6,
+              "index": 7,
               "label": "LFO 1 Device B",
               "value": 65
             },
             {
-              "index": 7,
+              "index": 8,
               "label": "LFO 1 Shape",
               "value": 66
             },
             {
-              "index": 8,
+              "index": 9,
               "label": "LFO 1 Rate",
               "value": 67
             },
             {
-              "index": 9,
+              "index": 10,
               "label": "LFO 1 Phase",
               "value": 68
             },
             {
-              "index": 10,
+              "index": 11,
               "label": "LFO 1 Amount",
               "value": 69
             },
             {
-              "index": 11,
+              "index": 12,
               "label": "LFO 1 Offset",
               "value": 70
             },
             {
-              "index": 12,
+              "index": 13,
               "label": "LFO 2 Device A",
               "value": 71
             },
             {
-              "index": 13,
+              "index": 14,
               "label": "LFO 2 Device B",
               "value": 72
             },
             {
-              "index": 14,
+              "index": 15,
               "label": "LFO 2 Shape",
               "value": 73
             },
             {
-              "index": 15,
+              "index": 16,
               "label": "LFO 2 Rate",
               "value": 74
             },
             {
-              "index": 16,
+              "index": 17,
               "label": "LFO 2 Phase",
               "value": 75
             },
             {
-              "index": 17,
+              "index": 18,
               "label": "LFO 2 Amount",
               "value": 76
             },
             {
-              "index": 18,
+              "index": 19,
               "label": "LFO 2 Offset",
               "value": 77
             },
             {
-              "index": 19,
+              "index": 20,
               "label": "LFO 2 Density",
               "value": 78
             },
             {
-              "index": 20,
+              "index": 21,
               "label": "LFO 3 Device A",
               "value": 79
             },
             {
-              "index": 21,
+              "index": 22,
               "label": "LFO 3 Device B",
               "value": 80
             },
             {
-              "index": 22,
+              "index": 23,
               "label": "LFO 3 Shape",
               "value": 81
             },
             {
-              "index": 23,
+              "index": 24,
               "label": "LFO 3 Rate",
               "value": 82
             },
             {
-              "index": 24,
+              "index": 25,
               "label": "LFO 3 Phase",
               "value": 83
             },
             {
-              "index": 25,
+              "index": 26,
               "label": "LFO 3 Amount",
               "value": 84
             },
             {
-              "index": 26,
+              "index": 27,
               "label": "LFO 3 Offset",
               "value": 85
             },
             {
-              "index": 27,
+              "index": 28,
               "label": "LFO 3 Density",
               "value": 86
             },
             {
-              "index": 28,
+              "index": 29,
               "label": "Note Maximum",
               "value": 90
             },
             {
-              "index": 29,
+              "index": 30,
               "label": "Note Minimum",
               "value": 91
             },
             {
-              "index": 30,
+              "index": 31,
               "label": "Note Density",
               "value": 92
             },
             {
-              "index": 31,
+              "index": 32,
               "label": "Note Probability",
               "value": 93
             },
             {
-              "index": 32,
+              "index": 33,
               "label": "Note Euclidian",
               "value": 94
             },
             {
-              "index": 33,
+              "index": 34,
               "label": "Note Rotation",
               "value": 95
             },
             {
-              "index": 34,
+              "index": 35,
               "label": "Velocity Maximum",
               "value": 96
             },
             {
-              "index": 35,
+              "index": 36,
               "label": "Velocity Minimum",
               "value": 97
             },
             {
-              "index": 36,
+              "index": 37,
               "label": "Velocity Density",
               "value": 98
             },
             {
-              "index": 37,
+              "index": 38,
               "label": "Velocity Probability",
               "value": 99
             },
             {
-              "index": 38,
+              "index": 39,
               "label": "Velocity Euclidian",
               "value": 100
             },
             {
-              "index": 39,
+              "index": 40,
               "label": "Velocity Rotation",
               "value": 101
             },
             {
-              "index": 40,
+              "index": 41,
               "label": "Duration Maximum",
               "value": 102
             },
             {
-              "index": 41,
+              "index": 42,
               "label": "Duration Minimum",
               "value": 103
             },
             {
-              "index": 42,
+              "index": 43,
               "label": "Duration Density",
               "value": 104
             },
             {
-              "index": 43,
+              "index": 44,
               "label": "Duration Probability",
               "value": 105
             },
             {
-              "index": 44,
+              "index": 45,
               "label": "Duration Euclidian",
               "value": 106
             },
             {
-              "index": 45,
+              "index": 46,
               "label": "Duration Rotation",
               "value": 107
             },
             {
-              "index": 46,
+              "index": 47,
               "label": "Octave Maximum",
               "value": 108
             },
             {
-              "index": 47,
+              "index": 48,
               "label": "Octave Minimum",
               "value": 109
             },
             {
-              "index": 48,
+              "index": 49,
               "label": "Octave Density",
               "value": 110
             },
             {
-              "index": 49,
+              "index": 50,
               "label": "Octave Probability",
               "value": 111
             },
             {
-              "index": 50,
+              "index": 51,
               "label": "Octave Euclidian",
               "value": 112
             },
             {
-              "index": 51,
+              "index": 52,
               "label": "Octave Rotation",
               "value": 113
             },
             {
-              "index": 52,
+              "index": 53,
               "label": "Accent Density",
               "value": 114
             },
             {
-              "index": 53,
+              "index": 54,
               "label": "Accent Probability",
               "value": 115
             },
             {
-              "index": 54,
+              "index": 55,
               "label": "Accent Euclidian",
               "value": 116
             },
             {
-              "index": 55,
+              "index": 56,
               "label": "Accent Rotation",
               "value": 117
             },
             {
-              "index": 56,
+              "index": 57,
               "label": "Mute Density",
               "value": 118
             },
             {
-              "index": 57,
+              "index": 58,
               "label": "Mute Probability",
               "value": 119
             },
             {
-              "index": 58,
+              "index": 59,
               "label": "Mute Euclidian",
               "value": 120
             },
             {
-              "index": 59,
+              "index": 60,
               "label": "Mute Rotation",
               "value": 121
             },
             {
-              "index": 60,
+              "index": 61,
               "label": "Device Density",
               "value": 122
             },
             {
-              "index": 61,
+              "index": 62,
               "label": "Device Probability",
               "value": 123
             },
             {
-              "index": 62,
+              "index": 63,
               "label": "Device Euclidian",
               "value": 124
             },
             {
-              "index": 63,
+              "index": 64,
               "label": "Device Rotation",
               "value": 125
             }
@@ -10237,311 +10872,316 @@
             },
             {
               "index": 2,
+              "label": "Steps",
+              "value": 4
+            },
+            {
+              "index": 3,
               "label": "Scales Mode",
               "value": 11
             },
             {
-              "index": 3,
+              "index": 4,
               "label": "Scales Base",
               "value": 12
             },
             {
-              "index": 4,
+              "index": 5,
               "label": "Shift",
               "value": 19
             },
             {
-              "index": 5,
+              "index": 6,
               "label": "LFO 1 Device A",
               "value": 64
             },
             {
-              "index": 6,
+              "index": 7,
               "label": "LFO 1 Device B",
               "value": 65
             },
             {
-              "index": 7,
+              "index": 8,
               "label": "LFO 1 Shape",
               "value": 66
             },
             {
-              "index": 8,
+              "index": 9,
               "label": "LFO 1 Rate",
               "value": 67
             },
             {
-              "index": 9,
+              "index": 10,
               "label": "LFO 1 Phase",
               "value": 68
             },
             {
-              "index": 10,
+              "index": 11,
               "label": "LFO 1 Amount",
               "value": 69
             },
             {
-              "index": 11,
+              "index": 12,
               "label": "LFO 1 Offset",
               "value": 70
             },
             {
-              "index": 12,
+              "index": 13,
               "label": "LFO 2 Device A",
               "value": 71
             },
             {
-              "index": 13,
+              "index": 14,
               "label": "LFO 2 Device B",
               "value": 72
             },
             {
-              "index": 14,
+              "index": 15,
               "label": "LFO 2 Shape",
               "value": 73
             },
             {
-              "index": 15,
+              "index": 16,
               "label": "LFO 2 Rate",
               "value": 74
             },
             {
-              "index": 16,
+              "index": 17,
               "label": "LFO 2 Phase",
               "value": 75
             },
             {
-              "index": 17,
+              "index": 18,
               "label": "LFO 2 Amount",
               "value": 76
             },
             {
-              "index": 18,
+              "index": 19,
               "label": "LFO 2 Offset",
               "value": 77
             },
             {
-              "index": 19,
+              "index": 20,
               "label": "LFO 2 Density",
               "value": 78
             },
             {
-              "index": 20,
+              "index": 21,
               "label": "LFO 3 Device A",
               "value": 79
             },
             {
-              "index": 21,
+              "index": 22,
               "label": "LFO 3 Device B",
               "value": 80
             },
             {
-              "index": 22,
+              "index": 23,
               "label": "LFO 3 Shape",
               "value": 81
             },
             {
-              "index": 23,
+              "index": 24,
               "label": "LFO 3 Rate",
               "value": 82
             },
             {
-              "index": 24,
+              "index": 25,
               "label": "LFO 3 Phase",
               "value": 83
             },
             {
-              "index": 25,
+              "index": 26,
               "label": "LFO 3 Amount",
               "value": 84
             },
             {
-              "index": 26,
+              "index": 27,
               "label": "LFO 3 Offset",
               "value": 85
             },
             {
-              "index": 27,
+              "index": 28,
               "label": "LFO 3 Density",
               "value": 86
             },
             {
-              "index": 28,
+              "index": 29,
               "label": "Note Maximum",
               "value": 90
             },
             {
-              "index": 29,
+              "index": 30,
               "label": "Note Minimum",
               "value": 91
             },
             {
-              "index": 30,
+              "index": 31,
               "label": "Note Density",
               "value": 92
             },
             {
-              "index": 31,
+              "index": 32,
               "label": "Note Probability",
               "value": 93
             },
             {
-              "index": 32,
+              "index": 33,
               "label": "Note Euclidian",
               "value": 94
             },
             {
-              "index": 33,
+              "index": 34,
               "label": "Note Rotation",
               "value": 95
             },
             {
-              "index": 34,
+              "index": 35,
               "label": "Velocity Maximum",
               "value": 96
             },
             {
-              "index": 35,
+              "index": 36,
               "label": "Velocity Minimum",
               "value": 97
             },
             {
-              "index": 36,
+              "index": 37,
               "label": "Velocity Density",
               "value": 98
             },
             {
-              "index": 37,
+              "index": 38,
               "label": "Velocity Probability",
               "value": 99
             },
             {
-              "index": 38,
+              "index": 39,
               "label": "Velocity Euclidian",
               "value": 100
             },
             {
-              "index": 39,
+              "index": 40,
               "label": "Velocity Rotation",
               "value": 101
             },
             {
-              "index": 40,
+              "index": 41,
               "label": "Duration Maximum",
               "value": 102
             },
             {
-              "index": 41,
+              "index": 42,
               "label": "Duration Minimum",
               "value": 103
             },
             {
-              "index": 42,
+              "index": 43,
               "label": "Duration Density",
               "value": 104
             },
             {
-              "index": 43,
+              "index": 44,
               "label": "Duration Probability",
               "value": 105
             },
             {
-              "index": 44,
+              "index": 45,
               "label": "Duration Euclidian",
               "value": 106
             },
             {
-              "index": 45,
+              "index": 46,
               "label": "Duration Rotation",
               "value": 107
             },
             {
-              "index": 46,
+              "index": 47,
               "label": "Octave Maximum",
               "value": 108
             },
             {
-              "index": 47,
+              "index": 48,
               "label": "Octave Minimum",
               "value": 109
             },
             {
-              "index": 48,
+              "index": 49,
               "label": "Octave Density",
               "value": 110
             },
             {
-              "index": 49,
+              "index": 50,
               "label": "Octave Probability",
               "value": 111
             },
             {
-              "index": 50,
+              "index": 51,
               "label": "Octave Euclidian",
               "value": 112
             },
             {
-              "index": 51,
+              "index": 52,
               "label": "Octave Rotation",
               "value": 113
             },
             {
-              "index": 52,
+              "index": 53,
               "label": "Accent Density",
               "value": 114
             },
             {
-              "index": 53,
+              "index": 54,
               "label": "Accent Probability",
               "value": 115
             },
             {
-              "index": 54,
+              "index": 55,
               "label": "Accent Euclidian",
               "value": 116
             },
             {
-              "index": 55,
+              "index": 56,
               "label": "Accent Rotation",
               "value": 117
             },
             {
-              "index": 56,
+              "index": 57,
               "label": "Mute Density",
               "value": 118
             },
             {
-              "index": 57,
+              "index": 58,
               "label": "Mute Probability",
               "value": 119
             },
             {
-              "index": 58,
+              "index": 59,
               "label": "Mute Euclidian",
               "value": 120
             },
             {
-              "index": 59,
+              "index": 60,
               "label": "Mute Rotation",
               "value": 121
             },
             {
-              "index": 60,
+              "index": 61,
               "label": "Device Density",
               "value": 122
             },
             {
-              "index": 61,
+              "index": 62,
               "label": "Device Probability",
               "value": 123
             },
             {
-              "index": 62,
+              "index": 63,
               "label": "Device Euclidian",
               "value": 124
             },
             {
-              "index": 63,
+              "index": 64,
               "label": "Device Rotation",
               "value": 125
             }
@@ -10592,311 +11232,316 @@
             },
             {
               "index": 2,
+              "label": "Steps",
+              "value": 4
+            },
+            {
+              "index": 3,
               "label": "Scales Mode",
               "value": 11
             },
             {
-              "index": 3,
+              "index": 4,
               "label": "Scales Base",
               "value": 12
             },
             {
-              "index": 4,
+              "index": 5,
               "label": "Shift",
               "value": 19
             },
             {
-              "index": 5,
+              "index": 6,
               "label": "LFO 1 Device A",
               "value": 64
             },
             {
-              "index": 6,
+              "index": 7,
               "label": "LFO 1 Device B",
               "value": 65
             },
             {
-              "index": 7,
+              "index": 8,
               "label": "LFO 1 Shape",
               "value": 66
             },
             {
-              "index": 8,
+              "index": 9,
               "label": "LFO 1 Rate",
               "value": 67
             },
             {
-              "index": 9,
+              "index": 10,
               "label": "LFO 1 Phase",
               "value": 68
             },
             {
-              "index": 10,
+              "index": 11,
               "label": "LFO 1 Amount",
               "value": 69
             },
             {
-              "index": 11,
+              "index": 12,
               "label": "LFO 1 Offset",
               "value": 70
             },
             {
-              "index": 12,
+              "index": 13,
               "label": "LFO 2 Device A",
               "value": 71
             },
             {
-              "index": 13,
+              "index": 14,
               "label": "LFO 2 Device B",
               "value": 72
             },
             {
-              "index": 14,
+              "index": 15,
               "label": "LFO 2 Shape",
               "value": 73
             },
             {
-              "index": 15,
+              "index": 16,
               "label": "LFO 2 Rate",
               "value": 74
             },
             {
-              "index": 16,
+              "index": 17,
               "label": "LFO 2 Phase",
               "value": 75
             },
             {
-              "index": 17,
+              "index": 18,
               "label": "LFO 2 Amount",
               "value": 76
             },
             {
-              "index": 18,
+              "index": 19,
               "label": "LFO 2 Offset",
               "value": 77
             },
             {
-              "index": 19,
+              "index": 20,
               "label": "LFO 2 Density",
               "value": 78
             },
             {
-              "index": 20,
+              "index": 21,
               "label": "LFO 3 Device A",
               "value": 79
             },
             {
-              "index": 21,
+              "index": 22,
               "label": "LFO 3 Device B",
               "value": 80
             },
             {
-              "index": 22,
+              "index": 23,
               "label": "LFO 3 Shape",
               "value": 81
             },
             {
-              "index": 23,
+              "index": 24,
               "label": "LFO 3 Rate",
               "value": 82
             },
             {
-              "index": 24,
+              "index": 25,
               "label": "LFO 3 Phase",
               "value": 83
             },
             {
-              "index": 25,
+              "index": 26,
               "label": "LFO 3 Amount",
               "value": 84
             },
             {
-              "index": 26,
+              "index": 27,
               "label": "LFO 3 Offset",
               "value": 85
             },
             {
-              "index": 27,
+              "index": 28,
               "label": "LFO 3 Density",
               "value": 86
             },
             {
-              "index": 28,
+              "index": 29,
               "label": "Note Maximum",
               "value": 90
             },
             {
-              "index": 29,
+              "index": 30,
               "label": "Note Minimum",
               "value": 91
             },
             {
-              "index": 30,
+              "index": 31,
               "label": "Note Density",
               "value": 92
             },
             {
-              "index": 31,
+              "index": 32,
               "label": "Note Probability",
               "value": 93
             },
             {
-              "index": 32,
+              "index": 33,
               "label": "Note Euclidian",
               "value": 94
             },
             {
-              "index": 33,
+              "index": 34,
               "label": "Note Rotation",
               "value": 95
             },
             {
-              "index": 34,
+              "index": 35,
               "label": "Velocity Maximum",
               "value": 96
             },
             {
-              "index": 35,
+              "index": 36,
               "label": "Velocity Minimum",
               "value": 97
             },
             {
-              "index": 36,
+              "index": 37,
               "label": "Velocity Density",
               "value": 98
             },
             {
-              "index": 37,
+              "index": 38,
               "label": "Velocity Probability",
               "value": 99
             },
             {
-              "index": 38,
+              "index": 39,
               "label": "Velocity Euclidian",
               "value": 100
             },
             {
-              "index": 39,
+              "index": 40,
               "label": "Velocity Rotation",
               "value": 101
             },
             {
-              "index": 40,
+              "index": 41,
               "label": "Duration Maximum",
               "value": 102
             },
             {
-              "index": 41,
+              "index": 42,
               "label": "Duration Minimum",
               "value": 103
             },
             {
-              "index": 42,
+              "index": 43,
               "label": "Duration Density",
               "value": 104
             },
             {
-              "index": 43,
+              "index": 44,
               "label": "Duration Probability",
               "value": 105
             },
             {
-              "index": 44,
+              "index": 45,
               "label": "Duration Euclidian",
               "value": 106
             },
             {
-              "index": 45,
+              "index": 46,
               "label": "Duration Rotation",
               "value": 107
             },
             {
-              "index": 46,
+              "index": 47,
               "label": "Octave Maximum",
               "value": 108
             },
             {
-              "index": 47,
+              "index": 48,
               "label": "Octave Minimum",
               "value": 109
             },
             {
-              "index": 48,
+              "index": 49,
               "label": "Octave Density",
               "value": 110
             },
             {
-              "index": 49,
+              "index": 50,
               "label": "Octave Probability",
               "value": 111
             },
             {
-              "index": 50,
+              "index": 51,
               "label": "Octave Euclidian",
               "value": 112
             },
             {
-              "index": 51,
+              "index": 52,
               "label": "Octave Rotation",
               "value": 113
             },
             {
-              "index": 52,
+              "index": 53,
               "label": "Accent Density",
               "value": 114
             },
             {
-              "index": 53,
+              "index": 54,
               "label": "Accent Probability",
               "value": 115
             },
             {
-              "index": 54,
+              "index": 55,
               "label": "Accent Euclidian",
               "value": 116
             },
             {
-              "index": 55,
+              "index": 56,
               "label": "Accent Rotation",
               "value": 117
             },
             {
-              "index": 56,
+              "index": 57,
               "label": "Mute Density",
               "value": 118
             },
             {
-              "index": 57,
+              "index": 58,
               "label": "Mute Probability",
               "value": 119
             },
             {
-              "index": 58,
+              "index": 59,
               "label": "Mute Euclidian",
               "value": 120
             },
             {
-              "index": 59,
+              "index": 60,
               "label": "Mute Rotation",
               "value": 121
             },
             {
-              "index": 60,
+              "index": 61,
               "label": "Device Density",
               "value": 122
             },
             {
-              "index": 61,
+              "index": 62,
               "label": "Device Probability",
               "value": 123
             },
             {
-              "index": 62,
+              "index": 63,
               "label": "Device Euclidian",
               "value": 124
             },
             {
-              "index": 63,
+              "index": 64,
               "label": "Device Rotation",
               "value": 125
             }
@@ -11146,44 +11791,659 @@
               "value": 3
             },
             {
-              "index": 4,
-              "label": "T-1 OSC Steps",
-              "value": 4
-            },
-            {
               "index": 5,
-              "label": "T-1 OSC Pulses",
+              "label": "CC #2",
               "value": 5
             },
             {
               "index": 6,
-              "label": "T-1 OSC numNotes",
+              "label": "CC #3",
               "value": 6
             },
             {
               "index": 7,
-              "label": "T-1 OSC Sustain",
+              "label": "CC #4",
               "value": 7
             },
             {
               "index": 8,
-              "label": "T-1 OSC Root",
+              "label": "CC #5",
               "value": 8
             },
             {
               "index": 9,
-              "label": "T-1 OSC Notes",
+              "label": "CC #6",
               "value": 9
             },
             {
               "index": 10,
-              "label": "T-1 OSC Scale",
+              "label": "CC #7",
               "value": 10
             },
             {
               "index": 11,
-              "label": "T-1 OSC pulseLoc",
+              "label": "CC #8",
               "value": 11
+            },
+            {
+              "index": 12,
+              "label": "CC #9",
+              "value": 12
+            },
+            {
+              "index": 13,
+              "label": "CC #10",
+              "value": 13
+            },
+            {
+              "index": 14,
+              "label": "CC #11",
+              "value": 14
+            },
+            {
+              "index": 15,
+              "label": "CC #12",
+              "value": 15
+            },
+            {
+              "index": 16,
+              "label": "CC #13",
+              "value": 16
+            },
+            {
+              "index": 17,
+              "label": "CC #14",
+              "value": 17
+            },
+            {
+              "index": 18,
+              "label": "CC #15",
+              "value": 18
+            },
+            {
+              "index": 19,
+              "label": "CC #16",
+              "value": 19
+            },
+            {
+              "index": 20,
+              "label": "CC #17",
+              "value": 20
+            },
+            {
+              "index": 21,
+              "label": "CC #18",
+              "value": 21
+            },
+            {
+              "index": 22,
+              "label": "CC #19",
+              "value": 22
+            },
+            {
+              "index": 23,
+              "label": "CC #20",
+              "value": 23
+            },
+            {
+              "index": 24,
+              "label": "CC #21",
+              "value": 24
+            },
+            {
+              "index": 25,
+              "label": "CC #22",
+              "value": 25
+            },
+            {
+              "index": 26,
+              "label": "CC #23",
+              "value": 26
+            },
+            {
+              "index": 27,
+              "label": "CC #24",
+              "value": 27
+            },
+            {
+              "index": 28,
+              "label": "CC #25",
+              "value": 28
+            },
+            {
+              "index": 29,
+              "label": "CC #26",
+              "value": 29
+            },
+            {
+              "index": 30,
+              "label": "CC #27",
+              "value": 30
+            },
+            {
+              "index": 31,
+              "label": "CC #28",
+              "value": 31
+            },
+            {
+              "index": 32,
+              "label": "CC #29",
+              "value": 32
+            },
+            {
+              "index": 33,
+              "label": "CC #30",
+              "value": 33
+            },
+            {
+              "index": 34,
+              "label": "CC #31",
+              "value": 34
+            },
+            {
+              "index": 35,
+              "label": "CC #32",
+              "value": 35
+            },
+            {
+              "index": 36,
+              "label": "CC #33",
+              "value": 36
+            },
+            {
+              "index": 37,
+              "label": "CC #34",
+              "value": 37
+            },
+            {
+              "index": 38,
+              "label": "CC #35",
+              "value": 38
+            },
+            {
+              "index": 39,
+              "label": "CC #36",
+              "value": 39
+            },
+            {
+              "index": 40,
+              "label": "CC #37",
+              "value": 40
+            },
+            {
+              "index": 41,
+              "label": "CC #38",
+              "value": 41
+            },
+            {
+              "index": 42,
+              "label": "CC #39",
+              "value": 42
+            },
+            {
+              "index": 43,
+              "label": "CC #40",
+              "value": 43
+            },
+            {
+              "index": 44,
+              "label": "CC #41",
+              "value": 44
+            },
+            {
+              "index": 45,
+              "label": "CC #42",
+              "value": 45
+            },
+            {
+              "index": 46,
+              "label": "CC #43",
+              "value": 46
+            },
+            {
+              "index": 47,
+              "label": "CC #44",
+              "value": 47
+            },
+            {
+              "index": 48,
+              "label": "CC #45",
+              "value": 48
+            },
+            {
+              "index": 49,
+              "label": "CC #46",
+              "value": 49
+            },
+            {
+              "index": 50,
+              "label": "CC #47",
+              "value": 50
+            },
+            {
+              "index": 51,
+              "label": "CC #48",
+              "value": 51
+            },
+            {
+              "index": 52,
+              "label": "CC #49",
+              "value": 52
+            },
+            {
+              "index": 53,
+              "label": "CC #50",
+              "value": 53
+            },
+            {
+              "index": 54,
+              "label": "CC #51",
+              "value": 54
+            },
+            {
+              "index": 55,
+              "label": "CC #52",
+              "value": 55
+            },
+            {
+              "index": 56,
+              "label": "CC #53",
+              "value": 56
+            },
+            {
+              "index": 57,
+              "label": "CC #54",
+              "value": 57
+            },
+            {
+              "index": 58,
+              "label": "CC #55",
+              "value": 58
+            },
+            {
+              "index": 59,
+              "label": "CC #56",
+              "value": 59
+            },
+            {
+              "index": 60,
+              "label": "CC #57",
+              "value": 60
+            },
+            {
+              "index": 61,
+              "label": "CC #58",
+              "value": 61
+            },
+            {
+              "index": 62,
+              "label": "CC #59",
+              "value": 62
+            },
+            {
+              "index": 63,
+              "label": "CC #60",
+              "value": 63
+            },
+            {
+              "index": 64,
+              "label": "CC #61",
+              "value": 64
+            },
+            {
+              "index": 65,
+              "label": "CC #62",
+              "value": 65
+            },
+            {
+              "index": 66,
+              "label": "CC #63",
+              "value": 66
+            },
+            {
+              "index": 67,
+              "label": "CC #64",
+              "value": 67
+            },
+            {
+              "index": 68,
+              "label": "CC #65",
+              "value": 68
+            },
+            {
+              "index": 69,
+              "label": "CC #66",
+              "value": 69
+            },
+            {
+              "index": 70,
+              "label": "CC #67",
+              "value": 70
+            },
+            {
+              "index": 71,
+              "label": "CC #68",
+              "value": 71
+            },
+            {
+              "index": 72,
+              "label": "CC #69",
+              "value": 72
+            },
+            {
+              "index": 73,
+              "label": "CC #70",
+              "value": 73
+            },
+            {
+              "index": 74,
+              "label": "CC #71",
+              "value": 74
+            },
+            {
+              "index": 75,
+              "label": "CC #72",
+              "value": 75
+            },
+            {
+              "index": 76,
+              "label": "CC #73",
+              "value": 76
+            },
+            {
+              "index": 77,
+              "label": "CC #74",
+              "value": 77
+            },
+            {
+              "index": 78,
+              "label": "CC #75",
+              "value": 78
+            },
+            {
+              "index": 79,
+              "label": "CC #76",
+              "value": 79
+            },
+            {
+              "index": 80,
+              "label": "CC #77",
+              "value": 80
+            },
+            {
+              "index": 81,
+              "label": "CC #78",
+              "value": 81
+            },
+            {
+              "index": 82,
+              "label": "CC #79",
+              "value": 82
+            },
+            {
+              "index": 83,
+              "label": "CC #80",
+              "value": 83
+            },
+            {
+              "index": 84,
+              "label": "CC #81",
+              "value": 84
+            },
+            {
+              "index": 85,
+              "label": "CC #82",
+              "value": 85
+            },
+            {
+              "index": 86,
+              "label": "CC #83",
+              "value": 86
+            },
+            {
+              "index": 87,
+              "label": "CC #84",
+              "value": 87
+            },
+            {
+              "index": 88,
+              "label": "CC #85",
+              "value": 88
+            },
+            {
+              "index": 89,
+              "label": "CC #86",
+              "value": 89
+            },
+            {
+              "index": 90,
+              "label": "CC #87",
+              "value": 90
+            },
+            {
+              "index": 91,
+              "label": "CC #88",
+              "value": 91
+            },
+            {
+              "index": 92,
+              "label": "CC #89",
+              "value": 92
+            },
+            {
+              "index": 93,
+              "label": "CC #90",
+              "value": 93
+            },
+            {
+              "index": 94,
+              "label": "CC #91",
+              "value": 94
+            },
+            {
+              "index": 95,
+              "label": "CC #92",
+              "value": 95
+            },
+            {
+              "index": 96,
+              "label": "CC #93",
+              "value": 96
+            },
+            {
+              "index": 97,
+              "label": "CC #94",
+              "value": 97
+            },
+            {
+              "index": 98,
+              "label": "CC #95",
+              "value": 98
+            },
+            {
+              "index": 99,
+              "label": "CC #96",
+              "value": 99
+            },
+            {
+              "index": 100,
+              "label": "CC #97",
+              "value": 100
+            },
+            {
+              "index": 101,
+              "label": "CC #98",
+              "value": 101
+            },
+            {
+              "index": 102,
+              "label": "CC #99",
+              "value": 102
+            },
+            {
+              "index": 103,
+              "label": "CC #100",
+              "value": 103
+            },
+            {
+              "index": 104,
+              "label": "CC #101",
+              "value": 104
+            },
+            {
+              "index": 105,
+              "label": "CC #102",
+              "value": 105
+            },
+            {
+              "index": 106,
+              "label": "CC #103",
+              "value": 106
+            },
+            {
+              "index": 107,
+              "label": "CC #104",
+              "value": 107
+            },
+            {
+              "index": 108,
+              "label": "CC #105",
+              "value": 108
+            },
+            {
+              "index": 109,
+              "label": "CC #106",
+              "value": 109
+            },
+            {
+              "index": 110,
+              "label": "CC #107",
+              "value": 110
+            },
+            {
+              "index": 111,
+              "label": "CC #108",
+              "value": 111
+            },
+            {
+              "index": 112,
+              "label": "CC #109",
+              "value": 112
+            },
+            {
+              "index": 113,
+              "label": "CC #110",
+              "value": 113
+            },
+            {
+              "index": 114,
+              "label": "CC #111",
+              "value": 114
+            },
+            {
+              "index": 115,
+              "label": "CC #112",
+              "value": 115
+            },
+            {
+              "index": 116,
+              "label": "CC #113",
+              "value": 116
+            },
+            {
+              "index": 117,
+              "label": "CC #114",
+              "value": 117
+            },
+            {
+              "index": 118,
+              "label": "CC #115",
+              "value": 118
+            },
+            {
+              "index": 119,
+              "label": "CC #116",
+              "value": 119
+            },
+            {
+              "index": 120,
+              "label": "CC #117",
+              "value": 120
+            },
+            {
+              "index": 121,
+              "label": "CC #118",
+              "value": 121
+            },
+            {
+              "index": 122,
+              "label": "CC #119",
+              "value": 122
+            },
+            {
+              "index": 123,
+              "label": "CC #120",
+              "value": 123
+            },
+            {
+              "index": 124,
+              "label": "CC #121",
+              "value": 124
+            },
+            {
+              "index": 125,
+              "label": "CC #122",
+              "value": 125
+            },
+            {
+              "index": 126,
+              "label": "CC #123",
+              "value": 126
+            },
+            {
+              "index": 127,
+              "label": "CC #124",
+              "value": 127
+            },
+            {
+              "index": 128,
+              "label": "CC #125",
+              "value": 128
+            },
+            {
+              "index": 129,
+              "label": "CC #126",
+              "value": 129
+            },
+            {
+              "index": 130,
+              "label": "CC #127",
+              "value": 130
+            },
+            {
+              "index": 130,
+              "label": "T-1 OSC Pulses",
+              "value": 130
+            },
+            {
+              "index": 131,
+              "label": "T-1 OSC numNotes",
+              "value": 131
+            },
+            {
+              "index": 132,
+              "label": "T-1 OSC Sustain",
+              "value": 132
+            },
+            {
+              "index": 133,
+              "label": "T-1 OSC Notes",
+              "value": 133
+            },
+            {
+              "index": 134,
+              "label": "T-1 OSC pulseLoc",
+              "value": 134
             }
           ]
         }
@@ -11231,311 +12491,316 @@
             },
             {
               "index": 2,
+              "label": "Steps",
+              "value": 4
+            },
+            {
+              "index": 3,
               "label": "Scales Mode",
               "value": 11
             },
             {
-              "index": 3,
+              "index": 4,
               "label": "Scales Base",
               "value": 12
             },
             {
-              "index": 4,
+              "index": 5,
               "label": "Shift",
               "value": 19
             },
             {
-              "index": 5,
+              "index": 6,
               "label": "LFO 1 Device A",
               "value": 64
             },
             {
-              "index": 6,
+              "index": 7,
               "label": "LFO 1 Device B",
               "value": 65
             },
             {
-              "index": 7,
+              "index": 8,
               "label": "LFO 1 Shape",
               "value": 66
             },
             {
-              "index": 8,
+              "index": 9,
               "label": "LFO 1 Rate",
               "value": 67
             },
             {
-              "index": 9,
+              "index": 10,
               "label": "LFO 1 Phase",
               "value": 68
             },
             {
-              "index": 10,
+              "index": 11,
               "label": "LFO 1 Amount",
               "value": 69
             },
             {
-              "index": 11,
+              "index": 12,
               "label": "LFO 1 Offset",
               "value": 70
             },
             {
-              "index": 12,
+              "index": 13,
               "label": "LFO 2 Device A",
               "value": 71
             },
             {
-              "index": 13,
+              "index": 14,
               "label": "LFO 2 Device B",
               "value": 72
             },
             {
-              "index": 14,
+              "index": 15,
               "label": "LFO 2 Shape",
               "value": 73
             },
             {
-              "index": 15,
+              "index": 16,
               "label": "LFO 2 Rate",
               "value": 74
             },
             {
-              "index": 16,
+              "index": 17,
               "label": "LFO 2 Phase",
               "value": 75
             },
             {
-              "index": 17,
+              "index": 18,
               "label": "LFO 2 Amount",
               "value": 76
             },
             {
-              "index": 18,
+              "index": 19,
               "label": "LFO 2 Offset",
               "value": 77
             },
             {
-              "index": 19,
+              "index": 20,
               "label": "LFO 2 Density",
               "value": 78
             },
             {
-              "index": 20,
+              "index": 21,
               "label": "LFO 3 Device A",
               "value": 79
             },
             {
-              "index": 21,
+              "index": 22,
               "label": "LFO 3 Device B",
               "value": 80
             },
             {
-              "index": 22,
+              "index": 23,
               "label": "LFO 3 Shape",
               "value": 81
             },
             {
-              "index": 23,
+              "index": 24,
               "label": "LFO 3 Rate",
               "value": 82
             },
             {
-              "index": 24,
+              "index": 25,
               "label": "LFO 3 Phase",
               "value": 83
             },
             {
-              "index": 25,
+              "index": 26,
               "label": "LFO 3 Amount",
               "value": 84
             },
             {
-              "index": 26,
+              "index": 27,
               "label": "LFO 3 Offset",
               "value": 85
             },
             {
-              "index": 27,
+              "index": 28,
               "label": "LFO 3 Density",
               "value": 86
             },
             {
-              "index": 28,
+              "index": 29,
               "label": "Note Maximum",
               "value": 90
             },
             {
-              "index": 29,
+              "index": 30,
               "label": "Note Minimum",
               "value": 91
             },
             {
-              "index": 30,
+              "index": 31,
               "label": "Note Density",
               "value": 92
             },
             {
-              "index": 31,
+              "index": 32,
               "label": "Note Probability",
               "value": 93
             },
             {
-              "index": 32,
+              "index": 33,
               "label": "Note Euclidian",
               "value": 94
             },
             {
-              "index": 33,
+              "index": 34,
               "label": "Note Rotation",
               "value": 95
             },
             {
-              "index": 34,
+              "index": 35,
               "label": "Velocity Maximum",
               "value": 96
             },
             {
-              "index": 35,
+              "index": 36,
               "label": "Velocity Minimum",
               "value": 97
             },
             {
-              "index": 36,
+              "index": 37,
               "label": "Velocity Density",
               "value": 98
             },
             {
-              "index": 37,
+              "index": 38,
               "label": "Velocity Probability",
               "value": 99
             },
             {
-              "index": 38,
+              "index": 39,
               "label": "Velocity Euclidian",
               "value": 100
             },
             {
-              "index": 39,
+              "index": 40,
               "label": "Velocity Rotation",
               "value": 101
             },
             {
-              "index": 40,
+              "index": 41,
               "label": "Duration Maximum",
               "value": 102
             },
             {
-              "index": 41,
+              "index": 42,
               "label": "Duration Minimum",
               "value": 103
             },
             {
-              "index": 42,
+              "index": 43,
               "label": "Duration Density",
               "value": 104
             },
             {
-              "index": 43,
+              "index": 44,
               "label": "Duration Probability",
               "value": 105
             },
             {
-              "index": 44,
+              "index": 45,
               "label": "Duration Euclidian",
               "value": 106
             },
             {
-              "index": 45,
+              "index": 46,
               "label": "Duration Rotation",
               "value": 107
             },
             {
-              "index": 46,
+              "index": 47,
               "label": "Octave Maximum",
               "value": 108
             },
             {
-              "index": 47,
+              "index": 48,
               "label": "Octave Minimum",
               "value": 109
             },
             {
-              "index": 48,
+              "index": 49,
               "label": "Octave Density",
               "value": 110
             },
             {
-              "index": 49,
+              "index": 50,
               "label": "Octave Probability",
               "value": 111
             },
             {
-              "index": 50,
+              "index": 51,
               "label": "Octave Euclidian",
               "value": 112
             },
             {
-              "index": 51,
+              "index": 52,
               "label": "Octave Rotation",
               "value": 113
             },
             {
-              "index": 52,
+              "index": 53,
               "label": "Accent Density",
               "value": 114
             },
             {
-              "index": 53,
+              "index": 54,
               "label": "Accent Probability",
               "value": 115
             },
             {
-              "index": 54,
+              "index": 55,
               "label": "Accent Euclidian",
               "value": 116
             },
             {
-              "index": 55,
+              "index": 56,
               "label": "Accent Rotation",
               "value": 117
             },
             {
-              "index": 56,
+              "index": 57,
               "label": "Mute Density",
               "value": 118
             },
             {
-              "index": 57,
+              "index": 58,
               "label": "Mute Probability",
               "value": 119
             },
             {
-              "index": 58,
+              "index": 59,
               "label": "Mute Euclidian",
               "value": 120
             },
             {
-              "index": 59,
+              "index": 60,
               "label": "Mute Rotation",
               "value": 121
             },
             {
-              "index": 60,
+              "index": 61,
               "label": "Device Density",
               "value": 122
             },
             {
-              "index": 61,
+              "index": 62,
               "label": "Device Probability",
               "value": 123
             },
             {
-              "index": 62,
+              "index": 63,
               "label": "Device Euclidian",
               "value": 124
             },
             {
-              "index": 63,
+              "index": 64,
               "label": "Device Rotation",
               "value": 125
             }
@@ -11586,311 +12851,316 @@
             },
             {
               "index": 2,
+              "label": "Steps",
+              "value": 4
+            },
+            {
+              "index": 3,
               "label": "Scales Mode",
               "value": 11
             },
             {
-              "index": 3,
+              "index": 4,
               "label": "Scales Base",
               "value": 12
             },
             {
-              "index": 4,
+              "index": 5,
               "label": "Shift",
               "value": 19
             },
             {
-              "index": 5,
+              "index": 6,
               "label": "LFO 1 Device A",
               "value": 64
             },
             {
-              "index": 6,
+              "index": 7,
               "label": "LFO 1 Device B",
               "value": 65
             },
             {
-              "index": 7,
+              "index": 8,
               "label": "LFO 1 Shape",
               "value": 66
             },
             {
-              "index": 8,
+              "index": 9,
               "label": "LFO 1 Rate",
               "value": 67
             },
             {
-              "index": 9,
+              "index": 10,
               "label": "LFO 1 Phase",
               "value": 68
             },
             {
-              "index": 10,
+              "index": 11,
               "label": "LFO 1 Amount",
               "value": 69
             },
             {
-              "index": 11,
+              "index": 12,
               "label": "LFO 1 Offset",
               "value": 70
             },
             {
-              "index": 12,
+              "index": 13,
               "label": "LFO 2 Device A",
               "value": 71
             },
             {
-              "index": 13,
+              "index": 14,
               "label": "LFO 2 Device B",
               "value": 72
             },
             {
-              "index": 14,
+              "index": 15,
               "label": "LFO 2 Shape",
               "value": 73
             },
             {
-              "index": 15,
+              "index": 16,
               "label": "LFO 2 Rate",
               "value": 74
             },
             {
-              "index": 16,
+              "index": 17,
               "label": "LFO 2 Phase",
               "value": 75
             },
             {
-              "index": 17,
+              "index": 18,
               "label": "LFO 2 Amount",
               "value": 76
             },
             {
-              "index": 18,
+              "index": 19,
               "label": "LFO 2 Offset",
               "value": 77
             },
             {
-              "index": 19,
+              "index": 20,
               "label": "LFO 2 Density",
               "value": 78
             },
             {
-              "index": 20,
+              "index": 21,
               "label": "LFO 3 Device A",
               "value": 79
             },
             {
-              "index": 21,
+              "index": 22,
               "label": "LFO 3 Device B",
               "value": 80
             },
             {
-              "index": 22,
+              "index": 23,
               "label": "LFO 3 Shape",
               "value": 81
             },
             {
-              "index": 23,
+              "index": 24,
               "label": "LFO 3 Rate",
               "value": 82
             },
             {
-              "index": 24,
+              "index": 25,
               "label": "LFO 3 Phase",
               "value": 83
             },
             {
-              "index": 25,
+              "index": 26,
               "label": "LFO 3 Amount",
               "value": 84
             },
             {
-              "index": 26,
+              "index": 27,
               "label": "LFO 3 Offset",
               "value": 85
             },
             {
-              "index": 27,
+              "index": 28,
               "label": "LFO 3 Density",
               "value": 86
             },
             {
-              "index": 28,
+              "index": 29,
               "label": "Note Maximum",
               "value": 90
             },
             {
-              "index": 29,
+              "index": 30,
               "label": "Note Minimum",
               "value": 91
             },
             {
-              "index": 30,
+              "index": 31,
               "label": "Note Density",
               "value": 92
             },
             {
-              "index": 31,
+              "index": 32,
               "label": "Note Probability",
               "value": 93
             },
             {
-              "index": 32,
+              "index": 33,
               "label": "Note Euclidian",
               "value": 94
             },
             {
-              "index": 33,
+              "index": 34,
               "label": "Note Rotation",
               "value": 95
             },
             {
-              "index": 34,
+              "index": 35,
               "label": "Velocity Maximum",
               "value": 96
             },
             {
-              "index": 35,
+              "index": 36,
               "label": "Velocity Minimum",
               "value": 97
             },
             {
-              "index": 36,
+              "index": 37,
               "label": "Velocity Density",
               "value": 98
             },
             {
-              "index": 37,
+              "index": 38,
               "label": "Velocity Probability",
               "value": 99
             },
             {
-              "index": 38,
+              "index": 39,
               "label": "Velocity Euclidian",
               "value": 100
             },
             {
-              "index": 39,
+              "index": 40,
               "label": "Velocity Rotation",
               "value": 101
             },
             {
-              "index": 40,
+              "index": 41,
               "label": "Duration Maximum",
               "value": 102
             },
             {
-              "index": 41,
+              "index": 42,
               "label": "Duration Minimum",
               "value": 103
             },
             {
-              "index": 42,
+              "index": 43,
               "label": "Duration Density",
               "value": 104
             },
             {
-              "index": 43,
+              "index": 44,
               "label": "Duration Probability",
               "value": 105
             },
             {
-              "index": 44,
+              "index": 45,
               "label": "Duration Euclidian",
               "value": 106
             },
             {
-              "index": 45,
+              "index": 46,
               "label": "Duration Rotation",
               "value": 107
             },
             {
-              "index": 46,
+              "index": 47,
               "label": "Octave Maximum",
               "value": 108
             },
             {
-              "index": 47,
+              "index": 48,
               "label": "Octave Minimum",
               "value": 109
             },
             {
-              "index": 48,
+              "index": 49,
               "label": "Octave Density",
               "value": 110
             },
             {
-              "index": 49,
+              "index": 50,
               "label": "Octave Probability",
               "value": 111
             },
             {
-              "index": 50,
+              "index": 51,
               "label": "Octave Euclidian",
               "value": 112
             },
             {
-              "index": 51,
+              "index": 52,
               "label": "Octave Rotation",
               "value": 113
             },
             {
-              "index": 52,
+              "index": 53,
               "label": "Accent Density",
               "value": 114
             },
             {
-              "index": 53,
+              "index": 54,
               "label": "Accent Probability",
               "value": 115
             },
             {
-              "index": 54,
+              "index": 55,
               "label": "Accent Euclidian",
               "value": 116
             },
             {
-              "index": 55,
+              "index": 56,
               "label": "Accent Rotation",
               "value": 117
             },
             {
-              "index": 56,
+              "index": 57,
               "label": "Mute Density",
               "value": 118
             },
             {
-              "index": 57,
+              "index": 58,
               "label": "Mute Probability",
               "value": 119
             },
             {
-              "index": 58,
+              "index": 59,
               "label": "Mute Euclidian",
               "value": 120
             },
             {
-              "index": 59,
+              "index": 60,
               "label": "Mute Rotation",
               "value": 121
             },
             {
-              "index": 60,
+              "index": 61,
               "label": "Device Density",
               "value": 122
             },
             {
-              "index": 61,
+              "index": 62,
               "label": "Device Probability",
               "value": 123
             },
             {
-              "index": 62,
+              "index": 63,
               "label": "Device Euclidian",
               "value": 124
             },
             {
-              "index": 63,
+              "index": 64,
               "label": "Device Rotation",
               "value": 125
             }
@@ -11941,311 +13211,316 @@
             },
             {
               "index": 2,
+              "label": "Steps",
+              "value": 4
+            },
+            {
+              "index": 3,
               "label": "Scales Mode",
               "value": 11
             },
             {
-              "index": 3,
+              "index": 4,
               "label": "Scales Base",
               "value": 12
             },
             {
-              "index": 4,
+              "index": 5,
               "label": "Shift",
               "value": 19
             },
             {
-              "index": 5,
+              "index": 6,
               "label": "LFO 1 Device A",
               "value": 64
             },
             {
-              "index": 6,
+              "index": 7,
               "label": "LFO 1 Device B",
               "value": 65
             },
             {
-              "index": 7,
+              "index": 8,
               "label": "LFO 1 Shape",
               "value": 66
             },
             {
-              "index": 8,
+              "index": 9,
               "label": "LFO 1 Rate",
               "value": 67
             },
             {
-              "index": 9,
+              "index": 10,
               "label": "LFO 1 Phase",
               "value": 68
             },
             {
-              "index": 10,
+              "index": 11,
               "label": "LFO 1 Amount",
               "value": 69
             },
             {
-              "index": 11,
+              "index": 12,
               "label": "LFO 1 Offset",
               "value": 70
             },
             {
-              "index": 12,
+              "index": 13,
               "label": "LFO 2 Device A",
               "value": 71
             },
             {
-              "index": 13,
+              "index": 14,
               "label": "LFO 2 Device B",
               "value": 72
             },
             {
-              "index": 14,
+              "index": 15,
               "label": "LFO 2 Shape",
               "value": 73
             },
             {
-              "index": 15,
+              "index": 16,
               "label": "LFO 2 Rate",
               "value": 74
             },
             {
-              "index": 16,
+              "index": 17,
               "label": "LFO 2 Phase",
               "value": 75
             },
             {
-              "index": 17,
+              "index": 18,
               "label": "LFO 2 Amount",
               "value": 76
             },
             {
-              "index": 18,
+              "index": 19,
               "label": "LFO 2 Offset",
               "value": 77
             },
             {
-              "index": 19,
+              "index": 20,
               "label": "LFO 2 Density",
               "value": 78
             },
             {
-              "index": 20,
+              "index": 21,
               "label": "LFO 3 Device A",
               "value": 79
             },
             {
-              "index": 21,
+              "index": 22,
               "label": "LFO 3 Device B",
               "value": 80
             },
             {
-              "index": 22,
+              "index": 23,
               "label": "LFO 3 Shape",
               "value": 81
             },
             {
-              "index": 23,
+              "index": 24,
               "label": "LFO 3 Rate",
               "value": 82
             },
             {
-              "index": 24,
+              "index": 25,
               "label": "LFO 3 Phase",
               "value": 83
             },
             {
-              "index": 25,
+              "index": 26,
               "label": "LFO 3 Amount",
               "value": 84
             },
             {
-              "index": 26,
+              "index": 27,
               "label": "LFO 3 Offset",
               "value": 85
             },
             {
-              "index": 27,
+              "index": 28,
               "label": "LFO 3 Density",
               "value": 86
             },
             {
-              "index": 28,
+              "index": 29,
               "label": "Note Maximum",
               "value": 90
             },
             {
-              "index": 29,
+              "index": 30,
               "label": "Note Minimum",
               "value": 91
             },
             {
-              "index": 30,
+              "index": 31,
               "label": "Note Density",
               "value": 92
             },
             {
-              "index": 31,
+              "index": 32,
               "label": "Note Probability",
               "value": 93
             },
             {
-              "index": 32,
+              "index": 33,
               "label": "Note Euclidian",
               "value": 94
             },
             {
-              "index": 33,
+              "index": 34,
               "label": "Note Rotation",
               "value": 95
             },
             {
-              "index": 34,
+              "index": 35,
               "label": "Velocity Maximum",
               "value": 96
             },
             {
-              "index": 35,
+              "index": 36,
               "label": "Velocity Minimum",
               "value": 97
             },
             {
-              "index": 36,
+              "index": 37,
               "label": "Velocity Density",
               "value": 98
             },
             {
-              "index": 37,
+              "index": 38,
               "label": "Velocity Probability",
               "value": 99
             },
             {
-              "index": 38,
+              "index": 39,
               "label": "Velocity Euclidian",
               "value": 100
             },
             {
-              "index": 39,
+              "index": 40,
               "label": "Velocity Rotation",
               "value": 101
             },
             {
-              "index": 40,
+              "index": 41,
               "label": "Duration Maximum",
               "value": 102
             },
             {
-              "index": 41,
+              "index": 42,
               "label": "Duration Minimum",
               "value": 103
             },
             {
-              "index": 42,
+              "index": 43,
               "label": "Duration Density",
               "value": 104
             },
             {
-              "index": 43,
+              "index": 44,
               "label": "Duration Probability",
               "value": 105
             },
             {
-              "index": 44,
+              "index": 45,
               "label": "Duration Euclidian",
               "value": 106
             },
             {
-              "index": 45,
+              "index": 46,
               "label": "Duration Rotation",
               "value": 107
             },
             {
-              "index": 46,
+              "index": 47,
               "label": "Octave Maximum",
               "value": 108
             },
             {
-              "index": 47,
+              "index": 48,
               "label": "Octave Minimum",
               "value": 109
             },
             {
-              "index": 48,
+              "index": 49,
               "label": "Octave Density",
               "value": 110
             },
             {
-              "index": 49,
+              "index": 50,
               "label": "Octave Probability",
               "value": 111
             },
             {
-              "index": 50,
+              "index": 51,
               "label": "Octave Euclidian",
               "value": 112
             },
             {
-              "index": 51,
+              "index": 52,
               "label": "Octave Rotation",
               "value": 113
             },
             {
-              "index": 52,
+              "index": 53,
               "label": "Accent Density",
               "value": 114
             },
             {
-              "index": 53,
+              "index": 54,
               "label": "Accent Probability",
               "value": 115
             },
             {
-              "index": 54,
+              "index": 55,
               "label": "Accent Euclidian",
               "value": 116
             },
             {
-              "index": 55,
+              "index": 56,
               "label": "Accent Rotation",
               "value": 117
             },
             {
-              "index": 56,
+              "index": 57,
               "label": "Mute Density",
               "value": 118
             },
             {
-              "index": 57,
+              "index": 58,
               "label": "Mute Probability",
               "value": 119
             },
             {
-              "index": 58,
+              "index": 59,
               "label": "Mute Euclidian",
               "value": 120
             },
             {
-              "index": 59,
+              "index": 60,
               "label": "Mute Rotation",
               "value": 121
             },
             {
-              "index": 60,
+              "index": 61,
               "label": "Device Density",
               "value": 122
             },
             {
-              "index": 61,
+              "index": 62,
               "label": "Device Probability",
               "value": 123
             },
             {
-              "index": 62,
+              "index": 63,
               "label": "Device Euclidian",
               "value": 124
             },
             {
-              "index": 63,
+              "index": 64,
               "label": "Device Rotation",
               "value": 125
             }
@@ -12495,44 +13770,659 @@
               "value": 3
             },
             {
-              "index": 4,
-              "label": "T-1 OSC Steps",
-              "value": 4
-            },
-            {
               "index": 5,
-              "label": "T-1 OSC Pulses",
+              "label": "CC #2",
               "value": 5
             },
             {
               "index": 6,
-              "label": "T-1 OSC numNotes",
+              "label": "CC #3",
               "value": 6
             },
             {
               "index": 7,
-              "label": "T-1 OSC Sustain",
+              "label": "CC #4",
               "value": 7
             },
             {
               "index": 8,
-              "label": "T-1 OSC Root",
+              "label": "CC #5",
               "value": 8
             },
             {
               "index": 9,
-              "label": "T-1 OSC Notes",
+              "label": "CC #6",
               "value": 9
             },
             {
               "index": 10,
-              "label": "T-1 OSC Scale",
+              "label": "CC #7",
               "value": 10
             },
             {
               "index": 11,
-              "label": "T-1 OSC pulseLoc",
+              "label": "CC #8",
               "value": 11
+            },
+            {
+              "index": 12,
+              "label": "CC #9",
+              "value": 12
+            },
+            {
+              "index": 13,
+              "label": "CC #10",
+              "value": 13
+            },
+            {
+              "index": 14,
+              "label": "CC #11",
+              "value": 14
+            },
+            {
+              "index": 15,
+              "label": "CC #12",
+              "value": 15
+            },
+            {
+              "index": 16,
+              "label": "CC #13",
+              "value": 16
+            },
+            {
+              "index": 17,
+              "label": "CC #14",
+              "value": 17
+            },
+            {
+              "index": 18,
+              "label": "CC #15",
+              "value": 18
+            },
+            {
+              "index": 19,
+              "label": "CC #16",
+              "value": 19
+            },
+            {
+              "index": 20,
+              "label": "CC #17",
+              "value": 20
+            },
+            {
+              "index": 21,
+              "label": "CC #18",
+              "value": 21
+            },
+            {
+              "index": 22,
+              "label": "CC #19",
+              "value": 22
+            },
+            {
+              "index": 23,
+              "label": "CC #20",
+              "value": 23
+            },
+            {
+              "index": 24,
+              "label": "CC #21",
+              "value": 24
+            },
+            {
+              "index": 25,
+              "label": "CC #22",
+              "value": 25
+            },
+            {
+              "index": 26,
+              "label": "CC #23",
+              "value": 26
+            },
+            {
+              "index": 27,
+              "label": "CC #24",
+              "value": 27
+            },
+            {
+              "index": 28,
+              "label": "CC #25",
+              "value": 28
+            },
+            {
+              "index": 29,
+              "label": "CC #26",
+              "value": 29
+            },
+            {
+              "index": 30,
+              "label": "CC #27",
+              "value": 30
+            },
+            {
+              "index": 31,
+              "label": "CC #28",
+              "value": 31
+            },
+            {
+              "index": 32,
+              "label": "CC #29",
+              "value": 32
+            },
+            {
+              "index": 33,
+              "label": "CC #30",
+              "value": 33
+            },
+            {
+              "index": 34,
+              "label": "CC #31",
+              "value": 34
+            },
+            {
+              "index": 35,
+              "label": "CC #32",
+              "value": 35
+            },
+            {
+              "index": 36,
+              "label": "CC #33",
+              "value": 36
+            },
+            {
+              "index": 37,
+              "label": "CC #34",
+              "value": 37
+            },
+            {
+              "index": 38,
+              "label": "CC #35",
+              "value": 38
+            },
+            {
+              "index": 39,
+              "label": "CC #36",
+              "value": 39
+            },
+            {
+              "index": 40,
+              "label": "CC #37",
+              "value": 40
+            },
+            {
+              "index": 41,
+              "label": "CC #38",
+              "value": 41
+            },
+            {
+              "index": 42,
+              "label": "CC #39",
+              "value": 42
+            },
+            {
+              "index": 43,
+              "label": "CC #40",
+              "value": 43
+            },
+            {
+              "index": 44,
+              "label": "CC #41",
+              "value": 44
+            },
+            {
+              "index": 45,
+              "label": "CC #42",
+              "value": 45
+            },
+            {
+              "index": 46,
+              "label": "CC #43",
+              "value": 46
+            },
+            {
+              "index": 47,
+              "label": "CC #44",
+              "value": 47
+            },
+            {
+              "index": 48,
+              "label": "CC #45",
+              "value": 48
+            },
+            {
+              "index": 49,
+              "label": "CC #46",
+              "value": 49
+            },
+            {
+              "index": 50,
+              "label": "CC #47",
+              "value": 50
+            },
+            {
+              "index": 51,
+              "label": "CC #48",
+              "value": 51
+            },
+            {
+              "index": 52,
+              "label": "CC #49",
+              "value": 52
+            },
+            {
+              "index": 53,
+              "label": "CC #50",
+              "value": 53
+            },
+            {
+              "index": 54,
+              "label": "CC #51",
+              "value": 54
+            },
+            {
+              "index": 55,
+              "label": "CC #52",
+              "value": 55
+            },
+            {
+              "index": 56,
+              "label": "CC #53",
+              "value": 56
+            },
+            {
+              "index": 57,
+              "label": "CC #54",
+              "value": 57
+            },
+            {
+              "index": 58,
+              "label": "CC #55",
+              "value": 58
+            },
+            {
+              "index": 59,
+              "label": "CC #56",
+              "value": 59
+            },
+            {
+              "index": 60,
+              "label": "CC #57",
+              "value": 60
+            },
+            {
+              "index": 61,
+              "label": "CC #58",
+              "value": 61
+            },
+            {
+              "index": 62,
+              "label": "CC #59",
+              "value": 62
+            },
+            {
+              "index": 63,
+              "label": "CC #60",
+              "value": 63
+            },
+            {
+              "index": 64,
+              "label": "CC #61",
+              "value": 64
+            },
+            {
+              "index": 65,
+              "label": "CC #62",
+              "value": 65
+            },
+            {
+              "index": 66,
+              "label": "CC #63",
+              "value": 66
+            },
+            {
+              "index": 67,
+              "label": "CC #64",
+              "value": 67
+            },
+            {
+              "index": 68,
+              "label": "CC #65",
+              "value": 68
+            },
+            {
+              "index": 69,
+              "label": "CC #66",
+              "value": 69
+            },
+            {
+              "index": 70,
+              "label": "CC #67",
+              "value": 70
+            },
+            {
+              "index": 71,
+              "label": "CC #68",
+              "value": 71
+            },
+            {
+              "index": 72,
+              "label": "CC #69",
+              "value": 72
+            },
+            {
+              "index": 73,
+              "label": "CC #70",
+              "value": 73
+            },
+            {
+              "index": 74,
+              "label": "CC #71",
+              "value": 74
+            },
+            {
+              "index": 75,
+              "label": "CC #72",
+              "value": 75
+            },
+            {
+              "index": 76,
+              "label": "CC #73",
+              "value": 76
+            },
+            {
+              "index": 77,
+              "label": "CC #74",
+              "value": 77
+            },
+            {
+              "index": 78,
+              "label": "CC #75",
+              "value": 78
+            },
+            {
+              "index": 79,
+              "label": "CC #76",
+              "value": 79
+            },
+            {
+              "index": 80,
+              "label": "CC #77",
+              "value": 80
+            },
+            {
+              "index": 81,
+              "label": "CC #78",
+              "value": 81
+            },
+            {
+              "index": 82,
+              "label": "CC #79",
+              "value": 82
+            },
+            {
+              "index": 83,
+              "label": "CC #80",
+              "value": 83
+            },
+            {
+              "index": 84,
+              "label": "CC #81",
+              "value": 84
+            },
+            {
+              "index": 85,
+              "label": "CC #82",
+              "value": 85
+            },
+            {
+              "index": 86,
+              "label": "CC #83",
+              "value": 86
+            },
+            {
+              "index": 87,
+              "label": "CC #84",
+              "value": 87
+            },
+            {
+              "index": 88,
+              "label": "CC #85",
+              "value": 88
+            },
+            {
+              "index": 89,
+              "label": "CC #86",
+              "value": 89
+            },
+            {
+              "index": 90,
+              "label": "CC #87",
+              "value": 90
+            },
+            {
+              "index": 91,
+              "label": "CC #88",
+              "value": 91
+            },
+            {
+              "index": 92,
+              "label": "CC #89",
+              "value": 92
+            },
+            {
+              "index": 93,
+              "label": "CC #90",
+              "value": 93
+            },
+            {
+              "index": 94,
+              "label": "CC #91",
+              "value": 94
+            },
+            {
+              "index": 95,
+              "label": "CC #92",
+              "value": 95
+            },
+            {
+              "index": 96,
+              "label": "CC #93",
+              "value": 96
+            },
+            {
+              "index": 97,
+              "label": "CC #94",
+              "value": 97
+            },
+            {
+              "index": 98,
+              "label": "CC #95",
+              "value": 98
+            },
+            {
+              "index": 99,
+              "label": "CC #96",
+              "value": 99
+            },
+            {
+              "index": 100,
+              "label": "CC #97",
+              "value": 100
+            },
+            {
+              "index": 101,
+              "label": "CC #98",
+              "value": 101
+            },
+            {
+              "index": 102,
+              "label": "CC #99",
+              "value": 102
+            },
+            {
+              "index": 103,
+              "label": "CC #100",
+              "value": 103
+            },
+            {
+              "index": 104,
+              "label": "CC #101",
+              "value": 104
+            },
+            {
+              "index": 105,
+              "label": "CC #102",
+              "value": 105
+            },
+            {
+              "index": 106,
+              "label": "CC #103",
+              "value": 106
+            },
+            {
+              "index": 107,
+              "label": "CC #104",
+              "value": 107
+            },
+            {
+              "index": 108,
+              "label": "CC #105",
+              "value": 108
+            },
+            {
+              "index": 109,
+              "label": "CC #106",
+              "value": 109
+            },
+            {
+              "index": 110,
+              "label": "CC #107",
+              "value": 110
+            },
+            {
+              "index": 111,
+              "label": "CC #108",
+              "value": 111
+            },
+            {
+              "index": 112,
+              "label": "CC #109",
+              "value": 112
+            },
+            {
+              "index": 113,
+              "label": "CC #110",
+              "value": 113
+            },
+            {
+              "index": 114,
+              "label": "CC #111",
+              "value": 114
+            },
+            {
+              "index": 115,
+              "label": "CC #112",
+              "value": 115
+            },
+            {
+              "index": 116,
+              "label": "CC #113",
+              "value": 116
+            },
+            {
+              "index": 117,
+              "label": "CC #114",
+              "value": 117
+            },
+            {
+              "index": 118,
+              "label": "CC #115",
+              "value": 118
+            },
+            {
+              "index": 119,
+              "label": "CC #116",
+              "value": 119
+            },
+            {
+              "index": 120,
+              "label": "CC #117",
+              "value": 120
+            },
+            {
+              "index": 121,
+              "label": "CC #118",
+              "value": 121
+            },
+            {
+              "index": 122,
+              "label": "CC #119",
+              "value": 122
+            },
+            {
+              "index": 123,
+              "label": "CC #120",
+              "value": 123
+            },
+            {
+              "index": 124,
+              "label": "CC #121",
+              "value": 124
+            },
+            {
+              "index": 125,
+              "label": "CC #122",
+              "value": 125
+            },
+            {
+              "index": 126,
+              "label": "CC #123",
+              "value": 126
+            },
+            {
+              "index": 127,
+              "label": "CC #124",
+              "value": 127
+            },
+            {
+              "index": 128,
+              "label": "CC #125",
+              "value": 128
+            },
+            {
+              "index": 129,
+              "label": "CC #126",
+              "value": 129
+            },
+            {
+              "index": 130,
+              "label": "CC #127",
+              "value": 130
+            },
+            {
+              "index": 130,
+              "label": "T-1 OSC Pulses",
+              "value": 130
+            },
+            {
+              "index": 131,
+              "label": "T-1 OSC numNotes",
+              "value": 131
+            },
+            {
+              "index": 132,
+              "label": "T-1 OSC Sustain",
+              "value": 132
+            },
+            {
+              "index": 133,
+              "label": "T-1 OSC Notes",
+              "value": 133
+            },
+            {
+              "index": 134,
+              "label": "T-1 OSC pulseLoc",
+              "value": 134
             }
           ]
         }
@@ -12580,311 +14470,316 @@
             },
             {
               "index": 2,
+              "label": "Steps",
+              "value": 4
+            },
+            {
+              "index": 3,
               "label": "Scales Mode",
               "value": 11
             },
             {
-              "index": 3,
+              "index": 4,
               "label": "Scales Base",
               "value": 12
             },
             {
-              "index": 4,
+              "index": 5,
               "label": "Shift",
               "value": 19
             },
             {
-              "index": 5,
+              "index": 6,
               "label": "LFO 1 Device A",
               "value": 64
             },
             {
-              "index": 6,
+              "index": 7,
               "label": "LFO 1 Device B",
               "value": 65
             },
             {
-              "index": 7,
+              "index": 8,
               "label": "LFO 1 Shape",
               "value": 66
             },
             {
-              "index": 8,
+              "index": 9,
               "label": "LFO 1 Rate",
               "value": 67
             },
             {
-              "index": 9,
+              "index": 10,
               "label": "LFO 1 Phase",
               "value": 68
             },
             {
-              "index": 10,
+              "index": 11,
               "label": "LFO 1 Amount",
               "value": 69
             },
             {
-              "index": 11,
+              "index": 12,
               "label": "LFO 1 Offset",
               "value": 70
             },
             {
-              "index": 12,
+              "index": 13,
               "label": "LFO 2 Device A",
               "value": 71
             },
             {
-              "index": 13,
+              "index": 14,
               "label": "LFO 2 Device B",
               "value": 72
             },
             {
-              "index": 14,
+              "index": 15,
               "label": "LFO 2 Shape",
               "value": 73
             },
             {
-              "index": 15,
+              "index": 16,
               "label": "LFO 2 Rate",
               "value": 74
             },
             {
-              "index": 16,
+              "index": 17,
               "label": "LFO 2 Phase",
               "value": 75
             },
             {
-              "index": 17,
+              "index": 18,
               "label": "LFO 2 Amount",
               "value": 76
             },
             {
-              "index": 18,
+              "index": 19,
               "label": "LFO 2 Offset",
               "value": 77
             },
             {
-              "index": 19,
+              "index": 20,
               "label": "LFO 2 Density",
               "value": 78
             },
             {
-              "index": 20,
+              "index": 21,
               "label": "LFO 3 Device A",
               "value": 79
             },
             {
-              "index": 21,
+              "index": 22,
               "label": "LFO 3 Device B",
               "value": 80
             },
             {
-              "index": 22,
+              "index": 23,
               "label": "LFO 3 Shape",
               "value": 81
             },
             {
-              "index": 23,
+              "index": 24,
               "label": "LFO 3 Rate",
               "value": 82
             },
             {
-              "index": 24,
+              "index": 25,
               "label": "LFO 3 Phase",
               "value": 83
             },
             {
-              "index": 25,
+              "index": 26,
               "label": "LFO 3 Amount",
               "value": 84
             },
             {
-              "index": 26,
+              "index": 27,
               "label": "LFO 3 Offset",
               "value": 85
             },
             {
-              "index": 27,
+              "index": 28,
               "label": "LFO 3 Density",
               "value": 86
             },
             {
-              "index": 28,
+              "index": 29,
               "label": "Note Maximum",
               "value": 90
             },
             {
-              "index": 29,
+              "index": 30,
               "label": "Note Minimum",
               "value": 91
             },
             {
-              "index": 30,
+              "index": 31,
               "label": "Note Density",
               "value": 92
             },
             {
-              "index": 31,
+              "index": 32,
               "label": "Note Probability",
               "value": 93
             },
             {
-              "index": 32,
+              "index": 33,
               "label": "Note Euclidian",
               "value": 94
             },
             {
-              "index": 33,
+              "index": 34,
               "label": "Note Rotation",
               "value": 95
             },
             {
-              "index": 34,
+              "index": 35,
               "label": "Velocity Maximum",
               "value": 96
             },
             {
-              "index": 35,
+              "index": 36,
               "label": "Velocity Minimum",
               "value": 97
             },
             {
-              "index": 36,
+              "index": 37,
               "label": "Velocity Density",
               "value": 98
             },
             {
-              "index": 37,
+              "index": 38,
               "label": "Velocity Probability",
               "value": 99
             },
             {
-              "index": 38,
+              "index": 39,
               "label": "Velocity Euclidian",
               "value": 100
             },
             {
-              "index": 39,
+              "index": 40,
               "label": "Velocity Rotation",
               "value": 101
             },
             {
-              "index": 40,
+              "index": 41,
               "label": "Duration Maximum",
               "value": 102
             },
             {
-              "index": 41,
+              "index": 42,
               "label": "Duration Minimum",
               "value": 103
             },
             {
-              "index": 42,
+              "index": 43,
               "label": "Duration Density",
               "value": 104
             },
             {
-              "index": 43,
+              "index": 44,
               "label": "Duration Probability",
               "value": 105
             },
             {
-              "index": 44,
+              "index": 45,
               "label": "Duration Euclidian",
               "value": 106
             },
             {
-              "index": 45,
+              "index": 46,
               "label": "Duration Rotation",
               "value": 107
             },
             {
-              "index": 46,
+              "index": 47,
               "label": "Octave Maximum",
               "value": 108
             },
             {
-              "index": 47,
+              "index": 48,
               "label": "Octave Minimum",
               "value": 109
             },
             {
-              "index": 48,
+              "index": 49,
               "label": "Octave Density",
               "value": 110
             },
             {
-              "index": 49,
+              "index": 50,
               "label": "Octave Probability",
               "value": 111
             },
             {
-              "index": 50,
+              "index": 51,
               "label": "Octave Euclidian",
               "value": 112
             },
             {
-              "index": 51,
+              "index": 52,
               "label": "Octave Rotation",
               "value": 113
             },
             {
-              "index": 52,
+              "index": 53,
               "label": "Accent Density",
               "value": 114
             },
             {
-              "index": 53,
+              "index": 54,
               "label": "Accent Probability",
               "value": 115
             },
             {
-              "index": 54,
+              "index": 55,
               "label": "Accent Euclidian",
               "value": 116
             },
             {
-              "index": 55,
+              "index": 56,
               "label": "Accent Rotation",
               "value": 117
             },
             {
-              "index": 56,
+              "index": 57,
               "label": "Mute Density",
               "value": 118
             },
             {
-              "index": 57,
+              "index": 58,
               "label": "Mute Probability",
               "value": 119
             },
             {
-              "index": 58,
+              "index": 59,
               "label": "Mute Euclidian",
               "value": 120
             },
             {
-              "index": 59,
+              "index": 60,
               "label": "Mute Rotation",
               "value": 121
             },
             {
-              "index": 60,
+              "index": 61,
               "label": "Device Density",
               "value": 122
             },
             {
-              "index": 61,
+              "index": 62,
               "label": "Device Probability",
               "value": 123
             },
             {
-              "index": 62,
+              "index": 63,
               "label": "Device Euclidian",
               "value": 124
             },
             {
-              "index": 63,
+              "index": 64,
               "label": "Device Rotation",
               "value": 125
             }
@@ -12935,311 +14830,316 @@
             },
             {
               "index": 2,
+              "label": "Steps",
+              "value": 4
+            },
+            {
+              "index": 3,
               "label": "Scales Mode",
               "value": 11
             },
             {
-              "index": 3,
+              "index": 4,
               "label": "Scales Base",
               "value": 12
             },
             {
-              "index": 4,
+              "index": 5,
               "label": "Shift",
               "value": 19
             },
             {
-              "index": 5,
+              "index": 6,
               "label": "LFO 1 Device A",
               "value": 64
             },
             {
-              "index": 6,
+              "index": 7,
               "label": "LFO 1 Device B",
               "value": 65
             },
             {
-              "index": 7,
+              "index": 8,
               "label": "LFO 1 Shape",
               "value": 66
             },
             {
-              "index": 8,
+              "index": 9,
               "label": "LFO 1 Rate",
               "value": 67
             },
             {
-              "index": 9,
+              "index": 10,
               "label": "LFO 1 Phase",
               "value": 68
             },
             {
-              "index": 10,
+              "index": 11,
               "label": "LFO 1 Amount",
               "value": 69
             },
             {
-              "index": 11,
+              "index": 12,
               "label": "LFO 1 Offset",
               "value": 70
             },
             {
-              "index": 12,
+              "index": 13,
               "label": "LFO 2 Device A",
               "value": 71
             },
             {
-              "index": 13,
+              "index": 14,
               "label": "LFO 2 Device B",
               "value": 72
             },
             {
-              "index": 14,
+              "index": 15,
               "label": "LFO 2 Shape",
               "value": 73
             },
             {
-              "index": 15,
+              "index": 16,
               "label": "LFO 2 Rate",
               "value": 74
             },
             {
-              "index": 16,
+              "index": 17,
               "label": "LFO 2 Phase",
               "value": 75
             },
             {
-              "index": 17,
+              "index": 18,
               "label": "LFO 2 Amount",
               "value": 76
             },
             {
-              "index": 18,
+              "index": 19,
               "label": "LFO 2 Offset",
               "value": 77
             },
             {
-              "index": 19,
+              "index": 20,
               "label": "LFO 2 Density",
               "value": 78
             },
             {
-              "index": 20,
+              "index": 21,
               "label": "LFO 3 Device A",
               "value": 79
             },
             {
-              "index": 21,
+              "index": 22,
               "label": "LFO 3 Device B",
               "value": 80
             },
             {
-              "index": 22,
+              "index": 23,
               "label": "LFO 3 Shape",
               "value": 81
             },
             {
-              "index": 23,
+              "index": 24,
               "label": "LFO 3 Rate",
               "value": 82
             },
             {
-              "index": 24,
+              "index": 25,
               "label": "LFO 3 Phase",
               "value": 83
             },
             {
-              "index": 25,
+              "index": 26,
               "label": "LFO 3 Amount",
               "value": 84
             },
             {
-              "index": 26,
+              "index": 27,
               "label": "LFO 3 Offset",
               "value": 85
             },
             {
-              "index": 27,
+              "index": 28,
               "label": "LFO 3 Density",
               "value": 86
             },
             {
-              "index": 28,
+              "index": 29,
               "label": "Note Maximum",
               "value": 90
             },
             {
-              "index": 29,
+              "index": 30,
               "label": "Note Minimum",
               "value": 91
             },
             {
-              "index": 30,
+              "index": 31,
               "label": "Note Density",
               "value": 92
             },
             {
-              "index": 31,
+              "index": 32,
               "label": "Note Probability",
               "value": 93
             },
             {
-              "index": 32,
+              "index": 33,
               "label": "Note Euclidian",
               "value": 94
             },
             {
-              "index": 33,
+              "index": 34,
               "label": "Note Rotation",
               "value": 95
             },
             {
-              "index": 34,
+              "index": 35,
               "label": "Velocity Maximum",
               "value": 96
             },
             {
-              "index": 35,
+              "index": 36,
               "label": "Velocity Minimum",
               "value": 97
             },
             {
-              "index": 36,
+              "index": 37,
               "label": "Velocity Density",
               "value": 98
             },
             {
-              "index": 37,
+              "index": 38,
               "label": "Velocity Probability",
               "value": 99
             },
             {
-              "index": 38,
+              "index": 39,
               "label": "Velocity Euclidian",
               "value": 100
             },
             {
-              "index": 39,
+              "index": 40,
               "label": "Velocity Rotation",
               "value": 101
             },
             {
-              "index": 40,
+              "index": 41,
               "label": "Duration Maximum",
               "value": 102
             },
             {
-              "index": 41,
+              "index": 42,
               "label": "Duration Minimum",
               "value": 103
             },
             {
-              "index": 42,
+              "index": 43,
               "label": "Duration Density",
               "value": 104
             },
             {
-              "index": 43,
+              "index": 44,
               "label": "Duration Probability",
               "value": 105
             },
             {
-              "index": 44,
+              "index": 45,
               "label": "Duration Euclidian",
               "value": 106
             },
             {
-              "index": 45,
+              "index": 46,
               "label": "Duration Rotation",
               "value": 107
             },
             {
-              "index": 46,
+              "index": 47,
               "label": "Octave Maximum",
               "value": 108
             },
             {
-              "index": 47,
+              "index": 48,
               "label": "Octave Minimum",
               "value": 109
             },
             {
-              "index": 48,
+              "index": 49,
               "label": "Octave Density",
               "value": 110
             },
             {
-              "index": 49,
+              "index": 50,
               "label": "Octave Probability",
               "value": 111
             },
             {
-              "index": 50,
+              "index": 51,
               "label": "Octave Euclidian",
               "value": 112
             },
             {
-              "index": 51,
+              "index": 52,
               "label": "Octave Rotation",
               "value": 113
             },
             {
-              "index": 52,
+              "index": 53,
               "label": "Accent Density",
               "value": 114
             },
             {
-              "index": 53,
+              "index": 54,
               "label": "Accent Probability",
               "value": 115
             },
             {
-              "index": 54,
+              "index": 55,
               "label": "Accent Euclidian",
               "value": 116
             },
             {
-              "index": 55,
+              "index": 56,
               "label": "Accent Rotation",
               "value": 117
             },
             {
-              "index": 56,
+              "index": 57,
               "label": "Mute Density",
               "value": 118
             },
             {
-              "index": 57,
+              "index": 58,
               "label": "Mute Probability",
               "value": 119
             },
             {
-              "index": 58,
+              "index": 59,
               "label": "Mute Euclidian",
               "value": 120
             },
             {
-              "index": 59,
+              "index": 60,
               "label": "Mute Rotation",
               "value": 121
             },
             {
-              "index": 60,
+              "index": 61,
               "label": "Device Density",
               "value": 122
             },
             {
-              "index": 61,
+              "index": 62,
               "label": "Device Probability",
               "value": 123
             },
             {
-              "index": 62,
+              "index": 63,
               "label": "Device Euclidian",
               "value": 124
             },
             {
-              "index": 63,
+              "index": 64,
               "label": "Device Rotation",
               "value": 125
             }
@@ -13290,311 +15190,316 @@
             },
             {
               "index": 2,
+              "label": "Steps",
+              "value": 4
+            },
+            {
+              "index": 3,
               "label": "Scales Mode",
               "value": 11
             },
             {
-              "index": 3,
+              "index": 4,
               "label": "Scales Base",
               "value": 12
             },
             {
-              "index": 4,
+              "index": 5,
               "label": "Shift",
               "value": 19
             },
             {
-              "index": 5,
+              "index": 6,
               "label": "LFO 1 Device A",
               "value": 64
             },
             {
-              "index": 6,
+              "index": 7,
               "label": "LFO 1 Device B",
               "value": 65
             },
             {
-              "index": 7,
+              "index": 8,
               "label": "LFO 1 Shape",
               "value": 66
             },
             {
-              "index": 8,
+              "index": 9,
               "label": "LFO 1 Rate",
               "value": 67
             },
             {
-              "index": 9,
+              "index": 10,
               "label": "LFO 1 Phase",
               "value": 68
             },
             {
-              "index": 10,
+              "index": 11,
               "label": "LFO 1 Amount",
               "value": 69
             },
             {
-              "index": 11,
+              "index": 12,
               "label": "LFO 1 Offset",
               "value": 70
             },
             {
-              "index": 12,
+              "index": 13,
               "label": "LFO 2 Device A",
               "value": 71
             },
             {
-              "index": 13,
+              "index": 14,
               "label": "LFO 2 Device B",
               "value": 72
             },
             {
-              "index": 14,
+              "index": 15,
               "label": "LFO 2 Shape",
               "value": 73
             },
             {
-              "index": 15,
+              "index": 16,
               "label": "LFO 2 Rate",
               "value": 74
             },
             {
-              "index": 16,
+              "index": 17,
               "label": "LFO 2 Phase",
               "value": 75
             },
             {
-              "index": 17,
+              "index": 18,
               "label": "LFO 2 Amount",
               "value": 76
             },
             {
-              "index": 18,
+              "index": 19,
               "label": "LFO 2 Offset",
               "value": 77
             },
             {
-              "index": 19,
+              "index": 20,
               "label": "LFO 2 Density",
               "value": 78
             },
             {
-              "index": 20,
+              "index": 21,
               "label": "LFO 3 Device A",
               "value": 79
             },
             {
-              "index": 21,
+              "index": 22,
               "label": "LFO 3 Device B",
               "value": 80
             },
             {
-              "index": 22,
+              "index": 23,
               "label": "LFO 3 Shape",
               "value": 81
             },
             {
-              "index": 23,
+              "index": 24,
               "label": "LFO 3 Rate",
               "value": 82
             },
             {
-              "index": 24,
+              "index": 25,
               "label": "LFO 3 Phase",
               "value": 83
             },
             {
-              "index": 25,
+              "index": 26,
               "label": "LFO 3 Amount",
               "value": 84
             },
             {
-              "index": 26,
+              "index": 27,
               "label": "LFO 3 Offset",
               "value": 85
             },
             {
-              "index": 27,
+              "index": 28,
               "label": "LFO 3 Density",
               "value": 86
             },
             {
-              "index": 28,
+              "index": 29,
               "label": "Note Maximum",
               "value": 90
             },
             {
-              "index": 29,
+              "index": 30,
               "label": "Note Minimum",
               "value": 91
             },
             {
-              "index": 30,
+              "index": 31,
               "label": "Note Density",
               "value": 92
             },
             {
-              "index": 31,
+              "index": 32,
               "label": "Note Probability",
               "value": 93
             },
             {
-              "index": 32,
+              "index": 33,
               "label": "Note Euclidian",
               "value": 94
             },
             {
-              "index": 33,
+              "index": 34,
               "label": "Note Rotation",
               "value": 95
             },
             {
-              "index": 34,
+              "index": 35,
               "label": "Velocity Maximum",
               "value": 96
             },
             {
-              "index": 35,
+              "index": 36,
               "label": "Velocity Minimum",
               "value": 97
             },
             {
-              "index": 36,
+              "index": 37,
               "label": "Velocity Density",
               "value": 98
             },
             {
-              "index": 37,
+              "index": 38,
               "label": "Velocity Probability",
               "value": 99
             },
             {
-              "index": 38,
+              "index": 39,
               "label": "Velocity Euclidian",
               "value": 100
             },
             {
-              "index": 39,
+              "index": 40,
               "label": "Velocity Rotation",
               "value": 101
             },
             {
-              "index": 40,
+              "index": 41,
               "label": "Duration Maximum",
               "value": 102
             },
             {
-              "index": 41,
+              "index": 42,
               "label": "Duration Minimum",
               "value": 103
             },
             {
-              "index": 42,
+              "index": 43,
               "label": "Duration Density",
               "value": 104
             },
             {
-              "index": 43,
+              "index": 44,
               "label": "Duration Probability",
               "value": 105
             },
             {
-              "index": 44,
+              "index": 45,
               "label": "Duration Euclidian",
               "value": 106
             },
             {
-              "index": 45,
+              "index": 46,
               "label": "Duration Rotation",
               "value": 107
             },
             {
-              "index": 46,
+              "index": 47,
               "label": "Octave Maximum",
               "value": 108
             },
             {
-              "index": 47,
+              "index": 48,
               "label": "Octave Minimum",
               "value": 109
             },
             {
-              "index": 48,
+              "index": 49,
               "label": "Octave Density",
               "value": 110
             },
             {
-              "index": 49,
+              "index": 50,
               "label": "Octave Probability",
               "value": 111
             },
             {
-              "index": 50,
+              "index": 51,
               "label": "Octave Euclidian",
               "value": 112
             },
             {
-              "index": 51,
+              "index": 52,
               "label": "Octave Rotation",
               "value": 113
             },
             {
-              "index": 52,
+              "index": 53,
               "label": "Accent Density",
               "value": 114
             },
             {
-              "index": 53,
+              "index": 54,
               "label": "Accent Probability",
               "value": 115
             },
             {
-              "index": 54,
+              "index": 55,
               "label": "Accent Euclidian",
               "value": 116
             },
             {
-              "index": 55,
+              "index": 56,
               "label": "Accent Rotation",
               "value": 117
             },
             {
-              "index": 56,
+              "index": 57,
               "label": "Mute Density",
               "value": 118
             },
             {
-              "index": 57,
+              "index": 58,
               "label": "Mute Probability",
               "value": 119
             },
             {
-              "index": 58,
+              "index": 59,
               "label": "Mute Euclidian",
               "value": 120
             },
             {
-              "index": 59,
+              "index": 60,
               "label": "Mute Rotation",
               "value": 121
             },
             {
-              "index": 60,
+              "index": 61,
               "label": "Device Density",
               "value": 122
             },
             {
-              "index": 61,
+              "index": 62,
               "label": "Device Probability",
               "value": 123
             },
             {
-              "index": 62,
+              "index": 63,
               "label": "Device Euclidian",
               "value": 124
             },
             {
-              "index": 63,
+              "index": 64,
               "label": "Device Rotation",
               "value": 125
             }
