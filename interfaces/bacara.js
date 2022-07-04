@@ -3640,6 +3640,19 @@ module.exports = {
           max: matrixSources(),
           default: 0,
         },
+        reset: {
+          name: 'Matrix Slot 1 Reset',
+          type: 'action',
+          surface: {
+            type: 'nrpn',
+            number: 9474,
+            lsbFirst: true,
+            min: 0,
+            max: 1,
+          },
+          on: 1,
+          default: 0,
+        },
         value: {
           name: 'Matrix Slot 1 Value',
           type: 'parameter',
@@ -3775,6 +3788,19 @@ module.exports = {
           max: matrixSources(),
           default: 0,
         },
+        reset: {
+          name: 'Matrix Slot 2 Reset',
+          type: 'action',
+          surface: {
+            type: 'nrpn',
+            number: 10370,
+            lsbFirst: true,
+            min: 0,
+            max: 1,
+          },
+          on: 1,
+          default: 0,
+        },
         value: {
           name: 'Matrix Slot 2 Value',
           type: 'parameter',
@@ -3908,6 +3934,19 @@ module.exports = {
           },
           min: 0,
           max: matrixSources(),
+          default: 0,
+        },
+        reset: {
+          name: 'Matrix Slot 3 Reset',
+          type: 'action',
+          surface: {
+            type: 'nrpn',
+            number: 11266,
+            lsbFirst: true,
+            min: 0,
+            max: 1,
+          },
+          on: 1,
           default: 0,
         },
         value: {

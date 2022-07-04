@@ -222,6 +222,18 @@ class BacaraMachine extends Machine {
         })
       }
     }
+    const matrixReset = (slot) => (elementPath, origin) => {
+      debug('matrixReset %y', slot)
+      this.interface.setParameter(`matrix.slot.${slot}.value`,0)
+      this.interface.setParameter(`matrix.slot.${slot}.source`,0)
+      this.interface.setParameter(`matrix.slot.${slot}.slewLimiter`,0)
+      for (let dst=0;dst<3;dst++) {
+        this.interface.setParameter(`matrix.slot.${slot}.destination.${dst}.target`,0)
+        this.interface.setParameter(`matrix.slot.${slot}.destination.${dst}.amount`,0)
+      }
+      this.writeState()
+    }
+
     const devicePreviousBank = (dev) => (elementPath, origin) => {
       debug('devicePreviousBank %y', dev)
       this.setRemote(origin, {next:`device.${dev}.nextBank`, previous:`device.${dev}.previousBank`})
@@ -473,6 +485,13 @@ class BacaraMachine extends Machine {
           this.showPattern()
           this.writeState()
         }
+      },
+      matrix: {
+        slot: [
+          {reset: matrixReset(0)},
+          {reset: matrixReset(1)},
+          {reset: matrixReset(2)},
+        ]
       },
       device: {
         A: {
@@ -1784,7 +1803,7 @@ class BacaraMachine extends Machine {
     );
 
     ['note', 'velocity', 'octave', 'duration', 'accent', 'mute', 'device'].forEach( deviation => {
-      const map = this.getState(`deviations.${deviation}`)
+      const map = this.getState(`deviations.${deviation}`)?[...this.getState(`deviations.${deviation}`)].slice(0,this.interface.getParameter('steps', 'modulated')):null
       const probability = this.interface.getParameter(`deviations.${deviation}.probability`, 'modulated')
       let arr = [
         {hAlign:'center', colSpan:2, content:deviationColor(deviation) },

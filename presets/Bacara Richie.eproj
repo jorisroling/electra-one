@@ -6,13 +6,6 @@
   "lua": "print (\"Bacara Control Lua ext initialized\")\n\npatch.requestAll ()\n\n",
   "devices": [
     {
-      "id": 1,
-      "name": "Generic MIDI",
-      "instrumentId": "generic-midi",
-      "port": 1,
-      "channel": 1
-    },
-    {
       "id": 17,
       "name": "Bacara",
       "port": 2,
@@ -1090,7 +1083,7 @@
       "id": "41b85d05-2936-4e27-82e7-915c691f49f8",
       "slotId": 55,
       "type": "fader",
-      "deviceId": 1,
+      "deviceId": 17,
       "color": "03A598",
       "name": "Channel",
       "categoryId": "faders",
@@ -1098,7 +1091,7 @@
         {
           "message": {
             "type": "nrpn",
-            "deviceId": 1,
+            "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 14000,
             "min": 1,
@@ -9733,48 +9726,6 @@
       ]
     },
     {
-      "id": "8742049d-b1a6-49b6-8811-d14434b91759",
-      "type": "fader",
-      "name": "SLEW LIMITER",
-      "color": "FFFFFF",
-      "bounds": [
-        0,
-        40,
-        146,
-        56
-      ],
-      "controlSetId": 1,
-      "inputs": [
-        {
-          "potId": 1,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 12545,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 2,
-          "id": "value",
-          "textValues": [
-            {
-              "value": 0,
-              "label": "Off",
-              "index": 0
-            }
-          ]
-        }
-      ],
-      "slotId": 510,
-      "deviceId": 17
-    },
-    {
       "id": "edccd991-10b8-4d8b-b202-aba7cd0fe6d0",
       "slotId": 511,
       "type": "list",
@@ -11552,20 +11503,20 @@
       "deviceId": 17
     },
     {
-      "id": "025dc4b4-d3c1-4b7d-849b-529dc56195a9",
+      "id": "8742049d-b1a6-49b6-8811-d14434b91759",
       "type": "fader",
-      "name": "VALUE",
+      "name": "SLEW LIMITER",
       "color": "FFFFFF",
       "bounds": [
         0,
-        128,
+        40,
         146,
         56
       ],
       "controlSetId": 1,
       "inputs": [
         {
-          "potId": 7,
+          "potId": 1,
           "valueId": "value"
         }
       ],
@@ -11575,15 +11526,47 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 12161,
+            "parameterNumber": 12545,
             "min": 0,
             "max": 127
           },
-          "id": "value"
+          "overlayId": 2,
+          "id": "value",
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Off",
+              "index": 0
+            }
+          ]
         }
       ],
-      "slotId": 522,
+      "slotId": 515,
       "deviceId": 17
+    },
+    {
+      "id": "45bbfa40-5298-4b09-b1f9-ba795b3eedeb",
+      "slotId": 523,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "F49500",
+      "name": "Reset",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 9474,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
     },
     {
       "id": "f9f8dae5-14a3-47f1-add5-b8e30568bf65",
@@ -11697,6 +11680,40 @@
       "deviceId": 17
     },
     {
+      "id": "025dc4b4-d3c1-4b7d-849b-529dc56195a9",
+      "type": "fader",
+      "name": "VALUE",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        128,
+        146,
+        56
+      ],
+      "controlSetId": 1,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 12161,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ],
+      "slotId": 527,
+      "deviceId": 17
+    },
+    {
       "id": "7bb077e6-275a-4519-94ee-bdb5f59313d7",
       "type": "label",
       "slotId": 529,
@@ -11710,48 +11727,6 @@
           }
         }
       ]
-    },
-    {
-      "id": "d156b1e6-07fd-4a1f-9e7f-542b8397e827",
-      "type": "fader",
-      "name": "SLEW LIMITER",
-      "color": "FFFFFF",
-      "bounds": [
-        0,
-        216,
-        146,
-        56
-      ],
-      "controlSetId": 2,
-      "inputs": [
-        {
-          "potId": 1,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 12673,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 2,
-          "id": "value",
-          "textValues": [
-            {
-              "value": 0,
-              "label": "Off",
-              "index": 0
-            }
-          ]
-        }
-      ],
-      "slotId": 534,
-      "deviceId": 17
     },
     {
       "id": "f28cb3aa-5556-4d82-9f91-9befbb35a70b",
@@ -13531,20 +13506,20 @@
       "deviceId": 17
     },
     {
-      "id": "223b0727-f3ef-4018-8853-33f02e570361",
+      "id": "d156b1e6-07fd-4a1f-9e7f-542b8397e827",
       "type": "fader",
-      "name": "VALUE",
+      "name": "SLEW LIMITER",
       "color": "FFFFFF",
       "bounds": [
         0,
-        304,
+        216,
         146,
         56
       ],
       "controlSetId": 2,
       "inputs": [
         {
-          "potId": 7,
+          "potId": 1,
           "valueId": "value"
         }
       ],
@@ -13554,15 +13529,47 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 12289,
+            "parameterNumber": 12673,
             "min": 0,
             "max": 127
           },
-          "id": "value"
+          "overlayId": 2,
+          "id": "value",
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Off",
+              "index": 0
+            }
+          ]
         }
       ],
-      "slotId": 546,
+      "slotId": 539,
       "deviceId": 17
+    },
+    {
+      "id": "5d48dc4e-3c38-4894-afc7-11350c54b5cc",
+      "slotId": 547,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "F49500",
+      "name": "Reset",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 10370,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
     },
     {
       "id": "67003e02-db0a-48b5-bfb9-168359b95d0f",
@@ -13676,6 +13683,40 @@
       "deviceId": 17
     },
     {
+      "id": "223b0727-f3ef-4018-8853-33f02e570361",
+      "type": "fader",
+      "name": "VALUE",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        304,
+        146,
+        56
+      ],
+      "controlSetId": 2,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 12289,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ],
+      "slotId": 551,
+      "deviceId": 17
+    },
+    {
       "id": "108967b7-c000-40e9-9a6c-686f833c10fb",
       "type": "label",
       "slotId": 553,
@@ -13689,48 +13730,6 @@
           }
         }
       ]
-    },
-    {
-      "id": "56c4da60-5c50-45ce-bd58-77647675a0b9",
-      "type": "fader",
-      "name": "SLEW LIMITER",
-      "color": "FFFFFF",
-      "bounds": [
-        0,
-        392,
-        146,
-        56
-      ],
-      "controlSetId": 3,
-      "inputs": [
-        {
-          "potId": 1,
-          "valueId": "value"
-        }
-      ],
-      "values": [
-        {
-          "message": {
-            "type": "nrpn",
-            "deviceId": 17,
-            "lsbFirst": true,
-            "parameterNumber": 12801,
-            "min": 0,
-            "max": 127
-          },
-          "overlayId": 2,
-          "id": "value",
-          "textValues": [
-            {
-              "value": 0,
-              "label": "Off",
-              "index": 0
-            }
-          ]
-        }
-      ],
-      "slotId": 558,
-      "deviceId": 17
     },
     {
       "id": "e2b7e866-3414-4997-b425-ad8de1d02413",
@@ -15510,20 +15509,20 @@
       "deviceId": 17
     },
     {
-      "id": "da94157a-d8fa-4c3c-993e-4b7dee4e2660",
+      "id": "56c4da60-5c50-45ce-bd58-77647675a0b9",
       "type": "fader",
-      "name": "VALUE",
+      "name": "SLEW LIMITER",
       "color": "FFFFFF",
       "bounds": [
         0,
-        480,
+        392,
         146,
         56
       ],
       "controlSetId": 3,
       "inputs": [
         {
-          "potId": 7,
+          "potId": 1,
           "valueId": "value"
         }
       ],
@@ -15533,15 +15532,47 @@
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
-            "parameterNumber": 12417,
+            "parameterNumber": 12801,
             "min": 0,
             "max": 127
           },
-          "id": "value"
+          "overlayId": 2,
+          "id": "value",
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Off",
+              "index": 0
+            }
+          ]
         }
       ],
-      "slotId": 570,
+      "slotId": 563,
       "deviceId": 17
+    },
+    {
+      "id": "39e86966-1f70-432b-809a-006afe2506ec",
+      "slotId": 571,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "F49500",
+      "name": "Reset",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 11266,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
     },
     {
       "id": "51950e24-8ee9-46a6-ab18-f4c2d32d671c",
@@ -15652,6 +15683,40 @@
         }
       ],
       "slotId": 574,
+      "deviceId": 17
+    },
+    {
+      "id": "da94157a-d8fa-4c3c-993e-4b7dee4e2660",
+      "type": "fader",
+      "name": "VALUE",
+      "color": "FFFFFF",
+      "bounds": [
+        0,
+        480,
+        146,
+        56
+      ],
+      "controlSetId": 3,
+      "inputs": [
+        {
+          "potId": 7,
+          "valueId": "value"
+        }
+      ],
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 12417,
+            "min": 0,
+            "max": 127
+          },
+          "id": "value"
+        }
+      ],
+      "slotId": 575,
       "deviceId": 17
     },
     {
