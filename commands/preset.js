@@ -168,7 +168,7 @@ function generatePreset(name, sub, options) {
                           value: 3,
                         },
                       ]
-                      for (let cc=2; cc <= 127; cc++) {
+                      for (let cc = 2; cc <= 127; cc++) {
                         value.textValues.push({
                           index: 3 + cc,
                           label: `CC #${cc}`,
