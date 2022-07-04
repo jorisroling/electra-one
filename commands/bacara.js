@@ -2948,7 +2948,10 @@ function bacaraSequencer(name, sub, options) {
                         density[oscMessage.args[i] - 1] = minmax ? bacaraMachine.deviationsPickFromRange(deviation) : 1
                       }
                       setCount++
-                      bacaraMachine.interface.setParameter(`deviations.${deviation}.density`, oscMessage.args.length ? (oscMessage.args.length / 16) * 100 : 0, 'external')
+                      const fakeValue = oscMessage.args.length ? (oscMessage.args.length / 16) * 100 : 0
+                      bacaraMachine.interface.setParameter(`matrix.slot.${slotIdx}.value`,fakeValue * (127/100))
+                      bacaraMachine.interface.setParameter(`deviations.${deviation}.density`, fakeValue, 'external')
+                      bacaraMachine.interface.setParameter(`deviations.${deviation}.euclidian`, 0, 'external')
                       bacaraMachine.setState(`deviations.${deviation}`, oscMessage.args.length ? density : null)
                       //                        debugOsc('deviation %y map %y',deviation,bacaraMachine.getState(`deviations.${deviation}`))
                       debugOsc('modulate slot %y destination %y addr %y  value %y deviation %y', slotIdx + 1, destIdx + 1, oscMessage.address, oscMessage.args.join(', '), deviation)
