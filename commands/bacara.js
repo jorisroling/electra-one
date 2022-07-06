@@ -1930,9 +1930,9 @@ class BacaraMachine extends Machine {
 
           if (deviatedNote  == noteMidi && note.ticks == shiftedTicks) {
             if (this.deviationsValue('device', shiftedTicks / ticksPerStep)) {
-              deviceList.push([deviceA ? deviceBColor('B') : deviceAColor('A')])
-            } else {
               deviceList.push([deviceA ? deviceAColor('A') : deviceBColor('B')])
+            } else {
+              deviceList.push([deviceA ? deviceBColor('B') : deviceAColor('A')])
             }
           }
         })
