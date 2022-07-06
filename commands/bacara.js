@@ -482,7 +482,18 @@ class BacaraMachine extends Machine {
       },
       reset_preset: (elementPath, origin) => {
         if (origin == 'surface' || origin == 'remote') {
-          this.interface.reset()
+          const section = this.interface.getParameter('section',0,0)
+          if (section>0) {
+            this.interface.setParameter('section',0,0)
+            this.interface.iterateElelements((template, path) => {
+              if (_.has(this.interface.sections,`${String.fromCharCode(64+section)}.parameters.${path}`) ) {
+                this.interface.sendValue(path,'surface')
+              }
+            }, null, ['parameter', 'feedback'])
+            _.unset(this.interface.sections,`${String.fromCharCode(64+section)}`)
+          } else {
+            this.interface.reset()
+          }
           this.showPattern()
           this.writeState()
         }
@@ -2476,8 +2487,8 @@ class BacaraMachine extends Machine {
 
                       const portName = this.getState(`device.${dev}.portName`)
                       if (portName && !this.interface.getParameter(`device.${dev}.mute`, 'modulated')) {
-                        const deviceNotes = this.getState(`device.${dev}.notes`, 0)
-                        let channelAdd = this.getState(`device.${dev}.channelAdd`, 0)
+                        const deviceNotes = this.getState(`device.${dev}.notes`, 0, 0)
+                        let channelAdd = this.getState(`device.${dev}.channelAdd`, 0, 0)
                         const dispatch = this.interface.getParameter(`device.${dev}.dispatch`, 'modulated')
                         let dispatchMode
                         let dispatchValue
@@ -2502,9 +2513,9 @@ class BacaraMachine extends Machine {
                           } while (channelAdd == tmp)
                           channelAdd = tmp
                         }
-                        this.setState(`device.${dev}.channelAdd`, channelAdd)
+                        this.setState(`device.${dev}.channelAdd`, channelAdd, 0)
                         const channel = ((this.interface.getParameter(`device.${dev}.channel`, 'modulated') - 1) + channelAdd) % 16
-                        this.setState(`device.${dev}.notes`, deviceNotes + 1)
+                        this.setState(`device.${dev}.notes`, deviceNotes + 1, 0)
                         debugMidiNoteOn('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
 
                         //                      debugDispatch('device %y  step %y  base %y  dispatch %y  mode %y  value %y  add %y  channel %y note %y velocity %y duration %y %s',dev,this.stepIdx,this.interface.getParameter(`device.${dev}.channel`, 'modulated'),dispatch,dispatchMode,dispatchValue,channelAdd,channel+1,midiNote,midiVelocity,midiDuration,midiVelocity==127?(`accent ${midiAccent} deviationAccentProbability ${deviationAccentProbability} map ${(deviationAccentMap || []).join(',')} deviationVelocityProbability ${deviationVelocityProbability}`):'')
