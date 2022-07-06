@@ -1260,13 +1260,21 @@
       "id": "ee6f0c98-b9b4-4e93-bb27-ceda4fecca9e",
       "slotId": 60,
       "type": "label",
-      "name": "Section"
+      "name": "Section",
+      "values": [
+        {
+          "message": {
+          }
+        }
+      ],
+      "color": "F49500"
     },
     {
       "id": "e9071c33-132e-467e-946b-996ae0a7049c",
       "slotId": 66,
       "type": "list",
       "deviceId": 17,
+      "color": "F49500",
       "name": "Section",
       "values": [
         {
@@ -1284,42 +1292,42 @@
             },
             {
               "value": 1,
-              "label": "Section A",
+              "label": "A",
               "index": 1
             },
             {
               "value": 2,
-              "label": "Section B",
+              "label": "B",
               "index": 2
             },
             {
               "value": 3,
-              "label": "Section C",
+              "label": "C",
               "index": 3
             },
             {
               "value": 4,
-              "label": "Section D",
+              "label": "D",
               "index": 4
             },
             {
               "value": 5,
-              "label": "Section E",
+              "label": "E",
               "index": 5
             },
             {
               "value": 6,
-              "label": "Section F",
+              "label": "F",
               "index": 6
             },
             {
               "value": 7,
-              "label": "Section G",
+              "label": "G",
               "index": 7
             },
             {
               "value": 8,
-              "label": "Section H",
+              "label": "H",
               "index": 8
             }
           ]
