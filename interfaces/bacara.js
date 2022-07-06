@@ -258,6 +258,21 @@ module.exports = {
       max: 127,
       default: 127,
     },
+    section: {
+      name: 'Section',
+      type: 'parameter',
+      surface: {
+        type: 'nrpn',
+        number: 2818,
+        lsbFirst: true,
+        min: 0,
+        max: 8,
+      },
+      min: 0,
+      max: 8,
+      default: 0,
+      section: 0
+    },
     torsoT1Channel: {
       name: 'Torso T-1 Channel',
       type: 'parameter',

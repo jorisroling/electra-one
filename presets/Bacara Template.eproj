@@ -1257,6 +1257,77 @@
       "deviceId": 17
     },
     {
+      "id": "ee6f0c98-b9b4-4e93-bb27-ceda4fecca9e",
+      "slotId": 60,
+      "type": "label",
+      "name": "Section"
+    },
+    {
+      "id": "e9071c33-132e-467e-946b-996ae0a7049c",
+      "slotId": 66,
+      "type": "list",
+      "deviceId": 17,
+      "name": "Section",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 2818
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Global",
+              "index": 0
+            },
+            {
+              "value": 1,
+              "label": "Section A",
+              "index": 1
+            },
+            {
+              "value": 2,
+              "label": "Section B",
+              "index": 2
+            },
+            {
+              "value": 3,
+              "label": "Section C",
+              "index": 3
+            },
+            {
+              "value": 4,
+              "label": "Section D",
+              "index": 4
+            },
+            {
+              "value": 5,
+              "label": "Section E",
+              "index": 5
+            },
+            {
+              "value": 6,
+              "label": "Section F",
+              "index": 6
+            },
+            {
+              "value": 7,
+              "label": "Section G",
+              "index": 7
+            },
+            {
+              "value": 8,
+              "label": "Section H",
+              "index": 8
+            }
+          ]
+        }
+      ],
+      "visible": true
+    },
+    {
       "id": "804901ef-f6a4-437a-998d-d40fba9828bc",
       "type": "pad",
       "mode": "momentary",

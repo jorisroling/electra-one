@@ -47,6 +47,7 @@ const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(r
 const debugState = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:state`)
 const debugDeviation = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:deviation`)
 const debugOsc = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:osc`)
+const debugSection = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:section`)
 
 const debugMonome = yves.debugger(`${pkg.name.replace(/^@/, '')}:monome`)
 const debugPattern = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:pattern`)
@@ -324,7 +325,7 @@ class BacaraMachine extends Machine {
       },
       start: (elementPath, origin) => {
         if (origin == 'clock') {
-          this.setState('playing', true)
+          this.setState('playing', true, 0)
           this.pulses = 0
           this.stepIdx = 0
           this.drumsStepIdx = 0
@@ -336,7 +337,7 @@ class BacaraMachine extends Machine {
       },
       stop: (elementPath, origin) => {
         if (origin == 'clock') {
-          this.setState('playing', false)
+          this.setState('playing', false, 0)
           this.showPatternGrid(this.stepIdx, false)
           this.stepIdx = -1
           this.drumsStepIdx = -1
@@ -346,7 +347,7 @@ class BacaraMachine extends Machine {
       },
       continue: (elementPath, origin) => {
         if (origin == 'clock') {
-          this.setState('playing', true)
+          this.setState('playing', true, 0)
           this.pulseTime = process.hrtime()
           this.writeState()
           debug('continue')
@@ -716,7 +717,7 @@ class BacaraMachine extends Machine {
 
     const lfoPhaseDetection = (lfoIdx)  => {
       return (elementPath, value, origin) => {
-        if (phaseDetection && this.getState('playing') && this.lfoHistory.length >= 2) {
+        if (phaseDetection && this.getState('playing',false,0) && this.lfoHistory.length >= 2) {
           const phaseDetectionShapes = ['sine', 'triangle', 'saw-up', 'saw-down']
           if (phaseDetectionShapes.indexOf(this.getState(`lfo.${lfoIdx}.shapeName`)) >= 0 /*&& phaseDetectionShapes.indexOf(oldShapeName) >= 0*/) {
             const value = this.lfoValue(lfoIdx)
@@ -959,6 +960,21 @@ class BacaraMachine extends Machine {
     }
 
     this.parameterSideEffects = {
+      section: (elementPath, section, origin, oldSection) => {
+        if (section || oldSection) {
+          this.interface.iterateElelements((template, path) => {
+            if ((section && _.has(this.interface.sections,`${String.fromCharCode(64+section)}.parameters.${path}`)) || (oldSection && _.has(this.interface.sections,`${String.fromCharCode(64+oldSection)}.parameters.${path}`)) ) {
+              this.interface.sendValue(path,'surface')
+            }
+          }, null, ['parameter', 'feedback'])
+        }
+                      const sectionParameters = _.get(this.interface.sections,`${String.fromCharCode(64+section)}.parameters`)
+        //              if (sectionParameters) {
+                        debugSection('section %y %y',section?String.fromCharCode(64+section):'global',sectionParameters)
+        //              }
+        this.writeState()
+        this.showPattern()
+      },
       pattern: (elementPath, value, origin) => {
         const pattern = Pattern.load_pattern(this.state, value)
         this.setState('pattern', pattern)
@@ -1416,7 +1432,6 @@ class BacaraMachine extends Machine {
     })
 
     this.on('stateChange', (path, value, originalValue) => {
-      /*      console.log(path,value)*/
       if (showPatternStates.indexOf(path) >= 0) {
         this.showPattern()
       }
@@ -1441,7 +1456,6 @@ class BacaraMachine extends Machine {
       let modSlotSource
       let modSlotValue
 
-      /*     if (origin!='clock') console.log('hi:'+origin+' '+msg._type)*/
       // dedicated functions like beat & transpose
       if (!Number.isInteger(channel) || msg.channel == channel) {
         if (origin == 'transpose') {
@@ -1474,7 +1488,6 @@ class BacaraMachine extends Machine {
           if (msg._type == 'cc' && msg.controller > 1 && msg.controller <= 127) {
             modSlotSource = Object.keys(matrixSlotSources).length + (msg.controller - 2)
             modSlotValue = msg.value
-            //console.log(`CC ${msg.controller} = ${msg.value}`)
           }
           if (msg._type == 'channel aftertouch') {
             modSlotSource = matrixSlotSources.channelAftertouch
@@ -1504,7 +1517,6 @@ class BacaraMachine extends Machine {
           if (msg._type == 'cc' && msg.controller > 1 && msg.controller <= 127) {
             modSlotSource = Object.keys(matrixSlotSources).length + (msg.controller - 1)
             modSlotValue = msg.value
-            /*           console.log(`CC ${msg.controller} = ${msg.value} (${modSlotSource})`)*/
           }
         }
       }
@@ -1515,7 +1527,6 @@ class BacaraMachine extends Machine {
           if (this.interface.getParameter(`matrix.slot.${slotIdx}.source`) == modSlotSource) {
             if (this.interface.getParameter(`matrix.slot.${slotIdx}.value`) !== modSlotValue) {
               this.matrixSetSlotValue(slotIdx, this.interface.getParameter(`matrix.slot.${slotIdx}.slewLimiter`, 0), matrixSetSlotValueTimout, modSlotValue)
-              //              console.log(`CC ${msg.controller} = ${msg.value} (${modSlotSource})`)
             }
           }
         }
@@ -1540,6 +1551,7 @@ class BacaraMachine extends Machine {
       model:this.name,
       lfo:deepSortObject(this.interface.lfo),
       modulation:deepSortObject(this.interface.modulation),
+      sections:deepSortObject(this.interface.getSections()),
       state:deepSortObject(this.state),
       parameters:deepSortObject(this.interface.getParameters())
     }
@@ -1587,6 +1599,11 @@ class BacaraMachine extends Machine {
         }
         this.interface.setParameters(parameters)
 
+        for (let section=1;section<=8;section++) {
+          const sectionParameters = _.get(json,`sections.${String.fromCharCode(64+section)}.parameters`)
+          this.interface.setSectionParameters(section,sectionParameters)
+        }
+
         this.interface.emitParameters('post-connect')
 
         const deviations = ['note', 'velocity', 'octave', 'duration', 'accent', 'mute', 'device']
@@ -1617,6 +1634,14 @@ class BacaraMachine extends Machine {
   }
 
   writeState(filename) {
+    clearTimeout(this.writeTimeoutID)
+    this.writeTimeoutID = setTimeout( () => {
+      this.writeTimeoutID = null
+      this.writeStateActual(filename)
+    }, 100)
+  }
+
+  writeStateActual(filename) {
     const filePath = filename ? filename : path.resolve((process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/${this.name}.json`) : `${__dirname}/../state/${this.name}.json`)
     fs.ensureDirSync(path.dirname(filePath))
     const json = this.getPreset()
@@ -1761,7 +1786,7 @@ class BacaraMachine extends Machine {
 
     debugPattern(table.toString())
     /*    debug(grid)*/
-    this.setState('drums.grid', grid)
+    this.setState('drums.grid', grid,0)
     this.showPatternGrid(this.stepIdx)
   }
 
@@ -1771,7 +1796,6 @@ class BacaraMachine extends Machine {
 
     const pattern = this.getState('pattern')
     const size = this.interface.getParameter('steps'/*, 'modulated'*/)
-    //    console.log(size,this.interface.getParameter('steps', 'modulated'))
     if (!pattern) {
       return
     }
@@ -1945,7 +1969,6 @@ class BacaraMachine extends Machine {
             if (durationFactor < 0.1) {
               durationFactor
             }
-            /*            console.log(durationFactor,note.durationTicks,Math.floor(note.durationTicks * durationFactor),ticksPerStep)*/
             const durationTicks =  Math.floor(note.durationTicks * durationFactor)
 
 
@@ -1993,7 +2016,7 @@ class BacaraMachine extends Machine {
     /*    debugOsc('table %y',table)*/
     debugPattern(table.toString())
     /*    debug(grid)*/
-    this.setState('pattern.grid', grid)
+    this.setState('pattern.grid', grid,0)
     this.showPatternGrid(this.stepIdx)
   }
 
@@ -2004,7 +2027,7 @@ class BacaraMachine extends Machine {
 
     for (let row = 0; row < monome.height; row++) {
       for (let col = 0; col < monome.width; col++) {
-        let on = mode ? this.getState(`${prefix}.${row}.${col + offset}`) : false
+        let on = mode ? this.getState(`${prefix}.${row}.${col + offset}`,false,0) : false
         if (mode && showCursor && step >= 0 && step == (col + offset) /*&& Array.isArray(this.getState(`pattern.grid.${row}`)) && col<this.getState(`pattern.grid.${row}`).length*/ && row == monome.height - 1) {
           on = !on
         }
@@ -2114,10 +2137,10 @@ class BacaraMachine extends Machine {
     const filename = presetFiles[program]
     if (filename) {
       const bank = this.interface.getParameter('bank')
-      const playing = this.getState('playing')
+      const playing = this.getState('playing',false,0)
       const remote = this.getState('remote')
       this.readState(filename, {bank, program})
-      this.setState('playing', playing)
+      this.setState('playing', playing,0)
       this.setState('remote', remote)
       this.ensureDevicePortName('A')
       this.ensureDevicePortName('B')
@@ -2162,7 +2185,7 @@ class BacaraMachine extends Machine {
 
     this.stepIdx = ticks / ticksPerStep
 
-    if (this.getState('playing')) {
+    if (this.getState('playing',false,0)) {
 
       const tickDuration = this.pulseDuration / 20
       let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.interface.getParameter('steps'))
@@ -2271,8 +2294,8 @@ class BacaraMachine extends Machine {
       if (Math.floor(this.stepIdx) === this.stepIdx) {
         this.showPatternGrid(this.stepIdx)
       }
-      if (this.getState('pattern') && !this.interface.getParameter('mute')) {
-        _.get(this.getState('pattern'), 'tracks.0.notes', []).forEach( note => {
+      if (this.getState('pattern.tracks.0.notes') && !this.interface.getParameter('mute')) {
+        this.getState('pattern.tracks.0.notes', []).forEach( note => {
           if (note.ticks == shiftedTicks) {
 
             if (this.stepIdx < this.interface.getParameter('steps', 'modulated') /*&& this.sounding(this.stepIdx)*/) {
@@ -2451,8 +2474,6 @@ class BacaraMachine extends Machine {
 
                       /*                                debug('duration %y (was %y)',midiDuration,note.durationTicks)*/
 
-                      /*                  console.log(`note ${midiNote} velo ${midiVelocity}  ${this.interface.getParameter('base', 'modulated')}`)*/
-
                       const portName = this.getState(`device.${dev}.portName`)
                       if (portName && !this.interface.getParameter(`device.${dev}.mute`, 'modulated')) {
                         const deviceNotes = this.getState(`device.${dev}.notes`, 0)
@@ -2549,8 +2570,8 @@ class BacaraMachine extends Machine {
         drumsShiftedTicks += ticksPerStep * this.interface.getParameter('drums.steps')
       }
 
-      if (this.getState('drums.midi') && !this.interface.getParameter('drums.mute', 'modulated')) {
-        _.get(this.getState('drums.midi'), 'tracks.0.notes', []).forEach( note => {
+      if (this.getState('drums.midi.tracks.0.notes') && !this.interface.getParameter('drums.mute', 'modulated')) {
+        this.getState('drums.midi.tracks.0.notes', []).forEach( note => {
           if (note.ticks == drumsShiftedTicks) {
             const instrument = note.midi - Drums.baseNote()
             if (this.drumsStepIdx < this.interface.getParameter('drums.steps', 'modulated') && this.sounding(this.drumsStepIdx, 'drums.sounding', instrument)) {
@@ -2606,8 +2627,6 @@ class BacaraMachine extends Machine {
                       const channel = this.getState(`drums.redrum.${trck}.channel`, 9)
                       const midiNote = this.interface.getParameter(`drums.redrum.${trck}.note`, 'modulated')
                       debugMidiNoteOn('port %s  channel %d  note %y  track %y  ', portName, channel + 1, midiNote, trck)
-                      //console.log(`drums: ${midiNote}  drums.redrum.${trck}.mute = ${this.interface.getParameter(`drums.redrum.${trck}.mute`, 'modulated')}`)
-
                       //                    debug('track %y inst %y  port %y  tinst %y channel %y',trck,instrument,this.getState(`drums.redrum.${trck}.portName`),this.interface.getParameter(`drums.redrum.${trck}.instrument`, 'modulated'),channel)
 
                       if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
@@ -2713,8 +2732,6 @@ class BacaraMachine extends Machine {
   }
 
   handleOSCmessage(oscMessage) {
-    /*        console.log('message %y', oscMessage)*/
-
     /*        debugOsc('Address %y Value %y Last %y Mine %y',oscMessage.address,oscMessage.args.join(', '),torsoT1_LastChannel,this.interface.getParameter('torsoT1Channel'))*/
     if (oscMessage.address == '/t1/channel' && Array.isArray(oscMessage.args) && oscMessage.args.length == 1) {
       torsoT1_LastChannel = oscMessage.args[0]
