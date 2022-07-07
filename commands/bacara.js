@@ -1841,8 +1841,8 @@ class BacaraMachine extends Machine {
     let table = new Table(
         {
           head: [
-            'Parameter',
-            'Value',
+            'Variating Parameters',
+            'Values',
           ]
         }
       );
@@ -1863,7 +1863,7 @@ class BacaraMachine extends Machine {
     } else {
       const msgColor = chalk.hex('#FF0000')
       let arr = [
-       {hAlign:'center', colSpan:2, content:msgColor('none') },
+       {hAlign:'center', colSpan:2, content:msgColor(variant?'none':'global') },
       ]
       table.push(arr)
     }

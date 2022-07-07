@@ -520,7 +520,7 @@ module.exports = {
           min: 0,
           max: 16,
           default: 0,
-          unit: 'steps',
+          unit: 'pulses',
           precision: 0,
         },
         rotation: {
@@ -648,7 +648,7 @@ module.exports = {
           min: 0,
           max: 16,
           default: 0,
-          unit: 'steps',
+          unit: 'pulses',
           precision: 0,
         },
         rotation: {
@@ -778,7 +778,7 @@ module.exports = {
           min: 0,
           max: 16,
           default: 0,
-          unit: 'steps',
+          unit: 'pulses',
           precision: 0,
         },
         rotation: {
@@ -908,7 +908,7 @@ module.exports = {
           min: 0,
           max: 16,
           default: 0,
-          unit: 'steps',
+          unit: 'pulses',
           precision: 0,
         },
         rotation: {
@@ -996,7 +996,7 @@ module.exports = {
           min: 0,
           max: 16,
           default: 0,
-          unit: 'steps',
+          unit: 'pulses',
           precision: 0,
         },
         rotation: {
@@ -1084,7 +1084,7 @@ module.exports = {
           min: 0,
           max: 16,
           default: 0,
-          unit: 'steps',
+          unit: 'pulses',
           precision: 0,
         },
         rotation: {
@@ -1172,7 +1172,7 @@ module.exports = {
           min: 0,
           max: 16,
           default: 0,
-          unit: 'steps',
+          unit: 'pulses',
           precision: 0,
         },
         rotation: {
@@ -1941,7 +1941,6 @@ module.exports = {
           min: 0,
           max: 45,
           default: 0,
-          unit: 'channels',
         },
       },
       B: {
@@ -2108,7 +2107,6 @@ module.exports = {
           min: 0,
           max: 45,
           default: 0,
-          unit: 'channels',
         },
       },
     },
