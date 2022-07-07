@@ -271,7 +271,7 @@ module.exports = {
       min: 0,
       max: 15,
       default: 0,
-      variant: 0
+      variant: 0, // global only
     },
     torsoT1Channel: {
       name: 'Torso T-1 Channel',
@@ -286,6 +286,7 @@ module.exports = {
       min: 1,
       max: 16,
       default: 16,
+      variant: 0, // global only
     },
     reset_preset: {
       name: 'Reset Preset',
