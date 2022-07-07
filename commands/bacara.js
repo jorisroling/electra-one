@@ -980,9 +980,8 @@ class BacaraMachine extends Machine {
             }
           }, null, ['parameter', 'feedback'])
         }
-        const variantParameters = _.get(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters`)
-        debugVariant('variant %y %y',variant?String.fromCharCode(64+variant):'global',variantParameters)
         this.writeState()
+        this.showVariant()
         this.showPattern()
       },
       pattern: (elementPath, value, origin) => {
@@ -1825,6 +1824,56 @@ class BacaraMachine extends Machine {
     /*    debug(grid)*/
     this.setState('drums.grid', grid,0)
     this.showPatternGrid(this.stepIdx)
+  }
+
+  showVariant() {
+    const variant = this.interface.getParameter('variant')
+    const paths = []
+
+    this.interface.iterateElelements((template, path) => {
+      if ((variant && _.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`)) ) {
+        paths.push(path)
+      }
+    }, null, ['parameter', 'feedback'])
+
+//    debugVariant('paths %y', paths)
+
+    let table = new Table(
+        {
+          head: [
+            'Parameter',
+            'Value',
+          ]
+        }
+      );
+
+    if (paths && paths.length) {
+
+      const nameColor = chalk.hex('#FF8800')
+      const valueColor = chalk.hex('#00FF88')
+
+      for (let path of paths) {
+        const unit = this.interface.getElementAttribute(path,'unit')
+        let arr = [
+         {hAlign:'left', colSpan:1, content:nameColor(this.interface.getElementAttribute(path,'name') || path) },
+         {hAlign:'center', colSpan:1, content:valueColor(this.interface.getParameter(path)+(unit?` ${unit}`:'')) },
+        ]
+        table.push(arr)
+      }
+    } else {
+      const msgColor = chalk.hex('#FF0000')
+      let arr = [
+       {hAlign:'center', colSpan:2, content:msgColor('none') },
+      ]
+      table.push(arr)
+    }
+
+//    const variantParameters = _.get(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters`)
+//    debugVariant('variant %y %y',variant?String.fromCharCode(64+variant):'global',variantParameters)
+
+   debugVariant('variant %y',variant?String.fromCharCode(64+variant):'global')
+    if (table) debugVariant(table.toString())
+
   }
 
   showPattern() {
