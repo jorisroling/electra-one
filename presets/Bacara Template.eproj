@@ -1260,7 +1260,7 @@
       "id": "ee6f0c98-b9b4-4e93-bb27-ceda4fecca9e",
       "slotId": 60,
       "type": "label",
-      "name": "Section",
+      "name": "Variant",
       "values": [
         {
           "message": {
@@ -1275,7 +1275,7 @@
       "type": "list",
       "deviceId": 17,
       "color": "F49500",
-      "name": "Section",
+      "name": "Variant",
       "values": [
         {
           "message": {

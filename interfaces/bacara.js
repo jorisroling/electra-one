@@ -258,8 +258,8 @@ module.exports = {
       max: 127,
       default: 127,
     },
-    section: {
-      name: 'Section',
+    variant: {
+      name: 'Variant',
       type: 'parameter',
       surface: {
         type: 'nrpn',
@@ -271,7 +271,7 @@ module.exports = {
       min: 0,
       max: 15,
       default: 0,
-      section: 0
+      variant: 0
     },
     torsoT1Channel: {
       name: 'Torso T-1 Channel',

@@ -47,12 +47,12 @@ const debugMidiProgramChange = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(r
 const debugState = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:state`)
 const debugDeviation = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:deviation`)
 const debugOsc = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:osc`)
-const debugSection = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:section`)
+const debugVariant = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:variant`)
 
 const debugMonome = yves.debugger(`${pkg.name.replace(/^@/, '')}:monome`)
 const debugPattern = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:pattern`)
 
-const SECTION_MAX = 15
+const VARIANT_MAX = 15
 const DRUM_TRACKS = 11
 const REDRUM_TRACKS = 12
 const LFOS = 3
@@ -483,15 +483,15 @@ class BacaraMachine extends Machine {
       },
       reset_preset: (elementPath, origin) => {
         if (origin == 'surface' || origin == 'remote') {
-          const section = this.interface.getParameter('section',0,0)
-          if (section>0) {
-            this.interface.setParameter('section',0,0)
+          const variant = this.interface.getParameter('variant',0,0)
+          if (variant>0) {
+            this.interface.setParameter('variant',0,0)
             this.interface.iterateElelements((template, path) => {
-              if (_.has(this.interface.sections,`${String.fromCharCode(64+section)}.parameters.${path}`) ) {
+              if (_.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`) ) {
                 this.interface.sendValue(path,'surface')
               }
             }, null, ['parameter', 'feedback'])
-            _.unset(this.interface.sections,`${String.fromCharCode(64+section)}`)
+            _.unset(this.interface.variants,`${String.fromCharCode(64+variant)}`)
           } else {
             this.interface.reset()
           }
@@ -972,16 +972,16 @@ class BacaraMachine extends Machine {
     }
 
     this.parameterSideEffects = {
-      section: (elementPath, section, origin, oldSection) => {
-        if (section || oldSection) {
+      variant: (elementPath, variant, origin, oldVariant) => {
+        if (variant || oldVariant) {
           this.interface.iterateElelements((template, path) => {
-            if ((section && _.has(this.interface.sections,`${String.fromCharCode(64+section)}.parameters.${path}`)) || (oldSection && _.has(this.interface.sections,`${String.fromCharCode(64+oldSection)}.parameters.${path}`)) ) {
+            if ((variant && _.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`)) || (oldVariant && _.has(this.interface.variants,`${String.fromCharCode(64+oldVariant)}.parameters.${path}`)) ) {
               this.interface.sendValue(path,'surface')
             }
           }, null, ['parameter', 'feedback'])
         }
-        const sectionParameters = _.get(this.interface.sections,`${String.fromCharCode(64+section)}.parameters`)
-        debugSection('section %y %y',section?String.fromCharCode(64+section):'global',sectionParameters)
+        const variantParameters = _.get(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters`)
+        debugVariant('variant %y %y',variant?String.fromCharCode(64+variant):'global',variantParameters)
         this.writeState()
         this.showPattern()
       },
@@ -1468,26 +1468,26 @@ class BacaraMachine extends Machine {
 
       // dedicated functions like beat & transpose
       if (!Number.isInteger(channel) || msg.channel == channel) {
-        if (origin == 'section') {
+        if (origin == 'variant') {
           if (msg._type == 'noteon') {
             const notes = this.interface.connection(origin).midiCache.playingNotes(channel ? channel : 0)
             if (notes) {
               if (notes.length == 1) {
-                const section = notes[0] - _.get(config,'options.sectionGeneralNote',36)
-                if (section>=0 && section<=SECTION_MAX) {
-                  const oldSection = this.interface.getParameter('section', 0, 0)
-                  if (oldSection != section) {
-                    this.interface.setParameter('section', section, 'internal',0)
-                    this.parameterSideEffects.section('section', section, 'internal', oldSection)
+                const variant = notes[0] - _.get(config,'options.variantGeneralNote',36)
+                if (variant>=0 && variant<=VARIANT_MAX) {
+                  const oldVariant = this.interface.getParameter('variant', 0, 0)
+                  if (oldVariant != variant) {
+                    this.interface.setParameter('variant', variant, 'internal',0)
+                    this.parameterSideEffects.variant('variant', variant, 'internal', oldVariant)
                   }
                 }
               } else if (notes.length == 2) {
-                const sourceSection = notes[0] - _.get(config,'options.sectionGeneralNote',36)
-                const targetSection = notes[1] - _.get(config,'options.sectionGeneralNote',36)
-                if (sourceSection!=targetSection && (sourceSection>=0 && sourceSection<=SECTION_MAX) && (targetSection>=0 && targetSection<=SECTION_MAX)) {
-                  debugSection('copy from section %y to section %y %y',this.sectionName(sourceSection),this.sectionName(targetSection),this.interface.getSectionParameters(sourceSection))
-                  this.interface.setSectionParameters(targetSection, this.interface.getSectionParameters(sourceSection) )
-                  this.interface.setSectionState(targetSection,this.interface.getSectionState(sourceSection))
+                const sourceVariant = notes[0] - _.get(config,'options.variantGeneralNote',36)
+                const targetVariant = notes[1] - _.get(config,'options.variantGeneralNote',36)
+                if (sourceVariant!=targetVariant && (sourceVariant>=0 && sourceVariant<=VARIANT_MAX) && (targetVariant>=0 && targetVariant<=VARIANT_MAX)) {
+                  debugVariant('copy from variant %y to variant %y %y',this.variantName(sourceVariant),this.variantName(targetVariant),this.interface.getVariantParameters(sourceVariant))
+                  this.interface.setVariantParameters(targetVariant, this.interface.getVariantParameters(sourceVariant) )
+                  this.interface.setVariantState(targetVariant,this.interface.getVariantState(sourceVariant))
                 }
               }
             }
@@ -1586,7 +1586,7 @@ class BacaraMachine extends Machine {
       model:this.name,
       lfo:deepSortObject(this.interface.lfo),
       modulation:deepSortObject(this.interface.modulation),
-      sections:deepSortObject(this.interface.getSections()),
+      variants:deepSortObject(this.interface.getVariants()),
       state:deepSortObject(this.state),
       parameters:deepSortObject(this.interface.getParameters())
     }
@@ -1634,11 +1634,11 @@ class BacaraMachine extends Machine {
         }
         this.interface.setParameters(parameters)
 
-        for (let section=1;section<=SECTION_MAX;section++) {
-          const sectionParameters = _.get(json,`sections.${String.fromCharCode(64+section)}.parameters`)
-          this.interface.setSectionParameters(section,sectionParameters)
-          const sectionState = _.get(json,`sections.${String.fromCharCode(64+section)}.state`)
-          this.interface.setSectionState(section,sectionState)
+        for (let variant=1;variant<=VARIANT_MAX;variant++) {
+          const variantParameters = _.get(json,`variants.${String.fromCharCode(64+variant)}.parameters`)
+          this.interface.setVariantParameters(variant,variantParameters)
+          const variantState = _.get(json,`variants.${String.fromCharCode(64+variant)}.state`)
+          this.interface.setVariantState(variant,variantState)
         }
 
         this.interface.emitParameters('post-connect')
@@ -2749,11 +2749,11 @@ class BacaraMachine extends Machine {
   }
 
 
-  sectionName(section) {
-    if (section==0) {
+  variantName(variant) {
+    if (variant==0) {
       return 'global'
-    } else if (section>=1 && section<=SECTION_MAX) {
-      return String.fromCharCode(64+section)
+    } else if (variant>=1 && variant<=VARIANT_MAX) {
+      return String.fromCharCode(64+variant)
     }
   }
 
@@ -3097,9 +3097,9 @@ function bacaraSequencer(name, sub, options) {
   if (options.transpose) {
     bacaraMachine.connect(options.transpose, 'transpose', Number.isInteger(options.transposeChannel) ? parseInt(options.transposeChannel) - 1 : 0)
   }
-  if (options.sectionDevice) {
+  if (options.variantDevice) {
 ///////////////    console.log('jjr')
-    bacaraMachine.connect(options.sectionDevice, 'section', Number.isInteger(options.sectionChannel) ? parseInt(options.sectionChannel) - 1 : 0)
+    bacaraMachine.connect(options.variantDevice, 'variant', Number.isInteger(options.variantChannel) ? parseInt(options.variantChannel) - 1 : 0)
   }
 
   bacaraMachine.interface.emitParameters('post-connect')

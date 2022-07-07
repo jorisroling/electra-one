@@ -37,9 +37,9 @@ module.exports = customWrapper({
       virus: 'Virus TI Companion',
     },
     custom: [],
-    sectionDevice: '',
-    sectionChannel: 1,
-    sectionGeneralNote: 36,
+    variantDevice: '',
+    variantChannel: 1,
+    variantGeneralNote: 36,
   },
   electra: {
     checkPresetVia: 'patch',  // patch, preset or none

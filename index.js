@@ -50,9 +50,9 @@ args
   .option('verbose', 'Verbose output')
   .option('setup', 'List from setup', false)
   .option('focus', 'Focus', 'bacara')
-  .option('sectionDevice', 'Section Device',_.get(config, 'options.sectionDevice'))
-  .option('sectionChannel', 'Section Channel', _.get(config, 'options.sectionChannel'))
-  .option('sectionGeneralNote', 'Section General Note', _.get(config, 'options.sectionGeneralNote'))
+  .option('variantDevice', 'Variant Device',_.get(config, 'options.variantDevice'))
+  .option('variantChannel', 'Variant Channel', _.get(config, 'options.variantChannel'))
+  .option('variantGeneralNote', 'Variant General Note', _.get(config, 'options.variantGeneralNote'))
 
 const commands = require('./lib/commands')
 
