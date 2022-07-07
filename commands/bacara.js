@@ -978,16 +978,26 @@ class BacaraMachine extends Machine {
 
     this.parameterSideEffects = {
       variant: (elementPath, variant, origin, oldVariant) => {
+        const paths = []
+        const drumPaths = []
+        const nonDrumPaths = []
         if (variant || oldVariant) {
           this.interface.iterateElelements((template, path) => {
             if ((variant && _.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`)) || (oldVariant && _.has(this.interface.variants,`${String.fromCharCode(64+oldVariant)}.parameters.${path}`)) ) {
               this.interface.sendValue(path,'surface')
+              paths.push(path)
+              if (path.match(/drums\./)) {
+                drumPaths.push(path)
+              } else {
+                nonDrumPaths.push(path)
+              }
             }
           }, null, ['parameter', 'feedback'])
         }
         this.writeState()
         this.showVariant()
-        this.showPattern()
+        if (drumPaths.length) this.showDrumsPattern()
+        if (nonDrumPaths.length) this.showPattern()
       },
       "torso-t1": {
         scaleMode: (elementPath, value, origin, oldValue) => {
@@ -1849,8 +1859,6 @@ class BacaraMachine extends Machine {
       }
     }, null, ['parameter', 'feedback'])
 
-//    debugVariant('paths %y', paths)
-
     let table = new Table(
         {
           head: [
@@ -1881,12 +1889,8 @@ class BacaraMachine extends Machine {
       table.push(arr)
     }
 
-//    const variantParameters = _.get(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters`)
-//    debugVariant('variant %y %y',variant?String.fromCharCode(64+variant):'global',variantParameters)
-
-   debugVariant('variant %y',variant?String.fromCharCode(64+variant):'global')
+    debugVariant('variant %y',variant?String.fromCharCode(64+variant):'global')
     if (table) debugVariant(table.toString())
-
   }
 
   showPattern() {
@@ -1910,12 +1914,8 @@ class BacaraMachine extends Machine {
 
     const deviceAColor = chalk.hex('#FF0000')
     const deviceBColor = chalk.hex('#0000FF')
-    //    const deviceAColor = chalk.hex('#F45C51')
-    //    const deviceBColor = chalk.hex('#529DEC')
 
     const grid = []
-
-    /*          {colSpan:size, content:pattern.header.name + `            normal ${normalColor('  ')}   accented ${accentedColor('  ')}   disabled ${disabledColorBg('  ')}`}*/
 
     let table = new Table(
       {
@@ -1924,7 +1924,6 @@ class BacaraMachine extends Machine {
           'Note',
           {colSpan:size, hAlign:'right', content:`normal ${normalColor('  ')}   deviation ${deviationColorBg('  ')}   accented ${accentedColor('  ')}   muted ${disabledColorBg('  ')}`}
         ]
-        /*,style:{head:[],border:[]}*/
       }
     );
 
@@ -1991,7 +1990,6 @@ class BacaraMachine extends Machine {
       const midiNoteBase =  midiNote - midiNoteFromBase
 
       if (scaleMapping && scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
-        //                debug('scale: %s %y => %y',scaleMapping.name, midiNoteFromBase, scaleMapping.mapping[midiNoteFromBase])
         midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
       }
 
@@ -2856,6 +2854,13 @@ class BacaraMachine extends Machine {
     clearTimeout(this.showPatternTimeoutID)
     this.showPatternTimeoutID = setTimeout(() => {
       this.showPattern()
+    }, timeoutMS)
+  }
+
+  delayedShowDrumPattern(timeoutMS = 10) {
+    clearTimeout(this.showDrumPatternTimeoutID)
+    this.showDrumPatternTimeoutID = setTimeout(() => {
+      this.showDrumsPattern()
     }, timeoutMS)
   }
 
