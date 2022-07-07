@@ -52,6 +52,8 @@ const debugVariant = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('ch
 const debugMonome = yves.debugger(`${pkg.name.replace(/^@/, '')}:monome`)
 const debugPattern = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:pattern`)
 
+const USER_SCALE = 37
+
 const VARIANT_MAX = 15
 const DRUM_TRACKS = 11
 const REDRUM_TRACKS = 12
@@ -72,6 +74,9 @@ let e1_system_info
 
 const torsoT1OSC = require('../extra/osc/torso-t1.json')
 let torsoT1_LastChannel  // Last Torso T1 /t1/channel value
+
+const TORSO_T1_SCALE_MODE_CONSTRAIN = 0
+const TORSO_T1_SCALE_MODE_FILTER = 1
 
 const phaseDetection = true
 const showPatternParameters = ['transpose', 'scales', 'base', 'split', 'shift', 'steps',
@@ -983,6 +988,14 @@ class BacaraMachine extends Machine {
         this.writeState()
         this.showVariant()
         this.showPattern()
+      },
+      "torso-t1": {
+        scaleMode: (elementPath, value, origin, oldValue) => {
+          if (value == TORSO_T1_SCALE_MODE_CONSTRAIN) {
+            this.interface.setParameter('base', this.getState('torso-t1.userBase', 0,0))
+            this.interface.setParameter('scales', USER_SCALE)
+          }
+        }
       },
       pattern: (elementPath, value, origin) => {
         const pattern = Pattern.load_pattern(this.state, value)
@@ -1961,7 +1974,8 @@ class BacaraMachine extends Machine {
     notes.sort()
     notes.reverse()
 
-    const torsoT1constraint = this.getState('torso-t1.constraint')
+    const torsoT1constraint = this.getState('torso-t1.constraint',null,0)
+    const torsoT1scaleMode = this.interface.getParameter('torso-t1.scaleMode','internal',0)
 
     let row = 0
     notes.forEach( noteMidi => {
@@ -1971,9 +1985,11 @@ class BacaraMachine extends Machine {
       }
 
       let midiNote = noteMidi
-      const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
-      const midiNoteFromBase = (midiNote + this.interface.getParameter('base', 'modulated')) % 12
+      const scaleMapping = (torsoT1scaleMode==TORSO_T1_SCALE_MODE_CONSTRAIN && this.getState('torso-t1.userScale',null,0) && this.interface.getParameter('scales', 'modulated') == USER_SCALE) ? {name: 'Torso T-1 Scale',mapping: this.getState('torso-t1.userScale',null,0)} : scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
+      const myBase = (torsoT1scaleMode==TORSO_T1_SCALE_MODE_CONSTRAIN && this.getState('torso-t1.userBase',null,0) >=0 && this.interface.getParameter('scales', 'modulated') == USER_SCALE) ? this.getState('torso-t1.userBase',null,0) : this.interface.getParameter('base', 'modulated')
+      const midiNoteFromBase = (midiNote + myBase ) % 12
       const midiNoteBase =  midiNote - midiNoteFromBase
+
       if (scaleMapping && scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
         //                debug('scale: %s %y => %y',scaleMapping.name, midiNoteFromBase, scaleMapping.mapping[midiNoteFromBase])
         midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
@@ -2013,7 +2029,7 @@ class BacaraMachine extends Machine {
         })
       }
 
-      const constraintPassed = torsoT1constraint?torsoT1constraint.indexOf(noteMidiTransposed%12)>=0:true
+      const constraintPassed = (torsoT1scaleMode==TORSO_T1_SCALE_MODE_FILTER) ? (torsoT1constraint?torsoT1constraint.indexOf(noteMidiTransposed%12)>=0:true) : true
       const noteName = TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })
       const arr = [
         {hAlign:'center', content:deviceList.join(' ') },
@@ -2433,9 +2449,17 @@ class BacaraMachine extends Machine {
                   }
                 }
                 if (midiNote >= 0 && midiNote <= 127) {
-                  const scaleMapping = scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
-                  const midiNoteFromBase = (midiNote + this.interface.getParameter('base', 'modulated')) % 12
+
+                  const torsoT1constraint = this.getState('torso-t1.constraint',null,0)
+                  const torsoT1scaleMode = this.interface.getParameter('torso-t1.scaleMode','internal',0)
+
+
+                  const scaleMapping = (torsoT1scaleMode==TORSO_T1_SCALE_MODE_CONSTRAIN && this.getState('torso-t1.userScale',null,0) && this.interface.getParameter('scales', 'modulated') == USER_SCALE) ? {name: 'Torso T-1 Scale',mapping: this.getState('torso-t1.userScale',null,0)} : scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
+                  const myBase = (torsoT1scaleMode==TORSO_T1_SCALE_MODE_CONSTRAIN && this.getState('torso-t1.userBase',null,0) >=0 && this.interface.getParameter('scales', 'modulated') == USER_SCALE) ? this.getState('torso-t1.userBase',null,0) : this.interface.getParameter('base', 'modulated')
+                  const midiNoteFromBase = (midiNote + myBase ) % 12
+
                   const midiNoteBase =  midiNote - midiNoteFromBase
+
                   if (scaleMapping && scaleMapping.mapping[midiNoteFromBase] != midiNoteFromBase) {
                     midiNote = (midiNoteBase + scaleMapping.mapping[midiNoteFromBase]) - this.interface.getParameter('base', 'modulated')
                   }
@@ -2464,8 +2488,9 @@ class BacaraMachine extends Machine {
 
                   midiNote += this.interface.getParameter('transpose', 'modulated') + this.interface.getParameter(`device.${dev}.transpose`, 'modulated')
 
-                  const torsoT1constraint = this.getState('torso-t1.constraint')
-                  const constraintPassed = torsoT1constraint?torsoT1constraint.indexOf(midiNote%12)>=0:true
+//                  const torsoT1constraint = this.getState('torso-t1.constraint',null,0)
+//                  const torsoT1scaleMode = this.interface.getParameter('torso-t1.scaleMode','internal',0)
+                  const constraintPassed = (torsoT1scaleMode==TORSO_T1_SCALE_MODE_FILTER) ? (torsoT1constraint?torsoT1constraint.indexOf(midiNote%12)>=0:true) : true
 
                   if (constraintPassed) {
                     // DEVIATIONS OCTAVE
@@ -2635,7 +2660,7 @@ class BacaraMachine extends Machine {
                       debugMidiNoteError('MIDI B note out of range: %y', midiNote)
                     }
                   } else {
-                    debugMidiNoteError('MIDI C note not passed constraint: %y (%y)', TonalMidi.midiToNoteName(midiNote - 12, { sharps: true }),midiNote)
+//                    debugMidiNoteError('MIDI C note not passed constraint: %y (%y)', TonalMidi.midiToNoteName(midiNote - 12, { sharps: true }),midiNote)
                   }
                 } else {
                   debugMidiNoteError('MIDI A note out of range: %y', midiNote)
@@ -2826,15 +2851,19 @@ class BacaraMachine extends Machine {
     }
   }
 
+
+  delayedShowPattern(timeoutMS = 10) {
+    clearTimeout(this.showPatternTimeoutID)
+    this.showPatternTimeoutID = setTimeout(() => {
+      this.showPattern()
+    }, timeoutMS)
+  }
+
   handleOSCmessage(oscMessage) {
-    /*        debugOsc('Address %y Value %y Last %y Mine %y',oscMessage.address,oscMessage.args.join(', '),torsoT1_LastChannel,this.interface.getParameter('torsoT1Channel'))*/
+    /*        debugOsc('Address %y Value %y Last %y Mine %y',oscMessage.address,oscMessage.args.join(', '),torsoT1_LastChannel,this.interface.getParameter('torso-t1.channel','internal',0))*/
     if (oscMessage.address == '/t1/channel' && Array.isArray(oscMessage.args) && oscMessage.args.length == 1) {
       torsoT1_LastChannel = oscMessage.args[0]
-      //          if (!torsoT1_LastChannel) return
-      setTimeout(() => {
-        this.showPattern()
-      }, 100)
-    } else if (torsoT1_LastChannel == 0 || torsoT1_LastChannel == this.interface.getParameter('torsoT1Channel')) {
+    } else if (torsoT1_LastChannel == 0 || torsoT1_LastChannel == this.interface.getParameter('torso-t1.channel','internal',0)) {
                 //debugOsc('channel %y message %y (%y)', torsoT1_LastChannel,oscMessage.address,oscMessage.args.join(', '))
       let tmpModSlotSource = (Object.keys(matrixSlotSources).length - 1) + 126  // Let last of the other (non-T1) mod sources
       let modSlotSource
@@ -2906,31 +2935,53 @@ class BacaraMachine extends Machine {
     }
 
     const setConstraint = () => {
-      const constraint = Array.isArray(this.getState('torso-t1.scale'))?this.getState('torso-t1.scale').map( noteName => {
-        let result =TonalMidi.toMidi(noteName+'-1')+(this.getState('torso-t1.root')?TonalMidi.toMidi(this.getState('torso-t1.root')+'-1'):0)
-        if (result>=12) {
-          result-=12
-        }
-        return result
+      const midiNotes = Array.isArray(this.getState('torso-t1.scale',null,0))?this.getState('torso-t1.scale',null,0).map( noteName => {
+        const result = TonalMidi.toMidi(noteName+'-1')
+        return (result>=12)?result-12:result
       }):null
-      this.setState('torso-t1.constraint', constraint)
+      const constraint = Array.isArray(this.getState('torso-t1.scale',null,0))?this.getState('torso-t1.scale',null,0).map( noteName => {
+        const result = TonalMidi.toMidi(noteName+'-1')+(this.getState('torso-t1.root',null,0)?TonalMidi.toMidi(this.getState('torso-t1.root',null,0)+'-1'):0)
+        return (result>=12)?result-12:result
+      }):null
+      const userScale = []
+      for (let n=0;n<12;n++) {
+        for (let r=0;r<12;r++) {
+          if (midiNotes.indexOf( ((n-r)<0) ? 12 - (n-r) : (n-r) ) >= 0) {
+            userScale[n]= n-r
+            break
+          } else if (midiNotes.indexOf( ((n+r)>11) ? (n+r) - 12 : (n+r) ) >= 0) {
+            userScale[n]= n+r
+            break
+          }
+        }
+      }
+      this.setState('torso-t1.userScale', userScale,0)
+      this.setState('torso-t1.userBase', TonalMidi.toMidi(this.getState('torso-t1.root',null,0)+'-1'),0)
+
+      if (this.interface.getParameter('torso-t1.scaleMode','internal',0) == TORSO_T1_SCALE_MODE_CONSTRAIN) {
+        this.interface.setParameter('base', this.getState('torso-t1.userBase', 0,0))
+        this.interface.setParameter('scales', USER_SCALE)
+      }
+
+      this.setState('torso-t1.constraint', constraint,0)
     }
 
     if (oscMessage.address == '/t1/scale') {
       debugOsc('receive  addr %y  value %y', oscMessage.address, oscMessage.args.join(', '))
-      this.setState('torso-t1.scale', oscMessage.args)
+      this.setState('torso-t1.scale', oscMessage.args,0)
 
       setConstraint()
 
       this.writeState()
     } else if (oscMessage.address == '/t1/root') {
       debugOsc('receive  addr %y  value %y', oscMessage.address, oscMessage.args.join(', '))
-      this.setState('torso-t1.root', oscMessage.args[0])
+      this.setState('torso-t1.root', oscMessage.args[0],0)
 
       setConstraint()
 
       this.writeState()
     }
+    this.delayedShowPattern()
   }
 }
 
@@ -2977,10 +3028,10 @@ function deviceInfo(value) {
 }
 
 function bacaraSequencer(name, sub, options) {
-/*  if (options.verbose) {*/
+  if (options.verbose) {
     debugError('options %y', _.fromPairs(_.toPairs(options).filter(a => a[0].length > 1 )) )
     debugError('config %y', config.util.toObject(config))
-/*  }*/
+  }
 
   if (options.custom && options.custom.length) {
     Bacara.setPresetStateFilename(options.custom[options.custom.length - 1])

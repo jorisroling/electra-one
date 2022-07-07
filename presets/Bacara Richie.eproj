@@ -107,16 +107,15 @@
       "name": "MODE",
       "values": [
         {
+          "id": "value",
           "message": {
             "type": "nrpn",
             "deviceId": 17,
             "lsbFirst": true,
             "parameterNumber": 2433,
             "min": 0,
-            "max": 36
+            "max": 37
           },
-          "overlayId": 3,
-          "id": "value",
           "textValues": [
             {
               "value": 0,
@@ -302,8 +301,14 @@
               "value": 36,
               "label": "Whole-Half Dim",
               "index": 36
+            },
+            {
+              "label": "User / Extern",
+              "index": 37,
+              "value": 37
             }
-          ]
+          ],
+          "defaultValue": 0
         }
       ],
       "visible": true
@@ -827,7 +832,7 @@
       "mode": "momentary"
     },
     {
-      "id": "a1d18463-02b1-473d-ab02-0ec4dbe9bb69",
+      "id": "c119d235-5811-4f23-9376-6fd4ac2f6e77",
       "slotId": 33,
       "type": "list",
       "deviceId": 17,
@@ -1354,6 +1359,38 @@
               "index": 15
             }
           ]
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "a1d18463-02b1-473d-ab02-0ec4dbe9bb69",
+      "slotId": 67,
+      "type": "list",
+      "deviceId": 17,
+      "color": "03A598",
+      "name": "Scale Mode",
+      "values": [
+        {
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 14001
+          },
+          "textValues": [
+            {
+              "value": 0,
+              "label": "Constrain",
+              "index": 0
+            },
+            {
+              "value": 1,
+              "label": "Filter",
+              "index": 1
+            }
+          ],
+          "defaultValue": 16
         }
       ],
       "visible": true

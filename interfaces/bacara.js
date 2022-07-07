@@ -149,7 +149,7 @@ module.exports = {
         number: 2433,
         lsbFirst: true,
         min: 0,
-        max: 36,
+        max: 37,
       },
       external: {
         type: 'cc',
@@ -158,7 +158,7 @@ module.exports = {
         max: 127,
       },
       min: 0,
-      max: 36,
+      max: 37,
       default: 0,
       integer: true,
       list: [
@@ -273,20 +273,37 @@ module.exports = {
       default: 0,
       variant: 0, // global only
     },
-    torsoT1Channel: {
-      name: 'Torso T-1 Channel',
-      type: 'parameter',
-      surface: {
-        type: 'nrpn',
-        number: 14000,
-        lsbFirst: true,
+    "torso-t1": {
+      channel: {
+        name: 'Torso T-1 Channel',
+        type: 'parameter',
+        surface: {
+          type: 'nrpn',
+          number: 14000,
+          lsbFirst: true,
+          min: 1,
+          max: 16,
+        },
         min: 1,
         max: 16,
+        default: 16,
+        variant: 0, // global only
       },
-      min: 1,
-      max: 16,
-      default: 16,
-      variant: 0, // global only
+      scaleMode: {
+        name: 'Torso T-1 Scale Mode',
+        type: 'parameter',
+        surface: {
+          type: 'nrpn',
+          number: 14001,
+          lsbFirst: true,
+          min: 0,
+          max: 1,
+        },
+        min: 0,
+        max: 1,
+        default: 0,
+        variant: 0, // global only
+      },
     },
     reset_preset: {
       name: 'Reset Preset',
@@ -389,7 +406,7 @@ module.exports = {
       default: 0,
     },
     pattern: {
-      name: 'Program',
+      name: 'Pattern',
       type: 'parameter',
       surface: {
         type: 'nrpn',
