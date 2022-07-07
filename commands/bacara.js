@@ -992,8 +992,8 @@ class BacaraMachine extends Machine {
       "torso-t1": {
         scaleMode: (elementPath, value, origin, oldValue) => {
           if (value == TORSO_T1_SCALE_MODE_CONSTRAIN) {
-            this.interface.setParameter('base', this.getState('torso-t1.userBase', 0,0))
-            this.interface.setParameter('scales', USER_SCALE)
+            this.interface.setParameter('base', this.getState('torso-t1.userBase', 0,0),'internal',0)
+            this.interface.setParameter('scales', USER_SCALE,'internal',0)
           }
         }
       },
@@ -2959,8 +2959,8 @@ class BacaraMachine extends Machine {
       this.setState('torso-t1.userBase', TonalMidi.toMidi(this.getState('torso-t1.root',null,0)+'-1'),0)
 
       if (this.interface.getParameter('torso-t1.scaleMode','internal',0) == TORSO_T1_SCALE_MODE_CONSTRAIN) {
-        this.interface.setParameter('base', this.getState('torso-t1.userBase', 0,0))
-        this.interface.setParameter('scales', USER_SCALE)
+        this.interface.setParameter('base', this.getState('torso-t1.userBase', 0,0),'internal',0)
+        this.interface.setParameter('scales', USER_SCALE,'internal',0)
       }
 
       this.setState('torso-t1.constraint', constraint,0)
