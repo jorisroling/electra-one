@@ -266,10 +266,10 @@ module.exports = {
         number: 2818,
         lsbFirst: true,
         min: 0,
-        max: 8,
+        max: 15,
       },
       min: 0,
-      max: 8,
+      max: 15,
       default: 0,
       section: 0
     },

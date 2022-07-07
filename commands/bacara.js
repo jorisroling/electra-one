@@ -52,6 +52,7 @@ const debugSection = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('ch
 const debugMonome = yves.debugger(`${pkg.name.replace(/^@/, '')}:monome`)
 const debugPattern = yves.debugger(`${pkg.name.replace(/^@/, '')}:${(require('change-case').paramCase(require('path').basename(__filename, '.js'))).replace(/-/g, ':')}:pattern`)
 
+const SECTION_MAX = 15
 const DRUM_TRACKS = 11
 const REDRUM_TRACKS = 12
 const LFOS = 3
@@ -979,10 +980,8 @@ class BacaraMachine extends Machine {
             }
           }, null, ['parameter', 'feedback'])
         }
-                      const sectionParameters = _.get(this.interface.sections,`${String.fromCharCode(64+section)}.parameters`)
-        //              if (sectionParameters) {
-                        debugSection('section %y %y',section?String.fromCharCode(64+section):'global',sectionParameters)
-        //              }
+        const sectionParameters = _.get(this.interface.sections,`${String.fromCharCode(64+section)}.parameters`)
+        debugSection('section %y %y',section?String.fromCharCode(64+section):'global',sectionParameters)
         this.writeState()
         this.showPattern()
       },
@@ -1469,6 +1468,18 @@ class BacaraMachine extends Machine {
 
       // dedicated functions like beat & transpose
       if (!Number.isInteger(channel) || msg.channel == channel) {
+        if (origin == 'section') {
+          if (msg._type == 'noteon') {
+            const section = msg.note - _.get(config,'options.sectionGeneralNote',36)
+            if (section>=0 && section<=SECTION_MAX) {
+              const oldSection = this.interface.getParameter('section', 0, 0)
+              if (oldSection != section) {
+                this.interface.setParameter('section', section, 'internal',0)
+                this.parameterSideEffects.section('section', section, 'internal', oldSection)
+              }
+            }
+          }
+        }
         if (origin == 'transpose') {
           if (msg._type == 'noteoff') {
             const notes = this.interface.connection(origin).midiCache.playingNotes(channel ? channel : 0)
@@ -1610,7 +1621,7 @@ class BacaraMachine extends Machine {
         }
         this.interface.setParameters(parameters)
 
-        for (let section=1;section<=8;section++) {
+        for (let section=1;section<=SECTION_MAX;section++) {
           const sectionParameters = _.get(json,`sections.${String.fromCharCode(64+section)}.parameters`)
           this.interface.setSectionParameters(section,sectionParameters)
         }
@@ -2893,10 +2904,10 @@ function deviceInfo(value) {
 }
 
 function bacaraSequencer(name, sub, options) {
-  if (options.verbose) {
+/*  if (options.verbose) {*/
     debugError('options %y', _.fromPairs(_.toPairs(options).filter(a => a[0].length > 1 )) )
     debugError('config %y', config.util.toObject(config))
-  }
+/*  }*/
 
   if (options.custom && options.custom.length) {
     Bacara.setPresetStateFilename(options.custom[options.custom.length - 1])
@@ -3061,6 +3072,10 @@ function bacaraSequencer(name, sub, options) {
   }
   if (options.transpose) {
     bacaraMachine.connect(options.transpose, 'transpose', Number.isInteger(options.transposeChannel) ? parseInt(options.transposeChannel) - 1 : 0)
+  }
+  if (options.sectionDevice) {
+///////////////    console.log('jjr')
+    bacaraMachine.connect(options.sectionDevice, 'section', Number.isInteger(options.sectionChannel) ? parseInt(options.sectionChannel) - 1 : 0)
   }
 
   bacaraMachine.interface.emitParameters('post-connect')

@@ -50,6 +50,9 @@ args
   .option('verbose', 'Verbose output')
   .option('setup', 'List from setup', false)
   .option('focus', 'Focus', 'bacara')
+  .option('sectionDevice', 'Section Device',_.get(config, 'options.sectionDevice'))
+  .option('sectionChannel', 'Section Channel', _.get(config, 'options.sectionChannel'))
+  .option('sectionGeneralNote', 'Section General Note', _.get(config, 'options.sectionGeneralNote'))
 
 const commands = require('./lib/commands')
 
