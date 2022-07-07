@@ -1470,12 +1470,25 @@ class BacaraMachine extends Machine {
       if (!Number.isInteger(channel) || msg.channel == channel) {
         if (origin == 'section') {
           if (msg._type == 'noteon') {
-            const section = msg.note - _.get(config,'options.sectionGeneralNote',36)
-            if (section>=0 && section<=SECTION_MAX) {
-              const oldSection = this.interface.getParameter('section', 0, 0)
-              if (oldSection != section) {
-                this.interface.setParameter('section', section, 'internal',0)
-                this.parameterSideEffects.section('section', section, 'internal', oldSection)
+            const notes = this.interface.connection(origin).midiCache.playingNotes(channel ? channel : 0)
+            if (notes) {
+              if (notes.length == 1) {
+                const section = notes[0] - _.get(config,'options.sectionGeneralNote',36)
+                if (section>=0 && section<=SECTION_MAX) {
+                  const oldSection = this.interface.getParameter('section', 0, 0)
+                  if (oldSection != section) {
+                    this.interface.setParameter('section', section, 'internal',0)
+                    this.parameterSideEffects.section('section', section, 'internal', oldSection)
+                  }
+                }
+              } else if (notes.length == 2) {
+                const sourceSection = notes[0] - _.get(config,'options.sectionGeneralNote',36)
+                const targetSection = notes[1] - _.get(config,'options.sectionGeneralNote',36)
+                if (sourceSection!=targetSection && (sourceSection>=0 && sourceSection<=SECTION_MAX) && (targetSection>=0 && targetSection<=SECTION_MAX)) {
+                  debugSection('copy from section %y to section %y %y',this.sectionName(sourceSection),this.sectionName(targetSection),this.interface.getSectionParameters(sourceSection))
+                  this.interface.setSectionParameters(targetSection, this.interface.getSectionParameters(sourceSection) )
+                  this.interface.setSectionState(targetSection,this.interface.getSectionState(sourceSection))
+                }
               }
             }
           }
@@ -1624,6 +1637,8 @@ class BacaraMachine extends Machine {
         for (let section=1;section<=SECTION_MAX;section++) {
           const sectionParameters = _.get(json,`sections.${String.fromCharCode(64+section)}.parameters`)
           this.interface.setSectionParameters(section,sectionParameters)
+          const sectionState = _.get(json,`sections.${String.fromCharCode(64+section)}.state`)
+          this.interface.setSectionState(section,sectionState)
         }
 
         this.interface.emitParameters('post-connect')
@@ -2730,6 +2745,15 @@ class BacaraMachine extends Machine {
         }
       }
       return deviceMenu
+    }
+  }
+
+
+  sectionName(section) {
+    if (section==0) {
+      return 'global'
+    } else if (section>=1 && section<=SECTION_MAX) {
+      return String.fromCharCode(64+section)
     }
   }
 
