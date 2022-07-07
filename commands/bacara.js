@@ -79,7 +79,7 @@ const TORSO_T1_SCALE_MODE_CONSTRAIN = 0
 const TORSO_T1_SCALE_MODE_FILTER = 1
 
 const phaseDetection = true
-const showPatternParameters = ['transpose', 'scales', 'base', 'split', 'shift', 'steps',
+const showPatternParameters = ['transpose', 'scales', 'base', 'split', 'shift', 'steps', 'mute',
   'deviations.note.maximum', 'deviations.note.minimum', 'deviations.note.density', 'deviations.note.probability', 'deviations.note.euclidian', 'deviations.note.rotation',
   'deviations.velocity.maximum', 'deviations.velocity.minimum', 'deviations.velocity.density', 'deviations.velocity.probability', 'deviations.velocity.euclidian', 'deviations.velocity.rotation',
   'deviations.octave.maximum', 'deviations.octave.minimum', 'deviations.octave.density', 'deviations.octave.probability', 'deviations.octave.euclidian', 'deviations.octave.rotation',
@@ -90,7 +90,7 @@ const showPatternParameters = ['transpose', 'scales', 'base', 'split', 'shift', 
 ]
 const showPatternStates = []
 
-const showDrumPatternParameters = ['drums.density', 'drums.velocity', 'drums.steps']
+const showDrumPatternParameters = ['drums.density', 'drums.velocity', 'drums.steps', 'drums.mute']
 
 for (let trck = 0; trck < DRUM_TRACKS; trck++) {
   showDrumPatternParameters.push(`drums.instrument.${trck}.mute`)
@@ -1824,7 +1824,7 @@ class BacaraMachine extends Machine {
               velFactor = 0
             }
             const relVelocity = ((note.velocity + (velFactor >= 0 ? ((1.0 - note.velocity) * (velFactor / 100)) : ((note.velocity) * (velFactor / 100)) ) ) )
-            const color = this.sounding(ticks / ticksPerStep, 'drums.sounding', instrument) ? (note.velocity == 1 ? chalk.bgHex(`#${Math.floor(relVelocity * 0xFF).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x88).toString(16).padStart(2, '0')}00`) : chalk.bgHex(`#00${Math.floor(relVelocity * 0xFF).toString(16).padStart(2, '0')}00`)) : chalk.bgHex(`#${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}`)
+            const color = (this.sounding(ticks / ticksPerStep, 'drums.sounding', instrument) && !this.interface.getParameter('drums.mute') )? (note.velocity == 1 ? chalk.bgHex(`#${Math.floor(relVelocity * 0xFF).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x88).toString(16).padStart(2, '0')}00`) : chalk.bgHex(`#00${Math.floor(relVelocity * 0xFF).toString(16).padStart(2, '0')}00`)) : chalk.bgHex(`#${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}`)
             const rep = 2//count * 2 + ((count - 1) * 3)
             chNote = {colSpan:count, content:color(' '.repeat(rep >= 0 ? rep : 0))}
             if (redrum) {
@@ -2075,7 +2075,7 @@ class BacaraMachine extends Machine {
 
 
             const count = Math.ceil(durationTicks / ticksPerStep)
-            const mute = this.deviationsValue('mute', ticks / ticksPerStep)
+            const mute = this.deviationsValue('mute', ticks / ticksPerStep) || this.interface.getParameter('mute')
 
 
             let velocity = (note.velocity * 127) + (this.deviationsValue('velocity', ticks / ticksPerStep))
