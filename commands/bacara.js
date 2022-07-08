@@ -13,7 +13,7 @@ const deepSortObject = require('deep-sort-object')
 
 const osc = require('osc')
 
-
+let bacaraPresetLoaded = false
 const Random = require('../lib/random')
 
 const Pattern = require('../lib/pattern')
@@ -1417,6 +1417,8 @@ class BacaraMachine extends Machine {
     })
 
     this.interface.on('incoming', (msg, origin, channel) => {
+
+//     if (origin != 'clock') console.log('hi:',origin,msg)
       /*          if (msg._type!='clock' || origin!='clock') debug('Incoming (from %y) ch.%y: %y',origin,channel,msg)*/
       /*      return*/
       let modSlotIdx
@@ -3117,17 +3119,27 @@ function bacaraSequencer(name, sub, options) {
               const presetName = electra.parseSysexCmdPatchRequestResponse(options.electraOneCtrl, msg.bytes)
               if (presetName == bacaraPresetName || presetName.toLowerCase().indexOf('bacara') >= 0) {
                 debug('Electra One "%s" preset IS Loaded (patch)', bacaraPresetName)
-                //                bacaraMachine.virusReflectParts()
+                bacaraPresetLoaded = true
+                bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
+                if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
               } else {
                 debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (patch)', bacaraPresetName, presetName)
+                bacaraPresetLoaded = false
+                bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
+                if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
               }
             } else if (_.isEqual(sysexCmd, electraSysexCmdPresetNameResponse)) {
               const presetName = electra.parseSysexCmdPresetNameResponse(options.electraOneCtrl, msg.bytes) || ''
               if (!presetName || (presetName == bacaraPresetName || presetName.toLowerCase().indexOf('bacara') >= 0)) {
                 debug('Electra One "%s" preset IS Loaded (preset)', bacaraPresetName)
-                //                bacaraMachine.virusReflectParts()
+//                bacaraPresetLoaded = true
+//                bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
+//                if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
               } else {
                 debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (preset)', bacaraPresetName, presetName, presetName.toLowerCase().indexOf(bacaraPresetName.toLowerCase()), presetName, bacaraPresetName)
+                bacaraPresetLoaded = false
+                bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
+                if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
               }
             } else if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
               if (config.electra.checkPresetVia == 'patch' || semver.lt(_.get(e1_system_info, 'versionText', 'v0.0.0'), E1_FIRMWARE_PRESET_REQUEST_VERSION)) {
@@ -3138,6 +3150,9 @@ function bacaraSequencer(name, sub, options) {
                 Midi.send(options.electraOneCtrl, 'sysex', [0xF0, 0x00, 0x21, 0x45, 0x02, 0x7C, 0xF7])  /* Preset Name Request */
               }
               debug('Bacara Preset Name Request done')
+              bacaraPresetLoaded = false
+              bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
+              if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
             } else {
               //                         debug('unhandles sysex %y',sysexCmd)
             }
@@ -3149,7 +3164,7 @@ function bacaraSequencer(name, sub, options) {
   }
 
 
-  bacaraMachine.connect(options.electra, 'surface')
+  bacaraMachine.connect(options.electra, 'surface', 0, true, true, bacaraPresetLoaded)
 
   if (options.osc) {
     const oscSetup = _.get(config, `osc.devices.${options.osc}`)
@@ -3207,7 +3222,6 @@ function bacaraSequencer(name, sub, options) {
     bacaraMachine.connect(options.transpose, 'transpose', Number.isInteger(options.transposeChannel) ? parseInt(options.transposeChannel) - 1 : 0)
   }
   if (options.variantDevice) {
-///////////////    console.log('jjr')
     bacaraMachine.connect(options.variantDevice, 'variant', Number.isInteger(options.variantChannel) ? parseInt(options.variantChannel) - 1 : 0)
   }
 
