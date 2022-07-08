@@ -2003,7 +2003,7 @@ class BacaraMachine extends Machine {
 
 
       const split = this.interface.getParameter('split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
-      let deviceA = (split && noteMidiTransposed > split)
+      let deviceA = (noteMidiTransposed >= split)
       let deviceList = []
       for (let ticks = 0; ticks < (size * ticksPerStep); ticks += ticksPerStep) {
         let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.interface.getParameter('steps', 'modulated')) // steps?
@@ -2486,7 +2486,7 @@ class BacaraMachine extends Machine {
                   }
 
                   const split = this.interface.getParameter('split', 'modulated') + this.interface.getParameter('transpose', 'modulated')
-                  const dev =  (midiNote > split) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
+                  const dev =  (midiNote >= split) ? (switchSide ? 'B' : 'A') : (switchSide ? 'A' : 'B')
 
                   midiNote += this.interface.getParameter('transpose', 'modulated') + this.interface.getParameter(`device.${dev}.transpose`, 'modulated')
 
