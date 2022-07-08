@@ -624,7 +624,7 @@ class BacaraMachine extends Machine {
     const devicePortChange = (dev) => {
       return (elementPath, value, origin) => {
         if (origin == 'post-connect') {
-          debug('devicePortChange post-connect')
+//          debug('devicePortChange post-connect')
         } else {
           this.setState(`device.${dev}.portName`, Midi.normalisePortName(value))
           if (origin != 'internal') {
@@ -637,7 +637,7 @@ class BacaraMachine extends Machine {
     const deviceChannelChange = (dev) => {
       return (elementPath, value, origin) => {
         if (origin == 'post-connect') {
-          debug('deviceChannelChange post-connect')
+//          debug('deviceChannelChange post-connect')
         } else {
           if (origin != 'internal') {
             devicePortOrChannelChanged(dev)
@@ -1579,11 +1579,11 @@ class BacaraMachine extends Machine {
     paths.forEach( path => _.set(state, path, _.get((json && json.state) ? json.state : json, path)) )
 
     ;['A','B'].forEach( dev => {
-      console.log(dev,this.interface.getParameter(`device.${dev}.port`), Midi.normalisePortName(this.interface.getParameter(`device.${dev}.port`)))
+      //console.log(dev,this.interface.getParameter(`device.${dev}.port`), Midi.normalisePortName(this.interface.getParameter(`device.${dev}.port`)))
       if (!_.get(state,`device.${dev}.portName`)) _.set(state,`device.${dev}.portName`, Midi.normalisePortName(this.interface.getParameter(`device.${dev}.port`)))
     })
 
-    console.log(state)
+    //console.log(state)
 
     this.setStates(state)
     if (!this.getState('redrum')) {
