@@ -827,9 +827,11 @@ class BacaraMachine extends Machine {
 
     this.deviationsRotate = (type, originalValue) => {
       let rotation = this.interface.getParameter(`deviations.${type}.rotation`, 'modulated')
+/*      console.log(rotation,originalValue)*/
       if (typeof rotation == 'number') {
         rotation = rotation -  originalValue
       }
+/*      console.log(rotation)*/
       let map = this.getState(`deviations.${type}`)
       if (map) {
         const arrayRotate = (arr, reverse) => {
@@ -883,15 +885,22 @@ class BacaraMachine extends Machine {
       const steps = this.interface.getParameter('steps', 'modulated')
       const pat = euclidian ? this.deviationsEuclidian(euclidian, steps, rotation) : null
       if (density || euclidian) {
-        for (let idx = 0; idx < steps; idx++) {
-          if (density) {
-            map[idx] = (density >= Random.getRandomInt(100)) ? this.deviationsPickFromRange(type) : 0
-          } else if (euclidian) {
-            map[idx] = (pat && pat[idx]) ? this.deviationsPickFromRange(type) : 0
-          } else {
-            map[idx] = 0
+        let hits
+//        do {
+//          hits = 0
+          for (let idx = 0; idx < steps; idx++) {
+            if (density) {
+              map[idx] = (density >= Random.getRandomInt(100)) ? this.deviationsPickFromRange(type) : 0
+//              if (map[idx]) hits++
+            } else if (euclidian) {
+              map[idx] = (pat && pat[idx]) ? this.deviationsPickFromRange(type) : 0
+//              if (map[idx]) hits++
+            } else {
+              map[idx] = 0
+//              hits++
+            }
           }
-        }
+//        } while (hits==0)
       } else {
         map = null
       }
@@ -1718,6 +1727,9 @@ class BacaraMachine extends Machine {
   }
 
   sendDeviceProgramChange(dev) {
+
+    return // JJR
+
     const portName = this.getState(`device.${dev}.portName`)
     const channel = this.interface.getParameter(`device.${dev}.channel`)
     const bank = this.interface.getParameter(`device.${dev}.bank`)
@@ -2646,7 +2658,8 @@ class BacaraMachine extends Machine {
                         })
                         this.midiCache.setValue(portName, channel, 'note', midiNote, true)
 
-                        const durationMs = Math.floor(midiDuration / ticksPerStep) * ticksPerStep
+                        const durationMs = Math.round(midiDuration)//Math.floor(midiDuration / ticksPerStep) * ticksPerStep
+/*                       console.log(midiDuration,durationMs)*/
 
                         setTimeout((portName, midiNote, channel, shadowChannel) => {
                           debugMidiNoteOff('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
@@ -3132,9 +3145,9 @@ function bacaraSequencer(name, sub, options) {
               const presetName = electra.parseSysexCmdPresetNameResponse(options.electraOneCtrl, msg.bytes) || ''
               if (!presetName || (presetName == bacaraPresetName || presetName.toLowerCase().indexOf('bacara') >= 0)) {
                 debug('Electra One "%s" preset IS Loaded (preset)', bacaraPresetName)
-//                bacaraPresetLoaded = true
-//                bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
-//                if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
+               bacaraPresetLoaded = true
+               bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
+               if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
               } else {
                 debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (preset)', bacaraPresetName, presetName, presetName.toLowerCase().indexOf(bacaraPresetName.toLowerCase()), presetName, bacaraPresetName)
                 bacaraPresetLoaded = false
