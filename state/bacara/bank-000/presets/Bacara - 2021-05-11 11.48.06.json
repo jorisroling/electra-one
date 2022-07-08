@@ -1,43 +1,458 @@
 {
   "name": "electra-one",
-  "version": "1.2.13",
+  "version": "1.3.2",
   "model": "bacara",
   "modulation": {},
+  "variants": {
+    "A": {
+      "parameters": {
+        "deviations": {
+          "device": {
+            "euclidian": 6
+          },
+          "mute": {
+            "euclidian": 4
+          }
+        },
+        "drums": {
+          "density": 34
+        }
+      },
+      "state": {
+        "drums": {
+          "sounding": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              0,
+              1,
+              0,
+              0,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              1,
+              1,
+              0,
+              1,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    "B": {
+      "parameters": {
+        "deviations": {
+          "duration": {
+            "maximum": 38,
+            "minimum": -17
+          },
+          "mute": {
+            "euclidian": 4
+          }
+        },
+        "device": {
+          "A": {
+            "channel": 4,
+            "device": 20
+          }
+        },
+        "program": 1
+      }
+    },
+    "C": {
+      "parameters": {
+        "deviations": {
+          "duration": {
+            "maximum": 51,
+            "minimum": -30
+          },
+          "mute": {
+            "euclidian": 3
+          }
+        },
+        "device": {
+          "A": {
+            "channel": 4,
+            "device": 20
+          }
+        },
+        "drums": {
+          "density": 64
+        },
+        "split": 48
+      }
+    },
+    "D": {
+      "parameters": {
+        "deviations": {
+          "mute": {
+            "euclidian": 4
+          },
+          "note": {
+            "euclidian": 0,
+            "maximum": 6,
+            "minimum": 6,
+            "probability": 0
+          }
+        }
+      }
+    },
+    "E": {
+      "parameters": {
+        "drums": {
+          "density": 64
+        }
+      }
+    },
+    "F": {
+      "parameters": {
+        "deviations": {
+          "duration": {
+            "maximum": 51,
+            "minimum": -30
+          },
+          "mute": {
+            "euclidian": 4
+          }
+        },
+        "device": {
+          "A": {
+            "channel": 4,
+            "device": 20
+          }
+        },
+        "drums": {
+          "density": 64
+        },
+        "split": 48
+      }
+    },
+    "G": {},
+    "H": {
+      "parameters": {
+        "drums": {
+          "redrum": [
+            {
+              "instrument": 11
+            },
+            {
+              "instrument": 10
+            },
+            {
+              "instrument": 0
+            },
+            {
+              "instrument": 3
+            },
+            {
+              "instrument": 1
+            },
+            {
+              "instrument": 2
+            },
+            null
+          ]
+        }
+      }
+    },
+    "I": {
+      "parameters": {
+        "deviations": {
+          "duration": {
+            "maximum": 51
+          }
+        },
+        "drums": {
+          "density": 64
+        }
+      }
+    },
+    "J": {},
+    "K": {},
+    "L": {},
+    "M": {
+      "parameters": {
+        "deviations": {
+          "duration": {
+            "maximum": 51,
+            "minimum": -30
+          },
+          "mute": {
+            "euclidian": 3
+          }
+        },
+        "device": {
+          "A": {
+            "channel": 4,
+            "device": 20
+          }
+        },
+        "drums": {
+          "density": 64
+        },
+        "split": 48
+      }
+    },
+    "N": {},
+    "O": {
+      "parameters": {
+        "matrix": {
+          "slot": [
+            {
+              "destination": [
+                {
+                  "amount": 1.5873015873015817
+                },
+                {
+                  "amount": 1.5873015873015817
+                },
+                {
+                  "amount": 1.5873015873015817
+                }
+              ]
+            },
+            {
+              "destination": [
+                {
+                  "amount": 1.5873015873015817
+                },
+                {
+                  "amount": 1.5873015873015817
+                },
+                {
+                  "amount": 1.5873015873015817
+                }
+              ]
+            },
+            {
+              "destination": [
+                {
+                  "amount": 1.5873015873015817
+                },
+                {
+                  "amount": 1.5873015873015817
+                },
+                {
+                  "amount": 1.5873015873015817
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
   "state": {
     "device": {
       "A": {
-        "portName": "virus-ti"
+        "channelAdd": 0,
+        "notes": 504,
+        "portName": "mb33"
       },
       "B": {
+        "channelAdd": 9,
+        "notes": 2273,
         "portName": "virus-ti"
       }
     },
     "drums": {
       "grid": [
         [
-          true,
-          true,
-          true,
           false,
-          false,
-          false,
-          false,
-          false,
-          true,
-          false,
-          false,
-          false,
-          false,
-          false,
-          false,
-          false
-        ],
-        [
-          true,
-          true,
-          true,
-          false,
-          true,
           false,
           true,
           false,
@@ -48,25 +463,11 @@
           false,
           true,
           true,
-          false
-        ],
-        [
-          false,
-          false,
           true,
-          false,
-          false,
-          false,
           true,
           false,
           true,
-          false,
-          true,
-          false,
-          false,
-          true,
-          false,
-          false
+          true
         ],
         [
           false,
@@ -87,7 +488,6 @@
           false
         ],
         [
-          true,
           false,
           false,
           false,
@@ -95,7 +495,26 @@
           false,
           false,
           false,
+          false,
+          false,
+          false,
+          false,
           true,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
           false,
           false,
           false,
@@ -112,57 +531,104 @@
           true,
           false,
           false,
+          true,
+          false,
           false,
           true,
           false,
           false,
-          false,
-          true,
           false,
           false,
           false
+        ],
+        [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
         ]
       ],
       "instrument": [
         {
-          "portName": "bacara"
+          "channel": 12,
+          "portName": "analog-rytm"
         },
         {
-          "portName": "bacara"
+          "channel": 12,
+          "portName": "analog-rytm"
         },
         {
-          "portName": "bacara"
+          "channel": 12,
+          "portName": "analog-rytm"
         },
         {
-          "portName": "bacara"
+          "channel": 12,
+          "portName": "analog-rytm"
         },
         {
-          "portName": "bacara"
+          "channel": 12,
+          "portName": "analog-rytm"
         },
         {
-          "portName": "bacara"
+          "channel": 12,
+          "portName": "analog-rytm"
         },
         {
-          "portName": "bacara"
+          "channel": 12,
+          "portName": "analog-rytm"
         },
         {
-          "portName": "bacara"
+          "channel": 12,
+          "portName": "analog-rytm"
         },
         {
-          "portName": "bacara"
+          "channel": 12,
+          "portName": "analog-rytm"
         },
         {
-          "portName": "bacara"
+          "channel": 12,
+          "portName": "analog-rytm"
         },
         {
-          "portName": "bacara"
+          "channel": 12,
+          "portName": "analog-rytm"
         }
       ],
       "midi": {
         "header": {
           "keySignatures": [],
           "meta": [],
-          "name": "Bacara Drums - 2021-10-29 09:18:28",
+          "name": "Bacara Drums - 2022-06-12 09:21:16",
           "ppq": 480,
           "tempos": [],
           "timeSignatures": []
@@ -171,13 +637,13 @@
           {
             "channel": 0,
             "controlChanges": {},
-            "pitchBends": [],
+            "endOfTrackTicks": 1860,
             "instrument": {
               "family": "piano",
               "name": "acoustic grand piano",
               "number": 0
             },
-            "name": "Bacara Drums - 2021-10-29 09:18:28",
+            "name": "Bacara Drums - 2022-06-12 09:21:16",
             "notes": [
               {
                 "duration": 0.0625,
@@ -186,7 +652,7 @@
                 "name": "C2",
                 "ticks": 0,
                 "time": 0,
-                "velocity": 0.9453125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -195,13 +661,13 @@
                 "name": "C#2",
                 "ticks": 0,
                 "time": 0,
-                "velocity": 0.9453125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
-                "midi": 44,
-                "name": "G#2",
+                "midi": 40,
+                "name": "E2",
                 "ticks": 0,
                 "time": 0,
                 "velocity": 1
@@ -209,29 +675,11 @@
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
-                "midi": 45,
-                "name": "A2",
-                "ticks": 0,
-                "time": 0,
-                "velocity": 0.9453125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
                 "midi": 46,
                 "name": "A#2",
                 "ticks": 0,
                 "time": 0,
-                "velocity": 0.9453125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 45,
-                "name": "A2",
-                "ticks": 120,
-                "time": 0.125,
-                "velocity": 0.9453125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -240,34 +688,43 @@
                 "name": "A#2",
                 "ticks": 120,
                 "time": 0.125,
-                "velocity": 0.9453125
+                "velocity": 0.9448818897637795
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 45,
+                "name": "A2",
+                "ticks": 240,
+                "time": 0.25,
+                "velocity": 0.8818897637795275
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 38,
+                "name": "D2",
+                "ticks": 360,
+                "time": 0.375,
+                "velocity": 0.9448818897637795
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 39,
+                "name": "D#2",
+                "ticks": 360,
+                "time": 0.375,
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
                 "midi": 42,
                 "name": "F#2",
-                "ticks": 240,
-                "time": 0.25,
-                "velocity": 0.9453125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 45,
-                "name": "A2",
-                "ticks": 240,
-                "time": 0.25,
-                "velocity": 1
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 46,
-                "name": "A#2",
-                "ticks": 240,
-                "time": 0.25,
-                "velocity": 0.9453125
+                "ticks": 360,
+                "time": 0.375,
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -276,7 +733,7 @@
                 "name": "C2",
                 "ticks": 480,
                 "time": 0.5,
-                "velocity": 0.9453125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -285,16 +742,25 @@
                 "name": "C#2",
                 "ticks": 480,
                 "time": 0.5,
-                "velocity": 0.9453125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
-                "midi": 38,
-                "name": "D2",
+                "midi": 40,
+                "name": "E2",
                 "ticks": 480,
                 "time": 0.5,
-                "velocity": 0.9453125
+                "velocity": 1
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 41,
+                "name": "F2",
+                "ticks": 480,
+                "time": 0.5,
+                "velocity": 1
               },
               {
                 "duration": 0.0625,
@@ -303,70 +769,61 @@
                 "name": "G2",
                 "ticks": 480,
                 "time": 0.5,
-                "velocity": 0.9453125
+                "velocity": 1
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
-                "midi": 44,
-                "name": "G#2",
+                "midi": 46,
+                "name": "A#2",
                 "ticks": 480,
                 "time": 0.5,
-                "velocity": 0.9453125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
                 "midi": 45,
                 "name": "A2",
-                "ticks": 480,
-                "time": 0.5,
-                "velocity": 0.9453125
+                "ticks": 600,
+                "time": 0.625,
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
-                "midi": 41,
-                "name": "F2",
-                "ticks": 600,
-                "time": 0.625,
-                "velocity": 0.6328125
+                "midi": 39,
+                "name": "D#2",
+                "ticks": 720,
+                "time": 0.75,
+                "velocity": 0.6299212598425197
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 45,
+                "name": "A2",
+                "ticks": 720,
+                "time": 0.75,
+                "velocity": 0.8818897637795275
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 37,
+                "name": "C#2",
+                "ticks": 840,
+                "time": 0.875,
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
                 "midi": 40,
                 "name": "E2",
-                "ticks": 720,
-                "time": 0.75,
-                "velocity": 1
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 42,
-                "name": "F#2",
-                "ticks": 720,
-                "time": 0.75,
-                "velocity": 0.9453125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 45,
-                "name": "A2",
-                "ticks": 720,
-                "time": 0.75,
-                "velocity": 1
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 41,
-                "name": "F2",
                 "ticks": 840,
                 "time": 0.875,
-                "velocity": 0.6328125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -375,7 +832,7 @@
                 "name": "C2",
                 "ticks": 960,
                 "time": 1,
-                "velocity": 0.6328125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -384,16 +841,16 @@
                 "name": "C#2",
                 "ticks": 960,
                 "time": 1,
-                "velocity": 0.6328125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
-                "midi": 42,
-                "name": "F#2",
+                "midi": 38,
+                "name": "D2",
                 "ticks": 960,
                 "time": 1,
-                "velocity": 0.8828125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -402,7 +859,7 @@
                 "name": "A#2",
                 "ticks": 960,
                 "time": 1,
-                "velocity": 0.6328125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -411,16 +868,16 @@
                 "name": "A2",
                 "ticks": 1080,
                 "time": 1.125,
-                "velocity": 0.9453125
+                "velocity": 1
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
-                "midi": 42,
-                "name": "F#2",
+                "midi": 40,
+                "name": "E2",
                 "ticks": 1200,
                 "time": 1.25,
-                "velocity": 0.8828125
+                "velocity": 0.6299212598425197
               },
               {
                 "duration": 0.0625,
@@ -429,7 +886,34 @@
                 "name": "A2",
                 "ticks": 1200,
                 "time": 1.25,
-                "velocity": 0.8828125
+                "velocity": 0.6299212598425197
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 42,
+                "name": "F#2",
+                "ticks": 1320,
+                "time": 1.375,
+                "velocity": 1
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 45,
+                "name": "A2",
+                "ticks": 1320,
+                "time": 1.375,
+                "velocity": 1
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 46,
+                "name": "A#2",
+                "ticks": 1320,
+                "time": 1.375,
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -438,7 +922,7 @@
                 "name": "C2",
                 "ticks": 1440,
                 "time": 1.5,
-                "velocity": 0.6328125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
@@ -447,16 +931,16 @@
                 "name": "C#2",
                 "ticks": 1440,
                 "time": 1.5,
-                "velocity": 0.6328125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
-                "midi": 38,
-                "name": "D2",
+                "midi": 41,
+                "name": "F2",
                 "ticks": 1440,
                 "time": 1.5,
-                "velocity": 0.6328125
+                "velocity": 1
               },
               {
                 "duration": 0.0625,
@@ -465,15 +949,6 @@
                 "name": "G2",
                 "ticks": 1440,
                 "time": 1.5,
-                "velocity": 0.8828125
-              },
-              {
-                "duration": 0.0625,
-                "durationTicks": 60,
-                "midi": 42,
-                "name": "F#2",
-                "ticks": 1560,
-                "time": 1.625,
                 "velocity": 1
               },
               {
@@ -481,9 +956,45 @@
                 "durationTicks": 60,
                 "midi": 45,
                 "name": "A2",
+                "ticks": 1440,
+                "time": 1.5,
+                "velocity": 0.9448818897637795
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 46,
+                "name": "A#2",
+                "ticks": 1440,
+                "time": 1.5,
+                "velocity": 0.9448818897637795
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 37,
+                "name": "C#2",
                 "ticks": 1560,
                 "time": 1.625,
-                "velocity": 0.9453125
+                "velocity": 0.9448818897637795
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 46,
+                "name": "A#2",
+                "ticks": 1560,
+                "time": 1.625,
+                "velocity": 0.9448818897637795
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 37,
+                "name": "C#2",
+                "ticks": 1680,
+                "time": 1.75,
+                "velocity": 0.6299212598425197
               },
               {
                 "duration": 0.0625,
@@ -492,27 +1003,46 @@
                 "name": "A2",
                 "ticks": 1680,
                 "time": 1.75,
+                "velocity": 0.8818897637795275
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 37,
+                "name": "C#2",
+                "ticks": 1800,
+                "time": 1.875,
+                "velocity": 0.9448818897637795
+              },
+              {
+                "duration": 0.0625,
+                "durationTicks": 60,
+                "midi": 38,
+                "name": "D2",
+                "ticks": 1800,
+                "time": 1.875,
                 "velocity": 1
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
-                "midi": 40,
-                "name": "E2",
+                "midi": 45,
+                "name": "A2",
                 "ticks": 1800,
                 "time": 1.875,
-                "velocity": 0.6328125
+                "velocity": 0.9448818897637795
               },
               {
                 "duration": 0.0625,
                 "durationTicks": 60,
-                "midi": 41,
-                "name": "F2",
+                "midi": 46,
+                "name": "A#2",
                 "ticks": 1800,
                 "time": 1.875,
-                "velocity": 0.6328125
+                "velocity": 0.9448818897637795
               }
-            ]
+            ],
+            "pitchBends": []
           }
         ]
       },
@@ -543,218 +1073,472 @@
           1,
           0,
           0,
-          0,
+          1,
           1,
           0,
           0,
           0,
           1,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
           1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           1,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           1
         ],
         [
           0,
           0,
           0,
-          0,
-          0,
-          1,
-          0,
           1,
           0,
           0,
           0,
           0,
+          1,
           0,
           0,
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0,
+          1,
+          2,
+          0,
+          0,
+          5,
+          1,
+          2,
+          1,
+          0,
+          2,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
           0,
           1
         ],
         [
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          1,
-          0,
-          2,
-          0,
-          2,
-          0,
-          0,
-          2,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2,
-          0,
-          0,
-          0
-        ],
-        [
-          2,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          1,
-          1,
-          2,
-          0,
-          1,
-          0,
-          2,
-          0,
-          0,
-          1,
-          2,
-          0,
-          0,
-          1,
-          2,
-          0
-        ],
-        [
-          1,
           1,
           1,
           0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
           1,
           1,
           1,
           0,
           1,
-          0,
           1,
-          0,
-          0,
           1,
           0,
           1,
-          0,
           1,
-          2,
-          0
+          1,
+          0,
+          1
         ]
       ],
       "redrum": [
         {
+          "channel": 10,
           "portName": "analog-rytm"
         },
         {
+          "channel": 10,
           "portName": "analog-rytm"
         },
         {
+          "channel": 10,
           "portName": "analog-rytm"
         },
         {
+          "channel": 10,
           "portName": "analog-rytm"
         },
         {
+          "channel": 14,
           "portName": "analog-rytm"
         },
         {
+          "channel": 12,
+          "portName": "analog-rytm"
+        },
+        {
+          "channel": 10,
+          "portName": "analog-rytm"
+        },
+        {
+          "channel": 11,
+          "portName": "analog-rytm"
+        },
+        {
+          "channel": 6,
+          "portName": "analog-rytm"
+        },
+        {
+          "channel": 7,
+          "portName": "analog-rytm"
+        },
+        {
+          "channel": 2,
+          "portName": "analog-rytm"
+        },
+        {
+          "channel": 3,
           "portName": "analog-rytm"
         }
       ],
       "sounding": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
         [
           1,
           1,
@@ -996,7 +1780,7 @@
       0,
       0,
       0,
-      1,
+      0,
       0,
       0,
       0,
@@ -1011,10 +1795,138 @@
       0
     ],
     "pattern": {
+      "grid": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
       "header": {
         "keySignatures": [],
         "meta": [],
-        "name": "Acid - 2021-05-09 14:09:51",
+        "name": "Acid - 2021-05-12 10:22:20",
         "ppq": 480,
         "tempos": [],
         "timeSignatures": []
@@ -1023,13 +1935,13 @@
         {
           "channel": 0,
           "controlChanges": {},
-          "pitchBends": [],
+          "endOfTrackTicks": 1920,
           "instrument": {
             "family": "piano",
             "name": "acoustic grand piano",
             "number": 0
           },
-          "name": "Acid - 2021-05-09 14:09:51",
+          "name": "Acid - 2021-05-12 10:22:20",
           "notes": [
             {
               "duration": 0.1875,
@@ -1043,80 +1955,62 @@
             {
               "duration": 0.1875,
               "durationTicks": 180,
-              "midi": 57,
-              "name": "A3",
-              "ticks": 240,
-              "time": 0.25,
-              "velocity": 0.7874015748031497
+              "midi": 48,
+              "name": "C3",
+              "ticks": 120,
+              "time": 0.125,
+              "velocity": 1
             },
             {
               "duration": 0.0625,
               "durationTicks": 60,
-              "midi": 45,
-              "name": "A2",
-              "ticks": 360,
-              "time": 0.375,
-              "velocity": 0.7874015748031497
-            },
-            {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 25,
-              "name": "C#1",
+              "midi": 38,
+              "name": "D2",
               "ticks": 480,
               "time": 0.5,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.1875,
+              "durationTicks": 180,
+              "midi": 55,
+              "name": "G3",
+              "ticks": 600,
+              "time": 0.625,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 31,
+              "name": "G1",
+              "ticks": 1080,
+              "time": 1.125,
               "velocity": 1
             },
             {
               "duration": 0.0625,
               "durationTicks": 60,
-              "midi": 46,
-              "name": "A#2",
-              "ticks": 600,
-              "time": 0.625,
-              "velocity": 1
-            },
-            {
-              "duration": 0.1875,
-              "durationTicks": 180,
-              "midi": 43,
-              "name": "G2",
-              "ticks": 720,
-              "time": 0.75,
-              "velocity": 0.7874015748031497
-            },
-            {
-              "duration": 0.1875,
-              "durationTicks": 180,
-              "midi": 67,
-              "name": "G4",
-              "ticks": 960,
-              "time": 1,
-              "velocity": 0.7874015748031497
-            },
-            {
-              "duration": 0.1875,
-              "durationTicks": 180,
-              "midi": 36,
-              "name": "C2",
+              "midi": 31,
+              "name": "G1",
               "ticks": 1200,
               "time": 1.25,
-              "velocity": 1
+              "velocity": 0.7874015748031497
             },
             {
-              "duration": 0.1875,
-              "durationTicks": 180,
-              "midi": 41,
-              "name": "F2",
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 31,
+              "name": "G1",
               "ticks": 1320,
               "time": 1.375,
               "velocity": 0.7874015748031497
             },
             {
-              "duration": 0.1875,
-              "durationTicks": 180,
-              "midi": 36,
-              "name": "C2",
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 31,
+              "name": "G1",
               "ticks": 1440,
               "time": 1.5,
               "velocity": 0.7874015748031497
@@ -1124,29 +2018,55 @@
             {
               "duration": 0.0625,
               "durationTicks": 60,
-              "midi": 24,
-              "name": "C1",
+              "midi": 30,
+              "name": "F#1",
+              "ticks": 1560,
+              "time": 1.625,
+              "velocity": 0.7874015748031497
+            },
+            {
+              "duration": 0.0625,
+              "durationTicks": 60,
+              "midi": 43,
+              "name": "G2",
               "ticks": 1680,
               "time": 1.75,
               "velocity": 1
             },
             {
-              "duration": 0.0625,
-              "durationTicks": 60,
-              "midi": 24,
-              "name": "C1",
+              "duration": 0.125,
+              "durationTicks": 120,
+              "midi": 43,
+              "name": "G2",
               "ticks": 1800,
               "time": 1.875,
-              "velocity": 0.7874015748031497
+              "velocity": 1
             }
           ],
-          "endOfTrackTicks": 1860
+          "pitchBends": []
         }
       ]
     },
-    "patternSteps": 16,
     "playing": true,
     "redrum": [
+      {
+        "portName": "analog-rytm"
+      },
+      {
+        "portName": "analog-rytm"
+      },
+      {
+        "portName": "analog-rytm"
+      },
+      {
+        "portName": "analog-rytm"
+      },
+      {
+        "portName": "analog-rytm"
+      },
+      {
+        "portName": "analog-rytm"
+      },
       {
         "portName": "analog-rytm"
       },
@@ -1167,367 +2087,123 @@
       }
     ],
     "remote": {
-      "next": "virus.search.part.0.next",
-      "nextBank": "virus.search.part.0.nextBank",
-      "previous": "virus.search.part.0.previous",
-      "previousBank": "virus.search.part.0.previousBank",
-      "random": "virus.search.part.0.random"
-    },
-    "sounding": [
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1
-    ],
-    "virus": {
-      "part": [
-        {
-          "macros": [
-            {
-              "cc": 1,
-              "name": "Mod Wheel",
-              "softknob": 1,
-              "type": "cc"
-            },
-            {
-              "cc": 16,
-              "name": "Control 16",
-              "softknob": 13,
-              "type": "cc"
-            }
-          ],
-          "preset": {
-            "bank": 25,
-            "name": "Audigy Plk",
-            "page": [
-              "0C01191400000000000040000000000000000000586021133F4C21000040406000127F0040005D40000000004D4D404000095D01020008242C404E230000400000000048010000400000464640404030010000400000404040404071003400000000307F400001017F1E44127C4001000245000A285B01200000000100000000",
-              "4000000000400030010000010000000039040000000000000001423E0100010101240200400000000000404C2841554040404009344B5240404000005F4000000326611811400040000040004000400040004000036F247030617F005E3C331A4B0F20000000000F6E7903004003004041756469677920506C6B000500000000",
-              "0000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007F40000000000014460040461446004046004000400040004000400040004000400040000000000000000000000000000000000000001F40",
-              "640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640000000000000000000000000000000000000000000000000000307F40000100001E"
-            ],
-            "part": 1,
-            "program": 20
-          }
-        },
-        {
-          "macros": [
-            {
-              "cc": 6,
-              "index": 1,
-              "name": "Destroy",
-              "softknob": 5,
-              "type": "cc"
-            },
-            {
-              "cc": 1,
-              "index": 2,
-              "name": "Length",
-              "softknob": 1,
-              "type": "cc"
-            }
-          ],
-          "preset": {
-            "bank": 13,
-            "name": "Quarp   BC",
-            "page": [
-              "0C000D4A0100007F0300407F00000000000000004060000000513E007F404060003D7F0140007F661420384E13405A7C2A007F0002020600005F00142E00401F0000003E027F0066000040564040404A017F00400000404E462A40400140000000015B3A400001017F3B3700001201000E2D402B170C01400000000100000000",
-              "40040C010000006B010000012B0000043704000503007F000001423E01000001002400005A00000000004040282B554040404010231540404040001652400501075F5303726E2A541A014A00400040164030400004003C42390F2E0040473340402F2300090000001940001A4000004051756172702020204243000800010000",
-              "0100025014311C0000004003040200000000007F40407F7F40000016000000000000000000000000004000000000000000000000000000000000000000400000000000000000007F7F40000000000014460040461446004046004000400040004000400040004000400040000000000000000000000000000000000000001F40",
-              "6401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400000000000000000000000000000000000000000000000000015B3A400001000016"
-            ],
-            "part": 2,
-            "program": 74
-          }
-        },
-        {
-          "macros": [
-            {
-              "cc": 1,
-              "index": 1,
-              "name": "Filter",
-              "softknob": 1,
-              "type": "cc"
-            },
-            {
-              "cc": 6,
-              "index": 2,
-              "name": "Thinner",
-              "softknob": 5,
-              "type": "cc"
-            }
-          ],
-          "preset": {
-            "bank": 0,
-            "name": "cutRes  zs",
-            "page": [
-              "0C0100000300007F0000407F000000000000000B406000000B4C000000404060004042017F0000400040463A7F7F6060400300000001002E02407F084E0040040000000001000040000040404052400001000140000040404054407F014000000000307F400001017F2316333F450100012B003B000000400000000100000000",
-              "400000000040005C01000001000000003904121309027F0000014C3401000101012400004000000000004040282B55404040401D404340404040003D404001050319250019400040003A400040004000400040000300247030407F00403F33404000000000000003004007752002006063757452657320207A73000600010000",
-              "0000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007F40000000000014460040461446004046004000400040004000400040004000400040000000000000000000000000000000000000001F40",
-              "640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640000000000000000000000000000000000000000000000000000307F40000100002A"
-            ],
-            "part": 3,
-            "program": 0
-          }
-        },
-        {
-          "macros": [
-            {
-              "cc": 13,
-              "index": 2,
-              "name": "Thinner",
-              "softknob": 10,
-              "type": "cc"
-            },
-            {
-              "cc": 3,
-              "name": "Control 3",
-              "softknob": 3,
-              "type": "cc"
-            }
-          ],
-          "preset": {
-            "bank": 13,
-            "name": "twisted  >",
-            "page": [
-              "0C010D3F0000000000004000000000000000004D3F60004B002E00000040404000267F017F00003F223800356A6A395D000000000100002C21402400537F472700000010023000400000404040404050020100402003407F404040150034010000011D7F400001017F00553D126B01000100291C6E0C05560000000100000000",
-              "400000000040005A01000001162800003904000A090000000001423E01000101012402200000000000003D4F373700404040401640464040404000004040280A0562541409400E400C207F207F004014400E4000057F337F7059360055610040593D3100000F000000400000400000407477697374656420203E010200000000",
-              "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000400040004000400040004000400040000000000000000000000000000000000000001F40",
-              "640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640040640140640000000000000000000000000000000000000000000000000000000000000000000F"
-            ],
-            "part": 4,
-            "program": 63
-          }
-        },
-        {
-          "macros": [
-            {
-              "cc": 6,
-              "index": 1,
-              "name": "Destroy",
-              "softknob": 5,
-              "type": "cc"
-            },
-            {
-              "cc": 1,
-              "index": 2,
-              "name": "Length",
-              "softknob": 1,
-              "type": "cc"
-            }
-          ],
-          "preset": {
-            "bank": 13,
-            "name": "Quarp   BC",
-            "page": [
-              "0C000D4A0100007F0300407F00000000000000004060000000513E007F404060003D7F0140007F661420384E13405A7C2A007F0002020600005F00142E00401F0000003E027F0066000040564040404A017F00400000404E462A40400140000000015B3A400001017F3B3700001201000E2D402B170C01400000000100000000",
-              "40040C010000006B010000012B0000043704000503007F000001423E01000001002400005A00000000004040282B554040404010231540404040001652400501075F5303726E2A541A014A00400040164030400004003C42390F2E0040473340402F2300090000001940001A4000004051756172702020204243000800010000",
-              "0100025014311C0000004003040200000000007F40407F7F40000016000000000000000000000000004000000000000000000000000000000000000000400000000000000000007F7F40000000000014460040461446004046004000400040004000400040004000400040000000000000000000000000000000000000001F40",
-              "6401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400000000000000000000000000000000000000000000000000015B3A40000100001C"
-            ],
-            "part": 5,
-            "program": 74
-          }
-        },
-        {
-          "macros": [],
-          "preset": {
-            "bank": 0,
-            "name": "- Init -",
-            "page": [
-              "0C0100000300007F0000407F000000000040000040604000004020000040406000400000400000407F40000000004040400000000000002E00407F007F7F400400000030010000400000404040404030010000400000404040404000014000000000307F400001017F0045104040010001004000100C01400000000100000000",
-              "400000000040003001000001000000003904000000007F000001423E01000101012400004000000000004040282B55404040400000404040404000404040000000004000004000400000400040004000400040000300247030407F004047334040282000000000030040030040030040202D20496E6974202D20020000010300",
-              "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000400040004000400040004000400040000000000000000000000000000000000000001F40",
-              "6401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400406401406400000000000000000000000000000000000000000000000000000000000000000009"
-            ],
-            "part": 6,
-            "program": 0
-          }
-        }
-      ]
+      "next": "next_preset",
+      "previous": "previous_preset"
     }
   },
   "parameters": {
-    "bank": 0,
     "base": 4,
-    "density": 100,
-    "deviate": 29,
     "device": {
       "A": {
-        "bank": 46,
-        "channel": 1,
-        "device": 17,
-        "mute": 0,
-        "port": 23,
-        "program": 84,
-        "transpose": 0
+        "channel": 16,
+        "device": 56,
+        "port": 23
       },
       "B": {
-        "bank": 127,
-        "channel": 2,
-        "device": 18,
-        "mute": 0,
-        "port": 23,
-        "program": 54,
-        "transpose": 0
+        "bank": 30,
+        "channel": 1,
+        "device": 17,
+        "dispatch": 45,
+        "port": 17,
+        "program": 2,
+        "transpose": 12
       }
     },
     "drums": {
-      "continue": 0,
-      "density": 100,
       "instrument": [
         {
-          "device": 10,
-          "mute": 0,
-          "note": 36
+          "device": 53
         },
         {
-          "device": 10,
-          "mute": 0,
-          "note": 37
+          "device": 53,
+          "mute": 1
         },
         {
-          "device": 10,
-          "mute": 0,
-          "note": 53
+          "device": 53,
+          "mute": 1
         },
         {
-          "device": 10,
-          "mute": 0,
-          "note": 54
+          "device": 53,
+          "mute": 1
         },
         {
-          "device": 10,
-          "mute": 0,
-          "note": 55
+          "device": 53,
+          "mute": 1
         },
         {
-          "device": 10,
-          "mute": 0,
-          "note": 52
+          "device": 53,
+          "mute": 1
         },
         {
-          "device": 10,
-          "mute": 0,
-          "note": 45
+          "device": 53,
+          "mute": 1,
+          "note": 3
         },
         {
-          "device": 10,
-          "mute": 0,
-          "note": 46
+          "device": 53,
+          "mute": 1
         },
         {
-          "device": 10,
-          "mute": 0,
-          "note": 47
+          "device": 53
         },
         {
-          "device": 10,
-          "mute": 0,
-          "note": 39
+          "device": 53
         },
         {
-          "device": 10,
-          "mute": 0,
-          "note": 38
+          "device": 53
         }
       ],
       "mute": 0,
-      "probability": 100,
       "redrum": [
         {
           "device": 51,
           "instrument": 0,
-          "mute": 0,
-          "note": 36
+          "mute": 1
         },
         {
           "device": 51,
-          "instrument": 1,
-          "mute": 0,
+          "instrument": 0,
+          "mute": 1,
           "note": 38
         },
         {
           "device": 51,
           "instrument": 2,
-          "mute": 0,
+          "mute": 1,
           "note": 43
         },
         {
           "device": 51,
           "instrument": 6,
-          "mute": 0,
+          "mute": 1,
           "note": 39
         },
         {
-          "device": 51,
+          "device": 55,
           "instrument": 10,
-          "mute": 0,
+          "mute": 1,
           "note": 42
         },
         {
-          "device": 51,
+          "device": 53,
           "instrument": 9,
-          "mute": 0,
+          "mute": 1,
           "note": 46
         }
-      ],
-      "steps": 16,
-      "style": 1,
-      "velocity": 0
+      ]
     },
-    "gate": 1.13,
-    "grid": 2,
     "lfo": [
       {
-        "amount": 79,
         "control": 40,
-        "density": 127,
-        "device": {
-          "A": 1,
-          "B": 1
-        },
-        "offset": 69,
-        "phase": 43,
-        "rate": 2,
         "shape": 1
       },
       {
-        "amount": 86,
         "control": 41,
-        "density": 127,
         "device": {
           "A": 1,
           "B": 1
         },
-        "offset": 76,
-        "phase": 4,
-        "rate": 1,
         "shape": 1
-      },
-      {
-        "amount": 0,
-        "control": 0,
-        "density": 0,
-        "device": {
-          "A": 0,
-          "B": 0
-        },
-        "offset": 50,
-        "phase": 0,
-        "rate": 64,
-        "shape": 0
       }
     ],
     "matrix": {
@@ -1535,297 +2211,47 @@
         {
           "destination": [
             {
-              "amount": 0,
-              "target": 0
+              "amount": 1.5873015873015817
             },
             {
-              "amount": 0,
-              "target": 0
+              "amount": 1.5873015873015817
             },
             {
-              "amount": 0,
-              "target": 0
+              "amount": 1.5873015873015817
             }
-          ],
-          "slewLimiter": 0,
-          "source": 0,
-          "value": 0
+          ]
         },
         {
           "destination": [
             {
-              "amount": 0,
-              "target": 0
+              "amount": 1.5873015873015817
             },
             {
-              "amount": 0,
-              "target": 0
+              "amount": 1.5873015873015817
             },
             {
-              "amount": 0,
-              "target": 0
+              "amount": 1.5873015873015817
             }
-          ],
-          "slewLimiter": 0,
-          "source": 0,
-          "value": 0
+          ]
         },
         {
           "destination": [
             {
-              "amount": 0,
-              "target": 0
+              "amount": 1.5873015873015817
             },
             {
-              "amount": 0,
-              "target": 0
+              "amount": 1.5873015873015817
             },
             {
-              "amount": 0,
-              "target": 0
+              "amount": 1.5873015873015817
             }
-          ],
-          "slewLimiter": 0,
-          "source": 0,
-          "value": 0
+          ]
         }
       ]
     },
-    "mute": 0,
-    "muteShift": 0,
-    "muteSteps": 0,
-    "octaveChance": 17,
-    "pattern": 0,
-    "probability": 100,
-    "program": 1,
-    "scales": 28,
-    "shift": 0,
-    "split": 57,
-    "steps": 16,
-    "temperature": 3.07,
-    "track": [
-      {
-        "bank": 0,
-        "device": 0,
-        "mute": 1,
-        "program": 0
-      },
-      {
-        "bank": 0,
-        "device": 0,
-        "mute": 1,
-        "program": 0
-      },
-      {
-        "bank": 0,
-        "device": 0,
-        "mute": 1,
-        "program": 0
-      },
-      {
-        "bank": 0,
-        "device": 0,
-        "mute": 1,
-        "program": 0
-      },
-      {
-        "bank": 0,
-        "device": 0,
-        "mute": 1,
-        "program": 0
-      },
-      {
-        "bank": 0,
-        "device": 0,
-        "mute": 1,
-        "program": 0
-      }
-    ],
-    "transpose": 3,
-    "virus": {
-      "axyz": {
-        "bank": 46,
-        "level": 100,
-        "mode": 0,
-        "part": 1,
-        "program": 84,
-        "x1": {
-          "control": 0,
-          "target": [
-            1,
-            2
-          ]
-        },
-        "x2": {
-          "control": 0,
-          "target": [
-            22,
-            27
-          ]
-        },
-        "x3": {
-          "control": 0,
-          "target": [
-            42,
-            20
-          ]
-        },
-        "x4": {
-          "control": 0,
-          "target": [
-            118,
-            0
-          ]
-        },
-        "y1": {
-          "control": 0,
-          "target": [
-            3,
-            0
-          ]
-        },
-        "y2": {
-          "control": 0,
-          "target": [
-            23,
-            28
-          ]
-        },
-        "y3": {
-          "control": 0,
-          "target": [
-            45,
-            0
-          ]
-        },
-        "y4": {
-          "control": 0,
-          "target": [
-            119,
-            0
-          ]
-        }
-      },
-      "macros": {
-        "part": [
-          {
-            "control": [
-              1,
-              0,
-              0,
-              0,
-              0,
-              0
-            ]
-          },
-          {
-            "control": [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
-            ]
-          },
-          {
-            "control": [
-              1,
-              0,
-              0,
-              0,
-              0,
-              0
-            ]
-          },
-          {
-            "control": [
-              0,
-              63,
-              0,
-              0,
-              0,
-              0
-            ]
-          },
-          {
-            "control": [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
-            ]
-          },
-          {
-            "control": [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
-            ]
-          }
-        ]
-      },
-      "mixer": {
-        "part": [
-          {
-            "bank": 46,
-            "level": 113,
-            "program": 84
-          },
-          {
-            "bank": 203,
-            "level": 64,
-            "program": 54
-          },
-          {
-            "bank": 0,
-            "level": 127,
-            "program": 0
-          },
-          {
-            "bank": 13,
-            "level": 21,
-            "program": 63
-          },
-          {
-            "bank": 13,
-            "level": 64,
-            "program": 74
-          },
-          {
-            "bank": 0,
-            "level": 0,
-            "program": 0
-          }
-        ]
-      },
-      "search": {
-        "part": [
-          {
-            "category": 5
-          },
-          {
-            "category": 2
-          },
-          {
-            "category": 0
-          },
-          {
-            "category": 0
-          },
-          {
-            "category": 0
-          },
-          {
-            "category": 0
-          }
-        ]
-      }
-    }
+    "pattern": 30,
+    "scales": 22,
+    "split": 49,
+    "variant": 0
   }
 }

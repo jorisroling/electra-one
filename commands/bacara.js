@@ -1777,7 +1777,9 @@ class BacaraMachine extends Machine {
 
   showDrumsPattern() {
     const pattern = this.getState('drums.midi')
-    const size = this.getState('drums.steps', 16)
+//    const size = this.getState('drums.steps', 16)
+    const size = this.interface.getParameter('drums.steps')
+//    console.log(size)
     if (!pattern) {
       return
     }
@@ -2762,7 +2764,7 @@ class BacaraMachine extends Machine {
                           note: midiNote,
                           velocity: 127,
                           channel: channel,
-                          sendShadowMidiToBacaraPort: true,
+                          sendShadowMidiToBacaraPort: false,
                           shadowChannel: 9,
                         })
                       }
@@ -2776,7 +2778,7 @@ class BacaraMachine extends Machine {
                         note: midiNote,
                         velocity: velocity,
                         channel: channel,
-                        sendShadowMidiToBacaraPort: true,
+                        sendShadowMidiToBacaraPort: false,
                         shadowChannel: 9,
                       })
                       this.midiCache.setValue(portName, channel, 'note', midiNote, true)
@@ -2789,7 +2791,7 @@ class BacaraMachine extends Machine {
                           note: midiNote,
                           velocity: 127,
                           channel: channel,
-                          sendShadowMidiToBacaraPort: true,
+                          sendShadowMidiToBacaraPort: false,
                           shadowChannel: 9,
                         })
                         this.midiCache.clearValue(portName, channel, 'note', midiNote)
