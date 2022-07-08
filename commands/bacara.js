@@ -295,7 +295,7 @@ class BacaraMachine extends Machine {
           }
         },
         preview: (elementPath, origin) => {
-          //          debug('JJR2 %y %y', elementPath, origin)
+                   debug('JJR2 %y %y', elementPath, origin)
 
 
           const info = deviceInfo(this.interface.getParameter(elementPath.replace('.preview', '.device')))  // HACKY
@@ -488,19 +488,10 @@ class BacaraMachine extends Machine {
       },
       reset_preset: (elementPath, origin) => {
         if (origin == 'surface' || origin == 'remote') {
-          const variant = this.interface.getParameter('variant',0,0)
-          if (variant>0) {
-            this.interface.setParameter('variant',0,0)
-            this.interface.iterateElelements((template, path) => {
-              if (_.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`) ) {
-                this.interface.sendValue(path,'surface')
-              }
-            }, null, ['parameter', 'feedback'])
-            _.unset(this.interface.variants,`${String.fromCharCode(64+variant)}`)
-          } else {
-            this.interface.reset()
-          }
-          this.showPattern()
+          const playing = this.getState('playing',false,0)
+          this.reset()
+          this.initState()
+          this.setState('playing', playing,0)
           this.writeState()
         }
       },
@@ -662,67 +653,6 @@ class BacaraMachine extends Machine {
       }
     }
 
-    /*    const trackDeviceChange = (trk) => {
-      return (elementPath, value, origin) => {
-        if (value > 0 && config.devices) {
-          let idx = 0
-          let choosenDeviceKey
-          let choosenChannel
-          const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
-          deviceKeys.unshift('bacara')
-
-          for (let deviceKey of deviceKeys) {
-            if (Array.isArray(config.devices[deviceKey].channels)) {
-              for (let c in config.devices[deviceKey].channels) {
-                idx++
-                if (idx == value) {
-                  choosenDeviceKey = deviceKey
-                  choosenChannel = config.devices[deviceKey].channels[c]
-                }
-              }
-            }
-          }
-
-          if (choosenDeviceKey && Number.isInteger(choosenChannel)) {
-            this.setState(`track.${trk}.channel`, choosenChannel)
-
-            const port = _.get(config, `devices.${choosenDeviceKey}.port`)
-            if (port) {
-              const portName = _.get(config, `midi.ports.${port}.${os.platform()}`)
-              if (portName) {
-                const midiNames = _.get(config, 'preset.midi.ports.output', []).map( port => port.name ) //easymidi.getOutputs()
-                if (midiNames) {
-                  const idx = midiNames.indexOf(portName)
-                  if (idx >= 0) {
-                    let name = midiNames[idx]
-                    const ports = Object.keys(config.midi.ports).filter( p => config.midi.ports[p][os.platform()] == name )
-                    if (ports && ports.length == 1) {
-                      name = ports[0]
-                    }
-                    this.setState(`track.${trk}.portName`, name)
-                  }
-                }
-              }
-            }
-          } else {
-            this.clearState(`track.${trk}.portName`)
-            this.clearState(`track.${trk}.channel`)
-          }
-          }
-      }
-    }
-*/
-
-    /*    const trackBankOrProgramChange = (trk) => {
-      return (elementPath, value, origin) => {
-        if (origin != 'internal') {
-          this.sendTrackProgramChange(trk)
-        }
-      }
-    }
-*/
-
-
     const lfoShapeChange = (lfoIdx) => {
       const myLfoPhaseDetection = lfoPhaseDetection(lfoIdx)
       return (elementPath, value, origin) => {
@@ -807,27 +737,27 @@ class BacaraMachine extends Machine {
           }
         },
         note: (elementPath, value, origin) => {
-          /*          debug('yo %y %y %y',elementPath, value, origin)*/
+//                    debug('yo %y %y %y',elementPath, value, origin)
+          if (origin != 'post-connect') {
+            const info = deviceInfo(this.interface.getParameter(elementPath.replace('.note', '.device'))) // Hacky
 
-          const info = deviceInfo(this.interface.getParameter(elementPath.replace('.note', '.device'))) // Hacky
+            //          debug('info %y',info)
+            Midi.send(info.portName, 'noteon', {
+              note: value,
+              velocity: 100,
+              channel: info.channel,
+              sendShadowMidiToBacaraPort: true,
+              shadowChannel: 10,
+            })
 
-          //          debug('info %y',info)
-          Midi.send(info.portName, 'noteon', {
-            note: value,
-            velocity: 100,
-            channel: info.channel,
-            sendShadowMidiToBacaraPort: true,
-            shadowChannel: 10,
-          })
-
-          Midi.send(info.portName, 'noteoff', {
-            note: value,
-            velocity: 100,
-            channel: info.channel,
-            sendShadowMidiToBacaraPort: true,
-            shadowChannel: 10,
-          })
-
+            Midi.send(info.portName, 'noteoff', {
+              note: value,
+              velocity: 100,
+              channel: info.channel,
+              sendShadowMidiToBacaraPort: true,
+              shadowChannel: 10,
+            })
+          }
         }
       }
     }
@@ -978,43 +908,48 @@ class BacaraMachine extends Machine {
 
     this.parameterSideEffects = {
       variant: (elementPath, variant, origin, oldVariant) => {
-        const paths = []
-        const drumPaths = []
-        const nonDrumPaths = []
-        if (variant || oldVariant) {
-          this.interface.iterateElelements((template, path) => {
-            if ((variant && _.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`)) || (oldVariant && _.has(this.interface.variants,`${String.fromCharCode(64+oldVariant)}.parameters.${path}`)) ) {
-              this.interface.sendValue(path,'surface')
-              paths.push(path)
-              if (path.match(/drums\./)) {
-                drumPaths.push(path)
-              } else {
-                nonDrumPaths.push(path)
+        if (origin != 'post-connect') {
+          let drumPaths = 0
+          let melodicPaths = 0
+          if (variant || oldVariant) {
+            this.interface.iterateElelements((template, path) => {
+              if ((variant && _.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`)) || (oldVariant && _.has(this.interface.variants,`${String.fromCharCode(64+oldVariant)}.parameters.${path}`)) ) {
+                this.interface.sendValue(path,'surface')
+                if (showPatternParameters.indexOf(path)>=0) {
+                  melodicPaths++
+                }
+                if (showDrumPatternParameters.indexOf(path)>=0) {
+                  drumPaths++
+                }
               }
-            }
-          }, null, ['parameter', 'feedback'])
+            }, null, ['parameter', 'feedback'])
+          }
+          this.writeState()
+          this.showVariant()
+          if (drumPaths) this.showDrumsPattern()
+          if (melodicPaths) this.showPattern()
         }
-        this.writeState()
-        this.showVariant()
-        if (drumPaths.length) this.showDrumsPattern()
-        if (nonDrumPaths.length) this.showPattern()
       },
       "torso-t1": {
         scaleMode: (elementPath, value, origin, oldValue) => {
-          if (value == TORSO_T1_SCALE_MODE_CONSTRAIN) {
-            this.interface.setParameter('base', this.getState('torso-t1.userBase', 0,0),'internal',0)
-            this.interface.setParameter('scales', USER_SCALE,'internal',0)
+          if (origin != 'post-connect') {
+            if (value == TORSO_T1_SCALE_MODE_CONSTRAIN) {
+              this.interface.setParameter('base', this.getState('torso-t1.userBase', 0,0),'internal',0)
+              this.interface.setParameter('scales', USER_SCALE,'internal',0)
+            }
           }
         }
       },
       pattern: (elementPath, value, origin) => {
-        const pattern = Pattern.load_pattern(this.state, value)
-        this.setState('pattern', pattern)
-        this.interface.setParameter('steps', this.getState('patternSteps'))
-        this.showPattern()
-        this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern'})
-        this.writeState()
-        debug('pattern: %y', value)
+        if (origin != 'post-connect') {
+          const pattern = Pattern.load_pattern(this.state, value)
+          this.setState('pattern', pattern)
+          this.interface.setParameter('steps', this.getState('patternSteps'))
+          this.showPattern()
+          this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern'})
+          this.writeState()
+          debug('pattern: %y', value)
+        }
       },
       program: (elementPath, value, origin) => {
         if (origin == 'surface' || origin == 'remote') {
@@ -1614,6 +1549,76 @@ class BacaraMachine extends Machine {
     }
   }
 
+  initState(json,keepObj) {
+    const state = {}
+    const paths = [
+      'device.A.portName',
+      'device.B.portName',
+      'lfo.0.shapeName',
+      'lfo.1.shapeName',
+      'lfo.2.shapeName',
+      'octaves',
+      'pattern',
+      'playing',
+      'remote',
+      'drums',
+      'deviations',
+      'torso-t1',
+    ]
+    paths.forEach( path => _.set(state, path, _.get((json && json.state) ? json.state : json, path)) )
+
+    ;['A','B'].forEach( dev => {
+      console.log(dev,this.interface.getParameter(`device.${dev}.port`), Midi.normalisePortName(this.interface.getParameter(`device.${dev}.port`)))
+      if (!_.get(state,`device.${dev}.portName`)) _.set(state,`device.${dev}.portName`, Midi.normalisePortName(this.interface.getParameter(`device.${dev}.port`)))
+    })
+
+    console.log(state)
+
+    this.setStates(state)
+    if (!this.getState('redrum')) {
+      for (let i = 0; i < REDRUM_TRACKS; i++) {
+        this.setState(`redrum.${i}`, {portName: 'analog-rytm'})
+      }
+    }
+    _.set(this.modulation, 'lfo', _.get(json, 'modulation.lfo', {}))
+    _.set(this.modulation, 'matrix', _.get(json, 'modulation.matrix', {}))
+
+    let parameters = ((json && json.parameters) ? json.parameters : json)
+    if (keepObj) {
+      _.merge(parameters, keepObj)
+    }
+    this.interface.setParameters(parameters)
+
+    for (let variant=1;variant<=VARIANT_MAX;variant++) {
+      const variantParameters = _.get(json,`variants.${String.fromCharCode(64+variant)}.parameters`)
+      this.interface.setVariantParameters(variant,variantParameters)
+      const variantState = _.get(json,`variants.${String.fromCharCode(64+variant)}.state`)
+      this.interface.setVariantState(variant,variantState)
+    }
+
+    this.interface.emitParameters('post-connect')
+
+    const deviations = ['note', 'velocity', 'octave', 'duration', 'accent', 'mute', 'device']
+    const aspects = ['maximum', 'minimum', 'density', 'probability', 'euclidian', 'rotation']
+    deviations.forEach( deviation => {
+      let up = false
+      aspects.forEach( aspect => {
+        const value = this.interface.getParameter(`deviations.${deviation}.${aspect}`)
+        if (value) {
+          up = true
+        }
+      })
+
+      const mapped = (typeof this.getState(`deviations.${deviation}`) != 'undefined')
+
+      if ((up && !mapped) || (!up && mapped)) {
+        debug('Regenerating %y map', deviation)
+        this.deviationsGenerate(deviation)
+      }
+    })
+  }
+
+
   readState(filename, keepObj) {
     const filePath = filename ? filename : path.resolve( (process.env.NODE_ENV == 'production') ? untildify(`~/.electra-one/state/${this.name}.json`) : `${__dirname}/../state/${this.name}.json` )
     if (fs.existsSync(filePath)) {
@@ -1624,7 +1629,8 @@ class BacaraMachine extends Machine {
         console.error(e)
       }
       debugState('readState (%y) %y', filePath, json)
-      if (json) {
+      this.initState(json,keepObj)
+      if (0 && json) {
         const state = {}
         const paths = [
           'device.A.portName',
@@ -1685,9 +1691,9 @@ class BacaraMachine extends Machine {
         })
 
 
-        if (!this.getState('drums.midi')) {
-          this.triggerAction('drums.generate', 'post-connect')
-        }
+//        if (!this.getState('drums.midi')) {
+//          this.triggerAction('drums.generate', 'post-connect')
+//        }
       }
     }
   }
@@ -2019,9 +2025,9 @@ class BacaraMachine extends Machine {
 
           if (deviatedNote  == noteMidi && note.ticks == shiftedTicks) {
             if (this.deviationsValue('device', shiftedTicks / ticksPerStep)) {
-              deviceList.push([deviceA ? deviceAColor('A') : deviceBColor('B')])
-            } else {
               deviceList.push([deviceA ? deviceBColor('B') : deviceAColor('A')])
+            } else {
+              deviceList.push([deviceA ? deviceAColor('A') : deviceBColor('B')])
             }
           }
         })
@@ -2286,7 +2292,6 @@ class BacaraMachine extends Machine {
     this.stepIdx = ticks / ticksPerStep
 
     if (this.getState('playing',false,0)) {
-
       const tickDuration = this.pulseDuration / 20
       let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.interface.getParameter('steps'))
       if (shiftedTicks < 0) {
@@ -2294,7 +2299,6 @@ class BacaraMachine extends Machine {
       }
 
       if (!this.interface.getParameter('mute')) {
-
         const performancePaths = this.interface.getMap('external', 'cc') ? Object.values(this.interface.getMap('external', 'cc')) : []
         const oldValues = {}
         performancePaths.forEach( perfPath => {

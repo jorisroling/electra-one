@@ -2,6 +2,7 @@ const config = require('config')
 const Midi = require('../lib/midi/midi')
 
 const torsoT1OSC = require('../extra/osc/torso-t1.json')
+const Bacara = require('../lib/bacara')
 
 function matrixSources() {
   let result = 4 + 126 // num of matrixSlotSources from bacara.js
@@ -13,7 +14,7 @@ function matrixSources() {
   return result
 }
 
-function deviceToIndex(portName, channel) {
+function deviceToIndex(portName, channel = 1, field = 'device') {
   if (config.devices) {
     let idx = 1
     const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
@@ -24,7 +25,22 @@ function deviceToIndex(portName, channel) {
         for (let c in config.devices[deviceKey].channels) {
           if (Midi.normalisePortName(portName) == Midi.normalisePortName(deviceKey) && channel == config.devices[deviceKey].channels[c]) {
             /*            debug('deviceToIndex %y %y => %y',portName, channel, idx)*/
-            return idx
+            if (field == 'channel') {
+              return channel
+            } else if (field == 'port') {
+              let portIdx = 0
+              for (let port of Bacara.getPresetState('midi.ports.output', [])) {
+               console.log(port)
+                if (port.name == portName || port.short == portName || port.device == portName) {
+                  console.log(portIdx)
+                  return portIdx
+                }
+                portIdx++
+              }
+              return 0
+            } else if (field == 'device') {
+              return idx
+            }
           }
           idx++
         }
@@ -256,7 +272,7 @@ module.exports = {
       },
       min: 0,
       max: 127,
-      default: 127,
+      default: 0,
     },
     variant: {
       name: 'Variant',
@@ -1807,7 +1823,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 0,
+          default: deviceToIndex('virus-ti', 1),
         },
         mute: {
           name: 'Device A Mute',
@@ -1834,7 +1850,7 @@ module.exports = {
           },
           min: 0,
           max: 63,
-          default: 0,
+          default: deviceToIndex('virus-ti', 1, 'port'),
         },
         channel: {
           name: 'Device A Channel',
@@ -1848,7 +1864,7 @@ module.exports = {
           },
           min: 1,
           max: 16,
-          default: 1,
+          default: deviceToIndex('virus-ti', 1, 'channel'),
         },
         bank: {
           name: 'Device A Bank',
@@ -1973,7 +1989,7 @@ module.exports = {
           },
           min: 0,
           max: 127,
-          default: 0,
+          default: deviceToIndex('virus-ti', 2),
         },
         mute: {
           name: 'Device B Mute',
@@ -2000,7 +2016,7 @@ module.exports = {
           },
           min: 0,
           max: 63,
-          default: 0,
+          default: deviceToIndex('virus-ti', 2, 'port'),
         },
         channel: {
           name: 'Device B Channel',
@@ -2014,7 +2030,7 @@ module.exports = {
           },
           min: 1,
           max: 16,
-          default: 1,
+          default: deviceToIndex('virus-ti', 2, 'channel'),
         },
         bank: {
           name: 'Device B Bank',
@@ -2691,7 +2707,7 @@ module.exports = {
           },
           min: 0,
           max: 11,
-          default: 0,
+          default: 11,
         },
         generate: {
           name: 'Closed Hat Generate',
@@ -2771,7 +2787,7 @@ module.exports = {
           },
           min: 0,
           max: 11,
-          default: 1,
+          default: 10,
         },
         generate: {
           name: 'Open Hat Generate',
@@ -2851,7 +2867,7 @@ module.exports = {
           },
           min: 0,
           max: 11,
-          default: 2,
+          default: 0,
         },
         generate: {
           name: 'Bass Tom Generate',
@@ -2931,7 +2947,7 @@ module.exports = {
           },
           min: 0,
           max: 11,
-          default: 6,
+          default: 3,
         },
         generate: {
           name: 'Low Tom Generate',
@@ -3011,7 +3027,7 @@ module.exports = {
           },
           min: 0,
           max: 11,
-          default: 10,
+          default: 1,
         },
         generate: {
           name: 'Bass Drum Generate',
@@ -3092,7 +3108,7 @@ module.exports = {
           },
           min: 0,
           max: 11,
-          default: 9,
+          default: 2,
         },
         generate: {
           name: 'Snare Drum Generate',
@@ -3254,7 +3270,7 @@ module.exports = {
           },
           min: 0,
           max: 11,
-          default: 9,
+          default: 8,
         },
         generate: {
           name: 'Cowbell Generate',
@@ -3335,7 +3351,7 @@ module.exports = {
           },
           min: 0,
           max: 11,
-          default: 9,
+          default: 4,
         },
         generate: {
           name: 'Mid Tom Generate',
@@ -3417,7 +3433,7 @@ module.exports = {
           },
           min: 0,
           max: 11,
-          default: 9,
+          default: 5,
         },
         generate: {
           name: 'High Tom Generate',
@@ -3499,7 +3515,7 @@ module.exports = {
           },
           min: 0,
           max: 11,
-          default: 9,
+          default: 6,
         },
         generate: {
           name: 'Rim Shot Generate',
@@ -3582,7 +3598,7 @@ module.exports = {
           },
           min: 0,
           max: 11,
-          default: 9,
+          default: 7,
         },
         generate: {
           name: 'Hand Clap Generate',
