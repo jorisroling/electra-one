@@ -779,7 +779,17 @@ class BacaraMachine extends Machine {
               shadowChannel: 10,
             })
           }
-        }
+        },
+        mute: (elementPath, value, origin) => {
+          if (type == 'redrum' && this.options.analogRytmDevice) {
+            const match = elementPath.match(/drums.redrum.tracks.(\d+).mute/)
+            if (match) {
+              const channel=parseInt(match[1])
+              Midi.send(this.options.analogRytmDevice, 'cc', {channel:channel, controller:94, value:value})
+//              debug('match %y',match)
+            }
+          }
+        },
       }
     }
 
@@ -1447,9 +1457,9 @@ class BacaraMachine extends Machine {
           }
         }
         if (origin == 'analog-rytm') {
-          debug('analog-rytm %y',msg)
           if (msg._type == 'cc' && msg.controller==94 && msg.channel>=0 && msg.channel<=11 && (msg.value==0 || msg.value==1)) {
             this.interface.setParameter(`drums.redrum.tracks.${msg.channel}.mute`,msg.value,origin)
+            debug('analog-rytm redrum %smute track %y',msg.value?'':'un',msg.channel+1)
           }
         }
         if (origin == 'transpose') {
@@ -2674,54 +2684,54 @@ class BacaraMachine extends Machine {
                     })
                     this.midiCache.clearValue(portName, channel, 'note', midiNote)
                   }, durationMs + r, portName, midiNote, channel)
-                }
-                if (!this.interface.getParameter(`drums.redrum.mute`, 'modulated')) {
-                  for (let trck = 0; trck < REDRUM_TRACKS; trck++) {
-                    if (this.interface.getParameter(`drums.redrum.tracks.${trck}.instrument`, 'modulated') == (instrument + 1 )) {
-                      if (!this.interface.getParameter(`drums.redrum.tracks.${trck}.mute`, 'modulated') && this.getState(`drums.redrum.tracks.${trck}.portName`) && this.interface.getParameter('drums.probability', 'modulated') >= Random.getRandomInt(100)) {
-                        const portName = this.getState(`drums.redrum.tracks.${trck}.portName`)
-                        const channel = this.getState(`drums.redrum.tracks.${trck}.channel`, 9)
-                        const midiNote = this.interface.getParameter(`drums.redrum.tracks.${trck}.note`, 'modulated')
-                        debugMidiNoteOn('port %s  channel %d  note %y  track %y  ', portName, channel + 1, midiNote, trck)
-                        //                    debug('track %y inst %y  port %y  tinst %y channel %y',trck,instrument,this.getState(`drums.redrum.tracks.${trck}.portName`),this.interface.getParameter(`drums.redrum.track.${trck}.instrument`, 'modulated'),channel)
+                  if (!this.interface.getParameter(`drums.redrum.mute`, 'modulated')) {
+                    for (let trck = 0; trck < REDRUM_TRACKS; trck++) {
+                      if (this.interface.getParameter(`drums.redrum.tracks.${trck}.instrument`, 'modulated') == (instrument + 1 )) {
+                        if (!this.interface.getParameter(`drums.redrum.tracks.${trck}.mute`, 'modulated') && this.getState(`drums.redrum.tracks.${trck}.portName`) && this.interface.getParameter('drums.probability', 'modulated') >= Random.getRandomInt(100)) {
+                          const portName = this.getState(`drums.redrum.tracks.${trck}.portName`)
+                          const channel = this.getState(`drums.redrum.tracks.${trck}.channel`, 9)
+                          const midiNote = this.interface.getParameter(`drums.redrum.tracks.${trck}.note`, 'modulated')
+                          debugMidiNoteOn('port %s  channel %d  note %y  track %y  ', portName, channel + 1, midiNote, trck)
+                          //                    debug('track %y inst %y  port %y  tinst %y channel %y',trck,instrument,this.getState(`drums.redrum.tracks.${trck}.portName`),this.interface.getParameter(`drums.redrum.track.${trck}.instrument`, 'modulated'),channel)
 
-                        if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
-                          Midi.send(portName, 'noteoff', {
+                          if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
+                            Midi.send(portName, 'noteoff', {
+                              note: midiNote,
+                              velocity: 127,
+                              channel: channel,
+                              sendShadowMidiToBacaraPort: false,
+                              shadowChannel: 9,
+                            })
+                          }
+                          let velFactor = this.interface.getParameter('drums.velocity', 'modulated')
+                          if (Math.abs(velFactor) < Random.getRandomInt(100)) {
+                            velFactor = 0
+                          }
+                          const velocity = (127 * (note.velocity + (velFactor >= 0 ? ((1.0 - note.velocity) * (velFactor / 100)) : ((note.velocity) * (velFactor / 100)) ) ) )
+                          /*                      debug('velocity %y %y %y',note.velocity,velFactor,velocity)*/
+                          Midi.send(portName, 'noteon', {
                             note: midiNote,
-                            velocity: 127,
+                            velocity: velocity,
                             channel: channel,
                             sendShadowMidiToBacaraPort: false,
                             shadowChannel: 9,
                           })
-                        }
-                        let velFactor = this.interface.getParameter('drums.velocity', 'modulated')
-                        if (Math.abs(velFactor) < Random.getRandomInt(100)) {
-                          velFactor = 0
-                        }
-                        const velocity = (127 * (note.velocity + (velFactor >= 0 ? ((1.0 - note.velocity) * (velFactor / 100)) : ((note.velocity) * (velFactor / 100)) ) ) )
-                        /*                      debug('velocity %y %y %y',note.velocity,velFactor,velocity)*/
-                        Midi.send(portName, 'noteon', {
-                          note: midiNote,
-                          velocity: velocity,
-                          channel: channel,
-                          sendShadowMidiToBacaraPort: false,
-                          shadowChannel: 9,
-                        })
-                        this.midiCache.setValue(portName, channel, 'note', midiNote, true)
+                          this.midiCache.setValue(portName, channel, 'note', midiNote, true)
 
-                        const durationMs = Math.floor(note.durationTicks / ticksPerStep) * ticksPerStep
-                        const r = (note.durationTicks % ticksPerStep) * 1.0
-                        setTimeout((portName, midiNote, channel) => {
-                          debugMidiNoteOff('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
-                          Midi.send(portName, 'noteoff', {
-                            note: midiNote,
-                            velocity: 127,
-                            channel: channel,
-                            sendShadowMidiToBacaraPort: false,
-                            shadowChannel: 9,
-                          })
-                          this.midiCache.clearValue(portName, channel, 'note', midiNote)
-                        }, durationMs + r, portName, midiNote, channel)
+                          const durationMs = Math.floor(note.durationTicks / ticksPerStep) * ticksPerStep
+                          const r = (note.durationTicks % ticksPerStep) * 1.0
+                          setTimeout((portName, midiNote, channel) => {
+                            debugMidiNoteOff('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
+                            Midi.send(portName, 'noteoff', {
+                              note: midiNote,
+                              velocity: 127,
+                              channel: channel,
+                              sendShadowMidiToBacaraPort: false,
+                              shadowChannel: 9,
+                            })
+                            this.midiCache.clearValue(portName, channel, 'note', midiNote)
+                          }, durationMs + r, portName, midiNote, channel)
+                        }
                       }
                     }
                   }
