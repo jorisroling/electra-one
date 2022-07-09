@@ -50,9 +50,12 @@ args
   .option('verbose', 'Verbose output')
   .option('setup', 'List from setup', false)
   .option('focus', 'Focus', 'bacara')
+
   .option('variantDevice', 'Variant Device',_.get(config, 'options.variantDevice'))
   .option('variantChannel', 'Variant Channel', _.get(config, 'options.variantChannel'))
   .option('variantGeneralNote', 'Variant General Note', _.get(config, 'options.variantGeneralNote'))
+
+  .option('analogRytmDevice', 'Analog Rytm Device',_.get(config, 'options.analogRytmDevice'))
 
 const commands = require('./lib/commands')
 

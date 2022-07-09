@@ -40,6 +40,7 @@ module.exports = customWrapper({
     variantDevice: '',
     variantChannel: 1,
     variantGeneralNote: 36,
+    analogRytmDevice: '',
   },
   electra: {
     checkPresetVia: 'patch',  // patch, preset or none

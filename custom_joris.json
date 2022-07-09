@@ -25,7 +25,8 @@
     "name": "",
     "presetName": {
       "bacara": "Bacara Joris"
-    }
+    },
+    "analogRytmDevice": "analog-rytm"
   },
   "electra": {
     "checkPresetVia": "preset",

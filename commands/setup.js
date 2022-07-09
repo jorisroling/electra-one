@@ -29,7 +29,7 @@ function generateSetup(name, sub, options) {
   }
 
   Bacara.scanMidiPorts()
-  const banks = virus.scanBanks()
+/* const banks = virus.scanBanks()
   if (banks) {
     const data = [['Bank', 'Short', 'Presets', dimColor('Index')]]
 
@@ -41,7 +41,7 @@ function generateSetup(name, sub, options) {
   } else {
     console.log('No Virus TI banks found')
   }
-  process.exit(0)
+*///  process.exit(0)
 }
 
 module.exports = {

@@ -93,12 +93,12 @@ const showPatternStates = []
 const showDrumPatternParameters = ['drums.density', 'drums.velocity', 'drums.steps', 'drums.mute']
 
 for (let trck = 0; trck < DRUM_TRACKS; trck++) {
-  showDrumPatternParameters.push(`drums.instrument.${trck}.mute`)
+  showDrumPatternParameters.push(`drums.tracks.${trck}.mute`)
 }
 
 for (let trck = 0; trck < REDRUM_TRACKS; trck++) {
-  showDrumPatternParameters.push(`drums.redrum.${trck}.instrument`)
-  showDrumPatternParameters.push(`drums.redrum.${trck}.mute`)
+  showDrumPatternParameters.push(`drums.redrum.tracks.${trck}.instrument`)
+  showDrumPatternParameters.push(`drums.redrum.tracks.${trck}.mute`)
 }
 
 const showDrumPatternStates = ['drums.sounding']
@@ -282,7 +282,7 @@ class BacaraMachine extends Machine {
       return {
         generate: (elementPath, origin) => {
           if (origin == 'surface' || origin == 'remote') {
-            const instrument = this.interface.getParameter(`drums.redrum.${trck}.instrument`) - 1
+            const instrument = this.interface.getParameter(`drums.redrum.tracks.${trck}.instrument`) - 1
             //            debug ('hi track %y instr %y',trck,instrument)
             if (instrument >= 0) {
               //            debug ('hi2')
@@ -295,7 +295,7 @@ class BacaraMachine extends Machine {
           }
         },
         preview: (elementPath, origin) => {
-                   debug('JJR2 %y %y', elementPath, origin)
+//                   debug('JJR2 %y %y', elementPath, origin)
 
 
           const info = deviceInfo(this.interface.getParameter(elementPath.replace('.preview', '.device')))  // HACKY
@@ -526,20 +526,31 @@ class BacaraMachine extends Machine {
             debug('generated drums')
           }
         },
-        redrum: [
-          drumsRedrumActions(0),
-          drumsRedrumActions(1),
-          drumsRedrumActions(2),
-          drumsRedrumActions(3),
-          drumsRedrumActions(4),
-          drumsRedrumActions(5),
-          drumsRedrumActions(6),
-          drumsRedrumActions(7),
-          drumsRedrumActions(8),
-          drumsRedrumActions(9),
-          drumsRedrumActions(10),
-          drumsRedrumActions(11),
-        ],
+        redrum: {
+          reset: (elementPath, origin) => {
+            debug('redrum reset')
+            for (let trck = 0; trck < REDRUM_TRACKS; trck++) {
+              ['instrument','device','note','mute'].forEach( attr => {
+                const path = `drums.redrum.tracks.${trck}.${attr}`
+                this.interface.setParameter(path, this.interface.getElementAttribute(path,'default'))
+              })
+            }
+          },
+          tracks: [
+            drumsRedrumActions(0),
+            drumsRedrumActions(1),
+            drumsRedrumActions(2),
+            drumsRedrumActions(3),
+            drumsRedrumActions(4),
+            drumsRedrumActions(5),
+            drumsRedrumActions(6),
+            drumsRedrumActions(7),
+            drumsRedrumActions(8),
+            drumsRedrumActions(9),
+            drumsRedrumActions(10),
+            drumsRedrumActions(11),
+          ],
+        },
       },
     }
 
@@ -729,10 +740,20 @@ class BacaraMachine extends Machine {
             const info = deviceInfo(value)
             /*            debug('info %y',info)*/
             if (info.portName) {
-              this.setState(`drums.${type}.${trck}.portName`, info.portName)
+              if (type == 'instrument') {
+                this.setState(`drums.tracks.${trck}.portName`, info.portName)
+              }
+              if (type == 'redrum') {
+                this.setState(`drums.redrum.tracks.${trck}.portName`, info.portName)
+              }
             }
             if (info.channel >= 0 ) {
-              this.setState(`drums.${type}.${trck}.channel`, info.channel)
+              if (type == 'instrument') {
+                this.setState(`drums.tracks.${trck}.channel`, info.channel)
+              }
+              if (type == 'redrum') {
+                this.setState(`drums.redrum.tracks.${trck}.channel`, info.channel)
+              }
             }
           }
         },
@@ -1198,40 +1219,6 @@ class BacaraMachine extends Machine {
           program: deviceBankOrProgramChange('B'),
         },
       },
-
-      /*      track: [
-        {
-          device: trackDeviceChange(0),
-          bank: trackBankOrProgramChange(0),
-          program: trackBankOrProgramChange(0),
-        },
-        {
-          device: trackDeviceChange(1),
-          bank: trackBankOrProgramChange(1),
-          program: trackBankOrProgramChange(1),
-        },
-        {
-          device: trackDeviceChange(2),
-          bank: trackBankOrProgramChange(2),
-          program: trackBankOrProgramChange(2),
-        },
-        {
-          device: trackDeviceChange(3),
-          bank: trackBankOrProgramChange(3),
-          program: trackBankOrProgramChange(3),
-        },
-        {
-          device: trackDeviceChange(4),
-          bank: trackBankOrProgramChange(4),
-          program: trackBankOrProgramChange(4),
-        },
-        {
-          device: trackDeviceChange(5),
-          bank: trackBankOrProgramChange(5),
-          program: trackBankOrProgramChange(5),
-        },
-      ],
-*/
       lfo: [
         {
           shape: lfoShapeChange(0),
@@ -1310,24 +1297,20 @@ class BacaraMachine extends Machine {
           },
         ]
       },
-      /*      deviations: {
-        note: {
-        },
-      },
-*/      drums: {
+      drums: {
         density: (elementPath, value, origin) => {
           if (origin == 'surface' || !this.getState('drums.sounding')) {
             const sounding = []
             for (let idx = 0; idx < this.interface.getParameter('drums.steps', 'modulated'); idx++) {
               sounding[idx] = []
-              for (let instrument = 0; instrument < DRUM_TRACKS; instrument++) {
-                sounding[idx][instrument] = (value && (value >= Random.getRandomInt(100))) ? 1 : 0
+              for (let track = 0; track < DRUM_TRACKS; track++) {
+                sounding[idx][track] = (value && (value >= Random.getRandomInt(100))) ? 1 : 0
               }
             }
             this.setState('drums.sounding', sounding)
           }
         },
-        instrument: [
+        tracks: [
           drumDevice(0, 'instrument'),
           drumDevice(1, 'instrument'),
           drumDevice(2, 'instrument'),
@@ -1340,20 +1323,22 @@ class BacaraMachine extends Machine {
           drumDevice(9, 'instrument'),
           drumDevice(10, 'instrument'),
         ],
-        redrum: [
-          drumDevice(0, 'redrum'),
-          drumDevice(1, 'redrum'),
-          drumDevice(2, 'redrum'),
-          drumDevice(3, 'redrum'),
-          drumDevice(4, 'redrum'),
-          drumDevice(5, 'redrum'),
-          drumDevice(6, 'redrum'),
-          drumDevice(7, 'redrum'),
-          drumDevice(8, 'redrum'),
-          drumDevice(9, 'redrum'),
-          drumDevice(10, 'redrum'),
-          drumDevice(11, 'redrum'),
-        ],
+        redrum: {
+          tracks: [
+            drumDevice(0, 'redrum'),
+            drumDevice(1, 'redrum'),
+            drumDevice(2, 'redrum'),
+            drumDevice(3, 'redrum'),
+            drumDevice(4, 'redrum'),
+            drumDevice(5, 'redrum'),
+            drumDevice(6, 'redrum'),
+            drumDevice(7, 'redrum'),
+            drumDevice(8, 'redrum'),
+            drumDevice(9, 'redrum'),
+            drumDevice(10, 'redrum'),
+            drumDevice(11, 'redrum'),
+          ],
+        },
       },
     }
 
@@ -1459,6 +1444,12 @@ class BacaraMachine extends Machine {
                 }
               }
             }
+          }
+        }
+        if (origin == 'analog-rytm') {
+          debug('analog-rytm %y',msg)
+          if (msg._type == 'cc' && msg.controller==94 && msg.channel>=0 && msg.channel<=11 && (msg.value==0 || msg.value==1)) {
+            this.interface.setParameter(`drums.redrum.tracks.${msg.channel}.mute`,msg.value,origin)
           }
         }
         if (origin == 'transpose') {
@@ -1579,16 +1570,13 @@ class BacaraMachine extends Machine {
     paths.forEach( path => _.set(state, path, _.get((json && json.state) ? json.state : json, path)) )
 
     ;['A','B'].forEach( dev => {
-      //console.log(dev,this.interface.getParameter(`device.${dev}.port`), Midi.normalisePortName(this.interface.getParameter(`device.${dev}.port`)))
       if (!_.get(state,`device.${dev}.portName`)) _.set(state,`device.${dev}.portName`, Midi.normalisePortName(this.interface.getParameter(`device.${dev}.port`)))
     })
 
-    //console.log(state)
-
     this.setStates(state)
-    if (!this.getState('redrum')) {
+    if (!this.getState('drums.redrum')) {
       for (let i = 0; i < REDRUM_TRACKS; i++) {
-        this.setState(`redrum.${i}`, {portName: 'analog-rytm'})
+        this.setState(`drums.redrum.tracks.${i}`, {portName: 'analog-rytm'})
       }
     }
     _.set(this.modulation, 'lfo', _.get(json, 'modulation.lfo', {}))
@@ -1627,6 +1615,8 @@ class BacaraMachine extends Machine {
         this.deviationsGenerate(deviation)
       }
     })
+    console.log(state)
+
   }
 
 
@@ -1641,71 +1631,6 @@ class BacaraMachine extends Machine {
       }
       debugState('readState (%y) %y', filePath, json)
       this.initState(json,keepObj)
-      if (0 && json) {
-        const state = {}
-        const paths = [
-          'device.A.portName',
-          'device.B.portName',
-          'lfo.0.shapeName',
-          'lfo.1.shapeName',
-          'lfo.2.shapeName',
-          'octaves',
-          'pattern',
-          'playing',
-          'remote',
-          'drums',
-          'deviations',
-          'torso-t1',
-        ]
-        paths.forEach( path => _.set(state, path, _.get(json.state ? json.state : json, path)) )
-        this.setStates(state)
-        if (!this.getState('redrum')) {
-          for (let i = 0; i < REDRUM_TRACKS; i++) {
-            this.setState(`redrum.${i}`, {portName: 'analog-rytm'})
-          }
-        }
-        _.set(this.modulation, 'lfo', _.get(json, 'modulation.lfo', {}))
-        _.set(this.modulation, 'matrix', _.get(json, 'modulation.matrix', {}))
-
-        let parameters = (json.parameters ? json.parameters : json)
-        if (keepObj) {
-          _.merge(parameters, keepObj)
-        }
-        this.interface.setParameters(parameters)
-
-        for (let variant=1;variant<=VARIANT_MAX;variant++) {
-          const variantParameters = _.get(json,`variants.${String.fromCharCode(64+variant)}.parameters`)
-          this.interface.setVariantParameters(variant,variantParameters)
-          const variantState = _.get(json,`variants.${String.fromCharCode(64+variant)}.state`)
-          this.interface.setVariantState(variant,variantState)
-        }
-
-        this.interface.emitParameters('post-connect')
-
-        const deviations = ['note', 'velocity', 'octave', 'duration', 'accent', 'mute', 'device']
-        const aspects = ['maximum', 'minimum', 'density', 'probability', 'euclidian', 'rotation']
-        deviations.forEach( deviation => {
-          let up = false
-          aspects.forEach( aspect => {
-            const value = this.interface.getParameter(`deviations.${deviation}.${aspect}`)
-            if (value) {
-              up = true
-            }
-          })
-
-          const mapped = (typeof this.getState(`deviations.${deviation}`) != 'undefined')
-
-          if ((up && !mapped) || (!up && mapped)) {
-            debug('Regenerating %y map', deviation)
-            this.deviationsGenerate(deviation)
-          }
-        })
-
-
-//        if (!this.getState('drums.midi')) {
-//          this.triggerAction('drums.generate', 'post-connect')
-//        }
-      }
     }
   }
 
@@ -1819,7 +1744,7 @@ class BacaraMachine extends Machine {
       const instrument = midiNote - Drums.baseNote()
       let redrum = false
       for (let trck = 0; trck < REDRUM_TRACKS; trck++) {
-        if (this.interface.getParameter(`drums.redrum.${trck}.instrument`) == ( instrument + 1 )  ) {
+        if (this.interface.getParameter(`drums.redrum.tracks.${trck}.instrument`) == ( instrument + 1 )  ) {
           redrum = true
         }
       }
@@ -2706,11 +2631,11 @@ class BacaraMachine extends Machine {
             const instrument = note.midi - Drums.baseNote()
             if (this.drumsStepIdx < this.interface.getParameter('drums.steps', 'modulated') && this.sounding(this.drumsStepIdx, 'drums.sounding', instrument)) {
               if (instrument >= 0 && instrument < DRUM_TRACKS) {
-                if (!this.interface.getParameter(`drums.instrument.${instrument}.mute`, 'modulated') && this.interface.getParameter('drums.probability', 'modulated') >= Random.getRandomInt(100)) {
-                  const portName = this.getState(`drums.instrument.${instrument}.portName`, 'bacara')
-                  const channel = this.getState(`drums.instrument.${instrument}.channel`, 10 - 1)
-                  const midiNote = this.interface.getParameter(`drums.instrument.${instrument}.note`/*, 'modulated'*/)
-                  debugMidiNoteOn('port %s  channel %d  note %y  instrument %y  ', portName, channel + 1, midiNote, instrument)
+                if (!this.interface.getParameter(`drums.tracks.${instrument}.mute`, 'modulated') && this.interface.getParameter('drums.probability', 'modulated') >= Random.getRandomInt(100)) {
+                  const portName = this.getState(`drums.tracks.${instrument}.portName`, 'bacara')
+                  const channel = this.getState(`drums.tracks.${instrument}.channel`, 10 - 1)
+                  const midiNote = this.interface.getParameter(`drums.tracks.${instrument}.note`/*, 'modulated'*/)
+                  debugMidiNoteOn('port %s  channel %d  note %y  track %y  ', portName, channel + 1, midiNote, instrument)
                   if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
                     Midi.send(portName, 'noteoff', {
                       note: midiNote,
@@ -2750,52 +2675,54 @@ class BacaraMachine extends Machine {
                     this.midiCache.clearValue(portName, channel, 'note', midiNote)
                   }, durationMs + r, portName, midiNote, channel)
                 }
-                for (let trck = 0; trck < REDRUM_TRACKS; trck++) {
-                  if (this.interface.getParameter(`drums.redrum.${trck}.instrument`, 'modulated') == (instrument + 1 )) {
-                    if (!this.interface.getParameter(`drums.redrum.${trck}.mute`, 'modulated') && this.getState(`drums.redrum.${trck}.portName`) && this.interface.getParameter('drums.probability', 'modulated') >= Random.getRandomInt(100)) {
-                      const portName = this.getState(`drums.redrum.${trck}.portName`)
-                      const channel = this.getState(`drums.redrum.${trck}.channel`, 9)
-                      const midiNote = this.interface.getParameter(`drums.redrum.${trck}.note`, 'modulated')
-                      debugMidiNoteOn('port %s  channel %d  note %y  track %y  ', portName, channel + 1, midiNote, trck)
-                      //                    debug('track %y inst %y  port %y  tinst %y channel %y',trck,instrument,this.getState(`drums.redrum.${trck}.portName`),this.interface.getParameter(`drums.redrum.${trck}.instrument`, 'modulated'),channel)
+                if (!this.interface.getParameter(`drums.redrum.mute`, 'modulated')) {
+                  for (let trck = 0; trck < REDRUM_TRACKS; trck++) {
+                    if (this.interface.getParameter(`drums.redrum.tracks.${trck}.instrument`, 'modulated') == (instrument + 1 )) {
+                      if (!this.interface.getParameter(`drums.redrum.tracks.${trck}.mute`, 'modulated') && this.getState(`drums.redrum.tracks.${trck}.portName`) && this.interface.getParameter('drums.probability', 'modulated') >= Random.getRandomInt(100)) {
+                        const portName = this.getState(`drums.redrum.tracks.${trck}.portName`)
+                        const channel = this.getState(`drums.redrum.tracks.${trck}.channel`, 9)
+                        const midiNote = this.interface.getParameter(`drums.redrum.tracks.${trck}.note`, 'modulated')
+                        debugMidiNoteOn('port %s  channel %d  note %y  track %y  ', portName, channel + 1, midiNote, trck)
+                        //                    debug('track %y inst %y  port %y  tinst %y channel %y',trck,instrument,this.getState(`drums.redrum.tracks.${trck}.portName`),this.interface.getParameter(`drums.redrum.track.${trck}.instrument`, 'modulated'),channel)
 
-                      if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
-                        Midi.send(portName, 'noteoff', {
+                        if (this.midiCache.getValue(portName, channel, 'note', midiNote)) {
+                          Midi.send(portName, 'noteoff', {
+                            note: midiNote,
+                            velocity: 127,
+                            channel: channel,
+                            sendShadowMidiToBacaraPort: false,
+                            shadowChannel: 9,
+                          })
+                        }
+                        let velFactor = this.interface.getParameter('drums.velocity', 'modulated')
+                        if (Math.abs(velFactor) < Random.getRandomInt(100)) {
+                          velFactor = 0
+                        }
+                        const velocity = (127 * (note.velocity + (velFactor >= 0 ? ((1.0 - note.velocity) * (velFactor / 100)) : ((note.velocity) * (velFactor / 100)) ) ) )
+                        /*                      debug('velocity %y %y %y',note.velocity,velFactor,velocity)*/
+                        Midi.send(portName, 'noteon', {
                           note: midiNote,
-                          velocity: 127,
+                          velocity: velocity,
                           channel: channel,
                           sendShadowMidiToBacaraPort: false,
                           shadowChannel: 9,
                         })
-                      }
-                      let velFactor = this.interface.getParameter('drums.velocity', 'modulated')
-                      if (Math.abs(velFactor) < Random.getRandomInt(100)) {
-                        velFactor = 0
-                      }
-                      const velocity = (127 * (note.velocity + (velFactor >= 0 ? ((1.0 - note.velocity) * (velFactor / 100)) : ((note.velocity) * (velFactor / 100)) ) ) )
-                      /*                      debug('velocity %y %y %y',note.velocity,velFactor,velocity)*/
-                      Midi.send(portName, 'noteon', {
-                        note: midiNote,
-                        velocity: velocity,
-                        channel: channel,
-                        sendShadowMidiToBacaraPort: false,
-                        shadowChannel: 9,
-                      })
-                      this.midiCache.setValue(portName, channel, 'note', midiNote, true)
+                        this.midiCache.setValue(portName, channel, 'note', midiNote, true)
 
-                      const durationMs = Math.floor(note.durationTicks / ticksPerStep) * ticksPerStep
-                      const r = (note.durationTicks % ticksPerStep) * 1.0
-                      setTimeout((portName, midiNote, channel) => {
-                        debugMidiNoteOff('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
-                        Midi.send(portName, 'noteoff', {
-                          note: midiNote,
-                          velocity: 127,
-                          channel: channel,
-                          sendShadowMidiToBacaraPort: false,
-                          shadowChannel: 9,
-                        })
-                        this.midiCache.clearValue(portName, channel, 'note', midiNote)
-                      }, durationMs + r, portName, midiNote, channel)
+                        const durationMs = Math.floor(note.durationTicks / ticksPerStep) * ticksPerStep
+                        const r = (note.durationTicks % ticksPerStep) * 1.0
+                        setTimeout((portName, midiNote, channel) => {
+                          debugMidiNoteOff('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)
+                          Midi.send(portName, 'noteoff', {
+                            note: midiNote,
+                            velocity: 127,
+                            channel: channel,
+                            sendShadowMidiToBacaraPort: false,
+                            shadowChannel: 9,
+                          })
+                          this.midiCache.clearValue(portName, channel, 'note', midiNote)
+                        }, durationMs + r, portName, midiNote, channel)
+                      }
                     }
                   }
                 }
@@ -3238,6 +3165,10 @@ function bacaraSequencer(name, sub, options) {
   }
   if (options.variantDevice) {
     bacaraMachine.connect(options.variantDevice, 'variant', Number.isInteger(options.variantChannel) ? parseInt(options.variantChannel) - 1 : 0)
+  }
+
+  if (options.analogRytmDevice) {
+    bacaraMachine.connect(options.analogRytmDevice, 'analog-rytm', null,true,true,true)
   }
 
   bacaraMachine.interface.emitParameters('post-connect')

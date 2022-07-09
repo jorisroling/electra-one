@@ -737,7 +737,7 @@
       "id": "0da66dd6-91d1-49bf-b4db-bb299fc0dd74",
       "slotId": 26,
       "type": "label",
-      "span": 4,
+      "span": 3,
       "name": "Drum Pattern",
       "color": "F45C51",
       "values": [
@@ -745,6 +745,13 @@
           "message": {}
         }
       ]
+    },
+    {
+      "id": "2ebea678-471f-4d87-a888-25f99b52e2b4",
+      "slotId": 29,
+      "type": "label",
+      "name": "Redrum",
+      "color": "F49500"
     },
     {
       "id": "3d09d266-bd75-4ae3-942e-f6fb57844935",
@@ -918,6 +925,30 @@
       "mode": "toggle"
     },
     {
+      "id": "f64b4317-f7bd-42f2-b21e-4811029da5d3",
+      "slotId": 35,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "F49500",
+      "name": "Mute",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16367,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "toggle"
+    },
+    {
       "id": "280fe608-337a-4d62-a5db-2bb7315fc075",
       "slotId": 42,
       "type": "fader",
@@ -1012,6 +1043,30 @@
         }
       ],
       "visible": true
+    },
+    {
+      "id": "8a17e364-200a-4f6e-8a77-b6e90aa4c624",
+      "slotId": 47,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "F49500",
+      "name": "RESET",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16368,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
     },
     {
       "id": "631e4057-a4bd-468d-881b-d04a555fb77c",
