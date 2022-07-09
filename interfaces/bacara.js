@@ -2169,6 +2169,18 @@ module.exports = {
         on: 1,
         default: 0,
       },
+      reset: {
+        name: 'Drums Reset',
+        type: 'action',
+        surface: {
+          type: 'nrpn',
+          number: 16369,
+          lsbFirst: true,
+          min: 0,
+          max: 1,
+        },
+        on: 1,
+      },
       style: {
         name: 'Drums Style',
         type: 'parameter',
@@ -2693,7 +2705,8 @@ module.exports = {
           on: 1,
           default: 0,
         },
-      }, ],
+      },
+    ],
       redrum: {
         mute: {
           name: 'Redrum Mute',
@@ -2724,7 +2737,7 @@ module.exports = {
 
           {
             instrument: {
-              name: 'Bass Drum Instrument',
+              name: 'Redrum Bass Drum Instrument',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2738,7 +2751,7 @@ module.exports = {
               default: 1,
             },
             generate: {
-              name: 'Bass Drum Generate',
+              name: 'Redrum Bass Drum Generate',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2751,7 +2764,7 @@ module.exports = {
               default: 0,
             },
             mute: {
-              name: 'Bass Drum Mute',
+              name: 'Redrum Bass Drum Mute',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2764,7 +2777,7 @@ module.exports = {
               default: 0,
             },
             device: {
-              name: 'Bass Drum Device',
+              name: 'Redrum Bass Drum Device',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2778,7 +2791,7 @@ module.exports = {
               default: deviceToIndex('analog-rytm', 1),
             },
             note: {
-              name: 'Bass Drum Note',
+              name: 'Redrum Bass Drum Note',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2790,7 +2803,7 @@ module.exports = {
               default: 36,
             },
             preview: {
-              name: 'Bass Drum Preview',
+              name: 'Redrum Bass Drum Preview',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2806,7 +2819,7 @@ module.exports = {
 
           {
             instrument: {
-              name: 'Snare Drum Instrument',
+              name: 'Redrum Snare Drum Instrument',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2820,7 +2833,7 @@ module.exports = {
               default: 2,
             },
             generate: {
-              name: 'Snare Drum Generate',
+              name: 'Redrum Snare Drum Generate',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2833,7 +2846,7 @@ module.exports = {
               default: 0,
             },
             mute: {
-              name: 'Snare Drum Mute',
+              name: 'Redrum Snare Drum Mute',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2846,7 +2859,7 @@ module.exports = {
               default: 0,
             },
             device: {
-              name: 'Snare Drum Device',
+              name: 'Redrum Snare Drum Device',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2860,7 +2873,7 @@ module.exports = {
               default: deviceToIndex('analog-rytm', 2),
             },
             note: {
-              name: 'Snare Drum Note',
+              name: 'Redrum Snare Drum Note',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2872,7 +2885,7 @@ module.exports = {
               default: 36,
             },
             preview: {
-              name: 'Snare Drum Preview',
+              name: 'Redrum Snare Drum Preview',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2888,7 +2901,7 @@ module.exports = {
 
           {
             instrument: {
-              name: 'Hand Clap Instrument',
+              name: 'Redrum Hand Clap Instrument',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2902,7 +2915,7 @@ module.exports = {
               default: 7,
             },
             generate: {
-              name: 'Hand Clap Generate',
+              name: 'Redrum Hand Clap Generate',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2915,7 +2928,7 @@ module.exports = {
               default: 0,
             },
             mute: {
-              name: 'Hand Clap Mute',
+              name: 'Redrum Hand Clap Mute',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2928,7 +2941,7 @@ module.exports = {
               default: 0,
             },
             device: {
-              name: 'Hand Clap Device',
+              name: 'Redrum Hand Clap Device',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2942,7 +2955,7 @@ module.exports = {
               default: deviceToIndex('analog-rytm', 4),
             },
             note: {
-              name: 'Hand Clap Note',
+              name: 'Redrum Hand Clap Note',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2954,7 +2967,7 @@ module.exports = {
               default: 36,
             },
             preview: {
-              name: 'Hand Clap Preview',
+              name: 'Redrum Hand Clap Preview',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2970,7 +2983,7 @@ module.exports = {
 
           {
             instrument: {
-              name: 'Rim Shot Instrument',
+              name: 'Redrum Rim Shot Instrument',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -2984,7 +2997,7 @@ module.exports = {
               default: 6,
             },
             generate: {
-              name: 'Rim Shot Generate',
+              name: 'Redrum Rim Shot Generate',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -2997,7 +3010,7 @@ module.exports = {
               default: 0,
             },
             mute: {
-              name: 'Rim Shot Mute',
+              name: 'Redrum Rim Shot Mute',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3010,7 +3023,7 @@ module.exports = {
               default: 0,
             },
             device: {
-              name: 'Rim Shot Device',
+              name: 'Redrum Rim Shot Device',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3024,7 +3037,7 @@ module.exports = {
               default: deviceToIndex('analog-rytm', 3),
             },
             note: {
-              name: 'Rim Shot Note',
+              name: 'Redrum Rim Shot Note',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3036,7 +3049,7 @@ module.exports = {
               default: 36,
             },
             preview: {
-              name: 'Rim Shot Preview',
+              name: 'Redrum Rim Shot Preview',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -3052,7 +3065,7 @@ module.exports = {
 
           {
             instrument: {
-              name: 'Bass Tom Instrument',
+              name: 'Redrum Bass Tom Instrument',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3066,7 +3079,7 @@ module.exports = {
               default: 0,
             },
             generate: {
-              name: 'Bass Tom Generate',
+              name: 'Redrum Bass Tom Generate',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -3079,7 +3092,7 @@ module.exports = {
               default: 0,
             },
             mute: {
-              name: 'Bass Tom Mute',
+              name: 'Redrum Bass Tom Mute',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3092,7 +3105,7 @@ module.exports = {
               default: 0,
             },
             device: {
-              name: 'Bass Tom Device',
+              name: 'Redrum Bass Tom Device',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3106,7 +3119,7 @@ module.exports = {
               default: deviceToIndex('analog-rytm', 5),
             },
             note: {
-              name: 'Bass Tom Note',
+              name: 'Redrum Bass Tom Note',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3118,7 +3131,7 @@ module.exports = {
               default: 36,
             },
             preview: {
-              name: 'Bass Tom Preview',
+              name: 'Redrum Bass Tom Preview',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -3134,7 +3147,7 @@ module.exports = {
 
           {
             instrument: {
-              name: 'Low Tom Instrument',
+              name: 'Redrum Low Tom Instrument',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3148,7 +3161,7 @@ module.exports = {
               default: 3,
             },
             generate: {
-              name: 'Low Tom Generate',
+              name: 'Redrum Low Tom Generate',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -3161,7 +3174,7 @@ module.exports = {
               default: 0,
             },
             mute: {
-              name: 'Low Tom Mute',
+              name: 'Redrum Low Tom Mute',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3174,7 +3187,7 @@ module.exports = {
               default: 0,
             },
             device: {
-              name: 'Low Tom Device',
+              name: 'Redrum Low Tom Device',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3188,7 +3201,7 @@ module.exports = {
               default: deviceToIndex('analog-rytm', 6),
             },
             note: {
-              name: 'Low Tom Note',
+              name: 'Redrum Low Tom Note',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3200,7 +3213,7 @@ module.exports = {
               default: 36,
             },
             preview: {
-              name: 'Low Tom Preview',
+              name: 'Redrum Low Tom Preview',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -3216,7 +3229,7 @@ module.exports = {
 
           {
             instrument: {
-              name: 'Mid Tom Instrument',
+              name: 'Redrum Mid Tom Instrument',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3230,7 +3243,7 @@ module.exports = {
               default: 4,
             },
             generate: {
-              name: 'Mid Tom Generate',
+              name: 'Redrum Mid Tom Generate',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -3243,7 +3256,7 @@ module.exports = {
               default: 0,
             },
             mute: {
-              name: 'Mid Tom Mute',
+              name: 'Redrum Mid Tom Mute',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3256,7 +3269,7 @@ module.exports = {
               default: 0,
             },
             device: {
-              name: 'Mid Tom Device',
+              name: 'Redrum Mid Tom Device',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3270,7 +3283,7 @@ module.exports = {
               default: deviceToIndex('analog-rytm', 7),
             },
             note: {
-              name: 'Mid Tom Note',
+              name: 'Redrum Mid Tom Note',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3282,7 +3295,7 @@ module.exports = {
               default: 36,
             },
             preview: {
-              name: 'Mid Tom Preview',
+              name: 'Redrum Mid Tom Preview',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -3298,7 +3311,7 @@ module.exports = {
 
           {
             instrument: {
-              name: 'High Tom Instrument',
+              name: 'Redrum High Tom Instrument',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3312,7 +3325,7 @@ module.exports = {
               default: 5,
             },
             generate: {
-              name: 'High Tom Generate',
+              name: 'Redrum High Tom Generate',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -3325,7 +3338,7 @@ module.exports = {
               default: 0,
             },
             mute: {
-              name: 'High Tom Mute',
+              name: 'Redrum High Tom Mute',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3338,7 +3351,7 @@ module.exports = {
               default: 0,
             },
             device: {
-              name: 'High Tom Device',
+              name: 'Redrum High Tom Device',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3352,7 +3365,7 @@ module.exports = {
               default: deviceToIndex('analog-rytm', 8),
             },
             note: {
-              name: 'High Tom Note',
+              name: 'Redrum High Tom Note',
               type: 'parameter',
               surface: {
                 type: 'nrpn',
@@ -3364,7 +3377,7 @@ module.exports = {
               default: 36,
             },
             preview: {
-              name: 'High Tom Preview',
+              name: 'Redrum High Tom Preview',
               type: 'action',
               surface: {
                 type: 'nrpn',
@@ -3380,7 +3393,7 @@ module.exports = {
 
           {
           instrument: {
-            name: 'Closed Hat Instrument',
+            name: 'Redrum Closed Hat Instrument',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3394,7 +3407,7 @@ module.exports = {
             default: 11,
           },
           generate: {
-            name: 'Closed Hat Generate',
+            name: 'Redrum Closed Hat Generate',
             type: 'action',
             surface: {
               type: 'nrpn',
@@ -3407,7 +3420,7 @@ module.exports = {
             default: 0,
           },
           mute: {
-            name: 'Closed Hat Mute',
+            name: 'Redrum Closed Hat Mute',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3420,7 +3433,7 @@ module.exports = {
             default: 0,
           },
           device: {
-            name: 'Closed Hat Device',
+            name: 'Redrum Closed Hat Device',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3434,7 +3447,7 @@ module.exports = {
             default: deviceToIndex('analog-rytm', 9),
           },
           note: {
-            name: 'Closed Hat Note',
+            name: 'Redrum Closed Hat Note',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3446,7 +3459,7 @@ module.exports = {
             default: 36,
           },
           preview: {
-            name: 'Closed Hat Preview',
+            name: 'Redrum Closed Hat Preview',
             type: 'action',
             surface: {
               type: 'nrpn',
@@ -3461,7 +3474,7 @@ module.exports = {
         },
         {
           instrument: {
-            name: 'Open Hat Instrument',
+            name: 'Redrum Open Hat Instrument',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3475,7 +3488,7 @@ module.exports = {
             default: 10,
           },
           generate: {
-            name: 'Open Hat Generate',
+            name: 'Redrum Open Hat Generate',
             type: 'action',
             surface: {
               type: 'nrpn',
@@ -3488,7 +3501,7 @@ module.exports = {
             default: 1,
           },
           mute: {
-            name: 'Open Hat Mute',
+            name: 'Redrum Open Hat Mute',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3501,7 +3514,7 @@ module.exports = {
             default: 0,
           },
           device: {
-            name: 'Open Hat Device',
+            name: 'Redrum Open Hat Device',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3515,7 +3528,7 @@ module.exports = {
             default: deviceToIndex('analog-rytm', 10),
           },
           note: {
-            name: 'Open Hat Note',
+            name: 'Redrum Open Hat Note',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3527,7 +3540,7 @@ module.exports = {
             default: 36,
           },
           preview: {
-            name: 'Open Hat Preview',
+            name: 'Redrum Open Hat Preview',
             type: 'action',
             surface: {
               type: 'nrpn',
@@ -3543,7 +3556,7 @@ module.exports = {
 
         {
           instrument: {
-            name: 'Cymbal Instrument',
+            name: 'Redrum Cymbal Instrument',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3557,7 +3570,7 @@ module.exports = {
             default: 9,
           },
           generate: {
-            name: 'Cymbal Generate',
+            name: 'Redrum Cymbal Generate',
             type: 'action',
             surface: {
               type: 'nrpn',
@@ -3570,7 +3583,7 @@ module.exports = {
             default: 0,
           },
           mute: {
-            name: 'Cymbal Mute',
+            name: 'Redrum Cymbal Mute',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3583,7 +3596,7 @@ module.exports = {
             default: 0,
           },
           device: {
-            name: 'Cymbal Device',
+            name: 'Redrum Cymbal Device',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3597,7 +3610,7 @@ module.exports = {
             default: deviceToIndex('analog-rytm', 11),
           },
           note: {
-            name: 'Cymbal Note',
+            name: 'Redrum Cymbal Note',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3609,7 +3622,7 @@ module.exports = {
             default: 36,
           },
           preview: {
-            name: 'Cymbal Preview',
+            name: 'Redrum Cymbal Preview',
             type: 'action',
             surface: {
               type: 'nrpn',
@@ -3624,7 +3637,7 @@ module.exports = {
         },
         {
           instrument: {
-            name: 'Cowbell Instrument',
+            name: 'Redrum Cowbell Instrument',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3638,7 +3651,7 @@ module.exports = {
             default: 8,
           },
           generate: {
-            name: 'Cowbell Generate',
+            name: 'Redrum Cowbell Generate',
             type: 'action',
             surface: {
               type: 'nrpn',
@@ -3651,7 +3664,7 @@ module.exports = {
             default: 0,
           },
           mute: {
-            name: 'Cowbell Mute',
+            name: 'Redrum Cowbell Mute',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3664,7 +3677,7 @@ module.exports = {
             default: 0,
           },
           device: {
-            name: 'Cowbell Device',
+            name: 'Redrum Cowbell Device',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3678,7 +3691,7 @@ module.exports = {
             default: deviceToIndex('analog-rytm', 12),
           },
           note: {
-            name: 'Cowbell Note',
+            name: 'Redrum Cowbell Note',
             type: 'parameter',
             surface: {
               type: 'nrpn',
@@ -3690,7 +3703,7 @@ module.exports = {
             default: 36,
           },
           preview: {
-            name: 'Cowbell Preview',
+            name: 'Redrum Cowbell Preview',
             type: 'action',
             surface: {
               type: 'nrpn',

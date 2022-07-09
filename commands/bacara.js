@@ -526,13 +526,23 @@ class BacaraMachine extends Machine {
             debug('generated drums')
           }
         },
+        reset: (elementPath, origin) => {
+          debug('drums reset')
+          for (let trck = 0; trck < DRUM_TRACKS; trck++) {
+            ['device','note','mute'].forEach( attr => {
+              const path = `drums.tracks.${trck}.${attr}`
+              this.interface.setParameter(path, this.interface.getElementAttribute(path,'default'),'surface')
+            })
+          }
+        },
         redrum: {
           reset: (elementPath, origin) => {
             debug('redrum reset')
             for (let trck = 0; trck < REDRUM_TRACKS; trck++) {
               ['instrument','device','note','mute'].forEach( attr => {
                 const path = `drums.redrum.tracks.${trck}.${attr}`
-                this.interface.setParameter(path, this.interface.getElementAttribute(path,'default'))
+                this.interface.setParameter(path, this.interface.getElementAttribute(path,'default'),'surface')
+//                console.log(path,this.interface.getElementAttribute(path,'default'))
               })
             }
           },
@@ -784,6 +794,7 @@ class BacaraMachine extends Machine {
           if (type == 'redrum' && this.options.analogRytmDevice) {
             const match = elementPath.match(/drums.redrum.tracks.(\d+).mute/)
             if (match) {
+//              console.log('hi2',elementPath,value)
               const channel=parseInt(match[1])
               Midi.send(this.options.analogRytmDevice, 'cc', {channel:channel, controller:94, value:value})
 //              debug('match %y',match)
@@ -955,6 +966,15 @@ class BacaraMachine extends Machine {
             this.interface.iterateElelements((template, path) => {
               if ((variant && _.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`)) || (oldVariant && _.has(this.interface.variants,`${String.fromCharCode(64+oldVariant)}.parameters.${path}`)) ) {
                 this.interface.sendValue(path,'surface')
+
+                if (this.options.analogRytmDevice) {
+                  const match = path.match(/drums.redrum.tracks.(\d+).mute/)
+                  if (match) {
+                    const channel=parseInt(match[1])
+                    Midi.send(this.options.analogRytmDevice, 'cc', {channel:channel, controller:94, value:this.interface.getParameter(path)})
+                  }
+                }
+
                 if (showPatternParameters.indexOf(path)>=0) {
                   melodicPaths++
                 }
@@ -1451,6 +1471,13 @@ class BacaraMachine extends Machine {
                   debugVariant('copy from variant %y to variant %y %y',this.variantName(sourceVariant),this.variantName(targetVariant),this.interface.getVariantParameters(sourceVariant))
                   this.interface.setVariantParameters(targetVariant, this.interface.getVariantParameters(sourceVariant) )
                   this.interface.setVariantState(targetVariant,this.interface.getVariantState(sourceVariant))
+                  if (targetVariant == 0) {
+//                    debug('merge to global %y',this.interface.getVariantState(sourceVariant))
+                    this.state = Object.assign(this.state, this.interface.getVariantState(sourceVariant))
+                    // We can now wipe the source variant, as it has been copied to global
+                    this.interface.setVariantParameters(sourceVariant, {})
+                    this.interface.setVariantState(sourceVariant, {})
+                  }
                 }
               }
             }
@@ -1711,6 +1738,14 @@ class BacaraMachine extends Machine {
   }
 
   showDrumsPattern() {
+    clearTimeout(this.showDrumsPatternTimeoutID)
+    this.showDrumsPatternTimeoutID = setTimeout( () => {
+      this.showDrumsPatternTimeoutID = null
+      this.showDrumsPatternActual()
+    }, 100)
+  }
+
+  showDrumsPatternActual() {
     const pattern = this.getState('drums.midi')
 //    const size = this.getState('drums.steps', 16)
     const size = this.interface.getParameter('drums.steps')
@@ -1851,6 +1886,14 @@ class BacaraMachine extends Machine {
   }
 
   showPattern() {
+    clearTimeout(this.showPatternTimeoutID)
+    this.showPatternTimeoutID = setTimeout( () => {
+      this.showPatternTimeoutID = null
+      this.showPatternActual()
+    }, 100)
+  }
+
+  showPatternActual() {
 
     //console.log('\x1Bc'); // Clear screen
 

@@ -757,7 +757,13 @@
       "slotId": 29,
       "type": "label",
       "name": "Redrum",
-      "color": "F49500"
+      "color": "F49500",
+      "values": [
+        {
+          "message": {
+          }
+        }
+      ]
     },
     {
       "id": "3d09d266-bd75-4ae3-942e-f6fb57844935",
@@ -1051,6 +1057,30 @@
         }
       ],
       "visible": true
+    },
+    {
+      "id": "2d2184e1-63ad-4808-a09b-1f01a6f17297",
+      "slotId": 46,
+      "type": "pad",
+      "deviceId": 17,
+      "color": "F45C51",
+      "name": "RESET",
+      "values": [
+        {
+          "id": "value",
+          "message": {
+            "type": "nrpn",
+            "deviceId": 17,
+            "lsbFirst": true,
+            "parameterNumber": 16369,
+            "onValue": 1,
+            "offValue": 0
+          },
+          "defaultValue": "off"
+        }
+      ],
+      "visible": true,
+      "mode": "momentary"
     },
     {
       "id": "8a17e364-200a-4f6e-8a77-b6e90aa4c624",
