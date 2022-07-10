@@ -30,9 +30,7 @@ function deviceToIndex(portName, channel = 1, field = 'device') {
             } else if (field == 'port') {
               let portIdx = 0
               for (let port of Bacara.getPresetState('midi.ports.output', [])) {
-               //console.log(port)
                 if (port.name == portName || port.short == portName || port.device == portName) {
-                 // console.log(portIdx)
                   return portIdx
                 }
                 portIdx++

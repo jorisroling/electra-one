@@ -542,7 +542,6 @@ class BacaraMachine extends Machine {
               ['instrument','device','note','mute'].forEach( attr => {
                 const path = `drums.redrum.tracks.${trck}.${attr}`
                 this.interface.setParameter(path, this.interface.getElementAttribute(path,'default'),'surface')
-//                console.log(path,this.interface.getElementAttribute(path,'default'))
               })
             }
           },
@@ -794,10 +793,8 @@ class BacaraMachine extends Machine {
           if (type == 'redrum' && this.options.analogRytmDevice) {
             const match = elementPath.match(/drums.redrum.tracks.(\d+).mute/)
             if (match) {
-//              console.log('hi2',elementPath,value)
               const channel=parseInt(match[1])
               Midi.send(this.options.analogRytmDevice, 'cc', {channel:channel, controller:94, value:value})
-//              debug('match %y',match)
             }
           }
         },
@@ -869,11 +866,9 @@ class BacaraMachine extends Machine {
 
     this.deviationsRotate = (type, originalValue) => {
       let rotation = this.interface.getParameter(`deviations.${type}.rotation`, 'modulated')
-/*      console.log(rotation,originalValue)*/
       if (typeof rotation == 'number') {
         rotation = rotation -  originalValue
       }
-/*      console.log(rotation)*/
       let map = this.getState(`deviations.${type}`)
       if (map) {
         const arrayRotate = (arr, reverse) => {
@@ -1442,7 +1437,6 @@ class BacaraMachine extends Machine {
 
     this.interface.on('incoming', (msg, origin, channel) => {
 
-//     if (origin != 'clock') console.log('hi:',origin,msg)
       /*          if (msg._type!='clock' || origin!='clock') debug('Incoming (from %y) ch.%y: %y',origin,channel,msg)*/
       /*      return*/
       let modSlotIdx
@@ -1652,7 +1646,7 @@ class BacaraMachine extends Machine {
         this.deviationsGenerate(deviation)
       }
     })
-    console.log(state)
+//    console.log(state)
 
   }
 
@@ -1749,7 +1743,6 @@ class BacaraMachine extends Machine {
     const pattern = this.getState('drums.midi')
 //    const size = this.getState('drums.steps', 16)
     const size = this.interface.getParameter('drums.steps')
-//    console.log(size)
     if (!pattern) {
       return
     }
@@ -2639,7 +2632,6 @@ class BacaraMachine extends Machine {
                         this.midiCache.setValue(portName, channel, 'note', midiNote, true)
 
                         const durationMs = Math.round(midiDuration)//Math.floor(midiDuration / ticksPerStep) * ticksPerStep
-/*                       console.log(midiDuration,durationMs)*/
 
                         setTimeout((portName, midiNote, channel, shadowChannel) => {
                           debugMidiNoteOff('port %s  channel %d  note %y    ', portName, channel + 1, midiNote)

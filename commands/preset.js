@@ -185,7 +185,6 @@ function generatePreset(name, sub, options) {
                           })
                         }
                       }
-                      /*                      console.log(value.textValues)*/
                     } else if (overlayType == 'matrixTarget') {
                       value.textValues = [{
                         index: 0,

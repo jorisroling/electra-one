@@ -12,8 +12,6 @@ let args
 
 function pageSwap(name, sub, options) {
 //  debug('Options %y',options)
-//  console.log(options)
-//  console.log(sub)
 
   if (options.filename) {
     if (fs.existsSync(options.filename)) {
