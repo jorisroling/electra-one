@@ -1464,7 +1464,7 @@ class BacaraMachine extends Machine {
                 const sourceVariant = notes[0] - _.get(config,'options.variantGeneralNote',36)
                 const targetVariant = notes[1] - _.get(config,'options.variantGeneralNote',36)
                 if (sourceVariant!=targetVariant && (sourceVariant>=0 && sourceVariant<=VARIANT_MAX) && (targetVariant>=0 && targetVariant<=VARIANT_MAX)) {
-                  debugVariant('copy from variant %y to variant %y %y',this.variantName(sourceVariant),this.variantName(targetVariant),this.interface.getVariantParameters(sourceVariant))
+                  debugVariant('copy from variant %y to variant %y',this.variantName(sourceVariant),this.variantName(targetVariant))
                   this.interface.setVariantParameters(targetVariant, this.interface.getVariantParameters(sourceVariant) )
                   this.interface.setVariantState(targetVariant,this.interface.getVariantState(sourceVariant))
                   if (targetVariant == 0) {
@@ -1474,6 +1474,7 @@ class BacaraMachine extends Machine {
                     this.interface.setVariantParameters(sourceVariant, {})
                     this.interface.setVariantState(sourceVariant, {})
                   }
+                  this.showVariant()
                 }
               }
             }
@@ -1877,7 +1878,7 @@ class BacaraMachine extends Machine {
         if (vmap[(x*4)+y] == variant) {
           content = (params || !vmap[(x*4)+y])?currentColor(currentBgColor(label)):currentEmptyColor(currentEmptyBgColor(label))
         } else {
-          content = params?labelColor(label):labelEmptyColor(label)
+          content = (params || !vmap[(x*4)+y])?labelColor(label):labelEmptyColor(label)
         }
         row.push(
           {hAlign:'center', colSpan:1, content },
@@ -1917,6 +1918,7 @@ class BacaraMachine extends Machine {
         ]
         table.push(arr)
       }
+      if (table) debugVariant(table.toString())
     } else {
       const msgColor = chalk.hex('#FF0000')
       let arr = [
@@ -1925,7 +1927,6 @@ class BacaraMachine extends Machine {
       table.push(arr)
     }
 
-    if (table) debugVariant(table.toString())
   }
 
   showPattern() {
