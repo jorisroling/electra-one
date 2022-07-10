@@ -1851,8 +1851,41 @@ class BacaraMachine extends Machine {
 
     debugVariant('variant %y',variant?String.fromCharCode(64+variant):'global')
 
+    this.interface.iterateElelements((template, path) => {
+      if ((variant && _.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`)) ) {
+        paths.push(path)
+      }
+    }, null, ['parameter', 'feedback'])
 
-    let mainTable = new Table(
+
+    let table = new Table(
+        {
+          head: [
+            'Variating Parameters',
+            'Values',
+          ]
+        }
+      );
+
+    if (paths && paths.length) {
+
+      const nameColor = chalk.hex('#FF8800')
+      const valueColor = chalk.hex('#00FF88')
+
+      for (let path of paths) {
+        const unit = this.interface.getElementAttribute(path,'unit')
+        let arr = [
+         {hAlign:'left', colSpan:1, content:nameColor(this.interface.getElementAttribute(path,'name') || path) },
+         {hAlign:'center', colSpan:1, content:valueColor(this.interface.getParameter(path)+(unit?` ${unit}`:'')) },
+        ]
+        table.push(arr)
+      }
+      if (table) debugVariant(table.toString())
+    }
+
+
+
+    let padsTable = new Table(
       {
         head: [
           {hAlign:'center', colSpan:4, content: 'Variants'},
@@ -1884,48 +1917,9 @@ class BacaraMachine extends Machine {
           {hAlign:'center', colSpan:1, content },
         )
       }
-      mainTable.push(row)
+      padsTable.push(row)
     }
-    debugVariant(mainTable.toString())
-
-
-    this.interface.iterateElelements((template, path) => {
-      if ((variant && _.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`)) ) {
-        paths.push(path)
-      }
-    }, null, ['parameter', 'feedback'])
-
-
-    let table = new Table(
-        {
-          head: [
-            'Variating Parameters',
-            'Values',
-          ]
-        }
-      );
-
-    if (paths && paths.length) {
-
-      const nameColor = chalk.hex('#FF8800')
-      const valueColor = chalk.hex('#00FF88')
-
-      for (let path of paths) {
-        const unit = this.interface.getElementAttribute(path,'unit')
-        let arr = [
-         {hAlign:'left', colSpan:1, content:nameColor(this.interface.getElementAttribute(path,'name') || path) },
-         {hAlign:'center', colSpan:1, content:valueColor(this.interface.getParameter(path)+(unit?` ${unit}`:'')) },
-        ]
-        table.push(arr)
-      }
-      if (table) debugVariant(table.toString())
-    } else {
-      const msgColor = chalk.hex('#FF0000')
-      let arr = [
-       {hAlign:'center', colSpan:2, content:msgColor(variant?'none':'global') },
-      ]
-      table.push(arr)
-    }
+    debugVariant(padsTable.toString())
 
   }
 
@@ -3271,8 +3265,9 @@ function bacaraSequencer(name, sub, options) {
 
   bacaraMachine.notesReset()
   bacaraMachine.interface.sendValues('surface')
-  bacaraMachine.showPattern()
   bacaraMachine.showDrumsPattern()
+  bacaraMachine.showPattern()
+  bacaraMachine.showVariant()
 }
 
 module.exports = {
