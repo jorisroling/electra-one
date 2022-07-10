@@ -980,9 +980,9 @@ class BacaraMachine extends Machine {
             }, null, ['parameter', 'feedback'])
           }
           this.writeState()
-          this.showVariant()
           if (drumPaths) this.showDrumsPattern()
           if (melodicPaths) this.showPattern()
+          this.showVariant()
         }
       },
       "torso-t1": {
@@ -1456,6 +1456,8 @@ class BacaraMachine extends Machine {
                   if (oldVariant != variant) {
                     this.interface.setParameter('variant', variant, 'internal',0)
                     this.parameterSideEffects.variant('variant', variant, 'internal', oldVariant)
+                  } else {
+                    this.showVariant()
                   }
                 }
               } else if (notes.length == 2) {
@@ -1835,14 +1837,63 @@ class BacaraMachine extends Machine {
   }
 
   showVariant() {
+    clearTimeout(this.showVariantTimeoutID)
+    this.showVariantTimeoutID = setTimeout( () => {
+      this.showVariantTimeoutID = null
+      this.showVariantActual()
+    }, 100)
+  }
+
+  showVariantActual() {
     const variant = this.interface.getParameter('variant')
     const paths = []
+
+    debugVariant('variant %y',variant?String.fromCharCode(64+variant):'global')
+
+
+    let mainTable = new Table(
+      {
+        head: [
+          {hAlign:'center', colSpan:4, content: 'Variants'},
+        ]
+      }
+    )
+    const labelEmptyColor = chalk.hex('#555555')
+    const labelColor = chalk.hex('#FF8800')
+    const currentColor = chalk.hex('#FFFFFF')
+    const currentEmptyColor = chalk.hex('#000000')
+    const currentBgColor = chalk.bgHex('#884400')
+    const currentEmptyBgColor = chalk.bgHex('#555555')
+
+//    if ((variant && _.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`)) ) {
+
+    const vmap = [12,13,14,15,  8,9,10,11, 4,5,6,7, 0,1,2,3]
+    for (let x=0;x<4;x++) {
+      let row=[]
+      for (let y=0;y<4;y++) {
+        const params = (vmap[(x*4)+y] && _.has(this.interface.variants,`${String.fromCharCode(64+vmap[(x*4)+y])}.parameters`))?Object.keys(_.get(this.interface.variants,`${String.fromCharCode(64+vmap[(x*4)+y])}.parameters`),{}).length:0
+        const label = ' '+(vmap[(x*4)+y]?String.fromCharCode(64+vmap[(x*4)+y]):' ')+' '//+` (${params})`
+        let content = labelColor(label)
+        if (vmap[(x*4)+y] == variant) {
+          content = (params || !vmap[(x*4)+y])?currentColor(currentBgColor(label)):currentEmptyColor(currentEmptyBgColor(label))
+        } else {
+          content = params?labelColor(label):labelEmptyColor(label)
+        }
+        row.push(
+          {hAlign:'center', colSpan:1, content },
+        )
+      }
+      mainTable.push(row)
+    }
+    debugVariant(mainTable.toString())
+
 
     this.interface.iterateElelements((template, path) => {
       if ((variant && _.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`)) ) {
         paths.push(path)
       }
     }, null, ['parameter', 'feedback'])
+
 
     let table = new Table(
         {
@@ -1874,7 +1925,6 @@ class BacaraMachine extends Machine {
       table.push(arr)
     }
 
-    debugVariant('variant %y',variant?String.fromCharCode(64+variant):'global')
     if (table) debugVariant(table.toString())
   }
 
