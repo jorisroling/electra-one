@@ -2265,7 +2265,7 @@ module.exports = {
       },
       tracks: [{
         device: {
-          name: 'Bass Drum Device',
+          name: 'Drums Bass Drum Device',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2279,7 +2279,7 @@ module.exports = {
           default: deviceToIndex('bacara', 10),
         },
         note: {
-          name: 'Bass Drum Note',
+          name: 'Drums Bass Drum Note',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2291,7 +2291,7 @@ module.exports = {
           default: 0,
         },
         mute: {
-          name: 'Bass Drum Mute',
+          name: 'Drums Bass Drum Mute',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2305,7 +2305,7 @@ module.exports = {
         },
       }, {
         device: {
-          name: 'Snare Drum Device',
+          name: 'Drums Snare Drum Device',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2319,7 +2319,7 @@ module.exports = {
           default: deviceToIndex('bacara', 10),
         },
         note: {
-          name: 'Snare Drum Note',
+          name: 'Drums Snare Drum Note',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2331,7 +2331,7 @@ module.exports = {
           default: 1,
         },
         mute: {
-          name: 'Snare Drum Mute',
+          name: 'Drums Snare Drum Mute',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2345,7 +2345,7 @@ module.exports = {
         },
       }, {
         device: {
-          name: 'Low Tom Device',
+          name: 'Drums Low Tom Device',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2359,7 +2359,7 @@ module.exports = {
           default: deviceToIndex('bacara', 10),
         },
         note: {
-          name: 'Low Tom Note',
+          name: 'Drums Low Tom Note',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2371,7 +2371,7 @@ module.exports = {
           default: 5,
         },
         mute: {
-          name: 'Low Tom Mute',
+          name: 'Drums Low Tom Mute',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2385,7 +2385,7 @@ module.exports = {
         },
       }, {
         device: {
-          name: 'Mid Tom Device',
+          name: 'Drums Mid Tom Device',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2399,7 +2399,7 @@ module.exports = {
           default: deviceToIndex('bacara', 10),
         },
         note: {
-          name: 'Mid Tom Note',
+          name: 'Drums Mid Tom Note',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2411,7 +2411,7 @@ module.exports = {
           default: 6,
         },
         mute: {
-          name: 'Mid Tom Mute',
+          name: 'Drums Mid Tom Mute',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2425,7 +2425,7 @@ module.exports = {
         },
       }, {
         device: {
-          name: 'High Tom Device',
+          name: 'Drums High Tom Device',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2439,7 +2439,7 @@ module.exports = {
           default: deviceToIndex('bacara', 10),
         },
         note: {
-          name: 'High Tom Note',
+          name: 'Drums High Tom Note',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2451,7 +2451,7 @@ module.exports = {
           default: 7,
         },
         mute: {
-          name: 'High Tom Mute',
+          name: 'Drums High Tom Mute',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2465,7 +2465,7 @@ module.exports = {
         },
       }, {
         device: {
-          name: 'Rim Shot Device',
+          name: 'Drums Rim Shot Device',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2479,7 +2479,7 @@ module.exports = {
           default: deviceToIndex('bacara', 10),
         },
         note: {
-          name: 'Rim Shot Note',
+          name: 'Drums Rim Shot Note',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2491,7 +2491,7 @@ module.exports = {
           default: 2,
         },
         mute: {
-          name: 'Rim Shot Mute',
+          name: 'Drums Rim Shot Mute',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2505,7 +2505,7 @@ module.exports = {
         },
       }, {
         device: {
-          name: 'Hand Clap Device',
+          name: 'Drums Hand Clap Device',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2519,7 +2519,7 @@ module.exports = {
           default: deviceToIndex('bacara', 10),
         },
         note: {
-          name: 'Hand Clap Note',
+          name: 'Drums Hand Clap Note',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2531,7 +2531,7 @@ module.exports = {
           default: 8,
         },
         mute: {
-          name: 'Hand Clap Mute',
+          name: 'Drums Hand Clap Mute',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2545,7 +2545,7 @@ module.exports = {
         },
       }, {
         device: {
-          name: 'Cow Bell Device',
+          name: 'Drums Cowbell Device',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2559,7 +2559,7 @@ module.exports = {
           default: deviceToIndex('bacara', 10),
         },
         note: {
-          name: 'Cow Bell Note',
+          name: 'Drums Cowbell Note',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2571,7 +2571,7 @@ module.exports = {
           default: 11,
         },
         mute: {
-          name: 'Cow Bell Mute',
+          name: 'Drums Cowbell Mute',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2585,7 +2585,7 @@ module.exports = {
         },
       }, {
         device: {
-          name: 'Cymbal Device',
+          name: 'Drums Cymbal Device',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2599,7 +2599,7 @@ module.exports = {
           default: deviceToIndex('bacara', 10),
         },
         note: {
-          name: 'Cymbal Note',
+          name: 'Drums Cymbal Note',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2611,7 +2611,7 @@ module.exports = {
           default: 10,
         },
         mute: {
-          name: 'Cymbal Mute',
+          name: 'Drums Cymbal Mute',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2625,7 +2625,7 @@ module.exports = {
         },
       }, {
         device: {
-          name: 'Open Hat Device',
+          name: 'Drums Open Hat Device',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2639,7 +2639,7 @@ module.exports = {
           default: deviceToIndex('bacara', 10),
         },
         note: {
-          name: 'Open Hat Note',
+          name: 'Drums Open Hat Note',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2651,7 +2651,7 @@ module.exports = {
           default: 9,
         },
         mute: {
-          name: 'Open Hat Mute',
+          name: 'Drums Open Hat Mute',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2665,7 +2665,7 @@ module.exports = {
         },
       }, {
         device: {
-          name: 'Closed Hat Device',
+          name: 'Drums Closed Hat Device',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2679,7 +2679,7 @@ module.exports = {
           default: deviceToIndex('bacara', 10),
         },
         note: {
-          name: 'Closed Hat Note',
+          name: 'Drums Closed Hat Note',
           type: 'parameter',
           surface: {
             type: 'nrpn',
@@ -2691,7 +2691,7 @@ module.exports = {
           default: 8,
         },
         mute: {
-          name: 'Closed Hat Mute',
+          name: 'Drums Closed Hat Mute',
           type: 'parameter',
           surface: {
             type: 'nrpn',
