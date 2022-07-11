@@ -1611,7 +1611,8 @@ class BacaraMachine extends Machine {
     this.setStates(state)
     if (!this.getState('drums.redrum')) {
       for (let i = 0; i < REDRUM_TRACKS; i++) {
-        this.setState(`drums.redrum.tracks.${i}`, {portName: 'analog-rytm'})
+        this.setState(`drums.redrum.tracks.${i}.portName`, 'analog-rytm')
+        this.setState(`drums.redrum.tracks.${i}.channel`, i)
       }
     }
     _.set(this.modulation, 'lfo', _.get(json, 'modulation.lfo', {}))
@@ -2767,8 +2768,9 @@ class BacaraMachine extends Machine {
                   }, durationMs + r, portName, midiNote, channel)
                   if (!this.interface.getParameter(`drums.redrum.mute`, 'modulated')) {
                     for (let trck = 0; trck < REDRUM_TRACKS; trck++) {
+
                       if (this.interface.getParameter(`drums.redrum.tracks.${trck}.instrument`, 'modulated') == (instrument + 1 )) {
-                        if (!this.interface.getParameter(`drums.redrum.tracks.${trck}.mute`, 'modulated') && this.getState(`drums.redrum.tracks.${trck}.portName`) && this.interface.getParameter('drums.probability', 'modulated') >= Random.getRandomInt(100)) {
+                        if (!this.interface.getParameter(`drums.redrum.tracks.${trck}.mute`, 'modulated') && this.getState(`drums.redrum.tracks.${trck}.portName`) && this.interface.getParameter('drums.probability', 'modulated',100) >= Random.getRandomInt(100)) {
                           const portName = this.getState(`drums.redrum.tracks.${trck}.portName`)
                           const channel = this.getState(`drums.redrum.tracks.${trck}.channel`, 9)
                           const midiNote = this.interface.getParameter(`drums.redrum.tracks.${trck}.note`, 'modulated')
