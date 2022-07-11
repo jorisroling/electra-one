@@ -27,7 +27,7 @@ const semver = require('semver')
 
 const { Midi:TonalMidi } = require('@tonaljs/tonal')
 
-const bacaraPresetName = config.electra.presetName.bacara //'Bacara'
+const bacaraPresetName = _.get(config,'electra.presetName.bacara') //'Bacara'
 const Machine = require('../lib/midi/machine')
 const Interface = require('../lib/midi/interface')
 const MidiCache = require('../lib/midi/cache')
@@ -143,8 +143,9 @@ function bacaraEmit(portName, part, type, value, origin) {
 }
 
 class BacaraMachine extends Machine {
-  constructor(name, options) {
-    super(name)
+  constructor(name, options, windowEmitter) {
+    super(name, windowEmitter)
+    this.windowEmitter = windowEmitter
     this.options = options
     this.pulseTime = [0, 0]
     this.pulses = 0
@@ -3070,7 +3071,7 @@ function deviceInfo(value) {
   return result
 }
 
-function bacaraSequencer(name, sub, options) {
+function bacaraSequencer(name, sub, options, windowEmitter ) {
   if (options.verbose) {
     debugError('options %y', _.fromPairs(_.toPairs(options).filter(a => a[0].length > 1 )) )
     debugError('config %y', config.util.toObject(config))
@@ -3109,7 +3110,7 @@ function bacaraSequencer(name, sub, options) {
   })
 
 
-  const bacaraMachine = new BacaraMachine('bacara', options)
+  const bacaraMachine = new BacaraMachine('bacara', options, windowEmitter)
   bacaraMachine.readState()
   bacaraMachine.writeState()
 
@@ -3151,27 +3152,35 @@ function bacaraSequencer(name, sub, options) {
               const presetName = electra.parseSysexCmdPatchRequestResponse(options.electraOneCtrl, msg.bytes)
               if (presetName == bacaraPresetName || presetName.toLowerCase().indexOf('bacara') >= 0) {
                 debug('Electra One "%s" preset IS Loaded (patch)', bacaraPresetName)
-                bacaraPresetLoaded = true
-                bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
-                if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
+                if (config.electra.checkPresetVia == 'patch') {
+                  bacaraPresetLoaded = true
+                  bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
+                  if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
+                }
               } else {
                 debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (patch)', bacaraPresetName, presetName)
-                bacaraPresetLoaded = false
-                bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
-                if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
+                if (config.electra.checkPresetVia == 'patch') {
+                  bacaraPresetLoaded = false
+                  bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
+                  if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
+                }
               }
             } else if (_.isEqual(sysexCmd, electraSysexCmdPresetNameResponse)) {
               const presetName = electra.parseSysexCmdPresetNameResponse(options.electraOneCtrl, msg.bytes) || ''
               if (!presetName || (presetName == bacaraPresetName || presetName.toLowerCase().indexOf('bacara') >= 0)) {
                 debug('Electra One "%s" preset IS Loaded (preset)', bacaraPresetName)
-               bacaraPresetLoaded = true
-               bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
-               if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
+                if (config.electra.checkPresetVia == 'preset') {
+                 bacaraPresetLoaded = true
+                 bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
+                 if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
+               }
               } else {
                 debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (preset)', bacaraPresetName, presetName, presetName.toLowerCase().indexOf(bacaraPresetName.toLowerCase()), presetName, bacaraPresetName)
-                bacaraPresetLoaded = false
-                bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
-                if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
+                if (config.electra.checkPresetVia == 'preset') {
+                  bacaraPresetLoaded = false
+                  bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
+                  if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
+                }
               }
             } else if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
               if (config.electra.checkPresetVia == 'patch' || semver.lt(_.get(e1_system_info, 'versionText', 'v0.0.0'), E1_FIRMWARE_PRESET_REQUEST_VERSION)) {

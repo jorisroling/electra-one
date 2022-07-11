@@ -29,7 +29,7 @@
     "analogRytmDevice": "analog-rytm"
   },
   "electra": {
-    "checkPresetVia": "preset",
+    "checkPresetVia": "patch",
     "presetName": {
       "bacara": "Bacara Joris"
     }
