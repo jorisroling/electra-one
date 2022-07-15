@@ -82,6 +82,9 @@ module.exports = {
         min: 100,
         max: 500,
       },
+      window: {
+        template: '<x-knob theme="flat" value="{{element.default}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+      },
       min: 1.0,
       max: 5.0,
       default: 1.0,
@@ -103,6 +106,9 @@ module.exports = {
         number: 4,
         min: 0,
         max: 127,
+      },
+      window: {
+        template: '<x-knob theme="flat" value="{{element.default}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
       },
       min: 1,
       max: 128,
@@ -149,6 +155,9 @@ module.exports = {
         number: 3,
         min: 0,
         max: 127,
+      },
+      window: {
+        template: '<x-knob theme="flat" value="{{element.default}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
       },
       min: -64,
       max: 63,
@@ -253,6 +262,9 @@ module.exports = {
         min: 0,
         max: 32,
       },
+      window: {
+        template: '<x-knob theme="flat" value="{{element.default}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+      },
       min: -16,
       max: 16,
       default: 0,
@@ -267,6 +279,9 @@ module.exports = {
         lsbFirst: true,
         min: 0,
         max: 127,
+      },
+      window: {
+        template: '<x-knob theme="flat" value="{{element.default}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
       },
       min: 0,
       max: 127,
@@ -428,6 +443,9 @@ module.exports = {
         lsbFirst: true,
         min: 0,
         max: 127,
+      },
+      window: {
+        template: '<x-knob theme="flat" value="{{element.default}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
       },
       min: 0,
       max: 127,
