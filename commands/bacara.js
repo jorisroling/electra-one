@@ -2337,7 +2337,13 @@ class BacaraMachine extends Machine {
 
     this.stepIdx = ticks / ticksPerStep
 
+
     if (this.getState('playing',false,0)) {
+      if (!((this.stepIdx*100)%100) && this.windowEmitter) {
+        this.windowEmitter.send('step',{
+          step:Math.round(this.stepIdx) + 1,
+        })
+      }
       const tickDuration = this.pulseDuration / 20
       let shiftedTicks = (ticks + (ticksPerStep * -this.interface.getParameter('shift', 'modulated'))) % (ticksPerStep * this.interface.getParameter('steps'))
       if (shiftedTicks < 0) {
