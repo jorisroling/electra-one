@@ -529,7 +529,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Note',
           },
           min: -127,
           max: 127,
@@ -556,7 +556,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Note',
           },
           min: -127,
           max: 127,
@@ -583,7 +583,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Note',
           },
           min: 0,
           max: 100,
@@ -610,7 +610,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Note',
           },
           min: -100,
           max: 100,
@@ -637,7 +637,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Note',
           },
           min: 0,
           max: 16,
@@ -663,7 +663,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Note',
           },
           min: -15,
           max: 15,
@@ -691,7 +691,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Velocity',
           },
           min: -127,
           max: 127,
@@ -717,7 +717,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Velocity',
           },
           min: -127,
           max: 127,
@@ -743,7 +743,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Velocity',
           },
           min: 0,
           max: 100,
@@ -770,7 +770,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Velocity',
           },
           min: -100,
           max: 100,
@@ -797,7 +797,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Velocity',
           },
           min: 0,
           max: 16,
@@ -823,7 +823,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Velocity',
           },
           min: -15,
           max: 15,
@@ -851,7 +851,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Duration',
           },
           min: -100,
           max: 100,
@@ -878,7 +878,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Duration',
           },
           min: -100,
           max: 100,
@@ -905,7 +905,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Duration',
           },
           min: 0,
           max: 100,
@@ -932,7 +932,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Duration',
           },
           min: -100,
           max: 100,
@@ -959,7 +959,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Duration',
           },
           min: 0,
           max: 16,
@@ -985,7 +985,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Duration',
           },
           min: -15,
           max: 15,
@@ -1015,7 +1015,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Octave',
           },
           min: -5,
           max: 5,
@@ -1042,7 +1042,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Octave',
           },
           min: -5,
           max: 5,
@@ -1069,7 +1069,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Octave',
           },
           min: 0,
           max: 100,
@@ -1096,7 +1096,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Octave',
           },
           min: -100,
           max: 100,
@@ -1123,7 +1123,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Octave',
           },
           min: 0,
           max: 16,
@@ -1149,7 +1149,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Octave',
           },
           min: -15,
           max: 15,
@@ -1177,7 +1177,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Accent',
           },
           min: 0,
           max: 100,
@@ -1204,7 +1204,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Accent',
           },
           min: 0,
           max: 100,
@@ -1231,7 +1231,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Accent',
           },
           min: 0,
           max: 16,
@@ -1257,7 +1257,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Accent',
           },
           min: -15,
           max: 15,
@@ -1285,7 +1285,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Mute',
           },
           min: 0,
           max: 100,
@@ -1312,7 +1312,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Mute',
           },
           min: 0,
           max: 100,
@@ -1339,7 +1339,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Mute',
           },
           min: 0,
           max: 16,
@@ -1365,7 +1365,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Mute',
           },
           min: -15,
           max: 15,
@@ -1393,7 +1393,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Device',
           },
           min: 0,
           max: 100,
@@ -1420,7 +1420,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Device',
           },
           min: 0,
           max: 100,
@@ -1447,7 +1447,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Device',
           },
           min: 0,
           max: 16,
@@ -1473,7 +1473,7 @@ module.exports = {
           },
           window: {
             template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-            page: 'Deviations',
+            page: 'Device',
           },
           min: -15,
           max: 15,

@@ -1935,6 +1935,18 @@ class BacaraMachine extends Machine {
 
   showPatternActual() {
 
+    if (this.windowEmitter) {
+      console.log('hi')
+      this.windowEmitter.send('showPattern',{
+        interface:this.interface.interface,
+        parameters:this.interface.parameters,
+        state:this.state,
+        modulation:this.interface.modulation,
+        variants:this.interface.getVariants(),
+        scales:scaleMappings,
+      })
+    }
+
     //console.log('\x1Bc'); // Clear screen
 
     const pattern = this.getState('pattern')
