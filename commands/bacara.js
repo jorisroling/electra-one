@@ -1943,7 +1943,7 @@ class BacaraMachine extends Machine {
         state:this.state,
         modulation:this.interface.modulation,
         variants:this.interface.getVariants(),
-        scales:scaleMappings,
+        scales:scaleMappings.scales,
       })
     }
 
