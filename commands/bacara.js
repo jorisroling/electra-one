@@ -159,6 +159,21 @@ class BacaraMachine extends Machine {
 
     this.remote = {}
 
+    if (this.windowEmitter) {
+      this.windowEmitter.on('message', (args) => {
+        console.log('message',args)
+        debug('message %y ',args)
+        if (typeof args == 'object') {
+          switch (args.type) {
+            case 'getData':
+              this.sendWindowData()
+              this.windowEmitter.send('showPattern')
+              break
+          }
+        }
+      })
+    }
+
     Bacara.event().on('change', (device, part, name, value, origin, command) => {
       if (/*command != me &&*/ device == 'virus-ti' && (part >= 1 && part <= 16)) {
         //debug('BACARA change %y - device: %y  part: %y  name: %y  value: %y  origin: %y command: %y',me,device, part, name, value, origin, command)
@@ -181,7 +196,6 @@ class BacaraMachine extends Machine {
         }
       }
     })
-    //  }
 
     if (options.remote) {
       const midiInput_remote = Midi.input(options.remote)
@@ -1563,6 +1577,21 @@ class BacaraMachine extends Machine {
     })
   }
 
+  // CLASS FUNCTIONS
+
+  sendWindowData() {
+    if (this.windowEmitter) {
+      this.windowEmitter.send('data',{
+        interface:this.interface.interface,
+        parameters:this.interface.parameters,
+        state:this.state,
+        modulation:this.interface.modulation,
+        variants:this.interface.getVariants(),
+        scales:scaleMappings.scales,
+      })
+    }
+  }
+
   triggerAction(actionPath, origin) {
     if (actionPath) {
       const actionSideEffect = _.get(this.actionSideEffects, actionPath)
@@ -1840,6 +1869,10 @@ class BacaraMachine extends Machine {
   }
 
   showVariant() {
+    if (this.windowEmitter) {
+      this.sendWindowData()
+      this.windowEmitter.send('showVariant')
+    }
     clearTimeout(this.showVariantTimeoutID)
     this.showVariantTimeoutID = setTimeout( () => {
       this.showVariantTimeoutID = null
@@ -1926,6 +1959,11 @@ class BacaraMachine extends Machine {
   }
 
   showPattern() {
+    if (this.windowEmitter) {
+      this.sendWindowData()
+      this.windowEmitter.send('showPattern')
+    }
+
     clearTimeout(this.showPatternTimeoutID)
     this.showPatternTimeoutID = setTimeout( () => {
       this.showPatternTimeoutID = null
@@ -1934,19 +1972,6 @@ class BacaraMachine extends Machine {
   }
 
   showPatternActual() {
-
-    if (this.windowEmitter) {
-      console.log('hi')
-      this.windowEmitter.send('showPattern',{
-        interface:this.interface.interface,
-        parameters:this.interface.parameters,
-        state:this.state,
-        modulation:this.interface.modulation,
-        variants:this.interface.getVariants(),
-        scales:scaleMappings.scales,
-      })
-    }
-
     //console.log('\x1Bc'); // Clear screen
 
     const pattern = this.getState('pattern')
