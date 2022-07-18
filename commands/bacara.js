@@ -375,7 +375,7 @@ class BacaraMachine extends Machine {
         }
       },
       load: (elementPath, origin) => {
-        if (origin == 'surface' || origin == 'remote') {
+        if (origin == 'surface' || origin == 'remote' || origin == 'window') {
           this.interface.sendValues(origin)
           debug('load')
         }
@@ -384,7 +384,7 @@ class BacaraMachine extends Machine {
         this.setState('remote', {})
       },
       generate: (elementPath, origin) => {
-        if (origin == 'surface' || origin == 'remote') {
+       if (origin == 'surface' || origin == 'remote' || origin == 'window') {
           const pattern = Pattern.generate(this.state, this.interface.getParameter('steps'))
           this.setState('pattern', pattern)
           this.interface.setParameter('pattern', Pattern.patternFiles(this.state, true) - 1)
@@ -392,10 +392,10 @@ class BacaraMachine extends Machine {
           this.showPattern()
           this.writeState()
           debug('generated')
-        }
+       }
       },
       previous_pattern: (elementPath, origin) => {
-        if (origin == 'surface' || origin == 'remote') {
+        if (origin == 'surface' || origin == 'remote' || origin == 'window') {
           this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern', random:'random_pattern'})
 
           if (this.interface.getParameter('pattern', 0) > 0 ) {
@@ -410,7 +410,7 @@ class BacaraMachine extends Machine {
         }
       },
       next_pattern: (elementPath, origin) => {
-        if (origin == 'surface' || origin == 'remote') {
+        if (origin == 'surface' || origin == 'remote' || origin == 'window') {
           this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern', random:'random_pattern'})
 
           const count = Pattern.patternFiles(this.state, true)
@@ -427,7 +427,7 @@ class BacaraMachine extends Machine {
         }
       },
       random_pattern: (elementPath, origin) => {
-        if (origin == 'surface' || origin == 'remote') {
+        if (origin == 'surface' || origin == 'remote' || origin == 'window') {
           this.setRemote(origin, {next:'next_pattern', previous:'previous_pattern', random:'random_pattern'})
 
           const count = Pattern.patternFiles(this.state, true)
@@ -442,7 +442,7 @@ class BacaraMachine extends Machine {
         }
       },
       previous_preset: (elementPath, origin) => {
-        if (origin == 'surface' || origin == 'remote') {
+        if (origin == 'surface' || origin == 'remote' || origin == 'window') {
           this.setRemote(origin, {next:'next_preset', previous:'previous_preset', random:'random_preset'})
           const program = this.interface.getParameter('program')
           if (program >= 1 && program < 128) {
@@ -459,7 +459,7 @@ class BacaraMachine extends Machine {
         }
       },
       next_preset: (elementPath, origin) => {
-        if (origin == 'surface' || origin == 'remote') {
+        if (origin == 'surface' || origin == 'remote' || origin == 'window') {
           this.setRemote(origin, {next:'next_preset', previous:'previous_preset', random:'random_preset'})
           const program = this.interface.getParameter('program')
           if (program >= 0 && program < 127) {
@@ -476,7 +476,7 @@ class BacaraMachine extends Machine {
         }
       },
       random_preset: (elementPath, origin) => {
-        if (origin == 'surface' || origin == 'remote') {
+        if (origin == 'surface' || origin == 'remote' || origin == 'window') {
           this.setRemote(origin, {next:'next_preset', previous:'previous_preset', random:'random_preset'})
           const filename = this.load_preset(Random.getRandomInt(this.presetFiles(true)))
           if (filename) {
@@ -490,19 +490,19 @@ class BacaraMachine extends Machine {
         }
       },
       add_preset: (elementPath, origin) => {
-        if (origin == 'surface' || origin == 'remote') {
+        if (origin == 'surface' || origin == 'remote' || origin == 'window') {
           const filename = this.add_preset()
           debug('add_preset: %y', filename)
         }
       },
       save_preset: (elementPath, origin) => {
-        if (origin == 'surface' || origin == 'remote') {
+        if (origin == 'surface' || origin == 'remote' || origin == 'window') {
           const filename = this.save_preset()
           debug('save_preset: %y', filename)
         }
       },
       reset_preset: (elementPath, origin) => {
-        if (origin == 'surface' || origin == 'remote') {
+        if (origin == 'surface' || origin == 'remote' || origin == 'window') {
           const playing = this.getState('playing',false,0)
           this.reset()
           this.initState()
@@ -533,7 +533,7 @@ class BacaraMachine extends Machine {
       },
       drums: {
         generate: (elementPath, origin) => {
-          if (origin == 'surface' || origin == 'remote' || !this.getState('drums.patterns')) {
+          if (origin == 'surface' || origin == 'remote' || origin == 'window' || !this.getState('drums.patterns')) {
             this.setState('drums.patterns', Drums.generate(this.interface.getParameter('drums.steps'), this.interface.getParameter('drums.style'), -1, this.getState('drums.patterns')))
             this.setState('drums.midi', Drums.midiFromPatterns(this.interface.getParameter('drums.steps'), this.getState('drums.patterns')))
             this.showDrumsPattern()

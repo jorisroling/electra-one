@@ -103,7 +103,7 @@ module.exports = {
         max: 127,
       },
       window: {
-        template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+        template: '<x-select class="{{class}}"><x-menu>{{#each element.list}}<x-menuitem value="{{@index}}" {{#if (isSelected this "scales")}}toggled{{/if}}><x-label>{{this}}</x-label></x-menuitem>{{/each}}</x-menu></x-select>',
         page: 'Pattern',
       },
       min: 0,
@@ -148,6 +148,7 @@ module.exports = {
         'Phrygian Mode',
         'Whole Tone',
         'Whole-Half Dim',
+        'User / Extern',
       ],
     },
     generate: {
@@ -159,6 +160,10 @@ module.exports = {
         lsbFirst: true,
         min: 0,
         max: 1,
+      },
+      window: {
+        template: '<x-button class="{{class}}"><x-label>{{element.name}}</x-label></x-button>',
+        page: 'Pattern',
       },
       on: 1,
     },
@@ -198,8 +203,14 @@ module.exports = {
         min: 0,
         max: 1,
       },
+      window: {
+        template: '<x-switch class="{{class}}"></x-switch>',
+        page: 'Pattern',
+      },
       on: 1,
       default: 0,
+      integer: true,
+      precision: 0,
     },
     next_pattern: {
       name: 'Next Pattern',
@@ -210,6 +221,10 @@ module.exports = {
         lsbFirst: true,
         min: 0,
         max: 1,
+      },
+      window: {
+        template: '<x-button class="{{class}}"><x-label>{{element.name}}</x-label></x-button>',
+        page: 'Pattern',
       },
       on: 1,
     },
@@ -256,7 +271,7 @@ module.exports = {
         max: 127,
       },
       window: {
-        template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+        template: '<x-select class="{{class}}"><x-menu>{{#each element.list}}<x-menuitem value="{{@index}}" {{#if (isSelected this "base")}}toggled{{/if}}><x-label>{{this}}</x-label></x-menuitem>{{/each}}</x-menu></x-select>',
         page: 'Pattern',
       },
       min: 0,
@@ -315,6 +330,10 @@ module.exports = {
         min: 0,
         max: 1,
       },
+      window: {
+        template: '<x-button class="{{class}}"><x-label>{{element.name}}</x-label></x-button>',
+        page: 'Pattern',
+      },
       on: 1,
     },
     split: {
@@ -370,7 +389,7 @@ module.exports = {
         },
         window: {
           template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-          page: 'Pattern',
+          page: 'Torso T-1',
         },
         min: 1,
         max: 16,
@@ -389,12 +408,17 @@ module.exports = {
           min: 0,
           max: 1,
         },
+        window: {
+          template: '<x-select class="{{class}}"><x-menu>{{#each element.list}}<x-menuitem value="{{@index}}" {{#if (isSelected this "base")}}toggled{{/if}}><x-label>{{this}}</x-label></x-menuitem>{{/each}}</x-menu></x-select>',
+          page: 'Torso T-1',
+        },
         min: 0,
         max: 1,
         default: 0,
         integer: true,
         precision: 0,
         variant: 0, // global only
+        list: ['Constraine','Filter'],
       },
     },
     reset_preset: {
@@ -406,6 +430,10 @@ module.exports = {
         lsbFirst: true,
         min: 0,
         max: 1,
+      },
+      window: {
+        template: '<x-button class="{{class}}"><x-label>{{element.name}}</x-label></x-button>',
+        page: 'Preset',
       },
       on: 1,
     },
@@ -431,6 +459,10 @@ module.exports = {
         min: 0,
         max: 1,
       },
+      window: {
+        template: '<x-button class="{{class}}"><x-label>{{element.name}}</x-label></x-button>',
+        page: 'Preset',
+      },
       on: 1,
     },
     next_preset: {
@@ -442,6 +474,10 @@ module.exports = {
         lsbFirst: true,
         min: 0,
         max: 1,
+      },
+      window: {
+        template: '<x-button class="{{class}}"><x-label>{{element.name}}</x-label></x-button>',
+        page: 'Preset',
       },
       on: 1,
     },
@@ -455,6 +491,10 @@ module.exports = {
         min: 0,
         max: 1,
       },
+      window: {
+        template: '<x-button class="{{class}}"><x-label>{{element.name}}</x-label></x-button>',
+        page: 'Preset',
+      },
       on: 1,
     },
     save_preset: {
@@ -466,6 +506,10 @@ module.exports = {
         lsbFirst: true,
         min: 0,
         max: 1,
+      },
+      window: {
+        template: '<x-button class="{{class}}"><x-label>{{element.name}}</x-label></x-button>',
+        page: 'Preset',
       },
       on: 1,
     },
@@ -481,7 +525,7 @@ module.exports = {
       },
       window: {
         template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-        page: 'Pattern',
+        page: 'Preset',
       },
       min: 0,
       max: 127,
@@ -501,7 +545,7 @@ module.exports = {
       },
       window: {
         template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-        page: 'Pattern',
+        page: 'Preset',
       },
       min: 0,
       max: 127,
@@ -2405,6 +2449,10 @@ module.exports = {
           min: 0,
           max: 1,
         },
+        window: {
+          template: '<x-button class="{{class}}"><x-label>{{element.name}}</x-label></x-button>',
+          page: 'Drums',
+        },
         on: 1,
       },
       mute: {
@@ -2416,6 +2464,10 @@ module.exports = {
           lsbFirst: true,
           min: 0,
           max: 1,
+        },
+        window: {
+          template: '<x-switch class="{{class}}"></x-switch>',
+          page: 'Drums',
         },
         on: 1,
         default: 0,
