@@ -367,7 +367,7 @@ module.exports = {
       },
       window: {
         template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-        page: 'Pattern',
+        page: 'Common',
       },
       min: 0,
       max: 15,
@@ -389,7 +389,7 @@ module.exports = {
         },
         window: {
           template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-          page: 'Torso T-1',
+          page: 'Common',
         },
         min: 1,
         max: 16,
@@ -410,7 +410,7 @@ module.exports = {
         },
         window: {
           template: '<x-select class="{{class}}"><x-menu>{{#each element.list}}<x-menuitem value="{{@index}}" {{#if (isSelected this "base")}}toggled{{/if}}><x-label>{{this}}</x-label></x-menuitem>{{/each}}</x-menu></x-select>',
-          page: 'Torso T-1',
+          page: 'Common',
         },
         min: 0,
         max: 1,
@@ -2471,6 +2471,8 @@ module.exports = {
         },
         on: 1,
         default: 0,
+        integer: true,
+        precision: 0,
       },
       reset: {
         name: 'Drums Reset',
@@ -2494,7 +2496,14 @@ module.exports = {
           min: 0,
           max: 2,
         },
+        window: {
+          template: '<x-select class="{{class}}"><x-menu>{{#each element.list}}<x-menuitem value="{{@index}}" {{#if (isSelected this "scales")}}toggled{{/if}}><x-label>{{this}}</x-label></x-menuitem>{{/each}}</x-menu></x-select>',
+          page: 'Drums',
+        },
+        list: ['All', 'House', 'Breaks'],
         default: 1,
+        integer: true,
+        precision: 0,
       },
       steps: {
         name: 'Drums Steps',
@@ -2506,10 +2515,16 @@ module.exports = {
           min: 1,
           max: 128,
         },
+        window: {
+          template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+          page: 'Drums',
+        },
         min: 1,
         max: 128,
         default: 16,
         unit: 'steps',
+        integer: true,
+        precision: 0,
       },
       continue: {
         name: 'Drums Continue',
@@ -2521,8 +2536,14 @@ module.exports = {
           min: 0,
           max: 1,
         },
+        window: {
+          template: '<x-switch class="{{class}}"></x-switch>',
+          page: 'Drums',
+        },
         on: 1,
         default: 0,
+        integer: true,
+        precision: 0,
       },
       density: {
         name: 'Drums Density',
@@ -2534,10 +2555,16 @@ module.exports = {
           min: 0,
           max: 100,
         },
+        window: {
+          template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+          page: 'Drums',
+        },
         min: 0,
         max: 100,
         default: 100,
         unit: '%',
+        integer: true,
+        precision: 0,
       },
       probability: {
         name: 'Drums Probability',
@@ -2549,10 +2576,16 @@ module.exports = {
           min: 0,
           max: 100,
         },
+        window: {
+          template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+          page: 'Drums',
+        },
         min: 0,
         max: 100,
         default: 100,
         unit: '%',
+        integer: true,
+        precision: 0,
       },
       velocity: {
         name: 'Drums Velocity',
@@ -2564,9 +2597,15 @@ module.exports = {
           min: 0,
           max: 200,
         },
+        window: {
+          template: '<x-knob class="{{class}}" symetrical theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+          page: 'Drums',
+        },
         min: -100,
         max: 100,
         default: 0,
+        integer: true,
+        precision: 0,
       },
       tracks: [{
         device: {

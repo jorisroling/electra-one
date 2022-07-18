@@ -161,7 +161,7 @@ class BacaraMachine extends Machine {
 
     if (this.windowEmitter) {
       this.windowEmitter.on('message', (args) => {
-        console.log('message',args)
+/*        console.log('message',args)*/
         debug('message %y ',args)
         if (typeof args == 'object') {
           switch (args.type) {
@@ -1424,10 +1424,10 @@ class BacaraMachine extends Machine {
     }
 
     this.interface.on('parameterChange', (path, value, origin, originalValue) => {
-      if (origin == 'surface' && showPatternParameters.indexOf(path) >= 0) {
+      if ((origin == 'surface' || origin == 'window') && showPatternParameters.indexOf(path) >= 0) {
         this.showPattern()
       }
-      if (origin == 'surface' && showDrumPatternParameters.indexOf(path) >= 0) {
+      if ((origin == 'surface' || origin == 'window') && showDrumPatternParameters.indexOf(path) >= 0) {
         this.showDrumsPattern()
       }
     })
@@ -1766,6 +1766,10 @@ class BacaraMachine extends Machine {
   }
 
   showDrumsPattern() {
+    if (this.windowEmitter) {
+      this.sendWindowData()
+      this.windowEmitter.send('showDrumsPattern')
+    }
     clearTimeout(this.showDrumsPatternTimeoutID)
     this.showDrumsPatternTimeoutID = setTimeout( () => {
       this.showDrumsPatternTimeoutID = null
