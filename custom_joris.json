@@ -80,9 +80,6 @@
       "mb33": {
         "darwin": "MRCC Port 7"
       },
-      "vp-03": {
-        "darwin": "MRCC Port 8"
-      },
       "doctor_a": {
         "darwin": "MRCC Port 9"
       },
@@ -232,17 +229,6 @@
         "port": 1
       }
     },
-    "vp-03": {
-      "model": "VP-03",
-      "manufacturer": "Roland",
-      "channels": [
-        14
-      ],
-      "port": "vp-03",
-      "electraOne": {
-        "port": 1
-      }
-    },
     "doctor_a": {
       "model": "Doctor A",
       "manufacturer": "Audiothingies",
@@ -366,14 +352,6 @@
             "port": 1,
             "channels": [
               1
-            ],
-            "oneway": true
-          },
-          "vp-03": {
-            "enabled": false,
-            "port": 1,
-            "channels": [
-              14
             ],
             "oneway": true
           },
@@ -1027,8 +1005,7 @@
           },
           {
             "name": "MRCC Port 8",
-            "short": "MRCC Port.8",
-            "device": "vp-03"
+            "short": "MRCC Port.8"
           },
           {
             "name": "MRCC Port 9",
@@ -1206,8 +1183,7 @@
           },
           {
             "name": "MRCC Port 8",
-            "short": "MRCC Port.8",
-            "device": "vp-03"
+            "short": "MRCC Port.8"
           },
           {
             "name": "MRCC Port 9",
