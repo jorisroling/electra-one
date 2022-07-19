@@ -1429,7 +1429,7 @@ class BacaraMachine extends Machine {
     }
 
     this.interface.on('parameterChange', (path, value, origin, originalValue) => {
-      console.log('hi',path)
+//      console.log('hi',path)
       if ((origin == 'surface' || origin == 'window') && showPatternParameters.indexOf(path) >= 0) {
         this.showPattern()
       }
