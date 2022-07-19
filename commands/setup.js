@@ -29,6 +29,8 @@ function generateSetup(name, sub, options) {
   }
 
   Bacara.scanMidiPorts()
+  console.log('done')
+  process.exit()
 }
 
 module.exports = {
