@@ -367,7 +367,7 @@ module.exports = {
       },
       window: {
         template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-        page: 'Common',
+        page: 'Preset',
       },
       min: 0,
       max: 15,
@@ -389,7 +389,7 @@ module.exports = {
         },
         window: {
           template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
-          page: 'Common',
+          page: 'Preset',
         },
         min: 1,
         max: 16,
@@ -410,7 +410,7 @@ module.exports = {
         },
         window: {
           template: '<x-select class="{{class}}"><x-menu>{{#each element.list}}<x-menuitem value="{{@index}}" {{#if (isSelected this "base")}}toggled{{/if}}><x-label>{{this}}</x-label></x-menuitem>{{/each}}</x-menu></x-select>',
-          page: 'Common',
+          page: 'Preset',
         },
         min: 0,
         max: 1,
@@ -532,6 +532,7 @@ module.exports = {
       default: 0,
       integer: true,
       precision: 0,
+      variant: 0, // global only
     },
     program: {
       name: 'Program',
@@ -552,6 +553,7 @@ module.exports = {
       default: 0,
       integer: true,
       precision: 0,
+      variant: 0, // global only
     },
     deviations: {
       note: {

@@ -61,6 +61,7 @@ const LFOS = 3
 const GRID_MODE_NONE = 0
 const GRID_MODE_MELODIC = 2
 const GRID_MODE_DRUMS = 2
+const DELAYED_ACTUAL_MS = 40
 
 const euclideanRhythms = require('euclidean-rhythms')
 const scaleMappings = require('../extra/scales/scales.json')
@@ -166,8 +167,9 @@ class BacaraMachine extends Machine {
         if (typeof args == 'object') {
           switch (args.type) {
             case 'getData':
-              this.sendWindowData()
-              this.windowEmitter.send('showPattern')
+              console.log(args)
+              this.sendWindowData(!!args.forceRedraw)
+//              this.windowEmitter.send('showPattern')
               break
 //            case 'setParameter':
 //              break
@@ -508,6 +510,7 @@ class BacaraMachine extends Machine {
           const playing = this.getState('playing',false,0)
           this.reset()
           this.initState()
+          this.sendWindowData(true)
           this.setState('playing', playing,0)
           this.writeState()
         }
@@ -1582,7 +1585,7 @@ class BacaraMachine extends Machine {
 
   // CLASS FUNCTIONS
 
-  sendWindowData() {
+  sendWindowData(forceRedraw = false) {
     if (this.windowEmitter) {
       this.windowEmitter.send('setData',{
         interface:this.interface.interface,
@@ -1591,6 +1594,7 @@ class BacaraMachine extends Machine {
         modulation:this.interface.modulation,
         variants:this.interface.getVariants(),
         scales:scaleMappings.scales,
+        forceRedraw
       })
     }
   }
@@ -1769,19 +1773,26 @@ class BacaraMachine extends Machine {
   }
 
   showDrumsPattern() {
+    if (DELAYED_ACTUAL_MS==0) {
+      if (this.windowEmitter) {
+        this.sendWindowData()
+        this.windowEmitter.send('showDrumsPattern')
+      }
+    }
     clearTimeout(this.showDrumsPatternTimeoutID)
     this.showDrumsPatternTimeoutID = setTimeout( () => {
       this.showDrumsPatternTimeoutID = null
       this.showDrumsPatternActual()
-    }, 50)
+    }, DELAYED_ACTUAL_MS)
   }
 
   showDrumsPatternActual() {
-    if (this.windowEmitter) {
-      this.sendWindowData()
-      this.windowEmitter.send('showDrumsPattern')
+    if (DELAYED_ACTUAL_MS>0) {
+      if (this.windowEmitter) {
+        this.sendWindowData()
+        this.windowEmitter.send('showDrumsPattern')
+      }
     }
-
     const pattern = this.getState('drums.midi')
 //    const size = this.getState('drums.steps', 16)
     const size = this.interface.getParameter('drums.steps')
@@ -1877,17 +1888,25 @@ class BacaraMachine extends Machine {
   }
 
   showVariant() {
+    if (DELAYED_ACTUAL_MS==0) {
+      if (this.windowEmitter) {
+        this.sendWindowData()
+        this.windowEmitter.send('showVariant')
+      }
+    }
     clearTimeout(this.showVariantTimeoutID)
     this.showVariantTimeoutID = setTimeout( () => {
       this.showVariantTimeoutID = null
       this.showVariantActual()
-    }, 50)
+    }, DELAYED_ACTUAL_MS)
   }
 
   showVariantActual() {
-    if (this.windowEmitter) {
-      this.sendWindowData()
-      this.windowEmitter.send('showVariant')
+    if (DELAYED_ACTUAL_MS>0) {
+      if (this.windowEmitter) {
+        this.sendWindowData()
+        this.windowEmitter.send('showVariant')
+      }
     }
     const variant = this.interface.getParameter('variant')
     const paths = []
@@ -1967,19 +1986,27 @@ class BacaraMachine extends Machine {
   }
 
   showPattern() {
+    if (DELAYED_ACTUAL_MS==0) {
+      if (this.windowEmitter) {
+        this.sendWindowData()
+        this.windowEmitter.send('showPattern')
+      }
+    }
     clearTimeout(this.showPatternTimeoutID)
     this.showPatternTimeoutID = setTimeout( () => {
       this.showPatternTimeoutID = null
       this.showPatternActual()
-    }, 50)
+    }, DELAYED_ACTUAL_MS)
   }
 
   showPatternActual() {
     //console.log('\x1Bc'); // Clear screen
 
-    if (this.windowEmitter) {
-      this.sendWindowData()
-      this.windowEmitter.send('showPattern')
+    if (DELAYED_ACTUAL_MS>0) {
+      if (this.windowEmitter) {
+        this.sendWindowData()
+        this.windowEmitter.send('showPattern')
+      }
     }
     const pattern = this.getState('pattern')
     const size = this.interface.getParameter('steps'/*, 'modulated'*/)
@@ -2941,20 +2968,6 @@ class BacaraMachine extends Machine {
   }
 
 
-  delayedShowPattern(timeoutMS = 10) {
-    clearTimeout(this.showPatternTimeoutID)
-    this.showPatternTimeoutID = setTimeout(() => {
-      this.showPattern()
-    }, timeoutMS)
-  }
-
-  delayedShowDrumPattern(timeoutMS = 10) {
-    clearTimeout(this.showDrumPatternTimeoutID)
-    this.showDrumPatternTimeoutID = setTimeout(() => {
-      this.showDrumsPattern()
-    }, timeoutMS)
-  }
-
   handleOSCmessage(oscMessage) {
     /*        debugOsc('Address %y Value %y Last %y Mine %y',oscMessage.address,oscMessage.args.join(', '),torsoT1_LastChannel,this.interface.getParameter('torso-t1.channel','internal',0))*/
     if (oscMessage.address == '/t1/channel' && Array.isArray(oscMessage.args) && oscMessage.args.length == 1) {
@@ -3077,7 +3090,7 @@ class BacaraMachine extends Machine {
 
       this.writeState()
     }
-    this.delayedShowPattern()
+    this.showPattern()
   }
 }
 
