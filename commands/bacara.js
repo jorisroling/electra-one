@@ -169,6 +169,8 @@ class BacaraMachine extends Machine {
               this.sendWindowData()
               this.windowEmitter.send('showPattern')
               break
+//            case 'setParameter':
+//              break
           }
         }
       })
@@ -296,7 +298,7 @@ class BacaraMachine extends Machine {
     const drumsRedrumActions = (trck) => {
       return {
         generate: (elementPath, origin) => {
-          if (origin == 'surface' || origin == 'remote') {
+          if (origin == 'surface' || origin == 'remote' || origin == 'window') {
             const instrument = this.interface.getParameter(`drums.redrum.tracks.${trck}.instrument`) - 1
             //            debug ('hi track %y instr %y',trck,instrument)
             if (instrument >= 0) {
@@ -1022,7 +1024,7 @@ class BacaraMachine extends Machine {
         }
       },
       program: (elementPath, value, origin) => {
-        if (origin == 'surface' || origin == 'remote') {
+        if (origin == 'surface' || origin == 'remote' || origin == 'window') {
           this.setRemote(origin, {next:'next_preset', previous:'previous_preset'})
           const presetFilesCount = Pattern.presetFiles(this.state, true)
           if (value >= 0 && value < presetFilesCount) {
@@ -1043,201 +1045,201 @@ class BacaraMachine extends Machine {
       deviations: {
         note: {
           maximum: (elementPath, value, origin) => {
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsRepopulate('note')
             }
           },
           minimum: (elementPath, value, origin) => {
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsRepopulate('note')
             }
           },
           density: (elementPath, value, origin) => {
-            if (origin == 'surface' && value != 0) {
+            if ((origin == 'surface' || origin == 'window') && value != 0) {
               this.interface.setParameter('deviations.note.euclidian', 0)
             }
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsGenerate('note')
             }
           },
           euclidian: (elementPath, value, origin) => {
-            if (origin == 'surface' && value != 0) {
+            if ((origin == 'surface' || origin == 'window') && value != 0) {
               this.interface.setParameter('deviations.note.density', 0)
             }
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsGenerate('note')
             }
           },
           rotation: (elementPath, value, origin, originalValue) => {
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsRotate('note', originalValue)
             }
           },
         },
         velocity: {
           maximum: (elementPath, value, origin) => {
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsRepopulate('velocity')
             }
           },
           minimum: (elementPath, value, origin) => {
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsRepopulate('velocity')
             }
           },
           density: (elementPath, value, origin) => {
-            if (origin == 'surface' && value != 0) {
+            if ((origin == 'surface' || origin == 'window') && value != 0) {
               this.interface.setParameter('deviations.velocity.euclidian', 0)
             }
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsGenerate('velocity')
             }
           },
           euclidian: (elementPath, value, origin) => {
-            if (origin == 'surface' && value != 0) {
+            if ((origin == 'surface' || origin == 'window') && value != 0) {
               this.interface.setParameter('deviations.velocity.density', 0)
             }
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsGenerate('velocity')
             }
           },
           rotation: (elementPath, value, origin, originalValue) => {
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsRotate('velocity', originalValue)
             }
           },
         },
         duration: {
           maximum: (elementPath, value, origin) => {
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsRepopulate('duration')
             }
           },
           minimum: (elementPath, value, origin) => {
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsRepopulate('duration')
             }
           },
           density: (elementPath, value, origin) => {
-            if (origin == 'surface' && value != 0) {
+            if ((origin == 'surface' || origin == 'window') && value != 0) {
               this.interface.setParameter('deviations.duration.euclidian', 0)
             }
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsGenerate('duration')
             }
           },
           euclidian: (elementPath, value, origin) => {
-            if (origin == 'surface' && value != 0) {
+            if ((origin == 'surface' || origin == 'window') && value != 0) {
               this.interface.setParameter('deviations.duration.density', 0)
             }
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsGenerate('duration')
             }
           },
           rotation: (elementPath, value, origin, originalValue) => {
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsRotate('duration', originalValue)
             }
           },
         },
         octave: {
           maximum: (elementPath, value, origin) => {
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsRepopulate('octave')
             }
           },
           minimum: (elementPath, value, origin) => {
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsRepopulate('octave')
             }
           },
           density: (elementPath, value, origin) => {
-            if (origin == 'surface' && value != 0) {
+            if ((origin == 'surface' || origin == 'window') && value != 0) {
               this.interface.setParameter('deviations.octave.euclidian', 0)
             }
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsGenerate('octave')
             }
           },
           euclidian: (elementPath, value, origin) => {
-            if (origin == 'surface' && value != 0) {
+            if ((origin == 'surface' || origin == 'window') && value != 0) {
               this.interface.setParameter('deviations.octave.density', 0)
             }
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsGenerate('octave')
             }
           },
           rotation: (elementPath, value, origin, originalValue) => {
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsRotate('octave', originalValue)
             }
           },
         },
         accent: {
           density: (elementPath, value, origin) => {
-            if (origin == 'surface' && value != 0) {
+            if ((origin == 'surface' || origin == 'window') && value != 0) {
               this.interface.setParameter('deviations.accent.euclidian', 0)
             }
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsGenerate('accent')
             }
           },
           euclidian: (elementPath, value, origin) => {
-            if (origin == 'surface' && value != 0) {
+            if ((origin == 'surface' || origin == 'window') && value != 0) {
               this.interface.setParameter('deviations.accent.density', 0)
             }
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsGenerate('accent')
             }
           },
           rotation: (elementPath, value, origin, originalValue) => {
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsRotate('accent', originalValue)
             }
           },
         },
         mute: {
           density: (elementPath, value, origin) => {
-            if (origin == 'surface' && value != 0) {
+            if ((origin == 'surface' || origin == 'window') && value != 0) {
               this.interface.setParameter('deviations.mute.euclidian', 0)
             }
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsGenerate('mute')
             }
           },
           euclidian: (elementPath, value, origin) => {
-            if (origin == 'surface' && value != 0) {
+            if ((origin == 'surface' || origin == 'window') && value != 0) {
               this.interface.setParameter('deviations.mute.density', 0)
             }
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsGenerate('mute')
             }
           },
           rotation: (elementPath, value, origin, originalValue) => {
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsRotate('mute', originalValue)
             }
           },
         },
         device: {
           density: (elementPath, value, origin) => {
-            if (origin == 'surface' && value != 0) {
+            if ((origin == 'surface' || origin == 'window') && value != 0) {
               this.interface.setParameter('deviations.device.euclidian', 0)
             }
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsGenerate('device')
             }
           },
           euclidian: (elementPath, value, origin) => {
-            if (origin == 'surface' && value != 0) {
+            if ((origin == 'surface' || origin == 'window') && value != 0) {
               this.interface.setParameter('deviations.device.density', 0)
             }
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsGenerate('device')
             }
           },
           rotation: (elementPath, value, origin, originalValue) => {
-            if (origin == 'surface') {
+            if (origin == 'surface' || origin == 'window') {
               this.deviationsRotate('device', originalValue)
             }
           },
@@ -1339,7 +1341,7 @@ class BacaraMachine extends Machine {
       },
       drums: {
         density: (elementPath, value, origin) => {
-          if (origin == 'surface' || !this.getState('drums.sounding')) {
+          if (origin == 'surface' || origin == 'window' || !this.getState('drums.sounding')) {
             const sounding = []
             for (let idx = 0; idx < this.interface.getParameter('drums.steps', 'modulated'); idx++) {
               sounding[idx] = []
@@ -1424,6 +1426,7 @@ class BacaraMachine extends Machine {
     }
 
     this.interface.on('parameterChange', (path, value, origin, originalValue) => {
+      console.log('hi',path)
       if ((origin == 'surface' || origin == 'window') && showPatternParameters.indexOf(path) >= 0) {
         this.showPattern()
       }
@@ -1581,7 +1584,7 @@ class BacaraMachine extends Machine {
 
   sendWindowData() {
     if (this.windowEmitter) {
-      this.windowEmitter.send('data',{
+      this.windowEmitter.send('setData',{
         interface:this.interface.interface,
         parameters:this.interface.parameters,
         state:this.state,
@@ -1766,18 +1769,19 @@ class BacaraMachine extends Machine {
   }
 
   showDrumsPattern() {
-    if (this.windowEmitter) {
-      this.sendWindowData()
-      this.windowEmitter.send('showDrumsPattern')
-    }
     clearTimeout(this.showDrumsPatternTimeoutID)
     this.showDrumsPatternTimeoutID = setTimeout( () => {
       this.showDrumsPatternTimeoutID = null
       this.showDrumsPatternActual()
-    }, 100)
+    }, 50)
   }
 
   showDrumsPatternActual() {
+    if (this.windowEmitter) {
+      this.sendWindowData()
+      this.windowEmitter.send('showDrumsPattern')
+    }
+
     const pattern = this.getState('drums.midi')
 //    const size = this.getState('drums.steps', 16)
     const size = this.interface.getParameter('drums.steps')
@@ -1873,18 +1877,18 @@ class BacaraMachine extends Machine {
   }
 
   showVariant() {
-    if (this.windowEmitter) {
-      this.sendWindowData()
-      this.windowEmitter.send('showVariant')
-    }
     clearTimeout(this.showVariantTimeoutID)
     this.showVariantTimeoutID = setTimeout( () => {
       this.showVariantTimeoutID = null
       this.showVariantActual()
-    }, 100)
+    }, 50)
   }
 
   showVariantActual() {
+    if (this.windowEmitter) {
+      this.sendWindowData()
+      this.windowEmitter.send('showVariant')
+    }
     const variant = this.interface.getParameter('variant')
     const paths = []
 
@@ -1963,21 +1967,20 @@ class BacaraMachine extends Machine {
   }
 
   showPattern() {
-    if (this.windowEmitter) {
-      this.sendWindowData()
-      this.windowEmitter.send('showPattern')
-    }
-
     clearTimeout(this.showPatternTimeoutID)
     this.showPatternTimeoutID = setTimeout( () => {
       this.showPatternTimeoutID = null
       this.showPatternActual()
-    }, 100)
+    }, 50)
   }
 
   showPatternActual() {
     //console.log('\x1Bc'); // Clear screen
 
+    if (this.windowEmitter) {
+      this.sendWindowData()
+      this.windowEmitter.send('showPattern')
+    }
     const pattern = this.getState('pattern')
     const size = this.interface.getParameter('steps'/*, 'modulated'*/)
     if (!pattern) {
@@ -2930,7 +2933,7 @@ class BacaraMachine extends Machine {
   }
 
   setRemote(origin, options) {
-    if (origin == 'surface') {
+    if (origin == 'surface' || origin == 'window') {
       for (let key in options) {
         this.setState(`remote.${key}`, options[key])
       }
