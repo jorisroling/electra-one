@@ -48,6 +48,46 @@ function deviceToIndex(portName, channel = 1, field = 'device') {
   debug('deviceToIndex %y %y => NOT FOUND', portName, channel)
 }
 
+function deviceList() {
+  let result = ['Unknown']
+  if (config.devices) {
+//    console.log(config.devices)
+    const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
+    deviceKeys.unshift('bacara')
+
+    for (let deviceKey of deviceKeys) {
+      if (Array.isArray(config.devices[deviceKey].channels)) {
+        let instance = config.devices[deviceKey].instance ? config.devices[deviceKey].instance : 'ch.#'
+        const model = config.devices[deviceKey].model
+        const short = config.devices[deviceKey].short
+        for (let c in config.devices[deviceKey].channels) {
+          if (Array.isArray(config.devices[deviceKey].instances) && config.devices[deviceKey].instances.length > c) {
+            instance = config.devices[deviceKey].instances[c]
+          }
+          if (typeof config.devices[deviceKey].special === 'object' && config.devices[deviceKey].special[config.devices[deviceKey].channels[c]]) {
+            instance = config.devices[deviceKey].special[config.devices[deviceKey].channels[c]]
+          }
+          const label = config.devices[deviceKey].channels.length > 1 ? `${short ? short : model} ${instance}`.trim() : model
+          const rLabel = label.replace('#', config.devices[deviceKey].instance ? (parseInt(c) + 1) : config.devices[deviceKey].channels[c])
+//          result.push(config.devices[deviceKey].model + ' ch.'+config.devices[deviceKey].channels[c])
+          result.push(rLabel)
+        }
+      }
+    }
+  }
+  return result
+}
+
+function portList() {
+  let result = []
+
+  for (let port of Bacara.getPresetState('midi.ports.output', [])) {
+    result.push(port.short)
+  }
+
+  return result
+}
+
 module.exports = {
 
   elements: {
@@ -2117,9 +2157,15 @@ module.exports = {
             min: 0,
             max: 127,
           },
+          window: {
+            template: '<x-select class="{{class}}"><x-menu>{{#each element.list}}<x-menuitem value="{{@index}}" {{#if (isSelected this "scales")}}toggled{{/if}}><x-label>{{this}}</x-label></x-menuitem>{{/each}}</x-menu></x-select>',
+            page: 'Device A',
+          },
+          list: deviceList(),
+          precision: 0,
           min: 0,
           max: 127,
-          default: deviceToIndex('virus-ti', 1),
+          default: deviceToIndex(config.defaultDevices.A.device, config.defaultDevices.A.channel),
         },
         mute: {
           name: 'Device A Mute',
@@ -2131,6 +2177,11 @@ module.exports = {
             min: 0,
             max: 1,
           },
+          window: {
+            template: '<x-switch class="{{class}}"></x-switch>',
+            page: 'Device A',
+          },
+          precision: 0,
           on: 1,
           default: 0,
         },
@@ -2144,9 +2195,15 @@ module.exports = {
             min: 0,
             max: 63,
           },
+          window: {
+            template: '<x-select class="{{class}}"><x-menu>{{#each element.list}}<x-menuitem value="{{@index}}" {{#if (isSelected this "scales")}}toggled{{/if}}><x-label>{{this}}</x-label></x-menuitem>{{/each}}</x-menu></x-select>',
+            page: 'Device A',
+          },
+          list: portList(),
+          precision: 0,
           min: 0,
           max: 63,
-          default: deviceToIndex('virus-ti', 1, 'port'),
+          default: deviceToIndex(config.defaultDevices.A.device, config.defaultDevices.A.channel, 'port'),
         },
         channel: {
           name: 'Device A Channel',
@@ -2158,9 +2215,14 @@ module.exports = {
             min: 1,
             max: 16,
           },
+          window: {
+            template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+            page: 'Device A',
+          },
+          precision: 0,
           min: 1,
           max: 16,
-          default: deviceToIndex('virus-ti', 1, 'channel'),
+          default: deviceToIndex(config.defaultDevices.A.device, config.defaultDevices.A.channel, 'channel'),
         },
         bank: {
           name: 'Device A Bank',
@@ -2172,6 +2234,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
+          precision: 0,
           min: 0,
           max: 127,
           default: 0,
@@ -2186,6 +2249,7 @@ module.exports = {
             min: 0,
             max: 127,
           },
+          precision: 0,
           min: 0,
           max: 127,
           default: 0,
@@ -2252,6 +2316,11 @@ module.exports = {
             min: 0,
             max: 127,
           },
+          window: {
+            template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+            page: 'Device A',
+          },
+          precision: 0,
           min: -64,
           max: 63,
           default: 0,
@@ -2267,6 +2336,60 @@ module.exports = {
             min: 0,
             max: 45,
           },
+          window: {
+            template: '<x-select class="{{class}}"><x-menu>{{#each element.list}}<x-menuitem value="{{@index}}" {{#if (isSelected this "scales")}}toggled{{/if}}><x-label>{{this}}</x-label></x-menuitem>{{/each}}</x-menu></x-select>',
+            page: 'Device A',
+          },
+          list: [
+            'Off',
+            'Round Robin 2',
+            'Round Robin 3',
+            'Round Robin 4',
+            'Round Robin 5',
+            'Round Robin 6',
+            'Round Robin 7',
+            'Round Robin 8',
+            'Round Robin 9',
+            'Round Robin 10',
+            'Round Robin 11',
+            'Round Robin 12',
+            'Round Robin 13',
+            'Round Robin 14',
+            'Round Robin 15',
+            'Round Robin 16',
+            'Random 2',
+            'Random 3',
+            'Random 4',
+            'Random 5',
+            'Random 6',
+            'Random 7',
+            'Random 8',
+            'Random 9',
+            'Random 10',
+            'Random 11',
+            'Random 12',
+            'Random 13',
+            'Random 14',
+            'Random 15',
+            'Random 16',
+            'Other 2',
+            'Other 3',
+            'Other 4',
+            'Other 5',
+            'Other 6',
+            'Other 7',
+            'Other 8',
+            'Other 9',
+            'Other 10',
+            'Other 11',
+            'Other 12',
+            'Other 13',
+            'Other 14',
+            'Other 15',
+            'Other 16',
+          ],
+          precision: 0,
+
           min: 0,
           max: 45,
           default: 0,
@@ -2283,9 +2406,15 @@ module.exports = {
             min: 0,
             max: 127,
           },
+          window: {
+            template: '<x-select class="{{class}}"><x-menu>{{#each element.list}}<x-menuitem value="{{@index}}" {{#if (isSelected this "scales")}}toggled{{/if}}><x-label>{{this}}</x-label></x-menuitem>{{/each}}</x-menu></x-select>',
+            page: 'Device B',
+          },
+          list: deviceList(),
+          precision: 0,
           min: 0,
           max: 127,
-          default: deviceToIndex('virus-ti', 2),
+          default: deviceToIndex(config.defaultDevices.B.device, config.defaultDevices.B.channel),
         },
         mute: {
           name: 'Device B Mute',
@@ -2310,9 +2439,14 @@ module.exports = {
             min: 0,
             max: 63,
           },
+          window: {
+            template: '<x-select class="{{class}}"><x-menu>{{#each element.list}}<x-menuitem value="{{@index}}" {{#if (isSelected this "scales")}}toggled{{/if}}><x-label>{{this}}</x-label></x-menuitem>{{/each}}</x-menu></x-select>',
+            page: 'Device B',
+          },
+          list: portList(),
           min: 0,
           max: 63,
-          default: deviceToIndex('virus-ti', 2, 'port'),
+          default: deviceToIndex(config.defaultDevices.B.device, config.defaultDevices.B.channel,'port'),
         },
         channel: {
           name: 'Device B Channel',
@@ -2324,9 +2458,14 @@ module.exports = {
             min: 1,
             max: 16,
           },
+          window: {
+            template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+            page: 'Device B',
+          },
+          precision: 0,
           min: 1,
           max: 16,
-          default: deviceToIndex('virus-ti', 2, 'channel'),
+          default: deviceToIndex(config.defaultDevices.B.device, config.defaultDevices.B.channel, 'channel'),
         },
         bank: {
           name: 'Device B Bank',
@@ -2418,6 +2557,11 @@ module.exports = {
             min: 0,
             max: 127,
           },
+          window: {
+            template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+            page: 'Device B',
+          },
+          precision: 0,
           min: -64,
           max: 63,
           default: 0,
@@ -2433,6 +2577,59 @@ module.exports = {
             min: 0,
             max: 45,
           },
+          window: {
+            template: '<x-select class="{{class}}"><x-menu>{{#each element.list}}<x-menuitem value="{{@index}}" {{#if (isSelected this "scales")}}toggled{{/if}}><x-label>{{this}}</x-label></x-menuitem>{{/each}}</x-menu></x-select>',
+            page: 'Device B',
+          },
+          list: [
+            'Off',
+            'Round Robin 2',
+            'Round Robin 3',
+            'Round Robin 4',
+            'Round Robin 5',
+            'Round Robin 6',
+            'Round Robin 7',
+            'Round Robin 8',
+            'Round Robin 9',
+            'Round Robin 10',
+            'Round Robin 11',
+            'Round Robin 12',
+            'Round Robin 13',
+            'Round Robin 14',
+            'Round Robin 15',
+            'Round Robin 16',
+            'Random 2',
+            'Random 3',
+            'Random 4',
+            'Random 5',
+            'Random 6',
+            'Random 7',
+            'Random 8',
+            'Random 9',
+            'Random 10',
+            'Random 11',
+            'Random 12',
+            'Random 13',
+            'Random 14',
+            'Random 15',
+            'Random 16',
+            'Other 2',
+            'Other 3',
+            'Other 4',
+            'Other 5',
+            'Other 6',
+            'Other 7',
+            'Other 8',
+            'Other 9',
+            'Other 10',
+            'Other 11',
+            'Other 12',
+            'Other 13',
+            'Other 14',
+            'Other 15',
+            'Other 16',
+          ],
+          precision: 0,
           min: 0,
           max: 45,
           default: 0,
@@ -2599,7 +2796,7 @@ module.exports = {
           max: 200,
         },
         window: {
-          template: '<x-knob class="{{class}}" symetrical theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+          template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
           page: 'Drums',
         },
         min: -100,
