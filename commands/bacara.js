@@ -10,6 +10,7 @@ const _ = require('lodash')
 const fs = require('fs-extra')
 const jsonfile = require('jsonfile')
 const deepSortObject = require('deep-sort-object')
+const changeCase = require('change-case')
 
 const osc = require('osc')
 
@@ -1934,7 +1935,7 @@ class BacaraMachine extends Machine {
     let table = new Table(
       {
         head: [
-          'Variating Parameters',
+          'Variant Parameters',
           'Values',
         ]
       }
@@ -1942,6 +1943,7 @@ class BacaraMachine extends Machine {
 
     if (paths && paths.length) {
 
+      const headerColor = chalk.hex('#FF0000')
       const nameColor = chalk.hex('#FF8800')
       const valueColor = chalk.hex('#00FF88')
 
@@ -1953,6 +1955,41 @@ class BacaraMachine extends Machine {
         ]
         table.push(arr)
       }
+
+      if (table) {
+        debugVariant(table.toString())
+      }
+
+      table = new Table(
+        {
+          head: [
+            'Variant State',
+          ]
+        }
+      )
+      const vstate = _.get(this.interface.variants,`${String.fromCharCode(64+variant)}.state`,{})
+      const vstateKeys = Object.keys(vstate)
+      if (vstateKeys.length) {
+        for (let key of vstateKeys) {
+          let arr = [
+            {hAlign:'center', colSpan:1, content:valueColor(changeCase.capitalCase(key)) },
+          ]
+          table.push(arr)
+        }
+      } else {
+        if (variant) {
+          let arr = [
+            {hAlign:'center', colSpan:1, content:nameColor('No Variations') },
+          ]
+          table.push(arr)
+        } else {
+          let arr = [
+            {hAlign:'center', colSpan:2, content:nameColor('Global') },
+          ]
+          table.push(arr)
+        }
+      }
+
       if (table) {
         debugVariant(table.toString())
       }
