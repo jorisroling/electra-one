@@ -51,7 +51,7 @@ function deviceToIndex(portName, channel = 1, field = 'device') {
 function deviceList() {
   let result = ['Unknown']
   if (config.devices) {
-//    console.log(config.devices)
+    //    console.log(config.devices)
     const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
     deviceKeys.unshift('bacara')
 
@@ -69,7 +69,7 @@ function deviceList() {
           }
           const label = config.devices[deviceKey].channels.length > 1 ? `${short ? short : model} ${instance}`.trim() : model
           const rLabel = label.replace('#', config.devices[deviceKey].instance ? (parseInt(c) + 1) : config.devices[deviceKey].channels[c])
-//          result.push(config.devices[deviceKey].model + ' ch.'+config.devices[deviceKey].channels[c])
+          //          result.push(config.devices[deviceKey].model + ' ch.'+config.devices[deviceKey].channels[c])
           result.push(rLabel)
         }
       }
@@ -2446,7 +2446,7 @@ module.exports = {
           list: portList(),
           min: 0,
           max: 63,
-          default: deviceToIndex(config.defaultDevices.B.device, config.defaultDevices.B.channel,'port'),
+          default: deviceToIndex(config.defaultDevices.B.device, config.defaultDevices.B.channel, 'port'),
         },
         channel: {
           name: 'Device B Channel',

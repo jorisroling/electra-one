@@ -27,7 +27,7 @@ const semver = require('semver')
 
 const { Midi:TonalMidi } = require('@tonaljs/tonal')
 
-const bacaraPresetName = _.get(config,'electra.presetName.bacara') //'Bacara'
+const bacaraPresetName = _.get(config, 'electra.presetName.bacara') //'Bacara'
 const Machine = require('../lib/midi/machine')
 const Interface = require('../lib/midi/interface')
 const MidiCache = require('../lib/midi/cache')
@@ -162,15 +162,15 @@ class BacaraMachine extends Machine {
 
     if (this.windowEmitter) {
       this.windowEmitter.on('message', (args) => {
-/*        console.log('message',args)*/
-        debug('message %y ',args)
+        /*        console.log('message',args)*/
+        debug('message %y ', args)
         if (typeof args == 'object') {
           switch (args.type) {
-            case 'getData':
-//              console.log(args)
-              this.sendWindowData(!!args.forceRedraw)
-//              this.windowEmitter.send('showPattern')
-              break
+          case 'getData':
+            //              console.log(args)
+            this.sendWindowData(!!args.forceRedraw)
+            //              this.windowEmitter.send('showPattern')
+            break
 //            case 'setParameter':
 //              break
           }
@@ -314,7 +314,7 @@ class BacaraMachine extends Machine {
           }
         },
         preview: (elementPath, origin) => {
-//                   debug('JJR2 %y %y', elementPath, origin)
+          //                   debug('JJR2 %y %y', elementPath, origin)
 
 
           const info = deviceInfo(this.interface.getParameter(elementPath.replace('.preview', '.device')))  // HACKY
@@ -388,7 +388,7 @@ class BacaraMachine extends Machine {
         this.setState('remote', {})
       },
       generate: (elementPath, origin) => {
-       if (origin == 'surface' || origin == 'remote' || origin == 'window') {
+        if (origin == 'surface' || origin == 'remote' || origin == 'window') {
           const pattern = Pattern.generate(this.state, this.interface.getParameter('steps'))
           this.setState('pattern', pattern)
           this.interface.setParameter('pattern', Pattern.patternFiles(this.state, true) - 1)
@@ -396,7 +396,7 @@ class BacaraMachine extends Machine {
           this.showPattern()
           this.writeState()
           debug('generated')
-       }
+        }
       },
       previous_pattern: (elementPath, origin) => {
         if (origin == 'surface' || origin == 'remote' || origin == 'window') {
@@ -510,11 +510,11 @@ class BacaraMachine extends Machine {
       },
       reset_preset: (elementPath, origin) => {
         if (origin == 'surface' || origin == 'remote' || origin == 'window') {
-          const playing = this.getState('playing',false,0)
+          const playing = this.getState('playing', false, 0)
           this.reset()
           this.initState()
           this.sendWindowData(true)
-          this.setState('playing', playing,0)
+          this.setState('playing', playing, 0)
           this.writeState()
         }
       },
@@ -552,9 +552,9 @@ class BacaraMachine extends Machine {
         reset: (elementPath, origin) => {
           debug('drums reset')
           for (let trck = 0; trck < DRUM_TRACKS; trck++) {
-            ['device','note','mute'].forEach( attr => {
+            ['device', 'note', 'mute'].forEach( attr => {
               const path = `drums.tracks.${trck}.${attr}`
-              this.interface.setParameter(path, this.interface.getElementAttribute(path,'default'),'surface')
+              this.interface.setParameter(path, this.interface.getElementAttribute(path, 'default'), 'surface')
             })
           }
         },
@@ -562,9 +562,9 @@ class BacaraMachine extends Machine {
           reset: (elementPath, origin) => {
             debug('redrum reset')
             for (let trck = 0; trck < REDRUM_TRACKS; trck++) {
-              ['instrument','device','note','mute'].forEach( attr => {
+              ['instrument', 'device', 'note', 'mute'].forEach( attr => {
                 const path = `drums.redrum.tracks.${trck}.${attr}`
-                this.interface.setParameter(path, this.interface.getElementAttribute(path,'default'),'surface')
+                this.interface.setParameter(path, this.interface.getElementAttribute(path, 'default'), 'surface')
               })
             }
           },
@@ -620,7 +620,7 @@ class BacaraMachine extends Machine {
                 if (portName) {
 
                   const midiNames = _.get(config, 'preset.midi.ports.output', []).map( port => port.name ) //easymidi.getOutputs()
-//            console.log('hi',midiNames)
+                  //            console.log('hi',midiNames)
                   if (midiNames) {
                     const idx = midiNames.indexOf(portName)
                     if (idx >= 0) {
@@ -668,7 +668,7 @@ class BacaraMachine extends Machine {
     const devicePortChange = (dev) => {
       return (elementPath, value, origin) => {
         if (origin == 'post-connect') {
-//          debug('devicePortChange post-connect')
+          //          debug('devicePortChange post-connect')
         } else {
           this.setState(`device.${dev}.portName`, Midi.normalisePortName(value))
           if (origin != 'internal') {
@@ -681,7 +681,7 @@ class BacaraMachine extends Machine {
     const deviceChannelChange = (dev) => {
       return (elementPath, value, origin) => {
         if (origin == 'post-connect') {
-//          debug('deviceChannelChange post-connect')
+          //          debug('deviceChannelChange post-connect')
         } else {
           if (origin != 'internal') {
             devicePortOrChannelChanged(dev)
@@ -708,7 +708,7 @@ class BacaraMachine extends Machine {
 
     const lfoPhaseDetection = (lfoIdx)  => {
       return (elementPath, value, origin) => {
-        if (phaseDetection && this.getState('playing',false,0) && this.lfoHistory.length >= 2) {
+        if (phaseDetection && this.getState('playing', false, 0) && this.lfoHistory.length >= 2) {
           const phaseDetectionShapes = ['sine', 'triangle', 'saw-up', 'saw-down']
           if (phaseDetectionShapes.indexOf(this.getState(`lfo.${lfoIdx}.shapeName`)) >= 0 /*&& phaseDetectionShapes.indexOf(oldShapeName) >= 0*/) {
             const value = this.lfoValue(lfoIdx)
@@ -791,7 +791,7 @@ class BacaraMachine extends Machine {
           }
         },
         note: (elementPath, value, origin) => {
-//                    debug('yo %y %y %y',elementPath, value, origin)
+          //                    debug('yo %y %y %y',elementPath, value, origin)
           if (origin != 'post-connect') {
             const info = deviceInfo(this.interface.getParameter(elementPath.replace('.note', '.device'))) // Hacky
 
@@ -817,7 +817,7 @@ class BacaraMachine extends Machine {
           if (type == 'redrum' && this.options.analogRytmDevice) {
             const match = elementPath.match(/drums.redrum.tracks.(\d+).mute/)
             if (match) {
-              const channel=parseInt(match[1])
+              const channel = parseInt(match[1])
               Midi.send(this.options.analogRytmDevice, 'cc', {channel:channel, controller:94, value:value})
             }
           }
@@ -947,21 +947,21 @@ class BacaraMachine extends Machine {
       const pat = euclidian ? this.deviationsEuclidian(euclidian, steps, rotation) : null
       if (density || euclidian) {
         let hits
-//        do {
-//          hits = 0
-          for (let idx = 0; idx < steps; idx++) {
-            if (density) {
-              map[idx] = (density >= Random.getRandomInt(100)) ? this.deviationsPickFromRange(type) : 0
-//              if (map[idx]) hits++
-            } else if (euclidian) {
-              map[idx] = (pat && pat[idx]) ? this.deviationsPickFromRange(type) : 0
-//              if (map[idx]) hits++
-            } else {
-              map[idx] = 0
-//              hits++
-            }
+        //        do {
+        //          hits = 0
+        for (let idx = 0; idx < steps; idx++) {
+          if (density) {
+            map[idx] = (density >= Random.getRandomInt(100)) ? this.deviationsPickFromRange(type) : 0
+            //              if (map[idx]) hits++
+          } else if (euclidian) {
+            map[idx] = (pat && pat[idx]) ? this.deviationsPickFromRange(type) : 0
+            //              if (map[idx]) hits++
+          } else {
+            map[idx] = 0
+            //              hits++
           }
-//        } while (hits==0)
+        }
+        //        } while (hits==0)
       } else {
         map = null
       }
@@ -983,38 +983,42 @@ class BacaraMachine extends Machine {
           let melodicPaths = 0
           if (variant || oldVariant) {
             this.interface.iterateElelements((template, path) => {
-              if ((variant && _.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`)) || (oldVariant && _.has(this.interface.variants,`${String.fromCharCode(64+oldVariant)}.parameters.${path}`)) ) {
-                this.interface.sendValue(path,'surface')
+              if ((variant && _.has(this.interface.variants, `${String.fromCharCode(64 + variant)}.parameters.${path}`)) || (oldVariant && _.has(this.interface.variants, `${String.fromCharCode(64 + oldVariant)}.parameters.${path}`)) ) {
+                this.interface.sendValue(path, 'surface')
 
                 if (this.options.analogRytmDevice) {
                   const match = path.match(/drums.redrum.tracks.(\d+).mute/)
                   if (match) {
-                    const channel=parseInt(match[1])
+                    const channel = parseInt(match[1])
                     Midi.send(this.options.analogRytmDevice, 'cc', {channel:channel, controller:94, value:this.interface.getParameter(path)})
                   }
                 }
 
-                if (showPatternParameters.indexOf(path)>=0) {
+                if (showPatternParameters.indexOf(path) >= 0) {
                   melodicPaths++
                 }
-                if (showDrumPatternParameters.indexOf(path)>=0) {
+                if (showDrumPatternParameters.indexOf(path) >= 0) {
                   drumPaths++
                 }
               }
             }, null, ['parameter', 'feedback'])
           }
           this.writeState()
-          if (drumPaths) this.showDrumsPattern()
-          if (melodicPaths) this.showPattern()
+          if (drumPaths) {
+            this.showDrumsPattern()
+          }
+          if (melodicPaths) {
+            this.showPattern()
+          }
           this.showVariant()
         }
       },
-      "torso-t1": {
+      'torso-t1': {
         scaleMode: (elementPath, value, origin, oldValue) => {
           if (origin != 'post-connect') {
             if (value == TORSO_T1_SCALE_MODE_CONSTRAIN) {
-              this.interface.setParameter('base', this.getState('torso-t1.userBase', 0,0),'internal',0)
-              this.interface.setParameter('scales', USER_SCALE,'internal',0)
+              this.interface.setParameter('base', this.getState('torso-t1.userBase', 0, 0), 'internal', 0)
+              this.interface.setParameter('scales', USER_SCALE, 'internal', 0)
             }
           }
         }
@@ -1434,7 +1438,7 @@ class BacaraMachine extends Machine {
     }
 
     this.interface.on('parameterChange', (path, value, origin, originalValue) => {
-//      console.log('hi',path)
+      //      console.log('hi',path)
       if ((origin == 'surface' || origin == 'window') && showPatternParameters.indexOf(path) >= 0) {
         this.showPattern()
       }
@@ -1476,25 +1480,25 @@ class BacaraMachine extends Machine {
             const notes = this.interface.connection(origin).midiCache.playingNotes(channel ? channel : 0)
             if (notes) {
               if (notes.length == 1) {
-                const variant = notes[0] - _.get(config,'options.variantGeneralNote',36)
-                if (variant>=0 && variant<=VARIANT_MAX) {
+                const variant = notes[0] - _.get(config, 'options.variantGeneralNote', 36)
+                if (variant >= 0 && variant <= VARIANT_MAX) {
                   const oldVariant = this.interface.getParameter('variant', 0, 0)
                   if (oldVariant != variant) {
-                    this.interface.setParameter('variant', variant, 'internal',0)
+                    this.interface.setParameter('variant', variant, 'internal', 0)
                     this.parameterSideEffects.variant('variant', variant, 'internal', oldVariant)
                   } else {
                     this.showVariant()
                   }
                 }
               } else if (notes.length == 2) {
-                const sourceVariant = notes[0] - _.get(config,'options.variantGeneralNote',36)
-                const targetVariant = notes[1] - _.get(config,'options.variantGeneralNote',36)
-                if (sourceVariant!=targetVariant && (sourceVariant>=0 && sourceVariant<=VARIANT_MAX) && (targetVariant>=0 && targetVariant<=VARIANT_MAX)) {
-                  debugVariant('copy from variant %y to variant %y',this.variantName(sourceVariant),this.variantName(targetVariant))
+                const sourceVariant = notes[0] - _.get(config, 'options.variantGeneralNote', 36)
+                const targetVariant = notes[1] - _.get(config, 'options.variantGeneralNote', 36)
+                if (sourceVariant != targetVariant && (sourceVariant >= 0 && sourceVariant <= VARIANT_MAX) && (targetVariant >= 0 && targetVariant <= VARIANT_MAX)) {
+                  debugVariant('copy from variant %y to variant %y', this.variantName(sourceVariant), this.variantName(targetVariant))
                   this.interface.setVariantParameters(targetVariant, this.interface.getVariantParameters(sourceVariant) )
-                  this.interface.setVariantState(targetVariant,this.interface.getVariantState(sourceVariant))
+                  this.interface.setVariantState(targetVariant, this.interface.getVariantState(sourceVariant))
                   if (targetVariant == 0) {
-//                    debug('merge to global %y',this.interface.getVariantState(sourceVariant))
+                    //                    debug('merge to global %y',this.interface.getVariantState(sourceVariant))
                     this.state = Object.assign(this.state, this.interface.getVariantState(sourceVariant))
                     // We can now wipe the source variant, as it has been copied to global
                     this.interface.setVariantParameters(sourceVariant, {})
@@ -1507,9 +1511,9 @@ class BacaraMachine extends Machine {
           }
         }
         if (origin == 'analog-rytm') {
-          if (msg._type == 'cc' && msg.controller==94 && msg.channel>=0 && msg.channel<=11 && (msg.value==0 || msg.value==1)) {
-            this.interface.setParameter(`drums.redrum.tracks.${msg.channel}.mute`,msg.value,origin)
-            debug('analog-rytm redrum %smute track %y',msg.value?'':'un',msg.channel+1)
+          if (msg._type == 'cc' && msg.controller == 94 && msg.channel >= 0 && msg.channel <= 11 && (msg.value == 0 || msg.value == 1)) {
+            this.interface.setParameter(`drums.redrum.tracks.${msg.channel}.mute`, msg.value, origin)
+            debug('analog-rytm redrum %smute track %y', msg.value ? '' : 'un', msg.channel + 1)
           }
         }
         if (origin == 'transpose') {
@@ -1592,7 +1596,7 @@ class BacaraMachine extends Machine {
 
   sendWindowData(forceRedraw = false) {
     if (this.windowEmitter) {
-      this.windowEmitter.send('setData',{
+      this.windowEmitter.send('setData', {
         interface:this.interface.interface,
         parameters:this.interface.parameters,
         state:this.state,
@@ -1627,7 +1631,7 @@ class BacaraMachine extends Machine {
     }
   }
 
-  initState(json,keepObj) {
+  initState(json, keepObj) {
     const state = {}
     const paths = [
       'device.A.portName',
@@ -1645,8 +1649,10 @@ class BacaraMachine extends Machine {
     ]
     paths.forEach( path => _.set(state, path, _.get((json && json.state) ? json.state : json, path)) )
 
-    ;['A','B'].forEach( dev => {
-      if (!_.get(state,`device.${dev}.portName`)) _.set(state,`device.${dev}.portName`, Midi.normalisePortName(this.interface.getParameter(`device.${dev}.port`)))
+    ;['A', 'B'].forEach( dev => {
+      if (!_.get(state, `device.${dev}.portName`)) {
+        _.set(state, `device.${dev}.portName`, Midi.normalisePortName(this.interface.getParameter(`device.${dev}.port`)))
+      }
     })
 
     this.setStates(state)
@@ -1665,11 +1671,11 @@ class BacaraMachine extends Machine {
     }
     this.interface.setParameters(parameters)
 
-    for (let variant=1;variant<=VARIANT_MAX;variant++) {
-      const variantParameters = _.get(json,`variants.${String.fromCharCode(64+variant)}.parameters`)
-      this.interface.setVariantParameters(variant,variantParameters)
-      const variantState = _.get(json,`variants.${String.fromCharCode(64+variant)}.state`)
-      this.interface.setVariantState(variant,variantState)
+    for (let variant = 1; variant <= VARIANT_MAX; variant++) {
+      const variantParameters = _.get(json, `variants.${String.fromCharCode(64 + variant)}.parameters`)
+      this.interface.setVariantParameters(variant, variantParameters)
+      const variantState = _.get(json, `variants.${String.fromCharCode(64 + variant)}.state`)
+      this.interface.setVariantState(variant, variantState)
     }
 
     this.interface.emitParameters('post-connect')
@@ -1692,7 +1698,7 @@ class BacaraMachine extends Machine {
         this.deviationsGenerate(deviation)
       }
     })
-//    console.log(state)
+    //    console.log(state)
 
   }
 
@@ -1707,7 +1713,7 @@ class BacaraMachine extends Machine {
         console.error(e)
       }
       debugState('readState (%y) %y', filePath, json)
-      this.initState(json,keepObj)
+      this.initState(json, keepObj)
     }
   }
 
@@ -1778,7 +1784,7 @@ class BacaraMachine extends Machine {
   }
 
   showDrumsPattern() {
-    if (DELAYED_ACTUAL_MS==0) {
+    if (DELAYED_ACTUAL_MS == 0) {
       if (this.windowEmitter) {
         this.sendWindowData()
         this.windowEmitter.send('showDrumsPattern')
@@ -1792,14 +1798,14 @@ class BacaraMachine extends Machine {
   }
 
   showDrumsPatternActual() {
-    if (DELAYED_ACTUAL_MS>0) {
+    if (DELAYED_ACTUAL_MS > 0) {
       if (this.windowEmitter) {
         this.sendWindowData()
         this.windowEmitter.send('showDrumsPattern')
       }
     }
     const pattern = this.getState('drums.midi')
-//    const size = this.getState('drums.steps', 16)
+    //    const size = this.getState('drums.steps', 16)
     const size = this.interface.getParameter('drums.steps')
     if (!pattern) {
       return
@@ -1867,7 +1873,7 @@ class BacaraMachine extends Machine {
               velFactor = 0
             }
             const relVelocity = ((note.velocity + (velFactor >= 0 ? ((1.0 - note.velocity) * (velFactor / 100)) : ((note.velocity) * (velFactor / 100)) ) ) )
-            const color = (this.sounding(ticks / ticksPerStep, 'drums.sounding', instrument) && !this.interface.getParameter('drums.mute') )? (note.velocity == 1 ? chalk.bgHex(`#${Math.floor(relVelocity * 0xFF).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x88).toString(16).padStart(2, '0')}00`) : chalk.bgHex(`#00${Math.floor(relVelocity * 0xFF).toString(16).padStart(2, '0')}00`)) : chalk.bgHex(`#${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}`)
+            const color = (this.sounding(ticks / ticksPerStep, 'drums.sounding', instrument) && !this.interface.getParameter('drums.mute') ) ? (note.velocity == 1 ? chalk.bgHex(`#${Math.floor(relVelocity * 0xFF).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x88).toString(16).padStart(2, '0')}00`) : chalk.bgHex(`#00${Math.floor(relVelocity * 0xFF).toString(16).padStart(2, '0')}00`)) : chalk.bgHex(`#${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}${Math.floor(relVelocity * 0x66).toString(16).padStart(2, '0')}`)
             const rep = 2//count * 2 + ((count - 1) * 3)
             chNote = {colSpan:count, content:color(' '.repeat(rep >= 0 ? rep : 0))}
             if (redrum) {
@@ -1888,12 +1894,12 @@ class BacaraMachine extends Machine {
 
     debugPattern(table.toString())
     /*    debug(grid)*/
-    this.setState('drums.grid', grid,0)
+    this.setState('drums.grid', grid, 0)
     this.showPatternGrid(this.stepIdx)
   }
 
   showVariant() {
-    if (DELAYED_ACTUAL_MS==0) {
+    if (DELAYED_ACTUAL_MS == 0) {
       if (this.windowEmitter) {
         this.sendWindowData()
         this.windowEmitter.send('showVariant')
@@ -1907,7 +1913,7 @@ class BacaraMachine extends Machine {
   }
 
   showVariantActual() {
-    if (DELAYED_ACTUAL_MS>0) {
+    if (DELAYED_ACTUAL_MS > 0) {
       if (this.windowEmitter) {
         this.sendWindowData()
         this.windowEmitter.send('showVariant')
@@ -1916,23 +1922,23 @@ class BacaraMachine extends Machine {
     const variant = this.interface.getParameter('variant')
     const paths = []
 
-    debugVariant('variant %y',variant?String.fromCharCode(64+variant):'global')
+    debugVariant('variant %y', variant ? String.fromCharCode(64 + variant) : 'global')
 
     this.interface.iterateElelements((template, path) => {
-      if ((variant && _.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`)) ) {
+      if ((variant && _.has(this.interface.variants, `${String.fromCharCode(64 + variant)}.parameters.${path}`)) ) {
         paths.push(path)
       }
     }, null, ['parameter', 'feedback'])
 
 
     let table = new Table(
-        {
-          head: [
-            'Variating Parameters',
-            'Values',
-          ]
-        }
-      );
+      {
+        head: [
+          'Variating Parameters',
+          'Values',
+        ]
+      }
+    )
 
     if (paths && paths.length) {
 
@@ -1940,14 +1946,16 @@ class BacaraMachine extends Machine {
       const valueColor = chalk.hex('#00FF88')
 
       for (let path of paths) {
-        const unit = this.interface.getElementAttribute(path,'unit')
+        const unit = this.interface.getElementAttribute(path, 'unit')
         let arr = [
-         {hAlign:'left', colSpan:1, content:nameColor(this.interface.getElementAttribute(path,'name') || path) },
-         {hAlign:'center', colSpan:1, content:valueColor(this.interface.getParameter(path)+(unit?` ${unit}`:'')) },
+          {hAlign:'left', colSpan:1, content:nameColor(this.interface.getElementAttribute(path, 'name') || path) },
+          {hAlign:'center', colSpan:1, content:valueColor(this.interface.getParameter(path) + (unit ? ` ${unit}` : '')) },
         ]
         table.push(arr)
       }
-      if (table) debugVariant(table.toString())
+      if (table) {
+        debugVariant(table.toString())
+      }
     }
 
 
@@ -1966,20 +1974,20 @@ class BacaraMachine extends Machine {
     const currentBgColor = chalk.bgHex('#884400')
     const currentEmptyBgColor = chalk.bgHex('#555555')
 
-//    if ((variant && _.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`)) ) {
+    //    if ((variant && _.has(this.interface.variants,`${String.fromCharCode(64+variant)}.parameters.${path}`)) ) {
 
-    const vmap = [12,13,14,15,  8,9,10,11, 4,5,6,7, 0,1,2,3]
-    for (let x=0;x<4;x++) {
-      let row=[]
-      for (let y=0;y<4;y++) {
-        const params = (vmap[(x*4)+y] && _.has(this.interface.variants,`${String.fromCharCode(64+vmap[(x*4)+y])}.parameters`))?Object.keys(_.get(this.interface.variants,`${String.fromCharCode(64+vmap[(x*4)+y])}.parameters`,{})).length:0
-        const state = (vmap[(x*4)+y] && _.has(this.interface.variants,`${String.fromCharCode(64+vmap[(x*4)+y])}.state`))?Object.keys(_.get(this.interface.variants,`${String.fromCharCode(64+vmap[(x*4)+y])}.state`,{})).length:0
-        const label = ' '+(vmap[(x*4)+y]?String.fromCharCode(64+vmap[(x*4)+y]):' ')+' '//+` (${params})`
+    const vmap = [12, 13, 14, 15,  8, 9, 10, 11, 4, 5, 6, 7, 0, 1, 2, 3]
+    for (let x = 0; x < 4; x++) {
+      let row = []
+      for (let y = 0; y < 4; y++) {
+        const params = (vmap[(x * 4) + y] && _.has(this.interface.variants, `${String.fromCharCode(64 + vmap[(x * 4) + y])}.parameters`)) ? Object.keys(_.get(this.interface.variants, `${String.fromCharCode(64 + vmap[(x * 4) + y])}.parameters`, {})).length : 0
+        const state = (vmap[(x * 4) + y] && _.has(this.interface.variants, `${String.fromCharCode(64 + vmap[(x * 4) + y])}.state`)) ? Object.keys(_.get(this.interface.variants, `${String.fromCharCode(64 + vmap[(x * 4) + y])}.state`, {})).length : 0
+        const label = ' ' + (vmap[(x * 4) + y] ? String.fromCharCode(64 + vmap[(x * 4) + y]) : ' ') + ' '//+` (${params})`
         let content = labelColor(label)
-        if (vmap[(x*4)+y] == variant) {
-          content = (params || state || !vmap[(x*4)+y])?currentColor(currentBgColor(label)):currentEmptyColor(currentEmptyBgColor(label))
+        if (vmap[(x * 4) + y] == variant) {
+          content = (params || state || !vmap[(x * 4) + y]) ? currentColor(currentBgColor(label)) : currentEmptyColor(currentEmptyBgColor(label))
         } else {
-          content = (params || state || !vmap[(x*4)+y])?labelColor(label):labelEmptyColor(label)
+          content = (params || state || !vmap[(x * 4) + y]) ? labelColor(label) : labelEmptyColor(label)
         }
         row.push(
           {hAlign:'center', colSpan:1, content },
@@ -1992,7 +2000,7 @@ class BacaraMachine extends Machine {
   }
 
   showPattern() {
-    if (DELAYED_ACTUAL_MS==0) {
+    if (DELAYED_ACTUAL_MS == 0) {
       if (this.windowEmitter) {
         this.sendWindowData()
         this.windowEmitter.send('showPattern')
@@ -2008,7 +2016,7 @@ class BacaraMachine extends Machine {
   showPatternActual() {
     //console.log('\x1Bc'); // Clear screen
 
-    if (DELAYED_ACTUAL_MS>0) {
+    if (DELAYED_ACTUAL_MS > 0) {
       if (this.windowEmitter) {
         this.sendWindowData()
         this.windowEmitter.send('showPattern')
@@ -2090,8 +2098,8 @@ class BacaraMachine extends Machine {
     notes.sort()
     notes.reverse()
 
-    const torsoT1constraint = this.getState('torso-t1.constraint',null,0)
-    const torsoT1scaleMode = this.interface.getParameter('torso-t1.scaleMode','internal',0)
+    const torsoT1constraint = this.getState('torso-t1.constraint', null, 0)
+    const torsoT1scaleMode = this.interface.getParameter('torso-t1.scaleMode', 'internal', 0)
 
     let row = 0
     notes.forEach( noteMidi => {
@@ -2101,8 +2109,8 @@ class BacaraMachine extends Machine {
       }
 
       let midiNote = noteMidi
-      const scaleMapping = (torsoT1scaleMode==TORSO_T1_SCALE_MODE_CONSTRAIN && this.getState('torso-t1.userScale',null,0) && this.interface.getParameter('scales', 'modulated') == USER_SCALE) ? {name: 'Torso T-1 Scale',mapping: this.getState('torso-t1.userScale',null,0)} : scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
-      const myBase = (torsoT1scaleMode==TORSO_T1_SCALE_MODE_CONSTRAIN && this.getState('torso-t1.userBase',null,0) >=0 && this.interface.getParameter('scales', 'modulated') == USER_SCALE) ? this.getState('torso-t1.userBase',null,0) : this.interface.getParameter('base', 'modulated')
+      const scaleMapping = (torsoT1scaleMode == TORSO_T1_SCALE_MODE_CONSTRAIN && this.getState('torso-t1.userScale', null, 0) && this.interface.getParameter('scales', 'modulated') == USER_SCALE) ? {name: 'Torso T-1 Scale', mapping: this.getState('torso-t1.userScale', null, 0)} : scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
+      const myBase = (torsoT1scaleMode == TORSO_T1_SCALE_MODE_CONSTRAIN && this.getState('torso-t1.userBase', null, 0) >= 0 && this.interface.getParameter('scales', 'modulated') == USER_SCALE) ? this.getState('torso-t1.userBase', null, 0) : this.interface.getParameter('base', 'modulated')
       const midiNoteFromBase = (midiNote + myBase ) % 12
       const midiNoteBase =  midiNote - midiNoteFromBase
 
@@ -2144,11 +2152,11 @@ class BacaraMachine extends Machine {
         })
       }
 
-      const constraintPassed = (torsoT1scaleMode==TORSO_T1_SCALE_MODE_FILTER) ? (torsoT1constraint?torsoT1constraint.indexOf(noteMidiTransposed%12)>=0:true) : true
+      const constraintPassed = (torsoT1scaleMode == TORSO_T1_SCALE_MODE_FILTER) ? (torsoT1constraint ? torsoT1constraint.indexOf(noteMidiTransposed % 12) >= 0 : true) : true
       const noteName = TonalMidi.midiToNoteName(noteMidiTransposed - 12, { sharps: true })
       const arr = [
         {hAlign:'center', content:deviceList.join(' ') },
-        {hAlign:'center', content: constraintPassed?noteName:disabledColor(noteName)}
+        {hAlign:'center', content: constraintPassed ? noteName : disabledColor(noteName)}
       ]
 
 
@@ -2233,7 +2241,7 @@ class BacaraMachine extends Machine {
     /*    debugOsc('table %y',table)*/
     debugPattern(table.toString())
     /*    debug(grid)*/
-    this.setState('pattern.grid', grid,0)
+    this.setState('pattern.grid', grid, 0)
     this.showPatternGrid(this.stepIdx)
   }
 
@@ -2244,7 +2252,7 @@ class BacaraMachine extends Machine {
 
     for (let row = 0; row < monome.height; row++) {
       for (let col = 0; col < monome.width; col++) {
-        let on = mode ? this.getState(`${prefix}.${row}.${col + offset}`,false,0) : false
+        let on = mode ? this.getState(`${prefix}.${row}.${col + offset}`, false, 0) : false
         if (mode && showCursor && step >= 0 && step == (col + offset) /*&& Array.isArray(this.getState(`pattern.grid.${row}`)) && col<this.getState(`pattern.grid.${row}`).length*/ && row == monome.height - 1) {
           on = !on
         }
@@ -2354,10 +2362,10 @@ class BacaraMachine extends Machine {
     const filename = presetFiles[program]
     if (filename) {
       const bank = this.interface.getParameter('bank')
-      const playing = this.getState('playing',false,0)
+      const playing = this.getState('playing', false, 0)
       const remote = this.getState('remote')
       this.readState(filename, {bank, program})
-      this.setState('playing', playing,0)
+      this.setState('playing', playing, 0)
       this.setState('remote', remote)
       this.ensureDevicePortName('A')
       this.ensureDevicePortName('B')
@@ -2403,9 +2411,9 @@ class BacaraMachine extends Machine {
     this.stepIdx = ticks / ticksPerStep
 
 
-    if (this.getState('playing',false,0)) {
-      if (!((this.stepIdx*100)%100) && this.windowEmitter) {
-        this.windowEmitter.send('step',{
+    if (this.getState('playing', false, 0)) {
+      if (!((this.stepIdx * 100) % 100) && this.windowEmitter) {
+        this.windowEmitter.send('step', {
           step:Math.round(this.stepIdx) + 1,
         })
       }
@@ -2569,12 +2577,12 @@ class BacaraMachine extends Machine {
                 }
                 if (midiNote >= 0 && midiNote <= 127) {
 
-                  const torsoT1constraint = this.getState('torso-t1.constraint',null,0)
-                  const torsoT1scaleMode = this.interface.getParameter('torso-t1.scaleMode','internal',0)
+                  const torsoT1constraint = this.getState('torso-t1.constraint', null, 0)
+                  const torsoT1scaleMode = this.interface.getParameter('torso-t1.scaleMode', 'internal', 0)
 
 
-                  const scaleMapping = (torsoT1scaleMode==TORSO_T1_SCALE_MODE_CONSTRAIN && this.getState('torso-t1.userScale',null,0) && this.interface.getParameter('scales', 'modulated') == USER_SCALE) ? {name: 'Torso T-1 Scale',mapping: this.getState('torso-t1.userScale',null,0)} : scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
-                  const myBase = (torsoT1scaleMode==TORSO_T1_SCALE_MODE_CONSTRAIN && this.getState('torso-t1.userBase',null,0) >=0 && this.interface.getParameter('scales', 'modulated') == USER_SCALE) ? this.getState('torso-t1.userBase',null,0) : this.interface.getParameter('base', 'modulated')
+                  const scaleMapping = (torsoT1scaleMode == TORSO_T1_SCALE_MODE_CONSTRAIN && this.getState('torso-t1.userScale', null, 0) && this.interface.getParameter('scales', 'modulated') == USER_SCALE) ? {name: 'Torso T-1 Scale', mapping: this.getState('torso-t1.userScale', null, 0)} : scaleMappings.scales[this.interface.getParameter('scales', 'modulated')]
+                  const myBase = (torsoT1scaleMode == TORSO_T1_SCALE_MODE_CONSTRAIN && this.getState('torso-t1.userBase', null, 0) >= 0 && this.interface.getParameter('scales', 'modulated') == USER_SCALE) ? this.getState('torso-t1.userBase', null, 0) : this.interface.getParameter('base', 'modulated')
                   const midiNoteFromBase = (midiNote + myBase ) % 12
 
                   const midiNoteBase =  midiNote - midiNoteFromBase
@@ -2607,9 +2615,9 @@ class BacaraMachine extends Machine {
 
                   midiNote += this.interface.getParameter('transpose', 'modulated') + this.interface.getParameter(`device.${dev}.transpose`, 'modulated')
 
-//                  const torsoT1constraint = this.getState('torso-t1.constraint',null,0)
-//                  const torsoT1scaleMode = this.interface.getParameter('torso-t1.scaleMode','internal',0)
-                  const constraintPassed = (torsoT1scaleMode==TORSO_T1_SCALE_MODE_FILTER) ? (torsoT1constraint?torsoT1constraint.indexOf(midiNote%12)>=0:true) : true
+                  //                  const torsoT1constraint = this.getState('torso-t1.constraint',null,0)
+                  //                  const torsoT1scaleMode = this.interface.getParameter('torso-t1.scaleMode','internal',0)
+                  const constraintPassed = (torsoT1scaleMode == TORSO_T1_SCALE_MODE_FILTER) ? (torsoT1constraint ? torsoT1constraint.indexOf(midiNote % 12) >= 0 : true) : true
 
                   if (constraintPassed) {
                     // DEVIATIONS OCTAVE
@@ -2779,7 +2787,7 @@ class BacaraMachine extends Machine {
                       debugMidiNoteError('MIDI B note out of range: %y', midiNote)
                     }
                   } else {
-//                    debugMidiNoteError('MIDI C note not passed constraint: %y (%y)', TonalMidi.midiToNoteName(midiNote - 12, { sharps: true }),midiNote)
+                    //                    debugMidiNoteError('MIDI C note not passed constraint: %y (%y)', TonalMidi.midiToNoteName(midiNote - 12, { sharps: true }),midiNote)
                   }
                 } else {
                   debugMidiNoteError('MIDI A note out of range: %y', midiNote)
@@ -2849,11 +2857,11 @@ class BacaraMachine extends Machine {
                     })
                     this.midiCache.clearValue(portName, channel, 'note', midiNote)
                   }, durationMs + r, portName, midiNote, channel)
-                  if (!this.interface.getParameter(`drums.redrum.mute`, 'modulated')) {
+                  if (!this.interface.getParameter('drums.redrum.mute', 'modulated')) {
                     for (let trck = 0; trck < REDRUM_TRACKS; trck++) {
 
                       if (this.interface.getParameter(`drums.redrum.tracks.${trck}.instrument`, 'modulated') == (instrument + 1 )) {
-                        if (!this.interface.getParameter(`drums.redrum.tracks.${trck}.mute`, 'modulated') && this.getState(`drums.redrum.tracks.${trck}.portName`) && this.interface.getParameter('drums.probability', 'modulated',100) >= Random.getRandomInt(100)) {
+                        if (!this.interface.getParameter(`drums.redrum.tracks.${trck}.mute`, 'modulated') && this.getState(`drums.redrum.tracks.${trck}.portName`) && this.interface.getParameter('drums.probability', 'modulated', 100) >= Random.getRandomInt(100)) {
                           const portName = this.getState(`drums.redrum.tracks.${trck}.portName`)
                           const channel = this.getState(`drums.redrum.tracks.${trck}.channel`, 9)
                           const midiNote = this.interface.getParameter(`drums.redrum.tracks.${trck}.note`, 'modulated')
@@ -2946,10 +2954,10 @@ class BacaraMachine extends Machine {
 
 
   variantName(variant) {
-    if (variant==0) {
+    if (variant == 0) {
       return 'global'
-    } else if (variant>=1 && variant<=VARIANT_MAX) {
-      return String.fromCharCode(64+variant)
+    } else if (variant >= 1 && variant <= VARIANT_MAX) {
+      return String.fromCharCode(64 + variant)
     }
   }
 
@@ -2978,8 +2986,8 @@ class BacaraMachine extends Machine {
     /*        debugOsc('Address %y Value %y Last %y Mine %y',oscMessage.address,oscMessage.args.join(', '),torsoT1_LastChannel,this.interface.getParameter('torso-t1.channel','internal',0))*/
     if (oscMessage.address == '/t1/channel' && Array.isArray(oscMessage.args) && oscMessage.args.length == 1) {
       torsoT1_LastChannel = oscMessage.args[0]
-    } else if (torsoT1_LastChannel == 0 || torsoT1_LastChannel == this.interface.getParameter('torso-t1.channel','internal',0)) {
-                //debugOsc('channel %y message %y (%y)', torsoT1_LastChannel,oscMessage.address,oscMessage.args.join(', '))
+    } else if (torsoT1_LastChannel == 0 || torsoT1_LastChannel == this.interface.getParameter('torso-t1.channel', 'internal', 0)) {
+      //debugOsc('channel %y message %y (%y)', torsoT1_LastChannel,oscMessage.address,oscMessage.args.join(', '))
       let tmpModSlotSource = (Object.keys(matrixSlotSources).length - 1) + 126  // Let last of the other (non-T1) mod sources
       let modSlotSource
 
@@ -3024,7 +3032,7 @@ class BacaraMachine extends Machine {
                   }
                   setCount++
                   const fakeValue = oscMessage.args.length ? (oscMessage.args.length / 16) * 100 : 0
-                  this.interface.setParameter(`matrix.slot.${slotIdx}.value`,fakeValue * (127/100))
+                  this.interface.setParameter(`matrix.slot.${slotIdx}.value`, fakeValue * (127 / 100))
                   this.interface.setParameter(`deviations.${deviation}.density`, fakeValue, 'external')
                   this.interface.setParameter(`deviations.${deviation}.euclidian`, 0, 'external')
                   this.setState(`deviations.${deviation}`, oscMessage.args.length ? density : null)
@@ -3050,47 +3058,47 @@ class BacaraMachine extends Machine {
     }
 
     const setConstraint = () => {
-      const midiNotes = Array.isArray(this.getState('torso-t1.scale',null,0))?this.getState('torso-t1.scale',null,0).map( noteName => {
-        const result = TonalMidi.toMidi(noteName+'-1')
-        return (result>=12)?result-12:result
-      }):null
-      const constraint = Array.isArray(this.getState('torso-t1.scale',null,0))?this.getState('torso-t1.scale',null,0).map( noteName => {
-        const result = TonalMidi.toMidi(noteName+'-1')+(this.getState('torso-t1.root',null,0)?TonalMidi.toMidi(this.getState('torso-t1.root',null,0)+'-1'):0)
-        return (result>=12)?result-12:result
-      }):null
+      const midiNotes = Array.isArray(this.getState('torso-t1.scale', null, 0)) ? this.getState('torso-t1.scale', null, 0).map( noteName => {
+        const result = TonalMidi.toMidi(noteName + '-1')
+        return (result >= 12) ? result - 12 : result
+      }) : null
+      const constraint = Array.isArray(this.getState('torso-t1.scale', null, 0)) ? this.getState('torso-t1.scale', null, 0).map( noteName => {
+        const result = TonalMidi.toMidi(noteName + '-1') + (this.getState('torso-t1.root', null, 0) ? TonalMidi.toMidi(this.getState('torso-t1.root', null, 0) + '-1') : 0)
+        return (result >= 12) ? result - 12 : result
+      }) : null
       const userScale = []
-      for (let n=0;n<12;n++) {
-        for (let r=0;r<12;r++) {
-          if (midiNotes.indexOf( ((n-r)<0) ? 12 - (n-r) : (n-r) ) >= 0) {
-            userScale[n]= n-r
+      for (let n = 0; n < 12; n++) {
+        for (let r = 0; r < 12; r++) {
+          if (midiNotes.indexOf( ((n - r) < 0) ? 12 - (n - r) : (n - r) ) >= 0) {
+            userScale[n] = n - r
             break
-          } else if (midiNotes.indexOf( ((n+r)>11) ? (n+r) - 12 : (n+r) ) >= 0) {
-            userScale[n]= n+r
+          } else if (midiNotes.indexOf( ((n + r) > 11) ? (n + r) - 12 : (n + r) ) >= 0) {
+            userScale[n] = n + r
             break
           }
         }
       }
-      this.setState('torso-t1.userScale', userScale,0)
-      this.setState('torso-t1.userBase', TonalMidi.toMidi(this.getState('torso-t1.root',null,0)+'-1'),0)
+      this.setState('torso-t1.userScale', userScale, 0)
+      this.setState('torso-t1.userBase', TonalMidi.toMidi(this.getState('torso-t1.root', null, 0) + '-1'), 0)
 
-      if (this.interface.getParameter('torso-t1.scaleMode','internal',0) == TORSO_T1_SCALE_MODE_CONSTRAIN) {
-        this.interface.setParameter('base', this.getState('torso-t1.userBase', 0,0),'internal',0)
-        this.interface.setParameter('scales', USER_SCALE,'internal',0)
+      if (this.interface.getParameter('torso-t1.scaleMode', 'internal', 0) == TORSO_T1_SCALE_MODE_CONSTRAIN) {
+        this.interface.setParameter('base', this.getState('torso-t1.userBase', 0, 0), 'internal', 0)
+        this.interface.setParameter('scales', USER_SCALE, 'internal', 0)
       }
 
-      this.setState('torso-t1.constraint', constraint,0)
+      this.setState('torso-t1.constraint', constraint, 0)
     }
 
     if (oscMessage.address == '/t1/scale') {
       debugOsc('receive  addr %y  value %y', oscMessage.address, oscMessage.args.join(', '))
-      this.setState('torso-t1.scale', oscMessage.args,0)
+      this.setState('torso-t1.scale', oscMessage.args, 0)
 
       setConstraint()
 
       this.writeState()
     } else if (oscMessage.address == '/t1/root') {
       debugOsc('receive  addr %y  value %y', oscMessage.address, oscMessage.args.join(', '))
-      this.setState('torso-t1.root', oscMessage.args[0],0)
+      this.setState('torso-t1.root', oscMessage.args[0], 0)
 
       setConstraint()
 
@@ -3225,15 +3233,19 @@ function bacaraSequencer(name, sub, options, windowEmitter ) {
                 debug('Electra One "%s" preset IS Loaded (patch)', bacaraPresetName)
                 if (config.electra.checkPresetVia == 'patch') {
                   bacaraPresetLoaded = true
-                  bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
-                  if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
+                  bacaraMachine.setConnectionActive('surface', bacaraPresetLoaded)
+                  if (bacaraPresetLoaded) {
+                    bacaraMachine.interface.sendValues('surface')
+                  }
                 }
               } else {
                 debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (patch)', bacaraPresetName, presetName)
                 if (config.electra.checkPresetVia == 'patch') {
                   bacaraPresetLoaded = false
-                  bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
-                  if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
+                  bacaraMachine.setConnectionActive('surface', bacaraPresetLoaded)
+                  if (bacaraPresetLoaded) {
+                    bacaraMachine.interface.sendValues('surface')
+                  }
                 }
               }
             } else if (_.isEqual(sysexCmd, electraSysexCmdPresetNameResponse)) {
@@ -3241,16 +3253,20 @@ function bacaraSequencer(name, sub, options, windowEmitter ) {
               if (!presetName || (presetName == bacaraPresetName || presetName.toLowerCase().indexOf('bacara') >= 0)) {
                 debug('Electra One "%s" preset IS Loaded (preset)', bacaraPresetName)
                 if (config.electra.checkPresetVia == 'preset') {
-                 bacaraPresetLoaded = true
-                 bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
-                 if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
-               }
+                  bacaraPresetLoaded = true
+                  bacaraMachine.setConnectionActive('surface', bacaraPresetLoaded)
+                  if (bacaraPresetLoaded) {
+                    bacaraMachine.interface.sendValues('surface')
+                  }
+                }
               } else {
                 debug('Electra One "%s" preset is NOT Loaded (currently is "%s") (preset)', bacaraPresetName, presetName, presetName.toLowerCase().indexOf(bacaraPresetName.toLowerCase()), presetName, bacaraPresetName)
                 if (config.electra.checkPresetVia == 'preset') {
                   bacaraPresetLoaded = false
-                  bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
-                  if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
+                  bacaraMachine.setConnectionActive('surface', bacaraPresetLoaded)
+                  if (bacaraPresetLoaded) {
+                    bacaraMachine.interface.sendValues('surface')
+                  }
                 }
               }
             } else if (_.isEqual(sysexCmd, electraSysexCmdPresetSwitch)) {
@@ -3263,8 +3279,10 @@ function bacaraSequencer(name, sub, options, windowEmitter ) {
               }
               debug('Bacara Preset Name Request done')
               bacaraPresetLoaded = false
-              bacaraMachine.setConnectionActive('surface',bacaraPresetLoaded)
-              if (bacaraPresetLoaded) bacaraMachine.interface.sendValues('surface')
+              bacaraMachine.setConnectionActive('surface', bacaraPresetLoaded)
+              if (bacaraPresetLoaded) {
+                bacaraMachine.interface.sendValues('surface')
+              }
             } else {
               //                         debug('unhandles sysex %y',sysexCmd)
             }
@@ -3337,7 +3355,7 @@ function bacaraSequencer(name, sub, options, windowEmitter ) {
   }
 
   if (options.analogRytmDevice) {
-    bacaraMachine.connect(options.analogRytmDevice, 'analog-rytm', null,true,true,true)
+    bacaraMachine.connect(options.analogRytmDevice, 'analog-rytm', null, true, true, true)
   }
 
   bacaraMachine.interface.emitParameters('post-connect')
