@@ -455,6 +455,7 @@ class BacaraMachine extends Machine {
               this.sendDeviceProgramChange('A')
               this.sendDeviceProgramChange('B')
               this.interface.sendValues('surface')
+              this.sendWindowData(true)
               this.showPattern()
               this.writeState()
               debug('previous_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
@@ -472,6 +473,7 @@ class BacaraMachine extends Machine {
               this.sendDeviceProgramChange('A')
               this.sendDeviceProgramChange('B')
               this.interface.sendValues('surface')
+              this.sendWindowData(true)
               this.showPattern()
               this.writeState()
               debug('next_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
@@ -487,6 +489,7 @@ class BacaraMachine extends Machine {
             this.sendDeviceProgramChange('A')
             this.sendDeviceProgramChange('B')
             this.interface.sendValues('surface')
+            this.sendWindowData(true)
             this.showPattern()
             this.writeState()
             debug('random_preset: %y %y', this.interface.getParameter('program'), path.basename(filename))
@@ -617,6 +620,7 @@ class BacaraMachine extends Machine {
                 if (portName) {
 
                   const midiNames = _.get(config, 'preset.midi.ports.output', []).map( port => port.name ) //easymidi.getOutputs()
+            console.log('hi',midiNames)
                   if (midiNames) {
                     const idx = midiNames.indexOf(portName)
                     if (idx >= 0) {
@@ -1036,6 +1040,7 @@ class BacaraMachine extends Machine {
               this.sendDeviceProgramChange('A')
               this.sendDeviceProgramChange('B')
               this.interface.sendValues()
+              this.sendWindowData(true)
               this.writeState()
               debug('program: %y %y', value, path.basename(filename))
             }
@@ -1967,13 +1972,14 @@ class BacaraMachine extends Machine {
     for (let x=0;x<4;x++) {
       let row=[]
       for (let y=0;y<4;y++) {
-        const params = (vmap[(x*4)+y] && _.has(this.interface.variants,`${String.fromCharCode(64+vmap[(x*4)+y])}.parameters`))?Object.keys(_.get(this.interface.variants,`${String.fromCharCode(64+vmap[(x*4)+y])}.parameters`),{}).length:0
+        const params = (vmap[(x*4)+y] && _.has(this.interface.variants,`${String.fromCharCode(64+vmap[(x*4)+y])}.parameters`))?Object.keys(_.get(this.interface.variants,`${String.fromCharCode(64+vmap[(x*4)+y])}.parameters`,{})).length:0
+        const state = (vmap[(x*4)+y] && _.has(window,`bacara.variants.${String.fromCharCode(64+vmap[(x*4)+y])}.state`))?Object.keys(_.get(window,`bacara.variants.${String.fromCharCode(64+vmap[(x*4)+y])}.state`,{})).length:0
         const label = ' '+(vmap[(x*4)+y]?String.fromCharCode(64+vmap[(x*4)+y]):' ')+' '//+` (${params})`
         let content = labelColor(label)
         if (vmap[(x*4)+y] == variant) {
-          content = (params || !vmap[(x*4)+y])?currentColor(currentBgColor(label)):currentEmptyColor(currentEmptyBgColor(label))
+          content = (params || state || !vmap[(x*4)+y])?currentColor(currentBgColor(label)):currentEmptyColor(currentEmptyBgColor(label))
         } else {
-          content = (params || !vmap[(x*4)+y])?labelColor(label):labelEmptyColor(label)
+          content = (params || state || !vmap[(x*4)+y])?labelColor(label):labelEmptyColor(label)
         }
         row.push(
           {hAlign:'center', colSpan:1, content },
@@ -3269,7 +3275,7 @@ function bacaraSequencer(name, sub, options, windowEmitter ) {
     })
   }
 
-
+  console.log('electra',options.electra)
   bacaraMachine.connect(options.electra, 'surface', 0, true, true, bacaraPresetLoaded)
 
   if (options.osc) {

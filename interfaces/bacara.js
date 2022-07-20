@@ -57,12 +57,34 @@ function deviceList() {
 
     for (let deviceKey of deviceKeys) {
       if (Array.isArray(config.devices[deviceKey].channels)) {
+        let instance = config.devices[deviceKey].instance ? config.devices[deviceKey].instance : 'ch.#'
+        const model = config.devices[deviceKey].model
+        const short = config.devices[deviceKey].short
         for (let c in config.devices[deviceKey].channels) {
-          result.push(config.devices[deviceKey].model + ' ch.'+config.devices[deviceKey].channels[c])
+          if (Array.isArray(config.devices[deviceKey].instances) && config.devices[deviceKey].instances.length > c) {
+            instance = config.devices[deviceKey].instances[c]
+          }
+          if (typeof config.devices[deviceKey].special === 'object' && config.devices[deviceKey].special[config.devices[deviceKey].channels[c]]) {
+            instance = config.devices[deviceKey].special[config.devices[deviceKey].channels[c]]
+          }
+          const label = config.devices[deviceKey].channels.length > 1 ? `${short ? short : model} ${instance}`.trim() : model
+          const rLabel = label.replace('#', config.devices[deviceKey].instance ? (parseInt(c) + 1) : config.devices[deviceKey].channels[c])
+//          result.push(config.devices[deviceKey].model + ' ch.'+config.devices[deviceKey].channels[c])
+          result.push(rLabel)
         }
       }
     }
   }
+  return result
+}
+
+function portList() {
+  let result = []
+
+  for (let port of Bacara.getPresetState('midi.ports.output', [])) {
+    result.push(port.short)
+  }
+
   return result
 }
 
@@ -2175,9 +2197,10 @@ module.exports = {
             max: 63,
           },
           window: {
-            template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+            template: '<x-select class="{{class}}"><x-menu>{{#each element.list}}<x-menuitem value="{{@index}}" {{#if (isSelected this "scales")}}toggled{{/if}}><x-label>{{this}}</x-label></x-menuitem>{{/each}}</x-menu></x-select>',
             page: 'Device A',
           },
+          list: portList(),
           precision: 0,
           min: 0,
           max: 63,
@@ -2418,10 +2441,10 @@ module.exports = {
             max: 63,
           },
           window: {
-            template: '<x-knob class="{{class}}" theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+            template: '<x-select class="{{class}}"><x-menu>{{#each element.list}}<x-menuitem value="{{@index}}" {{#if (isSelected this "scales")}}toggled{{/if}}><x-label>{{this}}</x-label></x-menuitem>{{/each}}</x-menu></x-select>',
             page: 'Device B',
           },
-          precision: 0,
+          list: portList(),
           min: 0,
           max: 63,
           default: deviceToIndex(config.defaultDevices.B.device, config.defaultDevices.B.channel,'port'),
