@@ -82,6 +82,16 @@ module.exports = customWrapper({
       },
     },
   },
+  defaultDevices: {
+    A: {
+      device:'virus-ti',
+      channel: 1,
+    },
+    B: {
+      device:'virus-ti',
+      channel: 2,
+    },
+  },
   devices: {
     'bacara': {
       model: 'Bacara',
