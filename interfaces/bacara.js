@@ -2318,7 +2318,7 @@ module.exports = {
             max: 127,
           },
           window: {
-            template: '<x-knob class="{{class}}" symetrical theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+            template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
             page: 'Device A',
           },
           precision: 0,
@@ -2559,7 +2559,7 @@ module.exports = {
             max: 127,
           },
           window: {
-            template: '<x-knob class="{{class}}" symetrical theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+            template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
             page: 'Device B',
           },
           precision: 0,
@@ -2797,7 +2797,7 @@ module.exports = {
           max: 200,
         },
         window: {
-          template: '<x-knob class="{{class}}" symetrical theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
+          template: '<x-knob class="{{class}}" symmetric theme="flat" value="{{value}}" min="{{element.min}}" max="{{element.max}}"></x-knob>',
           page: 'Drums',
         },
         min: -100,
