@@ -167,7 +167,7 @@ class BacaraMachine extends Machine {
         if (typeof args == 'object') {
           switch (args.type) {
             case 'getData':
-              console.log(args)
+//              console.log(args)
               this.sendWindowData(!!args.forceRedraw)
 //              this.windowEmitter.send('showPattern')
               break
@@ -620,7 +620,7 @@ class BacaraMachine extends Machine {
                 if (portName) {
 
                   const midiNames = _.get(config, 'preset.midi.ports.output', []).map( port => port.name ) //easymidi.getOutputs()
-            console.log('hi',midiNames)
+//            console.log('hi',midiNames)
                   if (midiNames) {
                     const idx = midiNames.indexOf(portName)
                     if (idx >= 0) {
@@ -1973,7 +1973,7 @@ class BacaraMachine extends Machine {
       let row=[]
       for (let y=0;y<4;y++) {
         const params = (vmap[(x*4)+y] && _.has(this.interface.variants,`${String.fromCharCode(64+vmap[(x*4)+y])}.parameters`))?Object.keys(_.get(this.interface.variants,`${String.fromCharCode(64+vmap[(x*4)+y])}.parameters`,{})).length:0
-        const state = (vmap[(x*4)+y] && _.has(window,`bacara.variants.${String.fromCharCode(64+vmap[(x*4)+y])}.state`))?Object.keys(_.get(window,`bacara.variants.${String.fromCharCode(64+vmap[(x*4)+y])}.state`,{})).length:0
+        const state = (vmap[(x*4)+y] && _.has(this.interface.variants,`${String.fromCharCode(64+vmap[(x*4)+y])}.state`))?Object.keys(_.get(this.interface.variants,`${String.fromCharCode(64+vmap[(x*4)+y])}.state`,{})).length:0
         const label = ' '+(vmap[(x*4)+y]?String.fromCharCode(64+vmap[(x*4)+y]):' ')+' '//+` (${params})`
         let content = labelColor(label)
         if (vmap[(x*4)+y] == variant) {
@@ -3275,7 +3275,6 @@ function bacaraSequencer(name, sub, options, windowEmitter ) {
     })
   }
 
-  console.log('electra',options.electra)
   bacaraMachine.connect(options.electra, 'surface', 0, true, true, bacaraPresetLoaded)
 
   if (options.osc) {

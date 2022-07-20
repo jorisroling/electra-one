@@ -51,7 +51,7 @@ function deviceToIndex(portName, channel = 1, field = 'device') {
 function deviceList() {
   let result = ['Unknown']
   if (config.devices) {
-    console.log(config.devices)
+//    console.log(config.devices)
     const deviceKeys = Object.keys(config.devices).filter( deviceKey => deviceKey != 'bacara' )
     deviceKeys.unshift('bacara')
 
